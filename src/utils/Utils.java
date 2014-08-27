@@ -32,17 +32,30 @@ public class Utils {
 	 * @param range Expected matrix range
 	 * @return result (true/false)
 	 */
-	public static boolean verifyMatrixRange(final double[][] matrix, final int range){
+	private static boolean verifyMatrixRange(final double[][] matrix, final int range){
 		return (matrix.length==range && matrix[0].length==range);
 	}
 
 	/**
 	 * Verify matrix range.
-	 * @param matrix matrix for inspection
+	 * @param array array for inspection
 	 * @param range Expected matrix range
 	 * @return result (true/false)
 	 */
-	public static boolean verifyMatrixRange(final double[] matrix, final int range){
-		return (matrix.length==range);
+	private static boolean verifyMatrixRange(final double[] array, final int range){
+		return (array.length==range);
+	}
+
+	/**
+	 * Verify range of matrix and array.
+	 * @param matrix matrix for inspection
+	 * @param array array for inspection
+	 * @param range Expected range
+	 */
+	public static void verifyMatrixRange(final double[][] matrix, final double[] array, final int range){
+		if (!(verifyMatrixRange(matrix, range) && Utils.verifyMatrixRange(array, range))){
+			System.out.println("Error in matrix range");
+			System.exit(1);
+		}
 	}
 }

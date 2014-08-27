@@ -20,10 +20,7 @@ public class Main{
 	 * @param args console arguments
 	 */
 	public static void main(final String[] args){
-		if (!(Utils.verifyMatrixRange(inputMatrix, range) && Utils.verifyMatrixRange(freeCoefficients, range))){
-			System.out.println("Error in matrix range");
-			System.exit(1);
-		}
+		Utils.verifyMatrixRange(inputMatrix, freeCoefficients, range);
 		GaussMatrix matrix = new GaussMatrix(range, Utils.concatenationMatrix(inputMatrix, freeCoefficients));
 		for (int i=0; i<range; i++){
 			matrix.swapRow(i);
