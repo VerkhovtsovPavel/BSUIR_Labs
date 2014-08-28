@@ -74,17 +74,49 @@ public class Utils {
 		}
 		return tMatrix;
 	}
-	
-	public static double[][] multiplicationMatrix(final double[][] matrix, final double[][] array){
-		double[][] result = new double[matrix.length][matrix.length];
+
+	/**
+	 * Multiplication matrix
+	 * @param firstMatrix First matrix
+	 * @param secondMatrix Second matrix
+	 * @return result matrix
+	 */
+	public static double[][] multiplicationMatrix(final double[][] firstMatrix, final double[][] secondMatrix){
+		double[][] result = new double[firstMatrix.length][firstMatrix.length];
 		for (int i=0; i < result.length; i++){
 			for (int j=0; j < result.length; j++){
 				result[i][j] = 0;
 				for(int k=0; k < result.length; k++){
-					result[i][j]+=matrix[i][k]*array[k][j];
+					result[i][j]+=firstMatrix[i][k]*secondMatrix[k][j];
 				}
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * Multiplication matrix and array
+	 * @param array Array
+	 * @param matrix Matrix
+	 * @return result array
+	 */
+	public static double[] multiplicationMatrix(final double[] array, final double[][] matrix) {
+		double[] result = new double[matrix.length];
+		for (int i=0; i < result.length; i++){
+			result[i] = 0;
+			for(int k=0; k < matrix[i].length; k++){
+					result[i]+=matrix[i][k]*array[i];
+				}
+			}
+		return result;
+	}
+
+	/**
+	 * Make matrix symmetric.
+	 * @param matrix original matrix
+	 * @return symmetric matrix
+	 */
+	public static double[][] makeMatrixSymmetric(final double[][] matrix){
+		return Utils.multiplicationMatrix(matrix, Utils.matrixTransposition(matrix));
 	}
 }
