@@ -59,4 +59,32 @@ public class Utils {
 			System.exit(1);
 		}
 	}
+
+	/**
+	 * Transposition matrix
+	 * @param matrix original matrix
+	 * @return transposed matrix
+	 */
+	public static double[][] matrixTransposition(final double[][] matrix){
+		double[][] tMatrix = new double[matrix.length][matrix[0].length];
+		for(int i=0; i<matrix.length; i++){
+			for (int j=0; j<matrix[0].length; j++){
+				tMatrix[i][j] = matrix[j][i];
+			}
+		}
+		return tMatrix;
+	}
+	
+	public static double[][] multiplicationMatrix(final double[][] matrix, final double[][] array){
+		double[][] result = new double[matrix.length][matrix.length];
+		for (int i=0; i < result.length; i++){
+			for (int j=0; j < result.length; j++){
+				result[i][j] = 0;
+				for(int k=0; k < result.length; k++){
+					result[i][j]+=matrix[i][k]*array[k][j];
+				}
+			}
+		}
+		return result;
+	}
 }

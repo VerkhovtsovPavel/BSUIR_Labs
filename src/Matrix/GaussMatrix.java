@@ -15,7 +15,6 @@ public class GaussMatrix extends Matrix{
 		super(size, sysCoeff);
 	}
 
-	//TODO: Check system solvability.
 	/**
 	 * Change element in the row with maximum element.
 	 * @param rowNumber Number of row
@@ -45,7 +44,9 @@ public class GaussMatrix extends Matrix{
 			}
 		}
 		if(max < eps){
+			System.out.println("System dosn't have solution");
 			systemDoesNotHaveSolutions = true;
+			System.exit(1);
 		}
 		return maxIndex;
 	}

@@ -35,9 +35,12 @@ public class Main{
 			System.out.println(answer[i]);
 		}
 
+		inputMatrix = Utils.multiplicationMatrix(inputMatrix, Utils.matrixTransposition(inputMatrix));
+
 		CholeskyMatrix choleskyMatrix = new CholeskyMatrix(range, inputMatrix, freeCoefficients);
-		choleskyMatrix.a();
-		choleskyMatrix.c();
+		choleskyMatrix.makeLMatrix();
+		choleskyMatrix.solveSystem();
+	//	choleskyMatrix.makeAnswer();
 
 		answer = choleskyMatrix.makeAnswer();
 		for(int i=0; i<answer.length; i++){

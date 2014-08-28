@@ -10,7 +10,7 @@ public class Matrix {
 
 	protected int matrixExtent = 3;
 	protected double[][] systemCoefficients;
-	protected double freeCoefficients[];
+	protected double[] freeCoefficients;
 
 	/**
 	 * Constructor.

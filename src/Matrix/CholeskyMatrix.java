@@ -1,7 +1,6 @@
 package matrix;
 
-import org.omg.CORBA.FREE_MEM;
-
+import utils.Utils;
 
 /**
  * Class containing methods for solving a system of equations by Cholesky.
@@ -10,6 +9,7 @@ import org.omg.CORBA.FREE_MEM;
 
 public class CholeskyMatrix extends Matrix{
 
+	private double[][] lMatrix = new double[matrixExtent][matrixExtent];
 	/**
 	 * Constructor.
 	 * @param size Matrix size
@@ -19,48 +19,57 @@ public class CholeskyMatrix extends Matrix{
 	public CholeskyMatrix(final int size, final double[][] sysCoeff, final double[] freeCoeff) {
 		super(size, sysCoeff, freeCoeff);
 	}
-	
-	public void a(){
+
+	public void makeLMatrix(){
 		for (int i=0; i<matrixExtent; i++){
-			if (i!=0){
-				verifySolvabilitySystem(i);
-				systemCoefficients[0][i]/=systemCoefficients[0][0];
-			}
-			b(i);
-			}
-		}
-	
-	private void b(int i){
-		for(int j=0; j<i; j++){
-			for(int k=0; k<j-1; k++){
-				systemCoefficients[i][j]-=systemCoefficients[i][k]*systemCoefficients[k][j];
+			for (int j=0; j<i; j++){
+				for(int k=0; k<j-1; k++){
+					if(i!=j){
+						lMatrix[i][j]=subtractRange(i, j)/lMatrix[j][j];
+					}else{
+						lMatrix[i][i]=Math.sqrt(subtractRange(i, j));
+					}
+				}	
+		
 			}
 		}
-	}
-	
-	public void c(){
+	}	
+
+	public double subtractRange(int firstIndex, int secondIndex){
+		double result = systemCoefficients[firstIndex][secondIndex];
+			for(int k = 0; k<secondIndex-1; k++){
+				result-=lMatrix[firstIndex][k]*lMatrix[secondIndex][k];
+			}
+		return result;	
+	}	
+
+
+	public void solveSystem(){
 		for (int i=0; i<matrixExtent; i++){
 			for (int j=0; i<j-1; j++){
-				freeCoefficients[i]-=systemCoefficients[i][j]*freeCoefficients[j];
-			}	
-			verifySolvabilitySystem(i);
-			freeCoefficients[i]/=systemCoefficients[i][i];
+				freeCoefficients[i]-=lMatrix[i][j]*freeCoefficients[j];
+			}
+		//	verifySolvabilitySystem(i);
+		}
+		
+		lMatrix = Utils.matrixTransposition(lMatrix);
+		
+		for(int i=matrixExtent-1; i>0; i--){
+			for(int j=matrixExtent-1; j>i-1; j--){
+				freeCoefficients[i]-=lMatrix[i][j]*freeCoefficients[j];
+			}
 		}
 	}
-	
-	private void verifySolvabilitySystem(int index){
+		
+		private void verifySolvabilitySystem(int index){
 		if (systemCoefficients[index][index]==0){
 			systemDoesNotHaveSolutions=true;
+			System.out.println("Error! Element in main diagonal equal to zero");
 			System.exit(1); //????
 		}
 	}
-	
+
 	public double[] makeAnswer(){
-		for(int i=matrixExtent-1; i>0; i--){
-			for(int j=matrixExtent-1; j>i-1; j--){
-				freeCoefficients[i]-=systemCoefficients[i][j]*freeCoefficients[j];
-			}
-		}
 		return freeCoefficients;
 	}
 
