@@ -79,7 +79,7 @@ public class GaussMatrix extends Matrix{
 	 * Make answer.
 	 * @return answer
 	 */
-	public double[] makeanswer(){
+	public double[] makeAnswer(){
 		double[] answer	= new double[matrixExtent];
 		answer[matrixExtent-1]=systemCoefficients[matrixExtent-1][matrixExtent];
 		for (int i=matrixExtent-2; i>=0; i--){

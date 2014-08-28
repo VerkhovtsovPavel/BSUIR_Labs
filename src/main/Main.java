@@ -1,6 +1,7 @@
 package main;
 
 import utils.Utils;
+import matrix.CholeskyMatrix;
 import matrix.GaussMatrix;
 
 /**
@@ -21,14 +22,24 @@ public class Main{
 	 */
 	public static void main(final String[] args){
 		Utils.verifyMatrixRange(inputMatrix, freeCoefficients, range);
-		GaussMatrix matrix = new GaussMatrix(range, Utils.concatenationMatrix(inputMatrix, freeCoefficients));
+
+		GaussMatrix gaussMatrix = new GaussMatrix(range, Utils.concatenationMatrix(inputMatrix, freeCoefficients));
 		for (int i=0; i<range; i++){
-			matrix.swapRow(i);
-			matrix.divideRow(i);
-			matrix.subtractMatrix(i);
+			gaussMatrix.swapRow(i);
+			gaussMatrix.divideRow(i);
+			gaussMatrix.subtractMatrix(i);
 		}
 
-		double[] answer = matrix.makeanswer();
+		double[] answer = gaussMatrix.makeAnswer();
+		for(int i=0; i<answer.length; i++){
+			System.out.println(answer[i]);
+		}
+
+		CholeskyMatrix choleskyMatrix = new CholeskyMatrix(range, inputMatrix, freeCoefficients);
+		choleskyMatrix.a();
+		choleskyMatrix.c();
+
+		answer = choleskyMatrix.makeAnswer();
 		for(int i=0; i<answer.length; i++){
 			System.out.println(answer[i]);
 		}
