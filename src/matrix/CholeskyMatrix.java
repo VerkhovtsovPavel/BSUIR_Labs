@@ -22,7 +22,7 @@ public class CholeskyMatrix extends Matrix{
 	}
 
 	/**
-	 * Male L-Matrix
+	 * Make L-Matrix
 	 */
 	public void makeLMatrix(){
 		for (int i=0; i<matrixExtent; i++){
@@ -44,7 +44,7 @@ public class CholeskyMatrix extends Matrix{
 	 */
 	public double subtractRange(final int firstIndex, final int secondIndex){
 		double result = systemCoefficients[firstIndex][secondIndex];
-			for(int k = 0; k<secondIndex-1; k++){
+			for(int k = 0; k<=secondIndex-1; k++){
 				result-=lMatrix[firstIndex][k]*lMatrix[secondIndex][k];
 			}
 		return result;
@@ -56,16 +56,16 @@ public class CholeskyMatrix extends Matrix{
 	 */
 	public void solveSystem(){
 		for (int i=0; i<matrixExtent; i++){
-			for (int j=0; j<i-1; j++){
+			for (int j=0; j<i; j++){
 				freeCoefficients[i]-=lMatrix[i][j]*freeCoefficients[j];
 			}
-		//	verifySolvabilitySystem(i);
+			//	verifySolvabilitySystem(i);
 		}
 
 		lMatrix = Utils.matrixTransposition(lMatrix);
 
 		for(int i=matrixExtent-1; i>0; i--){
-			for(int j=matrixExtent-1; j>i-1; j--){
+			for(int j=i+1; j<matrixExtent; j++){
 				freeCoefficients[i]-=lMatrix[i][j]*freeCoefficients[j];
 			}
 		}

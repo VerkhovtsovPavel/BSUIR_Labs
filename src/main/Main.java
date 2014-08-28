@@ -36,8 +36,10 @@ public class Main{
 		}
 
 		freeCoefficients = Utils.multiplicationMatrix(freeCoefficients, Utils.matrixTransposition(inputMatrix));
-		inputMatrix = Utils.makeMatrixSymmetric(inputMatrix);  // TODO Check multiplication
+		inputMatrix = Utils.makeMatrixSymmetric(inputMatrix);
 
+		double [][] q = inputMatrix;
+		
 		CholeskyMatrix choleskyMatrix = new CholeskyMatrix(range, inputMatrix, freeCoefficients);
 		choleskyMatrix.makeLMatrix();
 		choleskyMatrix.solveSystem();

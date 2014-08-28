@@ -4,7 +4,7 @@ package utils;
  * Class containing helpful methods.
  * @author Pavel_Verkhovtsov
  */
-public class Utils {
+public abstract class Utils {
 
 	/**
 	 * Combines matrix and array.
