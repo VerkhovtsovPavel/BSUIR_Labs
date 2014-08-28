@@ -52,6 +52,7 @@ public class Utils {
 	 * @param array array for inspection
 	 * @param range Expected range
 	 */
+
 	public static void verifyMatrixRange(final double[][] matrix, final double[] array, final int range){
 		if (!(verifyMatrixRange(matrix, range) && Utils.verifyMatrixRange(array, range))){
 			System.out.println("Error in matrix range");
