@@ -62,6 +62,8 @@ public class GaussMatrix extends Matrix{
 		}
 	}
 
+
+
 	/**
 	 * Subtracts the line of all the rows below it.
 	 * @param rowNumber Row number

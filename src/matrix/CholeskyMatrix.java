@@ -1,6 +1,8 @@
 package matrix;
 
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
+
 import utils.Utils;
 
 /**
@@ -25,6 +27,7 @@ public class CholeskyMatrix extends Matrix{
 	 * Make L-Matrix
 	 */
 	public void makeLMatrix(){
+		double[][] lMartix = new double[matrixExtent][matrixExtent];
 		for (int i=0; i<matrixExtent; i++){
 			for (int j=0; j<=i; j++){
 					if(i!=j){
@@ -34,6 +37,7 @@ public class CholeskyMatrix extends Matrix{
 					}
 			}
 		}
+		systemCoefficients=lMatrix;
 	}
 
 	/**
@@ -56,17 +60,18 @@ public class CholeskyMatrix extends Matrix{
 	 */
 	public void solveSystem(){
 		for (int i=0; i<matrixExtent; i++){
-			for (int j=0; j<i; j++){
-				freeCoefficients[i]-=lMatrix[i][j]*freeCoefficients[j];
-			}
+			divideRow(i);
+			for (int j=0; j<i ; j++){
+				freeCoefficients[i]-=systemCoefficients[i][j]*freeCoefficients[j];
+			}// TODO Check solvability system.
 			//	verifySolvabilitySystem(i);
 		}
 
-		lMatrix = Utils.matrixTransposition(lMatrix);
+		systemCoefficients = Utils.matrixTransposition(systemCoefficients);
 
-		for(int i=matrixExtent-1; i>0; i--){
-			for(int j=i+1; j<matrixExtent; j++){
-				freeCoefficients[i]-=lMatrix[i][j]*freeCoefficients[j];
+		for(int i=matrixExtent-1; i>=0; i--){
+			for(int j=matrixExtent-1; j>i; j--){
+				freeCoefficients[i]-=systemCoefficients[i][j]*freeCoefficients[j];
 			}
 		}
 	}
@@ -87,6 +92,18 @@ public class CholeskyMatrix extends Matrix{
 	 */
 	public double[] makeAnswer(){
 		return freeCoefficients;
+	}
+
+	/**
+	 * Divide all element in row on element on the main diagonal.
+	 * @param rowNumber Row number
+	 */
+	public void divideRow(final int rowNumber){
+		double divider = systemCoefficients[rowNumber][rowNumber];
+		for(int i = 0; i < matrixExtent; i++) {
+			systemCoefficients[rowNumber][i]/=divider;
+		}
+		freeCoefficients[rowNumber]/=divider;
 	}
 
 }

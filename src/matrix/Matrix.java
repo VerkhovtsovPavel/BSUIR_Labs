@@ -33,5 +33,4 @@ public class Matrix {
 		this.systemCoefficients = sysCoeff;
 		this.freeCoefficients = freeCoeff;
 	}
-
 }
