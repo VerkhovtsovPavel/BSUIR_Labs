@@ -119,4 +119,15 @@ public abstract class Utils {
 	public static double[][] makeMatrixSymmetric(final double[][] matrix){
 		return Utils.multiplicationMatrix(Utils.matrixTransposition(matrix), matrix);
 	}
+
+	public static boolean checkSymmetric(final double[][] matrix){
+		for (int i=0;i< matrix.length; i++){
+			for(int j=0; j<i; j++){
+				if (matrix[i][j]!=matrix[j][i]){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 }
