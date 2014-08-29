@@ -27,7 +27,6 @@ public class CholeskyMatrix extends Matrix{
 	 * Make L-Matrix
 	 */
 	public void makeLMatrix(){
-		double[][] lMartix = new double[matrixExtent][matrixExtent];
 		for (int i=0; i<matrixExtent; i++){
 			for (int j=0; j<=i; j++){
 					if(i!=j){
@@ -64,7 +63,7 @@ public class CholeskyMatrix extends Matrix{
 			for (int j=0; j<i ; j++){
 				freeCoefficients[i]-=systemCoefficients[i][j]*freeCoefficients[j];
 			}// TODO Check solvability system.
-			//	verifySolvabilitySystem(i);
+				verifySolvabilitySystem(i);
 		}
 
 		systemCoefficients = Utils.matrixTransposition(systemCoefficients);

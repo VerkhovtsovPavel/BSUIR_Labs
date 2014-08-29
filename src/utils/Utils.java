@@ -105,7 +105,7 @@ public abstract class Utils {
 		for (int i=0; i < result.length; i++){
 			result[i] = 0;
 			for(int k=0; k < matrix[i].length; k++){
-					result[i]+=matrix[i][k]*array[i];
+					result[i]+=matrix[i][k]*array[k];
 				}
 			}
 		return result;
@@ -117,6 +117,6 @@ public abstract class Utils {
 	 * @return symmetric matrix
 	 */
 	public static double[][] makeMatrixSymmetric(final double[][] matrix){
-		return Utils.multiplicationMatrix(matrix, Utils.matrixTransposition(matrix));
+		return Utils.multiplicationMatrix(Utils.matrixTransposition(matrix), matrix);
 	}
 }

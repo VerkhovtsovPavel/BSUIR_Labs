@@ -87,7 +87,7 @@ public class GaussMatrix extends Matrix{
 		answer[matrixExtent-1]=systemCoefficients[matrixExtent-1][matrixExtent];
 		for (int i=matrixExtent-2; i>=0; i--){
 			answer[i]=systemCoefficients[i][matrixExtent];
-			for(int j=i+1; j<matrixExtent; j++){
+			for(int j=matrixExtent-1; j>i; j--){
 				answer[i]-=systemCoefficients[i][j]*answer[j];
 			}
 		}

@@ -10,15 +10,13 @@ import matrix.GaussMatrix;
  */
 public class Main{
 	private static int range = 3;
-	private static double[][] inputMatrix  = 	/*{{1, 1, 1},
-												{1, 0, -1},
-												{1, 2, 1}};*/
+	private static double[][] inputMatrix  = {{1, 1, 1}, {1, 0, -1}, {1, 2, 1}};
 
-											{{2.18, 2.44, 2.49},
+											/*{{2.18, 2.44, 2.49},
 											 {2.17, 2.31, 2.49},
-											 {3.15, 3.22, 3.17}};
+											 {3.15, 3.22, 3.17}};*/
 
-	private static double[] freeCoefficients = /*{ 6, -2, 8};*/ {- 4.34, -3.91, -5.27};
+	private static double[] freeCoefficients = {6, -2, 8}; /*{- 4.34, -3.91, -5.27};*/
 
 	/**
 	 * Main method.
@@ -42,8 +40,8 @@ public class Main{
 		freeCoefficients = Utils.multiplicationMatrix(freeCoefficients, Utils.matrixTransposition(inputMatrix));
 		inputMatrix = Utils.makeMatrixSymmetric(inputMatrix);
 
-		double [][] q = inputMatrix;
-
+		double [][] q = inputMatrix; /*temp*/
+		// TODO Manual check system solution.
 		CholeskyMatrix choleskyMatrix = new CholeskyMatrix(range, inputMatrix, freeCoefficients);
 		choleskyMatrix.makeLMatrix();
 		choleskyMatrix.solveSystem();
