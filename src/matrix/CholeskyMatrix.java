@@ -99,7 +99,7 @@ public class CholeskyMatrix extends Matrix{
 	 */
 	public void divideRow(final int rowNumber){
 		double divider = systemCoefficients[rowNumber][rowNumber];
-		for(int i = 0; i < matrixExtent; i++) {
+		for(int i = 0; i <= rowNumber; i++) {
 			systemCoefficients[rowNumber][i]/=divider;
 		}
 		freeCoefficients[rowNumber]/=divider;

@@ -25,6 +25,9 @@ public class Main{
 	public static void main(final String[] args){
 		Utils.verifyMatrixRange(inputMatrix, freeCoefficients, range);
 
+	/*	freeCoefficients = Utils.multiplicationMatrix(freeCoefficients, Utils.matrixTransposition(inputMatrix));
+		inputMatrix = Utils.makeMatrixSymmetric(inputMatrix);*/
+
 		GaussMatrix gaussMatrix = new GaussMatrix(range, Utils.concatenationMatrix(inputMatrix, freeCoefficients));
 		for (int i=0; i<range; i++){
 			gaussMatrix.swapRow(i);
@@ -37,7 +40,7 @@ public class Main{
 			System.out.println(answer[i]);
 		}
 
-		freeCoefficients = Utils.multiplicationMatrix(freeCoefficients, Utils.matrixTransposition(inputMatrix));
+	freeCoefficients = Utils.multiplicationMatrix(freeCoefficients, Utils.matrixTransposition(inputMatrix));
 		inputMatrix = Utils.makeMatrixSymmetric(inputMatrix);
 
 		double [][] q = inputMatrix; /*temp*/
