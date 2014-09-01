@@ -8,9 +8,7 @@ import utils.Utils;
  */
 
 public class CholeskyMatrix extends Matrix{
-
-	private double[][] lMatrix = new double[matrixExtent][matrixExtent];
-
+private double[][] lMatrix;
 	/**
 	 * Constructor.
 	 * @param size Matrix size
@@ -28,13 +26,13 @@ public class CholeskyMatrix extends Matrix{
 		for (int i=0; i<matrixExtent; i++){
 			for (int j=0; j<=i; j++){
 					if(i!=j){
-						lMatrix[i][j]=subtractRange(i, j)/lMatrix[j][j];
+						systemCoefficients[i][j]=subtractRange(i, j)/systemCoefficients[j][j];
 					}else{
-						lMatrix[i][i]=Math.sqrt(subtractRange(i, j));
+						systemCoefficients[i][i]=Math.sqrt(subtractRange(i, j));
 					}
 			}
 		}
-		systemCoefficients=lMatrix;
+		/*temp*/ lMatrix=Utils.matrixTransposition(systemCoefficients);
 	}
 
 	/**
@@ -46,7 +44,7 @@ public class CholeskyMatrix extends Matrix{
 	public double subtractRange(final int firstIndex, final int secondIndex){
 		double result = systemCoefficients[firstIndex][secondIndex];
 			for(int k = 0; k<=secondIndex-1; k++){
-				result-=lMatrix[firstIndex][k]*lMatrix[secondIndex][k];
+				result-=systemCoefficients[firstIndex][k]*systemCoefficients[secondIndex][k];
 			}
 		return result;
 	}
@@ -63,9 +61,11 @@ public class CholeskyMatrix extends Matrix{
 			}// TODO Check solvability system.
 				verifySolvabilitySystem(i);
 		}
-		systemCoefficients = Utils.matrixTransposition(systemCoefficients);
+
+		systemCoefficients = lMatrix;
 
 		for(int i=matrixExtent-1; i>=0; i--){
+			divideRow(i);
 			for(int j=matrixExtent-1; j>i; j--){
 				freeCoefficients[i]-=systemCoefficients[i][j]*freeCoefficients[j];
 			}

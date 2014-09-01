@@ -55,7 +55,7 @@ public class Main{
 		choleskyMatrix.makeLMatrix();
 		choleskyMatrix.solveSystem();
 
-		System.out.println("\nChelosky answer:");
+		System.out.println("\nCholesky answer:");
 		answer = choleskyMatrix.makeAnswer();
 		for(int i=0; i<answer.length; i++){
 			System.out.println(answer[i]);
