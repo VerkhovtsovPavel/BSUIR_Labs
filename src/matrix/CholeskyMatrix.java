@@ -10,6 +10,7 @@ import utils.Utils;
 public class CholeskyMatrix extends Matrix{
 
 	private double[][] lMatrix = new double[matrixExtent][matrixExtent];
+
 	/**
 	 * Constructor.
 	 * @param size Matrix size
@@ -62,7 +63,6 @@ public class CholeskyMatrix extends Matrix{
 			}// TODO Check solvability system.
 				verifySolvabilitySystem(i);
 		}
-
 		systemCoefficients = Utils.matrixTransposition(systemCoefficients);
 
 		for(int i=matrixExtent-1; i>=0; i--){
