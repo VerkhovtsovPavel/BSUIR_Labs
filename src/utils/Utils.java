@@ -120,6 +120,11 @@ public abstract class Utils {
 		return Utils.multiplicationMatrix(Utils.matrixTransposition(matrix), matrix);
 	}
 
+	/**
+	 * Check matrix by symmetric.
+	 * @param matrix verified matrix
+	 * @return result (true/false)
+	 */
 	public static boolean checkSymmetric(final double[][] matrix){
 		for (int i=0;i< matrix.length; i++){
 			for(int j=0; j<i; j++){

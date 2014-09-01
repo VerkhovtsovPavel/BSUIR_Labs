@@ -10,27 +10,27 @@ import matrix.GaussMatrix;
  * @author Pavel_Verkhovtsov
  */
 public class Main{
-	private static int range = 3;
-	private static double[][] inputMatrix  = {{2.18, 2.44, 2.49},
+	private static int range;
+	private static double[][] inputMatrix;/*  = {{2.18, 2.44, 2.49},
 											 {2.17, 2.31, 2.49},
-											 {3.15, 3.22, 3.17}};
+											 {3.15, 3.22, 3.17}};*/
 
-	private static double[] freeCoefficients = {-4.34, -3.91, -5.27};
+	private static double[] freeCoefficients;/* = {-4.34, -3.91, -5.27};*/
 
 	/**
 	 * Main method.
 	 * @param args console arguments
 	 */
+	@SuppressWarnings("resource")
 	public static void main(final String[] args){
-	/*	System.out.println("Input matrix range: ");
-		Scanner in = new Scanner(System.in);
-        range = in.nextInt();
+		System.out.print("Input matrix range: ");
+		range = new Scanner(System.in).nextInt();
 
 		inputMatrix = inputSystemCoefficients(range);
-		freeCoefficients = inputFreeCoefficients(range);*/
+		freeCoefficients = inputFreeCoefficients(range);
 
 		Utils.verifyMatrixRange(inputMatrix, freeCoefficients, range);
-
+		// TODO Add calculation conditionality.
 		GaussMatrix gaussMatrix = new GaussMatrix(range, Utils.concatenationMatrix(inputMatrix, freeCoefficients));
 		for (int i=0; i<range; i++){
 			gaussMatrix.swapRow(i);
@@ -49,8 +49,7 @@ public class Main{
 			inputMatrix = Utils.makeMatrixSymmetric(inputMatrix);
 		}
 
-		double [][] q = inputMatrix; /*temp*/
-		// TODO Manual check system solution.
+		// TODO Add complex value.
 		CholeskyMatrix choleskyMatrix = new CholeskyMatrix(range, inputMatrix, freeCoefficients);
 		choleskyMatrix.makeLMatrix();
 		choleskyMatrix.solveSystem();
@@ -68,7 +67,7 @@ public class Main{
 	 * @return filling array
 	 */
 	private static double[] inputFreeCoefficients(final int size) {
-		System.out.println("Input free coefficients: ");
+		System.out.println("Input free coefficients:");
 		Scanner in = new Scanner(System.in);
 		double[] result = new double[size];
 		for (int i=0; i<size; i++){
@@ -83,7 +82,7 @@ public class Main{
 	 * @return filling matrix
 	 */
 	private static double[][] inputSystemCoefficients(final int size) {
-		System.out.println("Input system coefficients: ");
+		System.out.println("Input system coefficients:");
 		Scanner in = new Scanner(System.in);
 		double[][] result = new double[size][size];
 		for (int i=0; i<size; i++){

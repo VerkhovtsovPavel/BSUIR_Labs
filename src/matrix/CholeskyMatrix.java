@@ -32,7 +32,7 @@ private double[][] lMatrix;
 					}
 			}
 		}
-		/*temp*/ lMatrix=Utils.matrixTransposition(systemCoefficients);
+		lMatrix=Utils.matrixTransposition(systemCoefficients);
 	}
 
 	/**
@@ -79,7 +79,7 @@ private double[][] lMatrix;
 		if (systemCoefficients[index][index]==0){
 			systemDoesNotHaveSolutions=true;
 			System.out.println("Error! Element in main diagonal equal to zero");
-			System.exit(1); //????
+			System.exit(1);// TODO Maybe refactor.
 		}
 	}
 	/**
