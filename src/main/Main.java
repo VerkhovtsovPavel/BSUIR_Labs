@@ -10,24 +10,24 @@ import matrix.GaussMatrix;
  * @author Pavel_Verkhovtsov
  */
 public class Main{
-	private static int range;/* = 3;*/
-	private static double[][] inputMatrix;/*  = {{2.18, 2.44, 2.49},
+	private static int range = 3;
+	private static double[][] inputMatrix  = {{2.18, 2.44, 2.49},
 											 {2.17, 2.31, 2.49},
-											 {3.15, 3.22, 3.17}};*/
+											 {3.15, 3.22, 3.17}};
 
-	private static double[] freeCoefficients;/* = {-4.34, -3.91, -5.27};*/
+	private static double[] freeCoefficients = {-4.34, -3.91, -5.27};
 
 	/**
 	 * Main method.
 	 * @param args console arguments
 	 */
 	public static void main(final String[] args){
-		System.out.println("Input matrix range: ");
+	/*	System.out.println("Input matrix range: ");
 		Scanner in = new Scanner(System.in);
         range = in.nextInt();
 
 		inputMatrix = inputSystemCoefficients(range);
-		freeCoefficients = inputFreeCoefficients(range);
+		freeCoefficients = inputFreeCoefficients(range);*/
 
 		Utils.verifyMatrixRange(inputMatrix, freeCoefficients, range);
 

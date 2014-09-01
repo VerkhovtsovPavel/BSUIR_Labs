@@ -58,8 +58,8 @@ private double[][] lMatrix;
 			divideRow(i);
 			for (int j=0; j<i ; j++){
 				freeCoefficients[i]-=systemCoefficients[i][j]*freeCoefficients[j];
-			}// TODO Check solvability system.
-				verifySolvabilitySystem(i);
+			}
+			verifySolvabilitySystem(i);
 		}
 
 		systemCoefficients = lMatrix;
@@ -96,7 +96,7 @@ private double[][] lMatrix;
 	 */
 	public void divideRow(final int rowNumber){
 		double divider = systemCoefficients[rowNumber][rowNumber];
-		for(int i = 0; i <= rowNumber; i++) {
+		for(int i = 0; i < matrixExtent; i++) {
 			systemCoefficients[rowNumber][i]/=divider;
 		}
 		freeCoefficients[rowNumber]/=divider;
