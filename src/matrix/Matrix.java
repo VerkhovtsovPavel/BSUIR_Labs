@@ -5,10 +5,8 @@ package matrix;
  * @author Pavel_Verkhovtsov
  */
 public class Matrix {
-	protected final double eps = 1e-21;
 	protected boolean systemDoesNotHaveSolutions = false;
-
-	protected int matrixExtent = 3;
+	protected int matrixExtent;
 	protected double[][] systemCoefficients;
 	protected double[] freeCoefficients;
 

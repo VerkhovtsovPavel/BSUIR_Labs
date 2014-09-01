@@ -5,7 +5,7 @@ package matrix;
  * @author Pavel_Verkhovtsov
  */
 public class GaussMatrix extends Matrix{
-
+	private final double eps = 1e-21;
 	/**
 	 * Constructor.
 	 * @param size Matrix size

@@ -8,9 +8,7 @@ import utils.Utils;
  */
 
 public class CholeskyMatrix extends Matrix{
-
-	private double[][] lMatrix = new double[matrixExtent][matrixExtent];
-
+private double[][] lMatrix;
 	/**
 	 * Constructor.
 	 * @param size Matrix size
@@ -28,13 +26,13 @@ public class CholeskyMatrix extends Matrix{
 		for (int i=0; i<matrixExtent; i++){
 			for (int j=0; j<=i; j++){
 					if(i!=j){
-						lMatrix[i][j]=subtractRange(i, j)/lMatrix[j][j];
+						systemCoefficients[i][j]=subtractRange(i, j)/systemCoefficients[j][j];
 					}else{
-						lMatrix[i][i]=Math.sqrt(subtractRange(i, j));
+						systemCoefficients[i][i]=Math.sqrt(subtractRange(i, j));
 					}
 			}
 		}
-		systemCoefficients=lMatrix;
+		lMatrix=Utils.matrixTransposition(systemCoefficients);
 	}
 
 	/**
@@ -46,7 +44,7 @@ public class CholeskyMatrix extends Matrix{
 	public double subtractRange(final int firstIndex, final int secondIndex){
 		double result = systemCoefficients[firstIndex][secondIndex];
 			for(int k = 0; k<=secondIndex-1; k++){
-				result-=lMatrix[firstIndex][k]*lMatrix[secondIndex][k];
+				result-=systemCoefficients[firstIndex][k]*systemCoefficients[secondIndex][k];
 			}
 		return result;
 	}
@@ -60,12 +58,14 @@ public class CholeskyMatrix extends Matrix{
 			divideRow(i);
 			for (int j=0; j<i ; j++){
 				freeCoefficients[i]-=systemCoefficients[i][j]*freeCoefficients[j];
-			}// TODO Check solvability system.
-				verifySolvabilitySystem(i);
+			}
+			verifySolvabilitySystem(i);
 		}
-		systemCoefficients = Utils.matrixTransposition(systemCoefficients);
+
+		systemCoefficients = lMatrix;
 
 		for(int i=matrixExtent-1; i>=0; i--){
+			divideRow(i);
 			for(int j=matrixExtent-1; j>i; j--){
 				freeCoefficients[i]-=systemCoefficients[i][j]*freeCoefficients[j];
 			}
@@ -79,7 +79,7 @@ public class CholeskyMatrix extends Matrix{
 		if (systemCoefficients[index][index]==0){
 			systemDoesNotHaveSolutions=true;
 			System.out.println("Error! Element in main diagonal equal to zero");
-			System.exit(1); //????
+			System.exit(1);// TODO Maybe refactor.
 		}
 	}
 	/**
@@ -96,7 +96,7 @@ public class CholeskyMatrix extends Matrix{
 	 */
 	public void divideRow(final int rowNumber){
 		double divider = systemCoefficients[rowNumber][rowNumber];
-		for(int i = 0; i <= rowNumber; i++) {
+		for(int i = 0; i < matrixExtent; i++) {
 			systemCoefficients[rowNumber][i]/=divider;
 		}
 		freeCoefficients[rowNumber]/=divider;
