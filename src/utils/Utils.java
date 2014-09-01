@@ -119,7 +119,11 @@ public abstract class Utils {
 	public static double[][] makeMatrixSymmetric(final double[][] matrix){
 		return Utils.multiplicationMatrix(Utils.matrixTransposition(matrix), matrix);
 	}
-
+	/**
+ 	* Check symmetry matrix.
+ 	* @param matrix Matrix
+ 	* @return result(true/false)
+ 	*/
 	public static boolean checkSymmetric(final double[][] matrix){
 		for (int i=0;i< matrix.length; i++){
 			for(int j=0; j<i; j++){
