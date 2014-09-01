@@ -40,7 +40,7 @@ public class Main{
 			System.out.println(answer[i]);
 		}
 
-	freeCoefficients = Utils.multiplicationMatrix(freeCoefficients, Utils.matrixTransposition(inputMatrix));
+	    freeCoefficients = Utils.multiplicationMatrix(freeCoefficients, Utils.matrixTransposition(inputMatrix));
 		inputMatrix = Utils.makeMatrixSymmetric(inputMatrix);
 
 		double [][] q = inputMatrix; /*temp*/
