@@ -3,16 +3,16 @@ package objects;
 public class Object {
 	private int xCoordinate;
 	private int yCoordinate;
-	
+
 	private int areaNumber;
 	private double distanceToAllPoints;
-	
-	
+
  	public Object(int x, int y){
  		xCoordinate = x;
  		yCoordinate = y;
+ 		// TODO Object number
 	}
- 	
+
  	public void choiceArea(Object[] centers){
  		double minDistance = Double.MAX_VALUE;
  		for (int i=0; i< centers.length; i++){
@@ -24,7 +24,7 @@ public class Object {
  			}
  		}
  	}
- 	
+
  	public int[] getCoordinates(){
  		int[] result =  {xCoordinate, yCoordinate};
  		return result;
