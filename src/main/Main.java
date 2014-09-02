@@ -11,6 +11,7 @@ public class Main {
 	private static int classCount;
 	private static int objectCount;
 	
+	@SuppressWarnings("resource")
 	public static void main(final String[] args){
 		System.out.print("Input count objects: ");
 		objectCount = (new Scanner(System.in)).nextInt();
@@ -33,5 +34,7 @@ public class Main {
 		for (int i=0; i< objectCount; i++){
 			objectArray[i].choiceArea(objectCenters);
 		}
+		
+		System.out.println("Finish");
 	}
 }

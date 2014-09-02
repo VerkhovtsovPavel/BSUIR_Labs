@@ -14,7 +14,7 @@ public class Object {
 	}
  	
  	public void choiceArea(Object[] centers){
- 		double minDistance = 100;//TODO set max double.
+ 		double minDistance = Double.MAX_VALUE;
  		for (int i=0; i< centers.length; i++){
  			int[] centerCoordinate = centers[i].getCoordinates();
  			double distance = Math.sqrt(Math.pow(Math.abs(xCoordinate-centerCoordinate[0]),2)+Math.pow(Math.abs(yCoordinate-centerCoordinate[1]),2));
