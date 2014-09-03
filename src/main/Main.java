@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Scanner;
+
 import approximation.Lagrange;
 
 /**
@@ -15,8 +17,11 @@ public class Main {
 	 * Main method.
 	 * @param args console parameters
 	 */
+	@SuppressWarnings("resource")
 	public static void main(final String[] args){
 		Lagrange lagrange = new Lagrange(x, y);
-		System.out.println(lagrange.approximazeFunction(2));
+		System.out.print("Input approximation point: ");
+		double point = new Scanner(System.in).nextDouble();
+		System.out.println(lagrange.approximazeFunction(point));
 	}
 }
