@@ -35,6 +35,7 @@ public class Main{
 			gaussMatrix.swapRow(i);
 			gaussMatrix.divideRow(i);
 			gaussMatrix.subtractMatrix(i);
+			gaussMatrix.printStep(i); //TODO Bad output when long numbers.
 		}
 
 		double[] answer = gaussMatrix.makeAnswer();

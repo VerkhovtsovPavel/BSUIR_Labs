@@ -93,4 +93,18 @@ public class GaussMatrix extends Matrix{
 		}
 		return answer;
 	}
+
+	/**
+	 *  Print matrix on intermediate.
+	 * @param stepNumber Number of step
+	 */
+	public void printStep(int stepNumber){
+		System.out.println("### Step #"+(++stepNumber)+" ###");
+		for (int i=0; i<matrixExtent; i++){
+			for(int j=0; j<=matrixExtent; j++){
+				System.out.print(systemCoefficients[i][j]+"\t");
+			}
+			System.out.println();
+		}
+	}
 }
