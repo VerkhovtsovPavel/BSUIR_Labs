@@ -9,6 +9,7 @@ import utils.Utils;
 
 public class CholeskyMatrix extends Matrix{
 private double[][] lMatrix;
+
 	/**
 	 * Constructor.
 	 * @param size Matrix size
@@ -78,7 +79,7 @@ private double[][] lMatrix;
 		private void verifySolvabilitySystem(final int index){
 		if (systemCoefficients[index][index]==0){
 			systemDoesNotHaveSolutions=true;
-			System.out.println("Error! Element in main diagonal equal to zero");
+			System.out.println("Error! Element in main diagonal equal to zero. System don't have solution");
 			System.exit(1);// TODO Maybe refactor.
 		}
 	}

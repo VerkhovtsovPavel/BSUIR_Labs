@@ -30,7 +30,6 @@ public class Main{
 		freeCoefficients = inputFreeCoefficients(range);
 
 		Utils.verifyMatrixRange(inputMatrix, freeCoefficients, range);
-		// TODO Add calculation conditionality.
 		GaussMatrix gaussMatrix = new GaussMatrix(range, Utils.concatenationMatrix(inputMatrix, freeCoefficients));
 		for (int i=0; i<range; i++){
 			gaussMatrix.swapRow(i);
