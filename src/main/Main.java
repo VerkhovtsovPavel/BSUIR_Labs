@@ -1,5 +1,8 @@
 package main;
 
+import graphics.GraphicsClass;
+
+import java.awt.Graphics;
 import java.util.Random;
 import java.util.Scanner;
 import objects.Object;
@@ -8,6 +11,7 @@ public class Main {
 
 	private static Object[] objectArray;
 	private static Object[] objectCenters;
+	private static int dispersionObjects = 600;
 	private static int classCount;
 	private static int objectCount;
 
@@ -19,7 +23,7 @@ public class Main {
 		objectArray = new Object[objectCount];
 		Random rand = new Random();
 		for(int i=0; i< objectCount; i++){
-			objectArray[i] = new Object(rand.nextInt(100), rand.nextInt(100));
+			objectArray[i] = new Object(rand.nextInt(dispersionObjects), rand.nextInt(dispersionObjects));
 		}
 
 		System.out.print("Input count classes: ");
@@ -35,6 +39,13 @@ public class Main {
 			objectArray[i].choiceArea(objectCenters);
 		}
 
+		GraphicsClass.screenSize = dispersionObjects;
+		GraphicsClass.objectArray = objectArray;
+		GraphicsClass.visualizeClasses();
+
 		System.out.println("Finish");
+		// TODO Best choice centers
+
+	//	graphicsClass.visualizeClasses();
 	}
 }
