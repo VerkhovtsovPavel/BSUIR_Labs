@@ -14,8 +14,8 @@ import objects.Object;
 public class GraphicsClass extends JPanel{
 	private static final long serialVersionUID = 1L; //service variable
 	private final int circleRadius = 5;
-	public static Object[] objectArray;
-	public static int screenSize;
+	private static Object[] objectArray;
+	private static int screenSize;
 	//TODO Add setters.
 
 	/**
@@ -28,10 +28,9 @@ public class GraphicsClass extends JPanel{
 				case 0: g.setColor(Color.RED); break;
 				case 1: g.setColor(Color.BLUE); break;
 				case 2: g.setColor(Color.GREEN); break;
-				default: g.setColor(Color.ORANGE); //TODO Automation color selected HSB + RGBtoHSB (255/areaCount*i)
+				default: g.setColor(Color.GRAY); //TODO Automation color selected HSB + RGBtoHSB (255/areaCount*i)
 			}
 			g.fillOval(objectArray[i].getX(), objectArray[i].getY(), circleRadius, circleRadius);
-
 		}
 	}
 
@@ -42,12 +41,28 @@ public class GraphicsClass extends JPanel{
 		JPanel panel = new GraphicsClass();
         panel.setOpaque(true);
 
-        JFrame mainFrame = new JFrame("Визуализация разбиения на классы");
+        JFrame mainFrame = new JFrame("Visualization division classes ");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setContentPane(panel);
         mainFrame.setSize(screenSize, screenSize);
         mainFrame.setVisible(true);
         mainFrame.setBackground(Color.white);
+	}
+
+	/**
+	 * Setter to screen size.
+	 * @param scrSize screen size
+	 */
+	public static void setScreenSize(final int scrSize){
+		screenSize = scrSize;
+	}
+
+	/**
+	 * Setter to object array.
+	 * @param objects object array
+	 */
+	public static void setObjectArray(final Object[] objects){
+		objectArray = objects;
 	}
 
 }

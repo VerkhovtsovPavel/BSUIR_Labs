@@ -9,7 +9,6 @@ public class Object {
 	private int yCoordinate;
 
 	private int areaNumber;
-	private double distanceToAllPoints;
 
 	/**
 	 * Constructor.

@@ -14,7 +14,7 @@ public class Main {
 
 	private static Object[] objectArray;
 	private static Object[] objectCenters;
-	private static final int DISPERSION = 600;
+	private static final int DISPERSION = 1000;
 	private static int classCount;
 	private static int objectCount;
 
@@ -46,8 +46,8 @@ public class Main {
 			objectArray[i].choiceArea(objectCenters);
 		}
 
-		GraphicsClass.screenSize = DISPERSION;
-		GraphicsClass.objectArray = objectArray;
+		GraphicsClass.setScreenSize(DISPERSION);
+		GraphicsClass.setObjectArray(objectArray);
 		GraphicsClass.visualizeClasses();
 
 		System.out.println("Finish");
