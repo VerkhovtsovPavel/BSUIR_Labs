@@ -26,11 +26,18 @@ public class Encoder {
 	{
 		int [] shiftsLine = new int [text.length];
 		int offset = -1;
+		int j=0;
 		for(int i=0; i<text.length; i++){
-			if(i%key.length==0){
-				offset++;
+			if(text[i]>0){
+				if(j%key.length==0){
+					offset++;
+				}
+				shiftsLine[i]=(key[j%key.length]+offset)%ALPHABET_LENGTH;
+				j++;
 			}
-			shiftsLine[i]=(key[i%key.length]+text[i]+offset)%ALPHABET_LENGTH;
+			else{
+				shiftsLine[i]=0;
+			}
 		}
 		return shiftsLine;
 	}
@@ -58,7 +65,7 @@ public class Encoder {
 	
 	private char getShiftedSymbol(int index){
 		if (text[index]<0){
-			convertToChar(text[index]);
+			return convertToChar(text[index]);
 		}
 		return convertToChar((text[index]+lineShifts[index]) % ALPHABET_LENGTH);
 	}
@@ -67,7 +74,7 @@ public class Encoder {
 		int asciiCode = (int)symbol;
 		
 		//¨ symbol problem
-		if(asciiCode>1045){
+		if(asciiCode>1046){
 			asciiCode++;
 		}
 		if(asciiCode==1025){
