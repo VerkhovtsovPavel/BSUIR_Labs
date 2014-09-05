@@ -3,35 +3,64 @@ package vigenere;
 public class Encoder {
 	private final int ALPHABET_LENGTH = 33;
 	
-	private String text;
-	private String key;
+	private int[] text;
+	private int[] key;
 	
-	private String lineShifts;
+	private int[] lineShifts;
 	
 	public Encoder(String plainText, String key){
-		this.text = plainText.toUpperCase();
-		this.key = key.toUpperCase();
+		this.text = convertToCharNumber(plainText.toUpperCase());
+		this.key = convertToCharNumber(key.toUpperCase());
+		this.lineShifts = makeLineShifts();
 	}
 	
 	public String encryptText(){
-		makeLineShifts();
-		char[] encryptedText = text.toCharArray();
+		char[] encryptedText = new char[text.length];
 		for (int i=0; i<encryptedText.length; i++){
 			encryptedText[i] = getShiftedSymbol(i);
 		}
 		return String.valueOf(encryptedText);
 	}
 	
-	private void makeLineShifts()
+	private int[] makeLineShifts()
 	{
+		int [] shiftsLine = new int [text.length];
+		int offset = -1;
+		for(int i=0; i<text.length; i++){
+			if(i%key.length==0){
+				offset++;
+			}
+			shiftsLine[i]=(key[i%key.length]+text[i]+offset)%ALPHABET_LENGTH;
+		}
+		return shiftsLine;
+	}
+	
+	private int[] convertToCharNumber(String string){
+		int[] charNumberArray = new int[string.length()];
 		
+		for (int i=0; i < charNumberArray.length; i++){
+			charNumberArray[i]=getCharNumber(string.charAt(i));
+		}
+		return charNumberArray;
+	}
+	
+	private char convertToChar(int charNumber){
+		charNumber+=1039;
+		if(charNumber>1046){
+			charNumber--;
+		}
+		if(charNumber==1046){
+			charNumber = 1025;
+		}
+		
+		return (char) charNumber;
 	}
 	
 	private char getShiftedSymbol(int index){
-		if (!Character.isAlphabetic(text.charAt(index))){
-			return text.charAt(index);
+		if (text[index]<0){
+			convertToChar(text[index]);
 		}
-		return (char)(((getCharNumber(text.charAt(index))+getCharNumber(lineShifts.charAt(index))) % ALPHABET_LENGTH)+1039);
+		return convertToChar((text[index]+lineShifts[index]) % ALPHABET_LENGTH);
 	}
 	
 	private int getCharNumber(char symbol){
