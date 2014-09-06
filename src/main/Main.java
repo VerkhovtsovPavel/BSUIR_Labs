@@ -2,6 +2,8 @@ package main;
 
 import graphics.GraphicsClass;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import objects.Object;
@@ -45,6 +47,10 @@ public class Main {
 		for (int i=0; i< objectCount; i++){
 			objectArray[i].choiceArea(objectCenters);
 		}
+		
+		ArrayList <ArrayList> objectLists = new ArrayList<ArrayList>();
+		
+		
 
 		GraphicsClass.setScreenSize(DISPERSION);
 		GraphicsClass.setObjectArray(objectArray);
