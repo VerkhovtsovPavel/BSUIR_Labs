@@ -1,7 +1,7 @@
 package vigenere;
 
 public abstract class Сryptography {
-	protected final int ALPHABET_LENGTH = 33;
+	protected final int ALPHABET_LENGTH = 32;
 	
 	protected int[] text;
 	protected int[] key;
@@ -20,11 +20,11 @@ public abstract class Сryptography {
 		int offset = -1;
 		int j=0;
 		for(int i=0; i<text.length; i++){
-			if(text[i]>0){
+			if(text[i]>=0){
 				if(j%key.length==0){
 					offset++;
 				}
-				shiftsLine[i]=((key[j%key.length]+offset)%ALPHABET_LENGTH)-1;
+				shiftsLine[i]=(key[j%key.length]+offset)%ALPHABET_LENGTH;
 				j++;
 			}
 			else{
@@ -44,13 +44,13 @@ public abstract class Сryptography {
 	}
 	
 	protected char convertToChar(int charNumber){
-		charNumber+=1039;
-		if(charNumber>1046){
+		charNumber+=1040;
+		/*if(charNumber>1046){
 			charNumber--;
-		}
-		if(charNumber==1046){
+		}*/
+		/*if(charNumber==1046){
 			charNumber = 1025;
-		}
+		}*/
 		
 		return (char) charNumber;
 	}
@@ -58,13 +58,13 @@ public abstract class Сryptography {
 	protected int getCharNumber(char symbol){
 		int asciiCode = (int)symbol;
 		
-		//� symbol problem
-		if(asciiCode>1046){
+		//Ё symbol problem
+		/*if(asciiCode>=1046){
 			asciiCode++;
-		}
+		}*/
 		if(asciiCode==1025){
-			asciiCode = 1046;
+			asciiCode = 1045;
 		}
-		return asciiCode-1039;
+		return asciiCode-1040;
 	}
 }

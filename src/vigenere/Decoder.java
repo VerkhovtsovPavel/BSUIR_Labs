@@ -18,6 +18,6 @@ public class Decoder extends Сryptography{
 		if (text[index]<0){
 			return convertToChar(text[index]);
 		}
-		return convertToChar((text[index]-lineShifts[index]) % ALPHABET_LENGTH);
+		return convertToChar((ALPHABET_LENGTH + text[index]-lineShifts[index]) % ALPHABET_LENGTH);
 	}
 }
