@@ -4,29 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Kasiski {
-	
 	        
+	        private String text;
+	        public static int digramLength = 3;
 	        
-	        private static String text;
-	        
-	        public static int digramLength = 3;//количество символов, которое должно совпадать
-	        
-	        public static int gcd(int a, int b){
-	            if (b == 0)
-	            {
-	                return a;
-	            }
-	            else
-	            {
-	                return gcd(b, a % b);
-	            }
+	        public Kasiski(String cryptoText){
+	        	this.text = cryptoText;
 	        }
-	        
-	        public static int kasiskiAlhoritm(String args)
+	       
+	        public int kasiskiAlhoritm()
 	        {
-	        	text = args;
-   	            List <Integer> repeatCount = new ArrayList();//массив, который содержит все длины
-	            //заполняем этот массив, ища расстояние между одинаковыми триграммами
+   	            List <Integer> repeatCount = new ArrayList();
 	            for (int i = 0; i < text.length() - digramLength + 1; i++)
 	            {
 	                String temp = text.substring(i, i+digramLength);
@@ -62,6 +50,19 @@ public class Kasiski {
 	            
 	            return maxIndex;
 	        }
+	        
+	        //TODO Change method name
+	        private int gcd(int a, int b){
+	            if (b == 0)
+	            {
+	                return a;
+	            }
+	            else
+	            {
+	                return gcd(b, a % b);
+	            }
+	        }
+
 	
 	}
 
