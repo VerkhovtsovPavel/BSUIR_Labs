@@ -7,12 +7,10 @@ public class Main {
 
 	
 	public static void main(String[] args){
-		String plainText = "ÏÀÂÅË ÏĞÈËÅÆÍÛÉ ÑÒÓÄÅÍÒ";
-		String key = "ÊÀØÀ";
-		/*for (int i=0; i< temp.length(); i++){
-			System.out.println((int)temp.charAt(i));
-		}*/
-		
+		String plainText = "ĞĞ‘Ğ’Ğ“Ğ”Ğ•ĞĞ–Ğ­Ğ˜Ğ™ĞšĞ›ĞœĞĞĞŸĞ Ğ¡Ğ¢Ğ£Ğ¤Ğ¥Ğ¦Ğ§Ğ¨Ğ©ĞªĞ­Ğ¬Ğ­Ğ®Ğ¯";
+		String key = "Ğ°Ğ°Ğ°";
+
+		System.out.println(plainText);
 		Encoder encoder = new Encoder(plainText, key);
 		System.out.println(encoder.encryptText());
 		Decoder decoder = new Decoder(encoder.encryptText(),key);
