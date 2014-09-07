@@ -1,5 +1,7 @@
 package main;
 
+import graphics.GraphicsClass;
+
 import java.util.Scanner;
 
 import approximation.Lagrange;
@@ -20,8 +22,10 @@ public class Main {
 	@SuppressWarnings("resource")
 	public static void main(final String[] args){
 		Lagrange lagrange = new Lagrange(x, y);
-		System.out.print("Input approximation point: ");
+		/*System.out.print("Input approximation point: ");
 		double point = new Scanner(System.in).nextDouble();
-		System.out.println(lagrange.approximazeFunction(point));
+		System.out.println(lagrange.approximazeFunction(point));*/
+		GraphicsClass.setScreenSize(800);
+		GraphicsClass.buildGraph(lagrange);
 	}
 }
