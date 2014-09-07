@@ -16,7 +16,7 @@ public class GraphicsClass extends JPanel{
 	private final int circleRadius = 5;
 	private static Object[] objectArray;
 	private static int screenSize;
-	//TODO Add setters.
+	private static int areaCount;
 
 	/**
 	 * Drawing form.
@@ -28,7 +28,8 @@ public class GraphicsClass extends JPanel{
 				case 0: g.setColor(Color.RED); break;
 				case 1: g.setColor(Color.BLUE); break;
 				case 2: g.setColor(Color.GREEN); break;
-				default: g.setColor(Color.GRAY); //TODO Automation color selected HSB + RGBtoHSB (255/areaCount*i)
+				case 3: g.setColor(Color.BLACK); break;
+				default: g.setColor(Color.getHSBColor((float)(1-0.5/areaCount*objectArray[i].getAreaNumber()), (float)(1-0.5/areaCount*objectArray[i].getAreaNumber()), (float)(1-0.5/areaCount*objectArray[i].getAreaNumber())));
 			}
 			g.fillOval(objectArray[i].getX(), objectArray[i].getY(), circleRadius, circleRadius);
 		}
@@ -63,6 +64,10 @@ public class GraphicsClass extends JPanel{
 	 */
 	public static void setObjectArray(final Object[] objects){
 		objectArray = objects;
+	}
+	
+	public static void setAreaCount(final int classCount){
+		areaCount=classCount;
 	}
 
 }

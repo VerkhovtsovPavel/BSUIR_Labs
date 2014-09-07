@@ -9,16 +9,17 @@ public class Object {
 	private int yCoordinate;
 
 	private int areaNumber;
+	private int objectIndex;
 
 	/**
 	 * Constructor.
 	 * @param x Coordinate x
 	 * @param y Coordinate y
 	 */
- 	public Object(final int x, final int y){
+ 	public Object(final int x, final int y, final int index){
  		xCoordinate = x;
  		yCoordinate = y;
- 		// TODO Object number
+ 		objectIndex = index;
 	}
  	/**
  	 * Choice area(class).
@@ -57,5 +58,9 @@ public class Object {
  	 */
  	public int getAreaNumber(){
  		return areaNumber;
+ 	}
+ 	
+ 	public int getIndex(){
+ 		return objectIndex;
  	}
 }
