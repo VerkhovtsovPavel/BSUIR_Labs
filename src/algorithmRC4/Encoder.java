@@ -18,14 +18,15 @@ public class Encoder {
 		int swapTemp = 0;
 		for (int i = 0; i< sBlock.length; i++){
 			swapTemp = (swapTemp + sBlock[i] + key[i % key.length]) % 256;
-			swap(sBlock[i], sBlock[swapTemp]);
+			swapSBlock(i, swapTemp);
 		}	
 	}
 	
-	
-	private void swap(int i, int j) {
-		// TODO Need working with indexes
-		
+	private void swapSBlock(int i, int j) {
+		int buf;
+		buf = sBlock[j];
+		sBlock[j] = sBlock[i];
+		sBlock[i] = buf;
 	}
 	
 	private int[] convertToIntArray(String text){
@@ -34,5 +35,5 @@ public class Encoder {
 			temp[i] = (int) text.charAt(i);
 		}
 		return temp;
-	}	
+	}
 }	
