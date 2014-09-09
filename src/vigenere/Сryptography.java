@@ -45,13 +45,15 @@ public abstract class Сryptography {
 	
 	protected char convertToChar(int charNumber){
 		charNumber+=1040;
-		/*if(charNumber>1046){
-			charNumber--;
-		}*/
-		/*if(charNumber==1046){
-			charNumber = 1025;
-		}*/
 		
+		if(charNumber==1046){
+			charNumber = 1025;
+		}
+		
+		if(charNumber>1046){
+			charNumber--;
+		}
+	
 		return (char) charNumber;
 	}
 	
@@ -59,11 +61,11 @@ public abstract class Сryptography {
 		int asciiCode = (int)symbol;
 		
 		//Ё symbol problem
-		/*if(asciiCode>=1046){
+		if(asciiCode>=1046){
 			asciiCode++;
-		}*/
+		}
 		if(asciiCode==1025){
-			asciiCode = 1045;
+			asciiCode = 1046;
 		}
 		return asciiCode-1040;
 	}

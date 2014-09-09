@@ -23,6 +23,7 @@ public class Kasiski {
 	                    String temp2 = text.substring(j, j+digramLength);
 	                    if(temp.equals(temp2))
 	                    {
+	                    	System.out.println(temp+" : "+String.valueOf(j-i));
 	                        repeatCount.add(j - i);
 	                    }
 	                }
