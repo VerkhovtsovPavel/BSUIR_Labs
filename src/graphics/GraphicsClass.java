@@ -17,6 +17,7 @@ public class GraphicsClass extends JPanel{
 	private static Object[] objectArray;
 	private static int screenSize;
 	private static int areaCount;
+	private static Object[] classArray;
 
 	/**
 	 * Drawing form.
@@ -28,10 +29,15 @@ public class GraphicsClass extends JPanel{
 				case 0: g.setColor(Color.RED); break;
 				case 1: g.setColor(Color.BLUE); break;
 				case 2: g.setColor(Color.GREEN); break;
-				case 3: g.setColor(Color.BLACK); break;
+				case 3: g.setColor(Color.GRAY); break;
 				default: g.setColor(Color.getHSBColor((float)(1-0.5/areaCount*objectArray[i].getAreaNumber()), (float)(1-0.5/areaCount*objectArray[i].getAreaNumber()), (float)(1-0.5/areaCount*objectArray[i].getAreaNumber())));
 			}
 			g.fillOval(objectArray[i].getX(), objectArray[i].getY(), circleRadius, circleRadius);
+		}
+		
+		for(int i=0; i<classArray.length; i++){
+			g.setColor(Color.BLACK);
+			g.fillOval(classArray[i].getX(), classArray[i].getY(), circleRadius*2, circleRadius*2);
 		}
 	}
 
@@ -62,8 +68,9 @@ public class GraphicsClass extends JPanel{
 	 * Setter to object array.
 	 * @param objects object array
 	 */
-	public static void setObjectArray(final Object[] objects){
+	public static void setObjectArray(final Object[] objects, final Object[] classes){
 		objectArray = objects;
+		classArray = classes;
 	}
 	
 	public static void setAreaCount(final int classCount){

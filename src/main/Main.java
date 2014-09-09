@@ -34,7 +34,7 @@ public class Main {
 		divideObjectsOnClasses();
 
 		GraphicsClass.setScreenSize(DISPERSION);
-		GraphicsClass.setObjectArray(objectArray);
+		GraphicsClass.setObjectArray(objectArray, objectCenters);
 		GraphicsClass.setAreaCount(classCount);
 		GraphicsClass.visualizeClasses();
 
