@@ -44,7 +44,7 @@ public class GaussMatrix extends Matrix{
 			}
 		}
 		if(max < eps){
-			System.out.println("System dosn't have solution");
+			System.out.println("Система не имеет решения");
 			systemDoesNotHaveSolutions = true;
 			System.exit(1);
 		}

@@ -135,4 +135,18 @@ public abstract class Utils {
 		}
 		return true;
 	}
+
+	/**
+	 * Search zero on main diagonal
+	 * @param inputMatrix matrix
+	 * @return true if on main diagonal found zero
+	 */
+	public static boolean checkMainDiagonal(final double[][] inputMatrix) {
+		for (int i=0; i< inputMatrix.length; i++){
+			if (inputMatrix[i][i]==0){
+				return true;
+			}
+		}
+		return false;
+	}
 }

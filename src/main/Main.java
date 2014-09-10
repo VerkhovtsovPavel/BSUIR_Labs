@@ -23,6 +23,7 @@ public class Main{
 	 */
 	@SuppressWarnings("resource")
 	public static void main(final String[] args){
+		boolean swapFlag = false;
 		System.out.print("Input matrix range: ");
 		range = new Scanner(System.in).nextInt();
 
@@ -30,9 +31,16 @@ public class Main{
 		freeCoefficients = inputFreeCoefficients(range);
 
 		Utils.verifyMatrixRange(inputMatrix, freeCoefficients, range);
+		if (Utils.checkMainDiagonal(inputMatrix)){
+			System.out.println("Главная диагональ содержит нуль. Решение стандартным методом Гаусса невозможно.\nБудет применен методом максимально элемента в столбце");
+			swapFlag=true;
+		}
 		GaussMatrix gaussMatrix = new GaussMatrix(range, Utils.concatenationMatrix(inputMatrix, freeCoefficients));
+
 		for (int i=0; i<range; i++){
-			gaussMatrix.swapRow(i);
+			if (swapFlag){
+				gaussMatrix.swapRow(i);
+			}
 			gaussMatrix.divideRow(i);
 			gaussMatrix.subtractMatrix(i);
 			gaussMatrix.printStep(i); //TODO Bad output when long numbers.
@@ -44,20 +52,26 @@ public class Main{
 			System.out.println(answer[i]);
 		}
 
-		if (!Utils.checkSymmetric(inputMatrix)){
-			freeCoefficients = Utils.multiplicationMatrix(freeCoefficients, Utils.matrixTransposition(inputMatrix));
-			inputMatrix = Utils.makeMatrixSymmetric(inputMatrix);
+		if (Utils.checkMainDiagonal(inputMatrix)){
+			System.out.println("Главная диагональ содержит нуль. Решение методом Холецкого невозможно.");
 		}
+		else{
+			if (!Utils.checkSymmetric(inputMatrix)){
+				System.out.println("Введенная система не симметрична.\nОна будет приведена к симметричному виду.");
+				freeCoefficients = Utils.multiplicationMatrix(freeCoefficients, Utils.matrixTransposition(inputMatrix));
+				inputMatrix = Utils.makeMatrixSymmetric(inputMatrix);
+			}
 
-		// TODO Add complex value.
-		CholeskyMatrix choleskyMatrix = new CholeskyMatrix(range, inputMatrix, freeCoefficients);
-		choleskyMatrix.makeLMatrix();
-		choleskyMatrix.solveSystem();
+			CholeskyMatrix choleskyMatrix = new CholeskyMatrix(range, inputMatrix, freeCoefficients);
+			choleskyMatrix.makeLMatrix();
+			choleskyMatrix.solveSystem();
+			// TODO Add complex value.
 
-		System.out.println("\nCholesky answer:");
-		answer = choleskyMatrix.makeAnswer();
-		for(int i=0; i<answer.length; i++){
-			System.out.println(answer[i]);
+			System.out.println("\nCholesky answer:");
+			answer = choleskyMatrix.makeAnswer();
+			for(int i=0; i<answer.length; i++){
+				System.out.println(answer[i]);
+			}
 		}
 	}
 

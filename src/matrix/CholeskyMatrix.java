@@ -33,6 +33,7 @@ private double[][] lMatrix;
 					}
 			}
 		}
+		printStep("Make L-matrix");
 		lMatrix=Utils.matrixTransposition(systemCoefficients);
 	}
 
@@ -60,6 +61,7 @@ private double[][] lMatrix;
 			for (int j=0; j<i ; j++){
 				freeCoefficients[i]-=systemCoefficients[i][j]*freeCoefficients[j];
 			}
+			printStep(Integer.toString(i+1)+" direct passage");
 			verifySolvabilitySystem(i);
 		}
 
@@ -70,6 +72,7 @@ private double[][] lMatrix;
 			for(int j=matrixExtent-1; j>i; j--){
 				freeCoefficients[i]-=systemCoefficients[i][j]*freeCoefficients[j];
 			}
+			printStep(Integer.toString(i+1)+" back passage");
 		}
 	}
 		/**
@@ -101,6 +104,20 @@ private double[][] lMatrix;
 			systemCoefficients[rowNumber][i]/=divider;
 		}
 		freeCoefficients[rowNumber]/=divider;
+	}
+
+	/**
+	 *  Print matrix on intermediate.
+	 * @param stepNumber Number of step
+	 */
+	public void printStep(final String stepNumber){
+		System.out.println("### Step: "+stepNumber+" ###");
+		for (int i=0; i<matrixExtent; i++){
+			for(int j=0; j<matrixExtent; j++){
+				System.out.print(systemCoefficients[i][j]+"\t");
+			}
+			System.out.println(freeCoefficients[i]);
+		}
 	}
 
 }
