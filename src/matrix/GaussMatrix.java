@@ -29,6 +29,20 @@ public class GaussMatrix extends Matrix{
 		}
 	}
 
+	public void checkZeroRow(int index){
+		boolean flag = true;
+		for (int i=0; i< systemCoefficients[0].length; i++){
+			if (systemCoefficients[index][i]!=0){
+				flag = false;
+			}
+		}
+		if (flag){
+			System.out.println("—истема имеет бесконечное множество решений");
+			System.exit(1);
+		}
+
+	}
+
 	/**
 	 * Search maximum modulus element in column.
 	 * @param rowNumber Number of row

@@ -41,6 +41,7 @@ public class Main{
 			if (swapFlag){
 				gaussMatrix.swapRow(i);
 			}
+			gaussMatrix.checkZeroRow(i);
 			gaussMatrix.divideRow(i);
 			gaussMatrix.subtractMatrix(i);
 			gaussMatrix.printStep(i); //TODO Bad output when long numbers.
