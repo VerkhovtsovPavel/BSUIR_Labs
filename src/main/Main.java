@@ -32,7 +32,7 @@ public class Main{
 
 		Utils.verifyMatrixRange(inputMatrix, freeCoefficients, range);
 		if (Utils.checkMainDiagonal(inputMatrix)){
-			System.out.println("Главная диагональ содержит нуль. Решение стандартным методом Гаусса невозможно.\nБудет применен методом максимально элемента в столбце");
+			System.out.println("Zero on the main diagonal. Gayss method can find system solution. Use methos max element in row.");
 			swapFlag=true;
 		}
 		GaussMatrix gaussMatrix = new GaussMatrix(range, Utils.concatenationMatrix(inputMatrix, freeCoefficients));
@@ -51,13 +51,13 @@ public class Main{
 		for(int i=0; i<answer.length; i++){
 			System.out.println(answer[i]);
 		}
-
+/*
 		if (Utils.checkMainDiagonal(inputMatrix)){
-			System.out.println("Главная диагональ содержит нуль. Решение методом Холецкого невозможно.");
+			System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.");
 		}
 		else{
 			if (!Utils.checkSymmetric(inputMatrix)){
-				System.out.println("Введенная система не симметрична.\nОна будет приведена к симметричному виду.");
+				System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.\nпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.");
 				freeCoefficients = Utils.multiplicationMatrix(freeCoefficients, Utils.matrixTransposition(inputMatrix));
 				inputMatrix = Utils.makeMatrixSymmetric(inputMatrix);
 			}
@@ -72,7 +72,7 @@ public class Main{
 			for(int i=0; i<answer.length; i++){
 				System.out.println(answer[i]);
 			}
-		}
+		}*/
 	}
 
 	/**
