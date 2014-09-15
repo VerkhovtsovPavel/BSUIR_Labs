@@ -32,9 +32,10 @@ private double[][] lMatrix;
 						systemCoefficients[i][i]=Math.sqrt(subtractRange(i, j));
 					}
 			}
+			verifySolvabilitySystem(i);
 		}
 
-		checkNaN();
+	//	checkNaN();
 		printStep("Make L-matrix");
 		lMatrix=Utils.matrixTransposition(systemCoefficients);
 	}
@@ -46,8 +47,8 @@ private double[][] lMatrix;
 					System.out.println("System dont have solution");
 					System.exit(1);
 				}
-					}	
-				}
+			}
+		}
 	}
 
 	/**
@@ -70,23 +71,26 @@ private double[][] lMatrix;
 	 */
 	public void solveSystem(){
 		for (int i=0; i<matrixExtent; i++){
-			checkDontSoluton(i);
+			//checkDontSoluton(i);
+
 			divideRow(i);
 			for (int j=0; j<i ; j++){
 				freeCoefficients[i]-=systemCoefficients[i][j]*freeCoefficients[j];
 			}
+			verifySolvabilitySystem(i);
 			printStep(Integer.toString(i+1)+" direct passage");
-			
 		}
 
 		systemCoefficients = lMatrix;
 
 		for(int i=matrixExtent-1; i>=0; i--){
-			checkDontSoluton(i);
+			//checkDontSoluton(i);
+			//verifySolvabilitySystem(i);
 			divideRow(i);
 			for(int j=matrixExtent-1; j>i; j--){
 				freeCoefficients[i]-=systemCoefficients[i][j]*freeCoefficients[j];
 			}
+			verifySolvabilitySystem(i);
 			printStep(Integer.toString(i+1)+" back passage");
 		}
 	}
@@ -95,10 +99,12 @@ private double[][] lMatrix;
 		 * @param index Cell index
 		 */
 		private void verifySolvabilitySystem(final int index){
-		if (systemCoefficients[index][index]==0){
+		for (int j=index; j<matrixExtent; j++){
+			if (systemCoefficients[j][j]==0){
 			systemDoesNotHaveSolutions=true;
-			System.out.println("Error! Element in main diagonal equal to zero. System don't have solution");
+			System.out.println("System don't have solution");
 			System.exit(1);// TODO Maybe refactor.
+			}
 		}
 	}
 	/**
