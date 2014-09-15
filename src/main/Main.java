@@ -25,7 +25,7 @@ public class Main {
 		/*System.out.print("Input approximation point: ");
 		double point = new Scanner(System.in).nextDouble();
 		System.out.println(lagrange.approximazeFunction(point));*/
-		GraphicsClass.setScreenSize(800);
+		GraphicsClass.setScreenSize(1000);
 		GraphicsClass.buildGraph(lagrange);
 	}
 }

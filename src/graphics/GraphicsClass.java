@@ -20,6 +20,7 @@ public class GraphicsClass extends JPanel{
 	private static Lagrange lagrange;
 	private static String header;
 	private static int screenSize;
+	private static int scale =15;
 
 
 	/**
@@ -30,11 +31,12 @@ public class GraphicsClass extends JPanel{
 		float[] points = new float[40];
 		for(float i=0; i<20; i+=0.5){
 			points[(int)(i*2)]=(float) lagrange.approximazeFunction(i);
-			//g.drawOval((int) i*30, screenSize/2+(int) lagrange.approximazeFunction(i)*30, circleRadius, circleRadius);
+				
 		}
-		
-		for (int i=0; i<points.length; i+=2){
-			g.drawLine(i*30, (int) points[i]*30, (i+1)*30, (int) points[i+1]*30);
+
+		for (int i=0; i<points.length-1; i++){
+			g.drawOval(i*scale, (int) points[i]*scale+screenSize/2, circleRadius, circleRadius);
+			g.drawLine(i*scale, (int) points[i]*scale+screenSize/2, (i+1)*scale, (int) points[i+1]*scale+screenSize/2);
 		}
 	}
 
