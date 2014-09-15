@@ -19,6 +19,21 @@ public class Matrix {
 		this.matrixExtent = size;
 		this.systemCoefficients = sysCoeff;
 	}
+	
+	public void checkDontSoluton(int index){
+		boolean flag = true;
+		for(int j=index; j<systemCoefficients.length; j++){
+		for (int i=0; i< systemCoefficients[0].length-1; i++){
+			if (systemCoefficients[j][i]!=0){
+				flag = false;
+			}
+		}
+		if (flag && (systemCoefficients[j][systemCoefficients.length]!=0)){
+			System.out.println("System dont have solution");
+			System.exit(1);
+		}
+	}
+	}
 
 	/**
 	 * Constructor.

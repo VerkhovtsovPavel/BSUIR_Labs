@@ -16,6 +16,7 @@ public class Main{
 											 {3.15, 3.22, 3.17}};*/
 
 	private static double[] freeCoefficients;/* = {-4.34, -3.91, -5.27};*/
+	private static boolean swapFlag = false;
 
 	/**
 	 * Main method.
@@ -23,7 +24,7 @@ public class Main{
 	 */
 	@SuppressWarnings("resource")
 	public static void main(final String[] args){
-		boolean swapFlag = false;
+
 		System.out.print("Input matrix range: ");
 		range = new Scanner(System.in).nextInt();
 
@@ -31,49 +32,58 @@ public class Main{
 		freeCoefficients = inputFreeCoefficients(range);
 
 		Utils.verifyMatrixRange(inputMatrix, freeCoefficients, range);
-		if (Utils.checkMainDiagonal(inputMatrix)){
-			System.out.println("Zero on the main diagonal. Gayss method can find system solution. Use methos max element in row.");
-			swapFlag=true;
+		//solveByGauss();
+		solveByCholesky();
 		}
-		GaussMatrix gaussMatrix = new GaussMatrix(range, Utils.concatenationMatrix(inputMatrix, freeCoefficients));
 
-		for (int i=0; i<range; i++){
-			if (swapFlag){
-				gaussMatrix.swapRow(i);
+		private static void solveByCholesky() {
+			if (Utils.checkMainDiagonal(inputMatrix)){
+				System.out.println("Matrix containts zero in the main diagonal. System can not be solved by Cholesky");
 			}
-			gaussMatrix.checkZeroRow(i);
-			gaussMatrix.divideRow(i);
-			gaussMatrix.subtractMatrix(i);
-			gaussMatrix.printStep(i); //TODO Bad output when long numbers.
-		}
+			else{
+				if (!Utils.checkSymmetric(inputMatrix)){
+					System.out.println("Matrix not diagonal.\nMatrix will be presented in the dialonal form.");
+					freeCoefficients = Utils.multiplicationMatrix(freeCoefficients, Utils.matrixTransposition(inputMatrix));
+					inputMatrix = Utils.makeMatrixSymmetric(inputMatrix);
+				}
 
-		double[] answer = gaussMatrix.makeAnswer();
-		System.out.println("Gauss answer:");
-		for(int i=0; i<answer.length; i++){
-			System.out.println(answer[i]);
-		}
-/*
-		if (Utils.checkMainDiagonal(inputMatrix)){
-			System.out.println("������� ��������� �������� ����. ������� ������� ��������� ����������.");
-		}
-		else{
-			if (!Utils.checkSymmetric(inputMatrix)){
-				System.out.println("��������� ������� �� �����������.\n��� ����� ��������� � ������������� ����.");
-				freeCoefficients = Utils.multiplicationMatrix(freeCoefficients, Utils.matrixTransposition(inputMatrix));
-				inputMatrix = Utils.makeMatrixSymmetric(inputMatrix);
+				CholeskyMatrix choleskyMatrix = new CholeskyMatrix(range, inputMatrix, freeCoefficients);
+				choleskyMatrix.makeLMatrix();
+				choleskyMatrix.solveSystem();
+				// TODO Add complex value.
+
+				System.out.println("\nCholesky answer:");
+				double[] answer = choleskyMatrix.makeAnswer();
+				for(int i=0; i<answer.length; i++){
+					System.out.println(answer[i]);
+				}
+			}
+	}
+
+		private static void solveByGauss(){
+			if (Utils.checkMainDiagonal(inputMatrix)){
+				System.out.println("Zero on the main diagonal. Gayss method can find system solution. Use methos max element in row.");
+				swapFlag=true;
 			}
 
-			CholeskyMatrix choleskyMatrix = new CholeskyMatrix(range, inputMatrix, freeCoefficients);
-			choleskyMatrix.makeLMatrix();
-			choleskyMatrix.solveSystem();
-			// TODO Add complex value.
+			GaussMatrix gaussMatrix = new GaussMatrix(range, Utils.concatenationMatrix(inputMatrix, freeCoefficients));
 
-			System.out.println("\nCholesky answer:");
-			answer = choleskyMatrix.makeAnswer();
+			for (int i=0; i<range; i++){
+				if (swapFlag){
+					gaussMatrix.swapRow(i);
+				}
+				gaussMatrix.checkZeroRow(i);
+				gaussMatrix.divideRow(i);
+				gaussMatrix.checkZeroRow(i);
+				gaussMatrix.subtractMatrix(i);
+				gaussMatrix.printStep(i); //TODO Bad output when long numbers.
+			}
+
+			double[] answer = gaussMatrix.makeAnswer();
+			System.out.println("Gauss answer:");
 			for(int i=0; i<answer.length; i++){
 				System.out.println(answer[i]);
-			}
-		}*/
+		}
 	}
 
 	/**

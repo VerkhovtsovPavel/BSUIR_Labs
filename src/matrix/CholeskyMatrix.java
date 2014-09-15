@@ -33,8 +33,21 @@ private double[][] lMatrix;
 					}
 			}
 		}
+
+		checkNaN();
 		printStep("Make L-matrix");
 		lMatrix=Utils.matrixTransposition(systemCoefficients);
+	}
+
+	private void checkNaN(){
+		for (int i=0; i<matrixExtent; i++){
+			for (int j=0; j<matrixExtent; j++){
+				if (Double.isNaN(systemCoefficients[i][j])){
+					System.out.println("System dont have solution");
+					System.exit(1);
+				}
+					}	
+				}
 	}
 
 	/**
@@ -57,17 +70,19 @@ private double[][] lMatrix;
 	 */
 	public void solveSystem(){
 		for (int i=0; i<matrixExtent; i++){
+			checkDontSoluton(i);
 			divideRow(i);
 			for (int j=0; j<i ; j++){
 				freeCoefficients[i]-=systemCoefficients[i][j]*freeCoefficients[j];
 			}
 			printStep(Integer.toString(i+1)+" direct passage");
-			verifySolvabilitySystem(i);
+			
 		}
 
 		systemCoefficients = lMatrix;
 
 		for(int i=matrixExtent-1; i>=0; i--){
+			checkDontSoluton(i);
 			divideRow(i);
 			for(int j=matrixExtent-1; j>i; j--){
 				freeCoefficients[i]-=systemCoefficients[i][j]*freeCoefficients[j];
