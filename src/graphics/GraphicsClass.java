@@ -19,10 +19,8 @@ import approximation.Newton;
 public class GraphicsClass extends JPanel{
 	private static final long serialVersionUID = 1L; //service variable
 	private final int circleRadius = 5;
-	//private static Lagrange lagrange;
-	//private static String header;
 	private static int screenSize;
-	private static int scale = 15;
+	private static final int SCALE = 15;
 
 	private static BaseApproximation approximationMethod;
 
@@ -32,54 +30,21 @@ public class GraphicsClass extends JPanel{
 	 * @param g graphics object
 	 */
 	public void paint(final Graphics g){
-		float[] points = new float[40];
-		for(float i=0; i< 20; i+=0.5){
+		float[] points = new float[approximationMethod.getArraySize()*2];
+		for(float i=0; i< approximationMethod.getArraySize(); i+=0.5){
 			points[(int)(i*2)]=(float) approximationMethod.approximazeFunction(i);
 		}
 
 		for (int i=0; i<points.length-1; i++){
-			g.drawOval(i*scale, (int) points[i]*scale+screenSize/2, circleRadius, circleRadius);
-			g.drawLine(i*scale, (int) points[i]*scale+screenSize/2, (i+1)*scale, (int) points[i+1]*scale+screenSize/2);
+			g.drawOval(i*SCALE, (int) points[i]*SCALE+screenSize/2, circleRadius, circleRadius);
+			g.drawLine(i*SCALE, (int) points[i]*SCALE+screenSize/2, (i+1)*SCALE, (int) points[i+1]*SCALE+screenSize/2);
 		}
 	}
 
 	/**
 	 * Show form with visualization classes.
-	 */
-	/*public static void buildGraph(Lagrange lagrange, String header){
-		points = new float[40];
-		for(float i=0; i<20; i+=0.5){
-			points[(int)(i*2)]=(float) lagrange.approximazeFunction(i);
-		}
-
-		JPanel panel = new GraphicsClass();
-        panel.setOpaque(true);
-
-        JFrame mainFrame = new JFrame(header);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setContentPane(panel);
-        mainFrame.setSize(screenSize, screenSize);
-        mainFrame.setVisible(true);
-        mainFrame.setBackground(Color.white);
-	}
-	
-	public static void buildGraph(Newton newton, String header){
-		
-
-		JPanel panel = new GraphicsClass();
-        panel.setOpaque(true);
-
-        JFrame mainFrame = new JFrame(header);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setContentPane(panel);
-        mainFrame.setSize(screenSize, screenSize);
-        mainFrame.setVisible(true);
-        mainFrame.setBackground(Color.white);
-	}*/
-
-
-	/**
-	 * Show form with visualization classes.
+	 * @param apprMethod Method for approximation function
+	 * @param header Form header
 	 */
 	public static void buildGraph(final BaseApproximation apprMethod, final String header){
 		approximationMethod = apprMethod;

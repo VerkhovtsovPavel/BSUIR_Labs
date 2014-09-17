@@ -1,9 +1,7 @@
 package main;
 
 import graphics.GraphicsClass;
-
 import java.util.Scanner;
-
 import approximation.Lagrange;
 import approximation.Newton;
 
@@ -20,13 +18,13 @@ public class Main {
 	 * Main method.
 	 * @param args console parameters
 	 */
-	@SuppressWarnings("resource")
 	public static void main(final String[] args){
 		Lagrange lagrange = new Lagrange(x, y);
 		Newton newton = new Newton(x, y);
-		GraphicsClass.setScreenSize(800);
+		GraphicsClass.setScreenSize(700);
 		GraphicsClass.buildGraph(newton, "Newton");
 		GraphicsClass.buildGraph(lagrange, "Lagrange");
+
 		/*System.out.print("Input approximation point: ");
 		double point = new Scanner(System.in).nextDouble();
 		System.out.println(newton.approximazeFunction(point));
