@@ -10,12 +10,12 @@ import matrix.GaussMatrix;
  * @author Pavel_Verkhovtsov
  */
 public class Main{
-	private static int range;
-	private static double[][] inputMatrix;/*  = {{2.18, 2.44, 2.49},
+	private static int range = 3;
+	private static double[][] inputMatrix;/* = {{2.18, 2.44, 2.49},
 											 {2.17, 2.31, 2.49},
 											 {3.15, 3.22, 3.17}};*/
 
-	private static double[] freeCoefficients;/* = {-4.34, -3.91, -5.27};*/
+	private static double[] freeCoefficients;/* = {-4.34, -3.911, -5.27};*/
 	private static boolean swapFlag = false;
 
 	/**
@@ -32,19 +32,25 @@ public class Main{
 		freeCoefficients = inputFreeCoefficients(range);
 
 		Utils.verifyMatrixRange(inputMatrix, freeCoefficients, range);
-		//solveByGauss();
-		solveByCholesky();
+		solveByGauss();
+		//solveByCholesky();
 		}
 
 		private static void solveByCholesky() {
 			if (Utils.checkMainDiagonal(inputMatrix)){
-				System.out.println("Matrix containts zero in the main diagonal. System can not be solved by Cholesky");
+				System.out.println("System can not be solved by Cholesky");
 			}
 			else{
 				if (!Utils.checkSymmetric(inputMatrix)){
 					System.out.println("Matrix not diagonal.\nMatrix will be presented in the dialonal form.");
 					freeCoefficients = Utils.multiplicationMatrix(freeCoefficients, Utils.matrixTransposition(inputMatrix));
 					inputMatrix = Utils.makeMatrixSymmetric(inputMatrix);
+					for (int i=0; i<range; i++){
+						for(int j=0; j<range; j++){
+							System.out.print(inputMatrix[i][j]+"\t");
+						}
+						System.out.println(freeCoefficients[i]);
+					}
 				}
 
 				CholeskyMatrix choleskyMatrix = new CholeskyMatrix(range, inputMatrix, freeCoefficients);
@@ -82,7 +88,8 @@ public class Main{
 			double[] answer = gaussMatrix.makeAnswer();
 			System.out.println("Gauss answer:");
 			for(int i=0; i<answer.length; i++){
-				System.out.println(answer[i]);
+				//System.out.println(answer[i]);
+				System.out.printf("%.2f\t",answer[i]);
 		}
 	}
 

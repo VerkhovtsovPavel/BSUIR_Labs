@@ -34,21 +34,8 @@ private double[][] lMatrix;
 			}
 			verifySolvabilitySystem(i);
 		}
-
-	//	checkNaN();
 		printStep("Make L-matrix");
 		lMatrix=Utils.matrixTransposition(systemCoefficients);
-	}
-
-	private void checkNaN(){
-		for (int i=0; i<matrixExtent; i++){
-			for (int j=0; j<matrixExtent; j++){
-				if (Double.isNaN(systemCoefficients[i][j])){
-					System.out.println("System dont have solution");
-					System.exit(1);
-				}
-			}
-		}
 	}
 
 	/**
@@ -71,8 +58,6 @@ private double[][] lMatrix;
 	 */
 	public void solveSystem(){
 		for (int i=0; i<matrixExtent; i++){
-			//checkDontSoluton(i);
-
 			divideRow(i);
 			for (int j=0; j<i ; j++){
 				freeCoefficients[i]-=systemCoefficients[i][j]*freeCoefficients[j];
@@ -83,9 +68,7 @@ private double[][] lMatrix;
 
 		systemCoefficients = lMatrix;
 
-		for(int i=matrixExtent-1; i>=0; i--){
-			//checkDontSoluton(i);
-			//verifySolvabilitySystem(i);
+		for(int i=matrixExtent-1; i>=0; i--){;
 			divideRow(i);
 			for(int j=matrixExtent-1; j>i; j--){
 				freeCoefficients[i]-=systemCoefficients[i][j]*freeCoefficients[j];
@@ -94,18 +77,35 @@ private double[][] lMatrix;
 			printStep(Integer.toString(i+1)+" back passage");
 		}
 	}
-		/**
-		 * Check if a solution of the system.
-		 * @param index Cell index
-		 */
-		private void verifySolvabilitySystem(final int index){
-		for (int j=index; j<matrixExtent; j++){
-			if (systemCoefficients[j][j]==0){
-			systemDoesNotHaveSolutions=true;
-			System.out.println("System don't have solution");
-			System.exit(1);// TODO Maybe refactor.
-			}
+	/**
+	 * Check if a solution of the system.
+	 * @param index Cell index
+	 */
+	private void verifySolvabilitySystem(final int index){
+	for (int j=index; j<matrixExtent; j++){
+		if (systemCoefficients[j][j]==0){
+		systemDoesNotHaveSolutions=true;
+		System.out.println("System can not be solved by Cholesky");
+		System.exit(1);
 		}
+	}
+
+	boolean flag = true;
+	for(int j =index; j<systemCoefficients.length; j++){
+	for (int i=0; i< systemCoefficients[0].length-1; i++){
+		if (systemCoefficients[index][i]!=0){
+			flag = false;
+		}
+	}
+	if (flag && (systemCoefficients[j][systemCoefficients.length]==0)){
+		System.out.println("System can not be solved by Cholesky");
+		System.exit(1);
+	}
+	if (flag && (systemCoefficients[j][systemCoefficients.length]!=0)){
+		System.out.println("System can not be solved by Cholesky");
+		System.exit(1);
+	}
+}
 	}
 	/**
 	 * Return array containing system solution

@@ -30,22 +30,24 @@ public class GaussMatrix extends Matrix{
 	}
 
 	public void checkZeroRow(int index){
-		boolean flag = true;
 		for(int j =index; j<systemCoefficients.length; j++){
-		for (int i=0; i< systemCoefficients[0].length-1; i++){
-			if (systemCoefficients[index][i]!=0){
-				flag = false;
+			boolean flag = true;
+			for (int i=0; i< systemCoefficients[0].length-1; i++){
+				if (systemCoefficients[j][i]!=0){
+					flag = false;
+				}
 			}
-		}
 		if (flag && (systemCoefficients[j][systemCoefficients.length]==0)){
 			System.out.println("System have infinity solution");
 			System.exit(1);
-		}
+}
 		if (flag && (systemCoefficients[j][systemCoefficients.length]!=0)){
 			System.out.println("System dont have solution");
 			System.exit(1);
 		}
 		}
+		
+		
 	}
 
 	/**
