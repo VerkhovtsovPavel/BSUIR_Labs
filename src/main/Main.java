@@ -33,6 +33,7 @@ public class Main {
 		}
 	}
 	// TODO Implement List of parameters 
+	// TODO Change constructors. (The input parameter List)
 	private static int[] parseParam(){
 		int[] paramArray = new int[4];
 		for(int i=0; i<3; i++){
