@@ -1,8 +1,9 @@
 package shapes;
 
 import java.awt.Graphics;
+import java.io.Serializable;
 
-public abstract class BaseShape {
+public abstract class BaseShape implements Serializable{
 
 	protected int xStart;
 	protected int yStart;

@@ -18,7 +18,7 @@ import shapes.BaseShape;
 public class Painter extends JPanel{
 	private static final long serialVersionUID = 1L; //service variable
 	private static final int SCREEN_SIZE = 1000;
-	private static List <BaseShape> figureList = new ArrayList<BaseShape>();
+	private static ArrayList <BaseShape> figureList = new ArrayList<BaseShape>();
 
 	/**
 	 * Drawing form.
@@ -52,4 +52,14 @@ public class Painter extends JPanel{
 	public static void addObjectInList(BaseShape object){
 		figureList.add(object);
 	}
+	
+	public static ArrayList<BaseShape> getObjectList(){
+		return figureList;
+	}
+	
+	
+	public static void raiseList(ArrayList<BaseShape> objectList){
+		figureList.clear();
+		figureList.addAll(objectList);
+	} 
 }

@@ -1,5 +1,9 @@
 package main;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -18,11 +22,11 @@ public class Main {
 
 		while(!commandLine.equals("Exit")){
 			commandLine = new Scanner(System.in).nextLine();
-
-			if (commandLine.equals("Draw")){
+			String action = takeWord();
+			if (action.equals("Draw")){
 				Painter.drawObjects();
 			}
-			else if (takeWord().equals("Add")){
+			else if (action.equals("Add")){
 				String shapeName = takeWord();
 				ArrayList<Integer> paramList = parseParam();
 				
@@ -32,14 +36,20 @@ public class Main {
 				Painter.addObjectInList(shape);
 			}
 			
-			else if (takeWord().equals("Save")){
-				//TODO Get file path
-				//TODO Serialize shape list
+			else if (action.equals("Save")){
+				String filePath = takeWord();
+				FileOutputStream fileStream = new FileOutputStream(filePath);
+				ObjectOutputStream serialazer = new ObjectOutputStream(fileStream);
+				serialazer.writeObject(Painter.getObjectList());
+				serialazer.flush();
+				serialazer.close();
 			}
 			
-			else if (takeWord().equals("Open")){
-				//TODO Get file path
-				//TODO Deserialize shape list
+			else if (action.equals("Open")){
+				String filePath = takeWord();
+				FileInputStream fileStream = new FileInputStream(filePath);
+				ObjectInputStream deserialazer = new ObjectInputStream(fileStream);
+				Painter.raiseList( (ArrayList<BaseShape>) deserialazer.readObject());
 			}
 		}
 	}
@@ -54,8 +64,16 @@ public class Main {
 	}
 	
 	private static String takeWord(){
-		String word = commandLine.substring(0,commandLine.indexOf(" "));
-		commandLine=commandLine.substring(commandLine.indexOf(" ")+1);
+		String word;
+		if (commandLine.indexOf(" ")!=-1){
+			word = commandLine.substring(0,commandLine.indexOf(" "));
+			commandLine=commandLine.substring(commandLine.indexOf(" ")+1);
+		}
+		else
+		{
+			word = commandLine;
+			commandLine = "";
+		}
 		return word;
 	}
 }
