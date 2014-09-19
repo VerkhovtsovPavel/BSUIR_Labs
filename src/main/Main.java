@@ -31,6 +31,16 @@ public class Main {
 				BaseShape shape = (BaseShape) shapeConstructor.newInstance(paramList);
 				Painter.addObjectInList(shape);
 			}
+			
+			else if (takeWord().equals("Save")){
+				//TODO Get file path
+				//TODO Serialize shape list
+			}
+			
+			else if (takeWord().equals("Open")){
+				//TODO Get file path
+				//TODO Deserialize shape list
+			}
 		}
 	}
 
