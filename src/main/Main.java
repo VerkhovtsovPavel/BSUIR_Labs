@@ -25,7 +25,7 @@ public class Main {
 		while(true){
 			commandLine = new Scanner(System.in).nextLine();
 			String action = takeWord();
-			
+			//TODO Install jre1.7 and use switch 
 			if (action.equals("Exit")){
 				System.exit(0);
 			}
