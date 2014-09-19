@@ -32,7 +32,10 @@ public class GraphicsClass extends JPanel{
 				case 1: g.setColor(Color.BLUE); break;
 				case 2: g.setColor(Color.GREEN); break;
 				case 3: g.setColor(Color.GRAY); break;
-				default: g.setColor(Color.getHSBColor((float)(1-0.5/areaCount*objectArray[i].getAreaNumber()), (float)(1-0.5/areaCount*objectArray[i].getAreaNumber()), (float)(1-0.5/areaCount*objectArray[i].getAreaNumber())));
+				default:{
+					//TODO Increase the variety of colors
+					g.setColor(new Color(0, 255/areaCount*objectArray[i].getAreaNumber(), 255/areaCount*objectArray[i].getAreaNumber()));
+				}
 			}
 			g.fillOval(objectArray[i].getX(), objectArray[i].getY(), circleRadius, circleRadius);
 		}
