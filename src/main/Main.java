@@ -2,6 +2,7 @@ package main;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import shapes.BaseShape;
@@ -23,24 +24,22 @@ public class Main {
 			}
 			else if (takeWord().equals("Add")){
 				String shapeName = takeWord();
-				int[] param = parseParam();
+				ArrayList<Integer> paramList = parseParam();
 				
 				Class<?> shapeClass = Class.forName("shapes."+shapeName);
 				Constructor<?> shapeConstructor = shapeClass.getDeclaredConstructors()[0];
-				BaseShape shape = (BaseShape) shapeConstructor.newInstance(param[0], param[1], param[2], param[3]);
+				BaseShape shape = (BaseShape) shapeConstructor.newInstance(paramList);
 				Painter.addObjectInList(shape);
 			}
 		}
 	}
-	// TODO Implement List of parameters 
-	// TODO Change constructors. (The input parameter List)
-	private static int[] parseParam(){
-		int[] paramArray = new int[4];
-		for(int i=0; i<3; i++){
-			paramArray[i]=Integer.valueOf(takeWord());
+
+	private static ArrayList<Integer> parseParam(){
+		ArrayList<Integer> paramArray = new ArrayList<Integer>();
+		while(commandLine.lastIndexOf(" ")!=-1){
+			paramArray.add(Integer.valueOf(takeWord()));
 		}
-		
-		paramArray[3]=Integer.valueOf(commandLine);
+		paramArray.add(Integer.valueOf(commandLine));
 		return paramArray;
 	}
 	

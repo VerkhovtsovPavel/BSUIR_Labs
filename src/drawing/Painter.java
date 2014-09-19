@@ -18,7 +18,7 @@ import shapes.BaseShape;
 public class Painter extends JPanel{
 	private static final long serialVersionUID = 1L; //service variable
 	private static final int SCREEN_SIZE = 1000;
-	private static List <BaseShape> figureList = new ArrayList();
+	private static List <BaseShape> figureList = new ArrayList<BaseShape>();
 
 	/**
 	 * Drawing form.
@@ -37,7 +37,7 @@ public class Painter extends JPanel{
 		JPanel panel = new Painter();
         panel.setOpaque(true);
 
-        JFrame mainFrame = new JFrame("Figures");
+        JFrame mainFrame = new JFrame("Shapes");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setContentPane(panel);
         mainFrame.setSize(SCREEN_SIZE, SCREEN_SIZE);
