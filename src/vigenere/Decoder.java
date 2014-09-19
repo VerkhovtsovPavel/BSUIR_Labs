@@ -1,6 +1,6 @@
 package vigenere;
 
-public class Decoder extends Сryptography{
+public class Decoder extends Cryptography{
 	
 	public Decoder(String plainText, String key){
 		super(plainText, key);

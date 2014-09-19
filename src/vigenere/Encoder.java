@@ -1,8 +1,8 @@
 package vigenere;
 
-import vigenere.Сryptography;
+import vigenere.Cryptography;
 
-public class Encoder extends Сryptography{
+public class Encoder extends Cryptography{
 	
 	public Encoder(String plainText, String key){
 		super(plainText, key);

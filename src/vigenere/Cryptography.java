@@ -1,6 +1,6 @@
 package vigenere;
 
-public abstract class Сryptography {
+public abstract class Cryptography {
 	protected final int ALPHABET_LENGTH = 32;
 	
 	protected int[] text;
@@ -8,7 +8,7 @@ public abstract class Сryptography {
 	
 	protected int[] lineShifts;
 	
-	protected Сryptography(String plainText, String key){
+	protected Cryptography(String plainText, String key){
 		this.text = convertToCharNumber(plainText.toUpperCase());
 		this.key = convertToCharNumber(key.toUpperCase());
 		this.lineShifts = makeLineShifts();
