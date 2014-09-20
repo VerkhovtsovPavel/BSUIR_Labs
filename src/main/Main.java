@@ -25,21 +25,13 @@ public class Main {
 		while(true){
 			commandLine = new Scanner(System.in).nextLine();
 			String action = takeWord();
-			//TODO Install jre1.7 and use switch 
-			if (action.equals("Exit")){
-				System.exit(0);
-			}
-			else if (action.equals("Draw")){
-				Painter.drawObjects();
-			}
-			else if (action.equals("Add")){
-				addShape();
-			}
-			else if (action.equals("Save")){
-				saveObjectListInFile();
-			}
-			else if (action.equals("Open")){
-				readObjectListFromFile();
+			switch (action) {
+				case "Exit": System.exit(0); break;
+				case "Draw": Painter.drawObjects(); break;
+				case "Add": addShape(); break;
+				case "Save": saveObjectListInFile(); break;
+				case "Open": readObjectListFromFile(); break;
+				default: System.out.println("Incorrect commant");
 			}
 		}
 	}
