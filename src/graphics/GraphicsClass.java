@@ -20,7 +20,8 @@ public class GraphicsClass extends JPanel{
 	private static final long serialVersionUID = 1L; //service variable
 	private final int circleRadius = 5;
 	private static int screenSize;
-	private static final int SCALE = 15;
+	private static final int SCALE = 7;
+	private static float interpolationStep = (float) 0.1;
 
 	private static BaseApproximation approximationMethod;
 
@@ -30,9 +31,9 @@ public class GraphicsClass extends JPanel{
 	 * @param g graphics object
 	 */
 	public void paint(final Graphics g){
-		float[] points = new float[approximationMethod.getArraySize()*2];
-		for(float i=0; i< approximationMethod.getArraySize(); i+=0.5){
-			points[(int)(i*2)]=(float) approximationMethod.approximazeFunction(i);
+		float[] points = new float[(int)(approximationMethod.getArraySize()/interpolationStep)];
+		for(float i=0; i< approximationMethod.getArraySize(); i+=interpolationStep){
+			points[(int)(i/interpolationStep)]=(float) approximationMethod.approximazeFunction(i);
 		}
 
 		for (int i=0; i<points.length-1; i++){
@@ -54,7 +55,7 @@ public class GraphicsClass extends JPanel{
         JFrame mainFrame = new JFrame(header);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setContentPane(panel);
-        mainFrame.setSize(screenSize, screenSize);
+        mainFrame.setSize(screenSize*2, screenSize);
         mainFrame.setVisible(true);
         mainFrame.setBackground(Color.white);
 	}
