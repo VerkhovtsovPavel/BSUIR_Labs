@@ -8,6 +8,7 @@ public class Newton extends BaseApproximation{
 	 * @param yArray Array of y coordinate
 	 */
 	public Newton(final double[] xArray, final double[] yArray){
+		//TODO Add check equal intervals
 		super(xArray, yArray);
 	}
 
