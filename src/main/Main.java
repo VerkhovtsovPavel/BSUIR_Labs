@@ -14,7 +14,7 @@ import objects.Object;
 public class Main {
 	private static Object[] objectArray;
 	private static ArrayList<Object> objectCenters;
-	private static final int DISPERSION = 800;
+	private static final int DISPERSION = 600;
 	private static int objectCount;
 	private static int indexOfObjectWithMaxDistanse;
 
@@ -82,10 +82,13 @@ public class Main {
 
 	private static boolean checkOptimalityDivision(){
 		boolean redefinitionClasses = false;
+		double kernel[] = new double[objectCenters.size()];
+		for (int i=0; i<kernel.length; i++){
+			kernel[i] =  getAverageDeviation(objectCenters.get(i).getIndex());
+		}
 		for (int i=0; i<objectCount; i++){
-			double kernel =  getAverageDeviation(objectCenters.get(objectArray[i].getAreaNumber()).getIndex());
 			double kernelBidder = getAverageDeviation(i);
-			if (kernelBidder<kernel){
+			if (kernelBidder<kernel[objectArray[i].getAreaNumber()]){
 				objectCenters.set(objectArray[i].getAreaNumber(),objectArray[i]);
 				redefinitionClasses = true;
 			}
