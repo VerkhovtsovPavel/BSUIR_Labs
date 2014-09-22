@@ -14,28 +14,32 @@ import kasiski.Kasiski;
 
 public class Main {
 	
+	private static Scanner in = new Scanner(System.in);
+	
 	public static void main(String[] args){
-		String plainText;
-		String key;
-		
 		System.out.println("Input file name: ");
-		String fileName = (new Scanner(System.in)).next();
-		plainText = readFromFile(fileName);
+		String fileName = in.next();
+		String plainText = readFromFile(fileName);
 		
 		System.out.println("Input key: ");
-		key = (new Scanner(System.in)).next();
+		String key = in.next();
 		
 		System.out.println("Output file name: ");
-		fileName = (new Scanner(System.in)).next();
+		fileName = in.next();
 		
-		Encoder encoder = new Encoder(plainText, key);
-		//System.out.println(encoder.encryptText());
+		//Encoder and Decoder with progressive key
+		
+		/*Encoder encoder = new Encoder(plainText, key);
 		writeInFile(encoder.encryptText(), fileName);
 				
 		Decoder decoder = new Decoder(readFromFile(fileName),key);
-		//System.out.println(decoder.decryptText());
+		System.out.println(decoder.decryptText());*/
 		
 		// Test data for Kasiski test.
+		
+		Encoder encoder = new Encoder(plainText, key);
+		writeInFile(encoder.simpleEncrypt(), fileName);
+		
 		Kasiski kasiski = new Kasiski(readFromFile(fileName));
 		System.out.println("Key length: "+String.valueOf(kasiski.kasiskiAlhoritm()));
 		

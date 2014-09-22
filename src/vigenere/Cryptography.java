@@ -7,13 +7,30 @@ public abstract class Cryptography {
 	protected int[] key;
 	
 	protected int[] lineShifts;
+	protected int[] lineSimpleShifts;
 	
 	protected Cryptography(String plainText, String key){
 		this.text = convertToCharNumber(plainText.toUpperCase());
 		this.key = convertToCharNumber(key.toUpperCase());
 		this.lineShifts = makeLineShifts();
+		this.lineSimpleShifts = makeLineSimpleShifts();
 	}
 	
+	private int[] makeLineSimpleShifts() {
+		int [] shiftsLine = new int [text.length];
+		int j=0;
+		for(int i=0; i<text.length; i++){
+			if(text[i]>=0){
+				shiftsLine[i]=(key[j%key.length])%ALPHABET_LENGTH;
+				j++;
+			}
+			else{
+				shiftsLine[i]=0;
+			}
+		}
+		return shiftsLine;
+	}
+
 	protected int[] makeLineShifts()
 	{
 		int [] shiftsLine = new int [text.length];
@@ -60,7 +77,7 @@ public abstract class Cryptography {
 	protected int getCharNumber(char symbol){
 		int asciiCode = (int)symbol;
 		
-		//Ð symbol problem
+		//'É' symbol problem
 		if(asciiCode>=1046){
 			asciiCode++;
 		}

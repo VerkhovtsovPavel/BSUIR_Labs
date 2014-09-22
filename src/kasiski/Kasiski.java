@@ -16,6 +16,7 @@ public class Kasiski {
 	        {
 	        	int[] distance = new int[text.length()];
    	            List <Integer> repeatCount = new ArrayList<Integer>();
+   	            
 	            for (int i = 0; i < text.length() - digramLength + 1; i++)
 	            {
 	                String temp = text.substring(i, i+digramLength);
@@ -25,50 +26,51 @@ public class Kasiski {
 	                    if(temp.equals(temp2))
 	                    {
 	                    	System.out.println(temp+" : "+String.valueOf(j-i));
-	                        //repeatCount.add(j - i);
 	                    	distance[j-i]++;
 	                    }
 	                }
 	            }
-	          /*  if(repeatCount.isEmpty()){
-	            	System.out.println("No repetitive sequences");
-	            	System.exit(1);
-	            }*/
+	            
+	            for (int i=0; i<6; i++){
+	            	int max = 0;
+		            int maxIndex = 0;
+	            	for (int j=0; j<distance.length; j++){
+	            		if(distance[j]>max){
+		                	max=distance[j];
+		                	maxIndex=j;
+		                }
+	            	}
+	            	repeatCount.add(maxIndex);
+	            	distance[maxIndex]=0;
+	            }
+	            
+	            if(repeatCount.isEmpty()){
+            		System.out.println("No repetitive sequences");
+            		System.exit(1);
+            	}
 	            	
-	           /* int[] nods = new int[text.length()];
-	            for (int i = 0; i < repeatCount.size(); ++i)
-	                for (int j = i + 1; j < repeatCount.size(); ++j)
+	            int[] nods = new int[text.length()];
+	            for (int i = 0; i < repeatCount.size(); i++){
+	                for (int j = i + 1; j < repeatCount.size(); j++){
 	                    nods[nodEuclid(repeatCount.get(i), repeatCount.get(j))]++;
-	            nods[0] = 0;*/
+	                }
+	            }
+	            
+	            nods[0] = 0;
 	            	            
 	            int max = 0;
 	            int maxIndex = 0;
-	            for (int i = 1; i < distance.length; i++)
+	            for (int i = 1; i < nods.length; i++)
 	            {
-	                if(distance[i]>max){
-	                	max=distance[i];
+	                if(nods[i]>max){
+	                	max=nods[i];
 	                	maxIndex=i;
 	                }
 	            }
 	            
-	            //TODO Pasha remove this!!!!!!!!!!!!!!!!!!!!!!!!
-	            int index = maxIndex;
-	            distance[maxIndex]=0;
-	            
-	            max = 0;
-	            maxIndex = 0;
-	            for (int i = 1; i < distance.length; i++)
-	            {
-	                if(distance[i]>max){
-	                	max=distance[i];
-	                	maxIndex=i;
-	                }
-	            }
-	            
-	            return nodEuclid(index, maxIndex);
+	            return maxIndex;
 	        }
 	        
-	        //TODO Change method name
 	        private int nodEuclid(int a, int b){
 	            if (b == 0)
 	            {
