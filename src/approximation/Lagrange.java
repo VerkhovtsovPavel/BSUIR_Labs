@@ -16,7 +16,6 @@ public class Lagrange extends BaseApproximation {
 	 *            Array of y coordinate
 	 */
 	public Lagrange(final double[] xArray, final double[] yArray) {
-		// TODO Check equal points
 		super(xArray, yArray);
 	}
 
