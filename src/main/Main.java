@@ -7,7 +7,7 @@ import approximation.Newton;
 
 /**
  * Main class
- *
+ * 
  * @author Pavel_Verkhovtsov
  */
 public class Main {
@@ -20,7 +20,7 @@ public class Main {
 
 	/**
 	 * Main method.
-	 *
+	 * 
 	 * @param args
 	 *            console parameters
 	 */
@@ -28,14 +28,15 @@ public class Main {
 		Lagrange lagrange = new Lagrange(x, y);
 		Newton newton = new Newton(x, y);
 
-		  GraphicsClass.setScreenSize(700);
-		  GraphicsClass.buildGraph(newton, "Newton");
-		  GraphicsClass.buildGraph(lagrange, "Lagrange");
+		GraphicsClass.setScreenSize(700);
+		GraphicsClass.buildGraph(newton, "Newton");
+		GraphicsClass.buildGraph(lagrange, "Lagrange");
 
-
-		/*System.out.print("Input approximation point: ");
-		double point = in.nextDouble();
-		System.out.println(newton.approximazeFunction(point));
-		System.out.println(lagrange.approximazeFunction(point));*/
+		/*
+		 * System.out.print("Input approximation point: "); double point =
+		 * in.nextDouble();
+		 * System.out.println(newton.approximazeFunction(point));
+		 * System.out.println(lagrange.approximazeFunction(point));
+		 */
 	}
 }
