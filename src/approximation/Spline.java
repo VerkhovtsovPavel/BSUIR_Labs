@@ -1,62 +1,101 @@
 package approximation;
 
-public abstract class Spline extends BaseApproximation{
+public class Spline extends BaseApproximation {
 
 	public Spline(double[] xArray, double[] yArray) {
 		super(xArray, yArray);
 	}
 
-	public double approximazeFunction(/*N:integer;arrayX,Y:mas;S0,SN:real;Var A,B,C,D:mas*/){
-	//Var F : Mas; firstStep,secondStep,p : real; i,j : integer;
-	//Begin
-		double firstStep=arrayX[1]-arrayX[0];
-		double secondStep=arrayX[2]-arrayX[1];
+	public class SplineTuple {
+		public double a, b, c, d, x;
+	}
 
-		double a[] = new double[arrayX.length];
-		double b[] = new double[arrayX.length];
-		double c[] = new double[arrayX.length];
-		double d[] = new double[arrayX.length];
-		double f[] = new double[arrayX.length];
+	public SplineTuple[] splines; // Сплайн
 
-		a[0]=(2*(firstStep+secondStep))/secondStep;
-	//	f[1]=(6/secondStep)*(((arrayY[3]-arrayY[2])/secondStep)-((arrayY[2]-arrayY[1])/firstStep))-(firstStep*s0)/secondStep;
-		for(int i=3; i<arrayX.length-1; i++){
-			firstStep=arrayX[i-1]-arrayX[i-2];
-			secondStep=arrayX[i]-arrayX[i-1];
-			a[i-2]=(2/secondStep)*(firstStep+secondStep);
-			b[i-2]=firstStep/secondStep;
-			f[i-2]=(6/secondStep)*(((arrayY[i]-arrayY[i-1])/secondStep-((arrayY[i-1]-arrayY[i-2])/firstStep)));
+	
+    public void approximazeFunction(int n) {
+		// Инициализация массива сплайнов
+		splines = new SplineTuple[n];
+		for (int i = 0; i < n; i++) {
+			splines[i] = new SplineTuple();
 		}
-		firstStep=arrayX[arrayX.length-1]-arrayX[arrayX.length-2];
-		secondStep=arrayX[arrayX.length]-arrayX[arrayX.length-1];
-		double p=2*(firstStep+secondStep);
-		b[1]=firstStep/p;
-	//	f[arrayX.length-2]=(6/p)*(((arrayY[arrayX.length]-arrayY[arrayX.length-1])/secondStep)-((arrayY[arrayX.length-1]-arrayY[arrayX.length-2])/firstStep))-(secondStep*sn)/p;
-		d[1]=1/a[1];
-		c[1]=f[1];
-	/*	For i:=2 to n-3 do
-		begin
-			d[i]:=1/(a[i]-b[i]*d[i-1]);
-			c[i]:=f[i]-b[i]*d[i-1]*c[i-1];
-		end;
-		d[n-2]:=(f[n-2]-b[1]*d[n-3]*c[n-3])/(1-b[1]*d[n-3]);
-		For i:=n-3 downto 1 do
-			d[i]:=d[i]*(c[i]-d[i+1]);
-		c[1]:=s0; c[n]:=sn;
-		For i:=2 to n-1 do
-			c[i]:=d[i-1];
-		For i:=1 to n do
-		begin
-			a[i]:=0; b[i]:=0;
-			d[i]:=0; end;
-				For i:=2 to n do
-				begin
-					firstStep:=arrayX[i]-arrayX[i-1];
-					d[i]:=(c[i]-c[i-1])/firstStep;
-					b[i]:=firstStep*c[i]/2-(Sqr(firstStep))*d[i]/6+(arrayY[i]-arrayY[i-1])/firstStep;
-					a[i]:=arrayY[i];
-				end;
-		end;*/
+
+		for (int i = 0; i < n; ++i) {
+			splines[i].x = arrayX[i];
+			splines[i].a = arrayY[i];
+		}
+		splines[0].c = splines[n - 1].c = 0.0;
+
+		// Решение СЛАУ относительно коэффициентов сплайнов c[i] методом
+		// прогонки для трехдиагональных матриц
+		// Вычисление прогоночных коэффициентов - прямой ход метода прогонки
+		double[] alpha = new double[n - 1];
+		double[] beta = new double[n - 1];
+		alpha[0] = beta[0] = 0.0;
+		for (int i = 1; i < n - 1; ++i) {
+			double h_i = arrayX[i] - arrayX[i - 1], h_i1 = arrayX[i + 1] - arrayX[i];
+			double A = h_i;
+			double C = 2.0 * (h_i + h_i1);
+			double B = h_i1;
+			double F = 6.0 * ((arrayY[i + 1] - arrayY[i]) / h_i1 - (arrayY[i] - arrayY[i - 1]) / h_i);
+			double z = (A * alpha[i - 1] + C);
+			alpha[i] = -B / z;
+			beta[i] = (F - A * beta[i - 1]) / z;
+		}
+
+		// Нахождение решения - обратный ход метода прогонки
+		for (int i = n - 2; i > 0; --i)
+			splines[i].c = alpha[i] * splines[i + 1].c + beta[i];
+
+		// Освобождение памяти, занимаемой прогоночными коэффициентами
+		beta = null;
+		alpha = null;
+
+		// По известным коэффициентам c[i] находим значения b[i] и d[i]
+		for (int i = n - 1; i > 0; --i) {
+			double h_i = arrayX[i] - arrayX[i - 1];
+			splines[i].d = (splines[i].c - splines[i - 1].c) / h_i;
+			splines[i].b = h_i * (2.0 * splines[i].c + splines[i - 1].c) / 6.0 + (arrayY[i] - arrayY[i - 1]) / h_i;
+		}
+	}
+
+	// Вычисление значения интерполированной функции в произвольной точке
+	public double f(double x) {
+
+		SplineTuple s;
+		int n = splines.length;
+		// BuildSpline(myx,y,n);
+		if (x <= splines[0].x) // Если x меньше точки сетки x[0] - пользуемся
+								// первым эл-тов массива
+			s = splines[1];
+		else if (x >= splines[n - 1].x) // Если x больше точки сетки x[n - 1] -
+										// пользуемся последним эл-том массива
+			s = splines[n - 1];
+		else // Иначе x лежит между граничными точками сетки - производим
+				// бинарный поиск нужного эл-та массива
+		{
+			int i = 0, j = n - 1;
+			while (i + 1 < j) {
+				int k = i + (j - i) / 2;
+				if (x <= splines[k].x)
+					j = k;
+				else
+					i = k;
+			}
+			s = splines[j];
+		}
+
+		double dx = (x - s.x);
+		// Вычисляем значение сплайна в заданной точке по схеме Горнера (в
+		// принципе, "умный" компилятор применил бы схему Горнера сам, но ведь
+		// не все так умны, как кажутся)
+		return s.a + (s.b + (s.c / 2.0 + s.d * dx / 6.0) * dx) * dx;
+	}
+
+	@Override
+	public double approximazeFunction(double point) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
+
 }
