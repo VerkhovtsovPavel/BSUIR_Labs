@@ -9,7 +9,20 @@ public class Kasiski {
 	        public static int digramLength = 3;
 	        
 	        public Kasiski(String cryptoText){
-	        	this.text = cryptoText;
+	        	ArrayList<Character> array = new ArrayList<Character>();
+	        	for (int i=0; i< cryptoText.length(); i++){
+	        		int currentChar = (int)cryptoText.charAt(i);
+	        		if((currentChar>1040 && currentChar<1072) || currentChar == 1025){
+	        			array.add((char)currentChar);
+	        		}
+	        	}
+	        	char[] charArray = new char[array.size()];
+	        	
+	        	for(int i=0; i< array.size(); i++){
+	        		charArray[i]=array.get(i);
+	        	}
+	        	
+	        	this.text = String.valueOf(charArray);
 	        }
 	       
 	        public int kasiskiAlhoritm()
@@ -27,11 +40,12 @@ public class Kasiski {
 	                    {
 	                    	System.out.println(temp+" : "+String.valueOf(j-i));
 	                    	distance[j-i]++;
+	                    	//repeatCount.add(j-i);
 	                    }
 	                }
 	            }
 	            
-	            for (int i=0; i<6; i++){
+	           for (int i=0; i<3; i++){
 	            	int max = 0;
 		            int maxIndex = 0;
 	            	for (int j=0; j<distance.length; j++){
@@ -52,13 +66,12 @@ public class Kasiski {
 	            int[] nods = new int[text.length()];
 	            for (int i = 0; i < repeatCount.size(); i++){
 	                for (int j = i + 1; j < repeatCount.size(); j++){
-	                    nods[nodEuclid(repeatCount.get(i), repeatCount.get(j))]++;
+	                	nods[nodEuclid(repeatCount.get(i), repeatCount.get(j))]++;
 	                }
 	            }
-	            
 	            nods[0] = 0;
 	            	            
-	            int max = 0;
+	            int max = 1;
 	            int maxIndex = 0;
 	            for (int i = 1; i < nods.length; i++)
 	            {
@@ -67,7 +80,6 @@ public class Kasiski {
 	                	maxIndex=i;
 	                }
 	            }
-	            
 	            return maxIndex;
 	        }
 	        
@@ -81,7 +93,6 @@ public class Kasiski {
 	                return nodEuclid(b, a % b);
 	            }
 	        }
-
 	
 	}
 
