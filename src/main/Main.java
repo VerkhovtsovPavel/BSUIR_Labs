@@ -41,7 +41,12 @@ public class Main {
 		GraphicsClass.setAreaCount(objectCenters.size());
 		GraphicsClass.visualizeClasses();
 
-		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
 		while(checkOptimalityDivision()){
 			divideObjectsOnClasses();
 		}
