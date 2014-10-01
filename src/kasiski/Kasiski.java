@@ -27,13 +27,14 @@ public class Kasiski {
 	       
 	        public int kasiskiAlhoritm()
 	        {
+	        	List <Integer> keyLength = new ArrayList<Integer>();
 	        	int[] distance = new int[text.length()];
    	            List <Integer> repeatCount = new ArrayList<Integer>();
    	            
-	            for (int i = 0; i < text.length() - digramLength + 1; i++)
+	            for (int i = 0; i < text.length() - digramLength ; i++)
 	            {
 	                String temp = text.substring(i, i+digramLength);
-	                for (int j = i + 1; j < text.length() - digramLength + 1; j++)
+	                for (int j = i + 1; j < text.length() - digramLength; j++)
 	                {
 	                    String temp2 = text.substring(j, j+digramLength);
 	                    if(temp.equals(temp2))
@@ -44,8 +45,8 @@ public class Kasiski {
 	                    }
 	                }
 	            }
-	            
-	           for (int i=0; i<3; i++){
+	           
+	           for (int i=0; i<2; i++){
 	            	int max = 0;
 		            int maxIndex = 0;
 	            	for (int j=0; j<distance.length; j++){
@@ -71,8 +72,8 @@ public class Kasiski {
 	            }
 	            nods[0] = 0;
 	            	            
-	            int max = 1;
-	            int maxIndex = 0;
+	            int max = 0;
+	            int maxIndex = 1;
 	            for (int i = 1; i < nods.length; i++)
 	            {
 	                if(nods[i]>max){
@@ -80,8 +81,11 @@ public class Kasiski {
 	                	maxIndex=i;
 	                }
 	            }
+	            //keyLength.add(maxIndex);
 	            return maxIndex;
-	        }
+	           }
+	           
+	        
 	        
 	        private int nodEuclid(int a, int b){
 	            if (b == 0)
