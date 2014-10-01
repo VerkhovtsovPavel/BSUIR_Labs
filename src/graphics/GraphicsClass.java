@@ -2,6 +2,8 @@ package graphics;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -28,17 +30,20 @@ public class GraphicsClass extends JPanel {
 	 *            graphics object
 	 */
 	public void paint(final Graphics g) {
-		double[] points = new double[(int) (approximationMethod.getArgumentsRange() / INTERPOLATION_STEP)];
-		for (double i = approximationMethod.getMin(); i < approximationMethod.getArgumentsRange() - INTERPOLATION_STEP; i += INTERPOLATION_STEP) {
-			points[(int) (i / INTERPOLATION_STEP)] = (float) approximationMethod.approximazeFunction(i);
+		ArrayList<Double> points = new ArrayList<Double>();
+		for (double i = approximationMethod.getMin(); i < approximationMethod.getMax(); i += INTERPOLATION_STEP) {
+			points.add(approximationMethod.approximazeFunction(i));
 		}
+		points.add(approximationMethod.approximazeFunction(approximationMethod.getMax()));
 
-		for (int i = 0; i < points.length - 1; i++) {
-			g.drawOval((int) (i * INTERPOLATION_STEP * SCALE), (int) points[i] * SCALE + screenSize / 2, circleRadius, circleRadius);
-			g.drawLine((int) (i * INTERPOLATION_STEP * SCALE), (int) points[i] * SCALE + screenSize / 2, (int) ((i + 1) * INTERPOLATION_STEP * SCALE),
-					(int) points[i + 1] * SCALE + screenSize / 2);
+		double currentX = approximationMethod.getMin();
+		for (int i = 0; i < points.size()-1; i++) {
+			g.drawOval((int) (currentX * SCALE), (int) (points.get(i) * SCALE + screenSize / 2), circleRadius, circleRadius);
+			g.drawLine((int) (currentX * SCALE), (int) (points.get(i) * SCALE + screenSize / 2), (int) ((currentX+INTERPOLATION_STEP) * SCALE),
+					(int) (points.get(i + 1) * SCALE + screenSize / 2));
+			currentX+=INTERPOLATION_STEP;
 		}
-		g.drawOval((int) ((points.length - 1) * INTERPOLATION_STEP * SCALE), (int) points[points.length - 1] * SCALE + screenSize / 2, circleRadius,
+		g.drawOval((int) (currentX * SCALE), (int) (points.get(points.size() - 1) * SCALE + screenSize / 2), circleRadius,
 				circleRadius);
 	}
 

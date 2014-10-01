@@ -60,4 +60,8 @@ public abstract class BaseApproximation {
 	public double getMin(){
 		return minArgument;
 	}
+	
+	public double getMax(){
+		return maxArgument;
+	}
 }

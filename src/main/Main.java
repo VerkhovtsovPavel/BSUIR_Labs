@@ -20,7 +20,7 @@ public class Main {
 
 	/**
 	 * Main method.
-	 * 
+	 *
 	 * @param args
 	 *            console parameters
 	 */
@@ -32,11 +32,9 @@ public class Main {
 		GraphicsClass.buildGraph(newton, "Newton");
 		GraphicsClass.buildGraph(lagrange, "Lagrange");
 
-		/*
-		 * System.out.print("Input approximation point: "); double point =
-		 * in.nextDouble();
-		 * System.out.println(newton.approximazeFunction(point));
-		 * System.out.println(lagrange.approximazeFunction(point));
-		 */
+		 System.out.print("Input approximation point: ");
+		 double point = in.nextDouble();
+		 System.out.println(newton.approximazeFunction(point));
+		 System.out.println(lagrange.approximazeFunction(point));
 	}
 }
