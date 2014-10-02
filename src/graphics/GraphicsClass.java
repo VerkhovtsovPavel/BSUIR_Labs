@@ -33,7 +33,6 @@ public class GraphicsClass extends JPanel{
 				case 2: g.setColor(Color.GREEN); break;
 				case 3: g.setColor(Color.GRAY); break;
 				default:{
-					//TODO Increase the variety of colors
 					g.setColor(new Color(0, 255/areaCount*objectArray[i].getAreaNumber(), 255/areaCount*objectArray[i].getAreaNumber()));
 				}
 			}
