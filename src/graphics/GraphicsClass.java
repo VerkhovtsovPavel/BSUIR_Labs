@@ -76,7 +76,7 @@ public class GraphicsClass extends JPanel{
 		objectArray = objects;
 		classArray = classes;
 	}
-	
+
 	public static void setAreaCount(final int classCount){
 		areaCount=classCount;
 	}

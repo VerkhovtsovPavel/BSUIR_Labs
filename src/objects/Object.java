@@ -62,7 +62,7 @@ public class Object {
  	public int getAreaNumber(){
  		return areaNumber;
  	}
- 	
+
  	public int getIndex(){
  		return objectIndex;
  	}

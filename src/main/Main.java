@@ -52,7 +52,6 @@ public class Main {
 		}
 
 		GraphicsClass.visualizeClasses();
-
 		System.out.println("Finish");
 	}
 
@@ -109,7 +108,7 @@ public class Main {
 				normDistance+=Math.sqrt(Math.pow(objectCenters.get(i).getX()-objectCenters.get(j).getX(),2)+Math.pow(objectCenters.get(i).getY()-objectCenters.get(j).getY(),2));
 			}
 		}
-		return normDistance/(2*objectCenters.size()*objectCenters.size()-1);
+		return normDistance/(2*objectCenters.size()*(objectCenters.size()-1));
 	}
 
 	private static double findMaximumDistanseFromClassKernel(){
