@@ -34,7 +34,7 @@ public class Main {
 
 		 System.out.print("Input approximation point: ");
 		 double point = in.nextDouble();
-		 System.out.println(newton.approximazeFunction(point));
-		 System.out.println(lagrange.approximazeFunction(point));
+		 System.out.printf("%.2f\n",newton.approximazeFunction(point));
+		 System.out.printf("%.2f\t",lagrange.approximazeFunction(point));
 	}
 }

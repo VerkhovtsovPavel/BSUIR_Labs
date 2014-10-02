@@ -18,7 +18,7 @@ public class GraphicsClass extends JPanel {
 	private static final long serialVersionUID = 1L; // service variable
 	private final int circleRadius = 5;
 	private static int screenSize;
-	private static final int SCALE = 30;
+	private static int scale;
 	private static final float INTERPOLATION_STEP = (float) 0.1;
 
 	private static BaseApproximation approximationMethod;
@@ -38,12 +38,12 @@ public class GraphicsClass extends JPanel {
 
 		double currentX = approximationMethod.getMin();
 		for (int i = 0; i < points.size()-1; i++) {
-			g.drawOval((int) (currentX * SCALE), (int) (points.get(i) * SCALE + screenSize / 2), circleRadius, circleRadius);
-			g.drawLine((int) (currentX * SCALE), (int) (points.get(i) * SCALE + screenSize / 2), (int) ((currentX+INTERPOLATION_STEP) * SCALE),
-					(int) (points.get(i + 1) * SCALE + screenSize / 2));
+			g.drawOval((int) (currentX * scale), (int) (points.get(i) * scale + screenSize / 2), circleRadius, circleRadius);
+			g.drawLine((int) (currentX * scale), (int) (points.get(i) * scale + screenSize / 2), (int) ((currentX+INTERPOLATION_STEP) * scale),
+					(int) (points.get(i + 1) * scale + screenSize / 2));
 			currentX+=INTERPOLATION_STEP;
 		}
-		g.drawOval((int) (currentX * SCALE), (int) (points.get(points.size() - 1) * SCALE + screenSize / 2), circleRadius,
+		g.drawOval((int) (currentX * scale), (int) (points.get(points.size() - 1) * scale + screenSize / 2), circleRadius,
 				circleRadius);
 	}
 
@@ -57,6 +57,7 @@ public class GraphicsClass extends JPanel {
 	 */
 	public static void buildGraph(final BaseApproximation apprMethod, final String header) {
 		approximationMethod = apprMethod;
+		scale = (int) ((screenSize-100)/apprMethod.getMax());
 		JPanel panel = new GraphicsClass();
 		panel.setOpaque(true);
 
