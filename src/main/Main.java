@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.util.Scanner;
 
 import vigenere.Decoder;
@@ -30,16 +29,13 @@ public class Main {
 
 		//Encoder and Decoder with progressive key
 		
-		/*Encoder encoder = new Encoder(plainText, key);
+		Encoder encoder = new Encoder(plainText, key);
 		writeInFile(encoder.encryptText(), fileName);
 				
 		Decoder decoder = new Decoder(readFromFile(fileName),key);
-		System.out.println(decoder.decryptText());*/
+		System.out.println(decoder.decryptText());
 		
 		// Test data for Kasiski test.
-		
-		Encoder encoder = new Encoder(plainText, key);
-		writeInFile(encoder.simpleEncrypt(), fileName);
 		
 		Kasiski kasiski = new Kasiski(readFromFile(fileName));
 		System.out.println("Key length: "+String.valueOf(kasiski.kasiskiAlhoritm()));
