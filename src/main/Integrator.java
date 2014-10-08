@@ -14,16 +14,14 @@ public class Integrator {
 		this.bMinusAdev2 = (hInterval - lInterval)/2;
 	}
 	
-	public double integrateByGauss(){
-		return bMinusAdev2 *(Main.integrableFunction(makeNegativeArgument()) + Main.integrableFunction(makePositiveArgument()));
-		
+	public double integrateByGauss() {
+		return bMinusAdev2 *(Main.integrableFunction(makeNegativeArgument()) + Main.integrableFunction(makePositiveArgument()));	
 	}
 	
 	public double integrateBySimpson(){
 		double firstSummand = Main.integrableFunction(lowInterval) + Main.integrableFunction(highInterval);
 		double secondSummand = 4*Main.integrableFunction(aPlusBdev2);
 		return (double)bMinusAdev2/3*(firstSummand+secondSummand);
-		
 	}
 	
 	private double makeNegativeArgument(){
