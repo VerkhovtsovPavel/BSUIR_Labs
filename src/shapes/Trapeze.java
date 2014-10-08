@@ -22,4 +22,14 @@ public class Trapeze extends BaseShape {
 		graph.drawLine(xFinish, yFinish, xStart - width, yFinish);
 		graph.drawLine(xStart - width, yFinish, xStart, yStart);
 	}
+	
+	@Override
+	public ArrayList<Integer> getParams() {
+		ArrayList<Integer> params = new ArrayList<Integer>();
+		params.add(xStart);
+		params.add(yStart);
+		params.add(xFinish);
+		params.add(yFinish);
+		return params;
+	}
 }

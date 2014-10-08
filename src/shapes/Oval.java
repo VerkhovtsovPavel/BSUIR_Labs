@@ -15,8 +15,19 @@ public class Oval extends BaseShape {
 		this.height = Math.abs(parametersList.get(1) - parametersList.get(3));
 	}
 
+	@Override
 	public void draw(Graphics graph) {
 		graph.drawOval(xStart, yStart, width, height);
+	}
+	
+	@Override
+	public ArrayList<Integer> getParams() {
+		ArrayList<Integer> params = new ArrayList<Integer>();
+		params.add(xStart);
+		params.add(yStart);
+		params.add(width);
+		params.add(height);
+		return params;
 	}
 
 }

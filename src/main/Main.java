@@ -14,6 +14,9 @@ public class Main {
 	private static Scanner in = new Scanner(System.in);
 
 	public static void main(String[] args) throws Exception {
+
+		//FileUtils.saveObjectListInXMLFile("proxy.xml",Painter.getObjectList());
+		
 		System.out.println("Shape drawing shell");
 
 		while (true) {
@@ -56,7 +59,8 @@ public class Main {
 			FileUtils.saveObjectListInObjectiveFile(takeWord());
 			break;
 		case "XML":
-			FileUtils.saveObjectListInXMLFile(takeWord());
+			FileUtils.saveObjectListInXMLFile(takeWord(),Painter.getObjectList());
+			break;
 		default:
 			System.out.println("Incorrect file type");
 		}

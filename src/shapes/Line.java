@@ -15,7 +15,20 @@ public class Line extends BaseShape {
 		this.yFinish = parametersList.get(3);
 	}
 
+	@Override
 	public void draw(Graphics graph) {
 		graph.drawLine(xStart, yStart, xFinish, yFinish);
 	}
+
+	@Override
+	public ArrayList<Integer> getParams() {
+		ArrayList<Integer> params = new ArrayList<Integer>();
+		params.add(xStart);
+		params.add(yStart);
+		params.add(xFinish);
+		params.add(yFinish);
+		return params;
+	}
+	
+	
 }
