@@ -36,11 +36,24 @@ public class Main {
 				selectFileTypeAndSave();
 				break;
 			case "Open":
-				FileUtils.readObjectListFromObjectiveFile(takeWord());
+				selectFileTypeAndOpen();
 				break;
 			default:
 				System.out.println("Incorrect commant");
 			}
+		}
+	}
+
+	private static void selectFileTypeAndOpen() {
+		switch (takeWord()) {
+		case "Objective":
+			FileUtils.readObjectListFromObjectiveFile(takeWord());
+			break;
+		case "XML":
+			FileUtils.readObjectListInXMLFile(takeWord());
+			break;
+		default:
+			System.out.println("Incorrect file type");
 		}
 	}
 

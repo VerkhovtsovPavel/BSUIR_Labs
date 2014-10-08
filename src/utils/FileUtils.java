@@ -1,20 +1,23 @@
 package utils;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.TransformerFactoryConfigurationError;
@@ -23,9 +26,11 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import shapes.BaseShape;
-
 import drawing.Painter;
 
 public class FileUtils {
@@ -72,7 +77,7 @@ public class FileUtils {
 		Element RootElement = doc.createElement("Shapes");
 
 		Iterator<BaseShape> shapeIterator = shapeList.iterator();
-		while(shapeIterator.hasNext()){
+		while (shapeIterator.hasNext()) {
 			BaseShape currentShape = (BaseShape) shapeIterator.next();
 			Element shape = doc.createElement("shape");
 			RootElement.appendChild(shape);
@@ -83,7 +88,7 @@ public class FileUtils {
 
 			Element shapeParameters = doc.createElement("parameters");
 			Iterator<Integer> paramIterator = currentShape.getParams().iterator();
-			while(paramIterator.hasNext()){
+			while (paramIterator.hasNext()) {
 				Integer currentParameter = paramIterator.next();
 				Element parameter = doc.createElement("param");
 				parameter.appendChild(doc.createTextNode(currentParameter.toString()));
@@ -91,7 +96,7 @@ public class FileUtils {
 			}
 			shape.appendChild(shapeParameters);
 		}
-		if(shapeList.isEmpty()){
+		if (shapeList.isEmpty()) {
 			RootElement.appendChild(doc.createTextNode("Shape list is empty"));
 		}
 		doc.appendChild(RootElement);
@@ -109,5 +114,60 @@ public class FileUtils {
 	}
 
 	public static void readObjectListInXMLFile(String filePath) {
-	};
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder = null;
+		Document document = null;
+		try {
+			builder = factory.newDocumentBuilder();
+			document = builder.parse(new File(filePath));
+		} catch (SAXException | IOException | ParserConfigurationException e) {
+
+			e.printStackTrace();
+		}
+
+		ArrayList<BaseShape> shapeList = new ArrayList<BaseShape>();
+		ArrayList<Integer> paramList = new ArrayList<Integer>();
+
+		NodeList shapes = document.getDocumentElement().getChildNodes();
+		String shapeName = null;
+		for (int i = 0; i < shapes.getLength(); i++) {
+			
+			Node shape = shapes.item(i);
+			if (shape instanceof Element) {
+				NodeList shapeAttributes = shape.getChildNodes();
+				for (int j = 0; j < shapeAttributes.getLength(); j++) {
+					Node attribute = shapeAttributes.item(j);
+					if (attribute instanceof Element) {
+						switch (attribute.getNodeName()) {
+						case "name":
+							shapeName = attribute.getTextContent();
+							break;
+						case "parameters":
+							paramList.clear();
+							NodeList parameters = attribute.getChildNodes();
+							for (int k = 0; k < parameters.getLength(); k++) {
+								Node parameter = parameters.item(j);
+								if (parameter.getTextContent()!=null){
+									paramList.add(Integer.valueOf(parameter.getTextContent()));
+								}
+							}
+							break;
+						}
+
+					}
+				}
+				Class<?> shapeClass;
+				try {
+					shapeClass = Class.forName("shapes." + shapeName);
+					Constructor<?> shapeConstructor = shapeClass.getDeclaredConstructors()[0];
+					shapeList.add((BaseShape) shapeConstructor.newInstance(paramList));
+				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+					e.printStackTrace();
+				}
+			}
+			
+		}
+		Painter.raiseList(shapeList);
+	}
+
 }

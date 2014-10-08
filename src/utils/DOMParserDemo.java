@@ -1,7 +1,7 @@
 package utils;
 
 import java.io.File;
-import java.util.List;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -12,6 +12,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import drawing.Painter;
+
+import shapes.BaseShape;
+
 public class DOMParserDemo {
 
 	public static void main(String[] args) throws Exception {
@@ -20,50 +24,44 @@ public class DOMParserDemo {
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		Document document = builder.parse(new File("xml/temp.xml"));
 
-		List<Employee> empList = new ArrayList<>();
+		ArrayList<BaseShape> shapeList = new ArrayList<BaseShape>();
 
-		// Iterating through the nodes and extracting the data.
-		NodeList nodeList = document.getDocumentElement().getChildNodes();
-
-		for (int i = 0; i < nodeList.getLength(); i++) {
-
-			// We have encountered an <employee> tag.
-			Node node = nodeList.item(i);
-			if (node instanceof Element) {
-				Employee emp = new Employee();
-				emp.id = node.getAttributes().getNamedItem("id").getNodeValue();
-
-				NodeList childNodes = node.getChildNodes();
-				for (int j = 0; j < childNodes.getLength(); j++) {
-					Node cNode = childNodes.item(j);
-
-					// Identifying the child tag of employee encountered.
-					if (cNode instanceof Element) {
-						String content = cNode.getLastChild().getTextContent().trim();
-						switch (cNode.getNodeName()) {
-						case "firstName":
-							emp.firstName = content;
+		NodeList shapes = document.getDocumentElement().getChildNodes();
+		String shapeName = null;
+		for (int i = 0; i < shapes.getLength(); i++) {
+			ArrayList<Integer> paramList = new ArrayList<Integer>();
+			Node shape = shapes.item(i);
+			if (shape instanceof Element) {
+				NodeList shapeAttributes = shape.getChildNodes();
+				for (int j = 0; j < shapeAttributes.getLength(); j++) {
+					Node attribute = shapeAttributes.item(j);
+					if (attribute instanceof Element) {
+						switch (attribute.getNodeName()) {
+						case "name":
+							shapeName = shape.getAttributes().getNamedItem("name").getNodeValue();
 							break;
-						case "lastName":
-							emp.lastName = content;
-							break;
-						case "location":
-							emp.location = content;
+						case "parameters":
+							paramList.clear();
+							NodeList parameters = attribute.getChildNodes();
+							for (int k = 0; k < parameters.getLength(); k++) {
+								Node parameter = parameters.item(j);
+								paramList.add(Integer.valueOf(parameter.getNodeValue()));
+							}
 							break;
 						}
+
 					}
 				}
-				empList.add(emp);
 			}
-
+			Class<?> shapeClass = Class.forName("shapes." + shapeName);
+			Constructor<?> shapeConstructor = shapeClass.getDeclaredConstructors()[0];
+			shapeList.add((BaseShape) shapeConstructor.newInstance(paramList));
 		}
-
-		// Printing the Employee list populated.
-		for (Employee emp : empList) {
-			System.out.println(emp);
-		}
+		
+		Painter.raiseList(shapeList);
 
 	}
+
 }
 
 class Employee {
