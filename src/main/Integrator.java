@@ -6,6 +6,7 @@ public class Integrator {
 	private int lowInterval;
 	private int aPlusBdev2;
 	private int bMinusAdev2;
+	private final int numberOfIntervals = 7;
 	
 	public Integrator(int hInterval, int lInterval) {
 		this.highInterval = hInterval;
@@ -19,9 +20,18 @@ public class Integrator {
 	}
 	
 	public double integrateBySimpson(){
-		double firstSummand = Main.integrableFunction(lowInterval) + Main.integrableFunction(highInterval);
-		double secondSummand = 4*Main.integrableFunction(aPlusBdev2);
-		return (double)bMinusAdev2/3*(firstSummand+secondSummand);
+		 double sum=0,sum2=0;
+	     double[] x=new double[numberOfIntervals];
+	     double h=(double)(highInterval-lowInterval)/numberOfIntervals;
+	     for(int i=1;i<numberOfIntervals;i++){
+	        x[i]=lowInterval+i*h;
+	    }
+	     for(int i=0;i<numberOfIntervals;i++){
+	         sum+=Main.integrableFunction(x[i]);
+	        sum2+=Main.integrableFunction((x[i-1]+x[i])/2);
+	     }
+	     return h/6*(Main.integrableFunction(lowInterval)+Main.integrableFunction(highInterval)+2*sum+4*(sum2+highInterval));
+
 	}
 	
 	private double makeNegativeArgument(){
