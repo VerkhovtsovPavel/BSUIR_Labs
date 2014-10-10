@@ -11,7 +11,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -131,7 +130,7 @@ public class FileUtils {
 		NodeList shapes = document.getDocumentElement().getChildNodes();
 		String shapeName = null;
 		for (int i = 0; i < shapes.getLength(); i++) {
-			
+
 			Node shape = shapes.item(i);
 			if (shape instanceof Element) {
 				NodeList shapeAttributes = shape.getChildNodes();
@@ -146,8 +145,8 @@ public class FileUtils {
 							paramList.clear();
 							NodeList parameters = attribute.getChildNodes();
 							for (int k = 0; k < parameters.getLength(); k++) {
-								Node parameter = parameters.item(j);
-								if (parameter.getTextContent()!=null){
+								Node parameter = parameters.item(k);
+								if (parameter instanceof Element) {
 									paramList.add(Integer.valueOf(parameter.getTextContent()));
 								}
 							}
@@ -161,11 +160,13 @@ public class FileUtils {
 					shapeClass = Class.forName("shapes." + shapeName);
 					Constructor<?> shapeConstructor = shapeClass.getDeclaredConstructors()[0];
 					shapeList.add((BaseShape) shapeConstructor.newInstance(paramList));
-				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException
+						| InvocationTargetException e) {
+					System.out.println("Error when open XML file");
 					e.printStackTrace();
 				}
 			}
-			
+
 		}
 		Painter.raiseList(shapeList);
 	}

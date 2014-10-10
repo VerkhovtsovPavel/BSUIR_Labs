@@ -16,10 +16,11 @@ public abstract class BaseShape implements Serializable {
 	}
 
 	public abstract void draw(Graphics graph);
+
 	public abstract ArrayList<Integer> getParams();
-	
-	public String getShapeName(){
+
+	public String getShapeName() {
 		String className = this.getClass().toString();
-		return className.substring(className.lastIndexOf(".")+1);
+		return className.substring(className.lastIndexOf(".") + 1);
 	}
 }

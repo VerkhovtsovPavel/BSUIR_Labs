@@ -29,6 +29,5 @@ public class Line extends BaseShape {
 		params.add(yFinish);
 		return params;
 	}
-	
-	
+
 }

@@ -25,8 +25,8 @@ public class Rectangle extends BaseShape {
 		ArrayList<Integer> params = new ArrayList<Integer>();
 		params.add(xStart);
 		params.add(yStart);
-		params.add(width);
-		params.add(height);
+		params.add(xStart - width);
+		params.add(yStart - height);
 		return params;
 	}
 }
