@@ -33,51 +33,7 @@ import shapes.BaseShape;
 import drawing.Painter;
 
 public class FileUtils {
-	static{
-		System.loadLibrary("libname");
-	}
-	
-	//TODO Make C++ library with methods rename and delete files
-	
-	
-
-	public static native void renameFile(String oldName, String newName);
-	/*Remame
-	 *  char oldn[_MAX_PATH], newn[_MAX_PATH];
-   
-      printf ("Enter the old filename: ");
-      cin >> oldn; 
- 
-      printf ("Enter the new filename: ");
-      cin >> newn; 
- 
-      int result = rename (oldn, newn); 
- 
-      if (result == 0)
-        printf ("File successfully renamed.\n"); 
-      else
-        perror("Unable to rename file"); 
-	 */
-	public static native void deleteFile(String fileName);
-	/*Delete
-	 * 
-      char rem_name[_MAX_PATH]; 
- 
-      printf ("Enter file to remove: "); 
- 
-      cin >> rem_name;
- 
-      int result = _unlink (rem_name); 
-      
-      if (value == 0) 
-        printf ("Erased \"%s\" from disk\n", rem_name); 
-      else 
-      { 
-        perror("Unable to erase file"); 
-        //   exit (EXIT_FAILURE); 
-      }
-	 */
-
+		
 	public static void saveObjectListInObjectiveFile(String filePath) {
 		FileOutputStream fileStream;
 		try {

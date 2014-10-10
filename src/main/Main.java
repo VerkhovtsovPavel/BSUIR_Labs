@@ -4,6 +4,8 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import cplusplus.NativeCalls;
+
 import shapes.BaseShape;
 import utils.FileUtils;
 import drawing.Painter;
@@ -35,6 +37,9 @@ public class Main {
 				break;
 			case "Open":
 				selectFileTypeAndOpen();
+				break;
+			case "Delete":
+				NativeCalls.deleteFile(takeWord().toCharArray());
 				break;
 			default:
 				System.out.println("Incorrect commant");
