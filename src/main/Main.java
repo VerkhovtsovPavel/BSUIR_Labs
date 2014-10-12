@@ -17,13 +17,13 @@ public class Main {
 		double point = in.nextDouble();
 		
 
-		Integrator integrator = new Integrator(highInterval, lowInterval);
+		/*Integrator integrator = new Integrator(highInterval, lowInterval);
 		System.out.println(integrator.integrateBySimpson());
-		System.out.println(integrator.integrateByGauss());
+		System.out.println(integrator.integrateByGauss());*/
 		
-		/*Differentiator differentiator = new Differentiator(highInterval, lowInterval);
+		Differentiator differentiator = new Differentiator(highInterval, lowInterval);
 		System.out.println(differentiator.getFirstDerivative(point));
-		System.out.print(differentiator.getSecondDerivative(point));*/
+		System.out.println(differentiator.getSecondDerivative(point));
 	}
 
 	public static double integrableFunction(double point) {
@@ -31,10 +31,6 @@ public class Main {
 	}
 	
 	public static double differentiableFunction(double point) {
-		return Math.pow(Math.E,Math.pow(point,2));
+		return Math.log(point)+Math.cos(point)/point;
 	}
-	
-	/*public static double differentiableFunction(double point){
-		return Math.log(point)+ Math.cos(point)/point;
-	}*/
 }
