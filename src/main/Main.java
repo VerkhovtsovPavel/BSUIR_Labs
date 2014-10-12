@@ -17,13 +17,17 @@ public class Main {
 		double point = in.nextDouble();
 		
 
-		/*Integrator integrator = new Integrator(highInterval, lowInterval);
+		Integrator integrator = new Integrator(highInterval, lowInterval);
 		System.out.println(integrator.integrateBySimpson());
-		System.out.println(integrator.integrateByGauss());*/
+		System.out.println(integrator.integrateByGauss());
 		
-		Differentiator differentiator = new Differentiator(highInterval, lowInterval);
+		IntegratorVersion2 integratorVersion2 = new IntegratorVersion2(lowInterval, highInterval, 7);
+		System.out.println(integratorVersion2.computeIntegralSimpson());
+		System.out.println(integratorVersion2.computeIntegralGauss());
+		
+	/*	Differentiator differentiator = new Differentiator(highInterval, lowInterval);
 		System.out.println(differentiator.getFirstDerivative(point));
-		System.out.println(differentiator.getSecondDerivative(point));
+		System.out.println(differentiator.getSecondDerivative(point));*/
 	}
 
 	public static double integrableFunction(double point) {

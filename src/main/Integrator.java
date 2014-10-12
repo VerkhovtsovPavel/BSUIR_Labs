@@ -58,7 +58,7 @@ public class Integrator {
 	}
 
 	public double integrateBySimpson() {
-		/*double step = (double) (highInterval - lowInterval) / numberOfIntervals;
+		double step = (double) (highInterval - lowInterval) / numberOfIntervals;
 		double doubleSum = 0, quadSum = 0;
 		for (int i = 1; i < numberOfIntervals; i++) {
 			doubleSum += Main.integrableFunction(lowInterval + i * step);
@@ -67,9 +67,9 @@ public class Integrator {
 		}
 		return (step / 6)
 				* (Main.integrableFunction(lowInterval)
-						+ Main.integrableFunction(highInterval) + 2 * doubleSum + 4 * quadSum);*/
+						+ Main.integrableFunction(highInterval) + 2 * doubleSum + 4 * quadSum);
 		
-		double f0,f1,s,s1,s2,h,x1,x2,d;
+		/*double f0,f1,s,s1,s2,h,x1,x2,d;
 	    int	n;
 
 		f0=Main.integrableFunction(lowInterval);
@@ -95,7 +95,7 @@ public class Integrator {
 		}
 		while( d<h);
 		System.out.print(n);
-		return s1;
+		return s1;*/
 
 	}
 
