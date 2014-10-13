@@ -16,18 +16,17 @@ public class Main {
 		System.out.print("Input point: ");
 		double point = in.nextDouble();
 		
+		System.out.print("Input epsilon: ");
+		double epsilon = in.nextDouble();
+		
 
-		Integrator integrator = new Integrator(highInterval, lowInterval);
-		System.out.println(integrator.integrateBySimpson());
-		System.out.println(integrator.integrateByGauss());
+		Integrator integrator = new Integrator(lowInterval, highInterval, epsilon);
+		System.out.println(integrator.gauss());
+		System.out.println(integrator.simpson());
 		
-		IntegratorVersion2 integratorVersion2 = new IntegratorVersion2(lowInterval, highInterval, 7);
-		System.out.println(integratorVersion2.computeIntegralSimpson());
-		System.out.println(integratorVersion2.computeIntegralGauss());
-		
-	/*	Differentiator differentiator = new Differentiator(highInterval, lowInterval);
+		Differentiator differentiator = new Differentiator(highInterval, lowInterval);
 		System.out.println(differentiator.getFirstDerivative(point));
-		System.out.println(differentiator.getSecondDerivative(point));*/
+		System.out.println(differentiator.getSecondDerivative(point));
 	}
 
 	public static double integrableFunction(double point) {
