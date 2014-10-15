@@ -1,5 +1,9 @@
 package metrics;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import static utils.MapUtils.addToMap;
 
@@ -32,6 +36,21 @@ public class Halstead extends BaseMetrics{
 	}
 	
 	private void initializationStatementsMap(String fileName){
+		File file = new File(fileName);
+		try {
+			BufferedReader in = new BufferedReader(new FileReader(file.getAbsoluteFile()));
+			try {
+				String lineFromFile;
+				while ((lineFromFile = in.readLine()) != null) {
+					statementsMap.put(lineFromFile,0);
+				}
+			}finally{
+				in.close();
+			}
+		}catch (IOException e) {
+			//TODO Add handling
+			e.printStackTrace();
+		}
 		//TODO Add in equalsStatement map all possible statements from file
 		
 	}
