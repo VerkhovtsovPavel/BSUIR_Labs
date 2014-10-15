@@ -21,8 +21,8 @@ public class Main {
 		
 
 		Integrator integrator = new Integrator(lowInterval, highInterval, epsilon);
-		System.out.println(integrator.gauss());
-		System.out.println(integrator.simpson());
+		System.out.println("Gauss: "+String.valueOf(integrator.gauss()));
+		System.out.println("Simpson: "+String.valueOf(integrator.simpson()));
 		
 		Differentiator differentiator = new Differentiator(highInterval, lowInterval);
 		System.out.println(differentiator.getFirstDerivative(point));

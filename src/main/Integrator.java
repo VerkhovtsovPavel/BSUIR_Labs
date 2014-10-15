@@ -2,11 +2,8 @@ package main;
 
 public class Integrator {
 
-	private static double[] coefficientsX = new double[] { -0.960290,
-			-0.796666, -0.525532, -0.183434, 0.183434, 0.525532, 0.796666,
-			0.960290 };
-	private static double[] coefficientsA = new double[] { 0.101228, 0.222381,
-			0.313707, 0.362684, 0.362684, 0.313707, 0.222381, 0.101228 };
+	private static double[] coefficientsX = new double[] { -0.960290, -0.796666, -0.525532, -0.183434, 0.183434, 0.525532, 0.796666, 0.960290 };
+	private static double[] coefficientsA = new double[] { 0.101228, 0.222381, 0.313707, 0.362684, 0.362684, 0.313707, 0.222381, 0.101228 };
 
 	private double lowInterval;
 	private double highInterval;
@@ -19,10 +16,8 @@ public class Integrator {
 	}
 
 	public double simpson() {
-		double result = 0;
-		result = ((highInterval - lowInterval) / 6)
-				* (Main.integrableFunction(lowInterval) + 4 * Main
-						.integrableFunction((lowInterval + highInterval) / 2))
+		double result = ((highInterval - lowInterval) / 6)
+				* (Main.integrableFunction(lowInterval) + 4 * Main.integrableFunction((lowInterval + highInterval) / 2))
 				+ Main.integrableFunction(highInterval);
 		double temp;
 		int n = 2;
@@ -37,17 +32,14 @@ public class Integrator {
 				break;
 			} else {
 				result = temp;
-				n++;
+				n*=2;
+				if(n>10000){
+					System.out.println("Interval contains point of discontinuity");
+					System.exit(1);
+				}
 			}
 		}
 		return temp;
-	}
-
-	private double simpsonMethod(double a, double b) {
-		return ((b - a) / 6)
-				* (Main.integrableFunction(a) + 4
-						* Main.integrableFunction((a + b) / 2) + Main
-							.integrableFunction(b));
 	}
 
 	public double gauss() {
@@ -66,22 +58,27 @@ public class Integrator {
 				break;
 			} else {
 				result = temp;
-				n++;
+				n*=2;
+				if(n>10000){
+					System.out.println("Interval contains point of discontinuity");
+					System.exit(1);
+				}
 			}
 		}
 		return temp;
 	}
-
+	
+	private double simpsonMethod(double a, double b) {
+		return ((b - a) / 6) * (Main.integrableFunction(a) + 4 * Main.integrableFunction((a + b) / 2) + Main.integrableFunction(b));
+	}
+	
 	private double gaussMethod(double a, double b) {
 		double result = ((b - a) / 2);
 		double sum = 0;
 		for (int i = 0; i < coefficientsX.length; i++) {
-			sum += coefficientsA[i]
-					* Main.integrableFunction(((b - a) / 2) * coefficientsX[i]
-							+ ((a + b) / 2));
+			sum += coefficientsA[i] * Main.integrableFunction(((b - a) / 2) * coefficientsX[i] + ((a + b) / 2));
 		}
 		result *= sum;
-
 		return result;
 	}
 }
