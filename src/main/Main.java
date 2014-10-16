@@ -20,13 +20,15 @@ public class Main {
 		double epsilon = in.nextDouble();
 		
 
+		Differentiator differentiator = new Differentiator(highInterval, lowInterval);
+		System.out.println(differentiator.getFirstDerivative(point));
+		System.out.println(differentiator.getSecondDerivative(point));
+		
 		Integrator integrator = new Integrator(lowInterval, highInterval, epsilon);
 		System.out.println("Gauss: "+String.valueOf(integrator.gauss()));
 		System.out.println("Simpson: "+String.valueOf(integrator.simpson()));
 		
-		Differentiator differentiator = new Differentiator(highInterval, lowInterval);
-		System.out.println(differentiator.getFirstDerivative(point));
-		System.out.println(differentiator.getSecondDerivative(point));
+		
 	}
 
 	public static double integrableFunction(double point) {
