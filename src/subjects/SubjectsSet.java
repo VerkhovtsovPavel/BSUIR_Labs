@@ -1,5 +1,7 @@
 package subjects;
 
+import java.util.Random;
+
 public class SubjectsSet {
 	private boolean[] set;
 	
@@ -30,5 +32,10 @@ public class SubjectsSet {
 	
 	public int getLength(){
 		return set.length;
+	}
+	
+	public void mutartion(){
+		Random random = new Random();
+		set[random.nextInt(set.length)] = random.nextBoolean();
 	}
 }
