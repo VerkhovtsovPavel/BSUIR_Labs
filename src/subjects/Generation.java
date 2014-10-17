@@ -5,10 +5,14 @@ import java.util.Random;
 public class Generation {
 	private SubjectsSet[] generation;
 	private int population;
+	private SubjectsList subjects;
+	private double backpackCapacity;
 
-	public Generation(int population) {
+	public Generation(int population, double backpackCapacity, SubjectsList subjects) {
 		this.generation = new SubjectsSet[population];
 		this.population = population;
+		this.subjects = subjects;
+		this.backpackCapacity = backpackCapacity;
 	}
 
 	public void createFirstGeneration(int itemsCount) {
@@ -18,7 +22,7 @@ public class Generation {
 			for (int j = 0; j < itemsCount; j++) {
 				subjset[j] = boolRand.nextBoolean();
 			}
-			generation[i] = new SubjectsSet(subjset);
+			generation[i] = new SubjectsSet(subjset, backpackCapacity,subjects);
 		}
 	}
 

@@ -23,7 +23,7 @@ public class Main {
 		subjects = new SubjectsList(itemsCount, 100);
 		subjects.printSubjectList();
 		
-		Generation cureentGeneration = new Generation(SUBJECTS_IN_GENERATION);
+		Generation cureentGeneration = new Generation(SUBJECTS_IN_GENERATION, backpackCapacity,subjects);
 		cureentGeneration.createFirstGeneration(itemsCount);
 
 		// TODO total refactor. Add methods Remove global variable
@@ -51,7 +51,7 @@ public class Main {
 				}
 			}
 
-			Generation nextGeneration = new Generation(SUBJECTS_IN_GENERATION);
+			Generation nextGeneration = new Generation(SUBJECTS_IN_GENERATION,backpackCapacity,subjects);
 			int k = 0;
 			for (int j = 0; j < cureentGeneration.getPopulation(); j++) {
 				if (best == worst) {
@@ -64,9 +64,9 @@ public class Main {
 						// TODO Add mutation. Refactor for N subject in
 						// generation.
 						nextGeneration.setMember(k, cureentGeneration.getMember(best).makeChild(cureentGeneration.getMember(j)));
-						//nextGeneration.getMember(k).mutartion();
+						nextGeneration.getMember(k).mutartion();
 						nextGeneration.setMember(++k, cureentGeneration.getMember(j).makeChild(cureentGeneration.getMember(best)));
-						//nextGeneration.getMember(k).mutartion();
+					//	nextGeneration.getMember(k).mutartion();
 						k++;
 					} catch (ArrayIndexOutOfBoundsException e) {
 						System.out.println(i);
