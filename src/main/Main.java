@@ -11,6 +11,7 @@ public class Main {
 	private static Scanner in = new Scanner(System.in);
 	private static SubjectsList subjects;
 	private static int backpackCapacity;
+	private static int glBest;
 
 	private final static int GENERATION = 10000;
 	private final static int SUBJECTS_IN_GENERATION = 4;
@@ -22,13 +23,13 @@ public class Main {
 		int itemsCount = in.nextInt();
 		subjects = new SubjectsList(itemsCount, 100);
 		subjects.printSubjectList();
-		
-		Generation cureentGeneration = new Generation(SUBJECTS_IN_GENERATION, backpackCapacity,subjects);
+
+		Generation cureentGeneration = new Generation(SUBJECTS_IN_GENERATION, backpackCapacity, subjects);
 		cureentGeneration.createFirstGeneration(itemsCount);
 
 		// TODO total refactor. Add methods Remove global variable
 		// TODO Remake crossing!!!!
-		// TODO Global access to subjects 
+		// TODO Global access to subjects
 
 		int best = 0;
 		for (int i = 0; i < GENERATION; i++) {
@@ -51,7 +52,7 @@ public class Main {
 				}
 			}
 
-			Generation nextGeneration = new Generation(SUBJECTS_IN_GENERATION,backpackCapacity,subjects);
+			Generation nextGeneration = new Generation(SUBJECTS_IN_GENERATION, backpackCapacity, subjects);
 			int k = 0;
 			for (int j = 0; j < cureentGeneration.getPopulation(); j++) {
 				if (best == worst) {
@@ -61,22 +62,19 @@ public class Main {
 				}
 				if (j != best && j != worst) {
 					try {
-						// TODO Add mutation. Refactor for N subject in
-						// generation.
+						// TODO Refactor for N subject in generation.
 						nextGeneration.setMember(k, cureentGeneration.getMember(best).makeChild(cureentGeneration.getMember(j)));
 						nextGeneration.getMember(k).mutartion();
 						nextGeneration.setMember(++k, cureentGeneration.getMember(j).makeChild(cureentGeneration.getMember(best)));
-					//	nextGeneration.getMember(k).mutartion();
 						k++;
 					} catch (ArrayIndexOutOfBoundsException e) {
-						System.out.println(i);
 					}
 				}
 			}
 			cureentGeneration = nextGeneration;
 		}
-
-		answer(cureentGeneration, best);
+		glBest = best;
+		answer(cureentGeneration);
 	}
 
 	private static double fitnessFunction(SubjectsSet subjectsSet) {
@@ -93,13 +91,15 @@ public class Main {
 		if (backpackCapacity - weight < 0) {
 			weight *= 10;
 		}
-
-		// TODO Review fitness function. Severe punishment for overweight.
 		return price / weight;
 	}
 
-	// TODO Rename first parameter. Maybe send only best set
-	private static void answer(Generation cureentGeneration, int best) {
+	private static void printBest(Generation cureentGeneration, int best) {
+		//TODO Analyze -1 in best
+		if (best==-1){
+			System.out.println("Overweight");
+			best = glBest;
+		}
 		int totalPrice = 0;
 		int totalWeight = 0;
 		System.out.print("Subjects in backpack: ");
@@ -115,4 +115,23 @@ public class Main {
 		System.out.println("Weight: " + String.valueOf(totalWeight));
 	}
 
+	private static void answer(Generation cureentGeneration) {
+		int index = -1;
+		for (int j = 0; j < cureentGeneration.getPopulation(); j++) {
+			int max = 0;
+			int totalPrice = 0;
+			int totalWeight = 0;
+			for (int i = 0; i < cureentGeneration.getMember(j).getLength(); i++) {
+				if (cureentGeneration.getMember(j).getSet()[i]) {
+					totalPrice += subjects.getSubject(i).getPrice();
+					totalWeight += subjects.getSubject(i).getSize();
+				}
+
+			}
+			if (backpackCapacity - totalWeight > 0 && totalPrice > max) {
+				index = j;
+			}
+		}
+		printBest(cureentGeneration, index);
+	}
 }
