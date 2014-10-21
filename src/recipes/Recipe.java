@@ -2,15 +2,19 @@ package recipes;
 
 import java.util.ArrayList;
 
+import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
+
 public class Recipe {
 	private String name;
 	private int timeRequired;
 	private ArrayList<String> ingredients;
+	private String recipe;
 	
-	public Recipe(String name, int timeRequired, ArrayList<String> ingredients){
+	public Recipe(String name, int timeRequired, ArrayList<String> ingredients, String recipe){
 		this.setName(name);
 		this.setTimeRequired(timeRequired);
 		this.setIngredients(ingredients);
+		this.recipe = recipe;
 	}
 	
 	
@@ -18,7 +22,7 @@ public class Recipe {
 		return name;
 	}
 
-	public void setName(String name) {
+	private void setName(String name) {
 		this.name = name;
 	}
 
@@ -28,7 +32,7 @@ public class Recipe {
 	}
 
 
-	public void setTimeRequired(int timeRequired) {
+	private void setTimeRequired(int timeRequired) {
 		this.timeRequired = timeRequired;
 	}
 
@@ -39,8 +43,14 @@ public class Recipe {
 	}
 
 
-	public void setIngredients(ArrayList<String> ingredients) {
+	private void setIngredients(ArrayList<String> ingredients) {
 		this.ingredients = ingredients;
 	}
+	
+	public String getRecipe(){
+		return recipe;
+	}
+	
+	
 	
 }
