@@ -23,7 +23,7 @@ import com.mongodb.MongoException;
 public class Temp {
      
  
-    static String array_names[] = {"John","Tim","Brit","Robin","Smith","Lora","Jennifer","Lyla","Victor","Adam"};
+    /*static String array_names[] = {"John","Tim","Brit","Robin","Smith","Lora","Jennifer","Lyla","Victor","Adam"};
      
     static String array_address[][] ={
         {"US", "FL", " Miami"},
@@ -56,7 +56,7 @@ public class Temp {
     /**** Insert ****/
     // create a document to store key and value
      
-    BasicDBObject document ;
+  /*  BasicDBObject document ;
     String address[];
     for(int i = 0 ; i < array_names.length ; i++){
         document = new BasicDBObject();
@@ -103,7 +103,7 @@ public class Temp {
   
     /**** Update ****/
     //update documents found by query "age > 30" with udpateObj "age = 20"
-    BasicDBObject newDocument = new BasicDBObject();
+    /*BasicDBObject newDocument = new BasicDBObject();
     newDocument.put("age", 20);
   
     BasicDBObject updateObj = new BasicDBObject();
@@ -112,7 +112,7 @@ public class Temp {
     collection.update(query, updateObj,false,true);
   
     /**** Find and display ****/
-    cursor = collection.find(query);
+    /*cursor = collection.find(query);
     System.out.println("Person with age > 40 after update --> "+cursor.count());
      
      
@@ -127,7 +127,7 @@ public class Temp {
     }
   
     /**** Done ****/
-    System.out.println("Done");
+ /*   System.out.println("Done");
   
     } catch (UnknownHostException e) {
     e.printStackTrace();
@@ -154,5 +154,5 @@ public class Temp {
   private static String[] pickAddress(){
       int random = (int) (Math.random()*10);
       return array_address[random];
-  }
+  }*/
 }

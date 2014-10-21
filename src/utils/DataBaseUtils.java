@@ -1,14 +1,15 @@
 package utils;
 
-import java.util.Date;
+import java.io.IOException;
+import java.net.UnknownHostException;
 
 import recipes.Recipe;
 
-import database.BasicDBObject;
-import database.DB;
-import database.DBCollection;
-import database.DBCursor;
-import database.MongoClient;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.MongoClient;
 
 public class DataBaseUtils {
 	private MongoClient mongo;
@@ -23,21 +24,26 @@ public class DataBaseUtils {
 		document.append("recipe", recipe.getRecipe());
 		collection.insert(document);
 	}
-	
-	public void getAll(){
+
+	public void getAll() throws IOException {
 		DBCursor cursor = collection.find();
-	    try {
-	       while(cursor.hasNext()) {
-	           System.out.println(cursor.next());
-	       }
-	    } finally {
-	       cursor.close();
-	    }
+		try {
+			while (cursor.hasNext()) {
+				System.out.println(cursor.next());
+			}
+		} finally {
+			cursor.close();
+		}
 	}
-	
-	public void connection(String dbName, String collectionName){
-		   mongo = new MongoClient("localhost", 27017);
-		   db = mongo.getDB(dbName);
-		   collection = db.getCollection(collectionName);
+
+	public void connection(String dbName, String collectionName) {
+		try {
+			mongo = new MongoClient("localhost", 27017);
+			db = mongo.getDB(dbName);
+			collection = db.getCollection(collectionName);
+		} catch (UnknownHostException e) {
+			System.out.println("Error when connecting to the database");
+		}
+
 	}
 }
