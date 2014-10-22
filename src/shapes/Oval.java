@@ -25,8 +25,8 @@ public class Oval extends BaseShape {
 		ArrayList<Integer> params = new ArrayList<Integer>();
 		params.add(xStart);
 		params.add(yStart);
-		params.add(xStart - width);
-		params.add(yStart - height);
+		params.add(xStart + width);
+		params.add(yStart + height);
 		return params;
 	}
 
