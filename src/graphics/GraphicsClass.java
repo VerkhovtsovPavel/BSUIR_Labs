@@ -6,8 +6,6 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.sun.org.apache.bcel.internal.generic.CPInstruction;
-
 import main.Probability;
 
 /**
@@ -17,9 +15,9 @@ import main.Probability;
  */
 public class GraphicsClass extends JPanel {
 	private static final long serialVersionUID = 1L; // service variable
-	private static final int screenSize = 800;
+	private static final int screenSize = 600;
 	private static final int X_SCALE = 10;
-	private static final int Y_SCALE = 45000;
+	private static final int Y_SCALE = 20000;
 	private static Probability firstProbability;
 	private static Probability secondProbability;
 	private static int median;
@@ -34,18 +32,31 @@ public class GraphicsClass extends JPanel {
 		drawProbabilityDensity(g, firstProbability, Color.RED);
 		drawProbabilityDensity(g, secondProbability, Color.BLUE);
 		g.setColor(Color.BLACK);
-		g.drawLine(median*X_SCALE, 0, median*X_SCALE, screenSize);
+		g.drawLine(median * X_SCALE, 0, median * X_SCALE, screenSize);
 	}
-	private void drawProbabilityDensity(Graphics g, Probability probability, Color color) {
+
+	private void drawProbabilityDensity(Graphics g, Probability probability,
+			Color color) {
 		g.setColor(color);
 		for (int i = 0; i < probability.randomVariable.size() - 1; i++) {
-			g.drawLine(probability.randomVariable.get(i) * X_SCALE, (int)(screenSize/(2.5-probability.probalityOfClass)+screenSize/2)	- (int) (probability.probabilityDensity(probability.randomVariable.get(i)) * Y_SCALE * probability.probalityOfClass),
+			g.drawLine(
+					probability.randomVariable.get(i) * X_SCALE,
+					(int) (screenSize / (2.5 - probability.probalityOfClass) + screenSize / 2)
+							- (int) (probability
+									.probabilityDensity(probability.randomVariable
+											.get(i))
+									* Y_SCALE * probability.probalityOfClass),
 					probability.randomVariable.get(i + 1) * X_SCALE,
-					(int)(screenSize/(2.5-probability.probalityOfClass)+screenSize/2) - (int) (probability.probabilityDensity(probability.randomVariable.get(i + 1)) * Y_SCALE * probability.probalityOfClass));
+					(int) (screenSize / (2.5 - probability.probalityOfClass) + screenSize / 2)
+							- (int) (probability
+									.probabilityDensity(probability.randomVariable
+											.get(i + 1))
+									* Y_SCALE * probability.probalityOfClass));
 		}
 	}
 
-	public static void buildGraph(final Probability firstProbability, final Probability secondProbability, final int median) {
+	public static void buildGraph(final Probability firstProbability,
+			final Probability secondProbability, final int median) {
 		GraphicsClass.firstProbability = firstProbability;
 		GraphicsClass.secondProbability = secondProbability;
 		GraphicsClass.median = median;
@@ -55,7 +66,7 @@ public class GraphicsClass extends JPanel {
 		JFrame mainFrame = new JFrame("MiAPR-Lab3");
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setContentPane(panel);
-		mainFrame.setSize((int)(screenSize*1.5), screenSize);
+		mainFrame.setSize((int) (screenSize * 2), screenSize);
 		mainFrame.setVisible(true);
 		mainFrame.setBackground(Color.white);
 	}

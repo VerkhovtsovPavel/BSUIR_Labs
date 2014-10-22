@@ -43,11 +43,11 @@ public class Main {
 
 	private static double missingDetectingError(Probability firstProbability, double probalityOfFirstClass) {
 		final double  step = 0.001;
-		double x = -100;
+		double x = 0;
 		double missingDetecting = 0;
 		while (x < 1000) {
 			double probability = firstProbability.probabilityDensity(x);
-			missingDetecting += probability * 0.001 * probalityOfFirstClass;
+			missingDetecting += probability * step * probalityOfFirstClass;
 			x += step;
 		}
 		return missingDetecting;
@@ -56,7 +56,7 @@ public class Main {
 	private static double falseAlarmError(Probability firstProbability, double probalityOfFirstClass, Probability secondProbability,
 			double probalityOfSecondClass) {
 		final double  step = 0.001;
-		double x = -100;
+		double x = 0;
 		double relativeProbabilityOfFirstClass = 1;
 		double relativeProbabilityOfSecondClass = 0;
 		double falseAlarm = 0;
@@ -64,7 +64,7 @@ public class Main {
 		while (relativeProbabilityOfSecondClass < relativeProbabilityOfFirstClass) {
 			relativeProbabilityOfFirstClass = probalityOfFirstClass * firstProbability.probabilityDensity(x);
 			relativeProbabilityOfSecondClass = probalityOfSecondClass * secondProbability.probabilityDensity(x);
-			falseAlarm += relativeProbabilityOfSecondClass * 0.001;
+			falseAlarm += relativeProbabilityOfSecondClass * step;
 			x += step;
 		}
 		
