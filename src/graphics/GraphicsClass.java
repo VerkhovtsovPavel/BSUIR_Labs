@@ -16,8 +16,8 @@ import main.Probability;
 public class GraphicsClass extends JPanel {
 	private static final long serialVersionUID = 1L; // service variable
 	private static final int screenSize = 600;
-	private static final int X_SCALE = 10;
-	private static final int Y_SCALE = 20000;
+	private static final int X_SCALE = 1;
+	private static final int Y_SCALE = 500000;
 	private static Probability firstProbability;
 	private static Probability secondProbability;
 	private static int median;

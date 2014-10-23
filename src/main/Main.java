@@ -20,8 +20,8 @@ public class Main {
 		System.out.print("Enter probability of the second class:\t");
 		double probalityOfSecondClass = in.nextDouble();
 
-		Probability firstProbability = new Probability(generateRandomVariable(0, 70), probalityOfFirstClass);
-		Probability secondProbability = new Probability(generateRandomVariable(40, 70), probalityOfSecondClass);
+		Probability firstProbability = new Probability(generateRandomVariable(0, 1000), probalityOfFirstClass);
+		Probability secondProbability = new Probability(generateRandomVariable(100, 1000), probalityOfSecondClass);
 
 		System.out.println("False alarm error:\t"+falseAlarmError(firstProbability, probalityOfFirstClass, secondProbability, probalityOfSecondClass));
 		System.out.println("Missing detecting error:\t"+missingDetectingError(firstProbability, probalityOfFirstClass));
