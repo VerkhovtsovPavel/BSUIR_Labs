@@ -24,6 +24,10 @@ public class DataBaseUtils {
 		document.append("recipe", recipe.getRecipe());
 		collection.insert(document);
 	}
+	
+	public void cleanDB(){
+		collection.drop();
+	}
 
 	public void getAll() throws IOException {
 		DBCursor cursor = collection.find();
