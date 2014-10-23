@@ -21,6 +21,6 @@ public class Encoder extends Cryptography {
 			return convertToChar(text[index]);
 		}
 		return convertToChar((text[index] + lineShifts[index])
-				% ALPHABET_LENGTH);
+				% (ALPHABET_LENGTH+1));
 	}
 }

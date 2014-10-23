@@ -18,7 +18,7 @@ public class Decoder extends Cryptography {
 		if (text[index] < 0) {
 			return convertToChar(text[index]);
 		}
-		return convertToChar((ALPHABET_LENGTH + text[index] - lineShifts[index])
-				% ALPHABET_LENGTH);
+		return convertToChar(((ALPHABET_LENGTH+1) + text[index] - lineShifts[index])
+				% (ALPHABET_LENGTH+1));
 	}
 }
