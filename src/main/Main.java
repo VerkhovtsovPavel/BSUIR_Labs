@@ -11,8 +11,7 @@ public class Main {
 
 	
 	public static void main(String[] args) throws IOException{
-		DataBaseUtils dataBaseUtils = new DataBaseUtils();
-		dataBaseUtils.connection("test", "person");
+		DataBaseUtils dataBaseUtils = new DataBaseUtils("test", "person");
 		dataBaseUtils.cleanDB();
 		ArrayList<String> ref = new ArrayList<String>();
 		ref.add("32");
