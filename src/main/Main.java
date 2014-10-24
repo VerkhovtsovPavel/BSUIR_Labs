@@ -19,14 +19,20 @@ public class Main {
 		double probalityOfFirstClass = in.nextDouble();
 		System.out.print("Enter probability of the second class:\t");
 		double probalityOfSecondClass = in.nextDouble();
+		
+		if(probalityOfFirstClass+probalityOfSecondClass!=1){
+			System.out.println("Incorrect input");
+			System.exit(1);
+		}
 
 		Probability firstProbability = new Probability(generateRandomVariable(0, 1000), probalityOfFirstClass);
 		Probability secondProbability = new Probability(generateRandomVariable(100, 1000), probalityOfSecondClass);
 
-		System.out.println("False alarm error:\t"+falseAlarmError(firstProbability, probalityOfFirstClass, secondProbability, probalityOfSecondClass));
-		System.out.println("Missing detecting error:\t"+missingDetectingError(firstProbability, probalityOfFirstClass));
-		System.out.println("Total error:\t"+(missingDetectingError(firstProbability, probalityOfFirstClass)
-				+ falseAlarmError(firstProbability, probalityOfFirstClass, secondProbability, probalityOfSecondClass)));
+		double falseAlarm = falseAlarmError(firstProbability, probalityOfFirstClass, secondProbability, probalityOfSecondClass);
+		System.out.println("False alarm error:\t"+falseAlarm);
+		double missingDetecting = missingDetectingError(firstProbability, probalityOfFirstClass);
+		System.out.println("Missing detecting error:\t"+missingDetecting);
+		System.out.println("Total error:\t"+(falseAlarm+missingDetecting));
 
 		GraphicsClass.buildGraph(firstProbability, secondProbability, median);
 
