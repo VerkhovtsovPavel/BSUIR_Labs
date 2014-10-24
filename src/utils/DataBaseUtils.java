@@ -35,11 +35,13 @@ public class DataBaseUtils {
 	}
 
 	public void getAll() throws IOException {
+		System.out.println("All date:");
 		DBCursor allData = collection.find();
 		printResult(allData);
 	}
 
 	public void findByRecipeName(String recipeName){
+		System.out.println("Recipe with name: "+recipeName);
 		BasicDBObject whereQuery = new BasicDBObject();
 		whereQuery.put("name", recipeName);
 		DBCursor cursor = collection.find(whereQuery);
@@ -47,7 +49,6 @@ public class DataBaseUtils {
 	}
 	
 	public void findByIngredients(ArrayList<String> ingredients){
-		 System.out.println("\n2. Find where number in 2,4 and 5");
 		  BasicDBObject inQuery = new BasicDBObject();
 		  inQuery.put("ingredients", new BasicDBObject("$in", ingredients));
 		  DBCursor cursor4 = collection.find(inQuery);
@@ -55,8 +56,9 @@ public class DataBaseUtils {
 	}
 	
 	public void findByTimeRequired(int maxTime){
+		System.out.println("Recipe with time required less: "+String.valueOf(maxTime));
 		BasicDBObject gtQuery = new BasicDBObject();
-		gtQuery.put("time requiredr", new BasicDBObject("$lt", maxTime));
+		gtQuery.put("time required", new BasicDBObject("$lt", maxTime));
 		DBCursor cursor = collection.find(gtQuery);
 		printResult(cursor);
 	}

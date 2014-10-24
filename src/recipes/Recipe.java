@@ -2,8 +2,6 @@ package recipes;
 
 import java.util.ArrayList;
 
-import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
-
 public class Recipe {
 	private String name;
 	private int timeRequired;

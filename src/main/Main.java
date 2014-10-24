@@ -14,9 +14,22 @@ public class Main {
 		DataBaseUtils dataBaseUtils = new DataBaseUtils("test", "person");
 		dataBaseUtils.cleanDB();
 		ArrayList<String> ref = new ArrayList<String>();
-		ref.add("32");
-		Recipe recipe = new Recipe("fff", 25, ref, "dfyhdjkl,");
+		ref.add("Огурец");
+		Recipe recipe = new Recipe("Рецепт #1", 25, ref, "Резать, варить");
+		dataBaseUtils.insert(recipe);
+		ref.clear();
+		ref.add("Морковь");
+		recipe = new Recipe("Рецепт #2", 50, ref, "Резать, жарить");
 		dataBaseUtils.insert(recipe);
 		dataBaseUtils.getAll();
+		
+		System.out.println();
+		dataBaseUtils.findByTimeRequired(30);
+		
+		System.out.println();
+		dataBaseUtils.findByRecipeName("Рецепт #1");
+		
+		System.out.println();
+		dataBaseUtils.findByIngredients(ref);
 	}
 }
