@@ -2,6 +2,7 @@ package utils;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 import recipes.Recipe;
 
@@ -43,6 +44,14 @@ public class DataBaseUtils {
 		whereQuery.put("name", recipeName);
 		DBCursor cursor = collection.find(whereQuery);
 		printResult(cursor);
+	}
+	
+	public void findByIngredients(ArrayList<String> ingredients){
+		 System.out.println("\n2. Find where number in 2,4 and 5");
+		  BasicDBObject inQuery = new BasicDBObject();
+		  inQuery.put("ingredients", new BasicDBObject("$in", ingredients));
+		  DBCursor cursor4 = collection.find(inQuery);
+		 printResult(cursor4);
 	}
 	
 	public void findByTimeRequired(int maxTime){
