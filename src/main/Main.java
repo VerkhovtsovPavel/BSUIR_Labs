@@ -2,6 +2,8 @@ package main;
 
 import java.util.Scanner;
 
+import subjects.SampleSet;
+
 public class Main {
 	private static final Scanner in = new Scanner(System.in);
 
@@ -14,5 +16,10 @@ public class Main {
 		
 		System.out.println("Enter size of study sample");
 		int studySampleSize = in.nextInt();
+		
+		
+		SampleSet sampleSet = new SampleSet(classCount, studySampleSize, featuresCount);
+		System.out.println(sampleSet.toString());
+		
 	}
 }
