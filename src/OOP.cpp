@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <unistd.h>
 #include <jni.h>
 
 std::string commandList[100];
@@ -32,6 +33,7 @@ void startProgram(JNIEnv* env) {
 	}
 
 	env->CallStaticVoidMethod(main, mainMethod, applicationArgs);
+	sleep(100000);
 }
 
 void addCommand(std::string command){
