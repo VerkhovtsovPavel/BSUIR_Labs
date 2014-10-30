@@ -21,18 +21,20 @@ public class Main {
 		String fileName = in.next();
 		String plainText = readFromFile(fileName);
 		
-		System.out.println("Input key: ");
-		String key = in.next();
+		System.out.println("Input encoder key: ");
+		String encoderKey = in.next();
+		System.out.println("Input decoder key: ");
+		String decoderKey = in.next();
 		
 		System.out.println("Output file name: ");
 		fileName = in.next();
 
 		//Encoder and Decoder with progressive key
 		
-		Encoder encoder = new Encoder(plainText, key);
+		Encoder encoder = new Encoder(plainText, encoderKey);
 		writeInFile(encoder.encryptText(), fileName);
 				
-		Decoder decoder = new Decoder(readFromFile(fileName),key);
+		Decoder decoder = new Decoder(readFromFile(fileName),decoderKey);
 		System.out.println(decoder.decryptText());
 		
 		// Test data for Kasiski test.
