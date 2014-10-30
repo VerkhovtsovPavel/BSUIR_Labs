@@ -5,13 +5,15 @@ import java.util.ArrayList;
 
 import recipes.Recipe;
 
+import ui.MainForm;
 import utils.DataBaseUtils;
 
 public class Main {
 
 	
 	public static void main(String[] args) throws IOException{
-		DataBaseUtils dataBaseUtils = new DataBaseUtils("test", "person");
+		DataBaseUtils dataBaseUtils = new DataBaseUtils("CourseProject", "recipes");
+		MainForm.main(args);
 		dataBaseUtils.cleanDB();
 		ArrayList<String> ref = new ArrayList<String>();
 		ref.add("Огурец");

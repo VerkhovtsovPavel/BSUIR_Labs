@@ -2,10 +2,13 @@ package ui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -54,16 +57,28 @@ public class AddRecipeForm extends JFrame {
 		mainPanel.setLayout(null);
 
 		JButton btnNewButton = new JButton("\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0440\u0435\u0446\u0435\u043F\u0442");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				String name=textField.getText();
+				String timeRequired = textField_1.getText();
+				String ingredientsList = textField_2.getText();
+				String recipe = textArea.getText();
+				if (name.isEmpty() || timeRequired.isEmpty() || ingredientsList.isEmpty() || recipe.isEmpty()){
+					JOptionPane.showMessageDialog(null, "Заполнены не все поля", "Ошибка", JOptionPane.PLAIN_MESSAGE);
+				}
+			}
+		});
 		btnNewButton.setBounds(109, 351, 216, 23);
 		mainPanel.add(btnNewButton);
-
 		textField = new JTextField();
 		textField.setBounds(27, 174, 421, 20);
 		mainPanel.add(textField);
 		textField.setColumns(10);
 
 		JLabel label = new JLabel("\u0421\u043F\u0438\u0441\u043E\u043A \u0438\u043D\u0433\u0440\u0435\u0434\u0438\u0435\u043D\u0442\u043E\u0432");
-		label.setBounds(27, 149, 148, 14);
+		label.setBounds(27, 149, 187, 14);
 		mainPanel.add(label);
 
 		JLabel label_1 = new JLabel("\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435");
