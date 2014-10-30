@@ -1,32 +1,93 @@
 package ui;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import driver.DataBaseDriver;
+
 
 public class MainForm extends JFrame {
 	private static final long serialVersionUID = -7109709456008554142L;
 
 	private JPanel mainPanel;
 	private JTextField textField;
+	private static JMenuBar menuBar;
+	private static DataBaseDriver dbDriver;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		initialaze();
+	}
+	
+	private static void initialaze(){
 		MainForm frame = new MainForm();
-		frame.setSize(465, 140);
+		frame.setSize(465, 150);
+		createMenu(frame);
+
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
 		int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
 		frame.setLocation(x, y);
 		frame.setVisible(true);
+	}
+	
+	public static void create(DataBaseDriver dbUtils){
+		dbDriver=dbUtils;
+		initialaze();
+	}
+	
 
+	private static void createMenu(JFrame frame) {
+		menuBar = new JMenuBar();
+		Font font = new Font("Verdana", Font.PLAIN, 11);
+		JMenu fileMenu = new JMenu("Файл");
+		fileMenu.setFont(font);
+
+		JMenuItem addRecipe = new JMenuItem("Добавить рецепт");
+		addRecipe.setFont(font);
+		fileMenu.add(addRecipe);
+		addRecipe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AddRecipeForm.create(dbDriver);
+			}
+		});
+		
+		JMenuItem myRecipe = new JMenuItem("Мои рецепты");
+		myRecipe.setFont(font);
+		myRecipe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MyRecipe.create(dbDriver);
+			}
+		});
+		fileMenu.add(myRecipe);
+
+		fileMenu.addSeparator();
+
+		JMenuItem exitItem = new JMenuItem("Выход");
+		exitItem.setFont(font);
+		exitItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		fileMenu.add(exitItem);
+
+		menuBar.add(fileMenu);
+		frame.setJMenuBar(menuBar);
 	}
 
 	/**
@@ -38,7 +99,7 @@ public class MainForm extends JFrame {
 
 	private void configureDefaultLayot() {
 		setResizable(false);
-		setTitle("Course project");
+		setTitle("ЯВижуСыр");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainPanel = new JPanel();
 		setContentPane(mainPanel);

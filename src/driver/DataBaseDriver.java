@@ -1,4 +1,4 @@
-package utils;
+package driver;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -12,12 +12,12 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.MongoClient;
 
-public class DataBaseUtils {
+public class DataBaseDriver {
 	private MongoClient mongo;
 	private DB db;
 	private DBCollection collection;
 	
-	public DataBaseUtils(String dbName, String collectionName){
+	public DataBaseDriver(String dbName, String collectionName){
 		this.connection(dbName, collectionName);
 	}
 

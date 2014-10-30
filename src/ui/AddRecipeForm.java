@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,22 +16,26 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
-//TODO Refactor element name
-//TODO Fix closing application where close this window 
+import driver.DataBaseDriver;
+
+import recipes.Recipe;
+import static utils.Utils.makeList;
+
 public class AddRecipeForm extends JFrame {
 	private static final long serialVersionUID = 2883993883146596569L;
 	private JPanel mainPanel;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextArea textArea;
+	private JTextField ingredientsField;
+	private JTextField nameField;
+	private JTextField timeRequiredField;
+	private JTextArea recipeArea;
 	private static JScrollPane textAreaScroll;
+	private static DataBaseDriver dbDriver;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
+		initialaze();
+	}
 
+	private static void initialaze() {
 		AddRecipeForm frame = new AddRecipeForm();
 		frame.setSize(490, 420);
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -38,7 +43,11 @@ public class AddRecipeForm extends JFrame {
 		int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
 		frame.setLocation(x, y);
 		frame.setVisible(true);
+	}
 
+	public static void create(DataBaseDriver dbUtils) {
+		dbDriver = dbUtils;
+		initialaze();
 	}
 
 	/**
@@ -48,10 +57,26 @@ public class AddRecipeForm extends JFrame {
 		configureDefaultLayot();
 	}
 
+	private int verifyFields(String name, String timeRequired, String ingredientsList, String recipe){
+		int time =0;
+		if (name.isEmpty() || timeRequired.isEmpty() || ingredientsList.isEmpty() || recipe.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Заполнены не все поля", "Ошибка", JOptionPane.PLAIN_MESSAGE);
+		} else {
+
+			try {
+				time = Integer.valueOf(timeRequired);
+			} catch (Exception e1) {
+				JOptionPane.showMessageDialog(null, "Значение в поле \"Необходимое время\" не является числом", "Ошибка",
+						JOptionPane.PLAIN_MESSAGE);
+			}
+		}
+		return time;
+	}
+	
 	private void configureDefaultLayot() {
 		setResizable(false);
 		setTitle("\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u0440\u0435\u0446\u0435\u043F\u0442\u0430");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		mainPanel = new JPanel();
 		setContentPane(mainPanel);
 		mainPanel.setLayout(null);
@@ -60,22 +85,26 @@ public class AddRecipeForm extends JFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				String name = nameField.getText();
+				String timeRequired = timeRequiredField.getText();
+				String ingredientsList = ingredientsField.getText();
+				String recipe = recipeArea.getText();
 				
-				String name=textField.getText();
-				String timeRequired = textField_1.getText();
-				String ingredientsList = textField_2.getText();
-				String recipe = textArea.getText();
-				if (name.isEmpty() || timeRequired.isEmpty() || ingredientsList.isEmpty() || recipe.isEmpty()){
-					JOptionPane.showMessageDialog(null, "Заполнены не все поля", "Ошибка", JOptionPane.PLAIN_MESSAGE);
+				int time = verifyFields(name, timeRequired, ingredientsList, recipe);
+				
+				if (time!=0) {
+					String[] ingredients = ingredientsList.split("[,+ +]+");
+					dbDriver.insert(new Recipe(name, time, makeList(ingredients), recipe));
 				}
 			}
+
 		});
 		btnNewButton.setBounds(109, 351, 216, 23);
 		mainPanel.add(btnNewButton);
-		textField = new JTextField();
-		textField.setBounds(27, 174, 421, 20);
-		mainPanel.add(textField);
-		textField.setColumns(10);
+		ingredientsField = new JTextField();
+		ingredientsField.setBounds(27, 174, 421, 20);
+		mainPanel.add(ingredientsField);
+		ingredientsField.setColumns(10);
 
 		JLabel label = new JLabel("\u0421\u043F\u0438\u0441\u043E\u043A \u0438\u043D\u0433\u0440\u0435\u0434\u0438\u0435\u043D\u0442\u043E\u0432");
 		label.setBounds(27, 149, 187, 14);
@@ -85,30 +114,30 @@ public class AddRecipeForm extends JFrame {
 		label_1.setBounds(27, 11, 148, 14);
 		mainPanel.add(label_1);
 
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(27, 36, 421, 20);
-		mainPanel.add(textField_1);
+		nameField = new JTextField();
+		nameField.setColumns(10);
+		nameField.setBounds(27, 36, 421, 20);
+		mainPanel.add(nameField);
 
 		JLabel label_2 = new JLabel("\u041D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E\u0435 \u0432\u0440\u0435\u043C\u044F");
 		label_2.setBounds(27, 83, 148, 14);
 		mainPanel.add(label_2);
 
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(27, 108, 421, 20);
-		mainPanel.add(textField_2);
+		timeRequiredField = new JTextField();
+		timeRequiredField.setColumns(10);
+		timeRequiredField.setBounds(27, 108, 421, 20);
+		mainPanel.add(timeRequiredField);
 
 		JLabel label_3 = new JLabel("\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435");
 		label_3.setBounds(27, 216, 148, 14);
 		mainPanel.add(label_3);
 
-		textArea = new JTextArea();
-		textArea.setBounds(27, 241, 421, 100);
-		textArea.setLineWrap(true);
-		mainPanel.add(textArea);
+		recipeArea = new JTextArea();
+		recipeArea.setBounds(27, 241, 421, 100);
+		recipeArea.setLineWrap(true);
+		mainPanel.add(recipeArea);
 
-		textAreaScroll = new JScrollPane(textArea);
+		textAreaScroll = new JScrollPane(recipeArea);
 		textAreaScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		textAreaScroll.setBounds(27, 241, 421, 100);
 		mainPanel.add(textAreaScroll);
