@@ -7,7 +7,7 @@ public class Subject {
 	private final int DISTERSION =10;
 	
 	public Subject(int featuresCount) {
-		features = new int[featuresCount];
+		features = new int[featuresCount+1];
 		setRandomValues(DISTERSION);
 	}
 	
@@ -16,6 +16,7 @@ public class Subject {
 		for (int i=0; i<features.length; i++){
 			features[i]=featureValue.nextInt(dispersion);
 		}
+		features[features.length-1]=1;
 	}
 	
 	public int getFeature(int number){
@@ -26,7 +27,7 @@ public class Subject {
 	public String toString(){
 		String result = "{";
 		
-		for(int i=0; i<features.length; i++){
+		for(int i=0; i<features.length-1; i++){
 			result+=String.valueOf(features[i])+";";
 		}
 		
