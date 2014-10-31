@@ -11,6 +11,10 @@ public class Subject {
 		setRandomValues(DISTERSION);
 	}
 	
+	public Subject(int[] features){
+		this.features=features;
+	}
+	
 	private void setRandomValues(int dispersion){
 		Random featureValue = new Random();
 		for (int i=0; i<features.length; i++){
