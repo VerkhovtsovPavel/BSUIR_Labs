@@ -66,7 +66,7 @@ public class GraphicsClass extends JPanel {
 		JFrame mainFrame = new JFrame("MiAPR-Lab3");
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setContentPane(panel);
-		mainFrame.setSize((int) (screenSize * 2), screenSize);
+		mainFrame.setSize((int) (screenSize * 2.3), screenSize);
 		mainFrame.setVisible(true);
 		mainFrame.setBackground(Color.white);
 	}
