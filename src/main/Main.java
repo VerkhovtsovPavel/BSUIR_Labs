@@ -11,7 +11,7 @@ public class Main {
 	//TODO Check medain working
 	//TODO Add check sum probability = 1
 	private static Scanner in = new Scanner(System.in);
-	private final static int SELECTION_SIZE = 1000;
+	private final static int SELECTION_SIZE = 500;
 	private static int median; 
 
 	public static void main(String args[]) {
@@ -28,11 +28,14 @@ public class Main {
 		Probability firstProbability = new Probability(generateRandomVariable(0, 1000), probalityOfFirstClass);
 		Probability secondProbability = new Probability(generateRandomVariable(100, 1000), probalityOfSecondClass);
 
-		double falseAlarm = falseAlarmError(firstProbability, probalityOfFirstClass, secondProbability, probalityOfSecondClass);
+
+		double falseAlarm = falseAlarmError(firstProbability, probalityOfFirstClass, secondProbability, probalityOfSecondClass)/firstProbability.probalityOfClass;
+		double missingDetecting = missingDetectingError(firstProbability, probalityOfFirstClass, secondProbability, probalityOfSecondClass)/firstProbability.probalityOfClass;
+		
+		
 		System.out.println("False alarm error:\t"+falseAlarm);
-		double missingDetecting = missingDetectingError(firstProbability, probalityOfFirstClass);
 		System.out.println("Missing detecting error:\t"+missingDetecting);
-		System.out.println("Total error:\t"+(falseAlarm+missingDetecting));
+		System.out.println("Total error:\t"+(missingDetecting+falseAlarm));
 
 		GraphicsClass.buildGraph(firstProbability, secondProbability, median);
 
@@ -47,13 +50,17 @@ public class Main {
 		return randomVariable;
 	}
 
-	private static double missingDetectingError(Probability firstProbability, double probalityOfFirstClass) {
+	private static double missingDetectingError(Probability firstProbability, double probalityOfFirstClass, Probability secondProbability,
+			double probalityOfSecondClass) {
 		final double  step = 0.001;
-		double x = 0;
+		double x = median;
 		double missingDetecting = 0;
-		while (x < 1000) {
-			double probability = firstProbability.probabilityDensity(x);
-			missingDetecting += probability * step * probalityOfFirstClass;
+
+		double relativeProbabilityOfFirstClass = 0;
+
+		while (x<1000) {
+			relativeProbabilityOfFirstClass = probalityOfFirstClass * firstProbability.probabilityDensity(x);
+			missingDetecting += relativeProbabilityOfFirstClass * step;
 			x += step;
 		}
 		return missingDetecting;
