@@ -34,10 +34,15 @@ public class DataBaseDriver {
 		collection.drop();
 	}
 
-	public void getAll() throws IOException {
+	public void printAllData(){
+		printResult(getAll());
+	}
+	
+	public DBCursor getAll(){
 		System.out.println("All date:");
 		DBCursor allData = collection.find();
-		printResult(allData);
+		
+		return allData;
 	}
 
 	public void findByRecipeName(String recipeName){

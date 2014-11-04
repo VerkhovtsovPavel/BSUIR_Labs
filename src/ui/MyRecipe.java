@@ -2,8 +2,11 @@ package ui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Set;
 
 import javax.swing.JFrame;
+
+import com.mongodb.DBCursor;
 
 import driver.DataBaseDriver;
 
@@ -27,6 +30,7 @@ public class MyRecipe extends JFrame {
 	public static void create(DataBaseDriver dbUtils){
 		dbDriver = dbUtils;
 		initialaze();
+		showAll();
 	}
 	
 	private static void initialaze(){
@@ -43,6 +47,14 @@ public class MyRecipe extends JFrame {
 		setResizable(false);
 		setTitle("\u041C\u043E\u0438 \u0440\u0435\u0446\u0435\u043F\u0442\u044B");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+	}
+	
+	private static void showAll(){
+		DBCursor allData = dbDriver.getAll();
+		while( allData.hasNext()){
+		 String set =	allData.next().toString();
+		 String set2 = set;
+		}
 	}
 
 }

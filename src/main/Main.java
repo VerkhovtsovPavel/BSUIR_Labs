@@ -5,12 +5,14 @@ import java.io.IOException;
 import driver.DataBaseDriver;
 
 import ui.MainForm;
+import ui.MyRecipe;
 
 public class Main {
 
 	public static void main(String[] args) throws IOException {
 		DataBaseDriver dataBaseUtils = new DataBaseDriver("CourseProject", "recipes");
-		MainForm.create(dataBaseUtils);
+		MyRecipe.create(dataBaseUtils);
+		dataBaseUtils.printAllData();
 
 		/*
 		 * dataBaseUtils.cleanDB(); ArrayList<String> ref = new
@@ -18,7 +20,7 @@ public class Main {
 		 * Recipe("Рецепт #1", 25, ref, "Резать, варить");
 		 * dataBaseUtils.insert(recipe); ref.clear(); ref.add("Морковь"); recipe
 		 * = new Recipe("Рецепт #2", 50, ref, "Резать, жарить");
-		 * dataBaseUtils.insert(recipe); dataBaseUtils.getAll();
+		 * dataBaseUtils.insert(recipe); 
 		 * 
 		 * System.out.println(); dataBaseUtils.findByTimeRequired(30);
 		 * 
