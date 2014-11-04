@@ -1,10 +1,11 @@
 package ui;
 
+import static utils.Utils.makeList;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,10 +17,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
-import driver.DataBaseDriver;
-
 import recipes.Recipe;
-import static utils.Utils.makeList;
+import driver.DataBaseDriver;
 
 public class AddRecipeForm extends JFrame {
 	private static final long serialVersionUID = 2883993883146596569L;
@@ -57,8 +56,8 @@ public class AddRecipeForm extends JFrame {
 		configureDefaultLayot();
 	}
 
-	private int verifyFields(String name, String timeRequired, String ingredientsList, String recipe){
-		int time =0;
+	private int verifyFields(String name, String timeRequired, String ingredientsList, String recipe) {
+		int time = 0;
 		if (name.isEmpty() || timeRequired.isEmpty() || ingredientsList.isEmpty() || recipe.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Заполнены не все поля", "Ошибка", JOptionPane.PLAIN_MESSAGE);
 		} else {
@@ -66,13 +65,19 @@ public class AddRecipeForm extends JFrame {
 			try {
 				time = Integer.valueOf(timeRequired);
 			} catch (Exception e1) {
-				JOptionPane.showMessageDialog(null, "Значение в поле \"Необходимое время\" не является числом", "Ошибка",
-						JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Значение в поле \"Необходимое время\" не является числом", "Ошибка", JOptionPane.PLAIN_MESSAGE);
 			}
 		}
 		return time;
 	}
-	
+
+	private void cleanFields() {
+		nameField.setText("");
+		timeRequiredField.setText("");
+		ingredientsField.setText("");
+		recipeArea.setText("");
+	}
+
 	private void configureDefaultLayot() {
 		setResizable(false);
 		setTitle("\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u0440\u0435\u0446\u0435\u043F\u0442\u0430");
@@ -89,12 +94,13 @@ public class AddRecipeForm extends JFrame {
 				String timeRequired = timeRequiredField.getText();
 				String ingredientsList = ingredientsField.getText();
 				String recipe = recipeArea.getText();
-				
+
 				int time = verifyFields(name, timeRequired, ingredientsList, recipe);
-				
-				if (time!=0) {
+
+				if (time != 0) {
 					String[] ingredients = ingredientsList.split("[,+ +]+");
 					dbDriver.insert(new Recipe(name, time, makeList(ingredients), recipe));
+					cleanFields();
 				}
 			}
 
