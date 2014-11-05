@@ -53,10 +53,10 @@ public class DataBaseDriver {
 	}
 	
 	public void findByIngredients(ArrayList<String> ingredients){
-		  BasicDBObject inQuery = new BasicDBObject();
-		  inQuery.put("ingredients", new BasicDBObject("$in", ingredients));
-		  DBCursor cursor4 = collection.find(inQuery);
-		 printResult(cursor4);
+		BasicDBObject inQuery = new BasicDBObject();
+		inQuery.put("ingredients", new BasicDBObject("$in", ingredients));
+		DBCursor cursor4 = collection.find(inQuery);
+		printResult(cursor4);
 	}
 	
 	public void findByTimeRequired(int maxTime){
@@ -86,5 +86,19 @@ public class DataBaseDriver {
 		} finally {
 			searchResult.close();
 		}
+	}
+	
+	public ArrayList<Recipe> convertCursorToArrayList(DBCursor cursor){
+		ArrayList<Recipe> result = new ArrayList<Recipe>();
+		//TODO Real implementation
+		try {
+			while (cursor.hasNext()) {
+				cursor.next();
+			}
+			}finally {
+				cursor.close();
+			}
+		
+		return result;
 	}
 }
