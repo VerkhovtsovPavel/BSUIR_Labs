@@ -2,12 +2,16 @@ package ui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -15,22 +19,15 @@ import javax.swing.ScrollPaneConstants;
 
 import recipes.Recipe;
 import driver.DataBaseDriver;
-import javax.swing.JButton;
-import javax.swing.JProgressBar;
-import javax.swing.AbstractAction;
-import java.awt.event.ActionEvent;
-import javax.swing.Action;
-import java.awt.event.ActionListener;
-
 
 public class MyRecipe extends JFrame {
 
 	private static final long serialVersionUID = 2377892044773977952L;
 	private static DataBaseDriver dbDriver;
 	private static int currentRecipe = 0;
-	
+
 	private static ArrayList<Recipe> allRecipe;
-	
+
 	private JPanel mainPanel;
 	private static JTextField ingredientsField;
 	private static JTextField nameField;
@@ -47,20 +44,13 @@ public class MyRecipe extends JFrame {
 		configureDefaultLayot();
 	}
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		initialaze();
-	}
-	
-	public static void create(DataBaseDriver dbUtils){
+	public static void create(DataBaseDriver dbUtils) {
 		dbDriver = dbUtils;
 		initialaze();
 		showAll();
 	}
-	
-	private static void initialaze(){
+
+	private static void initialaze() {
 		frame = new MyRecipe();
 		frame.setSize(480, 500);
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -77,11 +67,11 @@ public class MyRecipe extends JFrame {
 		mainPanel = new JPanel();
 		setContentPane(mainPanel);
 		mainPanel.setLayout(null);
-		
+
 		JLabel label_4 = new JLabel("Рецепт №");
 		label_4.setBounds(126, 23, 85, 14);
 		mainPanel.add(label_4);
-		
+
 		textField = new JTextField();
 		textField.setEditable(false);
 		textField.setBounds(221, 20, 31, 20);
@@ -93,11 +83,13 @@ public class MyRecipe extends JFrame {
 		mainPanel.add(ingredientsField);
 		ingredientsField.setColumns(10);
 
-		JLabel label = new JLabel("\u0421\u043F\u0438\u0441\u043E\u043A \u0438\u043D\u0433\u0440\u0435\u0434\u0438\u0435\u043D\u0442\u043E\u0432");
+		JLabel label = new JLabel(
+				"\u0421\u043F\u0438\u0441\u043E\u043A \u0438\u043D\u0433\u0440\u0435\u0434\u0438\u0435\u043D\u0442\u043E\u0432");
 		label.setBounds(25, 189, 187, 14);
 		mainPanel.add(label);
 
-		JLabel label_1 = new JLabel("\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435");
+		JLabel label_1 = new JLabel(
+				"\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435");
 		label_1.setBounds(25, 51, 148, 14);
 		mainPanel.add(label_1);
 
@@ -106,7 +98,8 @@ public class MyRecipe extends JFrame {
 		nameField.setBounds(25, 76, 421, 20);
 		mainPanel.add(nameField);
 
-		JLabel label_2 = new JLabel("\u041D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E\u0435 \u0432\u0440\u0435\u043C\u044F");
+		JLabel label_2 = new JLabel(
+				"\u041D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E\u0435 \u0432\u0440\u0435\u043C\u044F");
 		label_2.setBounds(25, 123, 148, 14);
 		mainPanel.add(label_2);
 
@@ -115,7 +108,8 @@ public class MyRecipe extends JFrame {
 		timeRequiredField.setBounds(25, 148, 421, 20);
 		mainPanel.add(timeRequiredField);
 
-		JLabel label_3 = new JLabel("\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435");
+		JLabel label_3 = new JLabel(
+				"\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435");
 		label_3.setBounds(25, 256, 148, 14);
 		mainPanel.add(label_3);
 
@@ -125,10 +119,11 @@ public class MyRecipe extends JFrame {
 		mainPanel.add(recipeArea);
 
 		textAreaScroll = new JScrollPane(recipeArea);
-		textAreaScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		textAreaScroll
+				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		textAreaScroll.setBounds(25, 281, 421, 100);
 		mainPanel.add(textAreaScroll);
-		
+
 		prevRecipe = new JButton("Предыдущий");
 		prevRecipe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -136,10 +131,10 @@ public class MyRecipe extends JFrame {
 				showCurrentRecipe();
 			}
 		});
-		
+
 		prevRecipe.setBounds(35, 393, 157, 25);
 		mainPanel.add(prevRecipe);
-		
+
 		nextRecipe = new JButton("Следующий");
 		nextRecipe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -149,48 +144,49 @@ public class MyRecipe extends JFrame {
 		});
 		nextRecipe.setBounds(270, 393, 176, 25);
 		mainPanel.add(nextRecipe);
-		
+
 		progressBar = new JProgressBar();
 		progressBar.setBounds(25, 430, 421, 14);
 		mainPanel.add(progressBar);
 	}
-	
-	
-	private static void showAll(){
+
+	private static void showAll() {
 		allRecipe = dbDriver.convertCursorToArrayList(dbDriver.getAll());
 		progressBar.setMaximum(allRecipe.size());
-		if(allRecipe.isEmpty()){
-			JOptionPane.showMessageDialog(null, "У вас еще нет рецептов", "Ошибка", JOptionPane.CLOSED_OPTION);
+		if (allRecipe.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "У вас еще нет рецептов",
+					"Ошибка", JOptionPane.CLOSED_OPTION);
 			frame.dispose();
-		}
-		else{
+		} else {
 			showCurrentRecipe();
 		}
 	}
-	
-	private static void showCurrentRecipe(){
+
+	private static void showCurrentRecipe() {
 		buttonEnables();
-		progressBar.setValue(currentRecipe+1);
+		progressBar.setValue(currentRecipe + 1);
 		textField.setEnabled(true);
-		textField.setText(String.valueOf(currentRecipe+1));
+		textField.setText(String.valueOf(currentRecipe + 1));
 		textField.setEnabled(false);
-	
+
 		nameField.setText(allRecipe.get(currentRecipe).getName());
-		timeRequiredField.setText(String.valueOf(allRecipe.get(currentRecipe).getTimeRequired()));
-		ingredientsField.setText(String.valueOf(allRecipe.get(currentRecipe).getIngredients()));
-		recipeArea.setText(String.valueOf(allRecipe.get(currentRecipe).getRecipe()));
+		timeRequiredField.setText(String.valueOf(allRecipe.get(currentRecipe)
+				.getTimeRequired()));
+		ingredientsField.setText(String.valueOf(allRecipe.get(currentRecipe)
+				.getIngredients()));
+		recipeArea.setText(String.valueOf(allRecipe.get(currentRecipe)
+				.getRecipe()));
 	}
-	
-	private static void buttonEnables(){
-		if (currentRecipe==0){
+
+	private static void buttonEnables() {
+		if (currentRecipe == 0) {
 			prevRecipe.setEnabled(false);
-		}
-		else{
+		} else {
 			prevRecipe.setEnabled(true);
 		}
-		if(currentRecipe==allRecipe.size()-1){
+		if (currentRecipe == allRecipe.size() - 1) {
 			nextRecipe.setEnabled(false);
-		}else{
+		} else {
 			nextRecipe.setEnabled(true);
 		}
 	}

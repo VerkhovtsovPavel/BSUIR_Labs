@@ -5,13 +5,12 @@ import java.io.IOException;
 import driver.DataBaseDriver;
 
 import ui.MainForm;
-import ui.MyRecipe;
 
 public class Main {
 
 	public static void main(String[] args) throws IOException {
 		DataBaseDriver dataBaseUtils = new DataBaseDriver("CourseProject", "recipes");
-		MyRecipe.create(dataBaseUtils);
+		MainForm.create(dataBaseUtils);
 		dataBaseUtils.printAllData();
 
 		/*

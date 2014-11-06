@@ -30,10 +30,6 @@ public class AddRecipeForm extends JFrame {
 	private static JScrollPane textAreaScroll;
 	private static DataBaseDriver dbDriver;
 
-	public static void main(String[] args) {
-		initialaze();
-	}
-
 	private static void initialaze() {
 		AddRecipeForm frame = new AddRecipeForm();
 		frame.setSize(490, 420);
