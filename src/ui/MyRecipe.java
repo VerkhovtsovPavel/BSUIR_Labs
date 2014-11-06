@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -14,6 +15,12 @@ import javax.swing.ScrollPaneConstants;
 
 import recipes.Recipe;
 import driver.DataBaseDriver;
+import javax.swing.JButton;
+import javax.swing.JProgressBar;
+import javax.swing.AbstractAction;
+import java.awt.event.ActionEvent;
+import javax.swing.Action;
+import java.awt.event.ActionListener;
 
 
 public class MyRecipe extends JFrame {
@@ -31,6 +38,10 @@ public class MyRecipe extends JFrame {
 	private static JTextArea recipeArea;
 	private static JScrollPane textAreaScroll;
 	private static JTextField textField;
+	private static JButton nextRecipe;
+	private static JButton prevRecipe;
+	private static JProgressBar progressBar;
+	private static MyRecipe frame;
 
 	public MyRecipe() {
 		configureDefaultLayot();
@@ -50,8 +61,8 @@ public class MyRecipe extends JFrame {
 	}
 	
 	private static void initialaze(){
-		MyRecipe frame = new MyRecipe();
-		frame.setSize(480, 450);
+		frame = new MyRecipe();
+		frame.setSize(480, 500);
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
 		int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
@@ -68,7 +79,7 @@ public class MyRecipe extends JFrame {
 		mainPanel.setLayout(null);
 		
 		JLabel label_4 = new JLabel("Рецепт №");
-		label_4.setBounds(149, 23, 62, 14);
+		label_4.setBounds(126, 23, 85, 14);
 		mainPanel.add(label_4);
 		
 		textField = new JTextField();
@@ -117,22 +128,70 @@ public class MyRecipe extends JFrame {
 		textAreaScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		textAreaScroll.setBounds(25, 281, 421, 100);
 		mainPanel.add(textAreaScroll);
+		
+		prevRecipe = new JButton("Предыдущий");
+		prevRecipe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				currentRecipe--;
+				showCurrentRecipe();
+			}
+		});
+		
+		prevRecipe.setBounds(35, 393, 157, 25);
+		mainPanel.add(prevRecipe);
+		
+		nextRecipe = new JButton("Следующий");
+		nextRecipe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				currentRecipe++;
+				showCurrentRecipe();
+			}
+		});
+		nextRecipe.setBounds(270, 393, 176, 25);
+		mainPanel.add(nextRecipe);
+		
+		progressBar = new JProgressBar();
+		progressBar.setBounds(25, 430, 421, 14);
+		mainPanel.add(progressBar);
 	}
 	
 	
 	private static void showAll(){
 		allRecipe = dbDriver.convertCursorToArrayList(dbDriver.getAll());
-		showCurrentRecipe();
+		progressBar.setMaximum(allRecipe.size());
+		if(allRecipe.isEmpty()){
+			JOptionPane.showMessageDialog(null, "У вас еще нет рецептов", "Ошибка", JOptionPane.CLOSED_OPTION);
+			frame.dispose();
+		}
+		else{
+			showCurrentRecipe();
+		}
 	}
 	
 	private static void showCurrentRecipe(){
-		textField.enable(true);
-		textField.setText(String.valueOf(currentRecipe));
-		textField.enable(false);
+		buttonEnables();
+		progressBar.setValue(currentRecipe+1);
+		textField.setEnabled(true);
+		textField.setText(String.valueOf(currentRecipe+1));
+		textField.setEnabled(false);
 	
 		nameField.setText(allRecipe.get(currentRecipe).getName());
 		timeRequiredField.setText(String.valueOf(allRecipe.get(currentRecipe).getTimeRequired()));
 		ingredientsField.setText(String.valueOf(allRecipe.get(currentRecipe).getIngredients()));
 		recipeArea.setText(String.valueOf(allRecipe.get(currentRecipe).getRecipe()));
+	}
+	
+	private static void buttonEnables(){
+		if (currentRecipe==0){
+			prevRecipe.setEnabled(false);
+		}
+		else{
+			prevRecipe.setEnabled(true);
+		}
+		if(currentRecipe==allRecipe.size()-1){
+			nextRecipe.setEnabled(false);
+		}else{
+			nextRecipe.setEnabled(true);
+		}
 	}
 }

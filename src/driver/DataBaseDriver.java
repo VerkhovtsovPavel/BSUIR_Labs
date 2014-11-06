@@ -9,6 +9,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 
 public class DataBaseDriver {
@@ -93,7 +94,9 @@ public class DataBaseDriver {
 		//TODO Real implementation
 		try {
 			while (cursor.hasNext()) {
-				cursor.next();
+				DBObject currentObject = cursor.next();
+				Recipe recipe = new Recipe((String)currentObject.get("name"), (Integer)currentObject.get("time required"), (ArrayList<String>)currentObject.get("ingredients"), (String)currentObject.get("recipe"));
+				result.add(recipe);
 			}
 			}finally {
 				cursor.close();
