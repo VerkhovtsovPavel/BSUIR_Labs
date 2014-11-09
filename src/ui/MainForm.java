@@ -16,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import driver.DataBaseDriver;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class MainForm extends JFrame {
@@ -106,6 +108,12 @@ public class MainForm extends JFrame {
 		mainPanel.setLayout(null);
 
 		JButton btnNewButton = new JButton("\u041F\u043E\u0434\u043E\u0431\u0440\u0430\u0442\u044C \u0440\u0435\u0446\u0435\u043F\u0442");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Result.create(dbDriver);
+			}
+		});
 		btnNewButton.setBounds(120, 67, 216, 23);
 		mainPanel.add(btnNewButton);
 

@@ -1,6 +1,7 @@
 package main;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import driver.DataBaseDriver;
 
@@ -12,6 +13,11 @@ public class Main {
 		DataBaseDriver dataBaseUtils = new DataBaseDriver("CourseProject", "recipes");
 		MainForm.create(dataBaseUtils);
 		dataBaseUtils.printAllData();
+		System.out.println();
+		ArrayList<String> ingredients = new ArrayList<String>();
+		ingredients.add("Свекла");
+		ingredients.add("Огурец");
+		dataBaseUtils.findByIngredients(ingredients);
 
 		/*
 		 * dataBaseUtils.cleanDB(); ArrayList<String> ref = new
