@@ -89,6 +89,7 @@ public class DataBaseDriver {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public ArrayList<Recipe> convertCursorToArrayList(DBCursor cursor){
 		ArrayList<Recipe> result = new ArrayList<Recipe>();
 		//TODO Real implementation
