@@ -15,6 +15,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import utils.Utils;
+
+import algorithms.Sorter;
+
 import driver.DataBaseDriver;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -47,8 +51,8 @@ public class MainForm extends JFrame {
 		frame.setVisible(true);
 	}
 	
-	public static void create(DataBaseDriver dbUtils){
-		dbDriver=dbUtils;
+	public static void create(){
+		dbDriver=DataBaseDriver.getInstanse();
 		initialaze();
 	}
 	
@@ -59,27 +63,27 @@ public class MainForm extends JFrame {
 		JMenu fileMenu = new JMenu("Файл");
 		fileMenu.setFont(font);
 
-		JMenuItem addRecipe = new JMenuItem("Добавить рецепт");
+		JMenuItem addRecipe = new JMenuItem("Add recipe");
 		addRecipe.setFont(font);
 		fileMenu.add(addRecipe);
 		addRecipe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddRecipeForm.create(dbDriver);
+				AddRecipeForm.create();
 			}
 		});
 		
-		JMenuItem myRecipe = new JMenuItem("Мои рецепты");
+		JMenuItem myRecipe = new JMenuItem("Recipe-book");
 		myRecipe.setFont(font);
 		myRecipe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ShowRecipe.create(dbDriver, "My Recipe");
+				ShowRecipe.create("Recipe-booke",dbDriver.getAll());
 			}
 		});
 		fileMenu.add(myRecipe);
 
 		fileMenu.addSeparator();
 
-		JMenuItem exitItem = new JMenuItem("Выход");
+		JMenuItem exitItem = new JMenuItem("Exit");
 		exitItem.setFont(font);
 		exitItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -111,7 +115,7 @@ public class MainForm extends JFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Result.create(dbDriver);
+				Result.create(new Sorter(Utils.makeList(textField.getText())));
 			}
 		});
 		btnNewButton.setBounds(120, 67, 216, 23);

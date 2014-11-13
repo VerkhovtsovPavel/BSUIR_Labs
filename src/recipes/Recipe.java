@@ -1,6 +1,7 @@
 package recipes;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Recipe {
 	private String name;
@@ -37,6 +38,7 @@ public class Recipe {
 
 	private void setIngredients(ArrayList<String> ingredients) {
 		this.ingredients = ingredients;
+		Collections.sort(this.ingredients);
 	}
 
 	public String getRecipe() {

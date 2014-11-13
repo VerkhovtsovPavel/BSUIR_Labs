@@ -9,7 +9,8 @@ import java.util.HashMap;
 
 public class Utils {
 
-	public static ArrayList<String> makeList(String[] strings) {
+	public static ArrayList<String> makeList(String string) {
+		String[] strings = string.split("[,+ +]+");
 		ArrayList<String> result = new ArrayList<String>();
 		for (int i = 0; i < strings.length; i++) {
 			result.add(strings[i]);

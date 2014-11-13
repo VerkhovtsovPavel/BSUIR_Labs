@@ -2,15 +2,19 @@ package ui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-import driver.DataBaseDriver;
+import algorithms.Sorter;
 
 public class Result extends JFrame {
 
 	private static final long serialVersionUID = 6946609135675030780L;
-	private static DataBaseDriver dbDriver;
+	private static Sorter sorter;
 
 	public Result() {
 		configureDefaultLayot();
@@ -19,12 +23,12 @@ public class Result extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void create(DataBaseDriver dbUtils) {
-		dbDriver=dbUtils;
+	public static void create(Sorter sorter) {
+		Result.sorter = sorter;
 		initialaze();
 	}
-	
-	private static void initialaze(){
+
+	private static void initialaze() {
 		Result frame = new Result();
 		frame.setSize(465, 140);
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -36,8 +40,40 @@ public class Result extends JFrame {
 
 	private void configureDefaultLayot() {
 		setResizable(false);
-		setTitle("\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u044B \u043F\u043E\u0438\u0441\u043A\u0430");
+		setTitle("Result");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		JPanel mainPanel = new JPanel();
+		setContentPane(mainPanel);
+		mainPanel.setLayout(null);
+		JButton bestFitRecipeBtn = new JButton("Best fit recipes");
+		bestFitRecipeBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ShowRecipe.create("Best fit recipes", sorter.getFirstGeneration());
+			}
+		});
+		bestFitRecipeBtn.setBounds(25, 11, 216, 23);
+		mainPanel.add(bestFitRecipeBtn);
+
+		JButton suitableRecipesBtn = new JButton("Suitable recipes");
+		suitableRecipesBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ShowRecipe.create("Suitable recipes", sorter.getSecondGeneration());
+			}
+		});
+		suitableRecipesBtn.setBounds(25, 51, 216, 23);
+		mainPanel.add(suitableRecipesBtn);
+
+		JButton recipesContainingIngredientsBtn = new JButton("Recipes containing ingredients");
+		recipesContainingIngredientsBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ShowRecipe.create("Recipes containing ingredients", sorter.getThirdGenerartion());
+			}
+		});
+		recipesContainingIngredientsBtn.setBounds(25, 94, 216, 23);
+		mainPanel.add(recipesContainingIngredientsBtn);
 	}
 
 }

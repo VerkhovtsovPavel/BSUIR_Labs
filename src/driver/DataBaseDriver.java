@@ -27,13 +27,20 @@ public class DataBaseDriver {
 		}
 		return instanse;
 	}
-	
-	public DataBaseDriver(String dbName, String collectionName){
-		this.connection(dbName, collectionName);
-	}
 
 	private DataBaseDriver(HashMap<String, String> configFromFile) {
-		// TODO Auto-generated constructor stub
+		this.connection(configFromFile.get("dbname"), configFromFile.get("collectionname"), configFromFile.get("url"),configFromFile.get("port"));
+	}
+	
+	private void connection(String dbName, String collectionName, String url, String port) {
+		try {
+			mongo = new MongoClient(url, Integer.valueOf(port));
+			db = mongo.getDB(dbName);
+			collection = db.getCollection(collectionName);
+		} catch (UnknownHostException e) {
+			System.out.println("Error when connecting to the database");
+		}
+
 	}
 
 	public void insert(Recipe recipe) {
@@ -85,17 +92,6 @@ public class DataBaseDriver {
 		return convertCursorToArrayList(result);
 	}
 	
-	private void connection(String dbName, String collectionName) {
-		try {
-			mongo = new MongoClient("localhost", 27017);
-			db = mongo.getDB(dbName);
-			collection = db.getCollection(collectionName);
-		} catch (UnknownHostException e) {
-			System.out.println("Error when connecting to the database");
-		}
-
-	}
-	
 	private void printResult(ArrayList<Recipe> searchResult){
 		for(Recipe recipe: searchResult){
 			System.out.println(recipe);
@@ -105,7 +101,6 @@ public class DataBaseDriver {
 	@SuppressWarnings("unchecked")
 	public ArrayList<Recipe> convertCursorToArrayList(DBCursor cursor){
 		ArrayList<Recipe> result = new ArrayList<Recipe>();
-		//TODO Real implementation
 		try {
 			while (cursor.hasNext()) {
 				DBObject currentObject = cursor.next();

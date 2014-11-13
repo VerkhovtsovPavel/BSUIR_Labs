@@ -40,8 +40,8 @@ public class AddRecipeForm extends JFrame {
 		frame.setVisible(true);
 	}
 
-	public static void create(DataBaseDriver dbUtils) {
-		dbDriver = dbUtils;
+	public static void create() {
+		dbDriver = DataBaseDriver.getInstanse();
 		initialaze();
 	}
 
@@ -94,8 +94,7 @@ public class AddRecipeForm extends JFrame {
 				int time = verifyFields(name, timeRequired, ingredientsList, recipe);
 
 				if (time != 0) {
-					String[] ingredients = ingredientsList.split("[,+ +]+");
-					dbDriver.insert(new Recipe(name, time, makeList(ingredients), recipe));
+					dbDriver.insert(new Recipe(name, time, makeList(ingredientsList), recipe));
 					cleanFields();
 				}
 			}
