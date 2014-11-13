@@ -19,10 +19,7 @@ public class Result extends JFrame {
 	public Result() {
 		configureDefaultLayot();
 	}
-
-	/**
-	 * Launch the application.
-	 */
+//TODO Disable buttons if lists empty
 	public static void create(Sorter sorter) {
 		Result.sorter = sorter;
 		initialaze();
@@ -30,7 +27,7 @@ public class Result extends JFrame {
 
 	private static void initialaze() {
 		Result frame = new Result();
-		frame.setSize(465, 140);
+		frame.setSize(280, 170);
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
 		int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);

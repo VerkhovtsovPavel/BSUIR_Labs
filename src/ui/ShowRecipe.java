@@ -155,7 +155,7 @@ public class ShowRecipe extends JFrame {
 	private static void showAll() {
 		progressBar.setMaximum(allRecipe.size());
 		if (allRecipe.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "У вас еще нет рецептов", "Ошибка", JOptionPane.CLOSED_OPTION);
+			JOptionPane.showMessageDialog(null, "Recipe list is empty", "Warning", JOptionPane.CLOSED_OPTION);
 			frame.dispose();
 		} else {
 			showCurrentRecipe();

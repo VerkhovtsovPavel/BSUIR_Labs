@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import recipes.Recipe;
+import utils.Utils;
 import driver.DataBaseDriver;
 
 public class Sorter {
@@ -17,7 +18,9 @@ public class Sorter {
 
 	public Sorter(ArrayList<String> request) {
 		this.setRequest(request);
-		allFoundRicepe = DataBaseDriver.getInstanse().findByIngredients(request);
+		allFoundRicepe = DataBaseDriver.getInstanse()
+				.findByIngredients(request);
+		createGenerations();
 
 	}
 
@@ -26,7 +29,6 @@ public class Sorter {
 		Collections.sort(this.request);
 	}
 
-	@SuppressWarnings("unused")
 	private void createGenerations() {
 		initialazeGeneration();
 		createFirstGeneration();
@@ -36,7 +38,9 @@ public class Sorter {
 
 	@SuppressWarnings("unchecked")
 	private void createSecondGeration() {
-		ArrayList<Recipe> templateRecipe = (ArrayList<Recipe>) thirdGenerartion.clone();
+
+		ArrayList<Recipe> templateRecipe = (ArrayList<Recipe>) Utils
+				.deepCloning(thirdGenerartion);
 
 		for (Recipe recipe : templateRecipe) {
 			for (String ingredient : request) {
@@ -61,10 +65,10 @@ public class Sorter {
 	}
 
 	private void createFirstGeneration() {
-		for (Recipe recipe : thirdGenerartion) {
-			if (request.contains(recipe.getIngredients())) {
-				firstGeneration.add(recipe);
-				thirdGenerartion.remove(recipe);
+		for (int i = 0; i < thirdGenerartion.size(); i++) {
+			if (request.containsAll(thirdGenerartion.get(i).getIngredients())) {
+				firstGeneration.add(thirdGenerartion.get(i));
+				thirdGenerartion.remove(i);
 			}
 		}
 	}

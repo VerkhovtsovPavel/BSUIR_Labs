@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import com.rits.cloning.Cloner;
 
 public class Utils {
 
@@ -42,5 +43,10 @@ public class Utils {
 			System.out.println("Error while read file "+file.getAbsolutePath());
 		}
 		return result;
+	}
+	
+	public static Object deepCloning(Object source){
+		Cloner cloner=new Cloner();
+		return cloner.deepClone(source);
 	}
 }
