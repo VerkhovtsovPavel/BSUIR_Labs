@@ -20,7 +20,7 @@ import javax.swing.ScrollPaneConstants;
 import recipes.Recipe;
 import driver.DataBaseDriver;
 
-public class MyRecipe extends JFrame {
+public class ShowRecipe extends JFrame {
 
 	private static final long serialVersionUID = 2377892044773977952L;
 	private static DataBaseDriver dbDriver;
@@ -38,20 +38,20 @@ public class MyRecipe extends JFrame {
 	private static JButton nextRecipe;
 	private static JButton prevRecipe;
 	private static JProgressBar progressBar;
-	private static MyRecipe frame;
+	private static ShowRecipe frame;
 
-	public MyRecipe() {
-		configureDefaultLayot();
+	public ShowRecipe(String title) {
+		configureDefaultLayot(title);
 	}
 
-	public static void create(DataBaseDriver dbUtils) {
+	public static void create(DataBaseDriver dbUtils, String title) {
 		dbDriver = dbUtils;
-		initialaze();
+		initialaze(title);
 		showAll();
 	}
 
-	private static void initialaze() {
-		frame = new MyRecipe();
+	private static void initialaze(String title) {
+		frame = new ShowRecipe(title);
 		frame.setSize(480, 500);
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
@@ -60,9 +60,9 @@ public class MyRecipe extends JFrame {
 		frame.setVisible(true);
 	}
 
-	private void configureDefaultLayot() {
+	private void configureDefaultLayot(String title) {
 		setResizable(false);
-		setTitle("\u041C\u043E\u0438 \u0440\u0435\u0446\u0435\u043F\u0442\u044B");
+		setTitle(title);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		mainPanel = new JPanel();
 		setContentPane(mainPanel);
@@ -151,7 +151,7 @@ public class MyRecipe extends JFrame {
 	}
 
 	private static void showAll() {
-		allRecipe = dbDriver.convertCursorToArrayList(dbDriver.getAll());
+		allRecipe = dbDriver.getAll();
 		progressBar.setMaximum(allRecipe.size());
 		if (allRecipe.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "У вас еще нет рецептов",

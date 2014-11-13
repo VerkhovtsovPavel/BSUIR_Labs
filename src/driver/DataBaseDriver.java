@@ -2,8 +2,10 @@ package driver;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import recipes.Recipe;
+import utils.Utils;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -13,12 +15,25 @@ import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 
 public class DataBaseDriver {
+	private static DataBaseDriver instanse;
 	private MongoClient mongo;
 	private DB db;
 	private DBCollection collection;
 	
+	
+	public static DataBaseDriver getInstanse(){
+		if (instanse==null){
+			instanse=new DataBaseDriver(Utils.getConfigFromFile());
+		}
+		return instanse;
+	}
+	
 	public DataBaseDriver(String dbName, String collectionName){
 		this.connection(dbName, collectionName);
+	}
+
+	private DataBaseDriver(HashMap<String, String> configFromFile) {
+		// TODO Auto-generated constructor stub
 	}
 
 	public void insert(Recipe recipe) {
@@ -30,6 +45,8 @@ public class DataBaseDriver {
 		collection.insert(document);
 	}
 	
+	
+	
 	public void cleanDB(){
 		collection.drop();
 	}
@@ -38,34 +55,34 @@ public class DataBaseDriver {
 		printResult(getAll());
 	}
 	
-	public DBCursor getAll(){
+	public ArrayList<Recipe> getAll(){
 		System.out.println("All date:");
 		DBCursor allData = collection.find();
 		
-		return allData;
+		return convertCursorToArrayList(allData);
 	}
 
-	public void findByRecipeName(String recipeName){
+	public ArrayList<Recipe> findByRecipeName(String recipeName){
 		System.out.println("Recipe with name: "+recipeName);
 		BasicDBObject whereQuery = new BasicDBObject();
 		whereQuery.put("name", recipeName);
 		DBCursor cursor = collection.find(whereQuery);
-		printResult(cursor);
+		return convertCursorToArrayList(cursor);
 	}
 	
-	public void findByIngredients(ArrayList<String> ingredients){
+	public ArrayList<Recipe> findByIngredients(ArrayList<String> ingredients){
 		BasicDBObject inQuery = new BasicDBObject();
 		inQuery.put("ingredients", new BasicDBObject("$in", ingredients));
-		DBCursor cursor4 = collection.find(inQuery);
-		printResult(cursor4);
+		DBCursor result = collection.find(inQuery);
+		return convertCursorToArrayList(result);
 	}
 	
-	public void findByTimeRequired(int maxTime){
+	public ArrayList<Recipe> findByTimeRequired(int maxTime){
 		System.out.println("Recipe with time required less: "+String.valueOf(maxTime));
-		BasicDBObject gtQuery = new BasicDBObject();
-		gtQuery.put("time required", new BasicDBObject("$lt", maxTime));
-		DBCursor cursor = collection.find(gtQuery);
-		printResult(cursor);
+		BasicDBObject timeQuery = new BasicDBObject();
+		timeQuery.put("time required", new BasicDBObject("$lt", maxTime));
+		DBCursor result = collection.find(timeQuery);
+		return convertCursorToArrayList(result);
 	}
 	
 	private void connection(String dbName, String collectionName) {
@@ -79,13 +96,9 @@ public class DataBaseDriver {
 
 	}
 	
-	private void printResult(DBCursor searchResult){
-		try {
-			while (searchResult.hasNext()) {
-				System.out.println(searchResult.next());
-			}
-		} finally {
-			searchResult.close();
+	private void printResult(ArrayList<Recipe> searchResult){
+		for(Recipe recipe: searchResult){
+			System.out.println(recipe);
 		}
 	}
 	
