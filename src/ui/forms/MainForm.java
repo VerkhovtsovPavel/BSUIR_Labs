@@ -1,10 +1,12 @@
-package ui;
+package ui.forms;
 
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,12 +18,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import utils.Utils;
-
 import algorithms.Sorter;
-
 import driver.DataBaseDriver;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 
 public class MainForm extends JFrame {
@@ -60,7 +58,7 @@ public class MainForm extends JFrame {
 	private static void createMenu(JFrame frame) {
 		menuBar = new JMenuBar();
 		Font font = new Font("Verdana", Font.PLAIN, 11);
-		JMenu fileMenu = new JMenu("Файл");
+		JMenu fileMenu = new JMenu("File");
 		fileMenu.setFont(font);
 
 		JMenuItem addRecipe = new JMenuItem("Add recipe");
@@ -105,13 +103,13 @@ public class MainForm extends JFrame {
 
 	private void configureDefaultLayot() {
 		setResizable(false);
-		setTitle("ЯВижуСыр");
+		setTitle("ISeeChease");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainPanel = new JPanel();
 		setContentPane(mainPanel);
 		mainPanel.setLayout(null);
 
-		JButton btnNewButton = new JButton("\u041F\u043E\u0434\u043E\u0431\u0440\u0430\u0442\u044C \u0440\u0435\u0446\u0435\u043F\u0442");
+		JButton btnNewButton = new JButton("Find recipes");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -126,7 +124,7 @@ public class MainForm extends JFrame {
 		mainPanel.add(textField);
 		textField.setColumns(10);
 
-		JLabel label = new JLabel("\u0421\u043F\u0438\u0441\u043E\u043A \u043F\u0440\u043E\u0434\u0443\u043A\u0442\u043E\u0432");
+		JLabel label = new JLabel("Ingredients list");
 		label.setBounds(28, 11, 135, 14);
 		mainPanel.add(label);
 	}

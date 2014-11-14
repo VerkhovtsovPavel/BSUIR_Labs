@@ -1,4 +1,4 @@
-package ui;
+package ui.forms;
 
 import static utils.Utils.makeList;
 
