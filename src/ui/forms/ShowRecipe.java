@@ -19,6 +19,8 @@ import javax.swing.ScrollPaneConstants;
 
 import recipes.Recipe;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ShowRecipe extends JFrame {
 
@@ -36,6 +38,7 @@ public class ShowRecipe extends JFrame {
 	private static JTextField textField;
 	private static JButton nextRecipe;
 	private static JButton prevRecipe;
+	private static JButton buildGraphBtn;
 	private static JProgressBar progressBar;
 	private static ShowRecipe frame;
 
@@ -51,7 +54,7 @@ public class ShowRecipe extends JFrame {
 
 	private static void initialaze(String title) {
 		frame = new ShowRecipe(title);
-		frame.setSize(480, 500);
+		frame.setSize(480, 525);
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
 		int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
@@ -67,13 +70,13 @@ public class ShowRecipe extends JFrame {
 		setContentPane(mainPanel);
 		mainPanel.setLayout(null);
 
-		JLabel label_4 = new JLabel("Рецепт №");
-		label_4.setBounds(126, 23, 85, 14);
-		mainPanel.add(label_4);
+		JLabel recipeNumber = new JLabel("Recipe №");
+		recipeNumber.setBounds(126, 23, 85, 14);
+		mainPanel.add(recipeNumber);
 
 		textField = new JTextField();
-		textField.setBackground(Color.WHITE);
 		textField.setEditable(false);
+		textField.setBackground(Color.WHITE);
 		textField.setBounds(221, 20, 31, 20);
 		mainPanel.add(textField);
 		textField.setColumns(10);
@@ -85,11 +88,11 @@ public class ShowRecipe extends JFrame {
 		mainPanel.add(ingredientsField);
 		ingredientsField.setColumns(10);
 
-		JLabel label = new JLabel("\u0421\u043F\u0438\u0441\u043E\u043A \u0438\u043D\u0433\u0440\u0435\u0434\u0438\u0435\u043D\u0442\u043E\u0432");
-		label.setBounds(25, 189, 187, 14);
-		mainPanel.add(label);
+		JLabel ingredientListLbl = new JLabel("Ingredient list");
+		ingredientListLbl.setBounds(25, 189, 187, 14);
+		mainPanel.add(ingredientListLbl);
 
-		JLabel label_1 = new JLabel("\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435");
+		JLabel label_1 = new JLabel("Title");
 		label_1.setBounds(25, 51, 148, 14);
 		mainPanel.add(label_1);
 
@@ -100,9 +103,9 @@ public class ShowRecipe extends JFrame {
 		nameField.setBounds(25, 76, 421, 20);
 		mainPanel.add(nameField);
 
-		JLabel label_2 = new JLabel("\u041D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E\u0435 \u0432\u0440\u0435\u043C\u044F");
-		label_2.setBounds(25, 123, 148, 14);
-		mainPanel.add(label_2);
+		JLabel timeRequiredLbl = new JLabel("Time required");
+		timeRequiredLbl.setBounds(25, 123, 148, 14);
+		mainPanel.add(timeRequiredLbl);
 
 		timeRequiredField = new JTextField();
 		timeRequiredField.setBackground(Color.WHITE);
@@ -111,9 +114,9 @@ public class ShowRecipe extends JFrame {
 		timeRequiredField.setBounds(25, 148, 421, 20);
 		mainPanel.add(timeRequiredField);
 
-		JLabel label_3 = new JLabel("\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435");
-		label_3.setBounds(25, 256, 148, 14);
-		mainPanel.add(label_3);
+		JLabel descriptionLbl = new JLabel("Description");
+		descriptionLbl.setBounds(25, 256, 148, 14);
+		mainPanel.add(descriptionLbl);
 
 		recipeArea = new JTextArea();
 		recipeArea.setEditable(false);
@@ -150,6 +153,16 @@ public class ShowRecipe extends JFrame {
 		progressBar = new JProgressBar();
 		progressBar.setBounds(25, 430, 421, 14);
 		mainPanel.add(progressBar);
+		
+		buildGraphBtn = new JButton("Build graph");
+		buildGraphBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Graph.create();
+			}
+		});
+		buildGraphBtn.setBounds(182, 456, 117, 25);
+		mainPanel.add(buildGraphBtn);
 	}
 
 	private static void showAll() {

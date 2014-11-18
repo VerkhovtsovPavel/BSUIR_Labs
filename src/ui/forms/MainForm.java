@@ -74,7 +74,7 @@ public class MainForm extends JFrame {
 		myRecipe.setFont(font);
 		myRecipe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ShowRecipe.create("Recipe-booke",dbDriver.getAll());
+				ShowRecipe.create("Recipe-book",dbDriver.getAll());
 			}
 		});
 		fileMenu.add(myRecipe);

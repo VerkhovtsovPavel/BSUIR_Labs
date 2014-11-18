@@ -12,7 +12,7 @@ public class Graph extends JFrame {
 		configureDefaultLayot();
 	}
 
-	public static void main(String[] args) {
+	public static void create() {
 
 		Graph frame = new Graph();
 		frame.setSize(465, 140);
@@ -26,7 +26,7 @@ public class Graph extends JFrame {
 
 	private void configureDefaultLayot() {
 		setResizable(false);
-		setTitle("\u0413\u0440\u0430\u0444");
+		setTitle("Graph");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
