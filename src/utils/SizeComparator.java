@@ -7,6 +7,6 @@ public class SizeComparator implements Comparator<PlotterSupporter> {
 
 	@Override
 	public int compare(PlotterSupporter firstPlotterSupporter, PlotterSupporter secondPlotterSupporter) {
-		return secondPlotterSupporter.getIngredients().size() - firstPlotterSupporter.getIngredients().size();
+		return firstPlotterSupporter.getIngredients().size() - secondPlotterSupporter.getIngredients().size();
 	}
 }

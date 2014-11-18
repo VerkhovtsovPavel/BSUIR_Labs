@@ -9,7 +9,7 @@ public class PlotterSupporter {
 	private ArrayList<String> ingredients;
 	private String recipeName;
 	private int recipeNumber;
-	private HashMap<ArrayList<Integer>, Integer> ways;
+	private HashMap<ArrayList<String>, Integer> ways;
 
 
 	public PlotterSupporter(String recipeName, ArrayList<String> ingredients, int recipeNumber) {
@@ -19,6 +19,10 @@ public class PlotterSupporter {
 		ways = new HashMap<>();
 	}
 
+	public int getRecipeNumber(){
+		return recipeNumber;
+	}
+	
 	public ArrayList<String> getIngredients() {
 		return ingredients;
 	}
@@ -32,7 +36,7 @@ public class PlotterSupporter {
 		return recipeName;
 	}
 	
-	public HashMap<ArrayList<Integer>, Integer> getWayMap(){
+	public HashMap<ArrayList<String>, Integer> getWayMap(){
 		return ways;
 	}
 	

@@ -55,13 +55,13 @@ public class AddRecipeForm extends JFrame {
 	private int verifyFields(String name, String timeRequired, String ingredientsList, String recipe) {
 		int time = 0;
 		if (name.isEmpty() || timeRequired.isEmpty() || ingredientsList.isEmpty() || recipe.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Заполнены не все поля", "Ошибка", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Not all fields filled", "Error", JOptionPane.PLAIN_MESSAGE);
 		} else {
 
 			try {
 				time = Integer.valueOf(timeRequired);
 			} catch (Exception e1) {
-				JOptionPane.showMessageDialog(null, "Значение в поле \"Необходимое время\" не является числом", "Ошибка", JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Value in field \"Time required\" is not number", "Error", JOptionPane.PLAIN_MESSAGE);
 			}
 		}
 		return time;
@@ -107,31 +107,31 @@ public class AddRecipeForm extends JFrame {
 		mainPanel.add(ingredientsField);
 		ingredientsField.setColumns(10);
 
-		JLabel label = new JLabel("\u0421\u043F\u0438\u0441\u043E\u043A \u0438\u043D\u0433\u0440\u0435\u0434\u0438\u0435\u043D\u0442\u043E\u0432");
-		label.setBounds(27, 149, 187, 14);
-		mainPanel.add(label);
+		JLabel lblIngredientList = new JLabel("ingredient List");
+		lblIngredientList.setBounds(27, 149, 187, 14);
+		mainPanel.add(lblIngredientList);
 
-		JLabel label_1 = new JLabel("\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435");
-		label_1.setBounds(27, 11, 148, 14);
-		mainPanel.add(label_1);
+		JLabel titleLbl = new JLabel("Title");
+		titleLbl.setBounds(27, 11, 148, 14);
+		mainPanel.add(titleLbl);
 
 		nameField = new JTextField();
 		nameField.setColumns(10);
 		nameField.setBounds(27, 36, 421, 20);
 		mainPanel.add(nameField);
 
-		JLabel label_2 = new JLabel("\u041D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E\u0435 \u0432\u0440\u0435\u043C\u044F");
-		label_2.setBounds(27, 83, 148, 14);
-		mainPanel.add(label_2);
+		JLabel lblTimeReq = new JLabel("Time required");
+		lblTimeReq.setBounds(27, 83, 148, 14);
+		mainPanel.add(lblTimeReq);
 
 		timeRequiredField = new JTextField();
 		timeRequiredField.setColumns(10);
 		timeRequiredField.setBounds(27, 108, 421, 20);
 		mainPanel.add(timeRequiredField);
 
-		JLabel label_3 = new JLabel("\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435");
-		label_3.setBounds(27, 216, 148, 14);
-		mainPanel.add(label_3);
+		JLabel lblDescription = new JLabel("Description");
+		lblDescription.setBounds(27, 216, 148, 14);
+		mainPanel.add(lblDescription);
 
 		recipeArea = new JTextArea();
 		recipeArea.setBounds(27, 241, 421, 100);

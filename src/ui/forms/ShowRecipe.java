@@ -17,6 +17,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
+import algorithms.Plotter;
+
 import recipes.Recipe;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
@@ -158,7 +160,8 @@ public class ShowRecipe extends JFrame {
 		buildGraphBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Graph.create();
+				Plotter plotter = new Plotter(allRecipe, allRecipe.get(currentRecipe));
+				Graph.create(plotter);
 			}
 		});
 		buildGraphBtn.setBounds(182, 456, 117, 25);
