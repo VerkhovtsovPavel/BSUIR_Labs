@@ -10,7 +10,8 @@ public class Main {
 	double[][] StudySample = new double[4][2];
 	double[] TestSample = new double[2];
 	int IterCount;
-	double minX, maxX, minY, maxY, ComX, ComY, shx, shy, it, jt, previt, prevjt;
+	double minX, maxX, minY, maxY, ComX, ComY, shx, shy, it, jt, previt,
+			prevjt;
 
 	private Scanner in = new Scanner(System.in);
 
@@ -23,6 +24,7 @@ public class Main {
 		for (i = 0; i < 4; i++) {
 			WeightFactors[i] = 0;
 		}
+		
 		System.out.println("Enter study points");
 		StudySample[0][0] = in.nextInt();
 		StudySample[0][1] = in.nextInt();
@@ -47,7 +49,8 @@ public class Main {
 				CurW[0] = WeightFactors[0];
 				CurW[1] = WeightFactors[1] * StudySample[i + 1][0];
 				CurW[2] = WeightFactors[2] * StudySample[i + 1][1];
-				CurW[3] = WeightFactors[3] * StudySample[i + 1][0] * StudySample[i + 1][1];
+				CurW[3] = WeightFactors[3] * StudySample[i + 1][0]
+						* StudySample[i + 1][1];
 				cks = 0;
 				for (int k = 0; k < 4; k++)
 					cks = cks + CurW[k];
@@ -55,25 +58,26 @@ public class Main {
 				tmp[0] = 4 * StudySample[i + 1][0];
 				tmp[0] = 4 * StudySample[i + 1][1];
 				tmp[0] = 16 * StudySample[i + 1][0] * StudySample[i + 1][1];
-				if ((i + 1 <= 3/*???*/) && (cks < 0/*???*/)) {
+				if ((i + 1 <= 3/* ??? */) && (cks < 0/* ??? */)) {
 					fnd = true;
 					for (int j = 0; j < 4; j++)
 						WeightFactors[j] = WeightFactors[j] + tmp[j];
-				} else if ((i + 1 > 1/*???*/) && (cks > 0/*???*/)) {
+				} else if ((i + 1 > 1/* ??? */) && (cks > 0/* ??? */)) {
 					fnd = true;
 					for (int j = 0; j < 4; j++)
 						WeightFactors[j] = WeightFactors[j] - tmp[j];
 				}
 				;
-				if (i < 3/*???*/)
+				if (i < 3/* ??? */)
 					i++;
 				else
 					i = 0;
-			} while (i == 1);/*???*/
+			} while (i == 1);/* ??? */
 			IterCount++;
 		} while ((!fnd) || (IterCount == 50));
-		if ((cks <= 0) || (IterCount > 49)) {/*???*/
-			System.out.println("With this training set build a separating function impossible");
+		if ((cks <= 0) || (IterCount > 49)) {/* ??? */
+			System.out
+					.println("With this training set build a separating function impossible");
 		}
 		// else
 		{
@@ -98,7 +102,7 @@ public class Main {
 			minY = minY - 3;
 			ComX = 545 / (maxX - minX);
 			ComY = 369 / (maxY - minY);
-			// Draw some
+			// Draw some (axes maybe)
 			/*
 			 * PaintBox1.Canvas.Pen.Color=clBlue;
 			 * PaintBox1.Canvas.MoveTo(0,370-Round(-comy*minY));
@@ -110,36 +114,45 @@ public class Main {
 			 */
 			it = minX;
 			if ((WeightFactors[2] != 0) || (WeightFactors[3] != 0))
-				jt = -(WeightFactors[0] + WeightFactors[1] * it) / (WeightFactors[2] + WeightFactors[3] * it);
+				jt = -(WeightFactors[0] + WeightFactors[1] * it)
+						/ (WeightFactors[2] + WeightFactors[3] * it);
 			else
 				jt = -(WeightFactors[0] + WeightFactors[1] * it);
 			/*
 			 * PaintBox1.Canvas.MoveTo(Round((it-minX)*ComX),370-Round((jt-minY)*
 			 * ComY));
+			 * Point lineStart = new Point((int)(it-minX)*ComX),370-(int)((jt-minY)*
+			 * ComY)));
 			 */
 			while (it <= maxX) {
 				if (WeightFactors[3] != 0) {
 					if (it != -WeightFactors[2] / WeightFactors[3]) {
 						if ((WeightFactors[2] != 0) && (WeightFactors[3] != 0))
-							jt = -(WeightFactors[0] + WeightFactors[1] * it) / (WeightFactors[2] + WeightFactors[3] * it);
+							jt = -(WeightFactors[0] + WeightFactors[1] * it)
+									/ (WeightFactors[2] + WeightFactors[3] * it);
 						else
 							jt = -(WeightFactors[0] + WeightFactors[1] * it);
 					}
 				} else if (WeightFactors[2] != 0)
-					jt = -(WeightFactors[0] + WeightFactors[1] * it) / (WeightFactors[2] + WeightFactors[3] * it);
+					jt = -(WeightFactors[0] + WeightFactors[1] * it)
+							/ (WeightFactors[2] + WeightFactors[3] * it);
 				else
 					jt = -(WeightFactors[0] + WeightFactors[1] * it);
 				/*
 				 * if ((jt<=maxY)&&(jt>=minY))
 				 * PaintBox1.Canvas.LineTo(Round((it-
-				 * minX)*ComX),370-Round((jt-minY)*ComY)); else
+				 * minX)*ComX),370-Round((jt-minY)*ComY));
+				 * drawLine(startPoint.x, startPoint.y,(int)(it-
+				 * minX)*ComX), 370-(int)((jt-minY)*ComY))
+				 *  else
 				 * PaintBox1.Canvas.
 				 * MoveTo(Round((it-minX)*ComX),370-Round((jt-minY)*ComY));
+				 * startPoint = new Point((int) (it-minX)*ComX), 370-(int)((jt-minY)*ComY))
 				 */
 				it = it + 0.001;
 			}
-			;
-			if (WeightFactors[0] / WeightFactors[2] == WeightFactors[1] / WeightFactors[3]) {
+			if (WeightFactors[0] / WeightFactors[2] == WeightFactors[1]
+					/ WeightFactors[3]) {
 				/*
 				 * PaintBox1.Canvas.MoveTo(Round((-minX+WeightFactors[1]/
 				 * WeightFactors[3])*ComX),0);
@@ -147,7 +160,6 @@ public class Main {
 				 * +WeightFactors[1]/WeightFactors[3])*ComX),370);
 				 */
 			}
-			;
 			/*
 			 * PaintBox1.Canvas.Pen.Color=clGreen;
 			 * PaintBox1.Canvas.Brush.Color=clGreen;
@@ -192,15 +204,16 @@ public class Main {
 	private void Button2Click() {
 		double cks;
 		int i;
-		/*
-		 * TestSample[1]=StrToFloat(Edit9.Text);
-		 * TestSample[2]=StrToFloat(Edit10.Text);
-		 */
+		
+		TestSample[0] = in.nextInt();
+		TestSample[1] = in.nextInt();
+		
 		CurW[0] = WeightFactors[0];
 		CurW[0] = WeightFactors[1] * TestSample[0];
 		CurW[0] = WeightFactors[2] * TestSample[1];
 		CurW[0] = WeightFactors[3] * TestSample[0] * TestSample[1];
 		cks = 0;
+		
 		for (i = 0; i < 4; i++)
 			cks = cks + CurW[i];
 		if (cks <= 0) {
@@ -225,5 +238,4 @@ public class Main {
 		 * ((TestSample[1]-minY)*ComY)+3);
 		 */
 	}
-
 }
