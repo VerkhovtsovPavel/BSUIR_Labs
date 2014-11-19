@@ -1,17 +1,35 @@
 package metrics;
 
 public abstract class BaseMetrics {
-	private String sourceCode;
+	protected String sourceCode;
+	
+	private final String inLineCommentRegExp = "//.+";
+	private final String unixCommentRegExp = "#.*;";
+	private final String multiLineCommentRegExp = "\\/\\*[\\w\\W]*?\\*\\/";
 
 	public BaseMetrics(String sourceCode){
-		this.setSourceCode(sourceCode);
+		this.sourceCode = sourceCode;
 	}
 
 	public String getSourceCode() {
 		return sourceCode;
 	}
 
-	public void setSourceCode(String sourceCode) {
-		this.sourceCode = sourceCode;
+	protected void removeComments(){
+		removeUNIXComments();
+		removeInLineComments();
+		removeMultiLineComments();
+	}
+	
+	private void removeInLineComments() {
+		this.sourceCode=this.sourceCode.replaceAll(inLineCommentRegExp, "");
+	}
+
+	private void removeMultiLineComments() {
+		this.sourceCode=this.sourceCode.replaceAll(multiLineCommentRegExp, "");
+	}
+
+	private void removeUNIXComments(){
+		this.sourceCode=this.sourceCode.replaceAll(unixCommentRegExp, "");
 	}
 }

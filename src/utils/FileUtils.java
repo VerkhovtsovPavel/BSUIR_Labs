@@ -5,10 +5,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class FileUtils {
 
-	private static String readFromFile(String fileName){
+	public static String readFromFileToString(String fileName) {
 		File file = new File(fileName);
 		StringBuilder stringBuilder = new StringBuilder();
 		try {
@@ -19,31 +20,32 @@ public class FileUtils {
 					stringBuilder.append(lineFromFile);
 					stringBuilder.append("\n");
 				}
-			}finally{
+			} finally {
 				in.close();
 			}
-		
-		}catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return stringBuilder.toString();
-	 }
+	}
 
-	
-	private static void writeInFile(String text, String fileName){
+	public static ArrayList<String> readFromFileToList(String fileName) {
 		File file = new File(fileName);
-		try{
-			if(!file.exists()){
-	            file.createNewFile();
-	        }
-	        PrintWriter out = new PrintWriter(file.getAbsoluteFile());
-	        try {
-	            out.print(text);
-	        }finally {
-	            out.close();
-	        }
-	    } catch(IOException e) {
-	        throw new RuntimeException(e);
-	    }
+		ArrayList<String> result = new ArrayList<>();
+		try {
+			BufferedReader in = new BufferedReader(new FileReader(file.getAbsoluteFile()));
+			try {
+				String lineFromFile;
+				while ((lineFromFile = in.readLine()) != null) {
+					result.add(lineFromFile);
+				}
+			} finally {
+				in.close();
+			}
+
+		} catch (IOException e) {
+			System.out.println("Error while reading file " + file.getAbsolutePath());
+		}
+		return result;
 	}
 }
