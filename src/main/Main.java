@@ -2,24 +2,40 @@ package main;
 
 import graphics.GraphicsClass;
 
-import java.awt.Point;
+import java.awt.Color;
 import java.util.Scanner;
 
 public class Main {
 	double[] ErmithQuot = { 1, 4, 4, 16 };
-	double[] WeightFactors = new double[4];
-	double[] CurW = new double[4];
-	double[] tmp = new double[4];
-	double[][] StudySample = new double[4][2];
-	double[] TestSample = new double[2];
-	int IterCount;
-	double minX, maxX, minY, maxY, ComX, ComY, shx, shy, it, jt, previt, prevjt;
+	static double[] WeightFactors = new double[4];
+	static double[] CurW = new double[4];
+	static double[] tmp = new double[4];
+	static double[][] StudySample = new double[4][2];
+	static double[] TestSample = new double[2];
+	static int IterCount;
+	static double minX;
+	static double maxX;
+	static double minY;
+	static double maxY;
+	static double ComX;
+	static double ComY;
+	double shx;
+	double shy;
+	static double it;
+	static double jt;
+	double previt;
+	double prevjt;
 
-	private Scanner in = new Scanner(System.in);
+	private static Scanner in = new Scanner(System.in);
+	
+	
+	public static void main(String[] args){
+		calculateFunction();
+	}
 
-	private void Button1Click() {
+	private static void calculateFunction() {
 		int i;
-		boolean fnd, prox;
+		boolean fnd;
 		double cks;
 		String func;
 
@@ -27,11 +43,12 @@ public class Main {
 			WeightFactors[i] = 0;
 		}
 
-		System.out.println("Enter study points");
+		System.out.println("Enter study points of first class");
 		StudySample[0][0] = in.nextInt();
 		StudySample[0][1] = in.nextInt();
 		StudySample[1][0] = in.nextInt();
 		StudySample[1][1] = in.nextInt();
+		System.out.println("Enter study points of second class");
 		StudySample[2][0] = in.nextInt();
 		StudySample[2][1] = in.nextInt();
 		StudySample[3][0] = in.nextInt();
@@ -59,7 +76,7 @@ public class Main {
 				tmp[0] = 4 * StudySample[i + 1][0];
 				tmp[0] = 4 * StudySample[i + 1][1];
 				tmp[0] = 16 * StudySample[i + 1][0] * StudySample[i + 1][1];
-				if ((i + 1 <= 3/* ??? */) && (cks < 0/* ??? */)) {
+				if ((i + 1 <= 1/* ??? */) && (cks < 0/* ??? */)) {
 					fnd = true;
 					for (int j = 0; j < 4; j++)
 						WeightFactors[j] = WeightFactors[j] + tmp[j];
@@ -69,7 +86,7 @@ public class Main {
 						WeightFactors[j] = WeightFactors[j] - tmp[j];
 				}
 				;
-				if (i < 3/* ??? */)
+				if (i < 2/* ??? */)
 					i++;
 				else
 					i = 0;
@@ -109,7 +126,8 @@ public class Main {
 			else
 				jt = -(WeightFactors[0] + WeightFactors[1] * it);
 
-			GraphicsClass.graphicsInitialaze(WeightFactors, StudySample, i, cks, i, cks, cks, cks, i, cks);
+			GraphicsClass.graphicsInitialaze(WeightFactors, StudySample, minX, maxX, minY, maxY, ComX, ComY, it, jt);
+			GraphicsClass.buildGraph();
 			
 			func = "y=-(" + String.valueOf(WeightFactors[0]);
 			if (WeightFactors[1] >= 0)
@@ -127,9 +145,12 @@ public class Main {
 				func = func + "/(" + String.valueOf(WeightFactors[3]) + "x";
 			func = func + ')';
 		}
+		System.out.println(func);
+		
+		checkPoint();
 	}
 
-	private void Button2Click() {
+	private static void checkPoint() {
 		double cks;
 		int i;
 
@@ -145,25 +166,11 @@ public class Main {
 		for (i = 0; i < 4; i++)
 			cks = cks + CurW[i];
 		if (cks <= 0) {
-			/*
-			 * if (cks==0) Edit11.Text='Ãðàíèöà';
-			 */
-
-			/*
-			 * Edit11.Text='2'; PaintBox1.Canvas.Pen.Color=clRed;
-			 * PaintBox1.Canvas.Brush.Color=clRed;
-			 */
+			GraphicsClass.addPoint(Color.RED, (int)((TestSample[0]-minX)*ComX) , (int)((TestSample[1]-minY)*ComY));
+			System.out.println("Second class");
 		} else {
-			/*
-			 * Edit11.Text='1'; PaintBox1.Canvas.Pen.Color=clGreen;
-			 * PaintBox1.Canvas.Brush.Color=clGreen;
-			 */
+				GraphicsClass.addPoint(Color.GREEN, (int)((TestSample[0]-minX)*ComX) , (int)((TestSample[1]-minY)*ComY));
+			System.out.println("First class");
 		}
-		/*
-		 * PaintBox1.Canvas.Ellipse(Round((TestSample[0]-minX)*ComX)-3,370-Round(
-		 * (
-		 * TestSample[1]-minY)*ComY)-3,Round((TestSample[0]-minX)*ComX)+3,370-Round
-		 * ((TestSample[1]-minY)*ComY)+3);
-		 */
 	}
 }

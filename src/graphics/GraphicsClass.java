@@ -19,6 +19,7 @@ public class GraphicsClass extends JPanel {
 	private static double[] WeightFactors;
 	private static double minX, maxX, minY, maxY, ComX, ComY, it, jt;
 	private static double[][] StudySample;
+	private static Graphics graphics;
 
 	/**
 	 * Drawing form.
@@ -27,6 +28,7 @@ public class GraphicsClass extends JPanel {
 	 *            graphics object
 	 */
 	public void paint(final Graphics g) {
+		graphics=g;
 		axis(g);
 		someDraw(g);
 		g.setColor(Color.BLACK);
@@ -44,7 +46,14 @@ public class GraphicsClass extends JPanel {
 		GraphicsClass.it = it;
 		GraphicsClass.jt = jt;
 	}
+	
 
+	public static void addPoint(Color color,int x,int y){
+		graphics.setColor(color);
+		graphics.drawOval(x, y, 5, 5);
+	}
+	
+	
 	private static void someDraw(Graphics graphics) {
 		Point startPoint = new Point((int) ((it - minX) * ComX), (int) (screenSize - ((jt - minY) * ComY)));
 		while (it <= maxX) {
@@ -77,17 +86,12 @@ public class GraphicsClass extends JPanel {
 					(int) ((-minX + WeightFactors[1] / WeightFactors[3]) * ComX), 370);
 
 		}
-		graphics.setColor(Color.GREEN);
+	 	Color color =Color.GREEN;
 		for (int i = 0; i < 4; i++) {
 			if (i == 2) {
-				graphics.setColor(Color.RED);
+				color =Color.RED;
 			}
-			graphics.drawOval((int)((StudySample[i][0]-minX)*ComX)- 3, 370-(int)((StudySample[i][1]-minY)*ComY)-3, (int)((StudySample [i][0]-minX)*ComX)+3, 370-(int)((StudySample[i][1]-minY)*ComY)+ 3);
-			/*
-			 * PaintBox1.Canvas.Ellipse(Round((StudySample[i][0]-minX)*ComX)- 3
-			 * ,370-Round((StudySample[i][1]-minY)*ComY)-3,Round((StudySample [
-			 * i][0]-minX)*ComX)+3,370-Round((StudySample[i][1]-minY)*ComY)+ 3);
-			 */
+			addPoint(color, (int)((StudySample[i][0]-minX)*ComX), 370-(int)((StudySample[i][1]-minY)*ComY));
 		}
 	}
 
