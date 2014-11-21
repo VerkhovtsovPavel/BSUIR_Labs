@@ -10,7 +10,7 @@ public class CryptoTool {
 	private BaseGenerationAlgorithm keyGenerationMethod;
 	
 	public CryptoTool(String fileName, BaseGenerationAlgorithm generationMethod){
-		this.source = FileUtils.readFileInByteArray(fileName);
+		this.source = FileUtils.readFromFileInByteArray(fileName);
 		this.keyGenerationMethod = generationMethod;
 	}
 	

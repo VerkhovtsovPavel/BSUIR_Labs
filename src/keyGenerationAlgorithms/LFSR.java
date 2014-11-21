@@ -1,13 +1,12 @@
 package keyGenerationAlgorithms;
 
-import java.util.ArrayList;
 
 
 public class LFSR implements BaseGenerationAlgorithm{
-	private ArrayList<Integer> polinome;
+	private int[] polinome;
 	private int[] currentState;
 	
-	public LFSR(int[] startState, ArrayList<Integer> polinom){
+	public LFSR(int[] startState, int[] polinom){
 		this.currentState = startState;
 		this.polinome = polinom;
 	}
