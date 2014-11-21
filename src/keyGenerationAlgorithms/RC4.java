@@ -1,11 +1,11 @@
-package algorithmRC4;
+package keyGenerationAlgorithms;
 
-public class Encoder {
+public class RC4 {
 	private int[] key;
 	private int[] plainText;
 	private int[] sBlock = new int[256];
 
-	public Encoder(String text, String secretKey){
+	public RC4(String text, String secretKey){
 		this.key=convertToIntArray(secretKey);
 		this.plainText=convertToIntArray(text);
 		makeSBlock();
