@@ -1,5 +1,6 @@
 package ui.forms;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -17,12 +18,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
-import algorithms.Plotter;
-
 import recipes.Recipe;
-import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class ShowRecipe extends JFrame {
 
@@ -40,7 +36,7 @@ public class ShowRecipe extends JFrame {
 	private static JTextField textField;
 	private static JButton nextRecipe;
 	private static JButton prevRecipe;
-	private static JButton buildGraphBtn;
+	
 	private static JProgressBar progressBar;
 	private static ShowRecipe frame;
 
@@ -155,17 +151,6 @@ public class ShowRecipe extends JFrame {
 		progressBar = new JProgressBar();
 		progressBar.setBounds(25, 430, 421, 14);
 		mainPanel.add(progressBar);
-		
-		buildGraphBtn = new JButton("Build graph");
-		buildGraphBtn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Plotter plotter = new Plotter(allRecipe, allRecipe.get(currentRecipe));
-				Graph.create(plotter);
-			}
-		});
-		buildGraphBtn.setBounds(182, 456, 117, 25);
-		mainPanel.add(buildGraphBtn);
 	}
 
 	private static void showAll() {

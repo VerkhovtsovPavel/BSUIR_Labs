@@ -10,16 +10,4 @@ public class Main {
 		MainForm.create();
 	}
 }
-
-// ////////////////Graph element sample/////////////////////////
-/*
- * RoundButton temp = new RoundButton("Рецепт №1");
- * temp.setBounds(50,50,100,100); temp.setBackground(Color.white);
- * temp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ShowRecipe.create(new ArrayList<Recipe>(i));
-			}
-		});
- * mainPanel.add(temp);
- */
-// /////////////////////////////////////////////////////////////
+//TODO Add more searches
