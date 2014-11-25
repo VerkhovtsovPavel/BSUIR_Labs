@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,7 +21,6 @@ import javax.swing.JTextField;
 import utils.Utils;
 import algorithms.Sorter;
 import driver.DataBaseDriver;
-
 
 public class MainForm extends JFrame {
 	private static final long serialVersionUID = -7109709456008554142L;
@@ -36,8 +36,8 @@ public class MainForm extends JFrame {
 	public static void main(String[] args) {
 		initialaze();
 	}
-	
-	private static void initialaze(){
+
+	private static void initialaze() {
 		MainForm frame = new MainForm();
 		frame.setSize(465, 150);
 		createMenu(frame);
@@ -48,12 +48,11 @@ public class MainForm extends JFrame {
 		frame.setLocation(x, y);
 		frame.setVisible(true);
 	}
-	
-	public static void create(){
-		dbDriver=DataBaseDriver.getInstanse();
+
+	public static void create() {
+		dbDriver = DataBaseDriver.getInstanse();
 		initialaze();
 	}
-	
 
 	private static void createMenu(JFrame frame) {
 		menuBar = new JMenuBar();
@@ -69,15 +68,41 @@ public class MainForm extends JFrame {
 				AddRecipeForm.create();
 			}
 		});
-		
+
 		JMenuItem myRecipe = new JMenuItem("Recipe-book");
 		myRecipe.setFont(font);
 		myRecipe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ShowRecipe.create("Recipe-book",dbDriver.getAll());
+				ShowRecipe.create("Recipe-book", dbDriver.getAll());
 			}
 		});
 		fileMenu.add(myRecipe);
+
+		JMenu otherSearches = new JMenu("More searches");
+		otherSearches.setFont(font);
+		fileMenu.add(otherSearches);
+
+		ButtonGroup directionGroup = new ButtonGroup();
+
+		JMenuItem timeRequired = new JMenuItem("Time required");
+		timeRequired.setFont(font);
+		timeRequired.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ModalForm.create("Time required", true);
+			}
+		});
+		otherSearches.add(timeRequired);
+		directionGroup.add(timeRequired);
+
+		JMenuItem recipeName = new JMenuItem("Recipe name");
+		recipeName.setFont(font);
+		recipeName.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ModalForm.create("Recipe name", false);
+			}
+		});
+		otherSearches.add(recipeName);
+		directionGroup.add(recipeName);
 
 		fileMenu.addSeparator();
 
