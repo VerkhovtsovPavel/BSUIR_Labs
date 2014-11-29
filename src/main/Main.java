@@ -15,10 +15,5 @@ public class Main {
 	
 	public static void main(String[] args){
 		byte[] file = FileUtils.readFromFileInByteArray("text.txt");
-		/*String plainText = FileUtils.readFromFileInString(inputFile);
-		for (int i=0; i< plainText.length(); i++)
-			System.out.println((int) plainText.charAt(i));
-		//System.out.println(plainText);
-		FileUtils.writeInFile(plainText, outputFile);*/
 	}
 }

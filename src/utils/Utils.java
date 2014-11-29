@@ -8,7 +8,7 @@ public class Utils {
 		return true;
 	}
 	
-	public static Boolean bitVAlue(byte b, int bit)
+	public static Boolean bitValue(byte b, int bit)
 	{
 	    return (b & (1 << bit)) != 0;
 	}

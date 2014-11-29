@@ -1,11 +1,12 @@
 package main;
 
 import keyGenerationAlgorithms.BaseGenerationAlgorithm;
+import keyGenerationAlgorithms.RC4;
 import utils.FileUtils;
 
 public class CryptoTool {
 	private byte[] source;
-	private String crypto;
+	private int[] crypto;
 	private int currentSymbol;
 	private BaseGenerationAlgorithm keyGenerationMethod;
 	
@@ -16,14 +17,23 @@ public class CryptoTool {
 	
 	public void encoded(){
 		resetCurrentSymbol();
-		while(currentSymbol*8<source.length){
+		while(currentSymbol<source.length){
+			if (keyGenerationMethod instanceof RC4){
+				this.crypto[currentSymbol]=(byte) (source[currentSymbol]^keyGenerationMethod.generate());
+				currentSymbol++;
+			}
+			else{
+				for(int i=0; i<8; i++){
+					
+				}
+			}
 			
 		}
 	}
 	
 	public void decoded(){
 		resetCurrentSymbol();
-		while(currentSymbol*8<crypto.length()){
+		while(currentSymbol*8<crypto.length){
 			keyGenerationMethod.generate();
 		}
 	}
