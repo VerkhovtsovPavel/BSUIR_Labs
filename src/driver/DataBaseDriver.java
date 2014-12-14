@@ -56,9 +56,7 @@ public class DataBaseDriver {
 	}
 
 	public ArrayList<Recipe> getAll() {
-		System.out.println("All date:");
 		DBCursor allData = collection.find();
-
 		return convertCursorToArrayList(allData);
 	}
 

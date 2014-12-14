@@ -76,13 +76,13 @@ public class AddRecipeForm extends JFrame {
 
 	private void configureDefaultLayot() {
 		setResizable(false);
-		setTitle("\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u0440\u0435\u0446\u0435\u043F\u0442\u0430");
+		setTitle("Add recipe");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		mainPanel = new JPanel();
 		setContentPane(mainPanel);
 		mainPanel.setLayout(null);
 
-		JButton btnNewButton = new JButton("\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0440\u0435\u0446\u0435\u043F\u0442");
+		JButton btnNewButton = new JButton("Add recipe");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
