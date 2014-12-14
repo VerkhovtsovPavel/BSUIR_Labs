@@ -68,7 +68,7 @@ public class ShowRecipe extends JFrame {
 		setContentPane(mainPanel);
 		mainPanel.setLayout(null);
 
-		JLabel recipeNumber = new JLabel("Recipe №");
+		JLabel recipeNumber = new JLabel("Recipe #");
 		recipeNumber.setBounds(126, 23, 85, 14);
 		mainPanel.add(recipeNumber);
 
