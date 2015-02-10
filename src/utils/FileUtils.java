@@ -27,7 +27,11 @@ public class FileUtils {
 			} finally {
 				in.close();
 			}
-		} catch (IOException e) {
+		}
+		catch(NumberFormatException e){
+			System.out.println("After ':' not number");
+		}
+		catch (IOException e) {
 			System.out.println("Error while read file " + file.getAbsolutePath());
 		}
 		return result;
