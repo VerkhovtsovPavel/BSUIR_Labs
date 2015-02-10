@@ -6,7 +6,7 @@ import utils.StringUtils;
 
 public class Controller {
 
-	public Cave cave;
+	private Cave cave;
 
 	public Controller() {
 		this.cave = new Cave();
