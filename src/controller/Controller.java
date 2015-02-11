@@ -3,16 +3,27 @@ package controller;
 import utils.CollectionUtils;
 import utils.StringUtils;
 import data.Cave;
-
+/**
+ * Class routing requests from view layer to proper methods
+ * @author Pavel_Verkhovtsov
+ */
 public class Controller {
 
 	private Cave cave;
 
+	/**
+	 * Initialize list of dragon treasures.
+	 */
 	public Controller() {
 		this.cave = new Cave();
 	}
 
-	public String process(String choose) {
+	/**
+	 * Main method realize routing requests between methods.
+	 * @param choose Required action
+	 * @return Response
+	 */
+	public String process(final String choose) {
 		try {
 			String[] parseChoose = choose.split(":[\t ]*");
 			String request = parseChoose[0].trim();

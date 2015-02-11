@@ -2,18 +2,24 @@ package utils;
 
 import java.util.ArrayList;
 
-import data.Treasure;
-
-public class StringUtils {
+/**
+ * Class contains helpful methods for string.
+ * @author Pavel_Verkhovtsov
+ *
+ */
+public abstract class StringUtils {
 	// TODO Refactor use StringBuffer
-	public static String buildString(ArrayList<Treasure> treasures) {
-		String result = "";
-		for (Treasure treasure : treasures) {
-			result += treasure.toString() + "\n";
+	/**
+	 * Convert list to string
+	 * @param list list
+	 * @return string
+	 */
+	public static String buildString(final ArrayList<?> list) {
+		StringBuilder builder = new StringBuilder();
+		for (Object object : list) {
+			builder.append(object.toString() + "\n");
 		}
-
-		return result;
-
+		return builder.toString();
 	}
 
 }

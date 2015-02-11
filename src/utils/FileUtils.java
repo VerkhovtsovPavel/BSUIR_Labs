@@ -6,8 +6,19 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class FileUtils {
+/**
+ * Class contains helpful methods for files.
+ *
+ * @author Pavel_Verkhovtsov
+ *
+ */
+public abstract class FileUtils {
 
+	/**
+	 * Read treasures from file.
+	 *
+	 * @return map treasures
+	 */
 	public static HashMap<String, Long> getTreasureList() {
 		HashMap<String, Long> result = new HashMap<>();
 		File file = new File("treasure.txt");
@@ -27,11 +38,9 @@ public class FileUtils {
 			} finally {
 				in.close();
 			}
-		}
-		catch(NumberFormatException e){
+		} catch (NumberFormatException e) {
 			System.out.println("After ':' not number");
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			System.out.println("Error while read file " + file.getAbsolutePath());
 		}
 		return result;
