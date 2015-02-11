@@ -1,0 +1,12 @@
+Add sweet with sweetness 10
+Add max sweetness sweet (Add sweet with sweetness 100)
+Add wrapper with snowbool patterns and red color
+Add sweet with sweetness 10
+Add most sweetness sweet
+Add wrapper with snowbool patterns and red color
+Clear present
+Delete sweet with sweetness 10
+Delete wrapper with snowbool patterns and red color
+Delete max sweetness sweet (Delete sweet with sweetness 100)
+
+RegExp : ((Add)|(Clear)|(Delete)) *((wrapper with) *\w* *(patterns and) *\w* *(color)|(present)|(sweet with sweetness) \d*|(most sweetness sweet))
