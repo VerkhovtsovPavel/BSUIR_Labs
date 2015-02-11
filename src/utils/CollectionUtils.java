@@ -31,7 +31,7 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Create list of treasures on the required amount
+	 * Create list of treasures on the required amount.
 	 *
 	 * @param allTreasures
 	 *            list of dragon treasure

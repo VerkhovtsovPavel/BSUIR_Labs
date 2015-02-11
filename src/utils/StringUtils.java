@@ -8,9 +8,8 @@ import java.util.ArrayList;
  *
  */
 public abstract class StringUtils {
-	// TODO Refactor use StringBuffer
 	/**
-	 * Convert list to string
+	 * Convert list to string.
 	 * @param list list
 	 * @return string
 	 */

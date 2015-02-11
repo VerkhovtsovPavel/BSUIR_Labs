@@ -2,7 +2,7 @@
 
 <fileset-config file-format-version="1.2.0" simple-config="true" sync-formatter="false">
   <local-check-config name="MyConf" location="internal_config__1409149220030.xml" type="internal" description=""/>
-  <fileset name="all" enabled="true" check-config-name="MyConf" local="true">
+  <fileset name="all" enabled="true" check-config-name="Sun Checks (Eclipse)" local="false">
     <file-match-pattern match-pattern="." include-pattern="true"/>
   </fileset>
 </fileset-config>

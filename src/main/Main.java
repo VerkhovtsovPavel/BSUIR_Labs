@@ -5,7 +5,7 @@ import java.util.Scanner;
 import controller.Controller;
 
 /**
- * Class contains entry point
+ * Class contains entry point.
  * @author Pavel_Verkhovtsov
  *
  */
@@ -14,7 +14,7 @@ public abstract class Main {
 	private static Scanner in = new Scanner(System.in);
 
 	/**
-	 * Entry point
+	 * Entry point.
 	 * @param args command line arguments
 	 */
 	public static void main(final String[] args) {

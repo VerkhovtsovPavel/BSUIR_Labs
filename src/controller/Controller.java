@@ -4,7 +4,7 @@ import utils.CollectionUtils;
 import utils.StringUtils;
 import data.Cave;
 /**
- * Class routing requests from view layer to proper methods
+ * Class routing requests from view layer to proper methods.
  * @author Pavel_Verkhovtsov
  */
 public class Controller {
@@ -23,7 +23,7 @@ public class Controller {
 	 * @param choose Required action
 	 * @return Response
 	 */
-	public String process(final String choose) {
+	public final String process(final String choose) {
 		try {
 			String[] parseChoose = choose.split(":[\t ]*");
 			String request = parseChoose[0].trim();
