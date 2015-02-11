@@ -6,11 +6,16 @@ import gift.Wrapping;
 
 public class GiftFactory {
 
-	public GiftElement getGiftElement(boolean isSweet) {
-		if (isSweet) {
+	public GiftElement getGiftElement(final String objectType, String params) {
+		switch (objectType) {
+		case "Sweet":
+			//TODO parse params
 			return new Sweet();
-		} else {
+		case "Wrapping":
+			//TODO pars params
 			return new Wrapping();
+		default:
+			return null;
 		}
 	}
 }

@@ -42,7 +42,7 @@ public class Controller {
 	}
 
 	private String addCommands() {
-		giftFactory.getGiftElement(true);
+		giftFactory.getGiftElement("","");
 		return null;
 	}
 
