@@ -5,11 +5,11 @@ import gift.Sweet;
 import gift.Wrapping;
 
 public class GiftFactory {
-	public static GiftElement getGiftElement(boolean isSweet){
-		if(isSweet) {
+
+	public GiftElement getGiftElement(boolean isSweet) {
+		if (isSweet) {
 			return new Sweet();
-		}
-		else{
+		} else {
 			return new Wrapping();
 		}
 	}
