@@ -1,9 +1,6 @@
 Add sweet with sweetness 10
 Add max sweetness sweet (Add sweet with sweetness 100)
 Add wrapper with snowball patterns and red color
-Add sweet with sweetness 10
-Add max sweetness sweet
-Add wrapper with snowball patterns and red color
 Clear present
 Print present
 Delete sweet with sweetness 10

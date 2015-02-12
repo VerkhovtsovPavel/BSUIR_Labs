@@ -23,5 +23,4 @@ public class GiftElementStore {
 	public ArrayList<GiftElement> getGift() {
 		return giftElementsStore;
 	}
-
 }

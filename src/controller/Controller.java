@@ -23,12 +23,12 @@ public class Controller {
 		if (!checkCommand(request)) {
 			return "Incorrect command";
 		}
-		String commantType = request.split(":[\t ]*")[0];
+		String commantType = request.split("[\t ]+")[0];
 		switch (commantType) {
 		case "Add":
-			return addCommands();
+			return addCommands(request);
 		case "Delete":
-			return deleteCommands();
+			return deleteCommands(request);
 		case "Print":
 			return StringUtils.buildString(gift.getGift());
 		case "Clear":
@@ -41,13 +41,18 @@ public class Controller {
 		}
 	}
 
-	private String addCommands() {
-		giftFactory.getGiftElement("","");
-		return null;
+	private String addCommands(String request) {
+		gift.addElementOnGift(giftFactory.getGiftElement(request));
+		return "Element add to gift";
 	}
 
-	private String deleteCommands() {
-		return null;
+	private String deleteCommands(String request) {
+		if(gift.removeElementFromGift(giftFactory.getGiftElement(request))){
+			return "Element deleted";
+		}
+		else{
+			return "Element don't find in gift";
+		}
 	}
 
 	private boolean checkCommand(String request) {
