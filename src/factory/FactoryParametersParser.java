@@ -25,12 +25,14 @@ class FactoryParametersParser {
 	
 	String getWrappingParams(String request){
 		String params ="%s %s";
-		Pattern functionPattern = Pattern.compile("\\w+ patterns");
+		Pattern functionPattern = Pattern.compile("\\w+[ \\t]+patterns");
 		Matcher matcher = functionPattern.matcher(request);
+		matcher.find();
 		String pattern = matcher.group().split("[ \\t]+")[0];
 		
 		functionPattern = Pattern.compile("\\w+ color");
 		matcher = functionPattern.matcher(request);
+		matcher.find();
 		String color = matcher.group().split("[ \\t]+")[0];
 		
 		return String.format(params, pattern, color);
@@ -40,9 +42,7 @@ class FactoryParametersParser {
 		if(request.contains("max")){
 			return "100";
 		}else{
-			Pattern functionPattern = Pattern.compile("/sweetness \\d+/g");
-			Matcher matcher = functionPattern.matcher(request);
-			return matcher.group().split("[ \\t]+")[1];
+			return request.replaceAll("[^\\d]", "");
 		}
 	}
 

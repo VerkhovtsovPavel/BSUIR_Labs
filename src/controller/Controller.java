@@ -10,7 +10,7 @@ import factory.GiftFactory;
 
 public class Controller {
 
-	private static final String COMMAND_VALIDATE_REGEXP = "(((Add)|(Delete)) *(((wrapper with) *\\w* *(patterns and) *\\w* *(color))|((sweet with sweetness) \\d*|(max sweetness sweet))))|(((Clear)|(Print)) *(present))";
+	private static final String COMMAND_VALIDATE_REGEXP = "(((Add)|(Delete)) +(((wrapper with) +\\w+ +(patterns and) +\\w+ +(color))|((sweet with sweetness) +\\d+|(max sweetness sweet))))|(((Clear)|(Print)) +(present))$";
 	private GiftElementStore gift;
 	private GiftFactory giftFactory;
 
