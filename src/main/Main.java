@@ -24,7 +24,7 @@ public class Main {
 		while (!"Exit".equals(choose)) {
 			log.info("Please input command:\t");
 			choose = in.nextLine();
-		//	System.out.println(controller.process(choose));
+			System.out.println(controller.process(choose));
 		}
 	}
 }
