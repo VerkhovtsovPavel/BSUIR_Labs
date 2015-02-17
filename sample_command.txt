@@ -1,0 +1,3 @@
+Add note topic:email:text
+Find by text and ...
+Find by email

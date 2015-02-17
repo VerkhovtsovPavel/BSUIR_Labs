@@ -24,9 +24,9 @@ public abstract class FileUtils {
 	 *
 	 * @return map treasures
 	 */
-	public static ArrayList<Note> getTreasureList() {
+	public static ArrayList<Note> getNotesFromFile(final String fileName) {
 		ArrayList<Note> result = new ArrayList<Note>();
-		File file = new File("treasure.txt");
+		File file = new File(fileName);
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(file.getAbsoluteFile()));
 			log.debug("File "+file.getAbsoluteFile()+" opened");
@@ -51,5 +51,10 @@ public abstract class FileUtils {
 			log.error("Error while read file " + file.getAbsolutePath(), e);
 		}
 		return result;
+	}
+
+	public static void saveNotesToFile(String string) {
+		// TODO Auto-generated method stub
+		
 	}
 }
