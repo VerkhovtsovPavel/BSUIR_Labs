@@ -11,6 +11,8 @@ import factory.GiftFactory;
 public class Controller {
 
 	private static final String COMMAND_VALIDATE_REGEXP = "(((Add)|(Delete)) +(((wrapper with) +\\w+ +(patterns and) +\\w+ +(color))|((sweet with sweetness) +\\d+|(max sweetness sweet))))|(((Clear)|(Print)) +(present))$";
+	private static final String SPACE_REGEXP = "[\\t ]+";
+	
 	private GiftElementStore gift;
 	private GiftFactory giftFactory;
 
@@ -23,7 +25,7 @@ public class Controller {
 		if (!checkCommand(request)) {
 			return "Incorrect command";
 		}
-		String commantType = request.split("[\t ]+")[0];
+		String commantType = request.split(SPACE_REGEXP)[0];
 		switch (commantType) {
 		case "Add":
 			return addCommands(request);

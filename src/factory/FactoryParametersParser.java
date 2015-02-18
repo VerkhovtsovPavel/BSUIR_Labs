@@ -4,6 +4,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 class FactoryParametersParser {
+	private static final String SPACE_REGEXP = "[\\t ]+";
+	private static final String WRAPPER_PATTERN_REGEXP = "\\w+[ \\t]+patterns";
+	private static final String WRAPPER_COLOR_REGEXP = "\\w+ color";
+	private static final String NOT_DIGIT_REGEXP = "[^\\d]";
 
 	String getParams(String request) {
 		if(request.contains("sweet")){
@@ -25,15 +29,15 @@ class FactoryParametersParser {
 	
 	String getWrappingParams(String request){
 		String params ="%s %s";
-		Pattern functionPattern = Pattern.compile("\\w+[ \\t]+patterns");
+		Pattern functionPattern = Pattern.compile(WRAPPER_PATTERN_REGEXP);
 		Matcher matcher = functionPattern.matcher(request);
 		matcher.find();
-		String pattern = matcher.group().split("[ \\t]+")[0];
+		String pattern = matcher.group().split(SPACE_REGEXP)[0];
 		
-		functionPattern = Pattern.compile("\\w+ color");
+		functionPattern = Pattern.compile(WRAPPER_COLOR_REGEXP);
 		matcher = functionPattern.matcher(request);
 		matcher.find();
-		String color = matcher.group().split("[ \\t]+")[0];
+		String color = matcher.group().split(SPACE_REGEXP)[0];
 		
 		return String.format(params, pattern, color);
 	}
@@ -42,7 +46,7 @@ class FactoryParametersParser {
 		if(request.contains("max")){
 			return "100";
 		}else{
-			return request.replaceAll("[^\\d]", "");
+			return request.replaceAll(NOT_DIGIT_REGEXP, "");
 		}
 	}
 

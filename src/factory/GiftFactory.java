@@ -5,6 +5,7 @@ import gift.Sweet;
 import gift.Wrapping;
 
 public class GiftFactory {
+	private static final String SPACE_REGEXP = "[\\t ]+";
 	
 	private FactoryParametersParser parser = new FactoryParametersParser();
 
@@ -16,7 +17,7 @@ public class GiftFactory {
 			int sweethess = Integer.valueOf(params);
 			return new Sweet(sweethess);
 		case "Wrapping":
-			String[] patternAndColor = params.split("[ \\t]+");
+			String[] patternAndColor = params.split(SPACE_REGEXP);
 			String pattern = patternAndColor[0];
 			String color = patternAndColor[1];
 			return new Wrapping(pattern, color);
