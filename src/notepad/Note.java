@@ -6,5 +6,5 @@ public class Note {
 	public String topic;
 	public Date createDate;
 	public String eMail;
-	public String message;
+	public String text;
 }

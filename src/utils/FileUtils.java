@@ -47,8 +47,12 @@ public abstract class FileUtils {
 			}
 		} catch (NumberFormatException e) {
 			log.error("After ':' not number", e);
+			log.warn("StackTrace", e);
 		} catch (IOException e) {
-			log.error("Error while read file " + file.getAbsolutePath(), e);
+			log.error("Error while read file " + file.getAbsolutePath());
+			log.warn("StackTrace", e);
+			log.error("Notepad will be empty");
+			
 		}
 		return result;
 	}
