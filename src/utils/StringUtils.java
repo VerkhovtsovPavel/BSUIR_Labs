@@ -3,13 +3,12 @@ package utils;
 import java.util.ArrayList;
 
 public class StringUtils {
-	// TODO Refactor use StringBuffer
-	public static String buildString(ArrayList<?> list) {
-		String result = "";
+	public static String buildString(final ArrayList<?> list) {
+		StringBuilder builder = new StringBuilder();
 		for (Object object : list) {
-			result += object.toString() + "\n";
+			builder.append(object.toString() + "\n");
 		}
-		return result;
+		return builder.toString();
 	}
 
 }

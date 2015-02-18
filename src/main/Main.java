@@ -14,12 +14,12 @@ public class Main {
 	 */
 	public static void main(final String[] args) {
 		System.out.println("Hello!");
-		String choose = null;
+		String choice = null;
 		Controller controller = new Controller();
-		while (!"Exit".equals(choose)) {
+		while (!"Exit".equals(choice)) {
 			System.out.print("Please input command:\t");
-			choose = in.nextLine();
-			System.out.println(controller.process(choose));
+			choice = in.nextLine();
+			System.out.println(controller.process(choice));
 		}
 	}
 }

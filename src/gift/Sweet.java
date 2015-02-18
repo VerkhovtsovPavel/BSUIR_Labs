@@ -6,6 +6,7 @@ public class Sweet extends GiftElement {
 
 	public Sweet(int sweethess) {
 		this.sweetness = sweethess;
+		this.cost = sweethess * 2;
 	}
 
 	@Override

@@ -8,6 +8,7 @@ public class Wrapping extends GiftElement {
 	public Wrapping(String pattern, String color) {
 		this.color = color;
 		this.pattern = pattern;
+		this.cost = 10;
 	}
 
 	@Override
@@ -27,7 +28,7 @@ public class Wrapping extends GiftElement {
 
 	@Override
 	public String toString() {
-		return "Wraping with pattern " + this.pattern + " and " + this.color + " color";
+		return "Wrapping with pattern " + this.pattern + " and " + this.color + " color";
 	}
 
 	@Override

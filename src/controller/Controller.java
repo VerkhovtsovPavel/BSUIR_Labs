@@ -32,7 +32,7 @@ public class Controller {
 		case "Delete":
 			return deleteCommands(request);
 		case "Print":
-			return StringUtils.buildString(gift.getGift());
+			return StringUtils.buildString(gift.getGift())+String.format("Total cost = %d", gift.getTotalCost());
 		case "Clear":
 			gift.clearGift();
 			return "All gift elements deleted";
