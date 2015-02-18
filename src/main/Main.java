@@ -18,13 +18,19 @@ public class Main {
 	 * @param args command line arguments
 	 */
 	public static void main(final String[] args) {
-		log.info("Hello!");
-		String choose = null;
+		log.fatal("Start program");
+		String choice = null;
+		String answer = null;
 		Controller controller = new Controller();
-		while (!"Exit".equals(choose)) {
-			log.info("Please input command:\t");
-			choose = in.nextLine();
-			System.out.println(controller.process(choose));
+		controller.process("Open notes.txt");
+		while (!"Exit".equals(choice)) {
+			System.out.print("> ");
+			choice = in.nextLine();
+			log.debug(String.format("View send request '%s'", choice));
+			answer = controller.process(choice);
+			log.debug(String.format("View received response '%s'", answer));
+			System.out.println(answer);
 		}
+		log.fatal("Stop program");
 	}
 }
