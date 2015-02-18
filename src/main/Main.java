@@ -6,6 +6,7 @@ import controller.Controller;
 
 /**
  * Class contains entry point.
+ *
  * @author Pavel_Verkhovtsov
  *
  */
@@ -15,16 +16,18 @@ public abstract class Main {
 
 	/**
 	 * Entry point.
-	 * @param args command line arguments
+	 *
+	 * @param args
+	 *            command line arguments
 	 */
 	public static void main(final String[] args) {
 		System.out.println("Hello!");
-		String choose = null;
+		String choice = null;
 		Controller controller = new Controller();
-		while (!"Exit".equals(choose)) {
+		while (!"Exit".equals(choice)) {
 			System.out.print("Please input command:\t");
-			choose = in.nextLine();
-			System.out.println(controller.process(choose));
+			choice = in.nextLine();
+			System.out.println(controller.process(choice));
 		}
 	}
 
