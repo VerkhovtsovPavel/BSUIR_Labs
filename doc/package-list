@@ -1,4 +1,6 @@
-controller
-data
-main
-utils
+com.bsuir.wtlab1.controller
+com.bsuir.wtlab1.dao
+com.bsuir.wtlab1.data
+com.bsuir.wtlab1.data.bean
+com.bsuir.wtlab1.logic
+com.bsuir.wtlab1.main

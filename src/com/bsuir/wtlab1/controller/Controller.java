@@ -36,8 +36,6 @@ public class Controller {
 			case "Get treasers on sum":
 				long parameter = Long.valueOf(parseChoice[1].trim());
 				return "Treasers on sum "+parameter+" :\n"+buildString(logic.findTreasuresOnSum(parameter));
-			case "Exit":
-				return "Goodbye";
 			default:
 				return "Incorrect command";
 			}
