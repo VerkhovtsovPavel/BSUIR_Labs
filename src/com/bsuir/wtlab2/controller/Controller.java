@@ -1,11 +1,10 @@
 package com.bsuir.wtlab2.controller;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.bsuir.wtlab2.logic.StringUtils;
-import com.bsuir.wtlab2.source.GiftElementStore;
-import com.bsuir.wtlab2.source.factory.GiftFactory;
+import com.bsuir.wtlab2.logic.Logic;
 
 
 
@@ -14,12 +13,10 @@ public class Controller {
 	private static final String COMMAND_VALIDATE_REGEXP = "(((Add)|(Delete)) +(((wrapper with) +\\w+ +(patterns and) +\\w+ +(color))|((sweet with sweetness) +\\d+|(max sweetness sweet))))|(((Clear)|(Print)) +(present))$";
 	private static final String SPACE_REGEXP = "[\\t ]+";
 	
-	private GiftElementStore gift;
-	private GiftFactory giftFactory;
+	private Logic logic;
 
 	public Controller() {
-		this.gift = new GiftElementStore();
-		this.giftFactory = new GiftFactory();
+		this.logic = new Logic();
 	}
 
 	public String process(String request) {
@@ -33,9 +30,9 @@ public class Controller {
 		case "Delete":
 			return deleteCommands(request);
 		case "Print":
-			return StringUtils.buildString(gift.getGift())+String.format("Total cost = %d", gift.getTotalCost());
+			return buildString(logic.getGift())+String.format("Total cost = %d", logic.getTotalCost());
 		case "Clear":
-			gift.clearGift();
+			logic.clearGift();
 			return "All gift elements deleted";
 		case "Exit":
 			return "Goodbye";
@@ -43,14 +40,22 @@ public class Controller {
 			return "Incorrect command";
 		}
 	}
+	
+	public String buildString(final ArrayList<?> list) {
+		StringBuilder builder = new StringBuilder();
+		for (Object object : list) {
+			builder.append(object.toString() + "\n");
+		}
+		return builder.toString();
+	}
 
 	private String addCommands(String request) {
-		gift.addElementOnGift(giftFactory.getGiftElement(request));
+		logic.addElementOnGift(request);
 		return "Element add to gift";
 	}
 
 	private String deleteCommands(String request) {
-		if(gift.removeElementFromGift(giftFactory.getGiftElement(request))){
+		if(logic.removeElementFromGift(request)){
 			return "Element deleted";
 		}
 		else{

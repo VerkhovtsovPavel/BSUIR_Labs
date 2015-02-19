@@ -6,12 +6,11 @@ import com.bsuir.wtlab2.source.entity.Wrapping;
 
 public class GiftFactory {
 	private static final String SPACE_REGEXP = "[\\t ]+";
-	
-	private FactoryParametersParser parser = new FactoryParametersParser();
 
-	public GiftElement getGiftElement(final String requaredGiftElement) {
-		String objectType = parser.getObjectType(requaredGiftElement);
-		String params = parser.getParams(requaredGiftElement);
+
+	public GiftElement getGiftElement(final String objectType,final String params) {
+		//String objectType = parser.getObjectType(requaredGiftElement);
+		//String params = parser.getParams(requaredGiftElement);
 		switch (objectType) {
 		case "Sweet":
 			int sweethess = Integer.valueOf(params);

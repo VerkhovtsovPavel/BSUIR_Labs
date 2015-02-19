@@ -1,4 +1,4 @@
-package com.bsuir.wtlab2.source.factory;
+package com.bsuir.wtlab2.logic;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,7 +9,7 @@ class FactoryParametersParser {
 	private static final String WRAPPER_COLOR_REGEXP = "\\w+ color";
 	private static final String NOT_DIGIT_REGEXP = "[^\\d]";
 
-	String getParams(String request) {
+	static String getParams(String request) {
 		if(request.contains("sweet")){
 			return getSweetParams(request);
 		}
@@ -18,7 +18,7 @@ class FactoryParametersParser {
 		}
 	}
 	
-	String getObjectType(String request){
+	static String getObjectType(String request){
 		if(request.contains("sweet")){
 			return "Sweet";
 		}
@@ -27,7 +27,7 @@ class FactoryParametersParser {
 		}
 	}
 	
-	String getWrappingParams(String request){
+	static String getWrappingParams(String request){
 		String params ="%s %s";
 		Pattern functionPattern = Pattern.compile(WRAPPER_PATTERN_REGEXP);
 		Matcher matcher = functionPattern.matcher(request);
@@ -42,7 +42,7 @@ class FactoryParametersParser {
 		return String.format(params, pattern, color);
 	}
 	
-	String getSweetParams(String request){
+	static String getSweetParams(String request){
 		if(request.contains("max")){
 			return "100";
 		}else{
