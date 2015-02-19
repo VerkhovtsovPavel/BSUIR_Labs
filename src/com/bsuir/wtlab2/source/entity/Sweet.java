@@ -1,4 +1,4 @@
-package gift;
+package com.bsuir.wtlab2.source.entity;
 
 public class Sweet extends GiftElement {
 

@@ -1,4 +1,4 @@
-package utils;
+package com.bsuir.wtlab2.logic;
 
 import java.util.ArrayList;
 

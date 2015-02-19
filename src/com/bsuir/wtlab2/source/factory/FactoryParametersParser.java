@@ -1,4 +1,4 @@
-package factory;
+package com.bsuir.wtlab2.source.factory;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

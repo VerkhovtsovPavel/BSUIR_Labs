@@ -1,8 +1,9 @@
-package main;
+package com.bsuir.wtlab2.main;
 
 import java.util.Scanner;
 
-import controller.Controller;
+import com.bsuir.wtlab2.controller.Controller;
+
 
 public class Main {
 

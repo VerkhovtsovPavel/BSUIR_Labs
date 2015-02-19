@@ -1,12 +1,13 @@
-package controller;
+package com.bsuir.wtlab2.controller;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import utils.StringUtils;
+import com.bsuir.wtlab2.logic.StringUtils;
+import com.bsuir.wtlab2.source.GiftElementStore;
+import com.bsuir.wtlab2.source.factory.GiftFactory;
 
-import data.GiftElementStore;
-import factory.GiftFactory;
+
 
 public class Controller {
 

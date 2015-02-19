@@ -1,8 +1,8 @@
-package factory;
+package com.bsuir.wtlab2.source.factory;
 
-import gift.GiftElement;
-import gift.Sweet;
-import gift.Wrapping;
+import com.bsuir.wtlab2.source.entity.GiftElement;
+import com.bsuir.wtlab2.source.entity.Sweet;
+import com.bsuir.wtlab2.source.entity.Wrapping;
 
 public class GiftFactory {
 	private static final String SPACE_REGEXP = "[\\t ]+";

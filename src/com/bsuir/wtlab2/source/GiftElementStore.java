@@ -1,8 +1,9 @@
-package data;
+package com.bsuir.wtlab2.source;
 
-import gift.GiftElement;
 
 import java.util.ArrayList;
+
+import com.bsuir.wtlab2.source.entity.GiftElement;
 
 public class GiftElementStore {
 
