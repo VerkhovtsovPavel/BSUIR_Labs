@@ -1,10 +1,10 @@
-package com.bsuir.wtlab1.data;
+package com.bsuir.wtlab1.source;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-import com.bsuir.wtlab1.data.bean.Treasure;
+import com.bsuir.wtlab1.source.entity.Treasure;
 
 /**
  *

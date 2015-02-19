@@ -1,4 +1,4 @@
-package com.bsuir.wtlab1.data.bean;
+package com.bsuir.wtlab1.source.entity;
 
 /**
  * Class describe treasure

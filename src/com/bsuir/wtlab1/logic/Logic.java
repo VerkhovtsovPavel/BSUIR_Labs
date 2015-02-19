@@ -2,9 +2,9 @@ package com.bsuir.wtlab1.logic;
 
 import java.util.ArrayList;
 
-import com.bsuir.wtlab1.dao.FileDao;
-import com.bsuir.wtlab1.data.TreasureStore;
-import com.bsuir.wtlab1.data.bean.Treasure;
+import com.bsuir.wtlab1.source.TreasureStore;
+import com.bsuir.wtlab1.source.dao.FileDao;
+import com.bsuir.wtlab1.source.entity.Treasure;
 
 /**
  * Class contains helpful methods for collections.

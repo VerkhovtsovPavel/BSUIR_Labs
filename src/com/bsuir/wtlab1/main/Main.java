@@ -1,7 +1,5 @@
 package com.bsuir.wtlab1.main;
 
-import java.util.Scanner;
-
 import com.bsuir.wtlab1.controller.Controller;
 
 /**
@@ -12,8 +10,6 @@ import com.bsuir.wtlab1.controller.Controller;
  */
 public abstract class Main {
 
-	private static Scanner in = new Scanner(System.in);
-
 	/**
 	 * Entry point.
 	 *
@@ -21,14 +17,12 @@ public abstract class Main {
 	 *            command line arguments
 	 */
 	public static void main(final String[] args) {
-		System.out.println("Hello!");
-		String choice = null;
 		Controller controller = new Controller();
-		while (!"Exit".equals(choice)) {
-			System.out.print("Please input command:\t");
-			choice = in.nextLine();
-			System.out.println(controller.process(choice));
-		}
-	}
 
+		System.out.println(controller.process("Get all"));
+		System.out.println("--------------------------");
+		System.out.println(controller.process("Get dearest treaser"));
+		System.out.println("--------------------------");
+		System.out.println(controller.process("Get treasers on sum:1000"));
+	}
 }

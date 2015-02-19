@@ -2,8 +2,8 @@ package com.bsuir.wtlab1.controller;
 
 import java.util.ArrayList;
 
-import com.bsuir.wtlab1.data.bean.Treasure;
 import com.bsuir.wtlab1.logic.Logic;
+import com.bsuir.wtlab1.source.entity.Treasure;
 /**
  * Class routing requests from view layer to proper methods.
  * @author Pavel_Verkhovtsov
@@ -32,10 +32,10 @@ public class Controller {
 			case "Get all":
 				return buildString(logic.getAllTreasures());
 			case "Get dearest treaser":
-				return buildString(logic.findDearestTreaser());
+				return "Dearest treaser: "+buildString(logic.findDearestTreaser());
 			case "Get treasers on sum":
 				long parameter = Long.valueOf(parseChoice[1].trim());
-				return buildString(logic.findTreasuresOnSum(parameter));
+				return "Treasers on sum "+parameter+" :\n"+buildString(logic.findTreasuresOnSum(parameter));
 			case "Exit":
 				return "Goodbye";
 			default:
