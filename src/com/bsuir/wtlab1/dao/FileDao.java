@@ -1,4 +1,4 @@
-package utils;
+package com.bsuir.wtlab1.dao;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,22 +6,18 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
-/**
- * Class contains helpful methods for files.
- *
- * @author Pavel_Verkhovtsov
- *
- */
-public abstract class FileUtils {
-
+public class FileDao {
+	
+	private final String dataSource = "treasure.txt";
+	
 	/**
 	 * Read treasures from file.
 	 *
 	 * @return map treasures
 	 */
-	public static HashMap<String, Long> getTreasureList() {
+	public HashMap<String, Long> getDate() {
 		HashMap<String, Long> result = new HashMap<>();
-		File file = new File("treasure.txt");
+		File file = new File(dataSource);
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(file.getAbsoluteFile()));
 			try {

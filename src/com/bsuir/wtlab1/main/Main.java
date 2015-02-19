@@ -1,8 +1,8 @@
-package main;
+package com.bsuir.wtlab1.main;
 
 import java.util.Scanner;
 
-import controller.Controller;
+import com.bsuir.wtlab1.controller.Controller;
 
 /**
  * Class contains entry point.
