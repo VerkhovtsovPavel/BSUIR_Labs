@@ -7,33 +7,25 @@ import com.bsuir.wtlab2.source.entity.GiftElement;
 import com.bsuir.wtlab2.source.factory.GiftFactory;
 
 public class Logic {
-	
+
 	private GiftElementStore gift;
 	private GiftFactory giftFactory;
-	
+
 	public Logic() {
 		this.gift = new GiftElementStore();
 		this.giftFactory = new GiftFactory();
 	}
 
-	public ArrayList<?> getGift() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<GiftElement> getGift() {
+		return gift.getGift();
 	}
 
 	public Object getTotalCost() {
-		// TODO Auto-generated method stub
-		return null;
+		return gift.getTotalCost();
 	}
 
 	public void clearGift() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public Object getGiftElement(String request) {
-		// TODO Auto-generated method stub
-		return null;
+		gift.clearGift();
 	}
 
 	public boolean removeElementFromGift(String request) {
@@ -43,11 +35,11 @@ public class Logic {
 	public void addElementOnGift(String request) {
 		gift.addElementOnGift(createGiftElement(request));
 	}
-	
-	private GiftElement createGiftElement(String request){
+
+	private GiftElement createGiftElement(String request) {
 		String objectType = FactoryParametersParser.getObjectType(request);
 		String params = FactoryParametersParser.getParams(request);
-		return giftFactory.getGiftElement(objectType, params); 
+		return giftFactory.getGiftElement(objectType, params);
 	}
 
 }

@@ -36,4 +36,9 @@ public class Sweet extends GiftElement {
 		result = prime * result + sweetness;
 		return result;
 	}
+
+	@Override
+	public int getCost() {
+		return this.cost;
+	}
 }

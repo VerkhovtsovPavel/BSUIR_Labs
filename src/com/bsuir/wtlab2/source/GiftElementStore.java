@@ -29,7 +29,7 @@ public class GiftElementStore {
 		int totalCost = 0;
 		
 		for (GiftElement giftElement : giftElementsStore){
-			totalCost = totalCost + giftElement.cost;
+			totalCost = totalCost + giftElement.getCost();
 		}
 		return totalCost;
 	}

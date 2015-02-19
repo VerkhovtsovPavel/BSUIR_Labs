@@ -40,4 +40,9 @@ public class Wrapping extends GiftElement {
 		return result;
 	}
 
+	@Override
+	public int getCost() {
+		return this.cost;
+	}
+
 }
