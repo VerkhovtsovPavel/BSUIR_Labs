@@ -1,14 +1,17 @@
-package utils;
+package com.bsuir.wtlab3.dao;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import notepad.Note;
 
 import org.apache.log4j.Logger;
+
+import com.bsuir.wtlab3.source.entity.Note;
 
 /**
  * Class contains helpful methods for files.
@@ -16,17 +19,19 @@ import org.apache.log4j.Logger;
  * @author Pavel_Verkhovtsov
  *
  */
-public abstract class FileUtils {
-	private  static Logger log = Logger.getLogger(FileUtils.class);
+public class FileDao {
+	private  static Logger log = Logger.getLogger(FileDao.class);
+	
+	private final static String fileSource = "notepad.txt";
 
 	/**
 	 * Read treasures from file.
 	 *
 	 * @return map treasures
 	 */
-	public static ArrayList<Note> getNotesFromFile(final String fileName) {
+	public ArrayList<Note> getNotesFromFile() {
 		ArrayList<Note> result = new ArrayList<Note>();
-		File file = new File(fileName);
+		File file = new File(fileSource);
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(file.getAbsoluteFile()));
 			log.debug("File "+file.getAbsoluteFile()+" opened");
@@ -45,9 +50,6 @@ public abstract class FileUtils {
 				in.close();
 				log.debug("File "+file.getAbsoluteFile()+" closed");
 			}
-		} catch (NumberFormatException e) {
-			log.error("After ':' not number", e);
-			log.warn("StackTrace", e);
 		} catch (IOException e) {
 			log.error("Error while read file " + file.getAbsolutePath());
 			log.warn("StackTrace", e);
@@ -57,8 +59,24 @@ public abstract class FileUtils {
 		return result;
 	}
 
-	public static void saveNotesToFile(String string) {
-		// TODO Auto-generated method stub
-		
+	public void saveNotesToFile(ArrayList<Note> arrayList) {
+		File file = new File(fileSource);
+		try {
+			BufferedWriter in = new BufferedWriter(new FileWriter(file.getAbsoluteFile()));
+			log.debug("File "+file.getAbsoluteFile()+" opened");
+			try {
+				for (Note note : arrayList) {
+					in.append(note.getCompressedFormat());
+				}
+			} finally {
+				in.close();
+				log.debug("File "+file.getAbsoluteFile()+" closed");
+			}
+		} catch (IOException e) {
+			log.error("Error while write in file " + file.getAbsolutePath());
+			log.warn("StackTrace", e);
+			log.error("Added notes are not saved");
+			
+		}
 	}
 }

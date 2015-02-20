@@ -1,13 +1,14 @@
-package ñomparator;
+package com.bsuir.wtlab3.source.ñomparator;
 
 import java.util.Comparator;
 
-import notepad.Note;
+import com.bsuir.wtlab3.source.entity.Note;
+
 
 public class NoteEmailComparator implements Comparator<Note> {
 
 	@Override
 	public int compare(Note o1, Note o2) {
-		return o1.eMail.compareToIgnoreCase(o2.eMail);
+		return o1.getEMail().compareToIgnoreCase(o2.getEMail());
 	}
 }

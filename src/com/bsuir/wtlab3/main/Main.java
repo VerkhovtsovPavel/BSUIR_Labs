@@ -1,10 +1,12 @@
-package main;
+package com.bsuir.wtlab3.main;
 
 import java.util.Scanner;
-
 import org.apache.log4j.Logger;
+import com.bsuir.wtlab3.controller.Controller;
 
-import controller.Controller;
+
+//TODO Command line parameter parser
+
 
 public class Main {
 	/**
@@ -22,7 +24,7 @@ public class Main {
 		String choice = null;
 		String answer = null;
 		Controller controller = new Controller();
-		controller.process("Open notes.txt");
+		controller.process("Upload");
 		while (!"Exit".equals(choice)) {
 			System.out.print("> ");
 			choice = in.nextLine();

@@ -1,5 +1,5 @@
 Add note topic:email:text
 Find by text and ...
 Find by emailFind by email
-Sort by topic up
+Sort by topic
 Get all notes

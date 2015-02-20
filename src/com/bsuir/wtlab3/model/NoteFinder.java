@@ -1,13 +1,14 @@
-package model;
+package com.bsuir.wtlab3.model;
 
 import java.util.ArrayList;
 
-import notepad.Note;
+import com.bsuir.wtlab3.source.entity.Note;
+
 
 public class NoteFinder {
 
-	public ArrayList<Note> tupleSearch(String request){
-		ArrayList<Note> searchResult = null;//All notes
+	public ArrayList<Note> tupleSearch(String request, ArrayList<Note> allNotes){
+		ArrayList<Note> searchResult = allNotes;
 		
 		if(request.contains("text")){
 			searchByText(searchResult);

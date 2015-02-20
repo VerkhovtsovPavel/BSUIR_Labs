@@ -1,16 +1,17 @@
-package model;
+package com.bsuir.wtlab3.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import ñomparator.NoteDateComparator;
-import ñomparator.NoteEmailComparator;
-import ñomparator.NoteTextComparator;
-import ñomparator.NoteTopicComparator;
+import com.bsuir.wtlab3.source.entity.Note;
+import com.bsuir.wtlab3.source.ñomparator.NoteDateComparator;
+import com.bsuir.wtlab3.source.ñomparator.NoteEmailComparator;
+import com.bsuir.wtlab3.source.ñomparator.NoteTextComparator;
+import com.bsuir.wtlab3.source.ñomparator.NoteTopicComparator;
 
 
-import notepad.Note;
+
 
 public class NoteSorter {
 	private Comparator<Note> comparator;
