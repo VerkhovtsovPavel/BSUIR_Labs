@@ -5,18 +5,22 @@ public class Sweet extends GiftElement {
 	public int sweetness;
 
 	public Sweet(int sweethess) {
+		super(sweethess * 2);
 		this.sweetness = sweethess;
-		this.cost = sweethess * 2;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof Sweet)) {
+		if(this==obj){
+			return true;
+		}
+		
+		if (this.getClass()!=obj.getClass() || obj==null) {
 			return false;
 		}
 
 		Sweet sweet = (Sweet) obj;
-		if (this.sweetness == sweet.sweetness) {
+		if (this.sweetness == sweet.sweetness && super.equals(obj)) {
 			return true;
 		} else {
 			return false;
@@ -32,13 +36,6 @@ public class Sweet extends GiftElement {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
-		result = prime * result + sweetness;
-		return result;
-	}
-
-	@Override
-	public int getCost() {
-		return this.cost;
+		return prime * sweetness + super.hashCode();
 	}
 }

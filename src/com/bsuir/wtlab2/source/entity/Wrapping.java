@@ -6,19 +6,23 @@ public class Wrapping extends GiftElement {
 	public String pattern;
 
 	public Wrapping(String pattern, String color) {
+		super(10);
 		this.color = color;
 		this.pattern = pattern;
-		this.cost = 10;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof Wrapping)) {
+		if(this==obj){
+			return true;
+		}
+		
+		if (this.getClass()!=obj.getClass() || obj==null) {
 			return false;
 		}
 
 		Wrapping wrapping = (Wrapping) obj;
-		if ((this.color.equals(wrapping.color)) && (this.pattern.equals(wrapping.pattern))) {
+		if (this.color.equals(wrapping.color) && this.pattern.equals(wrapping.pattern) && super.equals(obj)) {
 			return true;
 		} else {
 			return false;
@@ -33,16 +37,6 @@ public class Wrapping extends GiftElement {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + this.color.hashCode();
-		result = prime * result + this.color.hashCode();
-		return result;
+		return super.hashCode() + this.color.hashCode() + this.pattern.hashCode();
 	}
-
-	@Override
-	public int getCost() {
-		return this.cost;
-	}
-
 }
