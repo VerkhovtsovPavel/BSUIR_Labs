@@ -22,7 +22,7 @@ public class Notepad {
 		return notes;
 	}
 	
-	public boolean addNotes(Note note){
+	public boolean addNote(Note note){
 		return this.notes.add(note);
 	}
 }
