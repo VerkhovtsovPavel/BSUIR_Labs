@@ -1,25 +1,25 @@
 package com.bsuir.wtlab3.source.entity;
 
-import java.util.Date;
 
 public class Note {
 	private String topic;
-	private Date createDate;
+	private String createDate;
 	private String eMail;
 	private String text;
+
 	
-	public Note(String topic, String eMail, Date date, String text) {
+	public Note(String topic, String eMail, String date, String text) {
 		this.topic = topic;
 		this.eMail = eMail;
 		this.createDate = date;
-		this.text = text;
-		
+		this.text = text;	
 	}
+	
 	public String getTopic() {
 		return topic;
 	}
 
-	public Date getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
 	

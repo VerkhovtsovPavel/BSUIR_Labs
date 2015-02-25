@@ -8,32 +8,36 @@ import org.apache.log4j.Logger;
 
 import com.bsuir.wtlab3.model.Logic;
 
-
-
 public class Controller {
 	private static Logger logger = Logger.getLogger(Controller.class);
-	
+
 	private Logic logic;
-	
-	private static final String COMMAND_REGEXP_FORMAT = "(%s)|(%s)|(%s)";
-	private static final String addCom = "[Aa](dd note)[ \\t]+\\w+\\:\\w+\\:\\w+$";
-	private static final String findCom = "[Ff](ind)[ \\t]+(by)[ \\t]+(((email)|(text)|(date)|(topic))[ \\t]+[\\w\\@\\.\\-\\d]+[ \\t]*)+$";
-	private static final String sortCom = "[sS](ort)[ \\t]+(by)[ \\t]+((email)|(text)|(date)|(topic))[ \\t]*$";
-	
-	public Controller(){
+
+	private static final String COMMAND_REGEXP_FORMAT = "(%s)|(%s)|(%s)|(%s)";
+	private static final String FIND_COMMANDS_VALIDATE_REGEXP = "(find)[ \\t]+(-[dmef][\\t ]+\"[\\d \\-\\.\\w\\@]+\"[\\t ]*)+";
+	private static final String SORT_COMMANDS_VALIDATE_REGEXP = "(sort)[ \\t]+\\-[tedm]";
+	private static final String ADD_COMMANDS_VALIDATE_REGEXP = "(add)[ \\t]+[\\w \\.]+\\:[\\w\\.\\@]+\\:[\\d-\\/ \\.]+:[\\w \\.]+";
+	private static final String GET_COMMANDS_VALDATE_REGEXP = "(get)[ \\t]+\\-[a]";
+
+	public Controller() {
 		this.logic = new Logic();
 	}
-	
-	public String process(String request){
+
+	public String process(String request) {
 		logger.debug(String.format("Controller received request '%s'", request));
 		String commantType = request.split("[\t ]+")[0];
 		String response = null;
-		
+
+		if(!checkCommand(request)){
+			request = "Incorrect command";
+		}
 		switch (commantType) {
-		case "Add": case "add":
+		case "Add":
+		case "add":
 			response = logic.addNote(request);
 			break;
-		case "Find": case "find":
+		case "Find":
+		case "find":
 			response = buildString(logic.findNotes(request));
 			break;
 		case "Upload":
@@ -43,7 +47,8 @@ public class Controller {
 		case "?":
 			response = getHint();
 			break;
-		case "Exit": case "exit":
+		case "Exit":
+		case "exit":
 			logic.saveNotesToFile();
 			response = "Notes successfully saved to file\nGoodbye";
 			break;
@@ -53,16 +58,16 @@ public class Controller {
 		}
 		logger.debug(String.format("Controller send response '%s'", response));
 		return response;
-		
+
 	}
-	
+
 	private String getHint() {
 		return "Hint";
 	}
 
-	@SuppressWarnings("unused")
-	private boolean checkCommand(String request){
-		Pattern pattern = Pattern.compile(String.format(COMMAND_REGEXP_FORMAT,addCom, findCom, sortCom));
+
+	private boolean checkCommand(String request) {
+		Pattern pattern = Pattern.compile(String.format(COMMAND_REGEXP_FORMAT, ADD_COMMANDS_VALIDATE_REGEXP, FIND_COMMANDS_VALIDATE_REGEXP, SORT_COMMANDS_VALIDATE_REGEXP, GET_COMMANDS_VALDATE_REGEXP));
 		Matcher matcher = pattern.matcher(request);
 		return matcher.matches();
 	}
@@ -74,5 +79,5 @@ public class Controller {
 		}
 		return builder.toString();
 	}
-	
+
 }

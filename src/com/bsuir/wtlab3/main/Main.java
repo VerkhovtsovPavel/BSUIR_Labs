@@ -1,23 +1,25 @@
 package com.bsuir.wtlab3.main;
 
 import java.util.Scanner;
+
 import org.apache.log4j.Logger;
+
 import com.bsuir.wtlab3.controller.Controller;
 
-
 //TODO Command line parameter parser
-
 
 public class Main {
 	/**
 	 * Logger.
 	 */
-	private  static Logger log = Logger.getLogger(Main.class);
+	private static Logger log = Logger.getLogger(Main.class);
 	private static Scanner in = new Scanner(System.in);
-	
+
 	/**
 	 * Entry point.
-	 * @param args command line arguments
+	 * 
+	 * @param args
+	 *            command line arguments
 	 */
 	public static void main(final String[] args) {
 		log.fatal("Start program");
