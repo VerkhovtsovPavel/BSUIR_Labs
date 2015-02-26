@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.management.RuntimeErrorException;
-
 import org.apache.log4j.Logger;
 
 import com.bsuir.wtlab3.source.entity.Note;
@@ -25,7 +23,22 @@ public class CommandLineParametersParser {
 	}
 
 	public HashMap<String, String> parseSearchParameters(String request) {
-		throw new RuntimeErrorException(null);
+		HashMap<String, String> result = new HashMap<>();
+		result.put("Topic", getSearchParameter("t", request));
+		result.put("Text", getSearchParameter("m", request));
+		result.put("Date", getSearchParameter("d", request));
+		result.put("E-mail", getSearchParameter("e", request));
+		
+		return result;
+	}
+	
+	private String getSearchParameter(String searchType, String request){
+		Pattern pattern = Pattern.compile(searchType+"");
+		Matcher matcher = pattern.matcher(request);	
+		if(matcher.find()){
+			return matcher.group().split("[\\t ]+")[0].replace("\"", "");
+		}
+		return null;
 	}
 
 
