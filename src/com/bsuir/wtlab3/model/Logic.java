@@ -14,6 +14,8 @@ public class Logic {
 	
 	private static final String NOTE_SUCCESSFULLY_ADDED = "Note successfully added";
 	private static final String NOTE_NOT_ADDED = "Note not added";
+	
+	private static final String NOTE_SORTED_BY_RESPONSE_FORMAT = "Notes sorted by %s";
 
 	public Logic() {
 		this.finder = new NoteFinder();
@@ -34,7 +36,7 @@ public class Logic {
 	
 	public String sortNotes(String request){
 		sorter.sortBy(parser.parseSortMethod(request), Notepad.getInstance().getNotes());
-		return "Notes sorted by "+parser.parseSortMethod(request);
+		return String.format(NOTE_SORTED_BY_RESPONSE_FORMAT, parser.parseSortMethod(request));
 	}
 	
 	public ArrayList<Note> findNotes(String request){
