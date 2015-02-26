@@ -11,6 +11,9 @@ public class Logic {
 	private NoteSorter sorter;
 	private CommandLineParametersParser parser;
 	private FileDao dao;
+	
+	private static final String NOTE_SUCCESSFULLY_ADDED = "Note successfully added";
+	private static final String NOTE_NOT_ADDED = "Note not added";
 
 	public Logic() {
 		this.finder = new NoteFinder();
@@ -29,19 +32,24 @@ public class Logic {
 		dao.saveNotesToFile(Notepad.getInstance().getNotes());
 	}
 	
-	public void sortNotes(String request){
+	public String sortNotes(String request){
 		sorter.sortBy(parser.parseSortMethod(request), Notepad.getInstance().getNotes());
+		return "Notes sorted by "+parser.parseSortMethod(request);
 	}
 	
 	public ArrayList<Note> findNotes(String request){
-		return finder.tupleSearch(request, Notepad.getInstance().getNotes());
+		return finder.tupleSearch(parser.parseSearchParameters(request), Notepad.getInstance().getNotes());
 	}
 
 	public String addNote(String request) {
 		if(Notepad.getInstance().addNote(parser.convertStringToNote(request))){
-			return "Note successfully added";
+			return NOTE_SUCCESSFULLY_ADDED;
 		}
-		return "Note not added";
+		return NOTE_NOT_ADDED;
+	}
+	
+	public ArrayList<Note> getAllNotes(){
+		return Notepad.getInstance().getNotes();
 	}
 	
 	

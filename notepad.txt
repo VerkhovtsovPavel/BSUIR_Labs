@@ -1,1 +1,2 @@
 Main:e@re.com:12-02-2012 19-57:Some text
+Java:java@javamail.com:02-02-2012 19-26:I don't know Java

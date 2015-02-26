@@ -1,6 +1,7 @@
 package com.bsuir.wtlab3.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,21 +9,23 @@ import com.bsuir.wtlab3.source.entity.Note;
 
 public class NoteFinder {
 
-	@SuppressWarnings("unchecked")
-	public ArrayList<Note> tupleSearch(String request, ArrayList<Note> allNotes) {
-		ArrayList<Note> searchResult = (ArrayList<Note>) allNotes.clone();
 
-		if (request.contains("text")) {
-			searchByText(searchResult, request);
+	@SuppressWarnings("unchecked")
+	public ArrayList<Note> tupleSearch(HashMap<String, String> findParams, ArrayList<Note> allNotes) {
+		ArrayList<Note> searchResult = (ArrayList<Note>) allNotes.clone();
+		String param = null;
+		
+		if ((param = findParams.get("Text")) != null) {
+			searchByText(searchResult, param);
 		}
-		if (request.contains("date")) {
-			searchByDate(searchResult);
+		if ((param = findParams.get("Date")) != null) {
+			searchByDate(searchResult, param);
 		}
-		if (request.contains("topic")) {
-			searchByTopic(searchResult);
+		if ((param = findParams.get("Topic")) != null) {
+			searchByTopic(searchResult, param);
 		}
-		if (request.contains("e-mail")) {
-			searchByEmail(searchResult);
+		if ((param = findParams.get("E-mail")) != null) {
+			searchByEmail(searchResult, param);
 		}
 
 		return searchResult;
@@ -30,7 +33,7 @@ public class NoteFinder {
 
 	private void searchByText(ArrayList<Note> searchResult, String parameter) {
 		ArrayList<Note> notesOnTheRemoving = new ArrayList<Note>();
-		Pattern pattern = Pattern.compile("");
+		Pattern pattern = Pattern.compile(parameter);
 		Matcher matcher = null;
 		for (Note note : searchResult) {
 			matcher = pattern.matcher(note.getText());
@@ -41,9 +44,9 @@ public class NoteFinder {
 		searchResult.removeAll(notesOnTheRemoving);
 	}
 
-	private void searchByDate(ArrayList<Note> searchResult) {
+	private void searchByDate(ArrayList<Note> searchResult, String parameter) {
 		ArrayList<Note> notesOnTheRemoving = new ArrayList<Note>();
-		Pattern pattern = Pattern.compile("");
+		Pattern pattern = Pattern.compile(parameter);
 		Matcher matcher = null;
 		for (Note note : searchResult) {
 			matcher = pattern.matcher(note.getCreateDate().toString());
@@ -54,9 +57,9 @@ public class NoteFinder {
 		searchResult.removeAll(notesOnTheRemoving);
 	}
 
-	private void searchByTopic(ArrayList<Note> searchResult) {
+	private void searchByTopic(ArrayList<Note> searchResult, String parameter) {
 		ArrayList<Note> notesOnTheRemoving = new ArrayList<Note>();
-		Pattern pattern = Pattern.compile("");
+		Pattern pattern = Pattern.compile(parameter);
 		Matcher matcher = null;
 		for (Note note : searchResult) {
 			matcher = pattern.matcher(note.getTopic());
@@ -67,9 +70,9 @@ public class NoteFinder {
 		searchResult.removeAll(notesOnTheRemoving);
 	}
 
-	private void searchByEmail(ArrayList<Note> searchResult) {
+	private void searchByEmail(ArrayList<Note> searchResult, String parameter) {
 		ArrayList<Note> notesOnTheRemoving = new ArrayList<Note>();
-		Pattern pattern = Pattern.compile("");
+		Pattern pattern = Pattern.compile(parameter);
 		Matcher matcher = null;
 		for (Note note : searchResult) {
 			matcher = pattern.matcher(note.getEMail());

@@ -34,4 +34,10 @@ public class Note {
 	public String getCompressedFormat() {
 		return String.format("%s:%s:%s:%s",this.topic,this.eMail,this.createDate,this.text);
 	}
+	
+	@Override
+	public String toString(){
+		return this.topic+"\ndate:\t"+this.createDate+"\ne-mail:\t"+this.eMail+"\n"+this.text+"\n--";
+	}
+	
 }

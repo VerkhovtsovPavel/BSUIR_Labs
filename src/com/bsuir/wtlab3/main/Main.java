@@ -26,8 +26,8 @@ public class Main {
 		String choice = null;
 		String answer = null;
 		Controller controller = new Controller();
-		controller.process("Upload");
-		while (!"Exit".equals(choice)) {
+		controller.process("upload");
+		while (!"exit".equals(choice)) {
 			System.out.print("> ");
 			choice = in.nextLine();
 			log.debug(String.format("View send request '%s'", choice));

@@ -55,7 +55,7 @@ public class FileDao {
 			log.debug("File " + file.getAbsoluteFile() + " opened");
 			try {
 				for (Note note : arrayList) {
-					in.append(note.getCompressedFormat());
+					in.append(note.getCompressedFormat()+"\n");
 				}
 			} finally {
 				in.close();
