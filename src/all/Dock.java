@@ -32,17 +32,18 @@ public class Dock extends Thread {
 				logger.info("Get ship to unload");
 				currentShip = port.getShipOnUnload();
 				if (currentShip != null) {
-					port.load += currentShip.getLoad();
-					logger.info("Ship loaded " + currentShip.getLoad() + " port loaded " + port.load);
+					port.incrementLoad(currentShip.getLoad());
+					logger.info("Ship loaded " + currentShip.getLoad() + " port loaded " + port.getLoad());
 				}
 			} else {
 				logger.info("Get ship to load");
 				currentShip = port.getShipOnLoad();
 				if (currentShip != null) {
-					port.load -= currentShip.getCapacity();
-					logger.info("Ship capacity " + currentShip.getCapacity() + "ship loaded " + currentShip.getLoad() + " port loaded " + port.load);
+					port.decrementLoad(currentShip.getCapacity());
+					logger.info("Ship capacity " + currentShip.getCapacity() + "ship loaded " + currentShip.getLoad() + " port loaded " + port.getLoad());
 				}
 			}
+			Thread.yield();
 		}
 	}
 }

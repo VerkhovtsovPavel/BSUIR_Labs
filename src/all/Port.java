@@ -10,10 +10,22 @@ public class Port {
 
 	private Dock[] docks;
 	private final long capacity;
-	public volatile long load;
+	private volatile long load;
 	private Queue<Ship> shipsToUnload = new PriorityQueue<>();
 	private Queue<Ship> shipsToLoad = new PriorityQueue<>();
 
+	public synchronized void incrementLoad(int count){
+		this.load+=count;
+	}
+	
+	public synchronized void decrementLoad(int count){
+		this.load-=count;
+	}
+	
+	public synchronized long getLoad(){
+		return this.load;
+	}
+	
 	public Port(long capacity, int numberOfDocks) {
 		this.capacity = capacity;
 		this.docks = new Dock[numberOfDocks];
@@ -33,6 +45,7 @@ public class Port {
 
 		while (!isShipsQueueEmpty()) {
 			docksControls();
+			Thread.yield();
 		}
 		logger.info("Port stop working");
 	}
