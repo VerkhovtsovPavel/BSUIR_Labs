@@ -1,12 +1,14 @@
-package com.bsuir.wtlab2.source.entity;
+package com.bsuir.wtlab2.source.entity.wrapping;
+
+import com.bsuir.wtlab2.source.entity.GiftElement;
 
 public class Wrapping extends GiftElement {
 
 	public String color;
 	public String pattern;
 
-	public Wrapping(String pattern, String color) {
-		super(10);
+	public Wrapping(String pattern, String color, int cost) {
+		super(cost);
 		this.color = color;
 		this.pattern = pattern;
 	}
@@ -32,7 +34,7 @@ public class Wrapping extends GiftElement {
 
 	@Override
 	public String toString() {
-		return "Wrapping with pattern " + this.pattern + " and " + this.color + " color";
+		return "Wrapping with pattern " + this.pattern + " and " + this.color + " color and cost " + getCost();
 	}
 
 	@Override

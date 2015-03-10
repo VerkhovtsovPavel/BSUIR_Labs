@@ -6,13 +6,11 @@ import java.util.regex.Pattern;
 
 import com.bsuir.wtlab2.logic.Logic;
 
-
-
 public class Controller {
 
-	private static final String COMMAND_VALIDATE_REGEXP = "(((Add)|(Delete)) +(((wrapper with) +\\w+ +(patterns and) +\\w+ +(color))|((sweet with sweetness) +\\d+|(max sweetness sweet))))|(((Clear)|(Print)) +(present))$";
+	private static final String COMMAND_VALIDATE_REGEXP = "(((Add)|(Delete)) +(((wrapper with) +\\w+ +(patterns) +\\w+ +(color))|((chocolate with cocoa \\d+)|(zephyr with fruit \\w+)|(candiedRoastedNuts with nuts \\w+)) sweetness \\d+) cost \\d+)|(((Clear)|(Print)) +(present))";
 	private static final String SPACE_REGEXP = "[\\t ]+";
-	
+
 	private Logic logic;
 
 	public Controller() {
@@ -30,17 +28,15 @@ public class Controller {
 		case "Delete":
 			return deleteCommands(request);
 		case "Print":
-			return buildString(logic.getGift())+String.format("Total cost = %d", logic.getTotalCost());
+			return buildString(logic.getGift()) + String.format("Total cost = %d", logic.getTotalCost());
 		case "Clear":
 			logic.clearGift();
 			return "All gift elements deleted";
-		case "Exit":
-			return "Goodbye";
 		default:
 			return "Incorrect command";
 		}
 	}
-	
+
 	public String buildString(final ArrayList<?> list) {
 		StringBuilder builder = new StringBuilder();
 		for (Object object : list) {
@@ -50,15 +46,17 @@ public class Controller {
 	}
 
 	private String addCommands(String request) {
-		logic.addElementOnGift(request);
-		return "Element add to gift";
+		if (logic.addElementOnGift(request)) {
+			return "Element add to gift";
+		} else {
+			return "Element don't added";
+		}
 	}
 
 	private String deleteCommands(String request) {
-		if(logic.removeElementFromGift(request)){
+		if (logic.removeElementFromGift(request)) {
 			return "Element deleted";
-		}
-		else{
+		} else {
 			return "Element don't find in gift";
 		}
 	}

@@ -1,25 +1,38 @@
 package com.bsuir.wtlab2.source.factory;
 
+import java.util.HashMap;
+
 import com.bsuir.wtlab2.source.entity.GiftElement;
-import com.bsuir.wtlab2.source.entity.Sweet;
-import com.bsuir.wtlab2.source.entity.Wrapping;
+import com.bsuir.wtlab2.source.entity.sweet.CandiedRoastedNuts;
+import com.bsuir.wtlab2.source.entity.sweet.Chocolate;
+import com.bsuir.wtlab2.source.entity.sweet.Zephyr;
+import com.bsuir.wtlab2.source.entity.wrapping.Wrapping;
 
 public class GiftFactory {
-	private static final String SPACE_REGEXP = "[\\t ]+";
 
+	public GiftElement getGiftElement(final String objectType, final HashMap<String, Object> params) {
+		int cost = (int) params.get("Cost");
+		int sweetness;
+		switch (objectType.toLowerCase()) {
+		case "chocolate":
+			sweetness = (int) params.get("Sweetness");
+			int cocoa = (int) params.get("Cocoa");
+			return new Chocolate(sweetness, cocoa, cost);
 
-	public GiftElement getGiftElement(final String objectType,final String params) {
-		//String objectType = parser.getObjectType(requaredGiftElement);
-		//String params = parser.getParams(requaredGiftElement);
-		switch (objectType) {
-		case "Sweet":
-			int sweethess = Integer.valueOf(params);
-			return new Sweet(sweethess);
-		case "Wrapping":
-			String[] patternAndColor = params.split(SPACE_REGEXP);
-			String pattern = patternAndColor[0];
-			String color = patternAndColor[1];
-			return new Wrapping(pattern, color);
+		case "zephyr":
+			sweetness = (int) params.get("Sweetness");
+			String fruit = (String) params.get("Fruit");
+			return new Zephyr(sweetness, fruit, cost);
+
+		case "candiedroastednuts":
+			sweetness = (int) params.get("Sweetness");
+			String nuts = (String) params.get("Nuts");
+			return new CandiedRoastedNuts(sweetness, nuts, cost);
+
+		case "wrapper":
+			String pattern = (String) params.get("Pattern");
+			String color = (String) params.get("Color");
+			return new Wrapping(pattern, color, cost);
 		default:
 			return null;
 		}

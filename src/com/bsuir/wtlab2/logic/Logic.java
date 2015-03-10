@@ -8,38 +8,35 @@ import com.bsuir.wtlab2.source.factory.GiftFactory;
 
 public class Logic {
 
-	private GiftElementStore gift;
 	private GiftFactory giftFactory;
 
 	public Logic() {
-		this.gift = new GiftElementStore();
 		this.giftFactory = new GiftFactory();
 	}
 
 	public ArrayList<GiftElement> getGift() {
-		return gift.getGift();
+		return GiftElementStore.getInstance().getGift();
 	}
 
 	public Object getTotalCost() {
-		return gift.getTotalCost();
+		return GiftElementStore.getInstance().getTotalCost();
 	}
 
 	public void clearGift() {
-		gift.clearGift();
+		GiftElementStore.getInstance().clearGift();
 	}
 
 	public boolean removeElementFromGift(String request) {
-		return gift.removeElementFromGift(createGiftElement(request));
+		return GiftElementStore.getInstance().removeElementFromGift(createGiftElement(request));
 	}
 
-	public void addElementOnGift(String request) {
-		gift.addElementOnGift(createGiftElement(request));
+	public boolean addElementOnGift(String request) {
+		return GiftElementStore.getInstance().addElementOnGift(createGiftElement(request));
 	}
 
 	private GiftElement createGiftElement(String request) {
 		String objectType = FactoryParametersParser.getObjectType(request);
-		String params = FactoryParametersParser.getParams(request);
-		return giftFactory.getGiftElement(objectType, params);
+		return giftFactory.getGiftElement(objectType, FactoryParametersParser.getParams(request));
 	}
 
 }
