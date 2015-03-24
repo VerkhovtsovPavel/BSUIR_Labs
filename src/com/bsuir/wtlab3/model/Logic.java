@@ -2,7 +2,8 @@ package com.bsuir.wtlab3.model;
 
 import java.util.ArrayList;
 
-import com.bsuir.wtlab3.dao.FileDao;
+import com.bsuir.wtlab3.dao.DaoFactory;
+import com.bsuir.wtlab3.dao.UserDao;
 import com.bsuir.wtlab3.source.Notepad;
 import com.bsuir.wtlab3.source.entity.Note;
 
@@ -10,7 +11,7 @@ public class Logic {
 	private NoteFinder finder;
 	private NoteSorter sorter;
 	private CommandLineParametersParser parser;
-	private FileDao dao;
+	private UserDao dao;
 	
 	private static final String NOTE_SUCCESSFULLY_ADDED = "Note successfully added";
 	private static final String NOTE_NOT_ADDED = "Note not added";
@@ -20,18 +21,18 @@ public class Logic {
 	public Logic() {
 		this.finder = new NoteFinder();
 		this.sorter = new NoteSorter();
-		this.dao = new FileDao();
+		this.dao = DaoFactory.getFactory().getUserDao();;
 		this.parser = new CommandLineParametersParser();
 	}
 
 	public void getNotesFromFile() {
-		for(String unparseNote : dao.getNotesFromFile()){
+		for(String unparseNote : dao.getAllNotes()){
 			Notepad.getInstance().addNote(parser.convertStringToNote(unparseNote));
 		}
 	}
 
 	public void saveNotesToFile() {
-		dao.saveNotesToFile(Notepad.getInstance().getNotes());
+		dao.saveNotes(Notepad.getInstance().getNotes());
 	}
 	
 	public String sortNotes(String request){

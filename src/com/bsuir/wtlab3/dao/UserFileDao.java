@@ -18,12 +18,23 @@ import com.bsuir.wtlab3.source.entity.Note;
  * @author Pavel_Verkhovtsov
  * 
  */
-public class FileDao {
-	private static Logger log = Logger.getLogger(FileDao.class);
-
+public class UserFileDao implements UserDao{
+	private static Logger log = Logger.getLogger(UserFileDao.class);
 	private final static String fileSource = "notepad.txt";
+	
+	private static UserFileDao instance;
+	
+	public static UserFileDao getInstance(){
+		if(instance == null){
+			instance = new UserFileDao();
+		}
+		return instance;
+		
+	}
+	
+	private UserFileDao(){};
 
-	public ArrayList<String> getNotesFromFile() {
+	public ArrayList<String> getAllNotes() {
 		ArrayList<String> result = new ArrayList<String>();
 		File file = new File(fileSource);
 		try {
@@ -48,7 +59,7 @@ public class FileDao {
 		return result;
 	}
 
-	public void saveNotesToFile(ArrayList<Note> arrayList) {
+	public void saveNotes(ArrayList<Note> arrayList) {
 		File file = new File(fileSource);
 		try {
 			BufferedWriter in = new BufferedWriter(new FileWriter(file.getAbsoluteFile()));
