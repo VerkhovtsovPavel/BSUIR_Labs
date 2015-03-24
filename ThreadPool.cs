@@ -18,7 +18,6 @@ namespace OSiSP_2
     public class ThreadPool
     {
         private int minThreads;
-        private readonly int _maxTreads;
         private int maxThreads;
         private int threadLifeTime;
         private List<Thread> threads = new List<Thread>();
@@ -28,7 +27,7 @@ namespace OSiSP_2
         public ThreadPool(int minThreads, int maxTreads, int lifeTime)
         {
             this.minThreads = minThreads;
-            _maxTreads = maxTreads;
+			this.maxThreads = maxTreads;
             threadLifeTime = lifeTime;
         }
 
@@ -39,19 +38,19 @@ namespace OSiSP_2
 
         public int GetMaxThreads()
         {
-            return this.maxThreads;
+			return maxThreads;
         }
 
         public int getThreadLifeTime()
         {
-            return this.threadLifeTime;
+			return threadLifeTime;
         }
 
         public void initialazeMinThread()
         {
             for (int i = 0; i < this.minThreads; i++)
             {
-                this.threads.Add(null);
+                threads.Add(null);
             }
         }
 

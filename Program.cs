@@ -12,9 +12,13 @@ namespace OSiSP_2
 {
 	class Program
 	{
-		public static void Main(string[] args)
+		public static void Main()
 		{
 			ThreadPool threadPool = new ThreadPool(10, 100, 30);
+
+			for(int taskIndex = 0; taskIndex < 100; taskIndex++){
+				threadPool.addTask(new PrintTask(Convert.ToString(taskIndex)));
+			}
 		}
 	}
 }

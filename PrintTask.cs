@@ -16,7 +16,7 @@ namespace OSiSP_2
 	public class PrintTask : Task
 	{
 		
-		private string text;
+		private readonly string text;
 		
 		public PrintTask(string text)
 		{
@@ -25,7 +25,7 @@ namespace OSiSP_2
 
 	    public void process()
 		{
-			Console.WriteLine(this.text);
+			Console.WriteLine (text);
 		}
 	}
 }
