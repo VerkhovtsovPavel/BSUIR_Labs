@@ -2,9 +2,9 @@ package com.bsuir.wtlab2.logic;
 
 import java.util.ArrayList;
 
+import com.bsuir.wtlab2.entity.GiftElement;
+import com.bsuir.wtlab2.logic.factory.GiftFactory;
 import com.bsuir.wtlab2.source.GiftElementStore;
-import com.bsuir.wtlab2.source.entity.GiftElement;
-import com.bsuir.wtlab2.source.factory.GiftFactory;
 
 public class Logic {
 
@@ -38,8 +38,7 @@ public class Logic {
 
 	private GiftElement createGiftElement(String request) {
 		String objectType = FactoryParametersParser.getObjectType(request);
-		String params = FactoryParametersParser.getParams(request);
-		return giftFactory.getGiftElement(objectType, params);
+		return giftFactory.getGiftElement(objectType, FactoryParametersParser.getParams(request));
 	}
 
 }

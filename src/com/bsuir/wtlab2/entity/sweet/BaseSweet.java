@@ -1,11 +1,13 @@
-package com.bsuir.wtlab2.source.entity;
+package com.bsuir.wtlab2.entity.sweet;
 
-public class Sweet extends GiftElement {
+import com.bsuir.wtlab2.entity.GiftElement;
 
-	public int sweetness;
+public abstract class BaseSweet extends GiftElement {
 
-	public Sweet(int sweethess) {
-		super(sweethess * 2);
+	private int sweetness;
+
+	public BaseSweet(int sweethess, int cost) {
+		super(cost);
 		this.sweetness = sweethess;
 	}
 
@@ -19,7 +21,7 @@ public class Sweet extends GiftElement {
 			return false;
 		}
 
-		Sweet sweet = (Sweet) obj;
+		BaseSweet sweet = (BaseSweet) obj;
 		if (this.sweetness == sweet.sweetness && super.equals(obj)) {
 			return true;
 		} else {
@@ -29,13 +31,12 @@ public class Sweet extends GiftElement {
 	}
 
 	@Override
-	public String toString() {
-		return "Sweet with sweetness " + this.sweetness;
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		return prime * sweetness + super.hashCode();
+	}
+	
+	public int getSweetness(){
+		return this.sweetness;
 	}
 }

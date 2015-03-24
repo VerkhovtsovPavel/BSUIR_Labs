@@ -3,7 +3,7 @@ package com.bsuir.wtlab2.source;
 
 import java.util.ArrayList;
 
-import com.bsuir.wtlab2.source.entity.GiftElement;
+import com.bsuir.wtlab2.entity.GiftElement;
 
 public class GiftElementStore {
 

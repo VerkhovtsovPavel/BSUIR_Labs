@@ -6,6 +6,8 @@ import com.bsuir.wtlab2.controller.Controller;
 
 
 public class Main {
+	
+	//TODO Add cost parsing and remove hardcode 
 
 	private static Scanner in = new Scanner(System.in);
 

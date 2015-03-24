@@ -1,4 +1,4 @@
-package com.bsuir.wtlab2.source.entity;
+package com.bsuir.wtlab2.entity;
 
 public abstract class GiftElement{
 	

@@ -10,7 +10,7 @@ import com.bsuir.wtlab2.logic.Logic;
 
 public class Controller {
 
-	private static final String COMMAND_VALIDATE_REGEXP = "(((Add)|(Delete)) +(((wrapper with) +\\w+ +(patterns and) +\\w+ +(color))|((sweet with sweetness) +\\d+|(max sweetness sweet))))|(((Clear)|(Print)) +(present))$";
+	private static final String COMMAND_VALIDATE_REGEXP = "(((Add)|(Delete)) +(((wrapper with) +\\w+ +(patterns and) +\\w+ +(color))|((chocolate with cocoa /d+)|(zephyr with fruit /w+)|(candiedRoastedNuts with nuts /w+)) sweetness /d+ cost /d+))|(((Clear)|(Print)) +(present))$";
 	private static final String SPACE_REGEXP = "[\\t ]+";
 	
 	private Logic logic;
