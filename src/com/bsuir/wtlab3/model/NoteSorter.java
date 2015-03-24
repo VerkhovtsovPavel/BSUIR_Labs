@@ -5,33 +5,30 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import com.bsuir.wtlab3.source.entity.Note;
-import com.bsuir.wtlab3.source.ñomparator.NoteDateComparator;
-import com.bsuir.wtlab3.source.ñomparator.NoteEmailComparator;
-import com.bsuir.wtlab3.source.ñomparator.NoteTextComparator;
-import com.bsuir.wtlab3.source.ñomparator.NoteTopicComparator;
-
-
-
+import com.bsuir.wtlab3.source.comparator.NoteDateComparator;
+import com.bsuir.wtlab3.source.comparator.NoteEmailComparator;
+import com.bsuir.wtlab3.source.comparator.NoteTextComparator;
+import com.bsuir.wtlab3.source.comparator.NoteTopicComparator;
 
 public class NoteSorter {
 	private Comparator<Note> comparator;
-	
-	public void sortBy(String method, ArrayList<Note> notepad){
-		switch (method){
-		case "date" : 
+
+	public void sortBy(String method, ArrayList<Note> notepad) {
+		switch (method) {
+		case "date":
 			comparator = new NoteDateComparator();
 			break;
-		case "e-mail" : 
+		case "e-mail":
 			comparator = new NoteEmailComparator();
 			break;
-		case "topic" : 
+		case "topic":
 			comparator = new NoteTopicComparator();
 			break;
-		case "text" : 
+		case "text":
 			comparator = new NoteTextComparator();
-			break;	
+			break;
 		}
 		Collections.sort(notepad, comparator);
 	}
-	
+
 }
