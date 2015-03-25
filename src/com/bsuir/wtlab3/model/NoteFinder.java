@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.bsuir.wtlab3.source.entity.Note;
+import com.bsuir.wtlab3.entity.Note;
 
 public class NoteFinder {
 

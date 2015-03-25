@@ -1,4 +1,4 @@
-package com.bsuir.wtlab3.source.entity;
+package com.bsuir.wtlab3.entity;
 
 
 public class Note {

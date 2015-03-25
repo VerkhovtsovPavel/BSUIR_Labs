@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-import com.bsuir.wtlab3.source.entity.Note;
+import com.bsuir.wtlab3.entity.Note;
 
 /**
  * Class contains helpful methods for files.
@@ -43,7 +43,9 @@ public class UserFileDao implements UserDao{
 			try {
 				String lineFromFile;
 				while ((lineFromFile = in.readLine()) != null) {
-					result.add(lineFromFile);
+					if(!lineFromFile.isEmpty()){
+						result.add(lineFromFile);
+					}
 				}
 
 			} finally {
@@ -54,7 +56,6 @@ public class UserFileDao implements UserDao{
 			log.error("Error while read file " + file.getAbsolutePath());
 			log.warn("StackTrace", e);
 			log.error("Notepad will be empty");
-
 		}
 		return result;
 	}

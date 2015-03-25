@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import com.bsuir.wtlab3.source.entity.Note;
+import com.bsuir.wtlab3.entity.Note;
 import com.bsuir.wtlab3.source.comparator.NoteDateComparator;
 import com.bsuir.wtlab3.source.comparator.NoteEmailComparator;
 import com.bsuir.wtlab3.source.comparator.NoteTextComparator;

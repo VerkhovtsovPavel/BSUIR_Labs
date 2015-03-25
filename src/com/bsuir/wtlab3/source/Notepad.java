@@ -2,7 +2,7 @@ package com.bsuir.wtlab3.source;
 
 import java.util.ArrayList;
 
-import com.bsuir.wtlab3.source.entity.Note;
+import com.bsuir.wtlab3.entity.Note;
 
 public class Notepad {
 	private ArrayList<Note> notes = new ArrayList<Note>();

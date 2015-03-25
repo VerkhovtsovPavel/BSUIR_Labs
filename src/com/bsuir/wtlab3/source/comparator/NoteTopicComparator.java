@@ -2,7 +2,7 @@ package com.bsuir.wtlab3.source.comparator;
 
 import java.util.Comparator;
 
-import com.bsuir.wtlab3.source.entity.Note;
+import com.bsuir.wtlab3.entity.Note;
 
 
 public class NoteTopicComparator implements Comparator<Note> {

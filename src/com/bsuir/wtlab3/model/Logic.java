@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import com.bsuir.wtlab3.dao.DaoFactory;
 import com.bsuir.wtlab3.dao.UserDao;
+import com.bsuir.wtlab3.entity.Note;
 import com.bsuir.wtlab3.source.Notepad;
-import com.bsuir.wtlab3.source.entity.Note;
 
 public class Logic {
 	private NoteFinder finder;
@@ -21,7 +21,7 @@ public class Logic {
 	public Logic() {
 		this.finder = new NoteFinder();
 		this.sorter = new NoteSorter();
-		this.dao = DaoFactory.getFactory().getUserDao();;
+		this.dao = DaoFactory.getFactory().getUserDao();
 		this.parser = new CommandLineParametersParser();
 	}
 

@@ -6,15 +6,15 @@ import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 
+import com.bsuir.wtlab3.entity.Note;
 import com.bsuir.wtlab3.model.Logic;
-import com.bsuir.wtlab3.source.entity.Note;
 
 public class Controller {
 	private static Logger logger = Logger.getLogger(Controller.class);
 
 	private Logic logic;
 
-	private static final String COMMAND_REGEXP_FORMAT = "(%s)|(%s)|(%s)|(%s)|(upload)|(exit)|\\?";
+	private static final String COMMAND_REGEXP_FORMAT = "(%s)|(%s)|(%s)|(%s)|(load)|(save)|\\?";
 	private static final String FIND_COMMANDS_VALIDATE_REGEXP = "(find)[ \\t]+(\\-[dmet][\\t ]+\"[\\w\\W]+\"[\\t ]*)+";
 	private static final String SORT_COMMANDS_VALIDATE_REGEXP = "(sort)[ \\t]+\\-[tedm]";
 	private static final String ADD_COMMANDS_VALIDATE_REGEXP = "(add)[ \\t]+[\\w\\W]+\\:[\\w\\.\\@]+\\:[\\d\\-\\/ \\.]+:[\\w\\W]+";
@@ -25,7 +25,7 @@ public class Controller {
 	
 	private static final String NOTES_NOT_FOUND = "Notes not found";
 	private static final String NOTES_SUCCESSFULLY_UPLODED_TO_NOTEPAD = "Notes successfully uploded to notepad";
-	private static final String NOTES_SUCCESSFULLY_SAVED_TO_FILE = "Notes successfully saved to file\nGoodbye";
+	private static final String NOTES_SUCCESSFULLY_SAVED_TO_FILE = "Notes successfully saved to file";
 	private static final String INCORRECT_COMMAND = "Incorrect command";
 
 	public Controller() {
@@ -58,17 +58,14 @@ public class Controller {
 		case "get":
 			response = buildString(logic.getAllNotes());
 			break;
-		case "upload":
+		case "load":
 			logic.getNotesFromFile();
 			response = NOTES_SUCCESSFULLY_UPLODED_TO_NOTEPAD;
-			break;
-		case "?":
-			response = getHint();
 			break;
 		case "sort":
 			response = logic.sortNotes(request);
 			break;
-		case "exit":
+		case "save":
 			logic.saveNotesToFile();
 			response = NOTES_SUCCESSFULLY_SAVED_TO_FILE;
 			break;
@@ -80,11 +77,6 @@ public class Controller {
 		return response;
 
 	}
-
-	private String getHint() {
-		return "Hint";
-	}
-
 
 	private boolean checkCommand(String request) {
 		Pattern pattern = Pattern.compile(String.format(COMMAND_REGEXP_FORMAT, ADD_COMMANDS_VALIDATE_REGEXP, FIND_COMMANDS_VALIDATE_REGEXP, SORT_COMMANDS_VALIDATE_REGEXP, GET_COMMANDS_VALDATE_REGEXP));
