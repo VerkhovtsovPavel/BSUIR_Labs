@@ -1,11 +1,2 @@
-Java:java@jmail.com:12-01-2015 23-59:Java
 OSiSP:os@gmail.com:27-04-2015 07-37:Operation system and system programming
-OSiSP:os@gmail.com:27-04-2015 07-37:Operation system and system programming
-OSiSP:os@gmail.com:27-04-2015 07-37:Operation system and system programming
-OSiSP:os@gmail.com:27-04-2015 07-37:Operation system and system programming
-OSiSP:os@gmail.com:27-04-2015 07-37:Operation system and system programming
-WebTech:wt@gmail.com:25-03-2015 19-57:Web Technology
-WebTech:wt@gmail.com:25-03-2015 19-57:Web Technology
-WebTech:wt@gmail.com:25-03-2015 19-57:Web Technology
-WebTech:wt@gmail.com:25-03-2015 19-57:Web Technology
 WebTech:wt@gmail.com:25-03-2015 19-57:Web Technology

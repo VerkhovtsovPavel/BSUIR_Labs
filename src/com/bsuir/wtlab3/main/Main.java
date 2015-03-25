@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import com.bsuir.wtlab3.controller.Controller;
 
 //TODO Layers exceptions
+//TODO More logging
 
 public class Main {
 	/**
@@ -31,7 +32,7 @@ public class Main {
 		sendRequest("sort -t");
 		sendRequest("get -a");
 		
-		sendRequest("find -t \"Java\"");			
+		sendRequest("find -t \"OSiSP\"");			
 
 		sendRequest("save");
 		log.fatal("Stop program");
