@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 import com.bsuir.wtlab3.entity.Note;
+import com.bsuir.wtlab3.exception.DaoException;
 
 /**
  * Class contains helpful methods for files.
@@ -34,7 +35,7 @@ public class UserFileDao implements UserDao{
 	
 	private UserFileDao(){};
 
-	public ArrayList<String> getAllNotes() {
+	public ArrayList<String> getAllNotes() throws DaoException {
 		ArrayList<String> result = new ArrayList<String>();
 		File file = new File(fileSource);
 		try {
@@ -56,11 +57,12 @@ public class UserFileDao implements UserDao{
 			log.error("Error while read file " + file.getAbsolutePath());
 			log.warn("StackTrace", e);
 			log.error("Notepad will be empty");
+			throw new DaoException("Error while read file " + file.getAbsolutePath(), e);
 		}
 		return result;
 	}
 
-	public void saveNotes(ArrayList<Note> arrayList) {
+	public void saveNotes(ArrayList<Note> arrayList) throws DaoException {
 		File file = new File(fileSource);
 		try {
 			BufferedWriter in = new BufferedWriter(new FileWriter(file.getAbsoluteFile()));
@@ -77,7 +79,7 @@ public class UserFileDao implements UserDao{
 			log.error("Error while write in file " + file.getAbsolutePath());
 			log.warn("StackTrace", e);
 			log.error("Added notes are not saved");
-
+			throw new DaoException("Error while write in file " + file.getAbsolutePath(), e);
 		}
 	}
 }

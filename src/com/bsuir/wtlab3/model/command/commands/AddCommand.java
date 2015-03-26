@@ -1,12 +1,13 @@
-package com.bsuir.wtlab3.command.commands;
+package com.bsuir.wtlab3.model.command.commands;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 
-import com.bsuir.wtlab3.command.Command;
 import com.bsuir.wtlab3.entity.Note;
+import com.bsuir.wtlab3.exception.LogicException;
+import com.bsuir.wtlab3.model.command.Command;
 import com.bsuir.wtlab3.source.Notepad;
 
 public class AddCommand implements Command{
@@ -18,15 +19,15 @@ public class AddCommand implements Command{
 	
 
 	@Override
-	public Object execute(String request) {
+	public Object execute(String request) throws LogicException {
 		return	Notepad.getInstance().addNote(convertStringToNote(request));
 	}
 
-	private Note convertStringToNote(String unparseNote) {
+	private Note convertStringToNote(String unparseNote) throws LogicException {
 		String[] currentParam = unparseNote.split(NOTE_FIELD_DELIMETER_REGEXP);
 		if (currentParam.length < 4 || !validateDate(currentParam[2]) || !validateEmail(currentParam[1])) {
 			log.error("Error while parse string: " + unparseNote);
-			return null; //TODO Exception
+			throw new LogicException();
 		}
 		return new Note(currentParam[0],currentParam[1],currentParam[2], currentParam[3]);
 	}

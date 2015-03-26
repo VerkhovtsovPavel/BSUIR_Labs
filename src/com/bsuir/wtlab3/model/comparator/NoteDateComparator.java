@@ -1,4 +1,4 @@
-package com.bsuir.wtlab3.source.comparator;
+package com.bsuir.wtlab3.model.comparator;
 
 import java.util.Calendar;
 import java.util.Comparator;

@@ -2,9 +2,10 @@ package com.bsuir.wtlab3.model;
 
 import java.util.ArrayList;
 
-import com.bsuir.wtlab3.command.CommandName;
-import com.bsuir.wtlab3.command.Manager;
 import com.bsuir.wtlab3.entity.Note;
+import com.bsuir.wtlab3.exception.LogicException;
+import com.bsuir.wtlab3.model.command.CommandName;
+import com.bsuir.wtlab3.model.command.Manager;
 
 public class Logic {
 	private Manager manager;
@@ -18,24 +19,24 @@ public class Logic {
 		this.manager = new Manager();
 	}
 
-	public void getNotesFromFile() {
+	public void getNotesFromFile() throws LogicException{
 		manager.execute(CommandName.LOAD, "");
 	}
 
-	public void saveNotesToFile() {
+	public void saveNotesToFile() throws LogicException {
 		manager.execute(CommandName.SAVE, "");
 	}
 	
-	public String sortNotes(String request){
+	public String sortNotes(String request) throws LogicException{
 		return String.format(NOTE_SORTED_BY_RESPONSE_FORMAT, manager.execute(CommandName.SORT, request));
 	}
 	
 	@SuppressWarnings("unchecked")
-	public ArrayList<Note> findNotes(String request){
+	public ArrayList<Note> findNotes(String request) throws LogicException{
 		return (ArrayList<Note>) manager.execute(CommandName.FIND, request);
 	}
 
-	public String addNote(String request) {
+	public String addNote(String request) throws LogicException {
 		if((boolean) manager.execute(CommandName.ADD, request)){
 			return NOTE_SUCCESSFULLY_ADDED;
 		}
@@ -43,7 +44,7 @@ public class Logic {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public ArrayList<Note> getAllNotes(){
+	public ArrayList<Note> getAllNotes() throws LogicException{
 		return (ArrayList<Note>) manager.execute(CommandName.GET, "");
 	}
 	

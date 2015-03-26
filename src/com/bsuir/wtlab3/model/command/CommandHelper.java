@@ -1,14 +1,14 @@
-package com.bsuir.wtlab3.command;
+package com.bsuir.wtlab3.model.command;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.bsuir.wtlab3.command.commands.AddCommand;
-import com.bsuir.wtlab3.command.commands.FindCommand;
-import com.bsuir.wtlab3.command.commands.GetCommand;
-import com.bsuir.wtlab3.command.commands.LoadCommand;
-import com.bsuir.wtlab3.command.commands.SaveCommand;
-import com.bsuir.wtlab3.command.commands.SortCommand;
+import com.bsuir.wtlab3.model.command.commands.AddCommand;
+import com.bsuir.wtlab3.model.command.commands.FindCommand;
+import com.bsuir.wtlab3.model.command.commands.GetCommand;
+import com.bsuir.wtlab3.model.command.commands.LoadCommand;
+import com.bsuir.wtlab3.model.command.commands.SaveCommand;
+import com.bsuir.wtlab3.model.command.commands.SortCommand;
 
 public class CommandHelper {
 	private Map<CommandName, Command> commands = new HashMap<>();

@@ -1,12 +1,12 @@
-package com.bsuir.wtlab3.command.commands;
+package com.bsuir.wtlab3.model.command.commands;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.bsuir.wtlab3.command.Command;
 import com.bsuir.wtlab3.entity.Note;
+import com.bsuir.wtlab3.model.command.Command;
 import com.bsuir.wtlab3.source.Notepad;
 
 public class FindCommand implements Command{
