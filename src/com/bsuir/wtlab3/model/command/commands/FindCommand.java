@@ -5,17 +5,21 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.log4j.Logger;
+
 import com.bsuir.wtlab3.entity.Note;
 import com.bsuir.wtlab3.model.command.Command;
 import com.bsuir.wtlab3.source.Notepad;
 
 public class FindCommand implements Command{
+	private final Logger log = Logger.getLogger(FindCommand.class);
 	
 	private static final String FIND_TYPE_REGEXP = "\\-%s[\\t ]+[\\w\\W]+";
 	private static final String SEARCH_PARAMETERS_DELIMETER_REGEXP = "[\\t ]+\""; 
 
 	@Override
 	public Object execute(String request) {
+		log.debug("Execute find command");
 		return tupleSearch(parseSearchParameters(request), Notepad.getInstance().getNotes());
 	}
 	

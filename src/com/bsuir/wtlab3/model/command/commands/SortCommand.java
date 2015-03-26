@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import org.apache.log4j.Logger;
+
 import com.bsuir.wtlab3.entity.Note;
 import com.bsuir.wtlab3.exception.LogicException;
 import com.bsuir.wtlab3.model.command.Command;
@@ -14,9 +16,11 @@ import com.bsuir.wtlab3.model.comparator.NoteTopicComparator;
 import com.bsuir.wtlab3.source.Notepad;
 
 public class SortCommand implements Command {
+	private final Logger log = Logger.getLogger(SortCommand.class);
 
 	@Override
 	public Object execute(String request) throws LogicException {
+		log.debug("Execute sort command");
 		sortBy(parseSortMethod(request), Notepad.getInstance().getNotes());
 		return parseSortMethod(request);
 	}
@@ -41,6 +45,7 @@ public class SortCommand implements Command {
 
 	private void sortBy(String method, ArrayList<Note> notepad) {
 		Comparator<Note> comparator = null;
+		log.debug("Sort by "+method);
 		switch (method) {
 		case "date":
 			comparator = new NoteDateComparator();

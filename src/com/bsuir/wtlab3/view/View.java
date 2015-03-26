@@ -5,8 +5,6 @@ import org.apache.log4j.Logger;
 import com.bsuir.wtlab3.controller.Controller;
 import com.bsuir.wtlab3.exception.ControllerException;
 
-//TODO More logging
-
 public class View {
 	/**
 	 * Logger.
@@ -21,7 +19,7 @@ public class View {
 	 *            command line arguments
 	 */
 	public static void main(final String[] args) {
-		log.fatal("Start program");
+		log.info("Start program");
 		sendRequest("load");
 		
 		sendRequest("add WebTech:wt@gmail.com:25-03-2015 19-57:Web Technology");
@@ -35,7 +33,7 @@ public class View {
 		sendRequest("find -t \"OSiSP\"");			
 
 		sendRequest("save");
-		log.fatal("Stop program");
+		log.info("Stop program");
 	}
 	
 	private static void sendRequest(String choice){
@@ -46,6 +44,7 @@ public class View {
 			log.info(answer);
 		}catch(ControllerException cex){
 			log.error(cex.getMessage());
+			log.debug("StackTrace:\n",cex);
 		}
 	}
 }

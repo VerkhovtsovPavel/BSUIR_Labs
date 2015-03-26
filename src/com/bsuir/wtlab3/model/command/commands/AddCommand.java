@@ -20,6 +20,7 @@ public class AddCommand implements Command{
 
 	@Override
 	public Object execute(String request) throws LogicException {
+		log.debug("Execute add command");
 		return	Notepad.getInstance().addNote(convertStringToNote(request));
 	}
 
