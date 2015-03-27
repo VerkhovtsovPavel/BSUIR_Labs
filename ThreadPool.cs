@@ -17,6 +17,9 @@ namespace OSiSP_2
     /// </summary>
     public class ThreadPool
     {
+    	 private System.Object queueLock = new System.Object();
+    	
+    	
         private int minThreads;
         private int maxThreads;
         private int threadLifeTime;
@@ -50,13 +53,47 @@ namespace OSiSP_2
         {
             for (int i = 0; i < this.minThreads; i++)
             {
-                threads.Add(null);
+            	threads.Add(new Thread(ThreadFunction));
             }
         }
 
         public void addTask(Task task)
         {
-            taskQueue.Enqueue(task);
+        	lock(queueLock){
+            	taskQueue.Enqueue(task);
+        	}
+        }
+        
+        public Task getTask()
+        {
+        	lock(queueLock){
+        		return taskQueue.Peek();
+        	}
+        }
+        
+        private void checkThreads(){
+        	foreach(Thread thread in threads){
+        		if(!thread.IsAlive){
+        			threads.Remove(thread);
+        		}
+        	}
+        }
+        
+        private void ThreadFunction(){
+        	int sleepTime = 0;
+        	while(sleepTime<this.threadLifeTime){
+	        	Task task = getTask();
+	        	if(task==null)
+	        	{
+	        		Thread.Sleep(1000);
+	        		sleepTime++;
+	        	}
+	        	else
+	        	{
+	        		sleepTime=0;
+	        		task.process();
+	       		}	
+        	}	
         }
 
 
