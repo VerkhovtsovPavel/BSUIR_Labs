@@ -1,9 +1,11 @@
-package all;
+package port;
 
 import java.util.PriorityQueue;
 import java.util.Queue;
 
 import org.apache.log4j.Logger;
+
+import entity.Ship;
 
 public class Port {
 	private Logger logger = Logger.getLogger(Port.class);
@@ -14,18 +16,29 @@ public class Port {
 	private Queue<Ship> shipsToUnload = new PriorityQueue<>();
 	private Queue<Ship> shipsToLoad = new PriorityQueue<>();
 
-	public synchronized void incrementLoad(int count){
-		this.load+=count;
+	private boolean stopWork;
+
+	public synchronized boolean incrementLoad(int count) {
+		if(load + count <capacity){
+			this.load += count;
+			return true;
+		}
+		return false;
 	}
-	
-	public synchronized void decrementLoad(int count){
-		this.load-=count;
+
+	public synchronized boolean decrementLoad(int count) {
+		if (load > count) {
+			this.load -= count;
+			return true;
+		}
+
+		return false;
 	}
-	
-	public synchronized long getLoad(){
+
+	public synchronized long getLoad() {
 		return this.load;
 	}
-	
+
 	public Port(long capacity, int numberOfDocks) {
 		this.capacity = capacity;
 		this.docks = new Dock[numberOfDocks];
@@ -43,32 +56,48 @@ public class Port {
 			dock.start();
 		}
 
-		while (!isShipsQueueEmpty()) {
+		while (!isDocksStopWork()) {
 			docksControls();
-			Thread.yield();
+			try {
+				Thread.sleep(250);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
+		waitAllDocks();
 		logger.info("Port stop working");
 	}
 
-	public boolean isShipsQueueEmpty() {
-		return shipsToLoad.isEmpty() && shipsToUnload.isEmpty();
+	private void waitAllDocks() {
+		for (Dock dock : docks) {
+			try {
+				dock.join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 	private void docksControls() {
 		if (shipsToLoad.isEmpty()) {
+			logger.info("100% docks work in unload mode");
 			changeDocksWorkType(0);
 		} else if (shipsToUnload.isEmpty()) {
+			logger.info("100% docks work in load mode");
 			changeDocksWorkType(docks.length);
 		} else {
 			if (this.load > this.capacity / 4 * 3) {
+				logger.info("25% docks work in unload mode and 75% in load mode");
 				changeDocksWorkType(docks.length / 4 * 3);
 			} else if (this.load > this.capacity / 2) {
+				logger.info("50% docks work in unload mode and 50% in load mode");
 				changeDocksWorkType(docks.length / 2);
 			} else if (this.load > this.capacity / 4) {
+				logger.info("75% docks work in unload mode and 25% in load mode");
 				changeDocksWorkType(docks.length / 4);
 			}
 		}
-
 	}
 
 	private void changeDocksWorkType(int dockWorkingInLoadMode) {
@@ -94,5 +123,17 @@ public class Port {
 
 	public synchronized void addShipOnUnload(Ship ship) {
 		shipsToUnload.offer(ship);
+	}
+
+	public void setStopWork() {
+		this.stopWork = true;
+	}
+
+	public boolean isDocksStopWork() {
+		return shipsToLoad.isEmpty() && shipsToUnload.isEmpty() && stopWork;
+	}
+
+	public long getCapacity() {
+		return capacity;
 	}
 }
