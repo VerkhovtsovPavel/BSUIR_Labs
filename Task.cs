@@ -6,15 +6,14 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
 
 namespace OSiSP_2
 {
 	/// <summary>
 	/// Description of Task.
 	/// </summary>
-	public interface Task
+	public interface ITask
 	{
-		void process();
+		void Process();
 	}
 }

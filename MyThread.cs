@@ -10,19 +10,24 @@
  using System;
 namespace OSiSP_2
 {
-class myThread 
+class MyThread 
         {
-            Thread thread;
+            private Thread thread;
 
-            public myThread(string name, int num) //Конструктор получает имя функции и номер до кторого ведется счет
+            public MyThread(string name) //Конструктор получает имя функции и номер до кторого ведется счет
             {
 
-                thread = new Thread(this.func);
+                thread = new Thread(func);
                 thread.Name = name;
-                thread.Start(num);//передача параметра в поток
+
             }
-            
-            void func(object num)//Функция потока, передаем параметр
+
+    public void Start(int num)
+    {
+        thread.Start(num);
+    }
+
+    void func(object num)//Функция потока, передаем параметр
             {
                 for (int i = 0;i < (int)num;i++ ) 
                 {
@@ -37,13 +42,14 @@ class myThread
              
         static void Main(string[] args)
         {
-            myThread t1 = new myThread("Thread 1", 6);
-            myThread t2 = new myThread("Thread 2", 3);
-            myThread t3 = new myThread("Thread 3", 2);
+            var t1 = new MyThread("Thread 1");
+            t1.Start(6);
+            var t2 = new MyThread("Thread 2");
+            t2.Start(3);
+            var t3 = new MyThread("Thread 3");
+            t3.Start(2);
 
             Console.Read();
-
         }
-
     }
 }
