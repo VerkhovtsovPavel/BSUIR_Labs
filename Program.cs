@@ -1,12 +1,5 @@
-﻿/*
- * Created by SharpDevelop.
- * User: user
- * Date: 08.03.2015
- * Time: 11:41
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-using System;
+﻿using System;
+using System.Threading;
 
 namespace OSiSP_2
 {
@@ -14,10 +7,23 @@ namespace OSiSP_2
 	{
 		public static void Main()
 		{
-			ThreadPool threadPool = new ThreadPool(10, 100, 30);
-
-			for(int taskIndex = 0; taskIndex < 100; taskIndex++){
-				threadPool.addTask(new PrintTask(Convert.ToString(taskIndex)));
+			var threadPool = new ThreadPool(10, 100, 3);
+			
+			new Thread(AddTasks).Start(threadPool);
+			threadPool.Start();
+		}
+		
+		
+		private static void AddTasks(Object threadPoll){
+			var threadPool = (ThreadPool) threadPoll;
+			for(int taskIndex = 0; taskIndex < 1000; taskIndex++){
+				threadPool.AddTask(new PrintTask(Convert.ToString(taskIndex)));
+			}
+			
+			Thread.Sleep(10000);
+			
+			for(int taskIndex = 1000; taskIndex < 20000; taskIndex++){
+				threadPool.AddTask(new PrintTask(Convert.ToString(taskIndex)));
 			}
 		}
 	}

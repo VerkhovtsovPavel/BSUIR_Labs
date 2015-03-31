@@ -1,64 +1,125 @@
-﻿/*
- * Created by SharpDevelop.
- * User: user
- * Date: 08.03.2015
- * Time: 11:43
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-
+﻿using System;
 using System.Collections.Generic;
 using System.Threading;
 
 namespace OSiSP_2
 {
-    /// <summary>
-    /// Description of ThreadPool.
-    /// </summary>
     public class ThreadPool
     {
-        private int minThreads;
-        private int maxThreads;
-        private int threadLifeTime;
+        private readonly int _maxThreads;
+        private readonly int _minThreads;
+        private readonly int _threadLifeTime;
+
+        private readonly Queue<ITask> taskQueue = new Queue<ITask>();
         private List<Thread> threads = new List<Thread>();
-
-        private Queue<Task> taskQueue = new Queue<Task>();
-
+        
         public ThreadPool(int minThreads, int maxTreads, int lifeTime)
         {
-            this.minThreads = minThreads;
-			this.maxThreads = maxTreads;
-            threadLifeTime = lifeTime;
+            _minThreads = minThreads;
+            _maxThreads = maxTreads;
+            _threadLifeTime = lifeTime;
+            InitialazeMinThread();
+        }
+
+        public void Start()
+        {
+            StartTreads();
+
+            while (true)
+            {
+                CheckThreads();
+                if (taskQueue.Count != 0 && threads.Count < _maxThreads)
+                {
+                    var newThread = new Thread(ThreadFunction);
+                    threads.Add(newThread);
+                    newThread.Start(false);
+                }
+                Console.WriteLine("Current Treads count = {0}", threads.Count);
+                Thread.Sleep(250);
+            }
+        }
+
+        private void StartTreads()
+        {
+            foreach (Thread thread in threads)
+            {
+                thread.Start(true);
+            }
         }
 
         public int GetMinThreads()
         {
-            return minThreads;
+            return _minThreads;
         }
 
         public int GetMaxThreads()
         {
-			return maxThreads;
+            return _maxThreads;
         }
 
-        public int getThreadLifeTime()
+        public int GetThreadLifeTime()
         {
-			return threadLifeTime;
+            return _threadLifeTime;
         }
 
-        public void initialazeMinThread()
+        private void InitialazeMinThread()
         {
-            for (int i = 0; i < this.minThreads; i++)
+            for (int i = 0; i < _minThreads; i++)
             {
-                threads.Add(null);
+                threads.Add(new Thread(ThreadFunction));
             }
         }
 
-        public void addTask(Task task)
+        public void AddTask(ITask task)
         {
-            taskQueue.Enqueue(task);
+            lock (taskQueue)
+            {
+                taskQueue.Enqueue(task);
+            }
         }
 
+        public ITask GetTask()
+        {
+            lock (taskQueue)
+            {
+            	if(taskQueue.Count>0){
+            		return taskQueue.Dequeue();
+            	}
+            	return null;
+            }
+        }
 
+        private void CheckThreads()
+        {
+        	var undeadThreads = new List<Thread>(threads);
+            foreach (Thread thread in threads)
+            {
+                if (!thread.IsAlive)
+                {
+                    undeadThreads.Remove(thread);
+                }
+            }
+            threads = undeadThreads;
+        }
+
+        private void ThreadFunction(object isPrimary)
+        {
+        	bool isPrimaryThread = Convert.ToBoolean(isPrimary);
+            int sleepTime = 0;
+            while (sleepTime < _threadLifeTime || isPrimaryThread)
+            {
+                ITask task = GetTask();
+                if (task == null)
+                {
+                    Thread.Sleep(1000);
+                    sleepTime++;
+                }
+                else
+                {
+                    sleepTime = 0;
+                    task.Process();
+                }
+            }
+        }
     }
 }
