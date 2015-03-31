@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace OSiSP_3
 {
@@ -11,10 +12,18 @@ namespace OSiSP_3
 		private readonly int  _initialCapacity;
 		
 		public void Reset(){
+			
+			Interlocked.Exchange(ref currentElementsCount , 0);
 			lock(storage){
-				currentElementsCount = 0;
 				Array.Resize<object>(ref storage,_initialCapacity);
 			}
+		}
+		
+		public object getElement(int number){
+			if(number<0 || number>currentElementsCount-1){
+				return null;
+			}
+			return storage[number];
 		}
 		
 		public int getCount(){
@@ -35,8 +44,9 @@ namespace OSiSP_3
 					UpdateStorageSize();
 				}
 					storage[currentElementsCount] = obj;
-					currentElementsCount++;
-			}
+				}	
+					Interlocked.Increment(ref currentElementsCount);
+			
 		}
 		
 		public bool AddElement(object obj, int number){
@@ -56,14 +66,18 @@ namespace OSiSP_3
 				}
 				storage[number] = obj;
 			}
+			Interlocked.Increment(ref currentElementsCount);
 			return true;
 		}
 		
 		public object ChangeElement(object obj, int number){
 			object oldValue = null;
-			lock(storage){
-				oldValue = storage[number];
-				storage[number] = obj;
+			if(number>=0 && number<currentElementsCount)
+			{
+				lock(storage){
+					oldValue = storage[number];
+					storage[number] = obj;
+				}
 			}
 			
 			return oldValue;
@@ -89,7 +103,7 @@ namespace OSiSP_3
 					storage[i]=storage[i+1];
 				}
 			}
-			currentElementsCount--;
+			Interlocked.Decrement(ref currentElementsCount);
 			return true;
 		}
 		

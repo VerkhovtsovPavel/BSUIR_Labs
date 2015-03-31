@@ -1,0 +1,18 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 5.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSiSP-3", "OSiSP-3.csproj", "{11893FFE-539A-4C20-AB9F-FDBE9F41EA0E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11893FFE-539A-4C20-AB9F-FDBE9F41EA0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11893FFE-539A-4C20-AB9F-FDBE9F41EA0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11893FFE-539A-4C20-AB9F-FDBE9F41EA0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11893FFE-539A-4C20-AB9F-FDBE9F41EA0E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

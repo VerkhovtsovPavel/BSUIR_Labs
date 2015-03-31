@@ -51,9 +51,15 @@
   <ItemGroup>
     <Compile Include="Container.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Tests\Negative\ChangeNonexistingElementTest.cs" />
     <Compile Include="Tests\Negative\DeleteNonexistingElementsTest.cs" />
+    <Compile Include="Tests\Negative\GetNonexistingElementTest.cs" />
+    <Compile Include="Tests\Negative\NegativeAddTest.cs" />
+    <Compile Include="Tests\Positive\ChangeExistingElementTest.cs" />
     <Compile Include="Tests\Positive\DeleteExistingElementsTest.cs" />
     <Compile Include="Tests\Positive\FillContainerVariousTypesTest.cs" />
+    <Compile Include="Tests\Positive\GetExistingElementTest.cs" />
+    <Compile Include="Tests\Positive\PositiveAdd.cs" />
     <Compile Include="Tests\Positive\UpdateContainerSizeTest.cs" />
   </ItemGroup>
   <ItemGroup>
