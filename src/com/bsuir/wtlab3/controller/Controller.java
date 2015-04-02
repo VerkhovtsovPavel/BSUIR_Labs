@@ -9,12 +9,12 @@ import org.apache.log4j.Logger;
 import com.bsuir.wtlab3.entity.Note;
 import com.bsuir.wtlab3.exception.ControllerException;
 import com.bsuir.wtlab3.exception.LogicException;
-import com.bsuir.wtlab3.model.Logic;
+import com.bsuir.wtlab3.model.NotepadLogic;
 
 public class Controller {
 	private static Logger logger = Logger.getLogger(Controller.class);
 
-	private Logic logic;
+	private NotepadLogic logic;
 
 	private static final String COMMAND_REGEXP_FORMAT = "(%s)|(%s)|(%s)|(%s)|(load)|(save)|\\?";
 	private static final String FIND_COMMANDS_VALIDATE_REGEXP = "(find)[ \\t]+(\\-[dmet][\\t ]+\"[\\w\\W]+\"[\\t ]*)+";
@@ -33,7 +33,7 @@ public class Controller {
 	private static final String ALL_NOTES = "All notes:\n";
 
 	public Controller() {
-		this.logic = new Logic();
+		this.logic = new NotepadLogic();
 	}
 
 	public String process(String request) throws ControllerException {

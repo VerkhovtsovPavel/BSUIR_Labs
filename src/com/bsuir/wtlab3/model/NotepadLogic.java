@@ -7,7 +7,7 @@ import com.bsuir.wtlab3.exception.LogicException;
 import com.bsuir.wtlab3.model.command.CommandName;
 import com.bsuir.wtlab3.model.command.Manager;
 
-public class Logic {
+public class NotepadLogic {
 	private Manager manager;
 	
 	private static final String NOTE_SUCCESSFULLY_ADDED = "Note successfully added";
@@ -15,7 +15,7 @@ public class Logic {
 	
 	private static final String NOTE_SORTED_BY_RESPONSE_FORMAT = "Notes sorted by %s";
 
-	public Logic() {
+	public NotepadLogic() {
 		this.manager = new Manager();
 	}
 

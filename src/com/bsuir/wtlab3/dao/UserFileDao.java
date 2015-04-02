@@ -13,12 +13,6 @@ import org.apache.log4j.Logger;
 import com.bsuir.wtlab3.entity.Note;
 import com.bsuir.wtlab3.exception.DaoException;
 
-/**
- * Class contains helpful methods for files.
- * 
- * @author Pavel_Verkhovtsov
- * 
- */
 public class UserFileDao implements UserDao{
 	private static Logger log = Logger.getLogger(UserFileDao.class);
 	private final static String fileSource = "notepad.txt";
@@ -30,7 +24,6 @@ public class UserFileDao implements UserDao{
 			instance = new UserFileDao();
 		}
 		return instance;
-		
 	}
 	
 	private UserFileDao(){};
@@ -55,7 +48,6 @@ public class UserFileDao implements UserDao{
 			}
 		} catch (IOException e) {
 			log.error("Error while read file " + file.getAbsolutePath());
-			log.warn("StackTrace", e);
 			log.error("Notepad will be empty");
 			throw new DaoException("Error while read file " + file.getAbsolutePath(), e);
 		}
@@ -77,7 +69,6 @@ public class UserFileDao implements UserDao{
 			}
 		} catch (IOException e) {
 			log.error("Error while write in file " + file.getAbsolutePath());
-			log.warn("StackTrace", e);
 			log.error("Added notes are not saved");
 			throw new DaoException("Error while write in file " + file.getAbsolutePath(), e);
 		}
