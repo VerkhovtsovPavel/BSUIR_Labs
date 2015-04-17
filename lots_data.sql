@@ -1,0 +1,15 @@
+INSERT INTO `lots` (`lot_id`, `user_id`, `start_cost`, `status`, `description`) VALUES (NULL, '1', '300', '1', 'Чайник');
+INSERT INTO `lots` (`lot_id`, `user_id`, `start_cost`, `status`, `description`) VALUES (NULL, '1', '100', '1', 'Стакан');
+INSERT INTO `lots` (`lot_id`, `user_id`, `start_cost`, `status`, `description`) VALUES (NULL, '1', '300', '1', 'Компьютер');
+INSERT INTO `lots` (`lot_id`, `user_id`, `start_cost`, `status`, `description`) VALUES (NULL, '3', '500', '1', 'Картина');
+INSERT INTO `lots` (`lot_id`, `user_id`, `start_cost`, `status`, `description`) VALUES (NULL, '4', '600', '1', 'Кипятильник');
+INSERT INTO `lots` (`lot_id`, `user_id`, `start_cost`, `status`, `description`) VALUES (NULL, '4', '700', '1', 'Дрель');
+INSERT INTO `lots` (`lot_id`, `user_id`, `start_cost`, `status`, `description`) VALUES (NULL, '8', '800', '1', 'Пила');
+INSERT INTO `lots` (`lot_id`, `user_id`, `start_cost`, `status`, `description`) VALUES (NULL, '8', '900', '1', 'Платье');
+INSERT INTO `lots` (`lot_id`, `user_id`, `start_cost`, `status`, `description`) VALUES (NULL, '8', '50', '1', 'Дудка');
+INSERT INTO `lots` (`lot_id`, `user_id`, `start_cost`, `status`, `description`) VALUES (NULL, '9', '10', '1', 'Спички');
+INSERT INTO `lots` (`lot_id`, `user_id`, `start_cost`, `status`, `description`) VALUES (NULL, '14', '1300', '1', 'Кольцо');
+INSERT INTO `lots` (`lot_id`, `user_id`, `start_cost`, `status`, `description`) VALUES (NULL, '14', '3100', '1', 'Колье');
+INSERT INTO `lots` (`lot_id`, `user_id`, `start_cost`, `status`, `description`) VALUES (NULL, '15', '750', '1', 'Мяч');
+INSERT INTO `lots` (`lot_id`, `user_id`, `start_cost`, `status`, `description`) VALUES (NULL, '15', '320', '1', 'Скворечник');
+INSERT INTO `lots` (`lot_id`, `user_id`, `start_cost`, `status`, `description`) VALUES (NULL, '15', '305', '1', 'Ступка');

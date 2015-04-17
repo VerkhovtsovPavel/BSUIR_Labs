@@ -1,0 +1,15 @@
+INSERT INTO `clientaddress` (`address_id`,`city`,`street`,`hourse`,`housing`,`apartment`) VALUES (NULL,'Minsk','Андреевская','12',NULL,'45');
+INSERT INTO `clientaddress` (`address_id`,`city`,`street`,`hourse`,`housing`,`apartment`) VALUES (NULL,'Minsk','Азгура','1','1','5');
+INSERT INTO `clientaddress` (`address_id`,`city`,`street`,`hourse`,`housing`,`apartment`) VALUES (NULL,'Minsk','Бехтерева','45',NULL,'4');
+INSERT INTO `clientaddress` (`address_id`,`city`,`street`,`hourse`,`housing`,`apartment`) VALUES (NULL,'Minsk','Бирюзова','2','2','1');
+INSERT INTO `clientaddress` (`address_id`,`city`,`street`,`hourse`,`housing`,`apartment`) VALUES (NULL,'Minsk','Ванеева','76',NULL,'67');
+INSERT INTO `clientaddress` (`address_id`,`city`,`street`,`hourse`,`housing`,`apartment`) VALUES (NULL,'Minsk','Верхняя','5',NULL,'34');
+INSERT INTO `clientaddress` (`address_id`,`city`,`street`,`hourse`,`housing`,`apartment`) VALUES (NULL,'Minsk','Гвардейская','102','б',NULL);
+INSERT INTO `clientaddress` (`address_id`,`city`,`street`,`hourse`,`housing`,`apartment`) VALUES (NULL,'Minsk','Горная','4',NULL,'109');
+INSERT INTO `clientaddress` (`address_id`,`city`,`street`,`hourse`,`housing`,`apartment`) VALUES (NULL,'Minsk','Днепровская','1',NULL,'78');
+INSERT INTO `clientaddress` (`address_id`,`city`,`street`,`hourse`,`housing`,`apartment`) VALUES (NULL,'Minsk','Купревича','56',NULL,'93');
+INSERT INTO `clientaddress` (`address_id`,`city`,`street`,`hourse`,`housing`,`apartment`) VALUES (NULL,'Minsk','Золотая Горка','7',NULL,'10');
+INSERT INTO `clientaddress` (`address_id`,`city`,`street`,`hourse`,`housing`,`apartment`) VALUES (NULL,'Minsk','Киевская','9',NULL,'28');
+INSERT INTO `clientaddress` (`address_id`,`city`,`street`,`hourse`,`housing`,`apartment`) VALUES (NULL,'Minsk','Луговая','8','6','52');
+INSERT INTO `clientaddress` (`address_id`,`city`,`street`,`hourse`,`housing`,`apartment`) VALUES (NULL,'Minsk','Малявки','5',NULL,'73');
+INSERT INTO `clientaddress` (`address_id`,`city`,`street`,`hourse`,`housing`,`apartment`) VALUES (NULL,'Minsk','Мозырская','3',NULL,'93');
