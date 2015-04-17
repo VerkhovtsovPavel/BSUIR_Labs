@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{B34C485C-328D-432C-82C9-34622EBBEFE2}</ProjectGuid>
+    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Course_project</RootNamespace>
+    <AssemblyName>Course_project</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>libs\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>libs\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core">
+      <HintPath>libs\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Legacy">
+      <HintPath>libs\MongoDB.Driver.Legacy.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="source\Controller\AddTaskController.cs" />
+    <Compile Include="source\Controller\LoginAndRegistrationController.cs" />
+    <Compile Include="source\Controller\MainController.cs" />
+    <Compile Include="source\Controller\ShowTaskController.cs" />
+    <Compile Include="source\Dao\IDao.cs" />
+    <Compile Include="source\Dao\LocalMongoDBDao.cs" />
+    <Compile Include="source\Entity\AuthenticationData.cs" />
+    <Compile Include="source\Entity\Note.cs" />
+    <Compile Include="source\Model\AddTaskLogic.cs" />
+    <Compile Include="source\Model\LoginAndRegistrationLogic.cs" />
+    <Compile Include="source\Model\OutlookImporter.cs" />
+    <Compile Include="source\Model\ShowTaskLogic.cs" />
+    <Compile Include="source\Program.cs" />
+    <Compile Include="source\Views\AddFlexibleTaskView.cs" />
+    <Compile Include="source\Views\AddHardTaskView.cs" />
+    <Compile Include="source\Views\AddTaskView.cs" />
+    <Compile Include="source\Views\LoginView.cs" />
+    <Compile Include="source\Views\LoginView.Designer.cs" />
+    <Compile Include="source\Views\RegistrationView.cs" />
+    <Compile Include="source\Views\RegistrationView.Designer.cs" />
+    <Compile Include="source\Views\ShowTaskView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="source" />
+    <Folder Include="source\Controller" />
+    <Folder Include="source\Dao" />
+    <Folder Include="source\Entity" />
+    <Folder Include="source\Model" />
+    <Folder Include="source\Views" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="source\Views\LoginView.resx" />
+    <EmbeddedResource Include="source\Views\RegistrationView.resx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
