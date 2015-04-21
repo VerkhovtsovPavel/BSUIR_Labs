@@ -15,6 +15,8 @@ public class Dish {
 		this.ingredients = ingredients;
 	}
 	
+	public Dish() {}
+
 	public ArrayList<String> getIngredients() {
 		return ingredients;
 	}
@@ -56,7 +58,7 @@ public class Dish {
 		dishBuilder.append("Ingredients:\n");
 		for(String ingredient : ingredients){
 			dishBuilder.append(ingredient);
-			dishBuilder.append(" ");
+			dishBuilder.append("|");
 		}
 		dishBuilder.append("\n");
 		

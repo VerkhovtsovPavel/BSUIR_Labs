@@ -1,49 +1,42 @@
-<?xml version="1.0" encoding="UTF-8" standalone = "no"?>
-
-<menu xmlns = "http://www.bsuir.by/pavelVerk/menu"
-	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation = "http://www.bsuir.by/pavelVerk/menu menu.xsd">
-	
-	<dish id="1">
-		<name>Borsch</name>
-		<cost>100</cost>
-		<ingredients>
-			<ingredient>Salt</ingredient>
-			<ingredient>Potato</ingredient>
-			<ingredient>Beet</ingredient>
-			<ingredient>Cabbage</ingredient>
-		</ingredients>
-	</dish>
-	
-	<dish id="2">
-		<name>Steak</name>
-		<cost>400</cost>
-		<ingredients>
-			<ingredient>Salt</ingredient>
-			<ingredient>Beef</ingredient>
-			<ingredient>Olive oil</ingredient>
-		</ingredients>
-	</dish>
-	
-	<dish id="3">
-		<name>Caesar salad</name>
-		<cost>120</cost>
-		<ingredients>
-			<ingredient>Salt</ingredient>
-			<ingredient>Salad</ingredient>
-			<ingredient>Feta cheese</ingredient>
-			<ingredient>Oviles</ingredient>
-			<ingredient>Ovile oil</ingredient>
-		</ingredients>
-	</dish>
-	
-	<dish id="4">
-		<name>Vanilla ice cream</name>
-		<cost>80</cost>
-		<ingredients>
-			<ingredient>Milk</ingredient>
-			<ingredient>Sugar</ingredient>
-			<ingredient>Vanilla</ingredient>
-		</ingredients>
-	</dish>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.bsuir.by/pavelVerk/menu menu.xsd" xmlns="http://www.bsuir.by/pavelVerk/menu">
+   <dish id="1">
+      <name>Borsch</name>
+      <cost>100</cost>
+      <ingredients>
+         <ingredient>Salt</ingredient>
+         <ingredient>Potato</ingredient>
+         <ingredient>Beet</ingredient>
+         <ingredient>Cabbage</ingredient>
+      </ingredients>
+   </dish>
+   <dish id="2">
+      <name>Steak</name>
+      <cost>400</cost>
+      <ingredients>
+         <ingredient>Salt</ingredient>
+         <ingredient>Beef</ingredient>
+         <ingredient>Olive oil</ingredient>
+      </ingredients>
+   </dish>
+   <dish id="3">
+      <name>Caesar salad</name>
+      <cost>120</cost>
+      <ingredients>
+         <ingredient>Salt</ingredient>
+         <ingredient>Salad</ingredient>
+         <ingredient>Feta cheese</ingredient>
+         <ingredient>Olives</ingredient>
+         <ingredient>Olive oil</ingredient>
+      </ingredients>
+   </dish>
+   <dish id="4">
+      <name>Vanilla ice cream</name>
+      <cost>80</cost>
+      <ingredients>
+         <ingredient>Milk</ingredient>
+         <ingredient>Sugar</ingredient>
+         <ingredient>Vanilla</ingredient>
+      </ingredients>
+   </dish>
 </menu>

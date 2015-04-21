@@ -31,6 +31,7 @@ public class MenuLogic {
 
 		for (Dish dish : MenuStorage.getInstanse().getMenu()) {
 			menuBuilder.append(dish.getForUserString());
+			menuBuilder.append("\n");
 		}
 
 		return menuBuilder.toString();
