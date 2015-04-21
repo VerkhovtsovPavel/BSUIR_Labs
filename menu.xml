@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone = "no"?>
 
-<pv:menu xmlns:pv = "http://www.bsuir.by/pavelVerk/menu"
+<menu xmlns = "http://www.bsuir.by/pavelVerk/menu"
 	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation = "http://www.bsuir.pavelVerk.by/menu menu.xsd">
+	xsi:schemaLocation = "http://www.bsuir.by/pavelVerk/menu menu.xsd">
 	
 	<dish id="1">
 		<name>Borsch</name>
@@ -46,4 +46,4 @@
 			<ingredient>Vanilla</ingredient>
 		</ingredients>
 	</dish>
-</pv:menu>
+</menu>
