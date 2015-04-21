@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://bsuir.by/pavelVerk/menu"
+	xmlns:tns="http://www.bsuir.by/pavelVerk/menu"
+	elementFormDefault="qualified">
+	
+	<element name="menu">
+		<complexType>
+			<sequence>
+				<element name="dish" type="tns:Dish" minOccurs="1"
+					maxOccurs="unbounded" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<complexType name="Dish">
+		<sequence>
+			<element name="name" type="string" />
+			<element name="cost" type="int" />
+			<element name="ingredients" type="tns:Ingredients" />
+		</sequence>
+		<attribute name="id" type="int" use="required" />
+	</complexType>
+
+	<complexType name="Ingredients">
+		<sequence>
+			<element name="ingredient" type="string" minOccurs="1"
+				maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+</schema>

@@ -1,16 +1,16 @@
 package com.bsuir.wtlab5.exception;
 
-import java.io.IOException;
-
 public class DaoException extends Exception{
-	public DaoException(String string) {
-		super(string);
+
+	private static final long serialVersionUID = -7930827196550582146L;
+
+	public DaoException(String message, Exception e) {
+		super(message, e);
 	}
 
-	public DaoException(String string, Exception e) {
-		super(string, e);
+	public DaoException(String message) {
+		super(message);
 	}
 
-	private static final long serialVersionUID = 1L;
 
 }

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 import com.bsuir.wtlab5.dao.AdminMenuDao;
-import com.bsuir.wtlab5.dao.UserMenuDao;
 import com.bsuir.wtlab5.dao.db.UserMySQLDao;
 import com.bsuir.wtlab5.entity.Dish;
 

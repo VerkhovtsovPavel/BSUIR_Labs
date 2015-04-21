@@ -11,7 +11,7 @@ public abstract class MenuDaoFactory {
 	
 	private static String type = "file";
 
-	public static MenuDaoFactory getFactory() throws DaoException {
+	public static MenuDaoFactory getFactory(String type) throws DaoException {
 		switch (type) {
 		case "db":
 			return MySQLMenuDaoFactory.getFactory();
@@ -20,5 +20,9 @@ public abstract class MenuDaoFactory {
 		default:
 			throw new DaoException("Incorrect dao type");
 		}
+	}
+	
+	public static MenuDaoFactory getFactory() throws DaoException {
+		return getFactory(type);
 	}
 }
