@@ -37,7 +37,7 @@ public class MenuSAXHandler extends DefaultHandler {
 		text = new StringBuilder();
 		if (qName.equals("Dish")) {
 			dish = new Dish();
-			dish.setId((Integer.parseInt(attributes.getValue("id"))));
+			dish.setId((Integer.parseInt(attributes.getValue("id").replace("\\D+",""))));
 		}
 	}
 
@@ -56,9 +56,13 @@ public class MenuSAXHandler extends DefaultHandler {
 			break;
 		case "ingredient":
 			ingredients.add(text.toString());
+			break;
 		case "ingredients":
 			dish.setIngredients(ingredients);
 			ingredients.clear();
+			break;
+		case "class":
+			dish.setDishClass(text.toString());
 		case "dish":
 			menu.add(dish);
 			dish = null;

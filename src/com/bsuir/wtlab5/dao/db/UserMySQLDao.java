@@ -15,7 +15,7 @@ import com.bsuir.wtlab5.exception.DaoException;
 public class UserMySQLDao implements UserMenuDao {
 	private static Logger log = Logger.getLogger(UserMySQLDao.class);
 
-	private static final String SELECT_MENU = "SELECT `idDish`, `dishName`, `cost`, GROUP_CONCAT(`Name`) AS `products` FROM `dish` JOIN `dish_has_products` ON `Dish_idDish`=`idDish` JOIN `products` ON `Products_idProducts` = `idProducts` GROUP BY (`idDish`);";
+	private static final String SELECT_MENU = "SELECT `idDish`, `dishName`, `cost`, `dishClass`, GROUP_CONCAT(`Name`) AS `products` FROM `dish` JOIN `dish_has_products` ON `Dish_idDish`=`idDish` JOIN `products` ON `Products_idProducts` = `idProducts` GROUP BY (`idDish`);";
 
 	private static UserMySQLDao instance;
 
@@ -46,9 +46,9 @@ public class UserMySQLDao implements UserMenuDao {
 			synchronized (task) {
 				task.wait();
 			}
-			
+
 			ResultSet rs = task.getResultSet();
-			if(rs == null){
+			if (rs == null) {
 				throw new DaoException("Incorrect request");
 			}
 
@@ -57,8 +57,8 @@ public class UserMySQLDao implements UserMenuDao {
 				String dishName = rs.getString("dishName");
 				int cost = rs.getInt("cost");
 				ArrayList<String> products = parseProducts(rs.getString("products"));
-
-				menu.add(new Dish(id, dishName, cost, products));
+				String dishClass = rs.getString("dishClass");
+				menu.add(new Dish(id, dishName, cost, products, dishClass));
 			}
 		} catch (SQLException | InterruptedException e) {
 			log.error("Error while get menu from DB");

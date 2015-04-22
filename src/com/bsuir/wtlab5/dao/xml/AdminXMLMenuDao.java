@@ -57,7 +57,7 @@ public class AdminXMLMenuDao implements AdminMenuDao {
 		} catch (SAXException | IOException e) {
 			throw new DaoException("Error while parse Xml " + XML_FILE_PATH, e);
 		}
-		log.info("Menu successfully load from "+XML_FILE_PATH);
+		log.info("Menu successfully load from " + XML_FILE_PATH);
 		return handler.getMenu();
 	}
 
@@ -67,15 +67,18 @@ public class AdminXMLMenuDao implements AdminMenuDao {
 			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 
 			Document doc = builder.newDocument();
-			Element rootElement = doc.createElementNS("http://www.bsuir.by/pavelVerk/menu","menu");
-			//rootElement.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xsd", "http://www.w3.org/2001/XMLSchema");
-			rootElement.setAttributeNS("http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation", "http://www.bsuir.by/pavelVerk/menu menu.xsd");
-					//xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
-					//xsi:schemaLocation = "http://www.bsuir.by/pavelVerk/menu menu.xsd"
+			Element rootElement = doc.createElementNS("http://www.bsuir.by/pavelVerk/menu", "menu");
+			// rootElement.setAttributeNS("http://www.w3.org/2000/xmlns/",
+			// "xmlns:xsd", "http://www.w3.org/2001/XMLSchema");
+			rootElement.setAttributeNS("http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation",
+					"http://www.bsuir.by/pavelVerk/menu menu.xsd");
+			// xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+			// xsi:schemaLocation =
+			// "http://www.bsuir.by/pavelVerk/menu menu.xsd"
 
 			for (Dish currentDish : MenuStorage.getInstanse().getMenu()) {
 				Element dish = doc.createElement("dish");
-				dish.setAttribute("id", String.valueOf(currentDish.getId()));
+				dish.setAttribute("id", "ID-" + String.valueOf(currentDish.getId()));
 				rootElement.appendChild(dish);
 
 				Element dishName = doc.createElement("name");
@@ -83,8 +86,7 @@ public class AdminXMLMenuDao implements AdminMenuDao {
 				dish.appendChild(dishName);
 
 				Element dishCost = doc.createElement("cost");
-				dishCost.appendChild(doc.createTextNode(String
-						.valueOf(currentDish.getCost())));
+				dishCost.appendChild(doc.createTextNode(String.valueOf(currentDish.getCost())));
 				dish.appendChild(dishCost);
 
 				Element ingredients = doc.createElement("ingredients");
@@ -94,24 +96,23 @@ public class AdminXMLMenuDao implements AdminMenuDao {
 					ingredients.appendChild(dishIngredient);
 				}
 				dish.appendChild(ingredients);
+
+				Element dishClass = doc.createElement("class");
+				dishClass.appendChild(doc.createTextNode(currentDish.getDishClass()));
+				dish.appendChild(dishClass);
 			}
 			doc.appendChild(rootElement);
 
-			Transformer transformer = TransformerFactory.newInstance()
-					.newTransformer();
-			transformer.setOutputProperty(
-					"{http://xml.apache.org/xslt}indent-amount", "3");
+			Transformer transformer = TransformerFactory.newInstance().newTransformer();
+			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "3");
 			transformer.setOutputProperty(OutputKeys.METHOD, "xml");
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			transformer.transform(new DOMSource(doc), new StreamResult(
-					new FileOutputStream(XML_FILE_PATH)));
+			transformer.transform(new DOMSource(doc), new StreamResult(new FileOutputStream(XML_FILE_PATH)));
 
-		} catch (ParserConfigurationException | FileNotFoundException
-				| TransformerException e) {
-			throw new DaoException(
-					"Error while write menu in " + XML_FILE_PATH, e);
+		} catch (ParserConfigurationException | FileNotFoundException | TransformerException e) {
+			throw new DaoException("Error while write menu in " + XML_FILE_PATH, e);
 		}
-		log.info("Menu successfully save to "+XML_FILE_PATH);
+		log.info("Menu successfully save to " + XML_FILE_PATH);
 
 	};
 

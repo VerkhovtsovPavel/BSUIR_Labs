@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema"
-	targetNamespace="http://www.bsuir.by/pavelVerk/menu"
-	xmlns:tns="http://www.bsuir.by/pavelVerk/menu"
-	elementFormDefault="qualified">
-	
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.bsuir.by/pavelVerk/menu"
+	xmlns:tns="http://www.bsuir.by/pavelVerk/menu" elementFormDefault="qualified">
+
 	<element name="menu">
 		<complexType>
 			<sequence>
@@ -16,16 +14,39 @@
 	<complexType name="Dish">
 		<sequence>
 			<element name="name" type="string" />
-			<element name="cost" type="int" />
+			<element name="cost">
+				<simpleType>
+					<restriction base="int">
+						<minInclusive value="0" />
+						<maxInclusive value="5000" />
+					</restriction>
+				</simpleType>
+			</element>
 			<element name="ingredients" type="tns:Ingredients" />
+			<element name ="class">
+				<simpleType>
+					<restriction base="string">
+						<enumeration value="First course"/> 
+        				<enumeration value="Main course"/>
+        				<enumeration value="Dessert"/>
+					</restriction>
+				</simpleType>
+			</element>	
 		</sequence>
-		<attribute name="id" type="int" use="required" />
+		<attribute name="id" type="ID" use="required" />
 	</complexType>
 
 	<complexType name="Ingredients">
 		<sequence>
-			<element name="ingredient" type="string" minOccurs="1"
-				maxOccurs="unbounded" />
+			<element name="ingredient" minOccurs="1"
+				maxOccurs="unbounded">
+				<simpleType>
+					<restriction base="string">
+						<pattern value="[\w\d ]+" />
+					</restriction>
+				</simpleType>
+			</element>
+
 		</sequence>
 	</complexType>
 </schema>

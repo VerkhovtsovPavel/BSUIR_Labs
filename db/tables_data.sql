@@ -1,7 +1,7 @@
-INSERT INTO `menu`.`dish` (`idDish`, `dishName`, `cost`) VALUES (1, "Borsch" , 100);
-INSERT INTO `menu`.`dish` (`idDish`, `dishName`, `cost`) VALUES (2, "Steak" , 400);
-INSERT INTO `menu`.`dish` (`idDish`, `dishName`, `cost`) VALUES (3, "Caesar salad" , 120);
-INSERT INTO `menu`.`dish` (`idDish`, `dishName`, `cost`) VALUES (4, "Vanilla ice cream" , 80);
+INSERT INTO `menu`.`dish` (`idDish`, `dishName`, `cost`, `dishClass`) VALUES (1, "Borsch" , 100, "First course");
+INSERT INTO `menu`.`dish` (`idDish`, `dishName`, `cost`, `dishClass`) VALUES (2, "Steak" , 400, "Main course");
+INSERT INTO `menu`.`dish` (`idDish`, `dishName`, `cost`, `dishClass`) VALUES (3, "Caesar salad" , 120, "First course");
+INSERT INTO `menu`.`dish` (`idDish`, `dishName`, `cost`, `dishClass`) VALUES (4, "Vanilla ice cream" , 80, "Dessert");
 
 
 INSERT INTO `menu`.`products` (`idProducts`, `Name`) VALUES (1, "Salt");
