@@ -5,35 +5,35 @@
  * Time: 15:45
  */
 using System;
-using System.Drawing;
 using System.Windows.Forms;
+using OSiSP_5.RSS;
 
 namespace OSiSP_5.Forms
 {
 	/// <summary>
 	/// Description of Titles.
 	/// </summary>
-	public partial class Titles : Form
+	public partial class TitlesView : Form
 	{
-		Items[] items;
-		public Titles(Items[] items)
+		Article[] items;
+		public TitlesView(Article[] items)
 		{
 			this.items = items;
 			InitializeComponent();
-			setTitle("Title"); //Change to channel title
+			setTitle("RSS Atricle Titles");
 			fillListBox();
 		}
 
 		void fillListBox()
 		{
-			foreach (Items item in items) {
+			foreach (Article item in items) {
 				titles_lb.Items.Add(item.title);
 			}
 		}
 		void Titles_lbSelectedIndexChanged(object sender, EventArgs e)
 		{
 			int selectedNote = ((ListBox)sender).SelectedIndex;
-			Note note = new Note(items[selectedNote]);
+			ArticleView note = new ArticleView(items[selectedNote]);
 			note.Show();
 		}
 	}

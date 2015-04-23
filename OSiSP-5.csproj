@@ -54,37 +54,35 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\RSSException.cs" />
-    <Compile Include="Forms\MainForm.cs" />
-    <Compile Include="Forms\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="Forms\MainView.cs" />
+    <Compile Include="Forms\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Note.cs" />
-    <Compile Include="Forms\Note.Designer.cs">
-      <DependentUpon>Note.cs</DependentUpon>
+    <Compile Include="Forms\ArticleView.cs" />
+    <Compile Include="Forms\ArticleView.Designer.cs">
+      <DependentUpon>ArticleView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Titles.cs" />
-    <Compile Include="Forms\Titles.Designer.cs">
-      <DependentUpon>Titles.cs</DependentUpon>
+    <Compile Include="Forms\TitlesView.cs" />
+    <Compile Include="Forms\TitlesView.Designer.cs">
+      <DependentUpon>TitlesView.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RSS\ChannelClass.cs" />
-    <Compile Include="RSS\ImageOfChannel.cs" />
-    <Compile Include="RSS\Item.cs" />
+    <Compile Include="RSS\Article.cs" />
     <Compile Include="RSS\MainRSS.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Note.resx">
-      <DependentUpon>Note.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ArticleView.resx">
+      <DependentUpon>ArticleView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Titles.resx">
-      <DependentUpon>Titles.Designer.cs</DependentUpon>
+      <DependentUpon>TitlesView.Designer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

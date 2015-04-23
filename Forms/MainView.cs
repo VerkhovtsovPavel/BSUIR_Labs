@@ -5,32 +5,27 @@
  * Time: 13:45
  */
 using System;
-using System.Collections.Generic;
-using System.Drawing;
+
 using System.Windows.Forms;
-using System.Xml;
-using System.IO;
-using System.Net;
 using OSiSP_5.RSS;
 using OSiSP_5.RSSExceptions;
 
 namespace OSiSP_5.Forms
 {
 
-	public partial class MainForm : Form
+	public partial class MainView : Form
 	{
 		
 		
-		public MainForm()
+		public MainView()
 		{
 			InitializeComponent();
 		}
 
 
 		void downloadButtonClick(object sender, EventArgs e)
-		{			try {				MainRSS mainRSS = new MainRSS();				var items = mainRSS.getNewMessage(url_txt.Text);
-				//webBrowser1.Navigate(Environment.CurrentDirectory + "\\Message.html");
-				Titles titles = new Titles(items);
+		{			try {				MainRSS mainRSS = new MainRSS();				var atricles = mainRSS.getRSSArticles(url_txt.Text);
+				TitlesView titles = new TitlesView(atricles);
 				titles.Show();
 			} catch (RSSException ex) {
 				MessageBox.Show(ex.Message);

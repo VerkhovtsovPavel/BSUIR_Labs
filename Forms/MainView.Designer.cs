@@ -8,7 +8,7 @@
  */
 namespace OSiSP_5.Forms
 {
-	partial class MainForm
+	partial class MainView
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
