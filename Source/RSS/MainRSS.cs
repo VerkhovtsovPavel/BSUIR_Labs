@@ -18,7 +18,8 @@ namespace OSiSP_5.RSS
 	public class MainRSS
 	{
 		Article[] articles;
-		
+
+		int maxTitleLength;
 		public Article[] getRSSArticles(string url)
 		{
 
@@ -41,7 +42,10 @@ namespace OSiSP_5.RSS
 							articles[count] = new Article();
 							foreach (XmlNode item in itemsList) {
 								if (item.Name == "title") {
-									articles[count].title = item.InnerText;
+									articles[count].title = String.Format("{0}) {1}",(count+1),item.InnerText);
+									if(articles[count].title.Length>maxTitleLength){
+										maxTitleLength = articles[count].title.Length;
+									}
 								}
 								if (item.Name == "description") {
 									articles[count].description = item.InnerText;
@@ -54,6 +58,12 @@ namespace OSiSP_5.RSS
 				return articles;
 			} catch (Exception exc) {
 				throw new RSSException("Ошибка получения данных", exc);
+			}
+		}
+
+		public int MaxTitleLength {
+			get {
+				return maxTitleLength;
 			}
 		}
 	}

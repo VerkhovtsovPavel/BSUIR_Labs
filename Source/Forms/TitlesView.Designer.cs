@@ -2,17 +2,17 @@
  * Created by SharpDevelop.
  * User: Pavel_Verkhovtsov
  * Date: 4/23/2015
- * Time: 16:10
+ * Time: 15:45
  */
 namespace OSiSP_5.Forms
 {
-	partial class ArticleView
+	partial class TitlesView
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
-		private System.Windows.Forms.TextBox note_text;
+		private System.Windows.Forms.ListBox titles_lb;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -35,29 +35,33 @@ namespace OSiSP_5.Forms
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.note_text = new System.Windows.Forms.TextBox();
+			this.titles_lb = new System.Windows.Forms.ListBox();
 			this.SuspendLayout();
 			// 
-			// note_text
+			// titles_lb
 			// 
-			this.note_text.Location = new System.Drawing.Point(12, 12);
-			this.note_text.Multiline = true;
-			this.note_text.Name = "note_text";
-			this.note_text.ReadOnly = true;
-			this.note_text.Size = new System.Drawing.Size(260, 238);
-			this.note_text.TabIndex = 0;
+			this.titles_lb.FormattingEnabled = true;
+			this.titles_lb.Location = new System.Drawing.Point(12, 12);
+			this.titles_lb.Name = "titles_lb";
+			this.titles_lb.Size = new System.Drawing.Size(436, 173);
+			this.titles_lb.TabIndex = 0;
+			this.titles_lb.SelectedIndexChanged += new System.EventHandler(this.Titles_lbSelectedIndexChanged);
 			// 
-			// Note
+			// TitlesView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(284, 262);
-			this.Controls.Add(this.note_text);
-			this.Name = "Note";
-			this.Text = "Note";
+			this.ClientSize = new System.Drawing.Size(460, 195);
+			this.Controls.Add(this.titles_lb);
+			this.MaximizeBox = false;
+			this.Name = "TitlesView";
+			this.Text = "Titles";
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
+		}
+		
+		private void setTitle(string title){
+			this.Text = title;
 		}
 	}
 }

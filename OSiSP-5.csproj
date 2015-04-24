@@ -53,42 +53,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\RSSException.cs" />
-    <Compile Include="Forms\MainView.cs" />
-    <Compile Include="Forms\MainView.Designer.cs">
-      <DependentUpon>MainView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ArticleView.cs" />
-    <Compile Include="Forms\ArticleView.Designer.cs">
-      <DependentUpon>ArticleView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\TitlesView.cs" />
-    <Compile Include="Forms\TitlesView.Designer.cs">
-      <DependentUpon>TitlesView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RSS\Article.cs" />
-    <Compile Include="RSS\MainRSS.cs" />
+    <Compile Include="Source\Exceptions\RSSException.cs" />
+    <Compile Include="Source\Forms\ArticleView.cs" />
+    <Compile Include="Source\Forms\ArticleView.Designer.cs" />
+    <Compile Include="Source\Forms\MainView.cs" />
+    <Compile Include="Source\Forms\MainView.Designer.cs" />
+    <Compile Include="Source\Forms\TitlesView.cs" />
+    <Compile Include="Source\Forms\TitlesView.Designer.cs" />
+    <Compile Include="Source\RSS\Article.cs" />
+    <Compile Include="Source\RSS\MainRSS.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\MainView.resx">
-      <DependentUpon>MainView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ArticleView.resx">
-      <DependentUpon>ArticleView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Titles.resx">
-      <DependentUpon>TitlesView.Designer.cs</DependentUpon>
-    </EmbeddedResource>
+    <Folder Include="Source" />
+    <Folder Include="Source\Exceptions" />
+    <Folder Include="Source\Forms" />
+    <Folder Include="Source\RSS" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Forms" />
-    <Folder Include="Exceptions" />
-    <Folder Include="RSS" />
+    <EmbeddedResource Include="Source\Forms\ArticleView.resx" />
+    <EmbeddedResource Include="Source\Forms\MainView.resx" />
+    <EmbeddedResource Include="Source\Forms\Titles.resx" />
+    <EmbeddedResource Include="Source\Forms\TitlesView.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

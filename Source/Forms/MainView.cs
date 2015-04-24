@@ -25,7 +25,7 @@ namespace OSiSP_5.Forms
 
 		void downloadButtonClick(object sender, EventArgs e)
 		{			try {				MainRSS mainRSS = new MainRSS();				var atricles = mainRSS.getRSSArticles(url_txt.Text);
-				TitlesView titles = new TitlesView(atricles);
+				TitlesView titles = new TitlesView(atricles, mainRSS.MaxTitleLength);
 				titles.Show();
 			} catch (RSSException ex) {
 				MessageBox.Show(ex.Message);

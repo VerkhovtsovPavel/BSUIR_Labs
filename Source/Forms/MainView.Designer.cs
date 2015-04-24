@@ -69,7 +69,7 @@ namespace OSiSP_5.Forms
 			this.url_txt.Size = new System.Drawing.Size(386, 20);
 			this.url_txt.TabIndex = 2;
 			// 
-			// MainForm
+			// MainView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -77,7 +77,10 @@ namespace OSiSP_5.Forms
 			this.Controls.Add(this.url_txt);
 			this.Controls.Add(this.url_lbl);
 			this.Controls.Add(this.download_btn);
-			this.Name = "MainForm";
+			this.MaximizeBox = false;
+			this.MaximumSize = new System.Drawing.Size(469, 134);
+			this.MinimumSize = new System.Drawing.Size(469, 134);
+			this.Name = "MainView";
 			this.Text = "RSS Reader";
 			this.ResumeLayout(false);
 			this.PerformLayout();

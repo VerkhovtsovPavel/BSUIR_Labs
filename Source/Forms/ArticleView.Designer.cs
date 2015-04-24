@@ -2,17 +2,17 @@
  * Created by SharpDevelop.
  * User: Pavel_Verkhovtsov
  * Date: 4/23/2015
- * Time: 15:45
+ * Time: 16:10
  */
 namespace OSiSP_5.Forms
 {
-	partial class TitlesView
+	partial class ArticleView
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
-		private System.Windows.Forms.ListBox titles_lb;
+		private System.Windows.Forms.TextBox note_text;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -35,32 +35,35 @@ namespace OSiSP_5.Forms
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.titles_lb = new System.Windows.Forms.ListBox();
+			this.note_text = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
-			// titles_lb
+			// note_text
 			// 
-			this.titles_lb.FormattingEnabled = true;
-			this.titles_lb.Location = new System.Drawing.Point(12, 12);
-			this.titles_lb.Name = "titles_lb";
-			this.titles_lb.Size = new System.Drawing.Size(260, 173);
-			this.titles_lb.TabIndex = 0;
-			this.titles_lb.SelectedIndexChanged += new System.EventHandler(this.Titles_lbSelectedIndexChanged);
+			this.note_text.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+			this.note_text.ForeColor = System.Drawing.Color.Black;
+			this.note_text.Location = new System.Drawing.Point(12, 12);
+			this.note_text.Multiline = true;
+			this.note_text.Name = "note_text";
+			this.note_text.ReadOnly = true;
+			this.note_text.ShortcutsEnabled = false;
+			this.note_text.Size = new System.Drawing.Size(260, 238);
+			this.note_text.TabIndex = 0;
 			// 
-			// Titles
+			// ArticleView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(284, 193);
-			this.Controls.Add(this.titles_lb);
-			this.Name = "Titles";
-			this.Text = "Titles";
+			this.ClientSize = new System.Drawing.Size(284, 262);
+			this.Controls.Add(this.note_text);
+			this.MaximizeBox = false;
+			this.MaximumSize = new System.Drawing.Size(300, 300);
+			this.MinimumSize = new System.Drawing.Size(300, 300);
+			this.Name = "ArticleView";
+			this.Text = "Note";
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
-		}
-		
-		private void setTitle(string title){
-			this.Text = title;
 		}
 	}
 }
