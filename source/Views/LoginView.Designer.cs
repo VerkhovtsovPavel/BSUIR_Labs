@@ -19,7 +19,7 @@ namespace Course_project.Views
 		private System.Windows.Forms.TextBox password_textBox;
 		private System.Windows.Forms.Label login_label;
 		private System.Windows.Forms.Label password_label;
-		private System.Windows.Forms.MenuStrip menuStrip1;
+		
 		private System.Windows.Forms.ToolStripMenuItem registrationToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
@@ -48,11 +48,9 @@ namespace Course_project.Views
 			this.password_textBox = new System.Windows.Forms.TextBox();
 			this.login_label = new System.Windows.Forms.Label();
 			this.password_label = new System.Windows.Forms.Label();
-			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.registrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// login_submit_button
@@ -96,39 +94,6 @@ namespace Course_project.Views
 			this.password_label.TabIndex = 4;
 			this.password_label.Text = "Password";
 			// 
-			// menuStrip1
-			// 
-			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.toolStripMenuItem1});
-			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(427, 24);
-			this.menuStrip1.TabIndex = 5;
-			this.menuStrip1.Text = "menuStrip1";
-			// 
-			// toolStripMenuItem1
-			// 
-			this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.registrationToolStripMenuItem,
-			this.exitToolStripMenuItem});
-			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
-			this.toolStripMenuItem1.Text = "File";
-			// 
-			// registrationToolStripMenuItem
-			// 
-			this.registrationToolStripMenuItem.Name = "registrationToolStripMenuItem";
-			this.registrationToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-			this.registrationToolStripMenuItem.Text = "Registration";
-			this.registrationToolStripMenuItem.Click += new System.EventHandler(this.RegistrationToolStripMenuItemClick);
-			// 
-			// exitToolStripMenuItem
-			// 
-			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-			this.exitToolStripMenuItem.Text = "Exit";
-			this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItemClick);
-			// 
 			// LoginView
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -138,15 +103,10 @@ namespace Course_project.Views
 			this.Controls.Add(this.password_textBox);
 			this.Controls.Add(this.login_textBox);
 			this.Controls.Add(this.login_submit_button);
-			this.Controls.Add(this.menuStrip1);
-			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "LoginView";
 			this.Text = "Login";
-			this.menuStrip1.ResumeLayout(false);
-			this.menuStrip1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
-
 		}
 	}
 }

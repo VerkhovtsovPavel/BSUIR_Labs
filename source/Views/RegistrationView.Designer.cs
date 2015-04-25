@@ -429,7 +429,7 @@ namespace Course_project
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(405, 210);
+			this.ClientSize = new System.Drawing.Size(405, 196);
 			this.Controls.Add(this.timeZone_comboBox);
 			this.Controls.Add(this.last_name_textBox);
 			this.Controls.Add(this.first_name_textBox);

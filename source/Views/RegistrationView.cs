@@ -12,15 +12,21 @@ using System.Drawing;
 using System.Windows.Forms;
 using Course_project.Controller;
 using Course_project.Entity;
+using Course_project.Views;
 
 namespace Course_project
 {
 	/// <summary>
 	/// Description of RegistrationView.
 	/// </summary>
-	public partial class RegistrationView : Form
+	public partial class RegistrationView : MainView
 	{
 		LoginAndRegistrationController loginAndRegistrationController;
+		
+		public RegistrationView(){
+			InitializeComponent();
+		}
+		
 		public RegistrationView(LoginAndRegistrationController loginAndRegistrationController)
 		{
 			this.loginAndRegistrationController = loginAndRegistrationController;
@@ -32,7 +38,8 @@ namespace Course_project
 		{
 			Dictionary<String, object> registrationParameters = new Dictionary<string, object>();
 			
-			registrationParameters.Add("AuthDate", new AuthenticationData(login_textBox.Text,password_textBox.Text));
+			registrationParameters.Add("Login", login_textBox.Text);
+			registrationParameters.Add("Password" ,password_textBox.Text);
 			registrationParameters.Add("FirstName", first_name_textBox.Text);
 			registrationParameters.Add("LastName", last_name_textBox.Text);
 			registrationParameters.Add("TimeZone", timeZone_comboBox.Text);

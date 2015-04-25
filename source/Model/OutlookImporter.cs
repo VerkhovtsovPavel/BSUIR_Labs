@@ -8,5 +8,9 @@ namespace Course_project.Model
 		public OutlookImporter()
 		{
 		}
+		
+		public void importTasks(){
+				
+			}
 	}
 }

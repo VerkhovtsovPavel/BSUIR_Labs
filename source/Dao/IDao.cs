@@ -6,16 +6,21 @@ namespace Course_project.Dao
 {
 	public interface IDao
 	{
-		List<Note> getPrivateNotes(int userId);
-		List<Note> getSharedNotes();
+		List<Task> getPrivateNotes(string login);
+		List<Task> getSharedNotes();
+		List<Task> getPrivateNotesToDate(string login, DateTime day);
+		List<Task> getSharedNotesToDate(DateTime day);
 		
-		List<AuthenticationData> getAuthenticationData();
 		
-		void addUser(AuthenticationData authData);
+		List<User> getUsers();
 		
-		void addPrivateNote(int userId);
-		void addSharedNote(Note note);
+		bool checkUser(string login, string password);
+		bool checkUserLogin(string login);
 		
+		void addUser(User user);
+		
+		void addPrivateNote(Task note);
+		void addSharedNote(Task note);
 	}
 }
 

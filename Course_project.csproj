@@ -60,30 +60,41 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="ShowTasksView.cs" />
+    <Compile Include="ShowTasksView.Designer.cs">
+      <DependentUpon>ShowTasksView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="source\Session.cs" />
     <Compile Include="source\Controller\AddTaskController.cs" />
     <Compile Include="source\Controller\LoginAndRegistrationController.cs" />
-    <Compile Include="source\Controller\MainController.cs" />
-    <Compile Include="source\Controller\ShowTaskController.cs" />
+    <Compile Include="source\Controller\IController.cs" />
+    <Compile Include="source\Controller\CalendarController.cs" />
     <Compile Include="source\Dao\IDao.cs" />
     <Compile Include="source\Dao\LocalMongoDBDao.cs" />
-    <Compile Include="source\Entity\AuthenticationData.cs" />
-    <Compile Include="source\Entity\Note.cs" />
+    <Compile Include="source\Entity\User.cs" />
+    <Compile Include="source\Entity\Task.cs" />
     <Compile Include="source\Model\AddTaskLogic.cs" />
     <Compile Include="source\Model\LoginAndRegistrationLogic.cs" />
+    <Compile Include="source\Model\MainLogic.cs" />
     <Compile Include="source\Model\OutlookImporter.cs" />
-    <Compile Include="source\Model\ShowTaskLogic.cs" />
+    <Compile Include="source\Model\CalendarLogic.cs" />
     <Compile Include="source\Program.cs" />
+    <Compile Include="source\Utils\ProjectProterties.cs" />
     <Compile Include="source\Views\AddFlexibleTaskView.cs" />
     <Compile Include="source\Views\AddHardTaskView.cs" />
     <Compile Include="source\Views\AddTaskView.cs" />
+    <Compile Include="source\Views\CalendarView.cs" />
+    <Compile Include="source\Views\CalendarView.Designer.cs">
+      <DependentUpon>CalendarView.cs</DependentUpon>
+    </Compile>
     <Compile Include="source\Views\LoginView.cs" />
     <Compile Include="source\Views\LoginView.Designer.cs" />
+    <Compile Include="source\Views\MainView.cs" />
+    <Compile Include="source\Views\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
     <Compile Include="source\Views\RegistrationView.cs" />
     <Compile Include="source\Views\RegistrationView.Designer.cs" />
-    <Compile Include="source\Views\ShowTaskView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="source" />
@@ -91,9 +102,16 @@
     <Folder Include="source\Dao" />
     <Folder Include="source\Entity" />
     <Folder Include="source\Model" />
+    <Folder Include="source\Utils" />
     <Folder Include="source\Views" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ShowTasksView.resx">
+      <DependentUpon>ShowTasksView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="source\Views\CalendarView.resx">
+      <DependentUpon>CalendarView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="source\Views\LoginView.resx" />
     <EmbeddedResource Include="source\Views\RegistrationView.resx" />
   </ItemGroup>
