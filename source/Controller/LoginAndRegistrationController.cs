@@ -6,10 +6,20 @@ namespace Course_project.Controller
 {
 	public class LoginAndRegistrationController : IController
 	{
+		private static LoginAndRegistrationController instance;
+		
+		public static LoginAndRegistrationController GetInstance(){
+			if(instance == null){
+				instance = new LoginAndRegistrationController();
+			}
+			
+			return instance;
+		}
+		
 		
 		private LoginAndRegistrationLogic LoginAndRegistrationLogic;
 		
-		public LoginAndRegistrationController ()
+		private LoginAndRegistrationController ()
 		{
 			this.LoginAndRegistrationLogic = new LoginAndRegistrationLogic();
 		}
@@ -27,29 +37,29 @@ namespace Course_project.Controller
 
 		private bool loginUser(object parameters)
 		{
-			string login;
-			string password;
+			object login;
+			object password;
 			
-			Dictionary<String, String> loginParameters = (Dictionary<String, String>) parameters;
+			Dictionary<String, object> loginParameters = (Dictionary<String, object>) parameters;
 			
 			loginParameters.TryGetValue("Login",out login);
 			loginParameters.TryGetValue("Password",out password);
 			
-			return LoginAndRegistrationLogic.loginUser(login, password);
+			return LoginAndRegistrationLogic.loginUser(Convert.ToString(login), Convert.ToString(password));
 			
 		}
 
 		private bool registrateUser(object parameters)
 		{
-			string login;
-			string password;
+			object login;
+			object password;
 			
-			string firstName;
-			string lastName;
+			object firstName;
+			object lastName;
 			
-			string timeZone;
+			object timeZone;
 			
-			Dictionary<String, String> registrationParameters = (Dictionary<String, String>) parameters;
+			var registrationParameters = (Dictionary<String, object>) parameters;
 			
 			registrationParameters.TryGetValue("Login",out login);
 			registrationParameters.TryGetValue("Password",out password);
@@ -59,7 +69,7 @@ namespace Course_project.Controller
 			
 			registrationParameters.TryGetValue("timeZome",out timeZone);
 			
-			return LoginAndRegistrationLogic.registrateUser(firstName, lastName, login, password, timeZone);
+			return LoginAndRegistrationLogic.registrateUser(Convert.ToString(firstName), Convert.ToString(lastName), Convert.ToString(login), Convert.ToString(password), Convert.ToString(timeZone));
 
 		}
 	}

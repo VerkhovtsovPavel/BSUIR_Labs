@@ -21,20 +21,15 @@ namespace Course_project
 	/// </summary>
 	public partial class RegistrationView : MainView
 	{
-		LoginAndRegistrationController loginAndRegistrationController;
+		private readonly LoginAndRegistrationController loginAndRegistrationController;
 		
-		public RegistrationView(){
-			InitializeComponent();
-		}
-		
-		public RegistrationView(LoginAndRegistrationController loginAndRegistrationController)
+		public RegistrationView()
 		{
-			this.loginAndRegistrationController = loginAndRegistrationController;
+			this.loginAndRegistrationController = LoginAndRegistrationController.GetInstance();
 			InitializeComponent();
-			
-
 		}
-		void Submit_buttonClick(object sender, EventArgs e)
+		
+		private void Submit_buttonClick(object sender, EventArgs e)
 		{
 			Dictionary<String, object> registrationParameters = new Dictionary<string, object>();
 			

@@ -60,11 +60,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ShowTasksView.cs" />
-    <Compile Include="ShowTasksView.Designer.cs">
-      <DependentUpon>ShowTasksView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="source\Session.cs" />
+    <Compile Include="source\Entity\Session.cs" />
+    <Compile Include="source\Exception\SessionException.cs" />
     <Compile Include="source\Controller\AddTaskController.cs" />
     <Compile Include="source\Controller\LoginAndRegistrationController.cs" />
     <Compile Include="source\Controller\IController.cs" />
@@ -80,21 +77,34 @@
     <Compile Include="source\Model\CalendarLogic.cs" />
     <Compile Include="source\Program.cs" />
     <Compile Include="source\Utils\ProjectProterties.cs" />
-    <Compile Include="source\Views\AddFlexibleTaskView.cs" />
-    <Compile Include="source\Views\AddHardTaskView.cs" />
-    <Compile Include="source\Views\AddTaskView.cs" />
     <Compile Include="source\Views\CalendarView.cs" />
     <Compile Include="source\Views\CalendarView.Designer.cs">
       <DependentUpon>CalendarView.cs</DependentUpon>
     </Compile>
+    <Compile Include="source\Views\AddHardTaskView.cs" />
+    <Compile Include="source\Views\AddHardTaskView.Designer.cs">
+      <DependentUpon>AddHardTaskView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="source\Views\AddFlexibleTaskView.cs" />
+    <Compile Include="source\Views\AddFlexibleTaskView.Designer.cs">
+      <DependentUpon>AddFlexibleTaskView.cs</DependentUpon>
+    </Compile>
     <Compile Include="source\Views\LoginView.cs" />
-    <Compile Include="source\Views\LoginView.Designer.cs" />
+    <Compile Include="source\Views\LoginView.Designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
     <Compile Include="source\Views\MainView.cs" />
     <Compile Include="source\Views\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
     <Compile Include="source\Views\RegistrationView.cs" />
-    <Compile Include="source\Views\RegistrationView.Designer.cs" />
+    <Compile Include="source\Views\RegistrationView.Designer.cs">
+      <DependentUpon>RegistrationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="source\Views\ShowTasksView.cs" />
+    <Compile Include="source\Views\ShowTasksView.Designer.cs">
+      <DependentUpon>ShowTasksView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="source" />
@@ -102,18 +112,17 @@
     <Folder Include="source\Dao" />
     <Folder Include="source\Entity" />
     <Folder Include="source\Model" />
+    <Folder Include="source\Exception" />
     <Folder Include="source\Utils" />
     <Folder Include="source\Views" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ShowTasksView.resx">
-      <DependentUpon>ShowTasksView.cs</DependentUpon>
+    <None Include="mongo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="source\Views\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Views\CalendarView.resx">
-      <DependentUpon>CalendarView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="source\Views\LoginView.resx" />
-    <EmbeddedResource Include="source\Views\RegistrationView.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

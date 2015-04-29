@@ -4,7 +4,7 @@
  * Date: 25.04.2015
  * Time: 13:05
  */
-namespace Course_project
+namespace Course_project.Views
 {
 	partial class ShowTasksView
 	{

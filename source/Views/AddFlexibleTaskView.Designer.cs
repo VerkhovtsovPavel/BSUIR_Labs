@@ -1,18 +1,17 @@
 ﻿/*
  * Created by SharpDevelop.
- * User: Администратор
- * Date: 25.04.2015
- * Time: 12:14
+ * User: Pavel_Verkhovtsov
+ * Date: 4/29/2015
+ * Time: 21:33
  */
 namespace Course_project.Views
 {
-	partial class CalendarView
+	partial class AddFlexibleTaskView
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
-		private System.Windows.Forms.MonthCalendar monthCalendar1;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -35,27 +34,12 @@ namespace Course_project.Views
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-			this.SuspendLayout();
 			// 
-			// monthCalendar1
+			// Form1
 			// 
-			this.monthCalendar1.CalendarDimensions = new System.Drawing.Size(3, 2);
-			this.monthCalendar1.Location = new System.Drawing.Point(18, 18);
-			this.monthCalendar1.Name = "monthCalendar1";
-			this.monthCalendar1.TabIndex = 0;
-			this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendar1DateChanged);
-			// 
-			// ShowTasksView
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(535, 341);
-			this.Controls.Add(this.monthCalendar1);
-			this.Name = "CalendarView";
-			this.Text = "Calendar";
-			this.ResumeLayout(false);
-
+			this.Text = "Add flexible task";
+			this.Name = "AddFlexibleTaskView";
 		}
 	}
 }

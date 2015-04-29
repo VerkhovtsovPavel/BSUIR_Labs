@@ -120,10 +120,10 @@ namespace Course_project.Dao
 
 		public bool checkUser(string login, string password)
 		{
-			MongoCollection users = database.GetCollection<User>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
+			MongoCollection users = database.GetCollection<User>(ProjectProterties.USER_COLLECTION);
 			MongoCursor<User> usersCursor = users.FindAs<User>(Query.And(Query.EQ("Login", login), Query.EQ("Password", password)));
 			
-			if (usersCursor.Count() !=0){
+			if (usersCursor.Size() !=0){
 				return true;
 			}
 			

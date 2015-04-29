@@ -11,12 +11,12 @@ using Course_project.Controller;
 using System.Windows.Forms;
 using Course_project.Entity;
 
-namespace Course_project
+namespace Course_project.Views
 {
 	/// <summary>
 	/// Description of ShowTasksView.
 	/// </summary>
-	public partial class CalendarView : Form
+	public partial class CalendarView : MainView
 	{
 		private CalendarController calendarController;
 		public CalendarView()

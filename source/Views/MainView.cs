@@ -5,16 +5,32 @@ using System.Windows.Forms;
 namespace Course_project.Views
 {
 
-	public abstract partial class MainView : Form
+	public partial class MainView : Form
 	{
 		protected MainView(){
 			InitializeComponent();
 		}
 		
-		private void goToRegistrationPage(){
+		protected void goToRegistrationPage(){
 			RegistrationView registrationView = new RegistrationView();
 			registrationView.Show();
 			Hide();
+		}
+		
+		protected void goToAddFlexibleTaskPage(){
+			AddFlexibleTaskView addFlexibleTaskView = new AddFlexibleTaskView();
+			addFlexibleTaskView.Show();
+		}
+		
+		protected void goToAddHardTaskPage(){
+			AddHardTaskView addHardTaskView = new AddHardTaskView();
+			addHardTaskView.Show();
+		}
+		
+		protected void goToCalendarePage(){
+		 CalendarView calendarView = new CalendarView();
+		 calendarView.Show();
+		 Hide();
 		}
 
 		private void exitWithApplication(){
@@ -30,5 +46,20 @@ namespace Course_project.Views
 		{
 			goToRegistrationPage();
 		}
+		
+		void AddFlexibleTaskToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			goToAddFlexibleTaskPage();
+		}
+		
+		void AddHardTaskToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			goToAddHardTaskPage();
+		}
+		void ShowTasksToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			goToCalendarePage();
+		}
+		
 	}
 }

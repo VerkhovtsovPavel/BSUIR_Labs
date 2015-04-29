@@ -10,12 +10,12 @@ using System.Drawing;
 using System.Windows.Forms;
 using Course_project.Entity;
 
-namespace Course_project
+namespace Course_project.Views
 {
 	/// <summary>
 	/// Description of ShowTasksView.
 	/// </summary>
-	public partial class ShowTasksView : Form
+	public partial class ShowTasksView : MainView
 	{
 		private List<Task> taskToShow;
 		public ShowTasksView(List<Task> tasks)

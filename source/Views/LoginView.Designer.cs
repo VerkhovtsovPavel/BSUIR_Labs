@@ -20,10 +20,6 @@ namespace Course_project.Views
 		private System.Windows.Forms.Label login_label;
 		private System.Windows.Forms.Label password_label;
 		
-		private System.Windows.Forms.ToolStripMenuItem registrationToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-		
 		/// <summary>
 		/// Disposes resources used by the form.
 		/// </summary>
@@ -40,7 +36,7 @@ namespace Course_project.Views
 		
 		/// <summary>
 		/// This method is required for Windows Forms designer support.
-		/// 
+		/// </summary>
 		private void InitializeComponent()
 		{
 			this.login_submit_button = new System.Windows.Forms.Button();
@@ -48,9 +44,6 @@ namespace Course_project.Views
 			this.password_textBox = new System.Windows.Forms.TextBox();
 			this.login_label = new System.Windows.Forms.Label();
 			this.password_label = new System.Windows.Forms.Label();
-			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-			this.registrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.SuspendLayout();
 			// 
 			// login_submit_button

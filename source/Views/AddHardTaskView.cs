@@ -1,12 +1,33 @@
+﻿/*
+ * Created by SharpDevelop.
+ * User: Pavel_Verkhovtsov
+ * Date: 4/29/2015
+ * Time: 21:26
+ */
 using System;
+using System.Drawing;
+using System.Windows.Forms;
 
-namespace Course_project
+namespace Course_project.Views
 {
-	public class AddHardTaskView : AddTaskView
-	{
-		public AddHardTaskView ()
+	/// <summary>
+	/// Description of Form1.
+	/// </summary>
+	public partial class AddHardTaskView : MainView{
+		public AddHardTaskView()
 		{
+			//
+			// The InitializeComponent() call is required for Windows Forms designer support.
+			//
+			InitializeComponent();
+			
+			//
+			// TODO: Add constructor code after the InitializeComponent() call.
+			//
+		}
+		void Label1Click(object sender, EventArgs e)
+		{
+	
 		}
 	}
 }
-
