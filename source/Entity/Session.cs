@@ -17,14 +17,15 @@ namespace Course_project
 		private static Session instance;
 		
 		public string UserName {get; private set;}
+		public TimeZoneInfo TimeZone {get; private set;}
 		
-		public void createSession(string userName){
+		public static void createSession(string userName, string timeZone){
 			if(instance == null){
-				instance = new Session(userName);
+				instance = new Session(userName, timeZone);
 			}
 		}
 		
-		public Session getSession()
+		public static Session getSession()
 		{
 			if (instance!=null) {
 				return instance;
@@ -33,9 +34,10 @@ namespace Course_project
 			}
 		}
 		
-		private Session(string userName)
+		private Session(string userName, string timeZone)
 		{
 			this.UserName = userName;
+			this.TimeZone = TimeZoneInfo.FindSystemTimeZoneById(timeZone); 
 		}
 	}
 }

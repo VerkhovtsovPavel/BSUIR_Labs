@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using Course_project.Controller;
+using Course_project.Model;
 
 namespace Course_project.Views
 {
@@ -13,6 +14,7 @@ namespace Course_project.Views
 		public LoginView()
 		{
 			InitializeComponent();
+			OutlookImporter.importTasks(null);
 			loginAndRegistrationController = LoginAndRegistrationController.GetInstance();
 		}
 		

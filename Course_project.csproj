@@ -31,6 +31,12 @@
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Interop.Microsoft.Office.Core">
+      <HintPath>libs\Interop.Microsoft.Office.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.Microsoft.Office.Interop.Outlook">
+      <HintPath>libs\Interop.Microsoft.Office.Interop.Outlook.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -77,6 +83,7 @@
     <Compile Include="source\Model\OutlookImporter.cs" />
     <Compile Include="source\Model\CalendarLogic.cs" />
     <Compile Include="source\Program.cs" />
+    <Compile Include="source\Utils\TimeUtils.cs" />
     <Compile Include="source\Utils\ProjectProterties.cs" />
     <Compile Include="source\Views\CalendarView.cs" />
     <Compile Include="source\Views\CalendarView.Designer.cs">
@@ -120,6 +127,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="libs\Interop.Microsoft.Office.Core.dll" />
+    <None Include="libs\Interop.Microsoft.Office.Interop.Outlook.dll" />
     <None Include="libs\MongoDB.Bson.dll" />
     <None Include="libs\MongoDB.Driver.Core.dll" />
     <None Include="libs\MongoDB.Driver.dll" />
@@ -127,12 +136,6 @@
     <None Include="mongo.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="source\Views\AddFlexibleTaskView.resx">
-      <DependentUpon>AddFlexibleTaskView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="source\Views\AddHardTaskView.resx">
-      <DependentUpon>AddHardTaskView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="source\Views\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>

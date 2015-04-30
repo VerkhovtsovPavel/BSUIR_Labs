@@ -2,9 +2,9 @@
 using System.Windows.Forms;
 using Course_project.Views;
 
-//TODO Add collection in DB
-//TODO Create base views(registration, login, addTask, taskViewer)
 //TODO Implement base controlers
+//TODO Fix app start (console + form)
+//TODO Fix menu points enabled
 
 namespace Course_project
 {

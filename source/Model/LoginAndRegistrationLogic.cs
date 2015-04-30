@@ -9,7 +9,11 @@ namespace Course_project.Model
 	{
 		public bool loginUser(string login, string password)
 		{
-			return dao.checkUser(login, password);
+			bool result = dao.checkUser(login, password);
+			if(result){
+				Session.createSession(login);
+			}
+			return result;
 		}
 
 		public bool registrateUser(string firstName, string lastName, string login, string password, string timeZone)
