@@ -29,5 +29,9 @@ namespace Course_project.Views
 		{
 	
 		}
+		void Start_dateTimePickerValueChanged(object sender, EventArgs e)
+		{
+	
+		}
 	}
 }

@@ -8,7 +8,8 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Course_project</RootNamespace>
     <AssemblyName>Course_project</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -107,6 +108,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="libs" />
     <Folder Include="source" />
     <Folder Include="source\Controller" />
     <Folder Include="source\Dao" />
@@ -117,9 +119,20 @@
     <Folder Include="source\Views" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="libs\MongoDB.Bson.dll" />
+    <None Include="libs\MongoDB.Driver.Core.dll" />
+    <None Include="libs\MongoDB.Driver.dll" />
+    <None Include="libs\MongoDB.Driver.Legacy.dll" />
     <None Include="mongo.txt" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="source\Views\AddFlexibleTaskView.resx">
+      <DependentUpon>AddFlexibleTaskView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="source\Views\AddHardTaskView.resx">
+      <DependentUpon>AddHardTaskView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="source\Views\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>

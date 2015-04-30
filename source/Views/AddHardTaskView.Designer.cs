@@ -18,6 +18,7 @@ namespace Course_project.Views
 		private System.Windows.Forms.DateTimePicker start_dateTimePicker;
 		private System.Windows.Forms.DateTimePicker stop_dateTimePicker;
 		private System.Windows.Forms.TextBox title_tb;
+		protected System.Windows.Forms.Button submit_button;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -46,6 +47,7 @@ namespace Course_project.Views
 			this.start_dateTimePicker = new System.Windows.Forms.DateTimePicker();
 			this.stop_dateTimePicker = new System.Windows.Forms.DateTimePicker();
 			this.title_tb = new System.Windows.Forms.TextBox();
+			this.submit_button = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// title_lbl
@@ -75,30 +77,47 @@ namespace Course_project.Views
 			// 
 			// start_dateTimePicker
 			// 
+			this.start_dateTimePicker.CustomFormat = "MMMM dd, yyyy - dddd HH:mm";
+			this.start_dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
 			this.start_dateTimePicker.Location = new System.Drawing.Point(79, 56);
 			this.start_dateTimePicker.Name = "start_dateTimePicker";
-			this.start_dateTimePicker.Size = new System.Drawing.Size(200, 20);
+			this.start_dateTimePicker.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			this.start_dateTimePicker.Size = new System.Drawing.Size(269, 20);
 			this.start_dateTimePicker.TabIndex = 3;
+			this.start_dateTimePicker.Value = new System.DateTime(2015, 4, 21, 0, 0, 0, 0);
+			this.start_dateTimePicker.ValueChanged += new System.EventHandler(this.Start_dateTimePickerValueChanged);
 			// 
 			// stop_dateTimePicker
 			// 
-			this.stop_dateTimePicker.Location = new System.Drawing.Point(79, 89);
+			this.stop_dateTimePicker.CustomFormat = "MMMM dd, yyyy - dddd HH:mm";
+			this.stop_dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+			this.stop_dateTimePicker.Location = new System.Drawing.Point(79, 90);
 			this.stop_dateTimePicker.Name = "stop_dateTimePicker";
-			this.stop_dateTimePicker.Size = new System.Drawing.Size(200, 20);
+			this.stop_dateTimePicker.Size = new System.Drawing.Size(269, 20);
 			this.stop_dateTimePicker.TabIndex = 4;
 			// 
 			// title_tb
 			// 
 			this.title_tb.Location = new System.Drawing.Point(79, 27);
 			this.title_tb.Name = "title_tb";
-			this.title_tb.Size = new System.Drawing.Size(200, 20);
+			this.title_tb.Size = new System.Drawing.Size(269, 20);
 			this.title_tb.TabIndex = 5;
 			// 
-			// Form1
+			// submit_button
+			// 
+			this.submit_button.Location = new System.Drawing.Point(136, 123);
+			this.submit_button.Name = "submit_button";
+			this.submit_button.Size = new System.Drawing.Size(88, 23);
+			this.submit_button.TabIndex = 6;
+			this.submit_button.Text = "Submit";
+			this.submit_button.UseVisualStyleBackColor = true;
+			// 
+			// AddHardTaskView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(312, 150);
+			this.ClientSize = new System.Drawing.Size(360, 158);
+			this.Controls.Add(this.submit_button);
 			this.Controls.Add(this.title_tb);
 			this.Controls.Add(this.stop_dateTimePicker);
 			this.Controls.Add(this.start_dateTimePicker);
@@ -107,6 +126,13 @@ namespace Course_project.Views
 			this.Controls.Add(this.title_lbl);
 			this.Name = "AddHardTaskView";
 			this.Text = "Add hard task";
+			this.Controls.SetChildIndex(this.title_lbl, 0);
+			this.Controls.SetChildIndex(this.start_dateTime_lbl, 0);
+			this.Controls.SetChildIndex(this.stop_dateTime_lbl, 0);
+			this.Controls.SetChildIndex(this.start_dateTimePicker, 0);
+			this.Controls.SetChildIndex(this.stop_dateTimePicker, 0);
+			this.Controls.SetChildIndex(this.title_tb, 0);
+			this.Controls.SetChildIndex(this.submit_button, 0);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

@@ -5,6 +5,7 @@
  * Time: 21:33
  */
 using System;
+using System.Drawing;
 
 namespace Course_project.Views
 {
@@ -16,6 +17,15 @@ namespace Course_project.Views
 		public AddFlexibleTaskView()
 		{
 			InitializeComponent();
+			this.submit_button.Location = new Point(150, 280);
+		}
+		void Label1Click(object sender, EventArgs e)
+		{
+	
+		}
+		void NumericUpDown1ValueChanged(object sender, EventArgs e)
+		{
+	
 		}
 	}
 }
