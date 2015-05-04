@@ -27,9 +27,9 @@ namespace Course_project.Views
 		}
 		void MonthCalendar1DateChanged(object sender, DateRangeEventArgs e)
 		{
-			Dictionary<String, int> parameters = new Dictionary<String, int>();
-			parameters.Add("start",TimeUtils.DateTimeToUnixTime(((MonthCalendar) sender).SelectionStart));
-			parameters.Add("stop",TimeUtils.DateTimeToUnixTime(((MonthCalendar) sender).SelectionEnd));
+			RequestParameters parameters = new RequestParameters();
+			parameters.addInt("StartTime",TimeUtils.DateTimeToUnixTime(((MonthCalendar) sender).SelectionStart));
+			parameters.addInt("StopTime",TimeUtils.DateTimeToUnixTime(((MonthCalendar) sender).SelectionEnd));
 			
 			List<Task> tasks =	(List<Task>)calendarController.process("showTasks", parameters);
 			ShowTasksView showTasksView = new ShowTasksView(tasks);

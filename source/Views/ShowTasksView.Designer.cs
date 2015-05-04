@@ -56,7 +56,6 @@ namespace Course_project.Views
 			this.Text = "ShowTasksView";
 			this.Load += new System.EventHandler(this.ShowTasksViewLoad);
 			this.ResumeLayout(false);
-
 		}
 	}
 }

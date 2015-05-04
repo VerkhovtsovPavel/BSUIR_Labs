@@ -5,11 +5,12 @@
     <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>Course_project</RootNamespace>
     <AssemblyName>Course_project</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
+    <NoWin32Manifest>False</NoWin32Manifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -87,6 +88,7 @@
     <Compile Include="source\Program.cs" />
     <Compile Include="source\Utils\CommandLineCommander.cs" />
     <Compile Include="source\Utils\HashUtils.cs" />
+    <Compile Include="source\Utils\RequestParameters.cs" />
     <Compile Include="source\Utils\TimeUtils.cs" />
     <Compile Include="source\Utils\ProjectProterties.cs" />
     <Compile Include="source\Views\CalendarView.cs" />
@@ -137,9 +139,11 @@
     <None Include="libs\MongoDB.Driver.Core.dll" />
     <None Include="libs\MongoDB.Driver.dll" />
     <None Include="libs\MongoDB.Driver.Legacy.dll" />
-    <None Include="mongod.exe" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="source\Views\LoginView.resx">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="source\Views\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>

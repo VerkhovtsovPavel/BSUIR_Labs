@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using Course_project.Entity;
@@ -12,12 +13,13 @@ namespace Course_project.Dao
 		private static LocalMongoDBDao instance = null;
 		
 		private MongoDatabase database;
+		private Process dbServerProcess;
 
 		private LocalMongoDBDao()
 		{
+			dbServerProcess = CommandLineCommander.executeCommand("mongod.exe --dbpath "+ProjectProterties.DB_PATH);
 			var client = new MongoClient(ProjectProterties.DB_SERVER);
 			MongoServer server = client.GetServer();
-			
 			database = server.GetDatabase(ProjectProterties.DB_NAME);
 		}
 		

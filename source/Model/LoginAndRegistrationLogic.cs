@@ -20,13 +20,15 @@ namespace Course_project.Model
 		public bool registrateUser(string firstName, string lastName, string login, string password, string timeZone)
 		{
 			if(!dao.checkUserLogin(login)){
-				dao.addUser(new User(){
+				User user = new User(){
 				            	Login = login,
 				            	Password = password,
 				            	FirstName = firstName,
 				            	LastName = lastName,
 				            	TimeZone = timeZone
-				            });
+				};
+				dao.addUser(user);
+				Session.createSession(user);
 				return true;
 			}
 			return false; //TODO Maybe use exceptions

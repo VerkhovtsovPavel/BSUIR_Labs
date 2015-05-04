@@ -97,9 +97,15 @@ namespace Course_project.Views
 			this.Controls.Add(this.login_textBox);
 			this.Controls.Add(this.login_submit_button);
 			this.Name = "LoginView";
-			this.Text = "Login";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginViewFormClosing);
+			this.Controls.SetChildIndex(this.login_submit_button, 0);
+			this.Controls.SetChildIndex(this.login_textBox, 0);
+			this.Controls.SetChildIndex(this.password_textBox, 0);
+			this.Controls.SetChildIndex(this.login_label, 0);
+			this.Controls.SetChildIndex(this.password_label, 0);
 			this.ResumeLayout(false);
 			this.PerformLayout();
+
 		}
 	}
 }

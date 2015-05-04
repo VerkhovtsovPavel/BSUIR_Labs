@@ -6,6 +6,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Windows;
 using Course_project.Controller;
 using Course_project.Utils;
 using Course_project.Views;
@@ -27,14 +28,19 @@ namespace Course_project
 		
 		private void Submit_buttonClick(object sender, EventArgs e)
 		{
-			Dictionary<String, String> registrationParameters = new Dictionary<string, string>();
+			RequestParameters registrationParameters = new RequestParameters();
 			
-			registrationParameters.Add("Login", login_textBox.Text);
-			registrationParameters.Add("Password" ,HashUtils.MD5Hash(password_textBox.Text));
-			registrationParameters.Add("FirstName", first_name_textBox.Text);
-			registrationParameters.Add("LastName", last_name_textBox.Text);
-			registrationParameters.Add("TimeZone", timeZone_comboBox.Text);
-			loginAndRegistrationController.process("registrate", registrationParameters);
+			registrationParameters.addString("Login", login_textBox.Text);
+			registrationParameters.addString("Password" ,HashUtils.MD5Hash(password_textBox.Text));
+			registrationParameters.addString("FirstName", first_name_textBox.Text);
+			registrationParameters.addString("LastName", last_name_textBox.Text);
+			registrationParameters.addString("TimeZone", timeZone_comboBox.Text);
+			if((bool)loginAndRegistrationController.process("registrate", registrationParameters)){
+				goToCalendarePage();
+			}
+			else{
+				MessageBox.Show("Duplicate login");
+			}
 		}
 	}
 }

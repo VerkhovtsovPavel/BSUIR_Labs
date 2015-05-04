@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Course_project.Model;
+using Course_project.Utils;
 
 namespace Course_project.Controller
 {
@@ -24,7 +25,7 @@ namespace Course_project.Controller
 			this.LoginAndRegistrationLogic = new LoginAndRegistrationLogic();
 		}
 		
-		public object process(String request, Object parameters){
+		public object process(String request, RequestParameters parameters){
 			switch(request){
 				case "login":
 					return loginUser(parameters);
@@ -35,41 +36,23 @@ namespace Course_project.Controller
 			}
 		}
 
-		private bool loginUser(object parameters)
+		private bool loginUser(RequestParameters parameters)
 		{
-			object login;
-			object password;
-			
-			Dictionary<String, object> loginParameters = (Dictionary<String, object>) parameters;
-			
-			loginParameters.TryGetValue("Login",out login);
-			loginParameters.TryGetValue("Password",out password);
-			
-			return LoginAndRegistrationLogic.loginUser(Convert.ToString(login), Convert.ToString(password));
-			
+			string login = parameters.getString("Login");
+			string password = parameters.getString("Password");
+
+			return LoginAndRegistrationLogic.loginUser(login, password);			
 		}
 
-		private bool registrateUser(object parameters)
+		private bool registrateUser(RequestParameters parameters)
 		{
-			object login;
-			object password;
+			string login = parameters.getString("Login");
+			string password = parameters.getString("Password");
+			string firstName = parameters.getString("FirstName");
+			string lastName = parameters.getString("LastName");;
+			string timeZone = parameters.getString("TimeZone");;
 			
-			object firstName;
-			object lastName;
-			
-			object timeZone;
-			
-			var registrationParameters = (Dictionary<String, object>) parameters;
-			
-			registrationParameters.TryGetValue("Login",out login);
-			registrationParameters.TryGetValue("Password",out password);
-			
-			registrationParameters.TryGetValue("FirstName",out firstName);
-			registrationParameters.TryGetValue("LastName",out lastName);
-			
-			registrationParameters.TryGetValue("timeZome",out timeZone);
-			
-			return LoginAndRegistrationLogic.registrateUser(Convert.ToString(firstName), Convert.ToString(lastName), Convert.ToString(login), Convert.ToString(password), Convert.ToString(timeZone));
+			return LoginAndRegistrationLogic.registrateUser(firstName, lastName, login, password, timeZone);
 
 		}
 	}

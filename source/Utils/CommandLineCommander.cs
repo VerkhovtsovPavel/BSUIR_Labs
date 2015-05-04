@@ -6,6 +6,7 @@
  */
 using System;
 using System.Diagnostics;
+using System.Text;
 
 namespace Course_project.Utils
 {
@@ -14,15 +15,19 @@ namespace Course_project.Utils
 	/// </summary>
 	public static class CommandLineCommander
 	{
-		public static void executeCommand(string command)
+		public static Process executeCommand(string command)
 		{
-			Process process = new Process();
-			ProcessStartInfo startInfo = new ProcessStartInfo();
-			startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-			startInfo.FileName = "cmd.exe";
-			startInfo.Arguments = "/C "+command;
-			process.StartInfo = startInfo;
-			process.Start();
+                ProcessStartInfo procStartInfo = new ProcessStartInfo("cmd", "/c " + command);
+                procStartInfo.RedirectStandardOutput = true;
+                procStartInfo.UseShellExecute = false;
+                procStartInfo.CreateNoWindow = true;
+ 
+                Process proc = new Process();
+                procStartInfo.StandardOutputEncoding = Encoding.GetEncoding(866);
+                proc.StartInfo = procStartInfo;
+                proc.Start();
+				
+                return proc;
 		}
 	}
 }

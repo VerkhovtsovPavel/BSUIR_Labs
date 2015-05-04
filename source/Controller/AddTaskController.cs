@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using Course_project.Entity;
 using Course_project.Model;
+using Course_project.Utils;
 
 namespace Course_project.Controller
 {
@@ -17,7 +18,7 @@ namespace Course_project.Controller
 		}
 
 		#region IController implementation
-		public object process(string request, object parameters)
+		public object process(string request, RequestParameters parameters)
 		{
 			switch(request){
 				case "hard":
@@ -30,17 +31,16 @@ namespace Course_project.Controller
 			return null;
 		}
 
-		private Task parseHardTaskParameters(object parameters)
+		private Task parseHardTaskParameters(RequestParameters parameters)
 		{
-			DateTime startTime;
-			DateTime stopTime;
-			((Dictionary<String, DateTime>)parameters).TryGetValue("startTime", out startTime);
-			((Dictionary<String, DateTime>)parameters).TryGetValue("stopTime", out stopTime);
+			DateTime startTime = parameters.getDateTime("StartTime");
+			DateTime stopTime = parameters.getDateTime("StopTime");
+			//TODO Incorrect!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			
 			return new Task();
 		}
 
-		private Task parseFlexibleTaskParameters(object parameters)
+		private Task parseFlexibleTaskParameters(RequestParameters parameters)
 		{
 			throw new NotImplementedException();
 		}

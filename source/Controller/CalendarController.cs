@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Course_project.Model;
+using Course_project.Utils;
 
 namespace Course_project.Controller
 {
@@ -15,15 +16,12 @@ namespace Course_project.Controller
 
 		#region IController implementation
 
-		public object process(string request, object parameters)
+		public object process(string request, RequestParameters parameters)
 		{
 			switch(request){
 				case "showTasks":
-					int startUnixTime;
-					int stopUnixTime;
-					
-					((Dictionary<String, int>)parameters).TryGetValue("start",out startUnixTime);
-					((Dictionary<String, int>)parameters).TryGetValue("start",out stopUnixTime);
+					int startUnixTime = parameters.getInt("StartTime");
+					int stopUnixTime = parameters.getInt("StopTime");;
 					
 					return showTaskLogic.getTaskFromRange(startUnixTime, stopUnixTime);
 				default:

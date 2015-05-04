@@ -61,7 +61,6 @@ namespace Course_project.Views
 			this.title_lbl.Size = new System.Drawing.Size(100, 23);
 			this.title_lbl.TabIndex = 0;
 			this.title_lbl.Text = "Title";
-			this.title_lbl.Click += new System.EventHandler(this.Label1Click);
 			// 
 			// start_dateTime_lbl
 			// 
@@ -89,7 +88,6 @@ namespace Course_project.Views
 			this.start_dateTimePicker.Size = new System.Drawing.Size(269, 20);
 			this.start_dateTimePicker.TabIndex = 3;
 			this.start_dateTimePicker.Value = new System.DateTime(2015, 4, 21, 0, 0, 0, 0);
-			this.start_dateTimePicker.ValueChanged += new System.EventHandler(this.Start_dateTimePickerValueChanged);
 			// 
 			// stop_dateTimePicker
 			// 

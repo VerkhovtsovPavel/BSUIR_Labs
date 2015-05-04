@@ -5,7 +5,6 @@
  * Time: 21:33
  */
 using System;
-using System.Drawing;
 
 namespace Course_project.Views
 {
@@ -17,7 +16,6 @@ namespace Course_project.Views
 		public AddFlexibleTaskView()
 		{
 			InitializeComponent();
-			this.submit_button.Location = new Point(150, 280);
 		}
 	}
 }

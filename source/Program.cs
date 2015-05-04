@@ -2,10 +2,9 @@
 using System.Windows.Forms;
 using Course_project.Views;
 
-//TODO Implement base controlers
 //TODO Fix app start (console + form)
 //TODO Fix menu points enabled
-
+//TODO TimeZone correct convert to TimeZoneInfo 
 
 namespace Course_project
 {

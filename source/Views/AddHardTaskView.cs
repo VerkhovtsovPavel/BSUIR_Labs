@@ -14,22 +14,7 @@ namespace Course_project.Views
 	public partial class AddHardTaskView : MainView{
 		public AddHardTaskView()
 		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
 			InitializeComponent();
-			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
-		}
-		void Label1Click(object sender, EventArgs e)
-		{
-	
-		}
-		void Start_dateTimePickerValueChanged(object sender, EventArgs e)
-		{
-	
 		}
 	}
 }
