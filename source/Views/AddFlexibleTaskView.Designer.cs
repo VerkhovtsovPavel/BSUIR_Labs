@@ -49,18 +49,21 @@ namespace Course_project.Views
 			((System.ComponentModel.ISupportInitialize)(this.priority_numericUpDown)).BeginInit();
 			this.SuspendLayout();
 			// 
+			// submit_button
+			// 
+			this.submit_button.Location = new System.Drawing.Point(131, 321);
+			// 
 			// priority_lbl
 			// 
-			this.priority_lbl.Location = new System.Drawing.Point(12, 127);
+			this.priority_lbl.Location = new System.Drawing.Point(12, 161);
 			this.priority_lbl.Name = "priority_lbl";
 			this.priority_lbl.Size = new System.Drawing.Size(52, 23);
 			this.priority_lbl.TabIndex = 6;
 			this.priority_lbl.Text = "Priority";
-			this.priority_lbl.Click += new System.EventHandler(this.Label1Click);
 			// 
 			// priority_numericUpDown
 			// 
-			this.priority_numericUpDown.Location = new System.Drawing.Point(79, 125);
+			this.priority_numericUpDown.Location = new System.Drawing.Point(79, 159);
 			this.priority_numericUpDown.Maximum = new decimal(new int[] {
 			5,
 			0,
@@ -69,11 +72,10 @@ namespace Course_project.Views
 			this.priority_numericUpDown.Name = "priority_numericUpDown";
 			this.priority_numericUpDown.Size = new System.Drawing.Size(269, 20);
 			this.priority_numericUpDown.TabIndex = 7;
-			this.priority_numericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown1ValueChanged);
 			// 
 			// dependentTask_lbl
 			// 
-			this.dependentTask_lbl.Location = new System.Drawing.Point(12, 159);
+			this.dependentTask_lbl.Location = new System.Drawing.Point(12, 208);
 			this.dependentTask_lbl.Name = "dependentTask_lbl";
 			this.dependentTask_lbl.Size = new System.Drawing.Size(100, 23);
 			this.dependentTask_lbl.TabIndex = 8;
@@ -81,7 +83,7 @@ namespace Course_project.Views
 			// 
 			// listView1
 			// 
-			this.listView1.Location = new System.Drawing.Point(131, 159);
+			this.listView1.Location = new System.Drawing.Point(131, 208);
 			this.listView1.Name = "listView1";
 			this.listView1.Size = new System.Drawing.Size(217, 97);
 			this.listView1.TabIndex = 9;
@@ -89,7 +91,7 @@ namespace Course_project.Views
 			// 
 			// addTask_button
 			// 
-			this.addTask_button.Location = new System.Drawing.Point(22, 185);
+			this.addTask_button.Location = new System.Drawing.Point(12, 234);
 			this.addTask_button.Name = "addTask_button";
 			this.addTask_button.Size = new System.Drawing.Size(90, 23);
 			this.addTask_button.TabIndex = 10;
@@ -98,7 +100,7 @@ namespace Course_project.Views
 			// 
 			// removeTask_button
 			// 
-			this.removeTask_button.Location = new System.Drawing.Point(22, 214);
+			this.removeTask_button.Location = new System.Drawing.Point(12, 263);
 			this.removeTask_button.Name = "removeTask_button";
 			this.removeTask_button.Size = new System.Drawing.Size(90, 23);
 			this.removeTask_button.TabIndex = 11;
@@ -109,7 +111,7 @@ namespace Course_project.Views
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(368, 285);
+			this.ClientSize = new System.Drawing.Size(368, 354);
 			this.Controls.Add(this.removeTask_button);
 			this.Controls.Add(this.addTask_button);
 			this.Controls.Add(this.listView1);
@@ -118,6 +120,7 @@ namespace Course_project.Views
 			this.Controls.Add(this.priority_lbl);
 			this.Name = "AddFlexibleTaskView";
 			this.Text = "Add flexible task";
+			this.Controls.SetChildIndex(this.submit_button, 0);
 			this.Controls.SetChildIndex(this.priority_lbl, 0);
 			this.Controls.SetChildIndex(this.priority_numericUpDown, 0);
 			this.Controls.SetChildIndex(this.dependentTask_lbl, 0);

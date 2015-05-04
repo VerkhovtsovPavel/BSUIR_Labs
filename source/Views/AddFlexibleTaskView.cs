@@ -19,13 +19,5 @@ namespace Course_project.Views
 			InitializeComponent();
 			this.submit_button.Location = new Point(150, 280);
 		}
-		void Label1Click(object sender, EventArgs e)
-		{
-	
-		}
-		void NumericUpDown1ValueChanged(object sender, EventArgs e)
-		{
-	
-		}
 	}
 }

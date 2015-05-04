@@ -8,13 +8,13 @@ namespace Course_project.Dao
 	{
 		List<Task> getPrivateNotes(string login);
 		List<Task> getSharedNotes();
-		List<Task> getPrivateNotesToDate(string login, DateTime day);
-		List<Task> getSharedNotesToDate(DateTime day);
+		List<Task> getPrivateNotesFromRange(int start, int stop);
+		List<Task> getSharedNotesFromRange(int start, int stop);
 		
 		
-		List<User> getUsers();
+		//List<User> getUsers();
 		
-		bool checkUser(string login, string password);
+		User checkUser(string login, string password);
 		bool checkUserLogin(string login);
 		
 		void addUser(User user);

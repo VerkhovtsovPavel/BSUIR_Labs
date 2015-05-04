@@ -15,19 +15,18 @@ namespace Course_project.Utils
 	{
 		public static DateTime convertUnixTimeToDateTime(int unixTime)
 		{
-			System.DateTime dtDateTime = new DateTime(1970,1,1,0,0,0,0,System.DateTimeKind.Utc);
-			dtDateTime = dtDateTime.AddSeconds( unixTime ).ToLocalTime;
-			//TODO Add user time zone
+			DateTime dtDateTime = timeZone(new DateTime(1970,1,1,0,0,0,0, DateTimeKind.Utc));
+			dtDateTime = dtDateTime.AddSeconds(unixTime);
     		return dtDateTime;
 		}
 		
-		public static double DateTimeToUnixTime(DateTime dateTime)
+		public static int DateTimeToUnixTime(DateTime dateTime)
 		{
-    		return (dateTime - new DateTime(1970, 1, 1).ToLocalTime()).TotalSeconds;
+			return (int)(dateTime - new DateTime(1970, 1, 1).ToUniversalTime()).TotalSeconds;
 		}
 		
-		private static void timeZome(DateTime dateTime){
-			dateTime = TimeZoneInfo.ConvertTime(dateTime, Session.getSession().TimeZone);
+		private static DateTime timeZone(DateTime dateTime){
+			return TimeZoneInfo.ConvertTime(dateTime, Session.getSession().TimeZone);
 		}
 
 	}

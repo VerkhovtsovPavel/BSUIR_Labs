@@ -67,7 +67,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="source\Entity\FlexibleTask.cs" />
     <Compile Include="source\Entity\Session.cs" />
+    <Compile Include="source\Exception\NotFoundOutlookException.cs" />
     <Compile Include="source\Exception\SessionException.cs" />
     <Compile Include="source\Controller\AddTaskController.cs" />
     <Compile Include="source\Controller\LoginAndRegistrationController.cs" />
@@ -83,6 +85,8 @@
     <Compile Include="source\Model\OutlookImporter.cs" />
     <Compile Include="source\Model\CalendarLogic.cs" />
     <Compile Include="source\Program.cs" />
+    <Compile Include="source\Utils\CommandLineCommander.cs" />
+    <Compile Include="source\Utils\HashUtils.cs" />
     <Compile Include="source\Utils\TimeUtils.cs" />
     <Compile Include="source\Utils\ProjectProterties.cs" />
     <Compile Include="source\Views\CalendarView.cs" />
@@ -133,7 +137,7 @@
     <None Include="libs\MongoDB.Driver.Core.dll" />
     <None Include="libs\MongoDB.Driver.dll" />
     <None Include="libs\MongoDB.Driver.Legacy.dll" />
-    <None Include="mongo.txt" />
+    <None Include="mongod.exe" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="source\Views\MainView.resx">

@@ -3,15 +3,11 @@
  * User: Pavel_Verkhovtsov
  * Date: 04/17/2015
  * Time: 20:37
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
 using Course_project.Controller;
-using Course_project.Entity;
+using Course_project.Utils;
 using Course_project.Views;
 
 namespace Course_project
@@ -31,10 +27,10 @@ namespace Course_project
 		
 		private void Submit_buttonClick(object sender, EventArgs e)
 		{
-			Dictionary<String, object> registrationParameters = new Dictionary<string, object>();
+			Dictionary<String, String> registrationParameters = new Dictionary<string, string>();
 			
 			registrationParameters.Add("Login", login_textBox.Text);
-			registrationParameters.Add("Password" ,password_textBox.Text);
+			registrationParameters.Add("Password" ,HashUtils.MD5Hash(password_textBox.Text));
 			registrationParameters.Add("FirstName", first_name_textBox.Text);
 			registrationParameters.Add("LastName", last_name_textBox.Text);
 			registrationParameters.Add("TimeZone", timeZone_comboBox.Text);

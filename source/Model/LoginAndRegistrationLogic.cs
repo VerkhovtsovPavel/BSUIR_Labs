@@ -9,11 +9,12 @@ namespace Course_project.Model
 	{
 		public bool loginUser(string login, string password)
 		{
-			bool result = dao.checkUser(login, password);
-			if(result){
-				Session.createSession(login);
+			User result = dao.checkUser(login, password);
+			if(result != null){
+				 Session.createSession(result);
+				 return true;
 			}
-			return result;
+			return false;
 		}
 
 		public bool registrateUser(string firstName, string lastName, string login, string password, string timeZone)
@@ -28,7 +29,7 @@ namespace Course_project.Model
 				            });
 				return true;
 			}
-			return false;
+			return false; //TODO Maybe use exceptions
 		}
 	}
 }

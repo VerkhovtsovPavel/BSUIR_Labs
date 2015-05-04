@@ -1,8 +1,0 @@
-﻿/*
- * Created by SharpDevelop.
- * User: Администратор
- * Date: 25.04.2015
- * Time: 20:46
- */
-
-mongod.exe --dbpath ./data/db

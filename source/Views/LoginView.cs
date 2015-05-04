@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using Course_project.Controller;
 using Course_project.Model;
+using Course_project.Utils;
 
 namespace Course_project.Views
 {
@@ -14,16 +15,16 @@ namespace Course_project.Views
 		public LoginView()
 		{
 			InitializeComponent();
-			OutlookImporter.importTasks(null);
+			CommandLineCommander.executeCommand("mongod.exe --dbpath "+ProjectProterties.DB_PATH);
 			loginAndRegistrationController = LoginAndRegistrationController.GetInstance();
 		}
 		
 		void Login_submit_buttonClick(object sender, EventArgs e)
 		{
-			Dictionary<String, object> loginParameters = new Dictionary<string, object>();
+			Dictionary<String, String> loginParameters = new Dictionary<string, string>();
 			
 			loginParameters.Add("Login", login_textBox.Text);
-			loginParameters.Add("Password" ,password_textBox.Text);
+			loginParameters.Add("Password" ,HashUtils.MD5Hash(password_textBox.Text));
 			if((bool)loginAndRegistrationController.process("login", loginParameters)){
 				MessageBox.Show("Login successful");
 				goToCalendarePage();

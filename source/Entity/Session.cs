@@ -5,6 +5,7 @@
  * Time: 13:22
  */
 using System;
+using Course_project.Entity;
 using Course_project.Exception;
 
 namespace Course_project
@@ -16,12 +17,14 @@ namespace Course_project
 	{
 		private static Session instance;
 		
+		private User user;
+		
 		public string UserName {get; private set;}
 		public TimeZoneInfo TimeZone {get; private set;}
 		
-		public static void createSession(string userName, string timeZone){
+		public static void createSession(User user){
 			if(instance == null){
-				instance = new Session(userName, timeZone);
+				instance = new Session(user);
 			}
 		}
 		
@@ -34,10 +37,11 @@ namespace Course_project
 			}
 		}
 		
-		private Session(string userName, string timeZone)
+		private Session(User user)
 		{
-			this.UserName = userName;
-			this.TimeZone = TimeZoneInfo.FindSystemTimeZoneById(timeZone); 
+			this.user = user;
+			this.UserName = user.Login;
+			this.TimeZone = TimeZoneInfo.FindSystemTimeZoneById(user.TimeZone); 
 		}
 	}
 }

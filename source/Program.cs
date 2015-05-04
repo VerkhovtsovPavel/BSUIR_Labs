@@ -6,6 +6,7 @@ using Course_project.Views;
 //TODO Fix app start (console + form)
 //TODO Fix menu points enabled
 
+
 namespace Course_project
 {
 	internal sealed class Program

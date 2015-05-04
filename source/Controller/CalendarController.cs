@@ -19,11 +19,13 @@ namespace Course_project.Controller
 		{
 			switch(request){
 				case "showTasks":
-					DateTime day;
-					String user;
-					((Dictionary<String, DateTime>)parameters).TryGetValue("date",out day);
-					((Dictionary<String, String>)parameters).TryGetValue("date",out user);
-					return showTaskLogic.getTaskFromDay(user, day);
+					int startUnixTime;
+					int stopUnixTime;
+					
+					((Dictionary<String, int>)parameters).TryGetValue("start",out startUnixTime);
+					((Dictionary<String, int>)parameters).TryGetValue("start",out stopUnixTime);
+					
+					return showTaskLogic.getTaskFromRange(startUnixTime, stopUnixTime);
 				default:
 					return "Incorrect command";
 					//TODO Exception

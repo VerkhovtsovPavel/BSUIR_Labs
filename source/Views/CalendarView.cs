@@ -10,6 +10,7 @@ using Course_project.Controller;
 
 using System.Windows.Forms;
 using Course_project.Entity;
+using Course_project.Utils;
 
 namespace Course_project.Views
 {
@@ -26,15 +27,13 @@ namespace Course_project.Views
 		}
 		void MonthCalendar1DateChanged(object sender, DateRangeEventArgs e)
 		{
-			Dictionary<String, object> parameters = new Dictionary<String, object>();
-			//TODO Add user info in dictionary
-			//TODO Get read date
-			parameters.Add("date", sender);
+			Dictionary<String, int> parameters = new Dictionary<String, int>();
+			parameters.Add("start",TimeUtils.DateTimeToUnixTime(((MonthCalendar) sender).SelectionStart));
+			parameters.Add("stop",TimeUtils.DateTimeToUnixTime(((MonthCalendar) sender).SelectionEnd));
 			
-			List<Task> tasks =	(List<Task>)calendarController.process("showTask", parameters);
+			List<Task> tasks =	(List<Task>)calendarController.process("showTasks", parameters);
 			ShowTasksView showTasksView = new ShowTasksView(tasks);
 			showTasksView.Show();
-			
 		}
 	}
 }

@@ -4,7 +4,6 @@ using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using Course_project.Entity;
 using Course_project.Utils;
-using MongoDB;
 
 namespace Course_project.Dao
 {
@@ -14,16 +13,17 @@ namespace Course_project.Dao
 		
 		private MongoDatabase database;
 
-		private LocalMongoDBDao ()
+		private LocalMongoDBDao()
 		{
-			const string connectionString = "mongodb://localhost";
-			var client = new MongoClient(connectionString);
+			var client = new MongoClient(ProjectProterties.DB_SERVER);
 			MongoServer server = client.GetServer();
-			database = server.GetDatabase(ProjectProterties.DB_Name);
+			
+			database = server.GetDatabase(ProjectProterties.DB_NAME);
 		}
 		
-		public static IDao getInstance(){
-			if(instance == null){
+		public static IDao getInstance()
+		{
+			if (instance == null) {
 				instance = new LocalMongoDBDao();
 			}
 			
@@ -33,13 +33,13 @@ namespace Course_project.Dao
 
 		#region IDao implementation
 
-		public List<Task> getPrivateNotes(string login)
+		public List<Task> getPrivateNotes()
 		{
 			List<Task> noteList = new List<Task>();
 				
 			MongoCollection privateNotes = database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
-			MongoCursor<Task> privateNotesCursor = privateNotes.FindAs<Task>(Query.EQ("Login", login));
-			foreach (Task note in privateNotesCursor){
+			MongoCursor<Task> privateNotesCursor = privateNotes.FindAs<Task>(Query.EQ("Login", Session.getSession().UserName));
+			foreach (Task note in privateNotesCursor) {
 				noteList.Add(note);
 			}
 			
@@ -52,7 +52,7 @@ namespace Course_project.Dao
 				
 			MongoCollection sharedNotes = database.GetCollection<Task>(ProjectProterties.SHARED_NOTES_COLLECTION);
 			MongoCursor<Task> sharedNotesCursor = sharedNotes.FindAllAs<Task>();
-			foreach (Task note in sharedNotesCursor){
+			foreach (Task note in sharedNotesCursor) {
 				noteList.Add(note);
 			}
 			
@@ -60,13 +60,13 @@ namespace Course_project.Dao
 		}
 
 		//TODO Check work
-		public List<Task> getPrivateNotesToDate(string login, DateTime day)
+		public List<Task> getPrivateNotesFromRange(int start, int stop)
 		{
 			List<Task> noteList = new List<Task>();
 				
 			MongoCollection privateNotes = database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
-			MongoCursor<Task> privateNotesCursor = privateNotes.FindAs<Task>(Query.And(Query.EQ("Login", login), Query.EQ("Date", day.Date)));
-			foreach (Task note in privateNotesCursor){
+			MongoCursor<Task> privateNotesCursor = privateNotes.FindAs<Task>(Query.And(Query.EQ("Login", Session.getSession().UserName), Query.And(Query.LTE("startTime", stop), Query.GTE("stopTime", start))));
+			foreach (Task note in privateNotesCursor) {
 				noteList.Add(note);
 			}
 			
@@ -74,31 +74,31 @@ namespace Course_project.Dao
 		}
 		
 		//TODO Check work
-		public List<Task> getSharedNotesToDate(DateTime day)
+		public List<Task> getSharedNotesFromRange(int start, int stop)
 		{
 			List<Task> noteList = new List<Task>();
 				
 			MongoCollection sharedNotes = database.GetCollection<Task>(ProjectProterties.SHARED_NOTES_COLLECTION);
-			MongoCursor<Task> sharedNotesCursor = sharedNotes.FindAs<Task>(Query.EQ("Date", day.Date));
-			foreach (Task note in sharedNotesCursor){
+			MongoCursor<Task> sharedNotesCursor = sharedNotes.FindAs<Task>(Query.And(Query.LTE("startTime", stop), Query.GTE("stopTime", start)));
+			foreach (Task note in sharedNotesCursor) {
 				noteList.Add(note);
 			}
 			return noteList;
 		}
 		
-		public List<User> getUsers()
+		/*public List<User> getUsers()
 		{
 			List<User> userList = new List<User>();
 				
 			MongoCollection users = database.GetCollection<User>(ProjectProterties.USER_COLLECTION);
 			MongoCursor<User> userCursor = users.FindAllAs<User>();
-			foreach (User user in userCursor){
+			foreach (User user in userCursor) {
 				userList.Add(user);
 			}
 			
 			return userList;
 			
-		}
+		}*/
 
 		public void addUser(User user)
 		{
@@ -118,24 +118,24 @@ namespace Course_project.Dao
 			sharedNotes.Insert<Task>(note);
 		}
 
-		public bool checkUser(string login, string password)
+		public User checkUser(string login, string password)
 		{
 			MongoCollection users = database.GetCollection<User>(ProjectProterties.USER_COLLECTION);
 			MongoCursor<User> usersCursor = users.FindAs<User>(Query.And(Query.EQ("Login", login), Query.EQ("Password", password)));
 			
-			if (usersCursor.Size() !=0){
-				return true;
+			if (usersCursor.Size() != 0) {
+				return	usersCursor.GetEnumerator().Current;
 			}
 			
-			return false;
+			return null;
 		}
 
 		public bool checkUserLogin(string login)
 		{
-			MongoCollection users = database.GetCollection<User>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
+			MongoCollection users = database.GetCollection<User>(ProjectProterties.USER_COLLECTION);
 			MongoCursor<User> usersCursor = users.FindAs<User>(Query.EQ("Login", login));
 			
-			if (usersCursor.Count() !=0){
+			if (usersCursor.Count() != 0) {
 				return true;
 			}
 			

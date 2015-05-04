@@ -19,6 +19,8 @@ namespace Course_project.Views
 		private System.Windows.Forms.DateTimePicker stop_dateTimePicker;
 		private System.Windows.Forms.TextBox title_tb;
 		protected System.Windows.Forms.Button submit_button;
+		private System.Windows.Forms.Label group_lbl;
+		private System.Windows.Forms.ComboBox comboBox1;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -48,6 +50,8 @@ namespace Course_project.Views
 			this.stop_dateTimePicker = new System.Windows.Forms.DateTimePicker();
 			this.title_tb = new System.Windows.Forms.TextBox();
 			this.submit_button = new System.Windows.Forms.Button();
+			this.group_lbl = new System.Windows.Forms.Label();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
 			// 
 			// title_lbl
@@ -105,18 +109,36 @@ namespace Course_project.Views
 			// 
 			// submit_button
 			// 
-			this.submit_button.Location = new System.Drawing.Point(136, 123);
+			this.submit_button.Location = new System.Drawing.Point(126, 157);
 			this.submit_button.Name = "submit_button";
 			this.submit_button.Size = new System.Drawing.Size(88, 23);
 			this.submit_button.TabIndex = 6;
 			this.submit_button.Text = "Submit";
 			this.submit_button.UseVisualStyleBackColor = true;
 			// 
+			// group_lbl
+			// 
+			this.group_lbl.Location = new System.Drawing.Point(12, 127);
+			this.group_lbl.Name = "group_lbl";
+			this.group_lbl.Size = new System.Drawing.Size(52, 23);
+			this.group_lbl.TabIndex = 7;
+			this.group_lbl.Text = "Group";
+			// 
+			// comboBox1
+			// 
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(79, 124);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(269, 21);
+			this.comboBox1.TabIndex = 8;
+			// 
 			// AddHardTaskView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(360, 158);
+			this.ClientSize = new System.Drawing.Size(360, 204);
+			this.Controls.Add(this.comboBox1);
+			this.Controls.Add(this.group_lbl);
 			this.Controls.Add(this.submit_button);
 			this.Controls.Add(this.title_tb);
 			this.Controls.Add(this.stop_dateTimePicker);
@@ -133,6 +155,8 @@ namespace Course_project.Views
 			this.Controls.SetChildIndex(this.stop_dateTimePicker, 0);
 			this.Controls.SetChildIndex(this.title_tb, 0);
 			this.Controls.SetChildIndex(this.submit_button, 0);
+			this.Controls.SetChildIndex(this.group_lbl, 0);
+			this.Controls.SetChildIndex(this.comboBox1, 0);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

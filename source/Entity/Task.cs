@@ -11,6 +11,8 @@ namespace Course_project.Entity
 		public string Title {get; set;}
 		public string Owner {get; set;}
 		
+		public string Group {get; set;}
+		
 		public int StartTime {get; set;}
 		public int EndTime {get; set;}
 	}

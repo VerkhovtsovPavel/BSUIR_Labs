@@ -6,9 +6,9 @@ namespace Course_project.Model
 {
 	public class CalendarLogic : MainLogic
 	{
-		public List<Task> getTaskFromDay(string user, DateTime day){
-			List<Task> taskToDay = dao.getPrivateNotesToDate(user, day);
-			taskToDay.AddRange(dao.getSharedNotesToDate(day));
+		public List<Task> getTaskFromRange(int start, int stop){
+			List<Task> taskToDay = dao.getPrivateNotesFromRange(start, stop);
+			taskToDay.AddRange(dao.getSharedNotesFromRange(start, stop));
 			
 			return taskToDay;
 		}
