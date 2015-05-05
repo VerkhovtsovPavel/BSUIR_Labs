@@ -17,7 +17,9 @@ namespace Course_project.Dao
 
 		private LocalMongoDBDao()
 		{
-			dbServerProcess = CommandLineCommander.executeCommand("mongod.exe --dbpath "+ProjectProterties.DB_PATH);
+			if(Process.GetProcessesByName("mongod").Length==0){
+			 dbServerProcess = CommandLineCommander.executeCommand("mongod.exe --dbpath "+ProjectProterties.DB_PATH);
+			}
 			MongoServer server = new MongoClient(ProjectProterties.DB_SERVER).GetServer();
 			database = server.GetDatabase(ProjectProterties.DB_NAME);
 		}
@@ -100,6 +102,10 @@ namespace Course_project.Dao
 			
 			return userList;
 			
+		}
+		
+		public void clearUsers(){
+			database.GetCollection(ProjectProterties.USER_COLLECTION).Drop();
 		}*/
 
 		public void addUser(User user)
