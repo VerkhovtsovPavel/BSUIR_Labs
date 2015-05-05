@@ -21,10 +21,10 @@ namespace Course_project.Controller
 		public object process(string request, RequestParameters parameters)
 		{
 			switch(request){
-				case "hard":
+				case "addHardTask":
 					addTaskLogic.addHardTask(parseHardTaskParameters(parameters));
 					break;
-				case "flexible":
+				case "addFlexibleTask":
 					addTaskLogic.addFlexibleTask(parseFlexibleTaskParameters(parameters));
 					break;
 			}
@@ -33,11 +33,15 @@ namespace Course_project.Controller
 
 		private Task parseHardTaskParameters(RequestParameters parameters)
 		{
-			DateTime startTime = parameters.getDateTime("StartTime");
-			DateTime stopTime = parameters.getDateTime("StopTime");
-			//TODO Incorrect!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			Task task = new Task();
+			task.StartTime = TimeUtils.DateTimeToUnixTime(parameters.getDateTime("StartTime"));
+			task.EndTime = TimeUtils.DateTimeToUnixTime(parameters.getDateTime("StopTime"));
 			
-			return new Task();
+			task.Owner = Session.getSession().UserName;
+			task.Group = parameters.getString("Group");
+			task.Title = parameters.getString("Title");
+			
+			return task;
 		}
 
 		private Task parseFlexibleTaskParameters(RequestParameters parameters)

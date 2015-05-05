@@ -2,9 +2,10 @@
 using System.Windows.Forms;
 using Course_project.Views;
 
-//TODO Fix app start (console + form)
-//TODO Fix menu points enabled
-//TODO TimeZone correct convert to TimeZoneInfo 
+//TODO Add group
+//TODO Simple algorithm to convert flexible task to hard task
+//TODO Mongo server and db localion(?) 
+//TODO Dispose server
 
 namespace Course_project
 {

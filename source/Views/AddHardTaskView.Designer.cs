@@ -20,7 +20,7 @@ namespace Course_project.Views
 		private System.Windows.Forms.TextBox title_tb;
 		protected System.Windows.Forms.Button submit_button;
 		private System.Windows.Forms.Label group_lbl;
-		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.ComboBox group_comboBox;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -51,7 +51,7 @@ namespace Course_project.Views
 			this.title_tb = new System.Windows.Forms.TextBox();
 			this.submit_button = new System.Windows.Forms.Button();
 			this.group_lbl = new System.Windows.Forms.Label();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.group_comboBox = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
 			// 
 			// title_lbl
@@ -113,6 +113,7 @@ namespace Course_project.Views
 			this.submit_button.TabIndex = 6;
 			this.submit_button.Text = "Submit";
 			this.submit_button.UseVisualStyleBackColor = true;
+			this.submit_button.Click += new System.EventHandler(this.Submit_buttonClick);
 			// 
 			// group_lbl
 			// 
@@ -122,20 +123,20 @@ namespace Course_project.Views
 			this.group_lbl.TabIndex = 7;
 			this.group_lbl.Text = "Group";
 			// 
-			// comboBox1
+			// group_comboBox
 			// 
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(79, 124);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(269, 21);
-			this.comboBox1.TabIndex = 8;
+			this.group_comboBox.FormattingEnabled = true;
+			this.group_comboBox.Location = new System.Drawing.Point(79, 124);
+			this.group_comboBox.Name = "group_comboBox";
+			this.group_comboBox.Size = new System.Drawing.Size(269, 21);
+			this.group_comboBox.TabIndex = 8;
 			// 
 			// AddHardTaskView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(360, 204);
-			this.Controls.Add(this.comboBox1);
+			this.Controls.Add(this.group_comboBox);
 			this.Controls.Add(this.group_lbl);
 			this.Controls.Add(this.submit_button);
 			this.Controls.Add(this.title_tb);
@@ -154,7 +155,7 @@ namespace Course_project.Views
 			this.Controls.SetChildIndex(this.title_tb, 0);
 			this.Controls.SetChildIndex(this.submit_button, 0);
 			this.Controls.SetChildIndex(this.group_lbl, 0);
-			this.Controls.SetChildIndex(this.comboBox1, 0);
+			this.Controls.SetChildIndex(this.group_comboBox, 0);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

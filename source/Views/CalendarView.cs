@@ -23,6 +23,7 @@ namespace Course_project.Views
 		public CalendarView()
 		{
 			InitializeComponent();
+			this.fileToolStripMenuItem.Enabled = false;
 			calendarController = new CalendarController();
 		}
 		void MonthCalendar1DateChanged(object sender, DateRangeEventArgs e)

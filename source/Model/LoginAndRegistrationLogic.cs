@@ -20,13 +20,7 @@ namespace Course_project.Model
 		public bool registrateUser(string firstName, string lastName, string login, string password, string timeZone)
 		{
 			if(!dao.checkUserLogin(login)){
-				User user = new User(){
-				            	Login = login,
-				            	Password = password,
-				            	FirstName = firstName,
-				            	LastName = lastName,
-				            	TimeZone = timeZone
-				};
+				User user = new User(login, password, firstName, lastName, timeZone);
 				dao.addUser(user);
 				Session.createSession(user);
 				return true;

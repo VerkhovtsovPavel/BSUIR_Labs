@@ -12,14 +12,13 @@ namespace Course_project.Dao
 	{
 		private static LocalMongoDBDao instance = null;
 		
-		private MongoDatabase database;
+		private readonly MongoDatabase database;
 		private Process dbServerProcess;
 
 		private LocalMongoDBDao()
 		{
 			dbServerProcess = CommandLineCommander.executeCommand("mongod.exe --dbpath "+ProjectProterties.DB_PATH);
-			var client = new MongoClient(ProjectProterties.DB_SERVER);
-			MongoServer server = client.GetServer();
+			MongoServer server = new MongoClient(ProjectProterties.DB_SERVER).GetServer();
 			database = server.GetDatabase(ProjectProterties.DB_NAME);
 		}
 		
@@ -53,7 +52,7 @@ namespace Course_project.Dao
 			List<Task> noteList = new List<Task>();
 				
 			MongoCollection sharedNotes = database.GetCollection<Task>(ProjectProterties.SHARED_NOTES_COLLECTION);
-			MongoCursor<Task> sharedNotesCursor = sharedNotes.FindAllAs<Task>();
+			MongoCursor<Task> sharedNotesCursor = sharedNotes.FindAs<Task>(Query.NE("Login", Session.getSession().UserName));
 			foreach (Task note in sharedNotesCursor) {
 				noteList.Add(note);
 			}
@@ -67,7 +66,7 @@ namespace Course_project.Dao
 			List<Task> noteList = new List<Task>();
 				
 			MongoCollection privateNotes = database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
-			MongoCursor<Task> privateNotesCursor = privateNotes.FindAs<Task>(Query.And(Query.EQ("Login", Session.getSession().UserName), Query.And(Query.LTE("startTime", stop), Query.GTE("stopTime", start))));
+			MongoCursor<Task> privateNotesCursor = privateNotes.FindAs<Task>(Query.And(Query.EQ("Login", Session.getSession().UserName), Query.LTE("startTime", stop), Query.GTE("stopTime", start)));
 			foreach (Task note in privateNotesCursor) {
 				noteList.Add(note);
 			}
@@ -81,13 +80,14 @@ namespace Course_project.Dao
 			List<Task> noteList = new List<Task>();
 				
 			MongoCollection sharedNotes = database.GetCollection<Task>(ProjectProterties.SHARED_NOTES_COLLECTION);
-			MongoCursor<Task> sharedNotesCursor = sharedNotes.FindAs<Task>(Query.And(Query.LTE("startTime", stop), Query.GTE("stopTime", start)));
+			MongoCursor<Task> sharedNotesCursor = sharedNotes.FindAs<Task>(Query.And(Query.LTE("startTime", stop), Query.GTE("stopTime", start), Query.NE("Login", Session.getSession().UserName)));
 			foreach (Task note in sharedNotesCursor) {
 				noteList.Add(note);
 			}
 			return noteList;
 		}
 		
+		//TODO Debug method (Remove)
 		/*public List<User> getUsers()
 		{
 			List<User> userList = new List<User>();
@@ -126,7 +126,9 @@ namespace Course_project.Dao
 			MongoCursor<User> usersCursor = users.FindAs<User>(Query.And(Query.EQ("Login", login), Query.EQ("Password", password)));
 			
 			if (usersCursor.Size() != 0) {
-				return	usersCursor.GetEnumerator().Current;
+				foreach (User user in usersCursor) {
+					return user;
+				}
 			}
 			
 			return null;

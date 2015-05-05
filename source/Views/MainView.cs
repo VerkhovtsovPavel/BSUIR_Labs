@@ -32,6 +32,11 @@ namespace Course_project.Views
 		 calendarView.Show();
 		 Hide();
 		}
+		
+		protected void goToProfilingPage(){
+		 ProfilingView profilingView = new ProfilingView();
+		 profilingView.Show();
+		}
 
 		private void exitWithApplication(){
 			Close();
@@ -59,6 +64,10 @@ namespace Course_project.Views
 		void ShowTasksToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			goToCalendarePage();
+		}
+		void ProfilingTasksToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			goToProfilingPage();
 		}
 		
 	}

@@ -21,6 +21,7 @@ namespace Course_project.Views
 		public ShowTasksView(List<Task> tasks)
 		{
 			InitializeComponent();
+			this.fileToolStripMenuItem.Enabled = false;
 			taskToShow = tasks;
 		}
 		void ShowTasksViewLoad(object sender, EventArgs e)

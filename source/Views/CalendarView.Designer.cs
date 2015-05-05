@@ -46,15 +46,17 @@ namespace Course_project.Views
 			this.monthCalendar1.TabIndex = 0;
 			this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendar1DateChanged);
 			// 
-			// ShowTasksView
+			// CalendarView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(535, 341);
+			this.ClientSize = new System.Drawing.Size(717, 341);
 			this.Controls.Add(this.monthCalendar1);
 			this.Name = "CalendarView";
 			this.Text = "Calendar";
+			this.Controls.SetChildIndex(this.monthCalendar1, 0);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 	}

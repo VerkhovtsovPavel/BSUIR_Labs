@@ -17,6 +17,7 @@ namespace Course_project.Views
 		public LoginView()
 		{
 			InitializeComponent();
+			this.tasksToolStripMenuItem.Enabled = false;
 			loginAndRegistrationController = LoginAndRegistrationController.GetInstance();
 		}
 		

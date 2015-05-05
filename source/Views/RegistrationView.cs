@@ -24,6 +24,10 @@ namespace Course_project
 		{
 			this.loginAndRegistrationController = LoginAndRegistrationController.GetInstance();
 			InitializeComponent();
+			this.tasksToolStripMenuItem.Enabled = false;
+			foreach(var info in TimeZoneInfo.GetSystemTimeZones()){
+				this.timeZone_comboBox.Items.Add(info.Id);
+			}
 		}
 		
 		private void Submit_buttonClick(object sender, EventArgs e)

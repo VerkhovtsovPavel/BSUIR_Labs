@@ -61,7 +61,6 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -111,6 +110,10 @@
     <Compile Include="source\Views\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
+    <Compile Include="source\Views\ProfilingView.cs" />
+    <Compile Include="source\Views\ProfilingView.Designer.cs">
+      <DependentUpon>ProfilingView.cs</DependentUpon>
+    </Compile>
     <Compile Include="source\Views\RegistrationView.cs" />
     <Compile Include="source\Views\RegistrationView.Designer.cs">
       <DependentUpon>RegistrationView.cs</DependentUpon>
@@ -141,11 +144,20 @@
     <None Include="libs\MongoDB.Driver.Legacy.dll" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="source\Views\CalendarView.resx">
+      <DependentUpon>CalendarView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="source\Views\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="source\Views\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="source\Views\ProfilingView.resx">
+      <DependentUpon>ProfilingView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="source\Views\RegistrationView.resx">
+      <DependentUpon>RegistrationView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

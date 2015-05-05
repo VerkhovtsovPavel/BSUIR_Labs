@@ -7,11 +7,12 @@
 		private System.Windows.Forms.MenuStrip menuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem registrationToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-		private System.Windows.Forms.ToolStripMenuItem tasksToolStripMenuItem;
+		protected System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+		protected System.Windows.Forms.ToolStripMenuItem tasksToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem addFlexibleTaskToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem addHardTaskToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem showTasksToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem profilingTasksToolStripMenuItem;
 		
 		protected override void Dispose(bool disposing)
 		{
@@ -26,20 +27,21 @@
 		private void InitializeComponent()
 		{
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.registrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.addFlexibleTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.addHardTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.showTasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.profilingTasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip1
 			// 
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.toolStripMenuItem1,
+			this.fileToolStripMenuItem,
 			this.tasksToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
@@ -47,14 +49,14 @@
 			this.menuStrip1.TabIndex = 5;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
-			// toolStripMenuItem1
+			// fileToolStripMenuItem
 			// 
-			this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.registrationToolStripMenuItem,
 			this.exitToolStripMenuItem});
-			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
-			this.toolStripMenuItem1.Text = "File";
+			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+			this.fileToolStripMenuItem.Text = "File";
 			// 
 			// registrationToolStripMenuItem
 			// 
@@ -75,7 +77,8 @@
 			this.tasksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.addFlexibleTaskToolStripMenuItem,
 			this.addHardTaskToolStripMenuItem,
-			this.showTasksToolStripMenuItem});
+			this.showTasksToolStripMenuItem,
+			this.profilingTasksToolStripMenuItem});
 			this.tasksToolStripMenuItem.Name = "tasksToolStripMenuItem";
 			this.tasksToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
 			this.tasksToolStripMenuItem.Text = "Tasks";
@@ -100,6 +103,13 @@
 			this.showTasksToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
 			this.showTasksToolStripMenuItem.Text = "Show tasks";
 			this.showTasksToolStripMenuItem.Click += new System.EventHandler(this.ShowTasksToolStripMenuItemClick);
+			// 
+			// profilingTasksToolStripMenuItem
+			// 
+			this.profilingTasksToolStripMenuItem.Name = "profilingTasksToolStripMenuItem";
+			this.profilingTasksToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+			this.profilingTasksToolStripMenuItem.Text = "Profiling tasks";
+			this.profilingTasksToolStripMenuItem.Click += new System.EventHandler(this.ProfilingTasksToolStripMenuItemClick);
 			// 
 			// MainView
 			// 
