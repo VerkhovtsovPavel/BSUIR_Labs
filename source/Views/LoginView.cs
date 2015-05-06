@@ -13,7 +13,7 @@ namespace Course_project.Views
 	{
 		private readonly LoginAndRegistrationController loginAndRegistrationController;
 
-		
+		//TODO Desable profiling tabs
 		public LoginView()
 		{
 			InitializeComponent();

@@ -1,6 +1,7 @@
 ﻿
 using System;
 using MongoDB.Bson;
+using Course_project.Utils;
 
 namespace Course_project.Entity
 {
@@ -24,5 +25,11 @@ namespace Course_project.Entity
 		}
 		
 		public Task(){}
+		
+		public override string ToString()
+		{
+			return string.Format("Title={0}, Owner={1}, Group={2}, StartTime={3}, EndTime={4}]", Title, Owner, Group, TimeUtils.convertUnixTimeToDateTime(StartTime), TimeUtils.convertUnixTimeToDateTime(EndTime));
+		}
+
 	}
 }

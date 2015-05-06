@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="source\Controller\TaskController.cs" />
-    <Compile Include="source\Controller\CommandTypes.cs" />
+    <Compile Include="source\Controller\CommandType.cs" />
     <Compile Include="source\Dao\Dao.cs" />
     <Compile Include="source\Entity\FlexibleTask.cs" />
     <Compile Include="source\Entity\Session.cs" />

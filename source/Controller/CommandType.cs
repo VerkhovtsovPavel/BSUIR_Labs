@@ -7,7 +7,7 @@
 using System;
 namespace Course_project.Controller
 {
-	public enum CommandTypes
+	public enum CommandType
 	{
 		ADD_PRIVATE_TASK, ADD_SHARE_TASK, LOGIN, REGISTRATION
 	}

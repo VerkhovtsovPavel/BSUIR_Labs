@@ -12,9 +12,7 @@ namespace Course_project.Model
 
 		public void addHardTask(Task task) 
 		{
-			/*if(task.isShare())*/
-			dao.addPrivateNote(task);
-			
+			dao.addPrivateNote(task);	
 		}
 
 		public void addFlexibleTask(Task task)

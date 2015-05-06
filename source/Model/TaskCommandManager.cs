@@ -22,7 +22,7 @@ namespace Course_project.Model
 			commandStore = new CommandStore();
 		}
 		
-		public object process(CommandTypes commandType, RequestParameters parameters){
+		public object process(CommandType commandType, RequestParameters parameters){
 			return commandStore.getCommand(commandType).execute(parameters);
 		}
 	}

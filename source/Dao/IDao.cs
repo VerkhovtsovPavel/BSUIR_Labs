@@ -6,10 +6,10 @@ namespace Course_project.Dao
 {
 	public interface IDao
 	{
-		List<Task> getPrivateNotes();
-		List<Task> getSharedNotes();
-		List<Task> getPrivateNotesFromRange(int start, int stop);
-		List<Task> getSharedNotesFromRange(int start, int stop);
+		List<Task> getPrivateNotes(string login);
+		List<Task> getSharedNotes(string login);
+		List<Task> getPrivateNotesFromRange(int start, int stop, string login);
+		List<Task> getSharedNotesFromRange(int start, int stop, string login);
 		
 		
 		//List<User> getUsers();

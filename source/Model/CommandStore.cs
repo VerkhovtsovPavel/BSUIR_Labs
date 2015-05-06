@@ -16,18 +16,18 @@ namespace Course_project.Model
 	/// </summary>
 	public class CommandStore
 	{
-		private Dictionary<CommandTypes, ICommand> commands;
+		private Dictionary<CommandType, ICommand> commands;
 		
 		public CommandStore()
 		{
-			commands = new Dictionary<CommandTypes, ICommand>();
+			commands = new Dictionary<CommandType, ICommand>();
 		}
 		
-		public void addCommand(CommandTypes commandType, ICommand command){
+		public void addCommand(CommandType commandType, ICommand command){
 			commands.Add(commandType, command);
 		}
 		
-		public ICommand getCommand(CommandTypes commandType){
+		public ICommand getCommand(CommandType commandType){
 			ICommand command;
 			commands.TryGetValue(commandType, out command);
 			return command;

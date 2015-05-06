@@ -11,6 +11,7 @@ using Course_project.Views;
 //TODO MessageBox after successful registration
 
 //TODO Command pattern instead *Logic classes
+//TODO Use session only on logic level
 
 namespace Course_project
 {
