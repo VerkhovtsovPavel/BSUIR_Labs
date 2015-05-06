@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Course_project.Model;
 
 namespace Course_project.Views
 {
@@ -68,6 +69,11 @@ namespace Course_project.Views
 		void ProfilingTasksToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			goToProfilingPage();
+		}
+		void ImportTasksInOutlookToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			//TODO Send request to controller
+			OutlookImporter.importTasks(null);
 		}
 		
 	}

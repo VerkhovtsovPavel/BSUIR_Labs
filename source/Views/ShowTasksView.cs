@@ -30,5 +30,12 @@ namespace Course_project.Views
 				tasks_listBox.Items.Add(task.ToString());
 			}
 		}
+		void ShareTask_buttonClick(object sender, EventArgs e)
+		{
+			//TODO Check value in SelectedIndex field if task don't selected
+			if(this.tasks_listBox.SelectedIndex != -1)
+			{
+			}
+		}
 	}
 }

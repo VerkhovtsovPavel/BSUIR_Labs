@@ -13,6 +13,7 @@ namespace Course_project.Views
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
 		private System.Windows.Forms.ListBox tasks_listBox;
+		private System.Windows.Forms.Button shareTask_button;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -36,6 +37,7 @@ namespace Course_project.Views
 		private void InitializeComponent()
 		{
 			this.tasks_listBox = new System.Windows.Forms.ListBox();
+			this.shareTask_button = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// tasks_listBox
@@ -46,16 +48,31 @@ namespace Course_project.Views
 			this.tasks_listBox.Size = new System.Drawing.Size(260, 212);
 			this.tasks_listBox.TabIndex = 0;
 			// 
+			// shareTask_button
+			// 
+			this.shareTask_button.Location = new System.Drawing.Point(74, 258);
+			this.shareTask_button.Name = "shareTask_button";
+			this.shareTask_button.Size = new System.Drawing.Size(121, 23);
+			this.shareTask_button.TabIndex = 6;
+			this.shareTask_button.Text = "Share task";
+			this.shareTask_button.UseVisualStyleBackColor = true;
+			this.shareTask_button.Click += new System.EventHandler(this.ShareTask_buttonClick);
+			// 
 			// ShowTasksView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(284, 262);
+			this.ClientSize = new System.Drawing.Size(284, 336);
+			this.Controls.Add(this.shareTask_button);
 			this.Controls.Add(this.tasks_listBox);
 			this.Name = "ShowTasksView";
 			this.Text = "ShowTasksView";
 			this.Load += new System.EventHandler(this.ShowTasksViewLoad);
+			this.Controls.SetChildIndex(this.tasks_listBox, 0);
+			this.Controls.SetChildIndex(this.shareTask_button, 0);
 			this.ResumeLayout(false);
+			this.PerformLayout();
+
 		}
 	}
 }

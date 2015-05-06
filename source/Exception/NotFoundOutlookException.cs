@@ -13,7 +13,7 @@ namespace Course_project.Exception
 	/// </summary>
 	public class NotFoundOutlookException : System.Exception
 	{
-		public NotFoundOutlookException() : base()
+		public NotFoundOutlookException()
 		{
 		}
 	}

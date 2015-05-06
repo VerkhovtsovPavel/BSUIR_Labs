@@ -13,7 +13,7 @@ namespace Course_project.Exception
 	/// </summary>
 	public class SessionException : System.Exception
 	{
-		public SessionException() : base()
+		public SessionException()
 		{
 		}
 	}

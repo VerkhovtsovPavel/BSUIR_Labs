@@ -14,6 +14,6 @@ namespace Course_project.Model
 	/// </summary>
 	public class MainLogic
 	{
-		protected IDao dao = LocalMongoDBDao.getInstance();
+		protected IDao dao = Dao.Dao.getInstance();
 	}
 }

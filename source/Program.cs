@@ -2,10 +2,15 @@
 using System.Windows.Forms;
 using Course_project.Views;
 
-//TODO Add group
+//TODO Add group view
+//TODO Add group commands
+//TODO Add group logic in dao
+
 //TODO Simple algorithm to convert flexible task to hard task
 //TODO Mongo server and db localion(?) 
-//TODO Dispose server
+//TODO MessageBox after successful registration
+
+//TODO Command pattern instead *Logic classes
 
 namespace Course_project
 {

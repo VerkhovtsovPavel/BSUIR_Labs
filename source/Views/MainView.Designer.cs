@@ -13,6 +13,9 @@
 		private System.Windows.Forms.ToolStripMenuItem addHardTaskToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem showTasksToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem profilingTasksToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem importTasksInOutlookToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem profillingToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem editTaskGroupToolStripMenuItem;
 		
 		protected override void Dispose(bool disposing)
 		{
@@ -34,7 +37,10 @@
 			this.addFlexibleTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.addHardTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.showTasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.importTasksInOutlookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.profillingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.profilingTasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.editTaskGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -42,7 +48,8 @@
 			// 
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.fileToolStripMenuItem,
-			this.tasksToolStripMenuItem});
+			this.tasksToolStripMenuItem,
+			this.profillingToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(427, 24);
@@ -78,7 +85,7 @@
 			this.addFlexibleTaskToolStripMenuItem,
 			this.addHardTaskToolStripMenuItem,
 			this.showTasksToolStripMenuItem,
-			this.profilingTasksToolStripMenuItem});
+			this.importTasksInOutlookToolStripMenuItem});
 			this.tasksToolStripMenuItem.Name = "tasksToolStripMenuItem";
 			this.tasksToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
 			this.tasksToolStripMenuItem.Text = "Tasks";
@@ -86,30 +93,52 @@
 			// addFlexibleTaskToolStripMenuItem
 			// 
 			this.addFlexibleTaskToolStripMenuItem.Name = "addFlexibleTaskToolStripMenuItem";
-			this.addFlexibleTaskToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+			this.addFlexibleTaskToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
 			this.addFlexibleTaskToolStripMenuItem.Text = "Add flexible task";
 			this.addFlexibleTaskToolStripMenuItem.Click += new System.EventHandler(this.AddFlexibleTaskToolStripMenuItemClick);
 			// 
 			// addHardTaskToolStripMenuItem
 			// 
 			this.addHardTaskToolStripMenuItem.Name = "addHardTaskToolStripMenuItem";
-			this.addHardTaskToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+			this.addHardTaskToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
 			this.addHardTaskToolStripMenuItem.Text = "Add hard task";
 			this.addHardTaskToolStripMenuItem.Click += new System.EventHandler(this.AddHardTaskToolStripMenuItemClick);
 			// 
 			// showTasksToolStripMenuItem
 			// 
 			this.showTasksToolStripMenuItem.Name = "showTasksToolStripMenuItem";
-			this.showTasksToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+			this.showTasksToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
 			this.showTasksToolStripMenuItem.Text = "Show tasks";
 			this.showTasksToolStripMenuItem.Click += new System.EventHandler(this.ShowTasksToolStripMenuItemClick);
+			// 
+			// importTasksInOutlookToolStripMenuItem
+			// 
+			this.importTasksInOutlookToolStripMenuItem.Name = "importTasksInOutlookToolStripMenuItem";
+			this.importTasksInOutlookToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+			this.importTasksInOutlookToolStripMenuItem.Text = "Import tasks in Outlook";
+			this.importTasksInOutlookToolStripMenuItem.Click += new System.EventHandler(this.ImportTasksInOutlookToolStripMenuItemClick);
+			// 
+			// profillingToolStripMenuItem
+			// 
+			this.profillingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.profilingTasksToolStripMenuItem,
+			this.editTaskGroupToolStripMenuItem});
+			this.profillingToolStripMenuItem.Name = "profillingToolStripMenuItem";
+			this.profillingToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+			this.profillingToolStripMenuItem.Text = "Profilling";
 			// 
 			// profilingTasksToolStripMenuItem
 			// 
 			this.profilingTasksToolStripMenuItem.Name = "profilingTasksToolStripMenuItem";
-			this.profilingTasksToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+			this.profilingTasksToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
 			this.profilingTasksToolStripMenuItem.Text = "Profiling tasks";
 			this.profilingTasksToolStripMenuItem.Click += new System.EventHandler(this.ProfilingTasksToolStripMenuItemClick);
+			// 
+			// editTaskGroupToolStripMenuItem
+			// 
+			this.editTaskGroupToolStripMenuItem.Name = "editTaskGroupToolStripMenuItem";
+			this.editTaskGroupToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+			this.editTaskGroupToolStripMenuItem.Text = "Edit task group";
 			// 
 			// MainView
 			// 
