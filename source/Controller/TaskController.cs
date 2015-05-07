@@ -4,41 +4,36 @@
  * Date: 5/6/2015
  * Time: 21:20
  */
+namespace Course_project.Controller
+{
 using System;
 using Course_project.Model;
 
-
-namespace Course_project.Controller
-{
-	/// <summary>
-	/// Description of Class1.
-	/// </summary>Class1
 	public class TaskController
 	{
 		private static TaskController instance;
 		private TaskCommandManager commandManager;
 		
-		public static TaskController getInstance()
+		private TaskController()
 		{
-			if (instance == null) {
+			this.commandManager = new TaskCommandManager();
+		}
+		
+		public static TaskController GetInstance()
+		{
+			if (instance == null)
+			{
 				instance = new TaskController();
 			}
 			
 			return instance;
 		}
-		
-		private TaskController()
-		{
-			commandManager = new TaskCommandManager();
-		}
 
 		#region IController implementation
-		public object process(CommandType request, Course_project.Utils.RequestParameters parameters)
+		public object Process(CommandType request, Course_project.Utils.RequestParameters parameters)
 		{
-			return commandManager.process(request, parameters);
+			return this.commandManager.process(request, parameters);
 		}
 		#endregion
-
 	}
 }
-

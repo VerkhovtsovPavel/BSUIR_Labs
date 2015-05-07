@@ -1,8 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-using Course_project.Views;
-
-//TODO Add group view
+﻿//TODO Add group view
 //TODO Add group commands
 //TODO Add group logic in dao
 
@@ -18,11 +14,16 @@ using Course_project.Views;
 
 //TODO Fix forms size 
 
+//TODO Fix code style warnings (StyleCop)
+
 namespace Course_project
 {
+	using System;
+	using System.Windows.Forms;
+	using Course_project.Views;
+	
 	internal sealed class Program
 	{
-
 		[STAThread]
 		private static void Main(string[] args)
 		{

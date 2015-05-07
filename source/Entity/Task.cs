@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using MongoDB.Bson;
 using Course_project.Utils;
 
@@ -17,7 +16,8 @@ namespace Course_project.Entity
 		public int StartTime {get; set;}
 		public int EndTime {get; set;}
 
-		public Task(string title, string owner, int startTime, int endTime){
+		public Task(string title, string owner, int startTime, int endTime)
+		{
 			this.Title = title;
 			this.Owner = owner;
 			this.StartTime = startTime;

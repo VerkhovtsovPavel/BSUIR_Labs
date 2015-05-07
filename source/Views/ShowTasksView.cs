@@ -39,7 +39,7 @@ namespace Course_project.Views
 			{
 				RequestParameters requestParameters = new RequestParameters();
 				requestParameters.addTask("Task", taskToShow[this.tasks_listBox.SelectedIndex]);
-				TaskController.getInstance().process(CommandType.ADD_SHARE_TASK, requestParameters);
+				TaskController.GetInstance().Process(CommandType.ADD_SHARE_TASK, requestParameters);
 			}
 			else{
 				MessageBox.Show("Please select task");

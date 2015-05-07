@@ -14,13 +14,12 @@ namespace Course_project.Views
 	/// Description of Form1.
 	/// </summary>
 	public partial class AddHardTaskView : MainView{
-		private AddTaskController addTaskController;
+
 		
 		public AddHardTaskView()
 		{
 			InitializeComponent();
 			this.fileToolStripMenuItem.Enabled = false;
-			this.addTaskController = new AddTaskController();
 		}
 		void Submit_buttonClick(object sender, EventArgs e)
 		{
@@ -32,8 +31,8 @@ namespace Course_project.Views
 			hardTaskParameters.addDateTime("StartTime", this.start_dateTimePicker.Value);
 			hardTaskParameters.addDateTime("StopTime", this.stop_dateTimePicker.Value);
 			
-			addTaskController.process("addHardTask" , hardTaskParameters);
-			
+			TaskController.GetInstance().Process(CommandType.ADD_PRIVATE_TASK, hardTaskParameters);
+			Close();
 		}
 	}
 }

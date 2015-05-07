@@ -1,10 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: Администратор
- * Date: 25.04.2015
- * Time: 12:14
- */
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Course_project.Controller;
 
@@ -14,17 +8,14 @@ using Course_project.Utils;
 
 namespace Course_project.Views
 {
-	/// <summary>
-	/// Description of ShowTasksView.
-	/// </summary>
 	public partial class CalendarView : MainView
 	{
-		private CalendarController calendarController;
+
 		public CalendarView()
 		{
 			InitializeComponent();
 			this.fileToolStripMenuItem.Enabled = false;
-			calendarController = new CalendarController();
+
 		}
 		void MonthCalendarDateSelected(object sender, DateRangeEventArgs e)
 		{
@@ -32,7 +23,7 @@ namespace Course_project.Views
 			parameters.addDateTime("StartTime", ((MonthCalendar) sender).SelectionStart);
 			parameters.addDateTime("EndTime", ((MonthCalendar) sender).SelectionEnd);
 			
-			List<Task> tasks =	(List<Task>)calendarController.process("showTasks", parameters);
+			List<Task> tasks =	(List<Task>)TaskController.GetInstance().Process(CommandType.SHOW_TASKS, parameters);
 			ShowTasksView showTasksView = new ShowTasksView(tasks);
 			showTasksView.Show();
 		}

@@ -18,11 +18,8 @@ namespace Course_project
 	/// </summary>
 	public partial class RegistrationView : MainView
 	{
-		private readonly LoginAndRegistrationController loginAndRegistrationController;
-		
 		public RegistrationView()
 		{
-			this.loginAndRegistrationController = LoginAndRegistrationController.GetInstance();
 			InitializeComponent();
 			
 			this.tasksToolStripMenuItem.Enabled = false;
@@ -33,13 +30,13 @@ namespace Course_project
 		private void Submit_buttonClick(object sender, EventArgs e)
 		{
 			RequestParameters registrationParameters = new RequestParameters();
-			
 			registrationParameters.addString("Login", login_textBox.Text);
 			registrationParameters.addString("Password" ,HashUtils.MD5Hash(password_textBox.Text));
 			registrationParameters.addString("FirstName", first_name_textBox.Text);
 			registrationParameters.addString("LastName", last_name_textBox.Text);
 			registrationParameters.addString("TimeZone", timeZone_comboBox.Text);
-			if((bool)loginAndRegistrationController.process("registrate", registrationParameters)){
+			
+			if((bool)TaskController.GetInstance().Process(CommandType.REGISTRATION, registrationParameters)){
 				MessageBox.Show("Registration successfully");
 				goToCalendarePage();
 			}

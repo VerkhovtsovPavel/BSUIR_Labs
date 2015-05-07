@@ -8,14 +8,12 @@ namespace Course_project.Views
 
 	public partial class LoginView : MainView
 	{
-		private readonly LoginAndRegistrationController loginAndRegistrationController;
 
 		public LoginView()
 		{
 			InitializeComponent();
 			this.tasksToolStripMenuItem.Enabled = false;
 			this.profillingToolStripMenuItem.Enabled = false;
-			loginAndRegistrationController = LoginAndRegistrationController.GetInstance();
 		}
 		
 		void Login_submit_buttonClick(object sender, EventArgs e)
@@ -24,7 +22,7 @@ namespace Course_project.Views
 			
 			loginParameters.addString("Login", login_textBox.Text);
 			loginParameters.addString("Password" ,HashUtils.MD5Hash(password_textBox.Text));
-			if((bool)loginAndRegistrationController.process("login", loginParameters)){
+			if((bool)TaskController.GetInstance().Process(CommandType.LOGIN, loginParameters)){
 				MessageBox.Show("Login successfully");
 				goToCalendarePage();
 			}else{
@@ -33,6 +31,7 @@ namespace Course_project.Views
 		}
 		void LoginViewFormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
 		{
+			//Maybe dispose db server ???
 		}
 		
 	}

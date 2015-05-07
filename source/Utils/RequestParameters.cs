@@ -24,15 +24,18 @@ namespace Course_project.Utils
 			this.parameters = new Dictionary<String, Object>();
 		}
 		
-		public void addInt(string key, int value){
+		public void addInt(string key, int value)
+		{
 			parameters.Add(key, value);	
 		}
 		
-		public void addString(string key, string value){
+		public void addString(string key, string value)
+		{
 			parameters.Add(key, value);	
 		}
 		
-		public void addDateTime(string key, DateTime value){
+		public void addDateTime(string key, DateTime value)
+		{
 			parameters.Add(key, value);	
 		}
 
@@ -41,25 +44,50 @@ namespace Course_project.Utils
 			parameters.Add(key, value);	
 		}
 		
-		public int getInt(string key){
+		public void addTaskList(string key, List<Task> value)
+		{
+			parameters.Add(key, value);	
+		}
+		
+		public int getInt(string key)
+		{
 			object value;
 			parameters.TryGetValue(key, out value);
 			
 			return Convert.ToInt32(value);
 		}
 		
-		public string getString(string key){
+		public string getString(string key)
+		{
 			object value;
 			parameters.TryGetValue(key, out value);
 			
 			return Convert.ToString(value);
 		}
 		
-		public DateTime getDateTime(string key){
+		public DateTime getDateTime(string key)
+		{
 			object value;
 			parameters.TryGetValue(key, out value);
 			
 			return Convert.ToDateTime(value);
+		}
+
+		//TODO Check cost work!
+		public Task getTask(string key)
+		{
+			object value;
+			parameters.TryGetValue(key, out value);
+			
+			return (Task)value;
+		}
+		//TODO Check cost work!
+		public List<Task> getTaskList(string key)
+		{
+			object value;
+			parameters.TryGetValue(key, out value);
+			
+			return (List<Task>)value;
 		}
 	}
 }

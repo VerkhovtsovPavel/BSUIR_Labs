@@ -4,16 +4,20 @@ using System.Runtime.InteropServices;
 using Microsoft.Office.Interop.Outlook;
 using Course_project.Entity;
 using Course_project.Exception;
+using Course_project.TaskDao;
 using Course_project.Utils;
 
-namespace Course_project.Model
+namespace Course_project.Model.Command
 {
-
-	public static class OutlookImporter
+	public class ImportTaskInOutlookCommand : ICommand
 	{
-		public static void importTasks(List<Task> tasks)
-		{
-			try {
+
+	public object Execute(RequestParameters parameters)
+	{
+		List<Task> tasks = Dao.getInstance().getPrivateTasks(Session.GetSession().UserName);
+		tasks.AddRange(Dao.getInstance().getSharedTasks(Session.GetSession().UserName));
+		
+		try {
 				Application olApp = (Application)new Application();
 				NameSpace mapiNS = olApp.GetNamespace("MAPI");
 
@@ -36,9 +40,12 @@ namespace Course_project.Model
 
 					apt.Save();
 				}
+				return true;
 			} catch (COMException) {
 				throw new NotFoundOutlookException();
 			}
-		}
+	}
+
+
 	}
 }

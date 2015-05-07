@@ -1,18 +1,9 @@
-﻿/*
- * Created by SharpDevelop.
- * User: VerkhovtsovPavel
- * Date: 04.05.2015
- * Time: 16:34
- */
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Text;
 
 namespace Course_project.Utils
 {
-	/// <summary>
-	/// Description of CommandLineCommander.
-	/// </summary>
 	public static class CommandLineCommander
 	{
 		public static Process executeCommand(string command)

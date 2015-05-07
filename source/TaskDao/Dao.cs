@@ -6,7 +6,7 @@
  */
 using System;
 
-namespace Course_project.Dao
+namespace Course_project.TaskDao
 {
 	/// <summary>
 	/// Description of Dao.

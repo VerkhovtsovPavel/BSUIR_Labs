@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Course_project.Controller;
 using Course_project.Model;
 
 namespace Course_project.Views
@@ -39,6 +40,12 @@ namespace Course_project.Views
 		 profilingView.Show();
 		}
 
+		void goToLoginPage()
+		{
+			LoginView loginView = new LoginView();
+			loginView.Show();
+			Hide();
+		}
 		private void exitWithApplication(){
 			Close();
 		}
@@ -72,8 +79,11 @@ namespace Course_project.Views
 		}
 		void ImportTasksInOutlookToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			//TODO Send request to controller
-			OutlookImporter.importTasks(null);
+			TaskController.GetInstance().Process(CommandType.IMPORT_TO_OUTLOOK, null);
+		}
+		void LoginToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			goToLoginPage();
 		}
 		
 	}

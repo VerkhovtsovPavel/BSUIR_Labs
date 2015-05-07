@@ -16,6 +16,7 @@
 		private System.Windows.Forms.ToolStripMenuItem importTasksInOutlookToolStripMenuItem;
 		protected System.Windows.Forms.ToolStripMenuItem profillingToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem editTaskGroupToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem loginToolStripMenuItem;
 		
 		protected override void Dispose(bool disposing)
 		{
@@ -41,6 +42,7 @@
 			this.profillingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.profilingTasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.editTaskGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -59,6 +61,7 @@
 			// fileToolStripMenuItem
 			// 
 			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.loginToolStripMenuItem,
 			this.registrationToolStripMenuItem,
 			this.exitToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -68,14 +71,14 @@
 			// registrationToolStripMenuItem
 			// 
 			this.registrationToolStripMenuItem.Name = "registrationToolStripMenuItem";
-			this.registrationToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+			this.registrationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.registrationToolStripMenuItem.Text = "Registration";
 			this.registrationToolStripMenuItem.Click += new System.EventHandler(this.RegistrationToolStripMenuItemClick);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItemClick);
 			// 
@@ -130,7 +133,7 @@
 			// profilingTasksToolStripMenuItem
 			// 
 			this.profilingTasksToolStripMenuItem.Name = "profilingTasksToolStripMenuItem";
-			this.profilingTasksToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+			this.profilingTasksToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
 			this.profilingTasksToolStripMenuItem.Text = "Profiling tasks";
 			this.profilingTasksToolStripMenuItem.Click += new System.EventHandler(this.ProfilingTasksToolStripMenuItemClick);
 			// 
@@ -139,6 +142,13 @@
 			this.editTaskGroupToolStripMenuItem.Name = "editTaskGroupToolStripMenuItem";
 			this.editTaskGroupToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
 			this.editTaskGroupToolStripMenuItem.Text = "Edit task group";
+			// 
+			// loginToolStripMenuItem
+			// 
+			this.loginToolStripMenuItem.Name = "loginToolStripMenuItem";
+			this.loginToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.loginToolStripMenuItem.Text = "Login";
+			this.loginToolStripMenuItem.Click += new System.EventHandler(this.LoginToolStripMenuItemClick);
 			// 
 			// MainView
 			// 
