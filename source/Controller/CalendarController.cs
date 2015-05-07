@@ -20,8 +20,8 @@ namespace Course_project.Controller
 		{
 			switch(request){
 				case "showTasks":
-					int startUnixTime = parameters.getInt("StartTime");
-					int stopUnixTime = parameters.getInt("StopTime");;
+					int startUnixTime = TimeUtils.DateTimeToUnixTime(parameters.getDateTime("StartTime"));
+					int stopUnixTime = TimeUtils.DateTimeToUnixTime(parameters.getDateTime("EndTime"));
 					
 					return showTaskLogic.getTaskFromRange(startUnixTime, stopUnixTime);
 				default:

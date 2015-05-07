@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Windows;
 using Course_project.Controller;
-using Course_project.Model;
 using Course_project.Utils;
 
 namespace Course_project.Views
@@ -13,11 +10,11 @@ namespace Course_project.Views
 	{
 		private readonly LoginAndRegistrationController loginAndRegistrationController;
 
-		//TODO Desable profiling tabs
 		public LoginView()
 		{
 			InitializeComponent();
 			this.tasksToolStripMenuItem.Enabled = false;
+			this.profillingToolStripMenuItem.Enabled = false;
 			loginAndRegistrationController = LoginAndRegistrationController.GetInstance();
 		}
 		
@@ -28,7 +25,7 @@ namespace Course_project.Views
 			loginParameters.addString("Login", login_textBox.Text);
 			loginParameters.addString("Password" ,HashUtils.MD5Hash(password_textBox.Text));
 			if((bool)loginAndRegistrationController.process("login", loginParameters)){
-				MessageBox.Show("Login successful");
+				MessageBox.Show("Login successfully");
 				goToCalendarePage();
 			}else{
 				MessageBox.Show("Incorrect login or password");

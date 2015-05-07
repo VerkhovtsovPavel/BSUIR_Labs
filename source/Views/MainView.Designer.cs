@@ -14,7 +14,7 @@
 		private System.Windows.Forms.ToolStripMenuItem showTasksToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem profilingTasksToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem importTasksInOutlookToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem profillingToolStripMenuItem;
+		protected System.Windows.Forms.ToolStripMenuItem profillingToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem editTaskGroupToolStripMenuItem;
 		
 		protected override void Dispose(bool disposing)

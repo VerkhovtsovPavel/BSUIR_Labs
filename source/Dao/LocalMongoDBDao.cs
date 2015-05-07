@@ -62,7 +62,6 @@ namespace Course_project.Dao
 			return noteList;
 		}
 
-		//TODO Check work
 		public List<Task> getPrivateNotesFromRange(int start, int stop, string login)
 		{
 			List<Task> noteList = new List<Task>();
@@ -71,7 +70,7 @@ namespace Course_project.Dao
 			
 			var q = privateNotes.FindAllAs<Task>();
 			
-			MongoCursor<Task> privateNotesCursor = privateNotes.FindAs<Task>(Query.And(Query.EQ("Login", login), Query.GTE("StartTime", stop), Query.LTE("EndTime", start)));
+			MongoCursor<Task> privateNotesCursor = privateNotes.FindAs<Task>(Query.And(Query.EQ("Owner", login), Query.LTE("StartTime", stop), Query.GTE("EndTime", start)));
 			foreach (Task note in privateNotesCursor) {
 				noteList.Add(note);
 			}
@@ -85,7 +84,7 @@ namespace Course_project.Dao
 			List<Task> noteList = new List<Task>();
 				
 			MongoCollection sharedNotes = database.GetCollection<Task>(ProjectProterties.SHARED_NOTES_COLLECTION);
-			MongoCursor<Task> sharedNotesCursor = sharedNotes.FindAs<Task>(Query.And(Query.LTE("StartTime", stop), Query.GTE("EndTime", start), Query.NE("Login", login)));
+			MongoCursor<Task> sharedNotesCursor = sharedNotes.FindAs<Task>(Query.And(Query.LTE("StartTime", stop), Query.GTE("EndTime", start), Query.NE("Owner", login)));
 			foreach (Task note in sharedNotesCursor) {
 				noteList.Add(note);
 			}

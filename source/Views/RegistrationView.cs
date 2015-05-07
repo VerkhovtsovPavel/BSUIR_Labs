@@ -24,10 +24,10 @@ namespace Course_project
 		{
 			this.loginAndRegistrationController = LoginAndRegistrationController.GetInstance();
 			InitializeComponent();
+			
 			this.tasksToolStripMenuItem.Enabled = false;
-			foreach(var info in TimeZoneInfo.GetSystemTimeZones()){
-				this.timeZone_comboBox.Items.Add(info.Id);
-			}
+			this.profillingToolStripMenuItem.Enabled = false;
+			fillTimeZoneComboBox();
 		}
 		
 		private void Submit_buttonClick(object sender, EventArgs e)
@@ -40,11 +40,22 @@ namespace Course_project
 			registrationParameters.addString("LastName", last_name_textBox.Text);
 			registrationParameters.addString("TimeZone", timeZone_comboBox.Text);
 			if((bool)loginAndRegistrationController.process("registrate", registrationParameters)){
+				MessageBox.Show("Registration successfully");
 				goToCalendarePage();
 			}
 			else{
 				MessageBox.Show("Duplicate login");
 			}
+		}
+
+		void fillTimeZoneComboBox()
+		{
+				foreach(var info in TimeZoneInfo.GetSystemTimeZones()){
+				if(!info.Id.Contains("UTC")){
+					this.timeZone_comboBox.Items.Add(info.Id);
+				}
+			}
+			this.timeZone_comboBox.Sorted = true;
 		}
 	}
 }

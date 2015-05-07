@@ -8,7 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using Course_project.Controller;
 using Course_project.Entity;
+using Course_project.Utils;
 
 namespace Course_project.Views
 {
@@ -35,6 +37,13 @@ namespace Course_project.Views
 			//TODO Check value in SelectedIndex field if task don't selected
 			if(this.tasks_listBox.SelectedIndex != -1)
 			{
+				RequestParameters requestParameters = new RequestParameters();
+				requestParameters.addTask("Task", taskToShow[this.tasks_listBox.SelectedIndex]);
+				TaskController.getInstance().process(CommandType.ADD_SHARE_TASK, requestParameters);
+			}
+			else{
+				MessageBox.Show("Please select task");
+			
 			}
 		}
 	}

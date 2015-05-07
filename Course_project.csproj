@@ -110,6 +110,10 @@
     <Compile Include="source\Views\AddFlexibleTaskView.Designer.cs">
       <DependentUpon>AddFlexibleTaskView.cs</DependentUpon>
     </Compile>
+    <Compile Include="source\Views\GroupEditView.cs" />
+    <Compile Include="source\Views\GroupEditView.Designer.cs">
+      <DependentUpon>GroupEditView.cs</DependentUpon>
+    </Compile>
     <Compile Include="source\Views\LoginView.cs" />
     <Compile Include="source\Views\LoginView.Designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
@@ -154,6 +158,9 @@
   <ItemGroup>
     <EmbeddedResource Include="source\Views\CalendarView.resx">
       <DependentUpon>CalendarView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="source\Views\GroupEditView.resx">
+      <DependentUpon>GroupEditView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="source\Views\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>

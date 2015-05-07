@@ -44,13 +44,13 @@ namespace Course_project.Views
 			this.monthCalendar1.Location = new System.Drawing.Point(18, 18);
 			this.monthCalendar1.Name = "monthCalendar1";
 			this.monthCalendar1.TabIndex = 0;
-			this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendar1DateChanged);
+			this.monthCalendar1.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendarDateSelected);
 			// 
 			// CalendarView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(717, 342);
+			this.ClientSize = new System.Drawing.Size(537, 342);
 			this.Controls.Add(this.monthCalendar1);
 			this.Name = "CalendarView";
 			this.Text = "Calendar";

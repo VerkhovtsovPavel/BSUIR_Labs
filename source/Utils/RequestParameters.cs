@@ -8,6 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
+using Course_project.Entity;
 
 namespace Course_project.Utils
 {
@@ -32,6 +33,11 @@ namespace Course_project.Utils
 		}
 		
 		public void addDateTime(string key, DateTime value){
+			parameters.Add(key, value);	
+		}
+
+		public void addTask(string key, Task value)
+		{
 			parameters.Add(key, value);	
 		}
 		

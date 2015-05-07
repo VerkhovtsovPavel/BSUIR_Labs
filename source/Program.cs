@@ -8,10 +8,15 @@ using Course_project.Views;
 
 //TODO Simple algorithm to convert flexible task to hard task
 //TODO Mongo server and db localion(?) 
-//TODO MessageBox after successful registration
 
+//TODO Use strategy(bool?) to combane Add and Edit views  
+  
 //TODO Command pattern instead *Logic classes
 //TODO Use session only on logic level
+
+//TODO Application not always closes
+
+//TODO Fix forms size 
 
 namespace Course_project
 {

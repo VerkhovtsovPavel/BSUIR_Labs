@@ -26,12 +26,11 @@ namespace Course_project.Views
 			this.fileToolStripMenuItem.Enabled = false;
 			calendarController = new CalendarController();
 		}
-		void MonthCalendar1DateChanged(object sender, DateRangeEventArgs e)
+		void MonthCalendarDateSelected(object sender, DateRangeEventArgs e)
 		{
 			RequestParameters parameters = new RequestParameters();
-			//TODO Don't convert to unix time in view
-			parameters.addInt("StartTime",TimeUtils.DateTimeToUnixTime(((MonthCalendar) sender).SelectionStart));
-			parameters.addInt("StopTime",TimeUtils.DateTimeToUnixTime(((MonthCalendar) sender).SelectionEnd));
+			parameters.addDateTime("StartTime", ((MonthCalendar) sender).SelectionStart);
+			parameters.addDateTime("EndTime", ((MonthCalendar) sender).SelectionEnd);
 			
 			List<Task> tasks =	(List<Task>)calendarController.process("showTasks", parameters);
 			ShowTasksView showTasksView = new ShowTasksView(tasks);

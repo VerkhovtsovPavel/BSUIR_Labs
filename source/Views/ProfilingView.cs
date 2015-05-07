@@ -23,7 +23,7 @@ namespace Course_project.Views
 		void SpentTime_buttonClick(object sender, EventArgs e)
 		{
 			//TODO Add real spent time
-			MessageBox.Show("On tasks with "+this.group_comboBox.Text+" spent "+23+" minute");
+			MessageBox.Show("On tasks with "+this.group_comboBox.Text+" group spent "+23+" minute");
 		}
 	}
 }
