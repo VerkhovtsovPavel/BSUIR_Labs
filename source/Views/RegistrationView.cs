@@ -1,11 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: Pavel_Verkhovtsov
- * Date: 04/17/2015
- * Time: 20:37
- */
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Windows;
 using Course_project.Controller;
 using Course_project.Utils;
@@ -13,9 +6,6 @@ using Course_project.Views;
 
 namespace Course_project
 {
-	/// <summary>
-	/// Description of RegistrationView.
-	/// </summary>
 	public partial class RegistrationView : MainView
 	{
 		public RegistrationView()

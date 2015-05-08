@@ -17,9 +17,11 @@ namespace Course_project.Model
 			addCommand(CommandType.ADD_SHARE_TASK,	new ShareTaskCommand());
 			addCommand(CommandType.LOGIN, new LoginCommand());
 			addCommand(CommandType.REGISTRATION, new RegistrateCommand());
-			addCommand(CommandType.SHOW_TASKS, new GetTasksFromRangeCommand());
+			addCommand(CommandType.GET_TASKS_FROM_RANGE, new GetTasksFromRangeCommand());
 			addCommand(CommandType.IMPORT_TO_OUTLOOK, new ImportTaskInOutlookCommand());
 			addCommand(CommandType.ADD_FLEXIBLE_TASK_IN_STORE, new AddFlexibleTaskCommand());
+			addCommand(CommandType.UPDATE_GROUPS, new UpdateGroupsCommand());
+			addCommand(CommandType.GET_USER_GROUPS, new GetUserGroupsCommand());
 		}
 		
 		public void addCommand(CommandType commandType, ICommand command)

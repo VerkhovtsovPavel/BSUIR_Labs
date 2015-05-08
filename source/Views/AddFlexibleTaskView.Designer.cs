@@ -57,6 +57,7 @@ namespace Course_project.Views
 			// submit_button
 			// 
 			this.submit_button.Location = new System.Drawing.Point(131, 360);
+			this.submit_button.Click += new System.EventHandler(this.Submit_buttonClick);
 			// 
 			// parts_lbl
 			// 

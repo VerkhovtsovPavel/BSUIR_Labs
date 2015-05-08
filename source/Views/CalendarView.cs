@@ -23,7 +23,7 @@ namespace Course_project.Views
 			parameters.addDateTime("StartTime", ((MonthCalendar) sender).SelectionStart);
 			parameters.addDateTime("EndTime", ((MonthCalendar) sender).SelectionEnd);
 			
-			List<Task> tasks =	(List<Task>)TaskController.GetInstance().Process(CommandType.SHOW_TASKS, parameters);
+			List<Task> tasks =	(List<Task>)TaskController.GetInstance().Process(CommandType.GET_TASKS_FROM_RANGE, parameters);
 			ShowTasksView showTasksView = new ShowTasksView(tasks);
 			showTasksView.Show();
 		}

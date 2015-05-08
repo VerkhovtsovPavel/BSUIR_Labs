@@ -6,6 +6,7 @@ namespace Course_project.TaskDao
 	using MongoDB.Driver;
 	using MongoDB.Driver.Builders;
 	using Course_project.Entity;
+	using Course_project.Entity.DB;
 	using Course_project.Utils;
 
 	public class LocalMongoDBDao : IDao
@@ -64,6 +65,13 @@ namespace Course_project.TaskDao
 			
 			return noteList;
 		}
+		
+		public UserGroups getUserGroups(string login)
+		{
+			MongoCollection userGroups = database.GetCollection<UserGroups>(ProjectProterties.USER_GROUPS_COLLECTION);
+			UserGroups userGroup = userGroups.FindOneAs<UserGroups>(Query.EQ("Owner", login));
+			return userGroup;
+		}
 
 		public List<Task> getPrivateTasksFromRange(int start, int stop, string login)
 		{
@@ -119,14 +127,23 @@ namespace Course_project.TaskDao
 		{
 			MongoCollection users = database.GetCollection<User>(ProjectProterties.USER_COLLECTION);
 			users.Insert<User>(user);
+			createUserGroups(user.Login);
 		}
 
 		public void addPrivateTask(Task note)
 		{
-			
 			MongoCollection privateNotes = database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
-			privateNotes.Insert<Task>(note);
+			//privateNotes.Insert<Task>(note);
 			
+			
+			
+			privateNotes.Update(Query.EQ("_id", note.Id), Update.Replace(note), UpdateFlags.Upsert);
+		}
+		
+		private void createUserGroups(string login){
+			MongoCollection userGroups = database.GetCollection<UserGroups>(ProjectProterties.USER_GROUPS_COLLECTION);
+			UserGroups emptyUserGroup = new UserGroups(login);
+			userGroups.Insert<UserGroups>(emptyUserGroup);
 		}
 
 		public void addSharedTask(Task note)
@@ -135,6 +152,12 @@ namespace Course_project.TaskDao
 			sharedNotes.Insert<Task>(note);
 		}
 
+		public void updateGroups(UserGroups userGroups)
+		{
+			MongoCollection userGroupsCollection = database.GetCollection<UserGroups>(ProjectProterties.USER_GROUPS_COLLECTION);
+			userGroupsCollection.Update(Query.EQ("_id", userGroups.Id), Update.Replace(userGroups), UpdateFlags.Upsert);
+		}
+		
 		public User checkUser(string login, string password)
 		{
 			MongoCollection users = database.GetCollection<User>(ProjectProterties.USER_COLLECTION);

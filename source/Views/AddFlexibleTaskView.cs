@@ -17,5 +17,9 @@ namespace Course_project.Views
 		{
 			InitializeComponent();
 		}
+		void Submit_buttonClick(object sender, EventArgs e)
+		{
+			Close();
+		}
 	}
 }

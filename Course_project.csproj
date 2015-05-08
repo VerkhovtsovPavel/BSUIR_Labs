@@ -69,12 +69,17 @@
   <ItemGroup>
     <Compile Include="source\Controller\TaskController.cs" />
     <Compile Include="source\Controller\CommandType.cs" />
+    <Compile Include="source\Entity\DB\Task.cs" />
+    <Compile Include="source\Entity\DB\User.cs" />
+    <Compile Include="source\Entity\DB\UserGroups.cs" />
     <Compile Include="source\Model\Command\AddFlexibleTaskCommand.cs" />
     <Compile Include="source\Model\Command\GetTasksFromRangeCommand.cs" />
+    <Compile Include="source\Model\Command\GetUserGroupsCommand.cs" />
     <Compile Include="source\Model\Command\ImportTaskInOutlookCommand.cs" />
     <Compile Include="source\Model\Command\LoginCommand.cs" />
     <Compile Include="source\Model\Command\RegistrateCommand.cs" />
     <Compile Include="source\Model\Command\ShareTaskCommand.cs" />
+    <Compile Include="source\Model\Command\UpdateGroupsCommand.cs" />
     <Compile Include="source\Storage\FlexibleTasksStorage.cs" />
     <Compile Include="source\TaskDao\Dao.cs" />
     <Compile Include="source\Entity\FlexibleTask.cs" />
@@ -85,8 +90,6 @@
     <Compile Include="source\Controller\IController.cs" />
     <Compile Include="source\TaskDao\IDao.cs" />
     <Compile Include="source\TaskDao\LocalMongoDBDao.cs" />
-    <Compile Include="source\Entity\User.cs" />
-    <Compile Include="source\Entity\Task.cs" />
     <Compile Include="source\Model\CommandStore.cs" />
     <Compile Include="source\Model\Command\AddPrivateTaskCommand.cs" />
     <Compile Include="source\Model\Command\ICommand.cs" />
@@ -97,6 +100,10 @@
     <Compile Include="source\Utils\RequestParameters.cs" />
     <Compile Include="source\Utils\TimeUtils.cs" />
     <Compile Include="source\Utils\ProjectProterties.cs" />
+    <Compile Include="source\Views\AddGroupView.cs" />
+    <Compile Include="source\Views\AddGroupView.Designer.cs">
+      <DependentUpon>AddGroupView.cs</DependentUpon>
+    </Compile>
     <Compile Include="source\Views\CalendarView.cs" />
     <Compile Include="source\Views\CalendarView.Designer.cs">
       <DependentUpon>CalendarView.cs</DependentUpon>
@@ -109,9 +116,9 @@
     <Compile Include="source\Views\AddFlexibleTaskView.Designer.cs">
       <DependentUpon>AddFlexibleTaskView.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Views\GroupEditView.cs" />
-    <Compile Include="source\Views\GroupEditView.Designer.cs">
-      <DependentUpon>GroupEditView.cs</DependentUpon>
+    <Compile Include="source\Views\GroupView.cs" />
+    <Compile Include="source\Views\GroupView.Designer.cs">
+      <DependentUpon>GroupView.cs</DependentUpon>
     </Compile>
     <Compile Include="source\Views\LoginView.cs" />
     <Compile Include="source\Views\LoginView.Designer.cs">
@@ -138,6 +145,7 @@
     <Folder Include="libs" />
     <Folder Include="source" />
     <Folder Include="source\Controller" />
+    <Folder Include="source\Entity\DB" />
     <Folder Include="source\Storage" />
     <Folder Include="source\TaskDao" />
     <Folder Include="source\Entity" />
@@ -157,11 +165,14 @@
     <None Include="libs\MongoDB.Driver.Legacy.dll" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="source\Views\AddGroupView.resx">
+      <DependentUpon>AddGroupView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="source\Views\CalendarView.resx">
       <DependentUpon>CalendarView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Views\GroupEditView.resx">
-      <DependentUpon>GroupEditView.cs</DependentUpon>
+    <EmbeddedResource Include="source\Views\GroupView.resx">
+      <DependentUpon>GroupView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="source\Views\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>

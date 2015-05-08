@@ -31,6 +31,7 @@ namespace Course_project.Views
 			hardTaskParameters.addDateTime("StartTime", this.start_dateTimePicker.Value);
 			hardTaskParameters.addDateTime("StopTime", this.stop_dateTimePicker.Value);
 			
+			//TODO Add messageBox 
 			TaskController.GetInstance().Process(CommandType.ADD_PRIVATE_TASK, hardTaskParameters);
 			Close();
 		}

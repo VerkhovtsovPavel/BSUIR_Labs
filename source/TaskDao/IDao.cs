@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Course_project.Entity;
+using Course_project.Entity.DB;
 
 namespace Course_project.TaskDao
 {
@@ -18,6 +19,9 @@ namespace Course_project.TaskDao
 		
 		void addPrivateTask(Task note);
 		void addSharedTask(Task note);
+
+		void updateGroups(UserGroups userGroups);
+		UserGroups getUserGroups(string login);
 	}
 }
 

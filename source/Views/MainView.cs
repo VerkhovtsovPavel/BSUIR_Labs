@@ -40,6 +40,11 @@ namespace Course_project.Views
 		 profilingView.Show();
 		}
 
+		void goToGroupView()
+		{
+			GroupView groupView = new GroupView();
+			groupView.Show();
+		}
 		void goToLoginPage()
 		{
 			LoginView loginView = new LoginView();
@@ -84,6 +89,10 @@ namespace Course_project.Views
 		void LoginToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			goToLoginPage();
+		}
+		void EditTaskGroupToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			goToGroupView();
 		}
 		
 	}
