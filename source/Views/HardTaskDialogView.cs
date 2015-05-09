@@ -82,6 +82,5 @@ namespace Course_project.Views
 				this.start_dateTimePicker.Value = ((DateTimePicker)sender).Value.AddMinutes(-1);
 			}
 		}
-		
 	}
 }
