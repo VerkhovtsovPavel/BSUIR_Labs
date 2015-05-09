@@ -28,7 +28,7 @@ namespace Course_project.Views
 			if(this.tasks_listBox.SelectedIndex != -1)
 			{
 				RequestParameters requestParameters = new RequestParameters();
-				requestParameters.addTask("Task", taskToShow[this.tasks_listBox.SelectedIndex]);
+				requestParameters.AddParameter<Task>("Task", taskToShow[this.tasks_listBox.SelectedIndex]);
 				TaskController.GetInstance().Process(CommandType.ADD_SHARE_TASK, requestParameters);
 			}
 			else{

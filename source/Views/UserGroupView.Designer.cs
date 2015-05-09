@@ -8,7 +8,7 @@
  */
 namespace Course_project.Views
 {
-	partial class GroupView
+	partial class UserGroupView
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
@@ -84,7 +84,7 @@ namespace Course_project.Views
 			this.editGroup_button.UseVisualStyleBackColor = true;
 			this.editGroup_button.Click += new System.EventHandler(this.EditGroup_buttonClick);
 			// 
-			// GroupEditView
+			// GroupView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -93,8 +93,8 @@ namespace Course_project.Views
 			this.Controls.Add(this.group_listBox);
 			this.Controls.Add(this.deleteGroup_button);
 			this.Controls.Add(this.addGroup_button);
-			this.Name = "GroupEditView";
-			this.Text = "GroupEditView";
+			this.Name = "GroupView";
+			this.Text = "Task Groups";
 			this.ResumeLayout(false);
 
 		}

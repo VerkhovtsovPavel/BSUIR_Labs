@@ -44,6 +44,7 @@ namespace Course_project.Views
 			// 
 			// group_comboBox
 			// 
+			this.group_comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.group_comboBox.FormattingEnabled = true;
 			this.group_comboBox.Location = new System.Drawing.Point(98, 38);
 			this.group_comboBox.Name = "group_comboBox";

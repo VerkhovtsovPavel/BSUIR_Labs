@@ -20,11 +20,11 @@ namespace Course_project
 		private void Submit_buttonClick(object sender, EventArgs e)
 		{
 			RequestParameters registrationParameters = new RequestParameters();
-			registrationParameters.addString("Login", login_textBox.Text);
-			registrationParameters.addString("Password" ,HashUtils.MD5Hash(password_textBox.Text));
-			registrationParameters.addString("FirstName", first_name_textBox.Text);
-			registrationParameters.addString("LastName", last_name_textBox.Text);
-			registrationParameters.addString("TimeZone", timeZone_comboBox.Text);
+			registrationParameters.AddParameter<String>("Login", login_textBox.Text);
+			registrationParameters.AddParameter<String>("Password" ,HashUtils.MD5Hash(password_textBox.Text));
+			registrationParameters.AddParameter<String>("FirstName", first_name_textBox.Text);
+			registrationParameters.AddParameter<String>("LastName", last_name_textBox.Text);
+			registrationParameters.AddParameter<String>("TimeZone", timeZone_comboBox.Text);
 			
 			if((bool)TaskController.GetInstance().Process(CommandType.REGISTRATION, registrationParameters)){
 				MessageBox.Show("Registration successfully");

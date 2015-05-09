@@ -18,11 +18,11 @@ namespace Course_project.Model.Command
 	{
 	public object Execute(RequestParameters parameters)
 	{
-		string login = parameters.getString("Login");
-			string password = parameters.getString("Password");
-			string firstName = parameters.getString("FirstName");
-			string lastName = parameters.getString("LastName");;
-			string timeZone = parameters.getString("TimeZone");;
+		string login = parameters.GetParameter<String>("Login");
+			string password = parameters.GetParameter<String>("Password");
+			string firstName = parameters.GetParameter<String>("FirstName");
+			string lastName = parameters.GetParameter<String>("LastName");;
+			string timeZone = parameters.GetParameter<String>("TimeZone");;
 			
 			if (!Dao.getInstance().CheckUserLogin(login)) {
 				User user = new User(login, password, firstName, lastName, timeZone);
@@ -30,7 +30,7 @@ namespace Course_project.Model.Command
 				Session.CreateSession(user);
 				return true;
 			}
-			return false; //TODO Maybe use exceptions
+			return false;
 	}
 	}
 }

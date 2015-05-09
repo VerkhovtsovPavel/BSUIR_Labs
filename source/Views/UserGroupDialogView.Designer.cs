@@ -1,12 +1,6 @@
-﻿/*
- * Created by SharpDevelop.
- * User: Pavel_Verkhovtsov
- * Date: 5/8/2015
- * Time: 19:29
- */
-namespace Course_project.Views
+﻿namespace Course_project.Views
 {
-	partial class AddGroupView
+	partial class UserGroupDialogView
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
@@ -53,7 +47,7 @@ namespace Course_project.Views
 			// 
 			this.group_label.Location = new System.Drawing.Point(12, 12);
 			this.group_label.Name = "group_label";
-			this.group_label.Size = new System.Drawing.Size(62, 23);
+			this.group_label.Size = new System.Drawing.Size(46, 23);
 			this.group_label.TabIndex = 1;
 			this.group_label.Text = "Group";
 			// 
@@ -79,7 +73,6 @@ namespace Course_project.Views
 			this.Text = "AddGroupView";
 			this.ResumeLayout(false);
 			this.PerformLayout();
-
 		}
 	}
 }

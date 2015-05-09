@@ -19,7 +19,7 @@ namespace Course_project.TaskDao
 		private LocalMongoDBDao()
 		{
 			if(Process.GetProcessesByName("mongod").Length==0){
-			 dbServerProcess = CommandLineCommander.executeCommand("mongod.exe --repair --dbpath "+ProjectProterties.DB_PATH +" & mongod.exe --dbpath "+ProjectProterties.DB_PATH);
+			  dbServerProcess = CommandLineCommander.executeCommand("mongod.exe --repair --dbpath "+ProjectProterties.DB_PATH +" & mongod.exe --dbpath "+ProjectProterties.DB_PATH);
 			}
 			
 			MongoServer server = new MongoClient(ProjectProterties.DB_SERVER).GetServer();
@@ -32,23 +32,18 @@ namespace Course_project.TaskDao
 			{
 				instance = new LocalMongoDBDao();
 			}
-			
 			return instance;
 		}
  
-
-		#region IDao implementation
 		public List<Task> getPrivateTasks(string login)
 		{
 			List<Task> noteList = new List<Task>();
 				
 			MongoCollection privateNotes = database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
-			MongoCursor<Task> privateNotesCursor = privateNotes.FindAs<Task>(Query.EQ("Login", login));
-			foreach (Task note in privateNotesCursor)
-			{
-				noteList.Add(note);
-			}
+			MongoCursor<Task> privateNotesCursor = privateNotes.FindAs<Task>(Query.EQ("Owner", login));
 			
+			noteList.AddRange(privateNotesCursor);
+					
 			return noteList;
 		}
 
@@ -57,12 +52,10 @@ namespace Course_project.TaskDao
 			List<Task> noteList = new List<Task>();
 				
 			MongoCollection sharedNotes = database.GetCollection<Task>(ProjectProterties.SHARED_NOTES_COLLECTION);
-			MongoCursor<Task> sharedNotesCursor = sharedNotes.FindAs<Task>(Query.NE("Login", login));
-			foreach (Task note in sharedNotesCursor)
-			{
-				noteList.Add(note);
-			}
+			MongoCursor<Task> sharedNotesCursor = sharedNotes.FindAs<Task>(Query.NE("Owner", login));
 			
+			noteList.AddRange(sharedNotesCursor);
+					
 			return noteList;
 		}
 		
@@ -78,15 +71,10 @@ namespace Course_project.TaskDao
 			List<Task> noteList = new List<Task>();
 			
 			MongoCollection privateNotes = database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
-			
-			var q = privateNotes.FindAllAs<Task>();
-			
 			MongoCursor<Task> privateNotesCursor = privateNotes.FindAs<Task>(Query.And(Query.EQ("Owner", login), Query.LTE("StartTime", stop), Query.GTE("EndTime", start)));
-			foreach (Task note in privateNotesCursor)
-			{
-				noteList.Add(note);
-			}
 			
+			noteList.AddRange(privateNotesCursor);
+						
 			return noteList;
 		}
 		
@@ -97,13 +85,23 @@ namespace Course_project.TaskDao
 				
 			MongoCollection sharedNotes = database.GetCollection<Task>(ProjectProterties.SHARED_NOTES_COLLECTION);
 			MongoCursor<Task> sharedNotesCursor = sharedNotes.FindAs<Task>(Query.And(Query.LTE("StartTime", stop), Query.GTE("EndTime", start), Query.NE("Owner", login)));
-			foreach (Task note in sharedNotesCursor)
-			{
-				noteList.Add(note);
-			}
+				
+			noteList.AddRange(sharedNotesCursor);
+			
 			return noteList;
 		}
-		
+
+		public List<Task> getTasksByGroup(string login, string group)
+		{
+			List<Task> noteList = new List<Task>();
+				
+			MongoCollection privateNotes = database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
+			MongoCursor<Task> privateNotesCursor = privateNotes.FindAs<Task>(Query.And(Query.EQ("Owner", login), Query.EQ("Group",group)));
+			
+			noteList.AddRange(privateNotesCursor);
+			
+			return noteList;
+		}
 		//TODO Debug method (Remove)
 		/*public List<User> getUsers()
 		{
@@ -133,11 +131,11 @@ namespace Course_project.TaskDao
 		public void addPrivateTask(Task note)
 		{
 			MongoCollection privateNotes = database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
-			//privateNotes.Insert<Task>(note);
+			privateNotes.Insert<Task>(note);
 			
 			
 			
-			privateNotes.Update(Query.EQ("_id", note.Id), Update.Replace(note), UpdateFlags.Upsert);
+			//privateNotes.Update(Query.EQ("_id", note.Id), Update.Replace(note), UpdateFlags.Upsert);
 		}
 		
 		private void createUserGroups(string login){
@@ -184,7 +182,6 @@ namespace Course_project.TaskDao
 			
 			return false;
 		}
-		#endregion
 	}
 }
 

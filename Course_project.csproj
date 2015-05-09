@@ -74,6 +74,7 @@
     <Compile Include="source\Entity\DB\UserGroups.cs" />
     <Compile Include="source\Model\Command\AddFlexibleTaskCommand.cs" />
     <Compile Include="source\Model\Command\GetTasksFromRangeCommand.cs" />
+    <Compile Include="source\Model\Command\GetTimeSpentByGroup.cs" />
     <Compile Include="source\Model\Command\GetUserGroupsCommand.cs" />
     <Compile Include="source\Model\Command\ImportTaskInOutlookCommand.cs" />
     <Compile Include="source\Model\Command\LoginCommand.cs" />
@@ -100,25 +101,25 @@
     <Compile Include="source\Utils\RequestParameters.cs" />
     <Compile Include="source\Utils\TimeUtils.cs" />
     <Compile Include="source\Utils\ProjectProterties.cs" />
-    <Compile Include="source\Views\AddGroupView.cs" />
-    <Compile Include="source\Views\AddGroupView.Designer.cs">
-      <DependentUpon>AddGroupView.cs</DependentUpon>
+    <Compile Include="source\Views\UserGroupDialogView.cs" />
+    <Compile Include="source\Views\UserGroupDialogView.Designer.cs">
+      <DependentUpon>UserGroupDialogView.cs</DependentUpon>
     </Compile>
     <Compile Include="source\Views\CalendarView.cs" />
     <Compile Include="source\Views\CalendarView.Designer.cs">
       <DependentUpon>CalendarView.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Views\AddHardTaskView.cs" />
-    <Compile Include="source\Views\AddHardTaskView.Designer.cs">
-      <DependentUpon>AddHardTaskView.cs</DependentUpon>
+    <Compile Include="source\Views\HardTaskDialogView.cs" />
+    <Compile Include="source\Views\HardTaskDialogView.Designer.cs">
+      <DependentUpon>HardTaskDialogView.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Views\AddFlexibleTaskView.cs" />
-    <Compile Include="source\Views\AddFlexibleTaskView.Designer.cs">
-      <DependentUpon>AddFlexibleTaskView.cs</DependentUpon>
+    <Compile Include="source\Views\FlexibleTaskDialogView.cs" />
+    <Compile Include="source\Views\FlexibleTaskDialogView.Designer.cs">
+      <DependentUpon>FlexibleTaskDialogView.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Views\GroupView.cs" />
-    <Compile Include="source\Views\GroupView.Designer.cs">
-      <DependentUpon>GroupView.cs</DependentUpon>
+    <Compile Include="source\Views\UserGroupView.cs" />
+    <Compile Include="source\Views\UserGroupView.Designer.cs">
+      <DependentUpon>UserGroupView.cs</DependentUpon>
     </Compile>
     <Compile Include="source\Views\LoginView.cs" />
     <Compile Include="source\Views\LoginView.Designer.cs">
@@ -140,6 +141,7 @@
     <Compile Include="source\Views\ShowTasksView.Designer.cs">
       <DependentUpon>ShowTasksView.cs</DependentUpon>
     </Compile>
+    <Compile Include="source\Views\ViewMode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="libs" />
@@ -165,14 +167,14 @@
     <None Include="libs\MongoDB.Driver.Legacy.dll" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="source\Views\AddGroupView.resx">
-      <DependentUpon>AddGroupView.cs</DependentUpon>
+    <EmbeddedResource Include="source\Views\UserGroupDialogView.resx">
+      <DependentUpon>UserGroupDialogView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="source\Views\CalendarView.resx">
       <DependentUpon>CalendarView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Views\GroupView.resx">
-      <DependentUpon>GroupView.cs</DependentUpon>
+    <EmbeddedResource Include="source\Views\UserGroupView.resx">
+      <DependentUpon>UserGroupView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="source\Views\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>

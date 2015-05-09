@@ -16,12 +16,12 @@ namespace Course_project.Model.Command
 		private Task parseTaskParameters(RequestParameters parameters)
 		{
 			Task task = new Task();
-			task.StartTime = TimeUtils.DateTimeToUnixTime(parameters.getDateTime("StartTime"));
-			task.EndTime = TimeUtils.DateTimeToUnixTime(parameters.getDateTime("StopTime"));
+			task.StartTime = TimeUtils.DateTimeToUnixTime(parameters.GetParameter<DateTime>("StartTime"));
+			task.EndTime = TimeUtils.DateTimeToUnixTime(parameters.GetParameter<DateTime>("StopTime"));
 			
 			task.Owner = Session.GetSession().UserName;
-			task.Group = parameters.getString("Group");
-			task.Title = parameters.getString("Title");
+			task.Group = parameters.GetParameter<String>("Group");
+			task.Title = parameters.GetParameter<String>("Title");
 			
 			return task;
 		}

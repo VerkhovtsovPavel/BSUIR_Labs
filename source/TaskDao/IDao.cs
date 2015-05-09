@@ -12,6 +12,8 @@ namespace Course_project.TaskDao
 		List<Task> getPrivateTasksFromRange(int start, int stop, string login);
 		List<Task> getSharedTasksFromRange(int start, int stop, string login);
 		
+		List<Task> getTasksByGroup(string login, string group);
+		
 		User checkUser(string login, string password);
 		bool CheckUserLogin(string login);
 		

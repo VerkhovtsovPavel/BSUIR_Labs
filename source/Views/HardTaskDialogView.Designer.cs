@@ -1,12 +1,6 @@
-﻿/*
- * Created by SharpDevelop.
- * User: Pavel_Verkhovtsov
- * Date: 4/29/2015
- * Time: 21:26
- */
-namespace Course_project.Views
+﻿namespace Course_project.Views
 {
-	partial class AddHardTaskView
+	partial class HardTaskDialogView
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
@@ -87,7 +81,7 @@ namespace Course_project.Views
 			this.start_dateTimePicker.RightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.start_dateTimePicker.Size = new System.Drawing.Size(269, 20);
 			this.start_dateTimePicker.TabIndex = 3;
-			this.start_dateTimePicker.Value = new System.DateTime(2015, 4, 21, 0, 0, 0, 0);
+			this.start_dateTimePicker.Value = new System.DateTime(2015, 5, 9, 0, 0, 0, 0);
 			// 
 			// stop_dateTimePicker
 			// 
@@ -125,6 +119,7 @@ namespace Course_project.Views
 			// 
 			// group_comboBox
 			// 
+			this.group_comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.group_comboBox.FormattingEnabled = true;
 			this.group_comboBox.Location = new System.Drawing.Point(79, 124);
 			this.group_comboBox.Name = "group_comboBox";

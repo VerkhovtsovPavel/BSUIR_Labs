@@ -20,13 +20,13 @@ namespace Course_project.Views
 		}
 		
 		protected void goToAddFlexibleTaskPage(){
-			AddFlexibleTaskView addFlexibleTaskView = new AddFlexibleTaskView();
-			addFlexibleTaskView.Show();
+			FlexibleTaskDialogView addFlexibleTaskView = new FlexibleTaskDialogView();
+			addFlexibleTaskView.ShowDialog();
 		}
 		
 		protected void goToAddHardTaskPage(){
-			AddHardTaskView addHardTaskView = new AddHardTaskView();
-			addHardTaskView.Show();
+			HardTaskDialogView addHardTaskView = new HardTaskDialogView();
+			addHardTaskView.ShowDialog();
 		}
 		
 		protected void goToCalendarePage(){
@@ -42,7 +42,7 @@ namespace Course_project.Views
 
 		void goToGroupView()
 		{
-			GroupView groupView = new GroupView();
+			UserGroupView groupView = new UserGroupView();
 			groupView.Show();
 		}
 		void goToLoginPage()
@@ -51,7 +51,7 @@ namespace Course_project.Views
 			loginView.Show();
 			Hide();
 		}
-		private void exitWithApplication(){
+		protected void exitWithApplication(){
 			Close();
 		}
 		

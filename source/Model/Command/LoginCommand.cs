@@ -9,8 +9,8 @@ namespace Course_project.Model.Command
 	{
 	public object Execute(RequestParameters parameters)
 	{
-		string login = parameters.getString("Login");
-		string password = parameters.getString("Password");
+		string login = parameters.GetParameter<String>("Login");
+		string password = parameters.GetParameter<String>("Password");
 		
 		User result = Dao.getInstance().checkUser(login, password);
 			if (result != null) {

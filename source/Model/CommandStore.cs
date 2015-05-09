@@ -22,6 +22,7 @@ namespace Course_project.Model
 			addCommand(CommandType.ADD_FLEXIBLE_TASK_IN_STORE, new AddFlexibleTaskCommand());
 			addCommand(CommandType.UPDATE_GROUPS, new UpdateGroupsCommand());
 			addCommand(CommandType.GET_USER_GROUPS, new GetUserGroupsCommand());
+			addCommand(CommandType.GET_TIME_SPENT_BY_GROUP, new GetTimeSpentByGroup());
 		}
 		
 		public void addCommand(CommandType commandType, ICommand command)

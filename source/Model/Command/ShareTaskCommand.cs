@@ -18,7 +18,7 @@ namespace Course_project.Model.Command
 	{
 		public object Execute(RequestParameters parameters)
 		{
-			Task task = parameters.getTask("Task");
+			Task task = parameters.GetParameter<Task>("Task");
 			Dao.getInstance().addSharedTask(task);
 			return true;
 		}

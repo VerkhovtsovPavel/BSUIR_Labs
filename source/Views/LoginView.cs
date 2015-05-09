@@ -20,8 +20,8 @@ namespace Course_project.Views
 		{
 			RequestParameters loginParameters = new RequestParameters();
 			
-			loginParameters.addString("Login", login_textBox.Text);
-			loginParameters.addString("Password" ,HashUtils.MD5Hash(password_textBox.Text));
+			loginParameters.AddParameter<String>("Login", login_textBox.Text);
+			loginParameters.AddParameter<String>("Password" ,HashUtils.MD5Hash(password_textBox.Text));
 			if((bool)TaskController.GetInstance().Process(CommandType.LOGIN, loginParameters)){
 				MessageBox.Show("Login successfully");
 				goToCalendarePage();

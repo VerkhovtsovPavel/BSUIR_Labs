@@ -11,8 +11,8 @@ namespace Course_project.Model.Command
 	{
 		public object Execute(RequestParameters parameters)
 		{
-			int startUnixTime = TimeUtils.DateTimeToUnixTime(parameters.getDateTime("StartTime"));
-			int stopUnixTime = TimeUtils.DateTimeToUnixTime(parameters.getDateTime("EndTime"));
+			int startUnixTime = TimeUtils.DateTimeToUnixTime(parameters.GetParameter<DateTime>("StartTime"));
+			int stopUnixTime = TimeUtils.DateTimeToUnixTime(parameters.GetParameter<DateTime>("EndTime"));
 			
 			List<Task> taskToDay = Dao.getInstance().getPrivateTasksFromRange(startUnixTime, stopUnixTime, Session.GetSession().UserName);
 			taskToDay.AddRange(Dao.getInstance().getSharedTasksFromRange(startUnixTime, stopUnixTime, Session.GetSession().UserName));

@@ -1,12 +1,6 @@
-﻿/*
- * Created by SharpDevelop.
- * User: Pavel_Verkhovtsov
- * Date: 4/29/2015
- * Time: 21:33
- */
-namespace Course_project.Views
+﻿namespace Course_project.Views
 {
-	partial class AddFlexibleTaskView
+	partial class FlexibleTaskDialogView
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.

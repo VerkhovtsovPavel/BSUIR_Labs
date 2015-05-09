@@ -20,8 +20,8 @@ namespace Course_project.Views
 		void MonthCalendarDateSelected(object sender, DateRangeEventArgs e)
 		{
 			RequestParameters parameters = new RequestParameters();
-			parameters.addDateTime("StartTime", ((MonthCalendar) sender).SelectionStart);
-			parameters.addDateTime("EndTime", ((MonthCalendar) sender).SelectionEnd);
+			parameters.AddParameter<DateTime>("StartTime", ((MonthCalendar) sender).SelectionStart);
+			parameters.AddParameter<DateTime>("EndTime", ((MonthCalendar) sender).SelectionEnd);
 			
 			List<Task> tasks =	(List<Task>)TaskController.GetInstance().Process(CommandType.GET_TASKS_FROM_RANGE, parameters);
 			ShowTasksView showTasksView = new ShowTasksView(tasks);
