@@ -1,11 +1,12 @@
 ﻿using System;
+using Course_project.Entity;
 using Course_project.Utils;
 
 namespace Course_project.Views
 {
 	public partial class FlexibleTaskDialogView : HardTaskDialogView
 	{
-		public FlexibleTaskDialogView()
+		public FlexibleTaskDialogView(ViewMode mode, FlexibleTask task) : base(mode, task)
 		{
 			InitializeComponent();
 		}

@@ -4,6 +4,7 @@
 
 //TODO Use strategy(enum) to combane Add and Edit views  
   
+//TODO If user delete group need remove group from all tasks
 
 //TODO Application not always closes
 
@@ -12,6 +13,8 @@
 //TODO Fix code style warnings (StyleCop)
 
 //TODO Catch excection Session, Outlook 
+
+//TODO User can't edit/delete not own shared note
 
 namespace Course_project
 {

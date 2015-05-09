@@ -79,8 +79,10 @@
     <Compile Include="source\Model\Command\ImportTaskInOutlookCommand.cs" />
     <Compile Include="source\Model\Command\LoginCommand.cs" />
     <Compile Include="source\Model\Command\RegistrateCommand.cs" />
+    <Compile Include="source\Model\Command\RemoveTaskCommand.cs" />
     <Compile Include="source\Model\Command\ShareTaskCommand.cs" />
     <Compile Include="source\Model\Command\UpdateGroupsCommand.cs" />
+    <Compile Include="source\Model\Command\UpdateTaskCommand.cs" />
     <Compile Include="source\Storage\FlexibleTasksStorage.cs" />
     <Compile Include="source\TaskDao\Dao.cs" />
     <Compile Include="source\Entity\FlexibleTask.cs" />
@@ -167,6 +169,9 @@
     <None Include="libs\MongoDB.Driver.Legacy.dll" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="source\Views\HardTaskDialogView.resx">
+      <DependentUpon>HardTaskDialogView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="source\Views\UserGroupDialogView.resx">
       <DependentUpon>UserGroupDialogView.cs</DependentUpon>
     </EmbeddedResource>

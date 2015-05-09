@@ -23,6 +23,8 @@ namespace Course_project.Model
 			addCommand(CommandType.UPDATE_GROUPS, new UpdateGroupsCommand());
 			addCommand(CommandType.GET_USER_GROUPS, new GetUserGroupsCommand());
 			addCommand(CommandType.GET_TIME_SPENT_BY_GROUP, new GetTimeSpentByGroup());
+			addCommand(CommandType.UPDATE_TASK, new UpdateTaskCommand());
+			addCommand(CommandType.REMOVE_TASK, new RemoveTaskCommand());
 		}
 		
 		public void addCommand(CommandType commandType, ICommand command)

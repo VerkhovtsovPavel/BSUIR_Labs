@@ -60,6 +60,7 @@
 			this.editTask_button.TabIndex = 7;
 			this.editTask_button.Text = "Edit task";
 			this.editTask_button.UseVisualStyleBackColor = true;
+			this.editTask_button.Click += new System.EventHandler(this.EditTask_buttonClick);
 			// 
 			// deleteTask_button
 			// 
@@ -69,6 +70,7 @@
 			this.deleteTask_button.TabIndex = 8;
 			this.deleteTask_button.Text = "Delete task";
 			this.deleteTask_button.UseVisualStyleBackColor = true;
+			this.deleteTask_button.Click += new System.EventHandler(this.DeleteTask_buttonClick);
 			// 
 			// ShowTasksView
 			// 
@@ -88,6 +90,7 @@
 			this.Controls.SetChildIndex(this.deleteTask_button, 0);
 			this.ResumeLayout(false);
 			this.PerformLayout();
+
 		}
 	}
 }

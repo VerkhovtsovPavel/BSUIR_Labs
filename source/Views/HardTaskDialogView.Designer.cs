@@ -82,6 +82,7 @@
 			this.start_dateTimePicker.Size = new System.Drawing.Size(269, 20);
 			this.start_dateTimePicker.TabIndex = 3;
 			this.start_dateTimePicker.Value = new System.DateTime(2015, 5, 9, 0, 0, 0, 0);
+			this.start_dateTimePicker.ValueChanged += new System.EventHandler(this.Start_dateTimePickerValueChanged);
 			// 
 			// stop_dateTimePicker
 			// 
@@ -91,6 +92,7 @@
 			this.stop_dateTimePicker.Name = "stop_dateTimePicker";
 			this.stop_dateTimePicker.Size = new System.Drawing.Size(269, 20);
 			this.stop_dateTimePicker.TabIndex = 4;
+			this.stop_dateTimePicker.ValueChanged += new System.EventHandler(this.Stop_dateTimePickerValueChanged);
 			// 
 			// title_tb
 			// 
@@ -101,7 +103,7 @@
 			// 
 			// submit_button
 			// 
-			this.submit_button.Location = new System.Drawing.Point(126, 157);
+			this.submit_button.Location = new System.Drawing.Point(138, 161);
 			this.submit_button.Name = "submit_button";
 			this.submit_button.Size = new System.Drawing.Size(88, 23);
 			this.submit_button.TabIndex = 6;
@@ -126,11 +128,11 @@
 			this.group_comboBox.Size = new System.Drawing.Size(269, 21);
 			this.group_comboBox.TabIndex = 8;
 			// 
-			// AddHardTaskView
+			// HardTaskDialogView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(360, 204);
+			this.ClientSize = new System.Drawing.Size(360, 196);
 			this.Controls.Add(this.group_comboBox);
 			this.Controls.Add(this.group_lbl);
 			this.Controls.Add(this.submit_button);
@@ -140,17 +142,8 @@
 			this.Controls.Add(this.stop_dateTime_lbl);
 			this.Controls.Add(this.start_dateTime_lbl);
 			this.Controls.Add(this.title_lbl);
-			this.Name = "AddHardTaskView";
+			this.Name = "HardTaskDialogView";
 			this.Text = "Add hard task";
-			this.Controls.SetChildIndex(this.title_lbl, 0);
-			this.Controls.SetChildIndex(this.start_dateTime_lbl, 0);
-			this.Controls.SetChildIndex(this.stop_dateTime_lbl, 0);
-			this.Controls.SetChildIndex(this.start_dateTimePicker, 0);
-			this.Controls.SetChildIndex(this.stop_dateTimePicker, 0);
-			this.Controls.SetChildIndex(this.title_tb, 0);
-			this.Controls.SetChildIndex(this.submit_button, 0);
-			this.Controls.SetChildIndex(this.group_lbl, 0);
-			this.Controls.SetChildIndex(this.group_comboBox, 0);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

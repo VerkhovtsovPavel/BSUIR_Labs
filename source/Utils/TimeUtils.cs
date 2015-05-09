@@ -13,7 +13,7 @@ namespace Course_project.Utils
 		
 		public static int DateTimeToUnixTime(DateTime dateTime)
 		{
-			return (int)(dateTime - new DateTime(1970, 1, 1).ToUniversalTime()).TotalSeconds;
+			return (int)((dateTime.ToUniversalTime() - new DateTime(1970, 1, 1).ToUniversalTime()).TotalSeconds);
 		}
 		
 		private static DateTime timeZone(DateTime dateTime){

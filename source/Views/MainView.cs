@@ -20,12 +20,12 @@ namespace Course_project.Views
 		}
 		
 		protected void goToAddFlexibleTaskPage(){
-			FlexibleTaskDialogView addFlexibleTaskView = new FlexibleTaskDialogView();
+			FlexibleTaskDialogView addFlexibleTaskView = new FlexibleTaskDialogView(ViewMode.ADD_MODE, null);
 			addFlexibleTaskView.ShowDialog();
 		}
 		
 		protected void goToAddHardTaskPage(){
-			HardTaskDialogView addHardTaskView = new HardTaskDialogView();
+			HardTaskDialogView addHardTaskView = new HardTaskDialogView(ViewMode.ADD_MODE, null);
 			addHardTaskView.ShowDialog();
 		}
 		

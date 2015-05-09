@@ -19,7 +19,7 @@ namespace Course_project.TaskDao
 		private LocalMongoDBDao()
 		{
 			if(Process.GetProcessesByName("mongod").Length==0){
-			  dbServerProcess = CommandLineCommander.executeCommand("mongod.exe --repair --dbpath "+ProjectProterties.DB_PATH +" & mongod.exe --dbpath "+ProjectProterties.DB_PATH);
+			  dbServerProcess = CommandLineCommander.executeCommand(/*"mongod.exe --repair --dbpath "+ProjectProterties.DB_PATH +" & "+ */"mongod.exe --dbpath "+ProjectProterties.DB_PATH);
 			}
 			
 			MongoServer server = new MongoClient(ProjectProterties.DB_SERVER).GetServer();
@@ -102,6 +102,16 @@ namespace Course_project.TaskDao
 			
 			return noteList;
 		}
+
+		public void removeTask(Task task)
+		{
+			MongoCollection privateNotes = database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
+			privateNotes.Remove(Query.EQ("_id",task.Id));
+			
+			MongoCollection sharedNotes = database.GetCollection<Task>(ProjectProterties.SHARED_NOTES_COLLECTION);
+			sharedNotes.Remove(Query.EQ("_id",task.Id));
+		}
+
 		//TODO Debug method (Remove)
 		/*public List<User> getUsers()
 		{
@@ -136,6 +146,12 @@ namespace Course_project.TaskDao
 			
 			
 			//privateNotes.Update(Query.EQ("_id", note.Id), Update.Replace(note), UpdateFlags.Upsert);
+		}
+
+		public void updateTask(Task task)
+		{
+			MongoCollection privateNotes = database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
+			privateNotes.Update(Query.EQ("_id", task.Id), Update.Replace(task), UpdateFlags.Upsert);
 		}
 		
 		private void createUserGroups(string login){
