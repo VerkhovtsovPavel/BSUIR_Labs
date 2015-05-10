@@ -14,8 +14,6 @@
 
 //TODO Catch excection Session, Outlook 
 
-//TODO User can't edit/delete not own shared note
-
 namespace Course_project
 {
 	using System;

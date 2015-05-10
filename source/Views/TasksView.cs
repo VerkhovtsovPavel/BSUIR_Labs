@@ -7,8 +7,6 @@ using Course_project.Utils;
 
 namespace Course_project.Views
 {
-	//TODO Change listbox (long title)
-	//TODO Maybe rename to TasksView
 	//TODO First click on current date don't work. (Need select other date)
 	public partial class TasksView : MainView
 	{
@@ -32,8 +30,7 @@ namespace Course_project.Views
 		
 		void changeRange(object sender, System.EventArgs e)
 		{
-			if (this.start_dateTimePicker.Value > this.stop_dateTimePicker.Value)
-			{
+			if (this.start_dateTimePicker.Value > this.stop_dateTimePicker.Value) {
 				this.stop_dateTimePicker.Value = this.start_dateTimePicker.Value.AddMinutes(1);
 			}
 			
@@ -51,65 +48,61 @@ namespace Course_project.Views
 			PrintTasks();
 		}
 		
-		//TODO Change listbox to datagridView 
-		private void PrintTasks(){
-			this.tasks_listBox.Items.Clear();
-			
+		//TODO Convert unixTime to DateTime type
+		//TODO Add task duration
+		private void PrintTasks()
+		{
 			tasksGridView.DataSource = taskToShow;
+		}
+		
+		void ShareTask_buttonClick(object sender, EventArgs e)
+		{
+			int rowIndex = tasksGridView.CurrentCell.RowIndex;
+			RequestParameters requestParameters = new RequestParameters();
+			requestParameters.AddParameter<Task>("Task", taskToShow[rowIndex]);
+			if ((bool)TaskController.GetInstance().Process(CommandType.ADD_SHARE_TASK, requestParameters)) {
+				MessageBox.Show("Task shared");
+			} else {
+				MessageBox.Show("Task already shared");
+			}
+		}
+
+		void EditTask_buttonClick(object sender, EventArgs e)
+		{
+			int selectedElement = tasksGridView.CurrentCell.RowIndex;
 			
-			foreach (Task task in taskToShow) {
-				tasks_listBox.Items.Add(task.ToString());
+			Task taskClone = (Task)this.taskToShow[selectedElement].Clone();
+			
+			HardTaskDialogView hardTaskDialogView = new HardTaskDialogView(ViewMode.EDIT_MODE, taskClone);
+			
+			if (hardTaskDialogView.ShowDialog() != DialogResult.OK) {
+				return;
+			}
 				
+			RequestParameters requestParameters = new RequestParameters();
+			requestParameters.AddParameter<Task>("Task", taskClone);
+				
+			if ((bool)TaskController.GetInstance().Process(CommandType.UPDATE_TASK, requestParameters)) {
+				MessageBox.Show("Task changed");
+				this.taskToShow[selectedElement] = taskClone;				
+			} else {
+				MessageBox.Show("Please select own task");
 			}
 		}
 		
-		//TODO Check work
-		void ShareTask_buttonClick(object sender, EventArgs e)
-		{
-			if (this.tasks_listBox.SelectedIndex != -1) {
-				RequestParameters requestParameters = new RequestParameters();
-				requestParameters.AddParameter<Task>("Task", taskToShow[this.tasks_listBox.SelectedIndex]);
-				TaskController.GetInstance().Process(CommandType.ADD_SHARE_TASK, requestParameters);
-				
-				MessageBox.Show("Task shared");
-			} else {
-				MessageBox.Show("Please select task");
-			}
-		}
-		//TODO Maybe use clone task
-		void EditTask_buttonClick(object sender, EventArgs e)
-		{
-			int selectedElement = this.tasks_listBox.SelectedIndex;
-			if (selectedElement != -1) {
-				HardTaskDialogView hardTaskDialogView = new HardTaskDialogView(ViewMode.EDIT_MODE, this.taskToShow[selectedElement]);
-				hardTaskDialogView.ShowDialog();
-				
-				RequestParameters requestParameters = new RequestParameters();
-				requestParameters.AddParameter<Task>("Task", this.taskToShow[selectedElement]);
-				
-				if ((bool)TaskController.GetInstance().Process(CommandType.UPDATE_TASK, requestParameters)) {
-					tasks_listBox.Items.RemoveAt(selectedElement);
-					tasks_listBox.Items.Insert(selectedElement, this.taskToShow[selectedElement]);
-				} else {
-					MessageBox.Show("Please select own task");
-				}
-			} else {
-				MessageBox.Show("Please select task");
-			}
-		}
 		void DeleteTask_buttonClick(object sender, EventArgs e)
 		{
-			int selectedElement = this.tasks_listBox.SelectedIndex;
-			if (selectedElement != -1) {				
-				RequestParameters requestParameters = new RequestParameters();
-				requestParameters.AddParameter<Task>("Task", this.taskToShow[selectedElement]);
+			int selectedElement = tasksGridView.CurrentCell.RowIndex;			
+			RequestParameters requestParameters = new RequestParameters();
+			requestParameters.AddParameter<Task>("Task", this.taskToShow[selectedElement]);
 				
-				TaskController.GetInstance().Process(CommandType.REMOVE_TASK, requestParameters);
-				
-				tasks_listBox.Items.RemoveAt(selectedElement);
-				taskToShow.RemoveAt(selectedElement);
+			if((bool)TaskController.GetInstance().Process(CommandType.REMOVE_TASK, requestParameters))
+			{
+			taskToShow.RemoveAt(selectedElement);
+			tasksGridView.Rows.RemoveAt(selectedElement);
+			MessageBox.Show("Task removed");
 			} else {
-				MessageBox.Show("Please select task");
+				MessageBox.Show("Please select own task");
 			}
 		}
 	}

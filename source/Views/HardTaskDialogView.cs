@@ -17,6 +17,9 @@ namespace Course_project.Views
 			
 			InitializeComponent();
 			fillGroupComboBox();
+			
+			this.submit_button.DialogResult = DialogResult.OK;
+			
 			if (mode == ViewMode.ADD_MODE) {
 				this.start_dateTimePicker.Value = DateTime.Today;
 				this.stop_dateTimePicker.Value = DateTime.Today;

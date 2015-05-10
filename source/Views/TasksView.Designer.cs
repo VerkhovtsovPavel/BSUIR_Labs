@@ -3,7 +3,6 @@
 	partial class TasksView
 	{
 		private System.ComponentModel.IContainer components = null;
-		private System.Windows.Forms.ListBox tasks_listBox;
 		private System.Windows.Forms.Button shareTask_button;
 		private System.Windows.Forms.Button editTask_button;
 		private System.Windows.Forms.Button deleteTask_button;
@@ -30,7 +29,6 @@
 		/// Do not change the method contents inside the source code editor. The Forms designer might
 		private void InitializeComponent()
 		{
-			this.tasks_listBox = new System.Windows.Forms.ListBox();
 			this.shareTask_button = new System.Windows.Forms.Button();
 			this.editTask_button = new System.Windows.Forms.Button();
 			this.deleteTask_button = new System.Windows.Forms.Button();
@@ -39,14 +37,6 @@
 			this.tasksGridView = new System.Windows.Forms.DataGridView();
 			((System.ComponentModel.ISupportInitialize)(this.tasksGridView)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// tasks_listBox
-			// 
-			this.tasks_listBox.FormattingEnabled = true;
-			this.tasks_listBox.Location = new System.Drawing.Point(12, 68);
-			this.tasks_listBox.Name = "tasks_listBox";
-			this.tasks_listBox.Size = new System.Drawing.Size(540, 212);
-			this.tasks_listBox.TabIndex = 0;
 			// 
 			// shareTask_button
 			// 
@@ -107,9 +97,9 @@
 			this.tasksGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
 			this.tasksGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.tasksGridView.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.tasksGridView.Location = new System.Drawing.Point(158, 86);
+			this.tasksGridView.Location = new System.Drawing.Point(12, 68);
 			this.tasksGridView.Name = "tasksGridView";
-			this.tasksGridView.Size = new System.Drawing.Size(240, 150);
+			this.tasksGridView.Size = new System.Drawing.Size(550, 168);
 			this.tasksGridView.TabIndex = 11;
 			// 
 			// TasksView
@@ -123,11 +113,9 @@
 			this.Controls.Add(this.deleteTask_button);
 			this.Controls.Add(this.editTask_button);
 			this.Controls.Add(this.shareTask_button);
-			this.Controls.Add(this.tasks_listBox);
 			this.Name = "TasksView";
 			this.Text = "ShowTasksView";
 			this.Load += new System.EventHandler(this.ShowTasksViewLoad);
-			this.Controls.SetChildIndex(this.tasks_listBox, 0);
 			this.Controls.SetChildIndex(this.shareTask_button, 0);
 			this.Controls.SetChildIndex(this.editTask_button, 0);
 			this.Controls.SetChildIndex(this.deleteTask_button, 0);
