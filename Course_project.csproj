@@ -59,6 +59,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
@@ -139,9 +140,9 @@
     <Compile Include="source\Views\RegistrationView.Designer.cs">
       <DependentUpon>RegistrationView.cs</DependentUpon>
     </Compile>
-    <Compile Include="source\Views\ShowTasksView.cs" />
-    <Compile Include="source\Views\ShowTasksView.Designer.cs">
-      <DependentUpon>ShowTasksView.cs</DependentUpon>
+    <Compile Include="source\Views\TasksView.cs" />
+    <Compile Include="source\Views\TasksView.Designer.cs">
+      <DependentUpon>TasksView.cs</DependentUpon>
     </Compile>
     <Compile Include="source\Views\ViewMode.cs" />
   </ItemGroup>
@@ -193,8 +194,8 @@
     <EmbeddedResource Include="source\Views\RegistrationView.resx">
       <DependentUpon>RegistrationView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="source\Views\ShowTasksView.resx">
-      <DependentUpon>ShowTasksView.cs</DependentUpon>
+    <EmbeddedResource Include="source\Views\TasksView.resx">
+      <DependentUpon>TasksView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

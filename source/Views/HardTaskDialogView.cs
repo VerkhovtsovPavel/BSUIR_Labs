@@ -54,7 +54,7 @@ namespace Course_project.Views
 				taskToEdit.StartTime = TimeUtils.DateTimeToUnixTime(this.start_dateTimePicker.Value);
 				taskToEdit.EndTime = TimeUtils.DateTimeToUnixTime(this.stop_dateTimePicker.Value);
 				
-				MessageBox.Show("Task edit");
+				//MessageBox.Show("Task edit");
 				Close();
 			}
 		}
@@ -69,17 +69,11 @@ namespace Course_project.Views
 			}
 		}
 		
-		void Start_dateTimePickerValueChanged(object sender, EventArgs e)
+		void CorrectDateTimePickerValueChanged(object sender, EventArgs e)
 		{
-			if (((DateTimePicker)sender).Value > this.stop_dateTimePicker.Value) {
-				this.stop_dateTimePicker.Value = ((DateTimePicker)sender).Value.AddMinutes(1);
-			}
-		}
-		
-		void Stop_dateTimePickerValueChanged(object sender, EventArgs e)
-		{
-			if (((DateTimePicker)sender).Value < this.start_dateTimePicker.Value) {
-				this.start_dateTimePicker.Value = ((DateTimePicker)sender).Value.AddMinutes(-1);
+			if (this.start_dateTimePicker.Value > this.stop_dateTimePicker.Value)
+			{
+				this.stop_dateTimePicker.Value = this.start_dateTimePicker.Value.AddMinutes(1);
 			}
 		}
 	}

@@ -8,15 +8,18 @@
 		public FlexibleTask(
 			string title,
 		    string owner, 
+		    string group,
 		    int startTime, 
 		    int endTime, 
 		    int maxPatrs, 
 		    int minTimeOnOnePart, 
-		    List<Task> dependedTasks): base(title, owner,  startTime, endTime)
+		    List<Task> dependedTasks): base(title, owner, group, startTime, endTime)
 		{
 			this.MaxParts = maxPatrs;
 			this.MinTimeOfOnePart = minTimeOnOnePart;
 			this.DependedTasks = dependedTasks;
+			
+			
 		}
 		
 		public int MaxParts {get; set;}

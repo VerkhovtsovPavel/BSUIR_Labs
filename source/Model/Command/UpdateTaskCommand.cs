@@ -11,6 +11,11 @@ namespace Course_project.Model.Command
 		public object Execute(RequestParameters parameters)
 		{
 			Task task = parameters.GetParameter<Task>("Task");
+			
+			if(Session.GetSession().UserName!=task.Owner){
+				return false;
+			}
+			
 			Dao.getInstance().updateTask(task);
 			return true;
 		}

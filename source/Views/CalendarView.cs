@@ -15,17 +15,19 @@ namespace Course_project.Views
 		{
 			InitializeComponent();
 			this.fileToolStripMenuItem.Enabled = false;
-
 		}
 		void MonthCalendarDateSelected(object sender, DateRangeEventArgs e)
 		{
-			RequestParameters parameters = new RequestParameters();
-			parameters.AddParameter<DateTime>("StartTime", ((MonthCalendar) sender).SelectionStart);
-			parameters.AddParameter<DateTime>("EndTime", ((MonthCalendar) sender).SelectionEnd);
 			
-			List<Task> tasks =	(List<Task>)TaskController.GetInstance().Process(CommandType.GET_TASKS_FROM_RANGE, parameters);
-			ShowTasksView showTasksView = new ShowTasksView(tasks);
+			DateTime begin = ((MonthCalendar) sender).SelectionStart;
+			DateTime end = ((MonthCalendar) sender).SelectionEnd;
+			
+			TasksView showTasksView = new TasksView(begin, end);
 			showTasksView.Show();
+		}
+		void CalendarViewLoad(object sender, EventArgs e)
+		{
+	
 		}
 	}
 }

@@ -2,9 +2,6 @@
 {
 	partial class HardTaskDialogView
 	{
-		/// <summary>
-		/// Designer variable used to keep track of non-visual components.
-		/// </summary>
 		private System.ComponentModel.IContainer components = null;
 		private System.Windows.Forms.Label title_lbl;
 		private System.Windows.Forms.Label start_dateTime_lbl;
@@ -82,7 +79,7 @@
 			this.start_dateTimePicker.Size = new System.Drawing.Size(269, 20);
 			this.start_dateTimePicker.TabIndex = 3;
 			this.start_dateTimePicker.Value = new System.DateTime(2015, 5, 9, 0, 0, 0, 0);
-			this.start_dateTimePicker.ValueChanged += new System.EventHandler(this.Start_dateTimePickerValueChanged);
+			this.start_dateTimePicker.ValueChanged += new System.EventHandler(this.CorrectDateTimePickerValueChanged);
 			// 
 			// stop_dateTimePicker
 			// 
@@ -92,7 +89,7 @@
 			this.stop_dateTimePicker.Name = "stop_dateTimePicker";
 			this.stop_dateTimePicker.Size = new System.Drawing.Size(269, 20);
 			this.stop_dateTimePicker.TabIndex = 4;
-			this.stop_dateTimePicker.ValueChanged += new System.EventHandler(this.Stop_dateTimePickerValueChanged);
+			this.stop_dateTimePicker.ValueChanged += new System.EventHandler(this.CorrectDateTimePickerValueChanged);
 			// 
 			// title_tb
 			// 
@@ -147,6 +144,4 @@
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
-		}
-	}
-}
+		}}}
