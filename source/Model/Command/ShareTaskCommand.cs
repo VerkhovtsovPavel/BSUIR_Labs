@@ -1,10 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: Pavel_Verkhovtsov
- * Date: 5/7/2015
- * Time: 21:21
- */
-using System;
+﻿using System;
 using MongoDB.Driver;
 using Course_project.Entity;
 using Course_project.TaskDao;

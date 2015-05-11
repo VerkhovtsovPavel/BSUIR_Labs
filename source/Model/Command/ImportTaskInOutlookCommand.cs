@@ -42,7 +42,7 @@ namespace Course_project.Model.Command
 				}
 				return true;
 			} catch (COMException) {
-				throw new NotFoundOutlookException();
+				throw new OutlookNotFoundException();
 			}
 	}
 

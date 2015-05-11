@@ -89,7 +89,7 @@
     <Compile Include="source\Entity\FlexibleTask.cs" />
     <Compile Include="source\Entity\Session.cs" />
     <Compile Include="source\Exception\IncorectCommandException.cs" />
-    <Compile Include="source\Exception\NotFoundOutlookException.cs" />
+    <Compile Include="source\Exception\OutlookNotFoundException.cs" />
     <Compile Include="source\Exception\SessionException.cs" />
     <Compile Include="source\Controller\IController.cs" />
     <Compile Include="source\TaskDao\IDao.cs" />

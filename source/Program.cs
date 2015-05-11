@@ -12,7 +12,9 @@
 
 //TODO Fix code style warnings (StyleCop)
 
-//TODO Catch excection Session, Outlook 
+//TODO Catch excection Session(where??)
+
+//TODO Move all string literal to const fienlds
 
 namespace Course_project
 {

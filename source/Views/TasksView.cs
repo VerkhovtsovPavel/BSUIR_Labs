@@ -52,8 +52,25 @@ namespace Course_project.Views
 		//TODO Add task duration
 		private void PrintTasks()
 		{
-			tasksGridView.DataSource = taskToShow;
-		}
+			//tasksGridView.DataSource = taskToShow;
+			
+			 
+        
+            tasksGridView.ColumnCount = 6;
+            tasksGridView.Columns[0].Name = "Title";
+           tasksGridView.Columns[1].Name = "Owner";
+           tasksGridView.Columns[2].Name = "Group";
+           	tasksGridView.Columns[3].Name = "Start Time";
+           tasksGridView.Columns[4].Name = "EndTime";
+            tasksGridView.Columns[5].Name =	"Duration";
+
+            foreach(Task task in taskToShow){
+            	string[] row = task.ToStringArray();
+            	tasksGridView.Rows.Add(row);
+            }
+
+        }
+		
 		
 		void ShareTask_buttonClick(object sender, EventArgs e)
 		{

@@ -1,43 +1,48 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 using Course_project.Controller;
-using Course_project.Model;
+using Course_project.Exception;
 
 namespace Course_project.Views
 {
 
 	public partial class MainView : Form
 	{
-		protected MainView(){
+		protected MainView()
+		{
 			InitializeComponent();
 		}
 		
-		protected void goToRegistrationPage(){
+		protected void goToRegistrationPage()
+		{
 			RegistrationView registrationView = new RegistrationView();
 			registrationView.Show();
 			Hide();
 		}
 		
-		protected void goToAddFlexibleTaskPage(){
+		protected void goToAddFlexibleTaskPage()
+		{
 			FlexibleTaskDialogView addFlexibleTaskView = new FlexibleTaskDialogView(ViewMode.ADD_MODE, null);
 			addFlexibleTaskView.ShowDialog();
 		}
 		
-		protected void goToAddHardTaskPage(){
+		protected void goToAddHardTaskPage()
+		{
 			HardTaskDialogView addHardTaskView = new HardTaskDialogView(ViewMode.ADD_MODE, null);
 			addHardTaskView.ShowDialog();
 		}
 		
-		protected void goToCalendarePage(){
-		 CalendarView calendarView = new CalendarView();
-		 calendarView.Show();
-		 Hide();
+		protected void goToCalendarePage()
+		{
+			CalendarView calendarView = new CalendarView();
+			calendarView.Show();
+			Hide();
 		}
 		
-		protected void goToProfilingPage(){
-		 ProfilingView profilingView = new ProfilingView();
-		 profilingView.Show();
+		protected void goToProfilingPage()
+		{
+			ProfilingView profilingView = new ProfilingView();
+			profilingView.Show();
 		}
 
 		void goToGroupView()
@@ -51,7 +56,8 @@ namespace Course_project.Views
 			loginView.Show();
 			Hide();
 		}
-		protected void exitWithApplication(){
+		protected void exitWithApplication()
+		{
 			Close();
 		}
 		
@@ -84,7 +90,11 @@ namespace Course_project.Views
 		}
 		void ImportTasksInOutlookToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			TaskController.GetInstance().Process(CommandType.IMPORT_TO_OUTLOOK, null);
+			try {
+				TaskController.GetInstance().Process(CommandType.IMPORT_TO_OUTLOOK, null);
+			} catch (OutlookNotFoundException) {
+				MessageBox.Show("Outlook don't install in out system");
+			}
 		}
 		void LoginToolStripMenuItemClick(object sender, EventArgs e)
 		{

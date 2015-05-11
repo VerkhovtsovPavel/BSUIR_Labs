@@ -1,11 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: Pavel_Verkhovtsov
- * Date: 5/5/2015
- * Time: 21:44
- */
-using System;
-using System.Drawing;
+﻿using System;
 using System.Windows.Forms;
 using Course_project.Controller;
 using Course_project.Entity.DB;
@@ -13,9 +6,6 @@ using Course_project.Utils;
 
 namespace Course_project.Views
 {
-	/// <summary>
-	/// Description of ProfilingView.
-	/// </summary>
 	public partial class ProfilingView : MainView
 	{
 		public ProfilingView()
