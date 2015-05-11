@@ -22,6 +22,8 @@
 			
 		}
 		
+		public FlexibleTask(){}
+		
 		public int MaxParts {get; set;}
 		
 		public int MinTimeOfOnePart {get; set;}

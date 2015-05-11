@@ -14,6 +14,15 @@ namespace Course_project.Views
 		public TasksView(DateTime beginInterval, DateTime endInterval)
 		{
 			InitializeComponent();
+			
+			tasksGridView.ColumnCount = 6;
+			tasksGridView.Columns[0].Name = "Title";
+			tasksGridView.Columns[1].Name = "Owner";
+			tasksGridView.Columns[2].Name = "Group";
+			tasksGridView.Columns[3].Name = "Start Time";
+			tasksGridView.Columns[4].Name = "EndTime";
+			tasksGridView.Columns[5].Name =	"Duration";
+			
 			this.fileToolStripMenuItem.Enabled = false;
 			
 			this.start_dateTimePicker.Value = beginInterval;
@@ -44,7 +53,7 @@ namespace Course_project.Views
 		}
 		
 		void ShowTasksViewLoad(object sender, EventArgs e)
-		{
+		{	 
 			PrintTasks();
 		}
 		
@@ -52,24 +61,14 @@ namespace Course_project.Views
 		//TODO Add task duration
 		private void PrintTasks()
 		{
-			//tasksGridView.DataSource = taskToShow;
-			
-			 
-        
-            tasksGridView.ColumnCount = 6;
-            tasksGridView.Columns[0].Name = "Title";
-           tasksGridView.Columns[1].Name = "Owner";
-           tasksGridView.Columns[2].Name = "Group";
-           	tasksGridView.Columns[3].Name = "Start Time";
-           tasksGridView.Columns[4].Name = "EndTime";
-            tasksGridView.Columns[5].Name =	"Duration";
+			tasksGridView.Rows.Clear();
 
-            foreach(Task task in taskToShow){
-            	string[] row = task.ToStringArray();
-            	tasksGridView.Rows.Add(row);
-            }
+			foreach (Task task in taskToShow) {
+				string[] row = task.ToStringArray();
+				tasksGridView.Rows.Add(row);
+			}
 
-        }
+		}
 		
 		
 		void ShareTask_buttonClick(object sender, EventArgs e)
@@ -101,7 +100,8 @@ namespace Course_project.Views
 				
 			if ((bool)TaskController.GetInstance().Process(CommandType.UPDATE_TASK, requestParameters)) {
 				MessageBox.Show("Task changed");
-				this.taskToShow[selectedElement] = taskClone;				
+				this.taskToShow[selectedElement] = taskClone;
+				PrintTasks();
 			} else {
 				MessageBox.Show("Please select own task");
 			}
@@ -113,11 +113,10 @@ namespace Course_project.Views
 			RequestParameters requestParameters = new RequestParameters();
 			requestParameters.AddParameter<Task>("Task", this.taskToShow[selectedElement]);
 				
-			if((bool)TaskController.GetInstance().Process(CommandType.REMOVE_TASK, requestParameters))
-			{
-			taskToShow.RemoveAt(selectedElement);
-			tasksGridView.Rows.RemoveAt(selectedElement);
-			MessageBox.Show("Task removed");
+			if ((bool)TaskController.GetInstance().Process(CommandType.REMOVE_TASK, requestParameters)) {
+				taskToShow.RemoveAt(selectedElement);
+				tasksGridView.Rows.RemoveAt(selectedElement);
+				MessageBox.Show("Task removed");
 			} else {
 				MessageBox.Show("Please select own task");
 			}

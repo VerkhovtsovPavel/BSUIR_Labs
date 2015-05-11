@@ -3,6 +3,7 @@ namespace Course_project.TaskDao
 	using System;
 	using System.Collections.Generic;
 	using System.Diagnostics;
+	using System.Threading;
 	using MongoDB.Driver;
 	using MongoDB.Driver.Builders;
 	using Course_project.Entity;
@@ -14,12 +15,13 @@ namespace Course_project.TaskDao
 		private static LocalMongoDBDao instance = null;
 		
 		private readonly MongoDatabase database;
-		private Process dbServerProcess;
 
 		private LocalMongoDBDao()
 		{
 			if(Process.GetProcessesByName("mongod").Length==0){
-			  dbServerProcess = CommandLineCommander.executeCommand(/*"mongod.exe --repair --dbpath "+ProjectProterties.DB_PATH +" & "+ */"mongod.exe --dbpath "+ProjectProterties.DB_PATH);
+				CommandLineCommander.executeCommand("mongod.exe --repair --dbpath "+ProjectProterties.DB_PATH).WaitForExit();
+				CommandLineCommander.executeCommand("mongod.exe --dbpath "+ProjectProterties.DB_PATH);
+			  	Thread.Sleep(5000);
 			}
 			
 			MongoServer server = new MongoClient(ProjectProterties.DB_SERVER).GetServer();

@@ -9,7 +9,7 @@ namespace Course_project.Views
 {
 	public partial class HardTaskDialogView : Form
 	{
-		private ViewMode formMode;
+		protected ViewMode formMode;
 		private Task taskToEdit;
 		public HardTaskDialogView(ViewMode mode, Task task)
 		{

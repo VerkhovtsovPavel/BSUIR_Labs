@@ -29,18 +29,31 @@
 		/// Do not change the method contents inside the source code editor. The Forms designer might
 		private void InitializeComponent()
 		{
+			this.tasksGridView = new System.Windows.Forms.DataGridView();
 			this.shareTask_button = new System.Windows.Forms.Button();
 			this.editTask_button = new System.Windows.Forms.Button();
 			this.deleteTask_button = new System.Windows.Forms.Button();
 			this.start_dateTimePicker = new System.Windows.Forms.DateTimePicker();
 			this.stop_dateTimePicker = new System.Windows.Forms.DateTimePicker();
-			this.tasksGridView = new System.Windows.Forms.DataGridView();
 			((System.ComponentModel.ISupportInitialize)(this.tasksGridView)).BeginInit();
 			this.SuspendLayout();
 			// 
+			// tasksGridView
+			// 
+			this.tasksGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+			this.tasksGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.tasksGridView.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.tasksGridView.Location = new System.Drawing.Point(12, 68);
+			this.tasksGridView.MultiSelect = false;
+			this.tasksGridView.Name = "tasksGridView";
+			this.tasksGridView.ReadOnly = true;
+			this.tasksGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.tasksGridView.Size = new System.Drawing.Size(657, 168);
+			this.tasksGridView.TabIndex = 11;
+			// 
 			// shareTask_button
 			// 
-			this.shareTask_button.Location = new System.Drawing.Point(229, 286);
+			this.shareTask_button.Location = new System.Drawing.Point(283, 286);
 			this.shareTask_button.Name = "shareTask_button";
 			this.shareTask_button.Size = new System.Drawing.Size(121, 23);
 			this.shareTask_button.TabIndex = 6;
@@ -60,7 +73,7 @@
 			// 
 			// deleteTask_button
 			// 
-			this.deleteTask_button.Location = new System.Drawing.Point(416, 286);
+			this.deleteTask_button.Location = new System.Drawing.Point(529, 286);
 			this.deleteTask_button.Name = "deleteTask_button";
 			this.deleteTask_button.Size = new System.Drawing.Size(114, 23);
 			this.deleteTask_button.TabIndex = 8;
@@ -84,7 +97,7 @@
 			// 
 			this.stop_dateTimePicker.CustomFormat = "MMMM dd, yyyy - dddd HH:mm";
 			this.stop_dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.stop_dateTimePicker.Location = new System.Drawing.Point(283, 42);
+			this.stop_dateTimePicker.Location = new System.Drawing.Point(400, 42);
 			this.stop_dateTimePicker.Name = "stop_dateTimePicker";
 			this.stop_dateTimePicker.RightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.stop_dateTimePicker.Size = new System.Drawing.Size(269, 20);
@@ -92,21 +105,11 @@
 			this.stop_dateTimePicker.Value = new System.DateTime(2015, 5, 9, 0, 0, 0, 0);
 			this.stop_dateTimePicker.ValueChanged += new System.EventHandler(this.changeRange);
 			// 
-			// tasksGridView
-			// 
-			this.tasksGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-			this.tasksGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.tasksGridView.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.tasksGridView.Location = new System.Drawing.Point(12, 68);
-			this.tasksGridView.Name = "tasksGridView";
-			this.tasksGridView.Size = new System.Drawing.Size(550, 168);
-			this.tasksGridView.TabIndex = 11;
-			// 
 			// TasksView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(574, 328);
+			this.ClientSize = new System.Drawing.Size(681, 328);
 			this.Controls.Add(this.tasksGridView);
 			this.Controls.Add(this.stop_dateTimePicker);
 			this.Controls.Add(this.start_dateTimePicker);

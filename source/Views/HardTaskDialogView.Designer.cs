@@ -6,12 +6,12 @@
 		private System.Windows.Forms.Label title_lbl;
 		private System.Windows.Forms.Label start_dateTime_lbl;
 		private System.Windows.Forms.Label stop_dateTime_lbl;
-		private System.Windows.Forms.DateTimePicker start_dateTimePicker;
-		private System.Windows.Forms.DateTimePicker stop_dateTimePicker;
-		private System.Windows.Forms.TextBox title_tb;
+		protected System.Windows.Forms.DateTimePicker start_dateTimePicker;
+		protected System.Windows.Forms.DateTimePicker stop_dateTimePicker;
+		protected System.Windows.Forms.TextBox title_tb;
 		protected System.Windows.Forms.Button submit_button;
 		private System.Windows.Forms.Label group_lbl;
-		private System.Windows.Forms.ComboBox group_comboBox;
+		protected System.Windows.Forms.ComboBox group_comboBox;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
