@@ -35,7 +35,7 @@ namespace Course_project.Views
 			}
 		}
 		
-		void Submit_buttonClick(object sender, EventArgs e)
+		protected virtual void Submit_buttonClick(object sender, EventArgs e)
 		{
 			if (formMode == ViewMode.ADD_MODE) {
 				RequestParameters hardTaskParameters = new RequestParameters();

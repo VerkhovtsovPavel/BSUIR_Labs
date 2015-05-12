@@ -34,8 +34,9 @@ namespace Course_project.Model.Command
 			flexibleTask.MinTimeOfOnePart = parameters.GetParameter<int>("MinTimeFromPart");
 			
 			//TODO Get task by title or store title array
-			flexibleTask.DependedTasks = parameters.GetParameter<List<String>>("DependentTasks");
+			flexibleTask.DependedTasks =  parameters.GetParameter<List<FlexibleTask>>("DependentTasks");
 			
+			return flexibleTask;
 		}
 	}
 }

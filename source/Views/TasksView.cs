@@ -19,8 +19,12 @@ namespace Course_project.Views
 			tasksGridView.Columns[0].Name = "Title";
 			tasksGridView.Columns[1].Name = "Owner";
 			tasksGridView.Columns[2].Name = "Group";
+			
 			tasksGridView.Columns[3].Name = "Start Time";
-			tasksGridView.Columns[4].Name = "EndTime";
+			tasksGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+			//TODO Check column size 
+			tasksGridView.Columns[4].Name = "End Time";
+			tasksGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 			tasksGridView.Columns[5].Name =	"Duration";
 			
 			this.fileToolStripMenuItem.Enabled = false;
@@ -57,8 +61,6 @@ namespace Course_project.Views
 			PrintTasks();
 		}
 		
-		//TODO Convert unixTime to DateTime type
-		//TODO Add task duration
 		private void PrintTasks()
 		{
 			tasksGridView.Rows.Clear();

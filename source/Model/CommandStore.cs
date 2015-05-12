@@ -25,6 +25,7 @@ namespace Course_project.Model
 			addCommand(CommandType.GET_TIME_SPENT_BY_GROUP, new GetTimeSpentByGroup());
 			addCommand(CommandType.UPDATE_TASK, new UpdateTaskCommand());
 			addCommand(CommandType.REMOVE_TASK, new RemoveTaskCommand());
+			addCommand(CommandType.APPORTION_FLEXIBLE_TASKS, new ApportionFlexibleTasksCommand());
 		}
 		
 		public void addCommand(CommandType commandType, ICommand command)

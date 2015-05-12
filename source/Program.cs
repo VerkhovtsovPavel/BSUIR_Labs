@@ -16,6 +16,8 @@
 
 //TODO Move all string literal to const fienlds
 
+//TODO Check empty fields!!
+
 namespace Course_project
 {
 	using System;
