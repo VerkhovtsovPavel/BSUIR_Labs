@@ -16,5 +16,13 @@ namespace Course_project.Model.Command
 			
 			return true;
 		}
+		
+		
+		/*
+		 * foreach(Task)
+		 if(task.DependentTasks.Contants(resolvedTask)){
+			task.StartTime = Math.Max(task.StartTime, resolvedTask.EndTime)
+}
+		 */
 	}
 }

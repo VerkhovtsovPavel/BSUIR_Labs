@@ -2,6 +2,7 @@
 {
 	using System;
 	using System.Collections.Generic;
+	using MongoDB.Driver;
 	
 	public class FlexibleTask : Task , IComparable
 	{
@@ -39,6 +40,8 @@
 				this.TotalDependantTasks.Add(dependanrTask);
 				buildTotalDependantTasksList(dependanrTask);
 			}
+			//CHECK
+			this.TotalDependantTasks = new List<FlexibleTask>(new HashSet<FlexibleTask>(this.TotalDependantTasks));
 		}
 
 		public int CompareTo(object obj)

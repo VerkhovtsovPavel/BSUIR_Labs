@@ -128,10 +128,7 @@ namespace Course_project.TaskDao
 			return userList;
 			
 		}
-		
-		public void clearUsers(){
-			database.GetCollection(ProjectProterties.USER_COLLECTION).Drop();
-		}*/
+*/
 
 		public void AddUser(User user)
 		{

@@ -41,7 +41,6 @@ namespace Course_project.Views
 				} else if (mode == ViewMode.EDIT_MODE) {
 					FlexibleTask outTask;
 					tasks.TryGetValue(this.taskComboBox.Text, out outTask);
-					//CHECK
 					Hide();
 					new FlexibleTaskDialogView(mode, outTask).ShowDialog();
 					Show();
