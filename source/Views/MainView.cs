@@ -56,6 +56,13 @@ namespace Course_project.Views
 			loginView.Show();
 			Hide();
 		}
+
+		void goToFlexibleTaskListPage()
+		{
+			FlexibleTaskView dependentTaskView = new FlexibleTaskView(null, null, ViewMode.EDIT_MODE);
+			dependentTaskView.Show();
+		}
+
 		protected void exitWithApplication()
 		{
 			Close();
@@ -103,6 +110,10 @@ namespace Course_project.Views
 		void EditTaskGroupToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			goToGroupView();
+		}
+		void EditFlexibleTaskToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			goToFlexibleTaskListPage();
 		}
 		
 	}

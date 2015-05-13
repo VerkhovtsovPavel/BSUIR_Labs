@@ -7,7 +7,6 @@ using Course_project.Storage;
 using Course_project.Utils;
 using Course_project.Views;
 
-//TODO Implement edit mode 
 namespace Course_project.Views
 {
 	public partial class FlexibleTaskDialogView : HardTaskDialogView
@@ -17,7 +16,26 @@ namespace Course_project.Views
 			: base(mode, task)
 		{
 			InitializeComponent();
-			this.permissibleTasks = FlexibleTasksStorage.getInstance().getPermissibleTasks(null);
+			if (mode == ViewMode.ADD_MODE) {
+			
+				this.permissibleTasks = FlexibleTasksStorage.getInstance().getPermissibleTasks(null);
+			
+			} else if (mode == ViewMode.EDIT_MODE) {
+				this.Text = "Edit flexible tasks";
+				this.permissibleTasks = FlexibleTasksStorage.getInstance().getPermissibleTasks(task);
+		
+				FlexibleTask flexibleTaskToEdit = (FlexibleTask)taskToEdit;
+				
+				this.requestedTime_numericUpDown.Value = flexibleTaskToEdit.RequiredTime;
+				this.maxPatrs_numericUpDown.Value = flexibleTaskToEdit.MaxParts;
+				this.numericUpDown1.Value = flexibleTaskToEdit.MinTimeOfOnePart;
+			
+				List<FlexibleTask> dependentTasksList = flexibleTaskToEdit.DependedTasks;
+			
+				foreach (FlexibleTask item in dependentTasksList) {
+					dependentTasks.Items.Add(item.Title);
+				}
+			}
 		}
 		
 		protected override void Submit_buttonClick(object sender, EventArgs e)
@@ -30,12 +48,12 @@ namespace Course_project.Views
 			
 				flexibleTaskParameters.AddParameter<DateTime>("StartTime", this.start_dateTimePicker.Value);
 				flexibleTaskParameters.AddParameter<DateTime>("StopTime", this.stop_dateTimePicker.Value);
+				
+				flexibleTaskParameters.AddParameter<decimal>("RequestedTime", this.requestedTime_numericUpDown.Value);
 			
 				flexibleTaskParameters.AddParameter<decimal>("MaxParts", this.maxPatrs_numericUpDown.Value);
 				flexibleTaskParameters.AddParameter<decimal>("MinTimeFromPart", this.numericUpDown1.Value);
 				
-				flexibleTaskParameters.AddParameter<decimal>("RequestedTime", this.requestedTime_numericUpDown.Value);
-			
 				List<FlexibleTask> dependentTasks = new List<FlexibleTask>();
 			
 				FlexibleTask outFlexibleTasks;
@@ -56,28 +74,30 @@ namespace Course_project.Views
 			{
 				FlexibleTask flexibleTaskToEdit = (FlexibleTask) taskToEdit;
 				
-				this.requestedTime_numericUpDown.Value = flexibleTaskToEdit.RequiredTime;
-				this.maxPatrs_numericUpDown.Value = flexibleTaskToEdit.MaxParts;
-				this.numericUpDown1.Value = flexibleTaskToEdit.MinTimeOfOnePart;
-			
-				List<FlexibleTask> dependentTasksList = flexibleTaskToEdit.DependedTasks;
-			
-				foreach (FlexibleTask item in dependentTasksList) {
-					dependentTasks.Items.Add(item.Title);
+				taskToEdit.Title = this.title_tb.Text;
+				taskToEdit.Group = this.group_comboBox.Text;
+				taskToEdit.StartTime = TimeUtils.DateTimeToUnixTime(this.start_dateTimePicker.Value);
+				taskToEdit.EndTime = TimeUtils.DateTimeToUnixTime(this.stop_dateTimePicker.Value);
+				
+				flexibleTaskToEdit.RequiredTime = (int)this.requestedTime_numericUpDown.Value;
+				flexibleTaskToEdit.MaxParts = (int)this.maxPatrs_numericUpDown.Value;
+				flexibleTaskToEdit.MinTimeOfOnePart = (int)this.numericUpDown1.Value;
+				
+				flexibleTaskToEdit.DependedTasks.Clear();
+				
+				FlexibleTask outFlexibleTasks;
+				foreach (String item in this.dependentTasks.Items) {
+					permissibleTasks.TryGetValue(item, out outFlexibleTasks);
+					flexibleTaskToEdit.DependedTasks.Add(outFlexibleTasks);
 				}
+				
+				FlexibleTasksStorage.getInstance().updateTasksDependents();
 			}
 		}
 		
 		void AddTask_Click(object sender, EventArgs e)
 		{
-			List<String> taskTitles = new List<string>();
-			foreach (var title in permissibleTasks.Keys) {
-				if(!this.dependentTasks.Items.Contains(title)){
-					taskTitles.Add(title);
-				 }
-			}
-			
-			AddDependentTaskView addDependentTaskView = new AddDependentTaskView(taskTitles, dependentTasks);
+			FlexibleTaskView addDependentTaskView = new FlexibleTaskView(permissibleTasks, dependentTasks, ViewMode.ADD_MODE);
 			addDependentTaskView.ShowDialog();
 		}
 		

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Course_project.Entity;
 
 namespace Course_project.Storage
-{	
+{
 	public class FlexibleTasksStorage
 	{
 		private static FlexibleTasksStorage instance;
@@ -24,20 +24,27 @@ namespace Course_project.Storage
 		
 		public void addTask(FlexibleTask task){
 			this.storedTasks.Add(task);
+			task.TotalDependantTasks = new List<FlexibleTask>();
 			task.buildTotalDependantTasksList(task);
 		}
-		
-		public Queue<FlexibleTask> rangeFlexibleTasks(){
+		public Queue<FlexibleTask> rangeFlexibleTasks()
+		{
 			storedTasks.Sort();
 			return new Queue<FlexibleTask>(storedTasks);
 		}
 		
-		//TODO Check with null
+		public void updateTasksDependents()
+		{
+			foreach (FlexibleTask task in storedTasks) {
+				task.buildTotalDependantTasksList(task);
+			}
+		}
+		
 		public Dictionary<String, FlexibleTask> getPermissibleTasks(FlexibleTask task){
 			Dictionary<String, FlexibleTask> permissibleTasks = new Dictionary<String, FlexibleTask>();
 			
 			foreach(FlexibleTask flexibleTask in storedTasks){
-				if(!flexibleTask.TotalDependantTasks.Contains(task)){
+				if(!(flexibleTask.TotalDependantTasks.Contains(task) || flexibleTask == task)){
 					permissibleTasks.Add(flexibleTask.Title, flexibleTask);
 				}
 			}

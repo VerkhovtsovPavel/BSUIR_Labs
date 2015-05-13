@@ -13,6 +13,7 @@ namespace Course_project.Model.Command
 		public object Execute(RequestParameters parameters)
 		{
 			FlexibleTasksStorage.getInstance().addTask(parseFlexibleTaskParameters(parameters));
+			FlexibleTasksStorage.getInstance().updateTasksDependents();
 			return true;
 		}
 
@@ -30,10 +31,10 @@ namespace Course_project.Model.Command
 			flexibleTask.Group = parameters.GetParameter<String>("Group");
 			flexibleTask.Title = parameters.GetParameter<String>("Title");
 			
+			flexibleTask.RequiredTime = parameters.GetParameter<int>("RequestedTime");
 			flexibleTask.MaxParts = parameters.GetParameter<int>("MaxParts");
 			flexibleTask.MinTimeOfOnePart = parameters.GetParameter<int>("MinTimeFromPart");
 			
-			//TODO Get task by title or store title array
 			flexibleTask.DependedTasks =  parameters.GetParameter<List<FlexibleTask>>("DependentTasks");
 			
 			return flexibleTask;

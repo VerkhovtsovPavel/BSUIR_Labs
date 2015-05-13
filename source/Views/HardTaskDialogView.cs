@@ -22,7 +22,7 @@ namespace Course_project.Views
 			
 			if (mode == ViewMode.ADD_MODE) {
 				this.start_dateTimePicker.Value = DateTime.Today;
-				this.stop_dateTimePicker.Value = DateTime.Today;
+				this.stop_dateTimePicker.Value = DateTime.Today.AddMinutes(1);
 				this.Text = "Add task";
 			} else if (mode == ViewMode.EDIT_MODE) {
 				this.Text = "Edit task";

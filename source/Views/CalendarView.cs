@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using Course_project.Controller;
-
 using System.Windows.Forms;
-using Course_project.Entity;
-using Course_project.Utils;
 
 namespace Course_project.Views
 {
@@ -18,16 +13,16 @@ namespace Course_project.Views
 		}
 		void MonthCalendarDateSelected(object sender, DateRangeEventArgs e)
 		{
-			
 			DateTime begin = ((MonthCalendar) sender).SelectionStart;
 			DateTime end = ((MonthCalendar) sender).SelectionEnd;
 			
 			TasksView showTasksView = new TasksView(begin, end);
 			showTasksView.Show();
 		}
-		void CalendarViewLoad(object sender, EventArgs e)
+		void CalendarViewFormClosed(object sender, FormClosedEventArgs e)
 		{
-	
+			//CHECK
+			Application.Exit();
 		}
 	}
 }

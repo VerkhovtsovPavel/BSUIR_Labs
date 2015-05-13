@@ -80,7 +80,7 @@ namespace Course_project.TaskDao
 			return noteList;
 		}
 		
-		//TODO Check work
+		//CHECK
 		public List<Task> getSharedTasksFromRange(int start, int stop, string login)
 		{
 			List<Task> noteList = new List<Task>();

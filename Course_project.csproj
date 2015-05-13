@@ -105,9 +105,9 @@
     <Compile Include="source\Utils\RequestParameters.cs" />
     <Compile Include="source\Utils\TimeUtils.cs" />
     <Compile Include="source\Utils\ProjectProterties.cs" />
-    <Compile Include="source\Views\AddDependentTaskView.cs" />
-    <Compile Include="source\Views\AddDependentTaskView.Designer.cs">
-      <DependentUpon>AddDependentTaskView.cs</DependentUpon>
+    <Compile Include="source\Views\FlexibleTaskView.cs" />
+    <Compile Include="source\Views\FlexibleTaskView.Designer.cs">
+      <DependentUpon>FlexibleTaskView.cs</DependentUpon>
     </Compile>
     <Compile Include="source\Views\UserGroupDialogView.cs" />
     <Compile Include="source\Views\UserGroupDialogView.Designer.cs">
@@ -175,8 +175,8 @@
     <None Include="libs\MongoDB.Driver.Legacy.dll" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="source\Views\AddDependentTaskView.resx">
-      <DependentUpon>AddDependentTaskView.cs</DependentUpon>
+    <EmbeddedResource Include="source\Views\FlexibleTaskView.resx">
+      <DependentUpon>FlexibleTaskView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="source\Views\FlexibleTaskDialogView.resx">
       <DependentUpon>FlexibleTaskDialogView.cs</DependentUpon>

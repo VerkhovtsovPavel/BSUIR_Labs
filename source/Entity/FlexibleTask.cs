@@ -18,6 +18,7 @@
 			this.MaxParts = maxPatrs;
 			this.MinTimeOfOnePart = minTimeOnOnePart;
 			this.DependedTasks = dependedTasks;
+			this.TotalDependantTasks = new List<FlexibleTask>();
 			this.buildTotalDependantTasksList(this);
 		}
 		
@@ -34,9 +35,8 @@
 		public int RequiredTime { get; set;}
 				
 		public void buildTotalDependantTasksList(FlexibleTask task){
-			TotalDependantTasks = new List<FlexibleTask>();
 			foreach(FlexibleTask dependanrTask in task.DependedTasks){
-				TotalDependantTasks.Add(dependanrTask);
+				this.TotalDependantTasks.Add(dependanrTask);
 				buildTotalDependantTasksList(dependanrTask);
 			}
 		}

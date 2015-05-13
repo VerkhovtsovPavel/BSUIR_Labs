@@ -54,7 +54,7 @@ namespace Course_project.Views
 			this.Controls.Add(this.monthCalendar1);
 			this.Name = "CalendarView";
 			this.Text = "Calendar";
-			this.Load += new System.EventHandler(this.CalendarViewLoad);
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CalendarViewFormClosed);
 			this.Controls.SetChildIndex(this.monthCalendar1, 0);
 			this.ResumeLayout(false);
 			this.PerformLayout();

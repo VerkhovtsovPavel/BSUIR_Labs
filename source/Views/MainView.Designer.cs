@@ -17,6 +17,7 @@
 		protected System.Windows.Forms.ToolStripMenuItem profillingToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem editTaskGroupToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem loginToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem editFlexibleTaskToolStripMenuItem;
 		
 		protected override void Dispose(bool disposing)
 		{
@@ -37,6 +38,7 @@
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.addFlexibleTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.editFlexibleTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.addHardTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.showTasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.importTasksInOutlookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,6 +95,7 @@
 			// 
 			this.tasksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.addFlexibleTaskToolStripMenuItem,
+			this.editFlexibleTaskToolStripMenuItem,
 			this.addHardTaskToolStripMenuItem,
 			this.showTasksToolStripMenuItem,
 			this.importTasksInOutlookToolStripMenuItem});
@@ -106,6 +109,13 @@
 			this.addFlexibleTaskToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
 			this.addFlexibleTaskToolStripMenuItem.Text = "Add flexible task";
 			this.addFlexibleTaskToolStripMenuItem.Click += new System.EventHandler(this.AddFlexibleTaskToolStripMenuItemClick);
+			// 
+			// editFlexibleTaskToolStripMenuItem
+			// 
+			this.editFlexibleTaskToolStripMenuItem.Name = "editFlexibleTaskToolStripMenuItem";
+			this.editFlexibleTaskToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+			this.editFlexibleTaskToolStripMenuItem.Text = "Edit flexible task";
+			this.editFlexibleTaskToolStripMenuItem.Click += new System.EventHandler(this.EditFlexibleTaskToolStripMenuItemClick);
 			// 
 			// addHardTaskToolStripMenuItem
 			// 

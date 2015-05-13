@@ -1,16 +1,8 @@
-﻿
-//TODO Simple algorithm to convert flexible task to hard task
-//TODO Mongo server and db localion(?) 
-
-//TODO Use strategy(enum) to combane Add and Edit views  
+﻿//TODO Simple algorithm to convert flexible task to hard task
   
-//TODO If user delete group need remove group from all tasks
-
-//TODO Application not always closes
-
 //TODO Fix forms size 
 
-//TODO Fix code style warnings (StyleCop)
+//TODO Fix code style
 
 //TODO Catch excection Session(where??)
 

@@ -22,7 +22,6 @@ namespace Course_project.Views
 			
 			tasksGridView.Columns[3].Name = "Start Time";
 			tasksGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-			//TODO Check column size 
 			tasksGridView.Columns[4].Name = "End Time";
 			tasksGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 			tasksGridView.Columns[5].Name =	"Duration";
