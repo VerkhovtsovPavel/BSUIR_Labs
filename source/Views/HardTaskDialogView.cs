@@ -10,7 +10,7 @@ namespace Course_project.Views
 	public partial class HardTaskDialogView : Form
 	{
 		protected ViewMode formMode;
-		private Task taskToEdit;
+		protected Task taskToEdit;
 		public HardTaskDialogView(ViewMode mode, Task task)
 		{
 			this.formMode = mode;
@@ -25,9 +25,8 @@ namespace Course_project.Views
 				this.stop_dateTimePicker.Value = DateTime.Today;
 				this.Text = "Add task";
 			} else if (mode == ViewMode.EDIT_MODE) {
-				this.taskToEdit = task;
 				this.Text = "Edit task";
-				
+				this.taskToEdit = task;
 				this.title_tb.Text = task.Title;
 				this.stop_dateTimePicker.Value = TimeUtils.convertUnixTimeToDateTime(task.EndTime);
 				this.start_dateTimePicker.Value = TimeUtils.convertUnixTimeToDateTime(task.StartTime);

@@ -14,6 +14,7 @@ namespace Course_project.Views
 		private System.ComponentModel.IContainer components = null;
 		private System.Windows.Forms.ComboBox taskComboBox;
 		private System.Windows.Forms.Button Submit;
+		private System.Windows.Forms.Button button1;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -38,6 +39,7 @@ namespace Course_project.Views
 		{
 			this.taskComboBox = new System.Windows.Forms.ComboBox();
 			this.Submit = new System.Windows.Forms.Button();
+			this.button1 = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// taskComboBox
@@ -51,19 +53,29 @@ namespace Course_project.Views
 			// 
 			// Submit
 			// 
-			this.Submit.Location = new System.Drawing.Point(68, 48);
+			this.Submit.Location = new System.Drawing.Point(12, 48);
 			this.Submit.Name = "Submit";
-			this.Submit.Size = new System.Drawing.Size(150, 31);
+			this.Submit.Size = new System.Drawing.Size(118, 31);
 			this.Submit.TabIndex = 1;
 			this.Submit.Text = "Submit";
 			this.Submit.UseVisualStyleBackColor = true;
 			this.Submit.Click += new System.EventHandler(this.SubmitClick);
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(154, 48);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(118, 31);
+			this.button1.TabIndex = 2;
+			this.button1.Text = "Edit";
+			this.button1.UseVisualStyleBackColor = true;
 			// 
 			// AddDependentTaskView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(284, 91);
+			this.Controls.Add(this.button1);
 			this.Controls.Add(this.Submit);
 			this.Controls.Add(this.taskComboBox);
 			this.Name = "AddDependentTaskView";

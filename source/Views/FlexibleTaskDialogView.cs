@@ -33,6 +33,8 @@ namespace Course_project.Views
 			
 				flexibleTaskParameters.AddParameter<decimal>("MaxParts", this.maxPatrs_numericUpDown.Value);
 				flexibleTaskParameters.AddParameter<decimal>("MinTimeFromPart", this.numericUpDown1.Value);
+				
+				flexibleTaskParameters.AddParameter<decimal>("RequestedTime", this.requestedTime_numericUpDown.Value);
 			
 				List<FlexibleTask> dependentTasks = new List<FlexibleTask>();
 			
@@ -49,6 +51,19 @@ namespace Course_project.Views
 				if (result) {
 					MessageBox.Show("Task added");
 					Close();
+				}
+			}else if (formMode == ViewMode.EDIT_MODE)
+			{
+				FlexibleTask flexibleTaskToEdit = (FlexibleTask) taskToEdit;
+				
+				this.requestedTime_numericUpDown.Value = flexibleTaskToEdit.RequiredTime;
+				this.maxPatrs_numericUpDown.Value = flexibleTaskToEdit.MaxParts;
+				this.numericUpDown1.Value = flexibleTaskToEdit.MinTimeOfOnePart;
+			
+				List<FlexibleTask> dependentTasksList = flexibleTaskToEdit.DependedTasks;
+			
+				foreach (FlexibleTask item in dependentTasksList) {
+					dependentTasks.Items.Add(item.Title);
 				}
 			}
 		}

@@ -41,7 +41,7 @@ namespace Course_project.Views
 			// monthCalendar1
 			// 
 			this.monthCalendar1.CalendarDimensions = new System.Drawing.Size(3, 2);
-			this.monthCalendar1.Location = new System.Drawing.Point(18, 18);
+			this.monthCalendar1.Location = new System.Drawing.Point(19, 33);
 			this.monthCalendar1.Name = "monthCalendar1";
 			this.monthCalendar1.TabIndex = 0;
 			this.monthCalendar1.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendarDateSelected);
@@ -50,7 +50,7 @@ namespace Course_project.Views
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(537, 342);
+			this.ClientSize = new System.Drawing.Size(537, 355);
 			this.Controls.Add(this.monthCalendar1);
 			this.Name = "CalendarView";
 			this.Text = "Calendar";

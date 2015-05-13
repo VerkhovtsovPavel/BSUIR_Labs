@@ -1,10 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: Pavel_Verkhovtsov
- * Date: 5/6/2015
- * Time: 21:20
- */
-namespace Course_project.Controller
+﻿namespace Course_project.Controller
 {
 using System;
 using Course_project.Model;
@@ -29,11 +23,9 @@ using Course_project.Model;
 			return instance;
 		}
 
-		#region IController implementation
 		public object Process(CommandType request, Course_project.Utils.RequestParameters parameters)
 		{
 			return this.commandManager.process(request, parameters);
 		}
-		#endregion
 	}
 }
