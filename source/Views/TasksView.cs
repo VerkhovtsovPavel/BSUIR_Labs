@@ -7,12 +7,12 @@ using Course_project.Utils;
 
 namespace Course_project.Views
 {
-	//TODO First click on current date don't work. (Need select other date)
 	public partial class TasksView : MainView
 	{
 		private List<Task> taskToShow;
-		public TasksView(DateTime beginInterval, DateTime endInterval)
+		public TasksView(DateTime beginInterval)
 		{
+			
 			InitializeComponent();
 			
 			tasksGridView.ColumnCount = 6;
@@ -28,12 +28,12 @@ namespace Course_project.Views
 			
 			this.fileToolStripMenuItem.Enabled = false;
 			
-			this.start_dateTimePicker.Value = beginInterval;
-			this.stop_dateTimePicker.Value = endInterval;
+			this.start_dateTimePicker.Value = beginInterval.Date;
+			this.stop_dateTimePicker.Value = beginInterval.Date.AddDays(1).AddSeconds(-1);
 			
 			RequestParameters parameters = new RequestParameters();
-			parameters.AddParameter<DateTime>("StartTime", beginInterval);
-			parameters.AddParameter<DateTime>("EndTime", endInterval);
+			parameters.AddParameter<DateTime>("StartTime", beginInterval.Date);
+			parameters.AddParameter<DateTime>("EndTime", beginInterval.Date.AddDays(1).AddSeconds(-1));
 			
 			
 			taskToShow = (List<Task>)TaskController.GetInstance().Process(CommandType.GET_TASKS_FROM_RANGE, parameters);

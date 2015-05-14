@@ -2,7 +2,7 @@
 
 namespace Course_project.Entity
 {
-	public class TimeGap
+	public class TimeGap : IComparable
 	{
 		public int StartTime {get; set;}
 		public int EndTime {get; set;}
@@ -16,5 +16,12 @@ namespace Course_project.Entity
 		public int getDuration(){
 			return EndTime - StartTime;
 		}
+
+
+		public int CompareTo(object obj)
+		{
+			return this.StartTime;
+		}
+
 	}
 }

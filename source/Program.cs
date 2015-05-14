@@ -1,14 +1,14 @@
-﻿//TODO Simple algorithm to convert flexible task to hard task
-  
-//TODO Fix forms size 
+﻿ //TODO Fix forms size 
 
-//TODO Fix code style
-
+//TODO Fix code style ?
+ 
 //TODO Catch excection Session(where??)
 
 //TODO Move all string literal to const fienlds
 
 //TODO Check empty fields!!
+
+//TODO Check TimeZone work  
 
 namespace Course_project
 {

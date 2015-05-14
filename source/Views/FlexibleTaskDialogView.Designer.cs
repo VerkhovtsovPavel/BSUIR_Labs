@@ -71,7 +71,7 @@
 			// 
 			this.maxPatrs_numericUpDown.Location = new System.Drawing.Point(77, 218);
 			this.maxPatrs_numericUpDown.Maximum = new decimal(new int[] {
-			                                                  	10,
+			                                                  	100,
 			                                                  	0,
 			                                                  	0,
 			                                                  	0});
@@ -84,7 +84,7 @@
 			this.maxPatrs_numericUpDown.Size = new System.Drawing.Size(269, 20);
 			this.maxPatrs_numericUpDown.TabIndex = 7;
 			this.maxPatrs_numericUpDown.Value = new decimal(new int[] {
-			                                                	1,
+			                                                	10,
 			                                                	0,
 			                                                	0,
 			                                                	0});
@@ -154,7 +154,7 @@
 			this.numericUpDown1.Size = new System.Drawing.Size(208, 20);
 			this.numericUpDown1.TabIndex = 13;
 			this.numericUpDown1.Value = new decimal(new int[] {
-			                                        	15,
+			                                        	0,
 			                                        	0,
 			                                        	0,
 			                                        	0});

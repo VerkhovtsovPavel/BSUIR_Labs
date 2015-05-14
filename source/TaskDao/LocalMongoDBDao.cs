@@ -80,7 +80,6 @@ namespace Course_project.TaskDao
 			return noteList;
 		}
 		
-		//CHECK
 		public List<Task> getSharedTasksFromRange(int start, int stop, string login)
 		{
 			List<Task> noteList = new List<Task>();
@@ -113,22 +112,6 @@ namespace Course_project.TaskDao
 			MongoCollection sharedNotes = database.GetCollection<Task>(ProjectProterties.SHARED_NOTES_COLLECTION);
 			sharedNotes.Remove(Query.EQ("_id",task.Id));
 		}
-
-		//TODO Debug method (Remove)
-		/*public List<User> getUsers()
-		{
-			List<User> userList = new List<User>();
-				
-			MongoCollection users = database.GetCollection<User>(ProjectProterties.USER_COLLECTION);
-			MongoCursor<User> userCursor = users.FindAllAs<User>();
-			foreach (User user in userCursor) {
-				userList.Add(user);
-			}
-			
-			return userList;
-			
-		}
-*/
 
 		public void AddUser(User user)
 		{

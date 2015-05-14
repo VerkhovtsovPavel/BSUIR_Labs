@@ -18,6 +18,7 @@
 		private System.Windows.Forms.ToolStripMenuItem editTaskGroupToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem loginToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem editFlexibleTaskToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem apportionFlexibleTasksToolStripMenuItem;
 		
 		protected override void Dispose(bool disposing)
 		{
@@ -45,6 +46,7 @@
 			this.profillingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.profilingTasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.editTaskGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.apportionFlexibleTasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -96,6 +98,7 @@
 			this.tasksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.addFlexibleTaskToolStripMenuItem,
 			this.editFlexibleTaskToolStripMenuItem,
+			this.apportionFlexibleTasksToolStripMenuItem,
 			this.addHardTaskToolStripMenuItem,
 			this.showTasksToolStripMenuItem,
 			this.importTasksInOutlookToolStripMenuItem});
@@ -106,7 +109,7 @@
 			// addFlexibleTaskToolStripMenuItem
 			// 
 			this.addFlexibleTaskToolStripMenuItem.Name = "addFlexibleTaskToolStripMenuItem";
-			this.addFlexibleTaskToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+			this.addFlexibleTaskToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
 			this.addFlexibleTaskToolStripMenuItem.Text = "Add flexible task";
 			this.addFlexibleTaskToolStripMenuItem.Click += new System.EventHandler(this.AddFlexibleTaskToolStripMenuItemClick);
 			// 
@@ -160,6 +163,13 @@
 			this.editTaskGroupToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
 			this.editTaskGroupToolStripMenuItem.Text = "Edit task group";
 			this.editTaskGroupToolStripMenuItem.Click += new System.EventHandler(this.EditTaskGroupToolStripMenuItemClick);
+			// 
+			// apportionFlexibleTasksToolStripMenuItem
+			// 
+			this.apportionFlexibleTasksToolStripMenuItem.Name = "apportionFlexibleTasksToolStripMenuItem";
+			this.apportionFlexibleTasksToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+			this.apportionFlexibleTasksToolStripMenuItem.Text = "Apportion Flexible Tasks";
+			this.apportionFlexibleTasksToolStripMenuItem.Click += new System.EventHandler(this.ApportionFlexibleTasksToolStripMenuItemClick);
 			// 
 			// MainView
 			// 

@@ -31,7 +31,7 @@ namespace Course_project.Model.Command
 			flexibleTask.Group = parameters.GetParameter<String>("Group");
 			flexibleTask.Title = parameters.GetParameter<String>("Title");
 			
-			flexibleTask.RequiredTime = parameters.GetParameter<int>("RequestedTime");
+			flexibleTask.RequiredTime = parameters.GetParameter<int>("RequestedTime") * 60;
 			flexibleTask.MaxParts = parameters.GetParameter<int>("MaxParts");
 			flexibleTask.MinTimeOfOnePart = parameters.GetParameter<int>("MinTimeFromPart");
 			

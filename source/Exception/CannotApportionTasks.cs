@@ -2,7 +2,7 @@
 
 namespace Course_project.Exception
 {
-	public class OutlookNotFoundException : System.Exception
+	public class CannotApportionTasks : System.Exception
 	{
 	}
 }

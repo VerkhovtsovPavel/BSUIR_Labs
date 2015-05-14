@@ -14,14 +14,12 @@ namespace Course_project.Views
 		void MonthCalendarDateSelected(object sender, DateRangeEventArgs e)
 		{
 			DateTime begin = ((MonthCalendar) sender).SelectionStart;
-			DateTime end = ((MonthCalendar) sender).SelectionEnd;
 			
-			TasksView showTasksView = new TasksView(begin, end);
+			TasksView showTasksView = new TasksView(begin);
 			showTasksView.Show();
 		}
 		void CalendarViewFormClosed(object sender, FormClosedEventArgs e)
 		{
-			//CHECK
 			Application.Exit();
 		}
 	}

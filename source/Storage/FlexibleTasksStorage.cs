@@ -71,6 +71,11 @@ namespace Course_project.Storage
 			
 			return new TimeGap(minStartTime, maxEndTime);
 		}
+
+		public void Clear()
+		{
+			this.storedTasks.Clear();
+		}
 	}
 	
 }

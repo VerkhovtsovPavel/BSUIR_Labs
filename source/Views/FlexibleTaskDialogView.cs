@@ -26,7 +26,7 @@ namespace Course_project.Views
 		
 				FlexibleTask flexibleTaskToEdit = (FlexibleTask)taskToEdit;
 				
-				this.requestedTime_numericUpDown.Value = flexibleTaskToEdit.RequiredTime;
+				this.requestedTime_numericUpDown.Value = flexibleTaskToEdit.RequiredTime / 60;
 				this.maxPatrs_numericUpDown.Value = flexibleTaskToEdit.MaxParts;
 				this.numericUpDown1.Value = flexibleTaskToEdit.MinTimeOfOnePart;
 			
@@ -79,7 +79,7 @@ namespace Course_project.Views
 				taskToEdit.StartTime = TimeUtils.DateTimeToUnixTime(this.start_dateTimePicker.Value);
 				taskToEdit.EndTime = TimeUtils.DateTimeToUnixTime(this.stop_dateTimePicker.Value);
 				
-				flexibleTaskToEdit.RequiredTime = (int)this.requestedTime_numericUpDown.Value;
+				flexibleTaskToEdit.RequiredTime = (int)this.requestedTime_numericUpDown.Value * 60;
 				flexibleTaskToEdit.MaxParts = (int)this.maxPatrs_numericUpDown.Value;
 				flexibleTaskToEdit.MinTimeOfOnePart = (int)this.numericUpDown1.Value;
 				

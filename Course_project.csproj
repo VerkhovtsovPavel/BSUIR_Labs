@@ -74,6 +74,7 @@
     <Compile Include="source\Entity\DB\User.cs" />
     <Compile Include="source\Entity\DB\UserGroups.cs" />
     <Compile Include="source\Entity\TimeGap.cs" />
+    <Compile Include="source\Exception\CannotApportionTasks.cs" />
     <Compile Include="source\Model\Command\AddFlexibleTaskCommand.cs" />
     <Compile Include="source\Model\Command\ApportionFlexibleTasksCommand.cs" />
     <Compile Include="source\Model\Command\GetTasksFromRangeCommand.cs" />
@@ -90,7 +91,6 @@
     <Compile Include="source\TaskDao\Dao.cs" />
     <Compile Include="source\Entity\FlexibleTask.cs" />
     <Compile Include="source\Entity\Session.cs" />
-    <Compile Include="source\Exception\IncorectCommandException.cs" />
     <Compile Include="source\Exception\OutlookNotFoundException.cs" />
     <Compile Include="source\Exception\SessionException.cs" />
     <Compile Include="source\Controller\IController.cs" />

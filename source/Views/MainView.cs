@@ -99,6 +99,7 @@ namespace Course_project.Views
 		{
 			try {
 				TaskController.GetInstance().Process(CommandType.IMPORT_TO_OUTLOOK, null);
+				MessageBox.Show("Task imported");
 			} catch (OutlookNotFoundException) {
 				MessageBox.Show("Outlook don't install in out system");
 			}
@@ -114,6 +115,15 @@ namespace Course_project.Views
 		void EditFlexibleTaskToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			goToFlexibleTaskListPage();
+		}
+		void ApportionFlexibleTasksToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			try{
+				TaskController.GetInstance().Process(CommandType.APPORTION_FLEXIBLE_TASKS, null);
+				MessageBox.Show("Tasks apportion");
+			} catch (CannotApportionTasks){
+				MessageBox.Show("Cannot apportion task with current conditions");
+			}
 		}
 		
 	}
