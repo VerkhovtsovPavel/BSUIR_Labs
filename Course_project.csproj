@@ -73,6 +73,7 @@
     <Compile Include="source\Entity\DB\Task.cs" />
     <Compile Include="source\Entity\DB\User.cs" />
     <Compile Include="source\Entity\DB\UserGroups.cs" />
+    <Compile Include="source\Entity\TimeGap.cs" />
     <Compile Include="source\Model\Command\AddFlexibleTaskCommand.cs" />
     <Compile Include="source\Model\Command\ApportionFlexibleTasksCommand.cs" />
     <Compile Include="source\Model\Command\GetTasksFromRangeCommand.cs" />

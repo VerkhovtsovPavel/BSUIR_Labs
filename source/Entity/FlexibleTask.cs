@@ -2,7 +2,6 @@
 {
 	using System;
 	using System.Collections.Generic;
-	using MongoDB.Driver;
 	
 	public class FlexibleTask : Task , IComparable
 	{
@@ -22,7 +21,11 @@
 			this.TotalDependantTasks = new List<FlexibleTask>();
 			this.buildTotalDependantTasksList(this);
 		}
-		
+
+		public bool isHasFreeParts()
+		{
+			return this.MaxParts > this.RealParts;
+		}
 		public FlexibleTask(){}
 		
 		public int MaxParts {get; set;}
@@ -34,21 +37,20 @@
 		public List<FlexibleTask> TotalDependantTasks {get; set;}
 		
 		public int RequiredTime { get; set;}
-				
+
+		public int RealParts { get; set;}
+
 		public void buildTotalDependantTasksList(FlexibleTask task){
 			foreach(FlexibleTask dependanrTask in task.DependedTasks){
 				this.TotalDependantTasks.Add(dependanrTask);
 				buildTotalDependantTasksList(dependanrTask);
 			}
-			//CHECK
 			this.TotalDependantTasks = new List<FlexibleTask>(new HashSet<FlexibleTask>(this.TotalDependantTasks));
 		}
 
-		public int CompareTo(object obj)
+		public override int CompareTo(object obj)
 		{
 			return TotalDependantTasks.Count;
 		}
-
-		
 	}
 }

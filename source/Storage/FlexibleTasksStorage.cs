@@ -51,6 +51,26 @@ namespace Course_project.Storage
 			
 			return permissibleTasks;
 		}
+		
+		public TimeGap getFlexibleTasksTimeRange(){
+			int minStartTime = Int32.MaxValue;
+			int maxEndTime = 0;
+				
+			foreach(FlexibleTask task in storedTasks)
+			{
+				if(task.StartTime < minStartTime)
+				{
+					minStartTime = task.StartTime;
+				}
+				
+				if(task.EndTime > maxEndTime)
+				{
+					maxEndTime = task.EndTime;
+				}
+			}
+			
+			return new TimeGap(minStartTime, maxEndTime);
+		}
 	}
 	
 }

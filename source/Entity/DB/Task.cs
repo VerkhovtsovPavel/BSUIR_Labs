@@ -1,14 +1,12 @@
 ﻿using System;
-using System.ComponentModel;
 using MongoDB.Bson;
 using Course_project.Utils;
 
 namespace Course_project.Entity
 {
 
-	public class Task : ICloneable
+	public class Task : ICloneable, IComparable
 	{
-		[Browsable(false)]
 		public ObjectId Id { get; private set; }
 		public string Title { get; set; }
 		public string Owner { get; set; }
@@ -55,6 +53,11 @@ namespace Course_project.Entity
 			Task cloneTask = new Task(this.Id, this.Title, this.Owner, this.Group, this.StartTime, this.EndTime);
 			return cloneTask;
 		}
+
+		public virtual int CompareTo(object obj)
+{
+			return this.StartTime;
+}
 
 	}
 }
