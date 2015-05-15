@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Course_project.Exception
+﻿namespace Course_project.Exception
 {
+	using System;
+	
 	public class OutlookNotFoundException : System.Exception
 	{
 	}

@@ -1,71 +1,77 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using Course_project.Entity;
-using Course_project.Storage;
-
-namespace Course_project.Views
+﻿namespace Course_project.Views
 {
-	/// <summary>
-	/// Description of AddDependentTaskView.
-	/// </summary>
+	using System;
+	using System.Collections.Generic;
+	using System.Windows.Forms;
+	using Course_project.Entity;
+	using Course_project.Storage;
+
 	public partial class FlexibleTaskView : Form
 	{
-		private Dictionary<String, FlexibleTask> tasks;
+		private Dictionary<string, FlexibleTask> tasks;
 		private ListBox dependentTaskListBox;
 		private ViewMode mode;
-		public FlexibleTaskView(Dictionary<String, FlexibleTask> tasks, ListBox listBox, ViewMode mode)
+		
+		public FlexibleTaskView(Dictionary<string, FlexibleTask> tasks, ListBox listBox, ViewMode mode)
 		{
-			
-			InitializeComponent();
+			this.InitializeComponent();
 			this.dependentTaskListBox = listBox;
 			this.mode = mode;
 			
-			if (mode == ViewMode.ADD_MODE) {
+			if (mode == ViewMode.ADD_MODE)
+			{
 				this.tasks = tasks;
-				FillComboBoxWithExclude();
-			} else if (mode == ViewMode.EDIT_MODE) {
-				this.tasks = FlexibleTasksStorage.getInstance().getPermissibleTasks(null);
-				FullFillComboBox();
-				
+				this.FillComboBoxWithExclude();
+			}
+			else if (mode == ViewMode.EDIT_MODE)
+			{
+				this.tasks = FlexibleTasksStorage.GetInstance().GetPermissibleTasks(null);
+				this.FullFillComboBox();
+				this.Text = "Edit flexible task";
 			}	
 		}
 		
-		
-		void SubmitClick(object sender, EventArgs e)
+		private void SubmitClick(object sender, EventArgs e)
 		{
-			if (this.taskComboBox.Text != "") {
-				if (mode == ViewMode.ADD_MODE) {
-					dependentTaskListBox.Items.Add(this.taskComboBox.Text);
-					Close();
-				} else if (mode == ViewMode.EDIT_MODE) {
-					FlexibleTask outTask;
-					tasks.TryGetValue(this.taskComboBox.Text, out outTask);
-					Hide();
-					new FlexibleTaskDialogView(mode, outTask).ShowDialog();
-					Show();
-					
+			if (this.taskComboBox.Text != string.Empty)
+			{
+				if (this.mode == ViewMode.ADD_MODE)
+				{
+					this.dependentTaskListBox.Items.Add(this.taskComboBox.Text);
+					this.Close();
 				}
-			} else {
+				else if (this.mode == ViewMode.EDIT_MODE)
+				{
+					FlexibleTask outTask;
+					this.tasks.TryGetValue(this.taskComboBox.Text, out outTask);
+					this.Hide();
+					new FlexibleTaskDialogView(this.mode, outTask).ShowDialog();
+					this.Show();
+				}
+			}
+			else 
+			{
 				MessageBox.Show("Please select task");
 			}
 		}
 
-		void FillComboBoxWithExclude()
+		private void FillComboBoxWithExclude()
 		{
-			foreach (var title in tasks.Keys) {
-				if (!dependentTaskListBox.Items.Contains(title)) {
+			foreach (var title in this.tasks.Keys)
+			{
+				if (!this.dependentTaskListBox.Items.Contains(title))
+				{
 					this.taskComboBox.Items.Add(title);
 				}
 			}
 		}
 		
-		void FullFillComboBox()
+		private void FullFillComboBox()
 		{
-			foreach (var title in tasks.Keys) {
+			foreach (var title in this.tasks.Keys)
+			{
 				this.taskComboBox.Items.Add(title);
 			}
 		}
 	}
 }
-

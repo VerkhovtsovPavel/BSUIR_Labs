@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Course_project.Views
+﻿namespace Course_project.Views
 {
+	using System;
+	
 	public enum ViewMode
 	{
 		ADD_MODE, EDIT_MODE

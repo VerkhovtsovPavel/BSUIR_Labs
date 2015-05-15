@@ -8,7 +8,7 @@
  */
 namespace Course_project.Views
 {
-	partial class UserGroupView
+	public partial class UserGroupView
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
@@ -25,11 +25,14 @@ namespace Course_project.Views
 		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
 		protected override void Dispose(bool disposing)
 		{
-			if (disposing) {
-				if (components != null) {
-					components.Dispose();
+			if (disposing)
+			{
+				if (this.components != null)
+				{
+					this.components.Dispose();
 				}
 			}
+			
 			base.Dispose(disposing);
 		}
 		
@@ -45,19 +48,17 @@ namespace Course_project.Views
 			this.group_listBox = new System.Windows.Forms.ListBox();
 			this.editGroup_button = new System.Windows.Forms.Button();
 			this.SuspendLayout();
-			// 
-			// addGroup_button
-			// 
+			
+			// addGroup_button 
 			this.addGroup_button.Location = new System.Drawing.Point(12, 113);
 			this.addGroup_button.Name = "addGroup_button";
 			this.addGroup_button.Size = new System.Drawing.Size(118, 23);
 			this.addGroup_button.TabIndex = 0;
 			this.addGroup_button.Text = "Add group";
 			this.addGroup_button.UseVisualStyleBackColor = true;
-			this.addGroup_button.Click += new System.EventHandler(this.AddGroup_buttonClick);
-			// 
+			this.addGroup_button.Click += new System.EventHandler(this.AddGroup_buttonClick); 
+			
 			// deleteGroup_button
-			// 
 			this.deleteGroup_button.Location = new System.Drawing.Point(280, 113);
 			this.deleteGroup_button.Name = "deleteGroup_button";
 			this.deleteGroup_button.Size = new System.Drawing.Size(122, 23);
@@ -65,17 +66,15 @@ namespace Course_project.Views
 			this.deleteGroup_button.Text = "Delete group";
 			this.deleteGroup_button.UseVisualStyleBackColor = true;
 			this.deleteGroup_button.Click += new System.EventHandler(this.DeleteGroup_buttonClick);
-			// 
+ 
 			// group_listBox
-			// 
 			this.group_listBox.FormattingEnabled = true;
 			this.group_listBox.Location = new System.Drawing.Point(12, 12);
 			this.group_listBox.Name = "group_listBox";
 			this.group_listBox.Size = new System.Drawing.Size(390, 95);
 			this.group_listBox.TabIndex = 2;
-			// 
+
 			// editGroup_button
-			// 
 			this.editGroup_button.Location = new System.Drawing.Point(136, 113);
 			this.editGroup_button.Name = "editGroup_button";
 			this.editGroup_button.Size = new System.Drawing.Size(138, 23);
@@ -83,9 +82,8 @@ namespace Course_project.Views
 			this.editGroup_button.Text = "Edit group";
 			this.editGroup_button.UseVisualStyleBackColor = true;
 			this.editGroup_button.Click += new System.EventHandler(this.EditGroup_buttonClick);
-			// 
-			// GroupView
-			// 
+			
+			// UserGroupView
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(414, 150);
@@ -93,10 +91,11 @@ namespace Course_project.Views
 			this.Controls.Add(this.group_listBox);
 			this.Controls.Add(this.deleteGroup_button);
 			this.Controls.Add(this.addGroup_button);
-			this.Name = "GroupView";
+			this.MaximumSize = new System.Drawing.Size(430, 188);
+			this.MinimumSize = new System.Drawing.Size(430, 188);
+			this.Name = "UserGroupView";
 			this.Text = "Task Groups";
 			this.ResumeLayout(false);
-
 		}
 	}
 }

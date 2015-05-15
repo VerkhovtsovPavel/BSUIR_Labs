@@ -1,77 +1,89 @@
-﻿using System;
-using System.Windows.Forms;
-using Course_project.Controller;
-using Course_project.Entity.DB;
-using Course_project.Utils;
-
-namespace Course_project.Views
+﻿namespace Course_project.Views
 {
+	using System;
+	using System.Windows.Forms;
+	using Course_project.Controller;
+	using Course_project.Entity.DB;
+	using Course_project.Utils;
+	
 	public partial class UserGroupView : Form
 	{
 		private UserGroups userGroups;
+		
 		public UserGroupView()
 		{
-			InitializeComponent();
-			userGroups = (UserGroups)TaskController.GetInstance().Process(CommandType.GET_USER_GROUPS, null); 
-			fillGroupComboBox();
+			this.InitializeComponent();
+			this.userGroups = (UserGroups)TaskController.GetInstance().Process(CommandType.GET_USER_GROUPS, null); 
+			this.FillGroupComboBox();
 		}
-		void AddGroup_buttonClick(object sender, EventArgs e)
+		
+		private void AddGroup_buttonClick(object sender, EventArgs e)
 		{
 			RequestParameters group = new RequestParameters();
 			
 			UserGroupDialogView addGroupView = new UserGroupDialogView(group, ViewMode.ADD_MODE);
 			
 			DialogResult result = addGroupView.ShowDialog();
-			if (result == DialogResult.OK) {
-				userGroups.Groups.Add(group.GetParameter<String>("Group"));
-				this.group_listBox.Items.Add(group.GetParameter<String>("Group"));
+			if (result == DialogResult.OK) 
+			{
+				this.userGroups.Groups.Add(group.GetParameter<string>("Group"));
+				this.group_listBox.Items.Add(group.GetParameter<string>("Group"));
 			
 				RequestParameters requestParameters = new RequestParameters();
-				requestParameters.AddParameter<UserGroups>("UserGroups", userGroups);
+				requestParameters.AddParameter<UserGroups>("UserGroups", this.userGroups);
 				TaskController.GetInstance().Process(CommandType.UPDATE_GROUPS, requestParameters);
 			}
-			
 		}
-		void EditGroup_buttonClick(object sender, EventArgs e)
+		
+		private void EditGroup_buttonClick(object sender, EventArgs e)
 		{
 			int selectElement = this.group_listBox.SelectedIndex;
-			if (selectElement != -1) {
+			if (selectElement != -1)
+			{
 				RequestParameters group = new RequestParameters();
-				group.AddParameter<String>("Old Group", userGroups.Groups[selectElement]);
+				group.AddParameter<string>("Old Group", this.userGroups.Groups[selectElement]);
 			
 				UserGroupDialogView addGroupView = new UserGroupDialogView(group, ViewMode.EDIT_MODE);
 		
-				if (addGroupView.ShowDialog() == DialogResult.OK) {
-					userGroups.Groups[selectElement]=group.GetParameter<String>("Group");
+				if (addGroupView.ShowDialog() == DialogResult.OK)
+				{
+					this.userGroups.Groups[selectElement]=group.GetParameter<string>("Group");
 					
 					this.group_listBox.Items.RemoveAt(selectElement);
-					this.group_listBox.Items.Insert(selectElement, group.GetParameter<String>("Group"));
+					this.group_listBox.Items.Insert(selectElement, group.GetParameter<string>("Group"));
 			
 					RequestParameters requestParameters = new RequestParameters();
-					requestParameters.AddParameter<UserGroups>("UserGroups", userGroups);
+					requestParameters.AddParameter<UserGroups>("UserGroups", this.userGroups);
 					TaskController.GetInstance().Process(CommandType.UPDATE_GROUPS, requestParameters);
 				}
-			} else {
+			}
+			else
+			{
 				MessageBox.Show("Please select group");
 			}
 		}
-		void DeleteGroup_buttonClick(object sender, EventArgs e)
+		
+		private void DeleteGroup_buttonClick(object sender, EventArgs e)
 		{
 			int selectElement = this.group_listBox.SelectedIndex;
-			if (selectElement != -1) {
+			if (selectElement != -1)
+			{
 				this.group_listBox.Items.RemoveAt(selectElement);
 				this.userGroups.Groups.RemoveAt(selectElement);
 				RequestParameters requestParameters = new RequestParameters();
-				requestParameters.AddParameter<UserGroups>("UserGroups", userGroups);
+				requestParameters.AddParameter<UserGroups>("UserGroups", this.userGroups);
 				TaskController.GetInstance().Process(CommandType.UPDATE_GROUPS, requestParameters);
-			} else {
+			}
+			else
+			{
 				MessageBox.Show("Please select group");
 			}
 		}
 
-		void fillGroupComboBox()
+		private void FillGroupComboBox()
 		{
-			foreach (String group in userGroups.Groups) {
+			foreach (string group in this.userGroups.Groups)
+			{
 				this.group_listBox.Items.Add(group);
 			}
 		}

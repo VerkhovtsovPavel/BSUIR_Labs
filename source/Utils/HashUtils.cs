@@ -1,8 +1,8 @@
-﻿using System;
-using System.Security.Cryptography;
-
-namespace Course_project.Utils
+﻿namespace Course_project.Utils
 {
+	using System;
+	using System.Security.Cryptography;
+	
 	public static class HashUtils
 	{
 		public static string MD5Hash(string input)

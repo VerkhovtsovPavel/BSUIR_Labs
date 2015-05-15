@@ -1,10 +1,10 @@
-using System;
-using Course_project.Utils;
-
 namespace Course_project.Controller
 {
+	using System;
+	using Course_project.Utils;
+
 	public interface IController
 	{
-		object process(String request, RequestParameters parameters);
+		object Process(string request, RequestParameters parameters);
 	}
 }

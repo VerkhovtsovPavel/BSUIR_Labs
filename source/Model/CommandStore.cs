@@ -1,42 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using Course_project.Controller;
-using Course_project.Model.Command;
-
-namespace Course_project.Model
+﻿namespace Course_project.Model
 {
+	using System;
+	using System.Collections.Generic;
+	using Course_project.Controller;
+	using Course_project.Model.Command;
+
 	public class CommandStore
 	{
-		private Dictionary<CommandType, ICommand> commands;
+		private readonly Dictionary<CommandType, ICommand> commands;
 		
 		public CommandStore()
 		{
-			commands = new Dictionary<CommandType, ICommand>();
+			this.commands = new Dictionary<CommandType, ICommand>();
 			
-			addCommand(CommandType.ADD_PRIVATE_TASK, new AddPrivateTaskCommand());
-			addCommand(CommandType.ADD_SHARE_TASK,	new ShareTaskCommand());
-			addCommand(CommandType.LOGIN, new LoginCommand());
-			addCommand(CommandType.REGISTRATION, new RegistrateCommand());
-			addCommand(CommandType.GET_TASKS_FROM_RANGE, new GetTasksFromRangeCommand());
-			addCommand(CommandType.IMPORT_TO_OUTLOOK, new ImportTaskInOutlookCommand());
-			addCommand(CommandType.ADD_FLEXIBLE_TASK_IN_STORE, new AddFlexibleTaskCommand());
-			addCommand(CommandType.UPDATE_GROUPS, new UpdateGroupsCommand());
-			addCommand(CommandType.GET_USER_GROUPS, new GetUserGroupsCommand());
-			addCommand(CommandType.GET_TIME_SPENT_BY_GROUP, new GetTimeSpentByGroup());
-			addCommand(CommandType.UPDATE_TASK, new UpdateTaskCommand());
-			addCommand(CommandType.REMOVE_TASK, new RemoveTaskCommand());
-			addCommand(CommandType.APPORTION_FLEXIBLE_TASKS, new ApportionFlexibleTasksCommand());
+			this.AddCommand(CommandType.ADD_PRIVATE_TASK, new AddPrivateTaskCommand());
+			this.AddCommand(CommandType.ADD_SHARE_TASK,	new ShareTaskCommand());
+			this.AddCommand(CommandType.LOGIN, new LoginCommand());
+			this.AddCommand(CommandType.REGISTRATION, new RegistrateCommand());
+			this.AddCommand(CommandType.GET_TASKS_FROM_RANGE, new GetTasksFromRangeCommand());
+			this.AddCommand(CommandType.IMPORT_TO_OUTLOOK, new ImportTaskInOutlookCommand());
+			this.AddCommand(CommandType.ADD_FLEXIBLE_TASK_IN_STORE, new AddFlexibleTaskCommand());
+			this.AddCommand(CommandType.UPDATE_GROUPS, new UpdateGroupsCommand());
+			this.AddCommand(CommandType.GET_USER_GROUPS, new GetUserGroupsCommand());
+			this.AddCommand(CommandType.GET_TIME_SPENT_BY_GROUP, new GetTimeSpentByGroup());
+			this.AddCommand(CommandType.UPDATE_TASK, new UpdateTaskCommand());
+			this.AddCommand(CommandType.REMOVE_TASK, new RemoveTaskCommand());
+			this.AddCommand(CommandType.APPORTION_FLEXIBLE_TASKS, new ApportionFlexibleTasksCommand());
 		}
 		
-		public void addCommand(CommandType commandType, ICommand command)
+		public void AddCommand(CommandType commandType, ICommand command)
 		{
-			commands.Add(commandType, command);
+			this.commands.Add(commandType, command);
 		}
 		
-		public ICommand getCommand(CommandType commandType)
+		public ICommand GetCommand(CommandType commandType)
 		{
 			ICommand command;
-			commands.TryGetValue(commandType, out command);
+			this.commands.TryGetValue(commandType, out command);
 			return command;
 		}
 	}

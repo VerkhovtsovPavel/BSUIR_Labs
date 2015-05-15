@@ -18,30 +18,32 @@ namespace Course_project.TaskDao
 
 		private LocalMongoDBDao()
 		{
-			if(Process.GetProcessesByName("mongod").Length==0){
-				CommandLineCommander.executeCommand("mongod.exe --repair --dbpath "+ProjectProterties.DB_PATH).WaitForExit();
-				CommandLineCommander.executeCommand("mongod.exe --dbpath "+ProjectProterties.DB_PATH);
+			if(Process.GetProcessesByName("mongod").Length==0)
+			{
+				CommandLineCommander.ExecuteCommand("mongod.exe --repair --dbpath "+ProjectProterties.DB_PATH).WaitForExit();
+				CommandLineCommander.ExecuteCommand("mongod.exe --dbpath "+ProjectProterties.DB_PATH);
 			  	Thread.Sleep(5000);
 			}
 			
 			MongoServer server = new MongoClient(ProjectProterties.DB_SERVER).GetServer();
-			database = server.GetDatabase(ProjectProterties.DB_NAME);
+			this.database = server.GetDatabase(ProjectProterties.DB_NAME);
 		}
 		
-		public static IDao getInstance()
+		public static IDao GetInstance()
 		{
 			if (instance == null)
 			{
 				instance = new LocalMongoDBDao();
 			}
+			
 			return instance;
 		}
  
-		public List<Task> getPrivateTasks(string login)
+		public List<Task> GetPrivateTasks(string login)
 		{
 			List<Task> noteList = new List<Task>();
 				
-			MongoCollection privateNotes = database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
+			MongoCollection privateNotes = this.database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
 			MongoCursor<Task> privateNotesCursor = privateNotes.FindAs<Task>(Query.EQ("Owner", login));
 			
 			noteList.AddRange(privateNotesCursor);
@@ -49,11 +51,11 @@ namespace Course_project.TaskDao
 			return noteList;
 		}
 
-		public List<Task> getSharedTasks(string login)
+		public List<Task> GetSharedTasks(string login)
 		{
 			List<Task> noteList = new List<Task>();
 				
-			MongoCollection sharedNotes = database.GetCollection<Task>(ProjectProterties.SHARED_NOTES_COLLECTION);
+			MongoCollection sharedNotes = this.database.GetCollection<Task>(ProjectProterties.SHARED_NOTES_COLLECTION);
 			MongoCursor<Task> sharedNotesCursor = sharedNotes.FindAs<Task>(Query.NE("Owner", login));
 			
 			noteList.AddRange(sharedNotesCursor);
@@ -61,18 +63,18 @@ namespace Course_project.TaskDao
 			return noteList;
 		}
 		
-		public UserGroups getUserGroups(string login)
+		public UserGroups GetUserGroups(string login)
 		{
-			MongoCollection userGroups = database.GetCollection<UserGroups>(ProjectProterties.USER_GROUPS_COLLECTION);
+			MongoCollection userGroups = this.database.GetCollection<UserGroups>(ProjectProterties.USER_GROUPS_COLLECTION);
 			UserGroups userGroup = userGroups.FindOneAs<UserGroups>(Query.EQ("Owner", login));
 			return userGroup;
 		}
 
-		public List<Task> getPrivateTasksFromRange(int start, int stop, string login)
+		public List<Task> GetPrivateTasksFromRange(int start, int stop, string login)
 		{
 			List<Task> noteList = new List<Task>();
 			
-			MongoCollection privateNotes = database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
+			MongoCollection privateNotes = this.database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
 			MongoCursor<Task> privateNotesCursor = privateNotes.FindAs<Task>(Query.And(Query.EQ("Owner", login), Query.LTE("StartTime", stop), Query.GTE("EndTime", start)));
 			
 			noteList.AddRange(privateNotesCursor);
@@ -80,11 +82,11 @@ namespace Course_project.TaskDao
 			return noteList;
 		}
 		
-		public List<Task> getSharedTasksFromRange(int start, int stop, string login)
+		public List<Task> GetSharedTasksFromRange(int start, int stop, string login)
 		{
 			List<Task> noteList = new List<Task>();
 				
-			MongoCollection sharedNotes = database.GetCollection<Task>(ProjectProterties.SHARED_NOTES_COLLECTION);
+			MongoCollection sharedNotes = this.database.GetCollection<Task>(ProjectProterties.SHARED_NOTES_COLLECTION);
 			MongoCursor<Task> sharedNotesCursor = sharedNotes.FindAs<Task>(Query.And(Query.LTE("StartTime", stop), Query.GTE("EndTime", start), Query.NE("Owner", login)));
 				
 			noteList.AddRange(sharedNotesCursor);
@@ -92,11 +94,11 @@ namespace Course_project.TaskDao
 			return noteList;
 		}
 
-		public List<Task> getTasksByGroup(string login, string group)
+		public List<Task> GetTasksByGroup(string login, string group)
 		{
 			List<Task> noteList = new List<Task>();
 				
-			MongoCollection privateNotes = database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
+			MongoCollection privateNotes = this.database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
 			MongoCursor<Task> privateNotesCursor = privateNotes.FindAs<Task>(Query.And(Query.EQ("Owner", login), Query.EQ("Group",group)));
 			
 			noteList.AddRange(privateNotesCursor);
@@ -104,64 +106,55 @@ namespace Course_project.TaskDao
 			return noteList;
 		}
 
-		public void removeTask(Task task)
+		public void RemoveTask(Task task)
 		{
-			MongoCollection privateNotes = database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
+			MongoCollection privateNotes = this.database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
 			privateNotes.Remove(Query.EQ("_id",task.Id));
 			
-			MongoCollection sharedNotes = database.GetCollection<Task>(ProjectProterties.SHARED_NOTES_COLLECTION);
+			MongoCollection sharedNotes = this.database.GetCollection<Task>(ProjectProterties.SHARED_NOTES_COLLECTION);
 			sharedNotes.Remove(Query.EQ("_id",task.Id));
 		}
 
 		public void AddUser(User user)
 		{
-			MongoCollection users = database.GetCollection<User>(ProjectProterties.USER_COLLECTION);
+			MongoCollection users = this.database.GetCollection<User>(ProjectProterties.USER_COLLECTION);
 			users.Insert<User>(user);
-			createUserGroups(user.Login);
+			this.CreateUserGroups(user.Login);
 		}
 
-		public void addPrivateTask(Task note)
+		public void AddPrivateTask(Task note)
 		{
-			MongoCollection privateNotes = database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
+			MongoCollection privateNotes = this.database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
 			privateNotes.Insert<Task>(note);
-			
-			
-			
-			//privateNotes.Update(Query.EQ("_id", note.Id), Update.Replace(note), UpdateFlags.Upsert);
 		}
 
-		public void updateTask(Task task)
+		public void UpdateTask(Task task)
 		{
-			MongoCollection privateNotes = database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
+			MongoCollection privateNotes = this.database.GetCollection<Task>(ProjectProterties.PRIVATE_NOTES_COLLECTION);
 			privateNotes.Update(Query.EQ("_id", task.Id), Update.Replace(task), UpdateFlags.Upsert);
 		}
 		
-		private void createUserGroups(string login){
-			MongoCollection userGroups = database.GetCollection<UserGroups>(ProjectProterties.USER_GROUPS_COLLECTION);
-			UserGroups emptyUserGroup = new UserGroups(login);
-			userGroups.Insert<UserGroups>(emptyUserGroup);
-		}
-
-		public void addSharedTask(Task note)
+		public void AddSharedTask(Task note)
 		{
-			MongoCollection sharedNotes = database.GetCollection<Task>(ProjectProterties.SHARED_NOTES_COLLECTION);
+			MongoCollection sharedNotes = this.database.GetCollection<Task>(ProjectProterties.SHARED_NOTES_COLLECTION);
 			sharedNotes.Insert<Task>(note);
 		}
 
-		public void updateGroups(UserGroups userGroups)
+		public void UpdateGroups(UserGroups userGroups)
 		{
-			MongoCollection userGroupsCollection = database.GetCollection<UserGroups>(ProjectProterties.USER_GROUPS_COLLECTION);
+			MongoCollection userGroupsCollection = this.database.GetCollection<UserGroups>(ProjectProterties.USER_GROUPS_COLLECTION);
 			userGroupsCollection.Update(Query.EQ("_id", userGroups.Id), Update.Replace(userGroups), UpdateFlags.Upsert);
 		}
 		
-		public User checkUser(string login, string password)
+		public User CheckUserIsRegistration(string login, string password)
 		{
-			MongoCollection users = database.GetCollection<User>(ProjectProterties.USER_COLLECTION);
+			MongoCollection users = this.database.GetCollection<User>(ProjectProterties.USER_COLLECTION);
 			MongoCursor<User> usersCursor = users.FindAs<User>(Query.And(Query.EQ("Login", login), Query.EQ("Password", password)));
 			
 			if (usersCursor.Size() != 0)
 			{
-				foreach (User user in usersCursor) {
+				foreach (User user in usersCursor)
+				{
 					return user;
 				}
 			}
@@ -171,15 +164,22 @@ namespace Course_project.TaskDao
 
 		public bool CheckUserLogin(string login)
 		{
-			MongoCollection users = database.GetCollection<User>(ProjectProterties.USER_COLLECTION);
+			MongoCollection users = this.database.GetCollection<User>(ProjectProterties.USER_COLLECTION);
 			MongoCursor<User> usersCursor = users.FindAs<User>(Query.EQ("Login", login));
 			
-			if (usersCursor.Count() != 0) {
+			if (usersCursor.Count() != 0)
+			{
 				return true;
 			}
 			
 			return false;
 		}
+		
+		private void CreateUserGroups(string login)
+		{
+			MongoCollection userGroups = this.database.GetCollection<UserGroups>(ProjectProterties.USER_GROUPS_COLLECTION);
+			UserGroups emptyUserGroup = new UserGroups(login);
+			userGroups.Insert<UserGroups>(emptyUserGroup);
+		}
 	}
 }
-

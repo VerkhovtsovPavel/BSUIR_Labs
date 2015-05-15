@@ -1,48 +1,63 @@
-﻿using System;
-using System.Windows;
-using Course_project.Controller;
-using Course_project.Utils;
-using Course_project.Views;
-
-namespace Course_project
+﻿namespace Course_project
 {
+	using System;
+	using System.Windows;
+	using Course_project.Controller;
+	using Course_project.Utils;
+	using Course_project.Views;
+
 	public partial class RegistrationView : MainView
 	{
 		public RegistrationView()
 		{
-			InitializeComponent();
-			
-			this.tasksToolStripMenuItem.Enabled = false;
-			this.profillingToolStripMenuItem.Enabled = false;
-			fillTimeZoneComboBox();
+			this.InitializeComponent();
+			this.DisableTaskAndProfillingMenu();
+			this.FillTimeZoneComboBox();
 		}
 		
 		private void Submit_buttonClick(object sender, EventArgs e)
 		{
-			RequestParameters registrationParameters = new RequestParameters();
-			registrationParameters.AddParameter<String>("Login", login_textBox.Text);
-			registrationParameters.AddParameter<String>("Password" ,HashUtils.MD5Hash(password_textBox.Text));
-			registrationParameters.AddParameter<String>("FirstName", first_name_textBox.Text);
-			registrationParameters.AddParameter<String>("LastName", last_name_textBox.Text);
-			registrationParameters.AddParameter<String>("TimeZone", timeZone_comboBox.Text);
+			if (!this.CheckEmptyFields())
+			{
+				RequestParameters registrationParameters = new RequestParameters();
+				registrationParameters.AddParameter<string>("Login", this.login_textBox.Text);
+				registrationParameters.AddParameter<string>("Password", HashUtils.MD5Hash(this.password_textBox.Text));
+				registrationParameters.AddParameter<string>("FirstName", this.first_name_textBox.Text);
+				registrationParameters.AddParameter<string>("LastName", this.last_name_textBox.Text);
+				registrationParameters.AddParameter<string>("TimeZone", this.timeZone_comboBox.Text);
 			
-			if((bool)TaskController.GetInstance().Process(CommandType.REGISTRATION, registrationParameters)){
-				MessageBox.Show("Registration successfully");
-				goToCalendarePage();
+				if ((bool)TaskController.GetInstance().Process(CommandType.REGISTRATION, registrationParameters)) 
+				{
+					MessageBox.Show("Registration successfully");
+					this.GoToCalendarePage();
+				}
+				else
+				{
+					MessageBox.Show("Duplicate login");
+				}
 			}
-			else{
-				MessageBox.Show("Duplicate login");
+			else
+			{
+				MessageBox.Show("Please complete all required fields");	
 			}
 		}
 
-		void fillTimeZoneComboBox()
+		private void FillTimeZoneComboBox()
 		{
-				foreach(var info in TimeZoneInfo.GetSystemTimeZones()){
-				if(!info.Id.Contains("UTC")){
+			foreach(var info in TimeZoneInfo.GetSystemTimeZones())
+			{
+				if(!info.Id.Contains("UTC"))
+				{
 					this.timeZone_comboBox.Items.Add(info.Id);
 				}
 			}
+			
 			this.timeZone_comboBox.Sorted = true;
+		}
+		
+		private bool CheckEmptyFields()
+		{
+			return this.login_textBox.Text.Equals(string.Empty) || this.password_textBox.Text.Equals(string.Empty) || this.first_name_textBox.Text.Equals(string.Empty) || this.last_name_textBox.Text.Equals(string.Empty) || this.timeZone_comboBox.Text.Equals(string.Empty);
 		}
 	}
 }

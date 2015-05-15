@@ -1,32 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using Course_project.Controller;
-using Course_project.Entity;
-using Course_project.Utils;
-
-namespace Course_project.Views
+﻿namespace Course_project.Views
 {
+	using System;
+	using System.Collections.Generic;
+	using System.Windows.Forms;
+	using Course_project.Controller;
+	using Course_project.Entity;
+	using Course_project.Utils;
+	
 	public partial class TasksView : MainView
 	{
 		private List<Task> taskToShow;
+		
 		public TasksView(DateTime beginInterval)
 		{
+			this.InitializeComponent();
 			
-			InitializeComponent();
+			this.tasksGridView.ColumnCount = 6;
+			this.tasksGridView.Columns[0].Name = "Title";
+			this.tasksGridView.Columns[1].Name = "Owner";
+			this.tasksGridView.Columns[2].Name = "Group";
 			
-			tasksGridView.ColumnCount = 6;
-			tasksGridView.Columns[0].Name = "Title";
-			tasksGridView.Columns[1].Name = "Owner";
-			tasksGridView.Columns[2].Name = "Group";
+			this.tasksGridView.Columns[3].Name = "Start Time";
+			this.tasksGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+			this.tasksGridView.Columns[4].Name = "End Time";
+			this.tasksGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+			this.tasksGridView.Columns[5].Name =	"Duration";
 			
-			tasksGridView.Columns[3].Name = "Start Time";
-			tasksGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-			tasksGridView.Columns[4].Name = "End Time";
-			tasksGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-			tasksGridView.Columns[5].Name =	"Duration";
-			
-			this.fileToolStripMenuItem.Enabled = false;
+			this.DisableFileMenu();
 			
 			this.start_dateTimePicker.Value = beginInterval.Date;
 			this.stop_dateTimePicker.Value = beginInterval.Date.AddDays(1).AddSeconds(-1);
@@ -35,14 +35,13 @@ namespace Course_project.Views
 			parameters.AddParameter<DateTime>("StartTime", beginInterval.Date);
 			parameters.AddParameter<DateTime>("EndTime", beginInterval.Date.AddDays(1).AddSeconds(-1));
 			
-			
-			taskToShow = (List<Task>)TaskController.GetInstance().Process(CommandType.GET_TASKS_FROM_RANGE, parameters);
+			this.taskToShow = (List<Task>)TaskController.GetInstance().Process(CommandType.GET_TASKS_FROM_RANGE, parameters);
 		}
 		
-		
-		void changeRange(object sender, System.EventArgs e)
+		private void ChangeRange(object sender, System.EventArgs e)
 		{
-			if (this.start_dateTimePicker.Value > this.stop_dateTimePicker.Value) {
+			if (this.start_dateTimePicker.Value > this.stop_dateTimePicker.Value)
+			{
 				this.stop_dateTimePicker.Value = this.start_dateTimePicker.Value.AddMinutes(1);
 			}
 			
@@ -50,75 +49,84 @@ namespace Course_project.Views
 			parameters.AddParameter<DateTime>("StartTime", this.start_dateTimePicker.Value);
 			parameters.AddParameter<DateTime>("EndTime", this.stop_dateTimePicker.Value);
 			
-			taskToShow = (List<Task>)TaskController.GetInstance().Process(CommandType.GET_TASKS_FROM_RANGE, parameters);
+			this.taskToShow = (List<Task>)TaskController.GetInstance().Process(CommandType.GET_TASKS_FROM_RANGE, parameters);
 			
-			PrintTasks();
+			this.PrintTasks();
 		}
 		
-		void ShowTasksViewLoad(object sender, EventArgs e)
+		private void ShowTasksViewLoad(object sender, EventArgs e)
 		{	 
-			PrintTasks();
+			this.PrintTasks();
 		}
 		
 		private void PrintTasks()
 		{
-			tasksGridView.Rows.Clear();
+			this.tasksGridView.Rows.Clear();
 
-			foreach (Task task in taskToShow) {
+			foreach (Task task in this.taskToShow)
+			{
 				string[] row = task.ToStringArray();
-				tasksGridView.Rows.Add(row);
+				this.tasksGridView.Rows.Add(row);
 			}
-
 		}
 		
-		
-		void ShareTask_buttonClick(object sender, EventArgs e)
+		private void ShareTask_buttonClick(object sender, EventArgs e)
 		{
-			int rowIndex = tasksGridView.CurrentCell.RowIndex;
+			int rowIndex = this.tasksGridView.CurrentCell.RowIndex;
 			RequestParameters requestParameters = new RequestParameters();
-			requestParameters.AddParameter<Task>("Task", taskToShow[rowIndex]);
-			if ((bool)TaskController.GetInstance().Process(CommandType.ADD_SHARE_TASK, requestParameters)) {
+			requestParameters.AddParameter<Task>("Task", this.taskToShow[rowIndex]);
+			if ((bool)TaskController.GetInstance().Process(CommandType.ADD_SHARE_TASK, requestParameters))
+			{
 				MessageBox.Show("Task shared");
-			} else {
+			} 
+			else
+			{
 				MessageBox.Show("Task already shared");
 			}
 		}
 
-		void EditTask_buttonClick(object sender, EventArgs e)
+		private void EditTask_buttonClick(object sender, EventArgs e)
 		{
-			int selectedElement = tasksGridView.CurrentCell.RowIndex;
+			int selectedElement = this.tasksGridView.CurrentCell.RowIndex;
 			
 			Task taskClone = (Task)this.taskToShow[selectedElement].Clone();
 			
 			HardTaskDialogView hardTaskDialogView = new HardTaskDialogView(ViewMode.EDIT_MODE, taskClone);
 			
-			if (hardTaskDialogView.ShowDialog() != DialogResult.OK) {
+			if (hardTaskDialogView.ShowDialog() != DialogResult.OK)
+			{
 				return;
 			}
 				
 			RequestParameters requestParameters = new RequestParameters();
 			requestParameters.AddParameter<Task>("Task", taskClone);
 				
-			if ((bool)TaskController.GetInstance().Process(CommandType.UPDATE_TASK, requestParameters)) {
+			if ((bool)TaskController.GetInstance().Process(CommandType.UPDATE_TASK, requestParameters)) 
+			{
 				MessageBox.Show("Task changed");
 				this.taskToShow[selectedElement] = taskClone;
-				PrintTasks();
-			} else {
+				this.PrintTasks();
+			} 
+			else 
+			{
 				MessageBox.Show("Please select own task");
 			}
 		}
 		
-		void DeleteTask_buttonClick(object sender, EventArgs e)
+		private void DeleteTask_buttonClick(object sender, EventArgs e)
 		{
-			int selectedElement = tasksGridView.CurrentCell.RowIndex;			
+			int selectedElement = this.tasksGridView.CurrentCell.RowIndex;			
 			RequestParameters requestParameters = new RequestParameters();
 			requestParameters.AddParameter<Task>("Task", this.taskToShow[selectedElement]);
 				
-			if ((bool)TaskController.GetInstance().Process(CommandType.REMOVE_TASK, requestParameters)) {
-				taskToShow.RemoveAt(selectedElement);
-				tasksGridView.Rows.RemoveAt(selectedElement);
+			if ((bool)TaskController.GetInstance().Process(CommandType.REMOVE_TASK, requestParameters))
+			{
+				this.taskToShow.RemoveAt(selectedElement);
+				this.tasksGridView.Rows.RemoveAt(selectedElement);
 				MessageBox.Show("Task removed");
-			} else {
+			}
+			else
+			{
 				MessageBox.Show("Please select own task");
 			}
 		}

@@ -1,37 +1,41 @@
-﻿using System;
-using System.Windows.Forms;
-using Course_project.Controller;
-using Course_project.Entity.DB;
-using Course_project.Utils;
-
-namespace Course_project.Views
+﻿namespace Course_project.Views
 {
+	using System;
+	using System.Windows.Forms;
+	using Course_project.Controller;
+	using Course_project.Entity.DB;
+	using Course_project.Utils;
+	
 	public partial class ProfilingView : MainView
 	{
 		public ProfilingView()
 		{
-			InitializeComponent();
-			this.fileToolStripMenuItem.Enabled = false;
-			
-			fillGroupComboBox();
+			this.InitializeComponent();
+			this.DisableFileMenu();
+			this.FillGroupComboBox();
 		}
-		void SpentTime_buttonClick(object sender, EventArgs e)
+		
+		private void SpentTime_buttonClick(object sender, EventArgs e)
 		{
 			string group = this.group_comboBox.Text;
-			if (group.Equals("")) {
+			if (group.Equals(string.Empty)) 
+			{
 				MessageBox.Show("Please select group");
-			} else {
+			}
+			else
+			{
 				RequestParameters requestParameters = new RequestParameters();
-				requestParameters.AddParameter<String>("Group", this.group_comboBox.Text);
+				requestParameters.AddParameter<string>("Group", this.group_comboBox.Text);
 				int spentTime = (int)TaskController.GetInstance().Process(CommandType.GET_TIME_SPENT_BY_GROUP, requestParameters);
 				MessageBox.Show("On tasks with " + this.group_comboBox.Text + " group spent " + spentTime + " minute");
 			}
 		}
 
-		void fillGroupComboBox()
+		private void FillGroupComboBox()
 		{
 			UserGroups userGroups = (UserGroups)TaskController.GetInstance().Process(CommandType.GET_USER_GROUPS, null);	
-			foreach (String group in userGroups.Groups) {
+			foreach (string group in userGroups.Groups)
+			{
 				this.group_comboBox.Items.Add(group);
 			}
 		}

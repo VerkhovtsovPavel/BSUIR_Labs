@@ -1,12 +1,12 @@
-﻿using System;
-using System.Diagnostics;
-using System.Text;
-
-namespace Course_project.Utils
+﻿namespace Course_project.Utils
 {
+	using System;
+	using System.Diagnostics;
+	using System.Text;
+
 	public static class CommandLineCommander
 	{
-		public static Process executeCommand(string command)
+		public static Process ExecuteCommand(string command)
 		{
                 ProcessStartInfo procStartInfo = new ProcessStartInfo("cmd", "/c " + command);
                 procStartInfo.RedirectStandardOutput = true;

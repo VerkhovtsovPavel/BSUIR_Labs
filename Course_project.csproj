@@ -102,6 +102,7 @@
     <Compile Include="source\Model\TaskCommandManager.cs" />
     <Compile Include="source\Program.cs" />
     <Compile Include="source\Utils\CommandLineCommander.cs" />
+    <Compile Include="source\Utils\DeepCloneUtils.cs" />
     <Compile Include="source\Utils\HashUtils.cs" />
     <Compile Include="source\Utils\RequestParameters.cs" />
     <Compile Include="source\Utils\TimeUtils.cs" />

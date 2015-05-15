@@ -1,11 +1,12 @@
-﻿using System;
-
-namespace Course_project.TaskDao
+﻿namespace Course_project.TaskDao
 {
+	using System;
+	
 	public static class Dao
 	{
-		public static IDao getInstance(){
-			return LocalMongoDBDao.getInstance();
+		public static IDao GetInstance()
+		{
+			return LocalMongoDBDao.GetInstance();
 		}
 	}
 }

@@ -1,38 +1,45 @@
-﻿using System;
-using System.Windows;
-using Course_project.Controller;
-using Course_project.Utils;
-
-namespace Course_project.Views
+﻿namespace Course_project.Views
 {
+	using System;
+	using System.Windows;
+	using Course_project.Controller;
+	using Course_project.Utils;
 
 	public partial class LoginView : MainView
 	{
-
 		public LoginView()
 		{
-			InitializeComponent();
-			this.tasksToolStripMenuItem.Enabled = false;
-			this.profillingToolStripMenuItem.Enabled = false;
+			this.InitializeComponent();
+			this.DisableTaskAndProfillingMenu();
 		}
 		
-		void Login_submit_buttonClick(object sender, EventArgs e)
+		private void Login_submit_buttonClick(object sender, EventArgs e)
 		{
-			RequestParameters loginParameters = new RequestParameters();
-			
-			loginParameters.AddParameter<String>("Login", login_textBox.Text);
-			loginParameters.AddParameter<String>("Password" ,HashUtils.MD5Hash(password_textBox.Text));
-			if((bool)TaskController.GetInstance().Process(CommandType.LOGIN, loginParameters)){
-				MessageBox.Show("Login successfully");
-				goToCalendarePage();
-			}else{
-				MessageBox.Show("Incorrect login or password");
+			if(!this.CheckEmptyFields())
+			{
+				RequestParameters loginParameters = new RequestParameters();
+				
+				loginParameters.AddParameter<string>("Login", this.login_textBox.Text);
+				loginParameters.AddParameter<string>("Password" ,HashUtils.MD5Hash(this.password_textBox.Text));
+				if((bool)TaskController.GetInstance().Process(CommandType.LOGIN, loginParameters))
+				{
+					MessageBox.Show("Login successfully");
+					this.GoToCalendarePage();
+				}
+				else
+				{
+					MessageBox.Show("Incorrect login or password");
+				}
+			}
+			else
+			{
+				MessageBox.Show("Please complete all required fields");	
 			}
 		}
-		void LoginViewFormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+	
+		private bool CheckEmptyFields()
 		{
-			//Maybe dispose db server ???
+			return this.login_textBox.Text.Equals(string.Empty) || this.password_textBox.Text.Equals(string.Empty);
 		}
-		
 	}
 }

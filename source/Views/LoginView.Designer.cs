@@ -8,7 +8,7 @@
  */
 namespace Course_project.Views
 {
-	partial class LoginView
+	public partial class LoginView
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
@@ -26,11 +26,14 @@ namespace Course_project.Views
 		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
 		protected override void Dispose(bool disposing)
 		{
-			if (disposing) {
-				if (components != null) {
-					components.Dispose();
+			if (disposing)
+			{
+				if (this.components != null)
+				{
+					this.components.Dispose();
 				}
 			}
+			
 			base.Dispose(disposing);
 		}
 		
@@ -45,9 +48,8 @@ namespace Course_project.Views
 			this.login_label = new System.Windows.Forms.Label();
 			this.password_label = new System.Windows.Forms.Label();
 			this.SuspendLayout();
-			// 
-			// login_submit_button
-			// 
+
+			// login_submit_button 
 			this.login_submit_button.Location = new System.Drawing.Point(182, 126);
 			this.login_submit_button.Name = "login_submit_button";
 			this.login_submit_button.Size = new System.Drawing.Size(75, 23);
@@ -55,40 +57,35 @@ namespace Course_project.Views
 			this.login_submit_button.Text = "Submit";
 			this.login_submit_button.UseVisualStyleBackColor = true;
 			this.login_submit_button.Click += new System.EventHandler(this.Login_submit_buttonClick);
-			// 
+ 
 			// login_textBox
-			// 
 			this.login_textBox.Location = new System.Drawing.Point(114, 43);
 			this.login_textBox.Name = "login_textBox";
 			this.login_textBox.Size = new System.Drawing.Size(242, 20);
 			this.login_textBox.TabIndex = 1;
-			// 
+
 			// password_textBox
-			// 
 			this.password_textBox.Location = new System.Drawing.Point(114, 80);
 			this.password_textBox.Name = "password_textBox";
 			this.password_textBox.PasswordChar = '*';
 			this.password_textBox.Size = new System.Drawing.Size(242, 20);
 			this.password_textBox.TabIndex = 2;
-			// 
+
 			// login_label
-			// 
 			this.login_label.Location = new System.Drawing.Point(27, 40);
 			this.login_label.Name = "login_label";
 			this.login_label.Size = new System.Drawing.Size(67, 23);
 			this.login_label.TabIndex = 3;
 			this.login_label.Text = "Login";
-			// 
+			
 			// password_label
-			// 
 			this.password_label.Location = new System.Drawing.Point(27, 77);
 			this.password_label.Name = "password_label";
 			this.password_label.Size = new System.Drawing.Size(67, 23);
 			this.password_label.TabIndex = 4;
 			this.password_label.Text = "Password";
-			// 
+
 			// LoginView
-			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(427, 188);
 			this.Controls.Add(this.password_label);
@@ -96,8 +93,9 @@ namespace Course_project.Views
 			this.Controls.Add(this.password_textBox);
 			this.Controls.Add(this.login_textBox);
 			this.Controls.Add(this.login_submit_button);
+			this.MaximumSize = new System.Drawing.Size(443, 226);
+			this.MinimumSize = new System.Drawing.Size(443, 226);
 			this.Name = "LoginView";
-			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginViewFormClosing);
 			this.Controls.SetChildIndex(this.login_submit_button, 0);
 			this.Controls.SetChildIndex(this.login_textBox, 0);
 			this.Controls.SetChildIndex(this.password_textBox, 0);
@@ -105,7 +103,6 @@ namespace Course_project.Views
 			this.Controls.SetChildIndex(this.password_label, 0);
 			this.ResumeLayout(false);
 			this.PerformLayout();
-
 		}
 	}
 }

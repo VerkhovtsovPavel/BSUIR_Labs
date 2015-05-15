@@ -25,7 +25,7 @@ using Course_project.Model;
 
 		public object Process(CommandType request, Course_project.Utils.RequestParameters parameters)
 		{
-			return this.commandManager.process(request, parameters);
+			return this.commandManager.Process(request, parameters);
 		}
 	}
 }

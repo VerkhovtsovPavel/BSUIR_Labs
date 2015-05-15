@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using Course_project.Entity;
-using Course_project.Exception;
-using Course_project.Storage;
-using Course_project.TaskDao;
-using Course_project.Utils;
-
-namespace Course_project.Model.Command
+﻿namespace Course_project.Model.Command
 {
+	using System;
+	using System.Collections.Generic;
+	using Course_project.Controller;
+	using Course_project.Entity;
+	using Course_project.Exception;
+	using Course_project.Storage;
+	using Course_project.TaskDao;
+	using Course_project.Utils;
+
 	public class ApportionFlexibleTasksCommand : ICommand
 	{
 		private List<TimeGap> timeGaps = new List<TimeGap>();
@@ -15,132 +16,163 @@ namespace Course_project.Model.Command
 		
 		public object Execute(RequestParameters parameters)
 		{
-			//CHECK Ranking (order of tasks)
-			taskQueue = FlexibleTasksStorage.getInstance().rangeFlexibleTasks();
-			TimeGap allTime = FlexibleTasksStorage.getInstance().getFlexibleTasksTimeRange();
+			this.taskQueue = FlexibleTasksStorage.GetInstance().RangeFlexibleTasks();
+			TimeGap allTime = FlexibleTasksStorage.GetInstance().GetFlexibleTasksTimeRange();
 			
-			timeGaps.Add(allTime);
+			this.timeGaps.Add(allTime);
 			
-			List<Task> hardTasks = Dao.getInstance().getPrivateTasksFromRange(allTime.StartTime, allTime.EndTime, Session.GetSession().UserName);
+			List<Task> hardTasks = Dao.GetInstance().GetPrivateTasksFromRange(allTime.StartTime, allTime.EndTime, Session.GetSession().UserName);
 			hardTasks.Sort();
 			
-			excludeHardTasksTime(hardTasks);
+			this.ExcludeHardTasksTime(hardTasks);
 			
-			timeGaps.Sort();
+			this.timeGaps.Sort();
 			
-			apportionTasks();
+			this.ApportionTasks();
 			
-			FlexibleTasksStorage.getInstance().Clear();
+			FlexibleTasksStorage.GetInstance().Clear();
 			
 			return true;
 		}
 		
-		
-	
-		void excludeHardTasksTime(List<Task> hardTasks)
+		private void ExcludeHardTasksTime(List<Task> hardTasks)
 		{
-			foreach (Task hardTask in hardTasks) {
-				int lastElement = timeGaps.Count - 1;
-				if (timeGaps[lastElement].StartTime < hardTask.StartTime) {
-					timeGaps[lastElement].EndTime = hardTask.StartTime;
+			foreach (Task hardTask in hardTasks)
+			{
+				int lastElement = this.timeGaps.Count - 1;
+				if (this.timeGaps[lastElement].StartTime < hardTask.StartTime)
+				{
+					this.timeGaps[lastElement].EndTime = hardTask.StartTime;
 				}
 				
-				if (hardTask.StartTime < timeGaps[lastElement].StartTime) {
-					timeGaps[lastElement].StartTime = hardTask.EndTime;
-				} else if (timeGaps[lastElement].EndTime > hardTask.EndTime) {
-					timeGaps.Add(new TimeGap(hardTask.EndTime, timeGaps[lastElement].EndTime));
+				if (hardTask.StartTime < this.timeGaps[lastElement].StartTime)
+				{
+					this.timeGaps[lastElement].StartTime = hardTask.EndTime;
+				}
+				else if (this.timeGaps[lastElement].EndTime > hardTask.EndTime)
+				{
+					this.timeGaps.Add(new TimeGap(hardTask.EndTime, this.timeGaps[lastElement].EndTime));
 				}
 			}
 		}
 
-		void apportionTasks()
+		private void ApportionTasks()
 		{
-			while (taskQueue.Count != 0) {
-				FlexibleTask currentTask = taskQueue.Dequeue();
+			while (this.taskQueue.Count != 0)
+			{
+				FlexibleTask currentTask = this.taskQueue.Dequeue();
 				
 				List<TimeGap> permissibleTimeGaps = new List<TimeGap>();
 				
 				List<TimeGap> toAdd = new List<TimeGap>();
-				TimeGap toRemove = null;
+				List<TimeGap> toRemove = new List<TimeGap>();
 				
-				foreach (TimeGap timeGap in timeGaps) {
-					if (currentTask.StartTime >= timeGap.StartTime && timeGap.EndTime >= currentTask.EndTime) {
+				foreach (TimeGap timeGap in this.timeGaps)
+				{
+					if (currentTask.StartTime >= timeGap.StartTime && timeGap.EndTime >= currentTask.EndTime)
+					{
 						toAdd.Add(new TimeGap(currentTask.EndTime, timeGap.EndTime));
 						timeGap.EndTime = currentTask.StartTime;
 						TimeGap permissibleTimeGap = new TimeGap(currentTask.StartTime, currentTask.EndTime);
 						toAdd.Add(permissibleTimeGap);
 						permissibleTimeGaps.Add(permissibleTimeGap);
-					} else if (currentTask.StartTime < timeGap.StartTime && currentTask.EndTime > timeGap.EndTime) {
+					}
+					else if (currentTask.StartTime < timeGap.StartTime && currentTask.EndTime > timeGap.EndTime)
+					{
 						permissibleTimeGaps.Add(timeGap);
-					} else if (timeGap.StartTime > currentTask.StartTime && timeGap.StartTime < currentTask.EndTime) {
+					}
+					else if (timeGap.StartTime > currentTask.StartTime && timeGap.StartTime < currentTask.EndTime)
+					{
 						TimeGap permissibleTimeGap = new TimeGap(timeGap.StartTime, currentTask.EndTime);
 						permissibleTimeGaps.Add(permissibleTimeGap);
 						toAdd.Add(permissibleTimeGap);
 						timeGap.StartTime = currentTask.EndTime;
-					} else if (timeGap.EndTime > currentTask.StartTime && timeGap.EndTime < currentTask.EndTime) {
+					}
+					else if (timeGap.EndTime > currentTask.StartTime && timeGap.EndTime < currentTask.EndTime)
+					{
 						TimeGap permissibleTimeGap = new TimeGap(currentTask.StartTime, timeGap.EndTime);
 						permissibleTimeGaps.Add(permissibleTimeGap);
 						toAdd.Add(permissibleTimeGap);
 						timeGap.EndTime = currentTask.StartTime;
 					}
-					if (timeGap.getDuration() == 0) {
-							toRemove = timeGap;
+					
+					if (timeGap.GetDuration() == 0)
+					{
+						toRemove.Add(timeGap);
 					}
 				}
-				//CHECK if toRemove null
-				timeGaps.AddRange(toAdd);
-				timeGaps.Remove(toRemove);
 				
-				timeGaps.Sort();
+				this.timeGaps.AddRange(toAdd);
 				
-				foreach (TimeGap timeGap in permissibleTimeGaps) {
-					if (checkInterval(timeGap, currentTask)) {
+				foreach (TimeGap task in toRemove)
+				{
+					this.timeGaps.Remove(task);
+				}
+				
+				this.timeGaps.Sort();
+				
+				foreach (TimeGap timeGap in permissibleTimeGaps)
+				{
+					if (this.CheckInterval(timeGap, currentTask))
+					{
 						break;
 					}
 				}
 
-				if (currentTask.RequiredTime > 0) {
+				if (currentTask.RequiredTime > 0)
+				{
 					throw new CannotApportionTasks();
 				}
 				
-				foreach (FlexibleTask task in FlexibleTasksStorage.getInstance().getPermissibleTasks(null).Values) {
-					if (task.TotalDependantTasks.Contains(currentTask)) {
-						task.StartTime = Math.Max(task.StartTime, currentTask.EndTime);
+				foreach (FlexibleTask task in FlexibleTasksStorage.GetInstance().GetPermissibleTasks(null).Values)
+				{
+						if (task.DependedTasks.Contains(currentTask))
+						{
+							task.StartTime = Math.Max(task.StartTime, currentTask.EndTime);
+						}
 					}
 				}
 			}
-		}
 		
-
-		private bool checkInterval(TimeGap timeGap, FlexibleTask task)
+		private bool CheckInterval(TimeGap timeGap, FlexibleTask task)
 		{
-			if (timeGap.getDuration() > task.MinTimeOfOnePart) {
-				if (task.isHasFreeParts()) {
-					if (timeGap.getDuration() > task.RequiredTime) {
+			if (timeGap.GetDuration() > task.MinTimeOfOnePart)
+			{
+				if (task.IsHasFreeParts())
+				{
+					if (timeGap.GetDuration() > task.RequiredTime)
+					{
 						task.RealParts += 1;
-						addHardTask(task, timeGap.StartTime, task.RequiredTime);
+						task.EndTime = timeGap.StartTime + task.RequiredTime;
+						this.AddHardTask(task, timeGap.StartTime, task.RequiredTime);
 						timeGap.StartTime += task.RequiredTime;
 						task.RequiredTime = 0;
 						return true;
-					}	else if(timeGap.getDuration() == task.RequiredTime){
-						timeGaps.Remove(timeGap);
+					}
+					else if(timeGap.GetDuration() == task.RequiredTime)
+					{
+						this.timeGaps.Remove(timeGap);
 						task.RealParts += 1;
-						addHardTask(task, timeGap.StartTime, task.RequiredTime);
+						task.EndTime = timeGap.StartTime + task.RequiredTime;
+						this.AddHardTask(task, timeGap.StartTime, task.RequiredTime);
 						task.RequiredTime = 0;
 						return true;	
-					} else {
-						timeGaps.Remove(timeGap);
-						task.RequiredTime -= timeGap.getDuration();
+					}
+					else
+					{
+						this.timeGaps.Remove(timeGap);
+						task.RequiredTime -= timeGap.GetDuration();
 						task.RealParts += 1;
-						addHardTask(task, timeGap.StartTime, timeGap.getDuration());
+						this.AddHardTask(task, timeGap.StartTime, timeGap.GetDuration());
 						return false;
 					}
 				}
 			}
+			
 			return false;
 		}
 		
-		void addHardTask(FlexibleTask task, int startTime, int duration)
+		private void AddHardTask(FlexibleTask task, int startTime, int duration)
 		{
 			Task newTask = new Task();
 			
@@ -151,9 +183,7 @@ namespace Course_project.Model.Command
 			newTask.StartTime = startTime;
 			newTask.EndTime = startTime + duration;
 			
-			Dao.getInstance().addPrivateTask(newTask);
+			Dao.GetInstance().AddPrivateTask(newTask);
 		}
 	}
-	}
-
-
+}

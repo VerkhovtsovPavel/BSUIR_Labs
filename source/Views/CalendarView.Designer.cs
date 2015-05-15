@@ -6,7 +6,7 @@
  */
 namespace Course_project.Views
 {
-	partial class CalendarView
+	public partial class CalendarView
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
@@ -20,11 +20,14 @@ namespace Course_project.Views
 		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
 		protected override void Dispose(bool disposing)
 		{
-			if (disposing) {
-				if (components != null) {
-					components.Dispose();
+			if (disposing)
+			{
+				if (this.components != null)
+				{
+					this.components.Dispose();
 				}
 			}
+			
 			base.Dispose(disposing);
 		}
 		
@@ -37,28 +40,27 @@ namespace Course_project.Views
 		{
 			this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
 			this.SuspendLayout();
-			// 
-			// monthCalendar1
-			// 
+			
+			// monthCalendar1 
 			this.monthCalendar1.CalendarDimensions = new System.Drawing.Size(3, 2);
 			this.monthCalendar1.Location = new System.Drawing.Point(19, 33);
 			this.monthCalendar1.Name = "monthCalendar1";
 			this.monthCalendar1.TabIndex = 0;
 			this.monthCalendar1.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendarDateSelected);
-			// 
+
 			// CalendarView
-			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(537, 355);
+			this.ClientSize = new System.Drawing.Size(553, 393);
 			this.Controls.Add(this.monthCalendar1);
+			this.MaximumSize = new System.Drawing.Size(553, 393);
+			this.MinimumSize = new System.Drawing.Size(553, 393);
 			this.Name = "CalendarView";
 			this.Text = "Calendar";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CalendarViewFormClosed);
 			this.Controls.SetChildIndex(this.monthCalendar1, 0);
 			this.ResumeLayout(false);
 			this.PerformLayout();
-
 		}
 	}
 }

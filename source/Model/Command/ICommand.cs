@@ -1,8 +1,8 @@
-﻿using System;
-using Course_project.Utils;
-
-namespace Course_project.Model.Command
+﻿namespace Course_project.Model.Command
 {
+	using System;
+	using Course_project.Utils;
+	
 	public interface ICommand
 	{
 		object Execute(RequestParameters parameters);

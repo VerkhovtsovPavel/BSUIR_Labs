@@ -1,32 +1,38 @@
-using System;
-using System.Collections.Generic;
-using Course_project.Entity;
-using Course_project.Entity.DB;
-
 namespace Course_project.TaskDao
 {
+	using System;
+	using System.Collections.Generic;
+	using Course_project.Entity;
+	using Course_project.Entity.DB;
+
 	public interface IDao
 	{
-		List<Task> getPrivateTasks(string login);
-		List<Task> getSharedTasks(string login);
-		List<Task> getPrivateTasksFromRange(int start, int stop, string login);
-		List<Task> getSharedTasksFromRange(int start, int stop, string login);
+		List<Task> GetPrivateTasks(string login);
 		
-		List<Task> getTasksByGroup(string login, string group);
+		List<Task> GetSharedTasks(string login);
+		
+		List<Task> GetPrivateTasksFromRange(int start, int stop, string login);
+		
+		List<Task> GetSharedTasksFromRange(int start, int stop, string login);
+		
+		List<Task> GetTasksByGroup(string login, string group);
 
-		void removeTask(Task task);
+		void RemoveTask(Task task);
 		
-		User checkUser(string login, string password);
+		User CheckUserIsRegistration(string login, string password);
+		
 		bool CheckUserLogin(string login);
 		
 		void AddUser(User user);
 		
-		void addPrivateTask(Task task);
-		void addSharedTask(Task task);
+		void AddPrivateTask(Task task);
+		
+		void AddSharedTask(Task task);
 
-		void updateGroups(UserGroups userGroups);
-		void updateTask(Task task);
-		UserGroups getUserGroups(string login);
+		void UpdateGroups(UserGroups userGroups);
+		
+		void UpdateTask(Task task);
+		
+		UserGroups GetUserGroups(string login);
 	}
 }
-

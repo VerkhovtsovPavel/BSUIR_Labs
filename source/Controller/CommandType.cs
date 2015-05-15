@@ -1,6 +1,7 @@
 ﻿namespace Course_project.Controller
 {
 	using System;
+
 	public enum CommandType
 	{
 		ADD_PRIVATE_TASK,

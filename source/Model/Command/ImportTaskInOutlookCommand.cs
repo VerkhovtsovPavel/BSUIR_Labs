@@ -1,51 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using Microsoft.Office.Interop.Outlook;
-using Course_project.Entity;
-using Course_project.Exception;
-using Course_project.TaskDao;
-using Course_project.Utils;
-
-namespace Course_project.Model.Command
+﻿namespace Course_project.Model.Command
 {
+	using System;
+	using System.Collections.Generic;
+	using System.Runtime.InteropServices;
+	using Microsoft.Office.Interop.Outlook;
+	using Course_project.Entity;
+	using Course_project.Exception;
+	using Course_project.TaskDao;
+	using Course_project.Utils;
+
 	public class ImportTaskInOutlookCommand : ICommand
 	{
-
-	public object Execute(RequestParameters parameters)
-	{
-		List<Task> tasks = Dao.getInstance().getPrivateTasks(Session.GetSession().UserName);
-		tasks.AddRange(Dao.getInstance().getSharedTasks(Session.GetSession().UserName));
+		public object Execute(RequestParameters parameters)
+		{
+			List<Task> tasks = Dao.GetInstance().GetPrivateTasks(Session.GetSession().UserName);
+			tasks.AddRange(Dao.GetInstance().GetSharedTasks(Session.GetSession().UserName));
 		
-		try {
-				Application olApp = (Application)new Application();
-				NameSpace mapiNS = olApp.GetNamespace("MAPI");
+			try
+			{
+				Application application = (Application)new Application();
+				NameSpace mapiNS = application.GetNamespace("MAPI");
 
-				mapiNS.Logon("", null, null, null);
+				mapiNS.Logon(string.Empty, null, null, null);
 
 				AppointmentItem apt = null;
-				foreach (Task task in tasks) {
-					apt = (AppointmentItem)olApp.CreateItem(OlItemType.olAppointmentItem);
+				foreach (Task task in tasks)
+				{
+					apt = (AppointmentItem)application.CreateItem(OlItemType.olAppointmentItem);
 					apt.Subject = task.Title;
 					apt.Body = task.Owner + " " + task.Id;
 
-					apt.Start = TimeUtils.convertUnixTimeToDateTime(task.StartTime);
-					apt.End = TimeUtils.convertUnixTimeToDateTime(task.EndTime);
+					apt.Start = TimeUtils.ConvertUnixTimeToDateTime(task.StartTime);
+					apt.End = TimeUtils.ConvertUnixTimeToDateTime(task.EndTime);
 
 					apt.ReminderMinutesBeforeStart = 15;        
 					apt.BusyStatus = OlBusyStatus.olTentative; 
 
 					apt.AllDayEvent = false;
-					apt.Location = "";
+					apt.Location = string.Empty;
 
 					apt.Save();
 				}
+				
 				return true;
-			} catch (COMException) {
+			}
+			catch (COMException)
+			{
 				throw new OutlookNotFoundException();
 			}
-	}
-
-
+		}
 	}
 }

@@ -1,24 +1,25 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace Course_project.Views
+﻿namespace Course_project.Views
 {
+	using System;
+	using System.Windows.Forms;
+
 	public partial class CalendarView : MainView
 	{
-
 		public CalendarView()
 		{
-			InitializeComponent();
-			this.fileToolStripMenuItem.Enabled = false;
+			this.InitializeComponent();
+			this.DisableFileMenu();
 		}
-		void MonthCalendarDateSelected(object sender, DateRangeEventArgs e)
+		
+		private void MonthCalendarDateSelected(object sender, DateRangeEventArgs e)
 		{
 			DateTime begin = ((MonthCalendar) sender).SelectionStart;
 			
 			TasksView showTasksView = new TasksView(begin);
 			showTasksView.Show();
 		}
-		void CalendarViewFormClosed(object sender, FormClosedEventArgs e)
+		
+		private void CalendarViewFormClosed(object sender, FormClosedEventArgs e)
 		{
 			Application.Exit();
 		}

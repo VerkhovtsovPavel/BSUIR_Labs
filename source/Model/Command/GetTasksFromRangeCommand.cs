@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Course_project.Entity;
-using Course_project.TaskDao;
-using Course_project.Utils;
-
-namespace Course_project.Model.Command
+﻿namespace Course_project.Model.Command
 {
+	using System;
+	using System.Collections.Generic;
+	using Course_project.Entity;
+	using Course_project.TaskDao;
+	using Course_project.Utils;
 
 	public class GetTasksFromRangeCommand : ICommand
 	{
@@ -14,8 +13,8 @@ namespace Course_project.Model.Command
 			int startUnixTime = TimeUtils.DateTimeToUnixTime(parameters.GetParameter<DateTime>("StartTime"));
 			int stopUnixTime = TimeUtils.DateTimeToUnixTime(parameters.GetParameter<DateTime>("EndTime"));
 			
-			List<Task> taskToDay = Dao.getInstance().getPrivateTasksFromRange(startUnixTime, stopUnixTime, Session.GetSession().UserName);
-			taskToDay.AddRange(Dao.getInstance().getSharedTasksFromRange(startUnixTime, stopUnixTime, Session.GetSession().UserName));
+			List<Task> taskToDay = Dao.GetInstance().GetPrivateTasksFromRange(startUnixTime, stopUnixTime, Session.GetSession().UserName);
+			taskToDay.AddRange(Dao.GetInstance().GetSharedTasksFromRange(startUnixTime, stopUnixTime, Session.GetSession().UserName));
 			
 			return taskToDay;
 		}

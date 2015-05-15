@@ -1,130 +1,153 @@
-﻿using System;
-using System.Windows.Forms;
-using Course_project.Controller;
-using Course_project.Exception;
-
-namespace Course_project.Views
+﻿namespace Course_project.Views
 {
+	using System;
+	using System.Windows.Forms;
+	using Course_project.Controller;
+	using Course_project.Exception;
 
 	public partial class MainView : Form
 	{
 		protected MainView()
 		{
-			InitializeComponent();
+			this.InitializeComponent();
 		}
 		
-		protected void goToRegistrationPage()
+		protected void GoToRegistrationPage()
 		{
 			RegistrationView registrationView = new RegistrationView();
 			registrationView.Show();
-			Hide();
+			this.Hide();
 		}
 		
-		protected void goToAddFlexibleTaskPage()
+		protected void GoToAddFlexibleTaskPage()
 		{
 			FlexibleTaskDialogView addFlexibleTaskView = new FlexibleTaskDialogView(ViewMode.ADD_MODE, null);
 			addFlexibleTaskView.ShowDialog();
 		}
 		
-		protected void goToAddHardTaskPage()
+		protected void GoToAddHardTaskPage()
 		{
 			HardTaskDialogView addHardTaskView = new HardTaskDialogView(ViewMode.ADD_MODE, null);
 			addHardTaskView.ShowDialog();
 		}
 		
-		protected void goToCalendarePage()
+		protected void GoToCalendarePage()
 		{
 			CalendarView calendarView = new CalendarView();
 			calendarView.Show();
-			Hide();
+			this.Hide();
 		}
 		
-		protected void goToProfilingPage()
+		protected void GoToProfilingPage()
 		{
 			ProfilingView profilingView = new ProfilingView();
 			profilingView.Show();
 		}
+		
+		protected void ExitWithApplication()
+		{
+			this.Close();
+		}
 
-		void goToGroupView()
+		protected void DisableFileMenu()
+		{
+			this.fileToolStripMenuItem.Enabled = false;
+		}
+		
+		protected void DisableTaskAndProfillingMenu()
+		{
+			this.tasksToolStripMenuItem.Enabled = false;
+			this.profillingToolStripMenuItem.Enabled = false;
+		}
+		
+		private void GoToGroupView()
 		{
 			UserGroupView groupView = new UserGroupView();
 			groupView.Show();
 		}
-		void goToLoginPage()
+		
+		private void GoToLoginPage()
 		{
 			LoginView loginView = new LoginView();
 			loginView.Show();
-			Hide();
+			this.Hide();
 		}
 
-		void goToFlexibleTaskListPage()
+		private void GoToFlexibleTaskListPage()
 		{
 			FlexibleTaskView dependentTaskView = new FlexibleTaskView(null, null, ViewMode.EDIT_MODE);
 			dependentTaskView.Show();
 		}
-
-		protected void exitWithApplication()
+		
+		private void ExitToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			Close();
+			this.ExitWithApplication();
 		}
 		
-		void ExitToolStripMenuItemClick(object sender, EventArgs e)
+		private void RegistrationToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			exitWithApplication();
+			this.GoToRegistrationPage();
 		}
 		
-		void RegistrationToolStripMenuItemClick(object sender, EventArgs e)
+		private void AddFlexibleTaskToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			goToRegistrationPage();
+			this.GoToAddFlexibleTaskPage();
 		}
 		
-		void AddFlexibleTaskToolStripMenuItemClick(object sender, EventArgs e)
+		private void AddHardTaskToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			goToAddFlexibleTaskPage();
+			this.GoToAddHardTaskPage();
 		}
 		
-		void AddHardTaskToolStripMenuItemClick(object sender, EventArgs e)
+		private void ShowTasksToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			goToAddHardTaskPage();
+			this.GoToCalendarePage();
 		}
-		void ShowTasksToolStripMenuItemClick(object sender, EventArgs e)
+		
+		private void ProfilingTasksToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			goToCalendarePage();
+			this.GoToProfilingPage();
 		}
-		void ProfilingTasksToolStripMenuItemClick(object sender, EventArgs e)
+		
+		private void ImportTasksInOutlookToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			goToProfilingPage();
-		}
-		void ImportTasksInOutlookToolStripMenuItemClick(object sender, EventArgs e)
-		{
-			try {
+			try
+			{
 				TaskController.GetInstance().Process(CommandType.IMPORT_TO_OUTLOOK, null);
 				MessageBox.Show("Task imported");
-			} catch (OutlookNotFoundException) {
+			}
+			catch (OutlookNotFoundException)
+			{
 				MessageBox.Show("Outlook don't install in out system");
 			}
 		}
-		void LoginToolStripMenuItemClick(object sender, EventArgs e)
+		
+		private void LoginToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			goToLoginPage();
+			this.GoToLoginPage();
 		}
-		void EditTaskGroupToolStripMenuItemClick(object sender, EventArgs e)
+		
+		private void EditTaskGroupToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			goToGroupView();
+			this.GoToGroupView();
 		}
-		void EditFlexibleTaskToolStripMenuItemClick(object sender, EventArgs e)
+		
+		private void EditFlexibleTaskToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			goToFlexibleTaskListPage();
+			this.GoToFlexibleTaskListPage();
 		}
-		void ApportionFlexibleTasksToolStripMenuItemClick(object sender, EventArgs e)
+		
+		private void ApportionFlexibleTasksToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			try{
+			try
+			{
 				TaskController.GetInstance().Process(CommandType.APPORTION_FLEXIBLE_TASKS, null);
 				MessageBox.Show("Tasks apportion");
-			} catch (CannotApportionTasks){
+			}
+			catch (CannotApportionTasks)
+			{
 				MessageBox.Show("Cannot apportion task with current conditions");
 			}
 		}
-		
 	}
 }
