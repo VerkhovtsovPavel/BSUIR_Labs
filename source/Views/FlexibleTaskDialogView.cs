@@ -58,6 +58,11 @@
 				
 					flexibleTaskParameters.AddParameter<decimal>("MaxParts", this.maxPatrs_numericUpDown.Value);
 					flexibleTaskParameters.AddParameter<decimal>("MinTimeFromPart", this.numericUpDown1.Value);
+					flexibleTaskParameters.AddParameter<decimal>("RequestedTime", this.requestedTime_numericUpDown.Value);
+					
+					this.maxPatrs_numericUpDown.Value =  this.maxPatrs_numericUpDown.Value;
+					this.numericUpDown1.Value = this.numericUpDown1.Value;
+					this.requestedTime_numericUpDown.Value = this.requestedTime_numericUpDown.Value;
 				
 					List<FlexibleTask> dependentTasksList = new List<FlexibleTask>();
 			
