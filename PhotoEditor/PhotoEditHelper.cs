@@ -47,7 +47,7 @@ namespace PhotoEditor
             var newImage = new Bitmap(sourceBitmap.Width, sourceBitmap.Height);
             using (graphics = Graphics.FromImage(newImage)){
             	            	graphics.DrawImage(sourceBitmap, 0, 0, newImage.Width, newImage.Height);
-            	            		graphics.DrawImage(sourceBitmap, new Rectangle(selectionLT.X, selectionLT.Y, selectionRD.X, selectionRD.Y), selectionLT.X, selectionLT.Y, selectionRD.X, selectionRD.Y, GraphicsUnit.Pixel, attributes);
+            	            		graphics.DrawImage(sourceBitmap, new Rectangle(selectionLT.X, selectionLT.Y, selectionRD.X, selectionRD.Y), selectionLT.X, selectionLT.Y, selectionLT.X - selectionRD.X, selectionLT.Y - selectionRD.Y, GraphicsUnit.Pixel, attributes);
             	
             }
             	

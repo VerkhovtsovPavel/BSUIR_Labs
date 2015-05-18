@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -32,10 +30,10 @@ namespace PhotoEditor
 				mainPictureBox.Height = image.Height;
 				mainPictureBox.Width = image.Width;
 				mainPictureBox.Image = image;
+				_Y = new Point(image.Width, image.Height);
 				isFromFile = true;
 				
-				bmpBack = (Bitmap)this.mainPictureBox.Image.Clone();
-				
+				bmpBack = (Bitmap)this.mainPictureBox.Image.Clone();	
 			}
 		}
 
@@ -56,26 +54,26 @@ namespace PhotoEditor
 
 		private void resizePlusButton_Click(object sender, EventArgs e)
 		{
-			zoomCounter++;
-			if (zoomCounter < 5) {
-				bitmap = PhotoEditHelper.AdjustImage(new Bitmap(originalBitmap, originalBitmap.Width + 5 * (originalBitmap.Width / 100), originalBitmap.Height + 5 * (originalBitmap.Height / 100)), brightnessTrack.Value, contrastTrack.Value, redColorTrack.Value, greenColorTrack.Value,
+			if (zoomCounter < 10) {
+				bitmap = PhotoEditHelper.AdjustImage(new Bitmap(originalBitmap, bitmap.Width + 5 * (bitmap.Width / 100), bitmap.Height + 5 * (bitmap.Height / 100)), brightnessTrack.Value, contrastTrack.Value, redColorTrack.Value, greenColorTrack.Value,
 					blueColorTrack.Value, _X, _Y);
 				mainPictureBox.Width = bitmap.Width;
 				mainPictureBox.Height = bitmap.Height;
 				mainPictureBox.Image = bitmap;
+				zoomCounter++;
 				//originalBitmap = bitmap;
 			}
 		}
 
 		private void resizeMinusButton_Click(object sender, EventArgs e)
 		{
-			zoomCounter--;
-			if (zoomCounter > -5) {
-				bitmap = PhotoEditHelper.AdjustImage(new Bitmap(originalBitmap, originalBitmap.Width - 5 * (originalBitmap.Width / 100), originalBitmap.Height - 5 *  (originalBitmap.Height / 100)), brightnessTrack.Value, contrastTrack.Value, redColorTrack.Value, greenColorTrack.Value,
+			if (zoomCounter > -10) {
+				bitmap = PhotoEditHelper.AdjustImage(new Bitmap(originalBitmap, bitmap.Width - 5 * (bitmap.Width / 100), bitmap.Height - 5 *  (bitmap.Height / 100)), brightnessTrack.Value, contrastTrack.Value, redColorTrack.Value, greenColorTrack.Value,
 					blueColorTrack.Value, _X, _Y);
 				mainPictureBox.Width = bitmap.Width;
 				mainPictureBox.Height = bitmap.Height;
 				mainPictureBox.Image = bitmap;
+				zoomCounter--;
 				//originalBitmap = bitmap;
 			}
 		}
@@ -83,9 +81,12 @@ namespace PhotoEditor
 		private void changeImage(object sender, EventArgs e)
 		{
 			if (isFromFile) {
-				bitmap = PhotoEditHelper.AdjustImage(originalBitmap, brightnessTrack.Value, contrastTrack.Value, redColorTrack.Value, greenColorTrack.Value,
+				bitmap = PhotoEditHelper.AdjustImage(new Bitmap(originalBitmap, bitmap.Width, bitmap.Height), brightnessTrack.Value, contrastTrack.Value, redColorTrack.Value, greenColorTrack.Value,
 					blueColorTrack.Value, _X, _Y);
 				mainPictureBox.Image = bitmap;
+				
+				Graphics g =  Graphics.FromImage(this.mainPictureBox.Image);
+				g.DrawRectangle(new Pen(Color.Black), _X.X, _X.Y, _Y.X - _X.X, _Y.Y - _X.Y);
 			}
 		}
 		
@@ -124,17 +125,12 @@ namespace PhotoEditor
 			_X.X = e.X;
 			_X.Y = e.Y;
 		}
-
-		private void Scale(Point p1, Point p2)
-		{
-
-		}
-
-
+		
+//TODO Array or list local(not full) filters.
 
 		private Bitmap bmPhoto;
 		private Bitmap bmpBack = new Bitmap(1,1);
-		private Point _X, _Y;
+		private Point _X = new Point(0,0), _Y;
 
 	}
 }
