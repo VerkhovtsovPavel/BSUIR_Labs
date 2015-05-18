@@ -127,6 +127,7 @@ namespace PhotoEditor
 		}
 		
 //TODO Array or list local(not full) filters.
+//TODO 
 
 		private Bitmap bmPhoto;
 		private Bitmap bmpBack = new Bitmap(1,1);
