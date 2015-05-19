@@ -36,7 +36,6 @@
         	this.saveFile = new System.Windows.Forms.ToolStripMenuItem();
         	this.exit = new System.Windows.Forms.ToolStripMenuItem();
         	this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-        	this.brightnessTrack = new System.Windows.Forms.TrackBar();
         	this.labelBrightness = new System.Windows.Forms.Label();
         	this.contrastTrack = new System.Windows.Forms.TrackBar();
         	this.greenColorTrack = new System.Windows.Forms.TrackBar();
@@ -48,13 +47,14 @@
         	this.label1 = new System.Windows.Forms.Label();
         	this.resizePlusButton = new System.Windows.Forms.Button();
         	this.resizaMinusButton = new System.Windows.Forms.Button();
+        	this.brightnessTrack = new System.Windows.Forms.TrackBar();
         	((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
         	this.menuStrip1.SuspendLayout();
-        	((System.ComponentModel.ISupportInitialize)(this.brightnessTrack)).BeginInit();
         	((System.ComponentModel.ISupportInitialize)(this.contrastTrack)).BeginInit();
         	((System.ComponentModel.ISupportInitialize)(this.greenColorTrack)).BeginInit();
         	((System.ComponentModel.ISupportInitialize)(this.redColorTrack)).BeginInit();
         	((System.ComponentModel.ISupportInitialize)(this.blueColorTrack)).BeginInit();
+        	((System.ComponentModel.ISupportInitialize)(this.brightnessTrack)).BeginInit();
         	this.SuspendLayout();
         	// 
         	// mainPictureBox
@@ -116,17 +116,6 @@
         	this.exit.Text = "Exit";
         	this.exit.Click += new System.EventHandler(this.exit_Click);
         	// 
-        	// brightnessTrack
-        	// 
-        	this.brightnessTrack.Location = new System.Drawing.Point(67, 26);
-        	this.brightnessTrack.Margin = new System.Windows.Forms.Padding(2);
-        	this.brightnessTrack.Maximum = 100;
-        	this.brightnessTrack.Name = "brightnessTrack";
-        	this.brightnessTrack.Size = new System.Drawing.Size(168, 45);
-        	this.brightnessTrack.TabIndex = 4;
-        	this.brightnessTrack.Tag = "Brightess";
-        	this.brightnessTrack.Scroll += new System.EventHandler(this.changeImage);
-        	// 
         	// labelBrightness
         	// 
         	this.labelBrightness.AutoSize = true;
@@ -141,10 +130,12 @@
         	// 
         	this.contrastTrack.Location = new System.Drawing.Point(67, 75);
         	this.contrastTrack.Margin = new System.Windows.Forms.Padding(2);
+        	this.contrastTrack.Minimum = 1;
         	this.contrastTrack.Name = "contrastTrack";
         	this.contrastTrack.Size = new System.Drawing.Size(168, 45);
         	this.contrastTrack.TabIndex = 6;
         	this.contrastTrack.Tag = "Contrast";
+        	this.contrastTrack.Value = 1;
         	this.contrastTrack.Scroll += new System.EventHandler(this.changeImage);
         	// 
         	// greenColorTrack
@@ -242,6 +233,17 @@
         	this.resizaMinusButton.UseVisualStyleBackColor = true;
         	this.resizaMinusButton.Click += new System.EventHandler(this.resizeMinusButton_Click);
         	// 
+        	// brightnessTrack
+        	// 
+        	this.brightnessTrack.Location = new System.Drawing.Point(67, 26);
+        	this.brightnessTrack.Margin = new System.Windows.Forms.Padding(2);
+        	this.brightnessTrack.Maximum = 100;
+        	this.brightnessTrack.Name = "brightnessTrack";
+        	this.brightnessTrack.Size = new System.Drawing.Size(168, 45);
+        	this.brightnessTrack.TabIndex = 4;
+        	this.brightnessTrack.Tag = "Brightess";
+        	this.brightnessTrack.Scroll += new System.EventHandler(this.changeImage);
+        	// 
         	// PhotoEditorForm
         	// 
         	this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -268,11 +270,11 @@
         	((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).EndInit();
         	this.menuStrip1.ResumeLayout(false);
         	this.menuStrip1.PerformLayout();
-        	((System.ComponentModel.ISupportInitialize)(this.brightnessTrack)).EndInit();
         	((System.ComponentModel.ISupportInitialize)(this.contrastTrack)).EndInit();
         	((System.ComponentModel.ISupportInitialize)(this.greenColorTrack)).EndInit();
         	((System.ComponentModel.ISupportInitialize)(this.redColorTrack)).EndInit();
         	((System.ComponentModel.ISupportInitialize)(this.blueColorTrack)).EndInit();
+        	((System.ComponentModel.ISupportInitialize)(this.brightnessTrack)).EndInit();
         	this.ResumeLayout(false);
         	this.PerformLayout();
 
