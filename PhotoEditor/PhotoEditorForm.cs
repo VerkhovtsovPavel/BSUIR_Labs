@@ -57,24 +57,43 @@ namespace PhotoEditor
 
 		private void resizePlusButton_Click(object sender, EventArgs e)
 		{
-			if (zoomCounter < 10) {
+			if (zoomCounter < 5) {
+				rigthDown.X = rigthDown.X + 5 * rigthDown.X / 100;
+				rigthDown.Y = rigthDown.Y + 5 * rigthDown.Y / 100;
+				leftUp.X = leftUp.X + 5 * leftUp.X / 100;
+				leftUp.Y = leftUp.Y + 5 * leftUp.Y / 100;
+				
 				bitmap = PhotoEditHelper.AdjustImage(new Bitmap(originalBitmap, bitmap.Width + 5 * (bitmap.Width / 100), bitmap.Height + 5 * (bitmap.Height / 100)), brightnessTrack.Value, contrastTrack.Value, redColorTrack.Value, greenColorTrack.Value,
 					blueColorTrack.Value, leftUp, rigthDown);
 				mainPictureBox.Width = bitmap.Width;
 				mainPictureBox.Height = bitmap.Height;
 				mainPictureBox.Image = bitmap;
+				
+				Graphics g = Graphics.FromImage(this.mainPictureBox.Image);
+				g.DrawRectangle(new Pen(Color.Black), leftUp.X, leftUp.Y, rigthDown.X - leftUp.X, rigthDown.Y - leftUp.Y);
+				
 				zoomCounter++;
 			}
 		}
 
 		private void resizeMinusButton_Click(object sender, EventArgs e)
 		{
-			if (zoomCounter > -10) {
-				bitmap = PhotoEditHelper.AdjustImage(new Bitmap(originalBitmap, bitmap.Width - 5 * (bitmap.Width / 100), bitmap.Height - 5 *  (bitmap.Height / 100)), brightnessTrack.Value, contrastTrack.Value, redColorTrack.Value, greenColorTrack.Value,
+			if (zoomCounter > -5) {
+				rigthDown.X = rigthDown.X - 5 * rigthDown.X / 100;
+				rigthDown.Y = rigthDown.Y - 5 * rigthDown.Y / 100;
+				leftUp.X = leftUp.X - 5 * leftUp.X / 100;
+				leftUp.Y = leftUp.Y - 5 * leftUp.Y / 100;
+				
+				
+				bitmap = PhotoEditHelper.AdjustImage(new Bitmap(originalBitmap, bitmap.Width - 5 * (bitmap.Width / 100), bitmap.Height - 5 * (bitmap.Height / 100)), brightnessTrack.Value, contrastTrack.Value, redColorTrack.Value, greenColorTrack.Value,
 					blueColorTrack.Value, leftUp, rigthDown);
 				mainPictureBox.Width = bitmap.Width;
 				mainPictureBox.Height = bitmap.Height;
 				mainPictureBox.Image = bitmap;
+				
+				Graphics g = Graphics.FromImage(this.mainPictureBox.Image);
+				g.DrawRectangle(new Pen(Color.Black), leftUp.X, leftUp.Y, rigthDown.X - leftUp.X, rigthDown.Y - leftUp.Y);
+				
 				zoomCounter--;
 			}
 		}
@@ -86,7 +105,7 @@ namespace PhotoEditor
 					blueColorTrack.Value, leftUp, rigthDown);
 				mainPictureBox.Image = bitmap;
 				
-				Graphics g =  Graphics.FromImage(this.mainPictureBox.Image);
+				Graphics g = Graphics.FromImage(this.mainPictureBox.Image);
 				g.DrawRectangle(new Pen(Color.Black), leftUp.X, leftUp.Y, rigthDown.X - leftUp.X, rigthDown.Y - leftUp.Y);
 			}
 		}
@@ -98,6 +117,7 @@ namespace PhotoEditor
 			this.mainPictureBox.Invalidate();
 			rigthDown.X = e.X;
 			rigthDown.Y = e.Y;
+			changeImage(sender, e);
 		}
 
 		private void image_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -115,12 +135,15 @@ namespace PhotoEditor
 
 		private void image_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
-			bmpBack = PhotoEditHelper.AdjustImage(originalBitmap, brightnessTrack.Value, contrastTrack.Value, redColorTrack.Value, greenColorTrack.Value,
-					blueColorTrack.Value, leftUp, rigthDown);
 			leftUp.X = e.X;
 			leftUp.Y = e.Y;
 		}
-		
-//TODO Array or list local(not full) filters.
+
+		void deleteSelection(object sender, MouseEventArgs e)
+		{
+			leftUp = new Point(0, 0);
+			rigthDown = new Point(mainPictureBox.Width, mainPictureBox.Height);
+			changeImage(sender, e);
+		}
 	}
 }

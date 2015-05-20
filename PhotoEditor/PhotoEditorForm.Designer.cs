@@ -267,6 +267,7 @@
         	this.Margin = new System.Windows.Forms.Padding(2);
         	this.Name = "PhotoEditorForm";
         	this.Text = "Photo Editor";
+        	this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.deleteSelection);
         	((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).EndInit();
         	this.menuStrip1.ResumeLayout(false);
         	this.menuStrip1.PerformLayout();
