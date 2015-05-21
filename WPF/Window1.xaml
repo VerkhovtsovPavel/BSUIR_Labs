@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Window
-	x:Class="WPF.Window1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="WPF.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	Title="WPF"
 	Height="384"
 	Width="647">
@@ -143,5 +143,28 @@
 			VerticalAlignment="Top"
 			Margin="14,223.5,0,0"
 			Grid.Row="0" />
+		<Button
+			x:Name="resize_plus"
+			Content="+"
+			Height="23"
+			Width="25"
+			Click="resize_plus_Click"
+			RenderTransformOrigin="0.46,0.587"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Top"
+			Margin="11.5,262,0,0" />
+		<Button
+			Content="-"
+			x:Name="resize_minus"
+			Width="26"
+			Height="23"
+			Click="resize_minus_Click"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Top"
+			Margin="48,262,0,0" />
 	</Grid>
 </Window>
