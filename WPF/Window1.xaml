@@ -3,18 +3,18 @@
 	x:Class="WPF.Window1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	Title="WPF"
 	Height="384"
-	Width="547">
+	Width="647">
 	<Grid
 		RenderTransformOrigin="0.4665,0.4944">
 		<Menu
 			x:Name="Menu"
-			Width="535"
 			Height="33"
 			Grid.Column="0"
 			Grid.Row="0"
 			HorizontalAlignment="Left"
 			VerticalAlignment="Top"
-			Margin="0,0,0,0">
+			Margin="0,0,0,0"
+			Width="3000">
 			<MenuItem
 				x:Name="openFile"
 				Header="Open"
@@ -47,87 +47,101 @@
 			Grid.Row="0"
 			HorizontalAlignment="Left"
 			VerticalAlignment="Top"
-			Margin="49,75,0,0" />
+			Margin="61,72,0,0"
+			Minimum="0"
+			Maximum="255"
+			Value="0" />
 		<Slider
 			Width="194"
 			Height="26"
 			x:Name="contrastTrack"
+			ValueChanged="changeImage"
 			Grid.Column="0"
 			Grid.Row="0"
 			HorizontalAlignment="Left"
 			VerticalAlignment="Top"
-			Margin="49,115,0,0" />
+			Margin="61,112,0,0"
+			Minimum="1"
+			Maximum="10" />
 		<Slider
 			Width="194"
-			Height="32"
+			x:Name="redColorTrack"
+			ValueChanged="changeImage"
+			Maximum="255"
 			Grid.Column="0"
 			Grid.Row="0"
 			HorizontalAlignment="Left"
-			VerticalAlignment="Top"
-			Margin="49,150,0,0"
-			x:Name="redColorTrack" />
-		<Slider
-			Width="194"
-			Height="29"
-			Grid.Column="0"
-			Grid.Row="0"
-			HorizontalAlignment="Left"
-			VerticalAlignment="Top"
-			Margin="49,189,0,0"
-			x:Name="greenColorTrack" />
+			Margin="61,147,0,173"
+			Minimum="0" />
 		<Slider
 			Width="194"
 			Height="29"
+			x:Name="greenColorTrack"
+			ValueChanged="changeImage"
+			Maximum="255"
+			Minimum="0"
+			Margin="61,186,0,0"
+			VerticalAlignment="Top"
+			HorizontalAlignment="Left"
+			Grid.Row="0"
+			Grid.Column="0" />
+		<Slider
+			x:Name="blueColorTrack"
+			ValueChanged="changeImage"
+			Maximum="255"
+			Minimum="0"
+			Height="29"
+			Width="194"
 			Grid.Column="0"
 			Grid.Row="0"
 			HorizontalAlignment="Left"
 			VerticalAlignment="Top"
-			Margin="49,226,0,0"
-			x:Name="blueColorTrack" />
+			Margin="61,224.5,0,0" />
 		<Label
 			RenderTransformOrigin="0.3846,0.5667"
 			Height="30"
 			Grid.Column="0"
 			Grid.Row="0"
 			HorizontalAlignment="Stretch"
-			VerticalAlignment="Bottom"
-			Margin="14.5,0,502.5,249"
-			Content="Br" />
+			Content="Br"
+			Margin="14.5,72,502.5,249"
+			VerticalAlignment="Top" />
 		<Label
 			RenderTransformOrigin="0.3846,0.5667"
 			Height="30"
 			Grid.Column="0"
 			Grid.Row="0"
 			HorizontalAlignment="Stretch"
-			VerticalAlignment="Bottom"
-			Margin="14,0,503,209"
-			Content="C" />
+			Content="C"
+			Margin="14,112,503,209"
+			VerticalAlignment="Top" />
+		<Label
+			RenderTransformOrigin="0.3846,0.5667"
+			Height="30"
+			Content="R"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Stretch"
+			VerticalAlignment="Top"
+			Margin="14,147,503,174" />
 		<Label
 			RenderTransformOrigin="0.3846,0.5667"
 			Height="30"
 			Grid.Column="0"
 			Grid.Row="0"
 			HorizontalAlignment="Stretch"
-			VerticalAlignment="Bottom"
-			Margin="14,0,503,175"
-			Content="R" />
-		<Label
-			RenderTransformOrigin="0.3846,0.5667"
-			Height="30"
-			Grid.Column="0"
-			Grid.Row="0"
-			HorizontalAlignment="Stretch"
-			VerticalAlignment="Bottom"
-			Margin="14,0,503,133.5"
-			Content="G" />
+			Content="G"
+			Margin="14,186,503,133.5"
+			VerticalAlignment="Top" />
 		<Label
 			RenderTransformOrigin="0.3846,0.5667"
 			Content="B"
 			Height="30"
+			Width="20"
 			Grid.Column="0"
-			Grid.Row="0"
-			HorizontalAlignment="Stretch"
-			VerticalAlignment="Bottom"
-			Margin="14,0,503,96.5" />
+			HorizontalAlignment="Left"
+			VerticalAlignment="Top"
+			Margin="14,223.5,0,0"
+			Grid.Row="0" />
 	</Grid>
 </Window>

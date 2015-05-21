@@ -1,15 +1,6 @@
-﻿/*
- * Created by SharpDevelop.
- * User: Администратор
- * Date: 25.04.2015
- * Time: 12:07
- */
-using System;
+﻿using System;
 using System.IO;
-using System.Runtime.Remoting.Channels;
 using System.Windows;
-using System.Windows.Controls;
-using System.Drawing;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using PhotoEditor;
@@ -17,9 +8,6 @@ using PhotoEditor;
 
 namespace WPF
 {
-	/// <summary>
-	/// Interaction logic for Window1.xaml
-	/// </summary>
 	public partial class Window1 : Window
 	{
 		private BitmapImage bitmap;
@@ -66,10 +54,6 @@ namespace WPF
 					fileStream.Close();
 				}
 			}
-		}
-		void slider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-		{
-			throw new NotImplementedException();
 		}
 		
 		private void changeImage(object sender, RoutedPropertyChangedEventArgs<double> e){
