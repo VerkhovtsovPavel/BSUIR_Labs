@@ -3,7 +3,8 @@
 	x:Class="WPF.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	Title="WPF"
 	Height="384"
-	Width="647">
+	Width="647"
+	RenderTransformOrigin="0.5618,0.4306">
 	<Grid
 		RenderTransformOrigin="0.4665,0.4944">
 		<Menu
@@ -29,15 +30,28 @@
 				RenderTransformOrigin="0.5,0.5"
 				Click="saveFile_Click"></MenuItem>
 		</Menu>
-		<Image
-			Width="266"
-			Height="304"
+		<Canvas
+			x:Name="canvas"
 			Grid.Column="0"
 			Grid.Row="0"
-			HorizontalAlignment="Left"
-			VerticalAlignment="Top"
-			Margin="263,40,0,0"
-			x:Name="mainPictureBox" />
+			HorizontalAlignment="Stretch"
+			VerticalAlignment="Stretch"
+			Margin="263,33,0,0"
+			RenderTransformOrigin="0.2858,0.3112">
+			<Image
+				Grid.Column="0"
+				Grid.Row="0"
+				x:Name="mainPictureBox"
+				MouseMove="mainPictureBox_MouseMove"
+				MouseLeftButtonDown="mainPictureBox_MouseLeftButtonDown"
+				Width="211"
+				Height="199"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				Canvas.Left="0"
+				Canvas.Top="0"
+ />
+		</Canvas>
 		<Slider
 			Width="194"
 			Height="26"
@@ -99,50 +113,51 @@
 			Margin="61,224.5,0,0" />
 		<Label
 			RenderTransformOrigin="0.3846,0.5667"
-			Height="30"
-			Grid.Column="0"
-			Grid.Row="0"
-			HorizontalAlignment="Stretch"
 			Content="Br"
-			Margin="14.5,72,502.5,249"
-			VerticalAlignment="Top" />
-		<Label
-			RenderTransformOrigin="0.3846,0.5667"
 			Height="30"
 			Grid.Column="0"
 			Grid.Row="0"
-			HorizontalAlignment="Stretch"
-			Content="C"
-			Margin="14,112,503,209"
-			VerticalAlignment="Top" />
-		<Label
-			RenderTransformOrigin="0.3846,0.5667"
-			Height="30"
-			Content="R"
-			Grid.Column="0"
-			Grid.Row="0"
-			HorizontalAlignment="Stretch"
 			VerticalAlignment="Top"
-			Margin="14,147,503,174" />
+			Width="34"
+			Margin="14,72,0,0"
+			HorizontalAlignment="Left" />
 		<Label
 			RenderTransformOrigin="0.3846,0.5667"
+			Content="C"
 			Height="30"
 			Grid.Column="0"
 			Grid.Row="0"
-			HorizontalAlignment="Stretch"
-			Content="G"
-			Margin="14,186,503,133.5"
-			VerticalAlignment="Top" />
+			VerticalAlignment="Top"
+			Margin="14,112,589,0"
+			HorizontalAlignment="Left" />
 		<Label
 			RenderTransformOrigin="0.3846,0.5667"
-			Content="B"
+			Content="R"
 			Height="30"
-			Width="20"
 			Grid.Column="0"
+			Grid.Row="0"
+			VerticalAlignment="Top"
+			Margin="14,147,600,0"
+			HorizontalAlignment="Left" />
+		<Label
+			RenderTransformOrigin="0.3846,0.5667"
+			Content="G"
+			Height="30"
+			Grid.Column="0"
+			Grid.Row="0"
+			VerticalAlignment="Top"
+			Margin="14,186,600,0"
+			HorizontalAlignment="Left" />
+		<Label
+			Content="B"
+			RenderTransformOrigin="0.3846,0.5667"
+			Height="29"
+			Width="21.999999999999943"
+			Grid.Column="0"
+			Grid.Row="0"
 			HorizontalAlignment="Left"
 			VerticalAlignment="Top"
-			Margin="14,223.5,0,0"
-			Grid.Row="0" />
+			Margin="15,218,0,0" />
 		<Button
 			x:Name="resize_plus"
 			Content="+"
