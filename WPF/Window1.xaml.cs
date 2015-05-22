@@ -9,7 +9,6 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using PhotoEditor;
 
-
 namespace WPF
 {
 	public partial class MainWindow : Window
@@ -46,15 +45,10 @@ namespace WPF
 				mainPictureBox.Height = bitmap.Height;
 				mainPictureBox.Width = bitmap.Width;
 					
-				rect = new Rectangle {
-				Stroke = Brushes.LightBlue,
-				StrokeThickness = 0
-				};
 				
-				x = 0;
-				y = 0;
-				w = bitmap.Width;
-				h = bitmap.Height;
+				rect = new Rectangle {};
+				rect.Stroke = Brushes.LightBlue;
+				selectAll();
 				
 				mainPictureBox.Source = bitmap;
 				isImageOpen = true;
@@ -62,9 +56,25 @@ namespace WPF
 			}
 		}
 		
+		private void selectAll()
+		{
+			x = 0;
+			y = 0;
+			w = bitmap.Width;
+			h = bitmap.Height;
+			
+			rect.Width = w;
+			rect.Height = h;
+
+			Canvas.SetLeft(rect, x);
+			Canvas.SetTop(rect, y);
+			rect.StrokeThickness = 0;
+		}
+		
 		void saveFile_Click(object sender, RoutedEventArgs e)
 		{
-			if (isImageOpen) {
+			if (isImageOpen)
+			{
 				SaveFileDialog saveFileDialog = new SaveFileDialog();
 				if (saveFileDialog.ShowDialog() == true) {
 					JpegBitmapEncoder jpegBitmapEncoder = new JpegBitmapEncoder();
@@ -85,15 +95,17 @@ namespace WPF
 		
 		private void changeImage(object sender, RoutedPropertyChangedEventArgs<double> e)
 		{
-			if (isImageOpen) {
-				bitmap = PhotoEditHelper.AdjustImage(originalBitmap, brightnessTrack.Value, contrastTrack.Value, redColorTrack.Value, greenColorTrack.Value,
+			if (isImageOpen)
+			{
+				bitmap = PhotoEditHelper.AdjustImage(PhotoEditHelper.Resize(originalBitmap, (int)mainPictureBox.Width, (int)mainPictureBox.Height)  , brightnessTrack.Value, contrastTrack.Value, redColorTrack.Value, greenColorTrack.Value,
 					blueColorTrack.Value, x, y, h, w);
 				mainPictureBox.Source = bitmap;
 			}
 		}
 		void resize_plus_Click(object sender, RoutedEventArgs e)
 		{
-			if (zoomCounter < 5 && isImageOpen) {
+			if (zoomCounter < 5 && isImageOpen)
+			{
 				w = rect.Width + 5 * rect.Width / 100;
 				rect.Width = w;
 				h = rect.Height + 5 * rect.Height / 100;
@@ -165,13 +177,23 @@ namespace WPF
 			canvas.Children.Remove(rect);
 			startPoint = e.GetPosition(canvas);
 
-			rect = new Rectangle {
+			rect = new Rectangle
+			{
 				Stroke = Brushes.LightBlue,
 				StrokeThickness = 2
 			};
 			Canvas.SetLeft(rect, startPoint.X);
 			Canvas.SetTop(rect, startPoint.Y);
 			canvas.Children.Add(rect);
+		}
+
+		void window_KeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.Key == Key.D && isImageOpen)
+			{
+				selectAll();
+				changeImage(sender, null);
+			}
 		}
 	}
 }

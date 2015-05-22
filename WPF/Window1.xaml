@@ -4,9 +4,12 @@
 	Title="WPF"
 	Height="384"
 	Width="647"
-	RenderTransformOrigin="0.5618,0.4306">
+	RenderTransformOrigin="0.5618,0.4306"
+	x:Name="mainWindow"
+	KeyDown="window_KeyDown">
 	<Grid
-		RenderTransformOrigin="0.4665,0.4944">
+		RenderTransformOrigin="0.4665,0.4944"
+		x:Name="grid1">
 		<Menu
 			x:Name="Menu"
 			Height="33"
@@ -49,8 +52,7 @@
 				HorizontalAlignment="Center"
 				VerticalAlignment="Center"
 				Canvas.Left="0"
-				Canvas.Top="0"
- />
+				Canvas.Top="0" />
 		</Canvas>
 		<Slider
 			Width="194"
