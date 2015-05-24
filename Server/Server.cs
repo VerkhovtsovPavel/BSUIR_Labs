@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
-using System.Net.Cache;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Net;
 using System.Net.Sockets;
@@ -11,8 +11,12 @@ namespace Server
 {
 	class Program
 	{
+		private const Int32 serverPort = 1990;
+		private const string serverIP = "127.0.0.1";
 		
-		//private static 
+		private static Dictionary<int,ServerSideClient> onlineUsers = new Dictionary<int, ServerSideClient>();
+		
+		private static Timer onlineUserCheckTimer = new Timer(onlineUserCheck);
 		
 		public static ManualResetEvent tcpClientConnected = new ManualResetEvent(false);
         
@@ -29,30 +33,25 @@ namespace Server
 		{
 			TcpListener listener = (TcpListener)ar.AsyncState;
 			TcpClient client = listener.EndAcceptTcpClient(ar);
+			
+			string ip = ((IPEndPoint)(client.Client.RemoteEndPoint)).Address.ToString();
+			int port = ((IPEndPoint)(client.Client.RemoteEndPoint)).Port;
+
+			Console.WriteLine("User connected " + ip + ":" + port);
  
-			// Process the connection here. (Add the client to a
-			// server table, read data, etc.)
-			Console.WriteLine("Соеденение установлено!");
- 
-			// Signal the calling thread to continue.
 			tcpClientConnected.Set();
- 
-			//  Буфер для чтения данных
+
 			Byte[] bytes = new Byte[256];
 			String data = null;
- 
-			// Получаем информацию от клиента
+
 			NetworkStream stream = client.GetStream();
  
 			int i;
-			// Принимаем данные от клиента в цикле пока не дойдём до конца.
 			while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
 			{
-				// Преобразуем данные в Windows-1251 string.
 				data = Encoding.GetEncoding(1251).GetString(bytes, 0, i);
- 
-				// Преобразуем полученную строку в массив Байт.
-				byte[] msg = Encoding.GetEncoding(1251).GetBytes(Controller(data));
+
+				byte[] msg = Encoding.GetEncoding(1251).GetBytes(Controller(data, client));
  
 				// Отправляем данные обратно клиенту (ответ).
 				stream.Write(msg, 0, msg.Length);
@@ -64,9 +63,8 @@ namespace Server
 			TcpListener server = null;
 			try
 			{
-				Int32 port = 1990;
-				IPAddress localAddr = IPAddress.Parse("127.0.0.1");
-				server = new TcpListener(localAddr, port);
+				IPAddress localAddr = IPAddress.Parse(serverIP);
+				server = new TcpListener(localAddr, serverPort);
 				server.Start();
 				DoBeginAcceptTcpClient(server);             
 				Console.WriteLine("\nНажмите клавишу для продолжения...");
@@ -78,21 +76,39 @@ namespace Server
 			}
 		}
 		
-		private static string Controller(string userRequest)
+		private static string Controller(string userRequest, TcpClient client)
 		{
 			string request = userRequest.Split(' ')[0];
 			string parameters = userRequest.Split(' ')[1];
 			
 			switch(request)
 			{
-				case "registrate":
+				case "registered":
 					string[] registrateParameters = parameters.Split(':');
 					
-					return Math.Abs(Int32.Parse(parameters)).ToString();
+					onlineUsers[/*ip*/1] = new ServerSideClient(registrateParameters[0], Int32.Parse(registrateParameters[1]),
+					                                            ((IPEndPoint)(client.Client.RemoteEndPoint)).Address.ToString(), ((IPEndPoint)(client.Client.RemoteEndPoint)).Port);
+			
+					//TODO Refactor
+					return "You successfully registered";
+				case "client allive":
+					onlineUsers[].isAlive = true;
 				case "sqr":
 					return (Int32.Parse(parameters)*Int32.Parse(parameters)).ToString();
 				default:
 					return "Incorrect command";
+			}
+		}
+
+		private static void onlineUserCheck(object state)
+		{
+			List<int> keysToDelete;
+			foreach(ServerSideClient client in onlineUsers.Values)
+			{
+				if(client.IsAlive = false)
+				{
+					
+				}
 			}
 		}
 	}

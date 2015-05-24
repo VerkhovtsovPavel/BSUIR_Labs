@@ -20,15 +20,12 @@ namespace Client
         	enterRegistrationInfo();
         	Connect("127.0.0.1", 1990);
         	
-        	String message = "registrate "+userName+":"+age;
+        	String message = "registered "+userName+":"+age;
         	SendMessage(serverStream, message);
-            while (true)
-            {
-            	
-                
-            }
+        	ReceiveMessage(serverStream);
             Console.WriteLine("\n Press Enter to continue...");
-            Console.Read();
+            Console.ReadKey();
+            serverStream.Close();
         }
         
         private static void enterRegistrationInfo()
@@ -44,7 +41,7 @@ namespace Client
             try
             {
                 TcpClient client = new TcpClient(serverIP, serverPort);
-                Console.WriteLine("Соедение с сервером установлено!");
+                Console.WriteLine("["+DateTime.Now.ToString("HH:mm:ss") +"] Successfully connected to server");
                 serverStream = client.GetStream();
             }
             catch (ArgumentNullException e)
@@ -61,7 +58,7 @@ namespace Client
         {
         	Byte[] data = Encoding.GetEncoding(1251).GetBytes(message);
             stream.Write(data, 0, data.Length);
-            Console.WriteLine("Отправлено: {0}", message); //TODO Debug method
+            Console.WriteLine("Send: {0}", message); //TODO Debug method
         }
         
         static void ReceiveMessage(NetworkStream stream){
