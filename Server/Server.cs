@@ -55,9 +55,12 @@ namespace Server
 				while ((i = stream.Read(bytes, 0, bytes.Length)) != 0) {
 					data = Encoding.GetEncoding(1251).GetString(bytes, 0, i);
 
-					byte[] msg = Encoding.GetEncoding(1251).GetBytes(Controller(data, client));
+					string message = Controller(data, client);
+					if (message != String.Empty) {
+						byte[] msg = Encoding.GetEncoding(1251).GetBytes(message);
 					
-					stream.Write(msg, 0, msg.Length);
+						stream.Write(msg, 0, msg.Length);
+					}
 				}
 			} catch (IOException) {
 				//TODO Remove client from online client list
@@ -112,19 +115,16 @@ namespace Server
 
 		private static void onlineUserCheck(object state)
 		{
-			lock(onlineUsers)
-			{
+			lock (onlineUsers) {
 				List<String> keysToDelete = new List<string>();
-				foreach (String clientID in onlineUsers.Keys)
-				{
+				foreach (String clientID in onlineUsers.Keys) {
 					if (!onlineUsers[clientID].IsAlive) {
 						keysToDelete.Add(clientID);
 					}
 					onlineUsers[clientID].IsAlive = false;
 				}
 				
-				foreach (String key in keysToDelete)
-				{
+				foreach (String key in keysToDelete) {
 					onlineUsers.Remove(key);
 				}
 			}
