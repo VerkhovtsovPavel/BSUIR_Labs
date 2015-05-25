@@ -47,7 +47,7 @@ namespace Client
         	Console.Write("Enter user name> ");
         	userName = Console.ReadLine();
         	Console.Write("Enter your age> ");
-        	age = Console.Read();
+        	age = Int32.Parse(Console.ReadLine());
         }
  
         private static void Connect(String serverIP, int serverPort)
@@ -95,19 +95,15 @@ namespace Client
 
 		static void GetOnlineClient()
 		{
-			const string message = "getOnlineClients";
+			string message = "getOnlineClients "+userID;
 			SendMessage(serverStream, message);
 			onlineClients = ReceiveMessage(serverStream).Split(';');
 			Console.WriteLine("Online clients:");
-			for (int i = 0; i < onlineClients.Length; i++)
+			for (int i = 0; i < onlineClients.Length-1; i++)
 			{
 				string[] clientData = onlineClients[i].Split(':');
-				Console.WriteLine("#" + i);
-				Console.WriteLine("Username: "+clientData[0]);
-				Console.WriteLine("Age: "+clientData[1]);
+				Console.WriteLine("#" + (i+1)+" Username: "+clientData[0]+" Age: "+clientData[1]);
 			}
-			
-			
 		}
     }
 }

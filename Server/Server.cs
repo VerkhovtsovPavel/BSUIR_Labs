@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Runtime.Remoting.Channels;
 using System.Security.Cryptography;
 using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
  
-//TODO Client die 
+//TODO Client die
  
 namespace Server
 {
@@ -51,21 +51,25 @@ namespace Server
 			NetworkStream stream = client.GetStream();
  
 			int i;
-			while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
-			{
-				data = Encoding.GetEncoding(1251).GetString(bytes, 0, i);
+			try {
+				//
+				while ((i = stream.Read(bytes, 0, bytes.Length)) != 0) {
+					data = Encoding.GetEncoding(1251).GetString(bytes, 0, i);
 
-				byte[] msg = Encoding.GetEncoding(1251).GetBytes(Controller(data, client));
+					byte[] msg = Encoding.GetEncoding(1251).GetBytes(Controller(data, client));
 				
-				stream.Write(msg, 0, msg.Length);
+					stream.Write(msg, 0, msg.Length);
+				}
+			} catch (IOException) {
+				//TODO Remove client from online client list
+				Console.WriteLine("Error while receve or send message");
 			}
 		}
 		
 		public static void Main(string[] args)
 		{
 			TcpListener server = null;
-			try
-			{
+			try {
 				IPAddress localAddr = IPAddress.Parse(serverIP);
 				server = new TcpListener(localAddr, serverPort);
 				server.Start();
@@ -73,9 +77,7 @@ namespace Server
 				DoBeginAcceptTcpClient(server);             
 				Console.WriteLine("\nНажмите клавишу для продолжения...");
 				Console.ReadKey();
-			}
-			finally
-			{
+			} finally {
 				server.Stop();
 			}
 		}
@@ -86,8 +88,7 @@ namespace Server
 			string request = userRequest.Split(' ')[0];
 
 			
-			switch(request)
-			{
+			switch (request) {
 				case "registered":
 					//TODO Refactor double split
 					string[] registrateParameters = userRequest.Split(' ')[1].Split(':');
@@ -95,13 +96,13 @@ namespace Server
 					ServerSideClient serverClient =	new ServerSideClient(registrateParameters[0], Int32.Parse(registrateParameters[1]), ((IPEndPoint)(client.Client.RemoteEndPoint)).Address.ToString(), ((IPEndPoint)(client.Client.RemoteEndPoint)).Port);
 					string userID = CreateUserID(serverClient); 						                                                     
 					onlineUsers[userID] = serverClient;
-					return "You successfully registered:"+userID;
+					return "You successfully registered:" + userID;
 				case "clientAlive":
 					string userIDString = userRequest.Split(' ')[1]; //TODO Real parameter parsing
 					onlineUsers[userIDString].IsAlive = true;
 					return "Session updates";
 				case "getOnlineClients":
-					return CreateOnlineClients();
+					return CreateOnlineClients(userRequest.Split(' ')[1]);
 				default:
 					return "Incorrect command";
 			}
@@ -111,36 +112,38 @@ namespace Server
 		{
 			//TODO Lock
 			List<String> keysToDelete = new List<string>();
-			foreach(String clientID in onlineUsers.Keys)
-			{
-				if(onlineUsers[clientID].IsAlive == false)
-				{
+			foreach (String clientID in onlineUsers.Keys) {
+				if (!onlineUsers[clientID].IsAlive) {
 					keysToDelete.Add(clientID);
 				}
+				
+				onlineUsers[clientID].IsAlive = false;
+				
 			}
 			
-			foreach (String key in keysToDelete)
-			{
+			foreach (String key in keysToDelete) {
 				onlineUsers.Remove(key);
 			}
 		}
 		
 		private static string CreateUserID(ServerSideClient client)
 		{
-			string input = client.UserName+client.Age.ToString()+DateTime.Now.ToString();
+			string input = client.UserName + client.Age.ToString() + DateTime.Now.ToString();
 			byte[] data = Encoding.ASCII.GetBytes(input);
 			data = MD5.Create().ComputeHash(data);
 			return Convert.ToBase64String(data);
 		}
 
-		static string CreateOnlineClients()
+		static string CreateOnlineClients(string userID)
 		{
+			//TODO Lock
 			string result = "Online cliens:";
-			foreach(ServerSideClient client in onlineUsers.Values)
-			{
-				result+=client.UserName+":"+client.Age+":"+client.Address+":"+client.Port+";";
-			}
-			
+			foreach (String clientID in onlineUsers.Keys) {
+				if (userID != clientID)
+				{
+					result += onlineUsers[clientID].UserName + ":" + onlineUsers[clientID].Age + ":" + onlineUsers[clientID].Address + ":" + onlineUsers[clientID].Port + ";";
+				}
+			}			
 			return result;
 		}
 	}
