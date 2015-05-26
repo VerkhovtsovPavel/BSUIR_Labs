@@ -54,11 +54,13 @@ namespace Server
 			try {
 				while ((i = stream.Read(bytes, 0, bytes.Length)) != 0) {
 					data = Encoding.GetEncoding(1251).GetString(bytes, 0, i);
+					Console.WriteLine("Receve: "+data);
 
 					string message = Controller(data, client);
 					if (message != String.Empty) {
+						Console.WriteLine("Send:" + message);
 						byte[] msg = Encoding.GetEncoding(1251).GetBytes(message);
-					
+						
 						stream.Write(msg, 0, msg.Length);
 					}
 				}
@@ -99,7 +101,7 @@ namespace Server
 					ServerSideClient serverClient =	new ServerSideClient(userName, age, userAddress, userPort);
 					string userID = CreateUserID(serverClient);
 					onlineUsers[userID] = serverClient;
-					return "You successfully registered:" + userID;
+					return "Server:You successfully registered:" + userID;
 				case "clientAlive":
 					string userIDString = parameters;
 					onlineUsers[userIDString].IsAlive = true;
@@ -143,7 +145,7 @@ namespace Server
 		private static string CreateOnlineClientsString(string userID)
 		{
 			lock (onlineUsers) {
-				string result = "Online cliens:";
+				string result = "Server:Online cliens:";
 				foreach (String clientID in onlineUsers.Keys) {
 					if (userID != clientID) {
 						result += onlineUsers[clientID].UserName + ":" + onlineUsers[clientID].Age + ":" + onlineUsers[clientID].Address + ":" + onlineUsers[clientID].Port + ";";

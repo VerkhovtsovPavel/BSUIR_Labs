@@ -36,7 +36,7 @@ namespace Client
 			EnterRegistrationInfo();
 			Connect("127.0.0.1", 1990);
 			sessionUpdareTimer.Change(sessionUpdarePeriod, sessionUpdarePeriod);
-			String message = "registered~"+userName+":"+age;
+			String message = "registered~" + userName + ":" + age;
 			SendMessage(serverStream, message);
 			userID = ReceiveMessage(serverStream);
             
@@ -48,16 +48,16 @@ namespace Client
 			serverStream.Close();
 		}
         
-        private static void EnterRegistrationInfo()
-        {
-        	Console.Write("Enter user name> ");
-        	userName = Console.ReadLine();
-        	Console.Write("Enter your age> ");
-        	age = Int32.Parse(Console.ReadLine());
-        }
+		private static void EnterRegistrationInfo()
+		{
+			Console.Write("Enter user name> ");
+			userName = Console.ReadLine();
+			Console.Write("Enter your age> ");
+			age = Int32.Parse(Console.ReadLine());
+		}
 
  
-		private static void Connect(String serverIP, int serverPort)
+		/*private static void Connect(String serverIP, int serverPort)
 		{
 			try {
 				TcpClient client = new TcpClient(serverIP, serverPort);
@@ -68,34 +68,32 @@ namespace Client
 			} catch (SocketException e) {
 				Console.WriteLine("SocketException: {0}", e);
 			}
-		}
+		}*/
         
-		static void SendMessage(NetworkStream stream, String message)
+		/*static void SendMessage(NetworkStream stream, String message)
 		{
-			try{
-			Byte[] data = Encoding.GetEncoding(1251).GetBytes(message);
-			stream.Write(data, 0, data.Length);
-			Console.WriteLine("Send: {0}", message); //TODO Debug method
-			}catch(IOException)
-			{
+			try {
+				Byte[] data = Encoding.GetEncoding(1251).GetBytes(message);
+				stream.Write(data, 0, data.Length);
+				Console.WriteLine("Send: {0}", message); //TODO Debug method
+			} catch (IOException) {
 				Console.WriteLine("Server down");
 			}
-		}
+		}*/
         
 		static string ReceiveMessage(NetworkStream stream)
 		{
-			try{
-			Byte[] data = new Byte[256];
-			String responseData = String.Empty;
-			Int32 bytes = stream.Read(data, 0, data.Length);
-			responseData = Encoding.GetEncoding(1251).GetString(data, 0, bytes);
-			string userPart = responseData.Split(':')[0];
-			responseData = responseData.Replace(userPart + ":", String.Empty);
-			Console.WriteLine("[" + DateTime.Now.ToString("HH:mm:ss") + "] " + userPart);
+			try {
+				Byte[] data = new Byte[256];
+				String responseData = String.Empty;
+				Int32 bytes = stream.Read(data, 0, data.Length);
+				responseData = Encoding.GetEncoding(1251).GetString(data, 0, bytes);
+				string userPart = responseData.Split(':')[0];
+				responseData = responseData.Replace(userPart + ":", String.Empty);
+				Console.WriteLine("[" + DateTime.Now.ToString("HH:mm:ss") + "] " + userPart);
             
-			return responseData;
-			}catch(IOException)
-			{
+				return responseData;
+			} catch (IOException) {
 				Console.WriteLine("Server down");
 				return null;
 				//TODO Change null
@@ -111,7 +109,7 @@ namespace Client
 		static void GetOnlineClient()
 		{
 
-			string message = "getOnlineClients~"+userID;
+			string message = "getOnlineClients~" + userID;
 
 			SendMessage(serverStream, message);
 			onlineClients = ReceiveMessage(serverStream).Split(';');
@@ -137,6 +135,7 @@ namespace Client
 					//ReceiveMessage(serverStream);
 					Console.WriteLine("342324");
 				}
+			
 			}
 			
 			//CHECK onlineClients.Length+1
@@ -200,17 +199,39 @@ namespace Client
 		{
 			string sender = data.Split(':')[0];
 			string command = data.Split(':')[1];
-			switch(sender)
-			{
+			switch (sender) {
 				case "Server":
-					switch(command)
-					{
-						
+					switch (command) {
+						case "You successfully registered":
+							userID = data.Split(':')[1];
+							break;
+						case "Online cliens":
+							onlineClients = data.Split(':')[2].Split(';');
+							if (onlineClients.Length == 1) {
+								Console.WriteLine("You one online user :(");
+							} else {
+								for (int i = 0; i < onlineClients.Length - 1; i++) {
+									string[] clientData = onlineClients[i].Split(':');
+									Console.WriteLine("#" + (i + 1) + " Username: " + clientData[0] + " Age: " + clientData[1]);
+								}
+							}
+							break;
+							
 					}
+					break;
 				case "Client":
+					switch (command) {
+						case "Handshake":
+							companionStream = stream;
+							break;
+						case "Message":
+							//Write to textBox
+							break;
+					}
+					break;
 			}
 		}
-    }
+	}
 }
 
 
