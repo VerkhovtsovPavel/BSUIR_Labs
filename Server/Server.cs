@@ -7,9 +7,9 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
- 
+
 //TODO Client die
- 
+
 namespace Server
 {
 	class Program
@@ -23,7 +23,7 @@ namespace Server
 		private static Timer onlineUserCheckTimer = new Timer(onlineUserCheck);
 		
 		public static ManualResetEvent tcpClientConnected = new ManualResetEvent(false);
-        
+		
 		private static void DoBeginAcceptTcpClient(TcpListener listener)
 		{
 			while (true) {
@@ -32,7 +32,7 @@ namespace Server
 				tcpClientConnected.WaitOne();
 			}
 		}
- 
+		
 		public static void DoAcceptTcpClientCallback(IAsyncResult ar)
 		{
 			TcpListener listener = (TcpListener)ar.AsyncState;
@@ -42,22 +42,21 @@ namespace Server
 			int port = ((IPEndPoint)(client.Client.RemoteEndPoint)).Port;
 
 			Console.WriteLine("User connected " + ip + ":" + port);
- 
+			
 			tcpClientConnected.Set();
 
 			Byte[] bytes = new Byte[256];
 			String data = null;
 
 			NetworkStream stream = client.GetStream();
- 
+			
 			int i;
 			try {
-				//
 				while ((i = stream.Read(bytes, 0, bytes.Length)) != 0) {
 					data = Encoding.GetEncoding(1251).GetString(bytes, 0, i);
 
 					byte[] msg = Encoding.GetEncoding(1251).GetBytes(Controller(data, client));
-				
+					
 					stream.Write(msg, 0, msg.Length);
 				}
 			} catch (IOException) {
@@ -74,7 +73,7 @@ namespace Server
 				server = new TcpListener(localAddr, serverPort);
 				server.Start();
 				onlineUserCheckTimer.Change(sessionTimeOut, sessionTimeOut);
-				DoBeginAcceptTcpClient(server);             
+				DoBeginAcceptTcpClient(server);
 				Console.WriteLine("\nНажмите клавишу для продолжения...");
 				Console.ReadKey();
 			} finally {
@@ -86,23 +85,26 @@ namespace Server
 		{
 			//TODO Use one format ':'
 			string request = userRequest.Split(' ')[0];
-
-			
+			//TODO Move all case to separated methods
 			switch (request) {
 				case "registered":
 					//TODO Refactor double split
 					string[] registrateParameters = userRequest.Split(' ')[1].Split(':');
 					//TODO Refactor
 					ServerSideClient serverClient =	new ServerSideClient(registrateParameters[0], Int32.Parse(registrateParameters[1]), ((IPEndPoint)(client.Client.RemoteEndPoint)).Address.ToString(), ((IPEndPoint)(client.Client.RemoteEndPoint)).Port);
-					string userID = CreateUserID(serverClient); 						                                                     
+					string userID = CreateUserID(serverClient);
 					onlineUsers[userID] = serverClient;
 					return "You successfully registered:" + userID;
 				case "clientAlive":
 					string userIDString = userRequest.Split(' ')[1]; //TODO Real parameter parsing
 					onlineUsers[userIDString].IsAlive = true;
-					return "Session updates";
+					return String.Empty;
 				case "getOnlineClients":
-					return CreateOnlineClients(userRequest.Split(' ')[1]);
+					return CreateOnlineClientsString(userRequest.Split(' ')[1]);
+				case "IOffline":
+					string offlineUserIDString = userRequest.Split(' ')[1];
+					onlineUsers.Remove(offlineUserIDString);
+					return String.Empty;
 				default:
 					return "Incorrect command";
 			}
@@ -110,19 +112,21 @@ namespace Server
 
 		private static void onlineUserCheck(object state)
 		{
-			//TODO Lock
-			List<String> keysToDelete = new List<string>();
-			foreach (String clientID in onlineUsers.Keys) {
-				if (!onlineUsers[clientID].IsAlive) {
-					keysToDelete.Add(clientID);
+			lock(onlineUsers)
+			{
+				List<String> keysToDelete = new List<string>();
+				foreach (String clientID in onlineUsers.Keys)
+				{
+					if (!onlineUsers[clientID].IsAlive) {
+						keysToDelete.Add(clientID);
+					}
+					onlineUsers[clientID].IsAlive = false;
 				}
 				
-				onlineUsers[clientID].IsAlive = false;
-				
-			}
-			
-			foreach (String key in keysToDelete) {
-				onlineUsers.Remove(key);
+				foreach (String key in keysToDelete)
+				{
+					onlineUsers.Remove(key);
+				}
 			}
 		}
 		
@@ -134,17 +138,17 @@ namespace Server
 			return Convert.ToBase64String(data);
 		}
 
-		static string CreateOnlineClients(string userID)
+		private static string CreateOnlineClientsString(string userID)
 		{
-			//TODO Lock
-			string result = "Online cliens:";
-			foreach (String clientID in onlineUsers.Keys) {
-				if (userID != clientID)
-				{
-					result += onlineUsers[clientID].UserName + ":" + onlineUsers[clientID].Age + ":" + onlineUsers[clientID].Address + ":" + onlineUsers[clientID].Port + ";";
+			lock (onlineUsers) {
+				string result = "Online cliens:";
+				foreach (String clientID in onlineUsers.Keys) {
+					if (userID != clientID) {
+						result += onlineUsers[clientID].UserName + ":" + onlineUsers[clientID].Age + ":" + onlineUsers[clientID].Address + ":" + onlineUsers[clientID].Port + ";";
+					}
 				}
-			}			
-			return result;
+				return result;
+			}
 		}
 	}
 }

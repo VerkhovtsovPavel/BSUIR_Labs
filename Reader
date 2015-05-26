@@ -1,0 +1,37 @@
+class Reader {
+  private static Thread inputThread;
+  private static AutoResetEvent getInput, gotInput;
+  private static string input;
+
+  static Reader() {
+    getInput = new AutoResetEvent(false);
+    gotInput = new AutoResetEvent(false);
+    inputThread = new Thread(reader);
+    inputThread.IsBackground = true;
+    inputThread.Start();
+  }
+
+  private static void reader() {
+    while (true) {
+      getInput.WaitOne();
+      input = Console.ReadLine();
+      gotInput.Set();
+    }
+  }
+
+  public static string ReadLine(int timeOutMillisecs) {
+    getInput.Set();
+    bool success = gotInput.WaitOne(timeOutMillisecs);
+    if (success)
+      return input;
+    else
+      throw new TimeoutException("User did not provide input within the timelimit.");
+  }
+}
+
+try {
+  Console.WriteLine("Please enter your name within the next 5 seconds.");
+  string name = Reader.ReadLine(5000);
+} catch (TimeoutException) {
+  Console.WriteLine("Sorry, you waited too long.");
+} 

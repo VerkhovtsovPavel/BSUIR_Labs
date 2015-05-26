@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Net.Sockets;
 using System.Threading;
@@ -35,7 +37,7 @@ namespace Client
         	SendMessage(serverStream, message);
         	userID = ReceiveMessage(serverStream);
 			GetOnlineClient();
-        	
+			SelectCompanion();
         	
             Console.WriteLine("\n Press Enter to continue...");
             Console.ReadKey();
@@ -103,6 +105,66 @@ namespace Client
 			{
 				string[] clientData = onlineClients[i].Split(':');
 				Console.WriteLine("#" + (i+1)+" Username: "+clientData[0]+" Age: "+clientData[1]);
+			}
+		}
+
+		static void SelectCompanion()
+		{
+			int selectedUser = Int32.Parse(Console.ReadLine());
+			
+			//CHECK onlineClients.Length+1
+			if (selectedUser > 0 && selectedUser < onlineClients.Length + 1)
+			{
+				string[] clientData = onlineClients[selectedUser].Split(':');
+				TcpClient client = new TcpClient(clientData[2], Int32.Parse(clientData[3]));
+                Console.WriteLine("["+DateTime.Now.ToString("HH:mm:ss") +"] Successfully connected to companion");
+                companionStream = client.GetStream();
+                //CHECK
+				TcpListener server = new TcpListener(((IPEndPoint)(client.Client.RemoteEndPoint)).Address, ((IPEndPoint)(client.Client.RemoteEndPoint)).Port);
+				server.Start();
+				DoBeginAcceptTcpClient(server);   
+			}
+		}
+		
+		
+		
+		
+		
+		//Server part
+		
+		public static ManualResetEvent tcpClientConnected = new ManualResetEvent(false);
+        
+		private static void DoBeginAcceptTcpClient(TcpListener listener)
+		{
+			while (true) {
+				tcpClientConnected.Reset();
+				listener.BeginAcceptTcpClient(new AsyncCallback(DoAcceptTcpClientCallback), listener);
+				tcpClientConnected.WaitOne();
+			}
+		}
+ 
+		public static void DoAcceptTcpClientCallback(IAsyncResult ar)
+		{
+			TcpListener listener = (TcpListener)ar.AsyncState;
+			TcpClient client = listener.EndAcceptTcpClient(ar);
+ 
+			tcpClientConnected.Set();
+
+			Byte[] bytes = new Byte[256];
+			String data = null;
+
+			NetworkStream stream = client.GetStream();
+ 
+			int i;
+			try {
+				while ((i = stream.Read(bytes, 0, bytes.Length)) != 0) {
+					data = Encoding.GetEncoding(1251).GetString(bytes, 0, i);
+					byte[] msg = Encoding.GetEncoding(1251).GetBytes(Console.ReadLine());
+					stream.WriteAsync(msg, 0, msg.Length);
+				}
+			} catch (IOException) {
+				//TODO Remove client from online client list
+				Console.WriteLine("Error while receve or send message");
 			}
 		}
     }
