@@ -42,6 +42,8 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -51,6 +53,36 @@
     <Compile Include="Client.cs" />
     <Compile Include="ClientManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\CharForm.cs" />
+    <Compile Include="UI\CharForm.Designer.cs">
+      <DependentUpon>CharForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\InterlocutorSelectForm.cs" />
+    <Compile Include="UI\InterlocutorSelectForm.Designer.cs">
+      <DependentUpon>InterlocutorSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\LoginForm.cs" />
+    <Compile Include="UI\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MainForm.cs" />
+    <Compile Include="UI\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UI" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\CharForm.resx">
+      <DependentUpon>CharForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InterlocutorSelectForm.resx">
+      <DependentUpon>InterlocutorSelectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

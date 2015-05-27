@@ -30,10 +30,10 @@ namespace Client
 		
         private static void Main(string[] args)
         {
-        	enterRegistrationInfo();
+			EnterRegistrationInfo();
         	Connect("127.0.0.1", 1990);
 			sessionUpdareTimer.Change(sessionUpdarePeriod, sessionUpdarePeriod);
-        	String message = "registered "+userName+":"+age;
+        	String message = "registered~"+userName+":"+age;
         	SendMessage(serverStream, message);
         	userID = ReceiveMessage(serverStream);
 			GetOnlineClient();
@@ -44,7 +44,7 @@ namespace Client
             serverStream.Close();
         }
         
-        private static void enterRegistrationInfo()
+        private static void EnterRegistrationInfo()
         {
         	Console.Write("Enter user name> ");
         	userName = Console.ReadLine();
@@ -91,13 +91,13 @@ namespace Client
 
 		static void sessionUpdate(object state)
 		{
-			string message = "clientAlive " + userID;
+			string message = "clientAlive~" + userID;
 			SendMessage(serverStream, message);
 		}
 
 		static void GetOnlineClient()
 		{
-			string message = "getOnlineClients "+userID;
+			string message = "getOnlineClients~"+userID;
 			SendMessage(serverStream, message);
 			onlineClients = ReceiveMessage(serverStream).Split(';');
 			Console.WriteLine("Online clients:");
@@ -159,13 +159,16 @@ namespace Client
 			try {
 				while ((i = stream.Read(bytes, 0, bytes.Length)) != 0) {
 					data = Encoding.GetEncoding(1251).GetString(bytes, 0, i);
-					byte[] msg = Encoding.GetEncoding(1251).GetBytes(Console.ReadLine());
-					stream.WriteAsync(msg, 0, msg.Length);
+					Controller(stream, data);
 				}
 			} catch (IOException) {
-				//TODO Remove client from online client list
 				Console.WriteLine("Error while receve or send message");
 			}
+		}
+
+		private static void Controller(NetworkStream stream, string data)
+		{
+			throw new NotImplementedException();
 		}
     }
 }

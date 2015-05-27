@@ -18,7 +18,7 @@ namespace Server
 		private const string serverIP = "127.0.0.1";
 		private const int sessionTimeOut = 10000;
 		
-		private static Dictionary<string,ServerSideClient> onlineUsers = new Dictionary<string, ServerSideClient>();
+		private static readonly Dictionary<string,ServerSideClient> onlineUsers = new Dictionary<string, ServerSideClient>();
 		
 		private static Timer onlineUserCheckTimer = new Timer(onlineUserCheck);
 		
@@ -83,26 +83,28 @@ namespace Server
 		
 		private static string Controller(string userRequest, TcpClient client)
 		{
-			//TODO Use one format ':'
-			string request = userRequest.Split(' ')[0];
+			string request = userRequest.Split('~')[0];
+			string parameters = userRequest.Split('~')[1];
 			//TODO Move all case to separated methods
 			switch (request) {
 				case "registered":
-					//TODO Refactor double split
-					string[] registrateParameters = userRequest.Split(' ')[1].Split(':');
-					//TODO Refactor
-					ServerSideClient serverClient =	new ServerSideClient(registrateParameters[0], Int32.Parse(registrateParameters[1]), ((IPEndPoint)(client.Client.RemoteEndPoint)).Address.ToString(), ((IPEndPoint)(client.Client.RemoteEndPoint)).Port);
+					string[] registrateParameters = parameters.Split(':');
+					string userName = registrateParameters[0];
+					int age = Int32.Parse(registrateParameters[1]);
+					string userAddress = ((IPEndPoint)(client.Client.RemoteEndPoint)).Address.ToString();
+					int userPort = ((IPEndPoint)(client.Client.RemoteEndPoint)).Port;
+					ServerSideClient serverClient =	new ServerSideClient(userName, age, userAddress, userPort);
 					string userID = CreateUserID(serverClient);
 					onlineUsers[userID] = serverClient;
 					return "You successfully registered:" + userID;
 				case "clientAlive":
-					string userIDString = userRequest.Split(' ')[1]; //TODO Real parameter parsing
+					string userIDString = parameters;
 					onlineUsers[userIDString].IsAlive = true;
 					return String.Empty;
 				case "getOnlineClients":
-					return CreateOnlineClientsString(userRequest.Split(' ')[1]);
+					return CreateOnlineClientsString(parameters);
 				case "IOffline":
-					string offlineUserIDString = userRequest.Split(' ')[1];
+					string offlineUserIDString = parameters;
 					onlineUsers.Remove(offlineUserIDString);
 					return String.Empty;
 				default:
