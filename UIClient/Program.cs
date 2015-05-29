@@ -13,6 +13,5 @@ namespace UIClient
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new LoginForm());
 		}
-		
 	}
 }

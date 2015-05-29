@@ -16,12 +16,10 @@ namespace OSiSP_6.UI
 		void Submit_buttonClick(object sender, EventArgs e)
 		{
 			if(this.Username_textBox.Text != String.Empty){
-				string message = "registered~" + this.Username_textBox.Text + ":" + this.Age_numericUpDown.Value;
-
+				string message = "Client:Registered:~" + this.Username_textBox.Text + ":" + this.Age_numericUpDown.Value;
 				SendMessage(serverStream, message);
-
-				//TcpListener listener = new TcpListener(((IPEndPoint)(client.Client.LocalEndPoint)).Address, ((IPEndPoint)(client.Client.LocalEndPoint)).Port);
-				//userID = ReceiveMessage(serverStream);
+				ReceiveMessage(serverStream);
+				sessionUpdareTimer.Change(sessionUpdarePeriod, sessionUpdarePeriod);
 				new InterlocutorSelectForm().Show();
 				this.Hide();
 			}

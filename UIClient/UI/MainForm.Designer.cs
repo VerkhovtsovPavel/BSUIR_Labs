@@ -34,12 +34,18 @@ namespace OSiSP_6.UI
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.SuspendLayout();
 			// 
 			// MainForm
 			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Text = "MainForm";
+			this.ClientSize = new System.Drawing.Size(284, 262);
 			this.Name = "MainForm";
+			this.Text = "MainForm";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFormFormClosing);
+			this.ResumeLayout(false);
+
 		}
 	}
 }

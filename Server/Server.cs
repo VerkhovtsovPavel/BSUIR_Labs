@@ -54,7 +54,7 @@ namespace Server
 			try {
 				while ((i = stream.Read(bytes, 0, bytes.Length)) != 0) {
 					data = Encoding.GetEncoding(1251).GetString(bytes, 0, i);
-					Console.WriteLine("Receve: "+data);
+					Console.WriteLine("Recieve: "+data);
 
 					string message = Controller(data, client);
 					if (message != String.Empty) {
@@ -65,8 +65,9 @@ namespace Server
 					}
 				}
 			} catch (IOException) {
-				//TODO Remove client from online client list
-				Console.WriteLine("Error while receve or send message");
+				string userAddress = ((IPEndPoint)(client.Client.RemoteEndPoint)).Address.ToString();
+				int userPort = ((IPEndPoint)(client.Client.RemoteEndPoint)).Port;
+				Console.WriteLine("Error while work with client {0}:{1}",userAddress,userPort);
 			}
 		}
 		
@@ -88,11 +89,11 @@ namespace Server
 		
 		private static string Controller(string userRequest, TcpClient client)
 		{
-			string request = userRequest.Split('~')[0];
+			string request = userRequest.Split(':')[1];
 			string parameters = userRequest.Split('~')[1];
 			//TODO Move all case to separated methods
 			switch (request) {
-				case "registered":
+				case "Registered":
 					string[] registrateParameters = parameters.Split(':');
 					string userName = registrateParameters[0];
 					int age = Int32.Parse(registrateParameters[1]);
@@ -101,14 +102,14 @@ namespace Server
 					ServerSideClient serverClient =	new ServerSideClient(userName, age, userAddress, userPort);
 					string userID = CreateUserID(serverClient);
 					onlineUsers[userID] = serverClient;
-					return "Server:You successfully registered:" + userID;
-				case "clientAlive":
+					return "Server:You successfully registered:~" + userID;
+				case "ClientAlive":
 					string userIDString = parameters;
 					onlineUsers[userIDString].IsAlive = true;
 					return String.Empty;
-				case "getOnlineClients":
+				case "GetOnlineClients":
 					return CreateOnlineClientsString(parameters);
-				case "IOffline":
+				case "HardShake":
 					string offlineUserIDString = parameters;
 					onlineUsers.Remove(offlineUserIDString);
 					return String.Empty;
@@ -127,7 +128,6 @@ namespace Server
 					}
 					onlineUsers[clientID].IsAlive = false;
 				}
-				
 				foreach (String key in keysToDelete) {
 					onlineUsers.Remove(key);
 				}
@@ -145,7 +145,7 @@ namespace Server
 		private static string CreateOnlineClientsString(string userID)
 		{
 			lock (onlineUsers) {
-				string result = "Server:Online cliens:";
+				string result = "Server:Online cliens:~";
 				foreach (String clientID in onlineUsers.Keys) {
 					if (userID != clientID) {
 						result += onlineUsers[clientID].UserName + ":" + onlineUsers[clientID].Age + ":" + onlineUsers[clientID].Address + ":" + onlineUsers[clientID].Port + ";";
