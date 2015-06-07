@@ -4,7 +4,7 @@
 	{
 		private System.ComponentModel.IContainer components = null;
 		private System.Windows.Forms.Button Submit_button;
-		private static System.Windows.Forms.ComboBox interlocutor_comboBox = new System.Windows.Forms.ComboBox();
+		public static System.Windows.Forms.ComboBox interlocutor_comboBox = new System.Windows.Forms.ComboBox();
 		
 		protected override void Dispose(bool disposing)
 		{

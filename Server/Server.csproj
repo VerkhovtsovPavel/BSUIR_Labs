@@ -53,8 +53,5 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerSideClient.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="ProfilingSessions\Session20150528_160033.sdps" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

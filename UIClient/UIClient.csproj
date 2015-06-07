@@ -53,6 +53,7 @@
     <Compile Include="ClientProperties.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerSideClient.cs" />
     <Compile Include="UI\CharForm.cs" />
     <Compile Include="UI\CharForm.Designer.cs">
       <DependentUpon>CharForm.cs</DependentUpon>

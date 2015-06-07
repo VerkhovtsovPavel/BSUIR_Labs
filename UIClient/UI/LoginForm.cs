@@ -13,6 +13,13 @@ namespace OSiSP_6.UI
 			InitializeComponent();
 		}
 		
+		private void ForceClose(object sender, EventArgs e){
+			if(isFailStart)
+			{
+				Close();
+			}
+		}
+		
 		void Submit_buttonClick(object sender, EventArgs e)
 		{
 			if(this.Username_textBox.Text != String.Empty){

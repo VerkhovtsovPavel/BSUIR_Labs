@@ -19,6 +19,7 @@ namespace Server
 		private const int sessionTimeOut = 10000;
 		
 		private static readonly Dictionary<string,ServerSideClient> onlineUsers = new Dictionary<string, ServerSideClient>();
+		private static readonly Dictionary<string, NetworkStream> userStreams = new Dictionary<string, NetworkStream>();
 		
 		private static Timer onlineUserCheckTimer = new Timer(onlineUserCheck);
 		
@@ -50,11 +51,16 @@ namespace Server
 
 			NetworkStream stream = client.GetStream();
 			
+			string streamID = ip+":"+port;
+			if(!userStreams.ContainsKey(streamID)){
+				userStreams[streamID]=stream;
+			}
+			
 			int i;
 			try {
 				while ((i = stream.Read(bytes, 0, bytes.Length)) != 0) {
 					data = Encoding.GetEncoding(1251).GetString(bytes, 0, i);
-					Console.WriteLine("Recieve: "+data);
+					Console.WriteLine("Recieve: " + data);
 
 					string message = Controller(data, client);
 					if (message != String.Empty) {
@@ -67,7 +73,7 @@ namespace Server
 			} catch (IOException) {
 				string userAddress = ((IPEndPoint)(client.Client.RemoteEndPoint)).Address.ToString();
 				int userPort = ((IPEndPoint)(client.Client.RemoteEndPoint)).Port;
-				Console.WriteLine("Error while work with client {0}:{1}",userAddress,userPort);
+				Console.WriteLine("Error while work with client {0}:{1}", userAddress, userPort);
 			}
 		}
 		
@@ -109,9 +115,15 @@ namespace Server
 					return String.Empty;
 				case "GetOnlineClients":
 					return CreateOnlineClientsString(parameters);
-				case "HardShake":
-					string offlineUserIDString = parameters;
-					onlineUsers.Remove(offlineUserIDString);
+				case "HandShake":
+					string[] partnerAddress = parameters.Split(':');
+					//Maybe move top
+					string senderAddress = ((IPEndPoint)(client.Client.RemoteEndPoint)).Address.ToString();
+					int senderPort = ((IPEndPoint)(client.Client.RemoteEndPoint)).Port;
+					string message = "Server:HandShake:~" + senderAddress + ":" + senderPort;
+					Console.WriteLine("Send:" + message);
+					byte[] msg = Encoding.GetEncoding(1251).GetBytes(message);	
+					userStreams[parameters].Write(msg, 0, msg.Length);
 					return String.Empty;
 				default:
 					return "Incorrect command";
@@ -125,6 +137,7 @@ namespace Server
 				foreach (String clientID in onlineUsers.Keys) {
 					if (!onlineUsers[clientID].IsAlive) {
 						keysToDelete.Add(clientID);
+						userStreams.Remove(onlineUsers[clientID].Address+":"+onlineUsers[clientID].Port);
 					}
 					onlineUsers[clientID].IsAlive = false;
 				}

@@ -57,7 +57,7 @@ namespace Client
 		}
 
  
-		/*private static void Connect(String serverIP, int serverPort)
+		private static void Connect(String serverIP, int serverPort)
 		{
 			try {
 				TcpClient client = new TcpClient(serverIP, serverPort);
@@ -79,7 +79,7 @@ namespace Client
 			} catch (IOException) {
 				Console.WriteLine("Server down");
 			}
-		}*/
+		}
         
 		static string ReceiveMessage(NetworkStream stream)
 		{
