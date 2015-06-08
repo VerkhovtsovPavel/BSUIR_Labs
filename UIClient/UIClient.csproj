@@ -53,10 +53,9 @@
     <Compile Include="ClientProperties.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServerSideClient.cs" />
-    <Compile Include="UI\CharForm.cs" />
-    <Compile Include="UI\CharForm.Designer.cs">
-      <DependentUpon>CharForm.cs</DependentUpon>
+    <Compile Include="UI\ChatForm.cs" />
+    <Compile Include="UI\ChatForm.Designer.cs">
+      <DependentUpon>ChatForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\InterlocutorSelectForm.cs" />
     <Compile Include="UI\InterlocutorSelectForm.Designer.cs">
@@ -75,8 +74,8 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="UI\CharForm.resx">
-      <DependentUpon>CharForm.cs</DependentUpon>
+    <EmbeddedResource Include="UI\ChatForm.resx">
+      <DependentUpon>ChatForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\InterlocutorSelectForm.resx">
       <DependentUpon>InterlocutorSelectForm.cs</DependentUpon>

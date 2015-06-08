@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Net;
-using System.Net.Sockets;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace OSiSP_6.UI
@@ -23,12 +20,14 @@ namespace OSiSP_6.UI
 		void Submit_buttonClick(object sender, EventArgs e)
 		{
 			if(this.Username_textBox.Text != String.Empty){
+				userName = this.Username_textBox.Text;
 				string message = "Client:Registered:~" + this.Username_textBox.Text + ":" + this.Age_numericUpDown.Value;
 				SendMessage(serverStream, message);
 				ReceiveMessage(serverStream);
 				sessionUpdareTimer.Change(sessionUpdarePeriod, sessionUpdarePeriod);
-				new InterlocutorSelectForm().Show();
-				this.Hide();
+				loginForm.Hide();
+				interlocutorSelectForm.Init();
+				interlocutorSelectForm.Show();
 			}
 			else
 			{

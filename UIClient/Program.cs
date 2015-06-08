@@ -11,7 +11,8 @@ namespace UIClient
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new LoginForm());
+			MainForm.loginForm = new LoginForm();
+			Application.Run(MainForm.loginForm);
 		}
 	}
 }
