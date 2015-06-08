@@ -74,20 +74,6 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="UI\ChatForm.resx">
-      <DependentUpon>ChatForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\InterlocutorSelectForm.resx">
-      <DependentUpon>InterlocutorSelectForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\LoginForm.resx">
-      <DependentUpon>LoginForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="UI" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

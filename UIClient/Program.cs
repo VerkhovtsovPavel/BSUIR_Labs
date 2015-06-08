@@ -1,9 +1,9 @@
-﻿using System;
-using System.Windows.Forms;
-using OSiSP_6.UI;
-
-namespace UIClient
+﻿namespace UIClient
 {
+	using System;
+	using System.Windows.Forms;
+	using OSiSP_6.UI;
+
 	internal sealed class Program
 	{
 		[STAThread]

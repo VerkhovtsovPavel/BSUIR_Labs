@@ -126,10 +126,11 @@ namespace OSiSP_6.UI
 			} catch (SocketException) {
 				MessageBox.Show("You interlocutor leave char");
 				Application.Exit(); 
-				//isInDialog = false;
-				//messageRecieveTimer.Change(-1, -1);
-				//interlocutorSelectForm.Invoke(new Action(interlocutorSelectForm.Show));
-				//interlocutorSelectForm.Invoke(new Action(chatForm.Hide));
+				/*isInDialog = false;
+				ChatForm.chat_textBox.Text = "";
+				messageRecieveTimer.Change(-1, -1);
+				interlocutorSelectForm.Invoke(new Action(interlocutorSelectForm.Show));
+				interlocutorSelectForm.Invoke(new Action(chatForm.Hide));*/
 			}
 		}
 		
@@ -152,14 +153,14 @@ namespace OSiSP_6.UI
 						
 						interlocutorSelectForm.Invoke(new Action(interlocutorSelectForm.Hide));
 						interlocutorSelectForm.Invoke(new Action(chatForm.Show));
+						companion = (EndPoint)partner;
+						messageRecieveTimer.Change(5000, messageCheckPeriod);
 					} else {
 						message = "Client:HandShake:~Lock";
 	
 					}
 					Byte[] d = Encoding.GetEncoding(1251).GetBytes(message);
-					companion = (EndPoint)partner;
 					socket.SendTo(d, d.Length, SocketFlags.None, (EndPoint)partner);
-					messageRecieveTimer.Change(0, messageCheckPeriod);
 					break;
 			}
 		}
@@ -170,10 +171,10 @@ namespace OSiSP_6.UI
 				case "HandShake":
 					if ("Ok".Equals(parameters)) {
 						MessageBox.Show("Dialog start");
-						interlocutorSelectForm.Hide();
-						chatForm.Show();
+						interlocutorSelectForm.Invoke(new Action(interlocutorSelectForm.Hide));
+						interlocutorSelectForm.Invoke(new Action(chatForm.Show));
 						isInDialog = true;
-						messageRecieveTimer.Change(0, messageCheckPeriod);
+						messageRecieveTimer.Change(5000, messageCheckPeriod);
 					} else {
 						MessageBox.Show("Sorry, user alredy in dialog.");
 					}
