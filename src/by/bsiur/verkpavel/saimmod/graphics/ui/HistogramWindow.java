@@ -1,37 +1,47 @@
 package by.bsiur.verkpavel.saimmod.graphics.ui;
 
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.Graphics;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-public class HistogramWindow {
+public class HistogramWindow extends JPanel {
+    private static final long serialVersionUID = 2722283204771345956L;
+    private static final int screenSize = 600;
+    private static final int offsetToBottom = 50;
 
-    private JFrame frame;
+    private float[] sectionSizes;
 
-    public static void create(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    HistogramWindow window = new HistogramWindow();
-                    window.frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+    public static void create(float[] sectionSizes) {
+        JFrame mainFrame = new JFrame("Histogram");
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setContentPane(new HistogramWindow(sectionSizes));
+        mainFrame.setSize(screenSize, screenSize);
+        mainFrame.setVisible(true);
+        mainFrame.setBackground(Color.white);
     }
 
-    /**
-     * Create the application.
-     */
-    private HistogramWindow() {
-        initialize();
+    private HistogramWindow(float[] sectionSizes) {
+        this.sectionSizes = sectionSizes;
+        this.setOpaque(true);
     }
 
-    private void initialize() {
-        frame = new JFrame();
-        frame.setBounds(100, 100, 450, 420);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public void paint(final Graphics g) {
+        int offset = screenSize / sectionSizes.length - 1;
+        scalingSection();
+        for (int i = 0; i < sectionSizes.length; i++) {
+            g.drawRect(offset * i, (int) (screenSize - sectionSizes[i] - offsetToBottom), offset,
+                    (int)sectionSizes[i]);
+        }
+    }
+
+    private void scalingSection() {
+        for (int i = 0; i < sectionSizes.length; i++) {
+
+            sectionSizes[i] *= (screenSize-offsetToBottom);
+        }
+
     }
 
 }

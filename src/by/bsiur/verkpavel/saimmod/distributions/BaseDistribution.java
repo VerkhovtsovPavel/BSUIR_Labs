@@ -2,78 +2,100 @@ package by.bsiur.verkpavel.saimmod.distributions;
 
 import java.util.ArrayList;
 
+import by.bsiur.verkpavel.saimmod.calculation.ProbabilityTheoryCalculator;
+import by.bsiur.verkpavel.saimmod.graphics.HistogramBuilder;
+
 public abstract class BaseDistribution {
-    private ArrayList<Float> items;
+    private final static float e = 0.00001f;
+    protected final int count = 500_000;
+
+    protected ArrayList<Float> items;
+    
+    private ProbabilityTheoryCalculator ptCalculator;
 
     private float mathematicalExpectation;
     private float dispersion;
     private float sigma;
 
     private float period;
+    private float unperiodicitySegment;
 
     public BaseDistribution() {
+        this.ptCalculator = new ProbabilityTheoryCalculator();
         this.items = new ArrayList<Float>();
         this.mathematicalExpectation = Float.NaN;
         this.dispersion = Float.NaN;
         this.sigma = Float.NaN;
         this.period = Float.NaN;
+        this.unperiodicitySegment = Float.NaN;
     }
 
     public abstract void build();
 
+    public void consoleInfo() {
+        System.out.println("Math expectation = " + getMathExpectation());
+        System.out.println("Dispersion = " + getDispersion());
+        System.out.println("Sigma = " + getSigma());
+        System.out.println("Checking by indect sign = " + checkByIndectSign());
+        System.out.println("Period" + (getPeriod() != 0 ? " = " + getPeriod() : " > " + count));
+        System.out.println("Unperiodicity segment"
+                + (getUnperiodicitySegment() != 0 ? " = " + getUnperiodicitySegment() : " > "
+                        + count));
+    }
+
     public float getMathExpectation() {
-        if (this.mathematicalExpectation == Float.NaN) {
-            this.mathematicalExpectation = calculateMathExpectation();
+        if (checkNaN(this.mathematicalExpectation)) {
+            this.mathematicalExpectation = ptCalculator.calculateMathExpectation(this.items);
         }
         return this.mathematicalExpectation;
     }
 
     public float getDispersion() {
-        if (this.dispersion == Float.NaN) {
-            this.dispersion = calculateDispersion();
+        if (checkNaN(this.dispersion)) {
+            this.dispersion = ptCalculator.calculateDispersion(items, getMathExpectation());
         }
         return this.dispersion;
     }
 
     public float getSigma() {
-        if (this.sigma == Float.NaN) {
-            this.sigma = calculateSigma();
+        if (checkNaN(this.sigma)) {
+            this.sigma = ptCalculator.calculateSigma(getDispersion());
         }
         return this.sigma;
     }
 
-    public float getPeriod() {
-        if (this.period == Float.NaN) {
-            this.period = calculatePeriod();
+    public int getPeriod() {
+        if (checkNaN(this.period)) {
+            this.period = ptCalculator.calculatePeriod(items);
         }
-        return this.period;
+        return (int) this.period;
     }
-//>>>> Maybe move to separate class
-    private float calculateMathExpectation() {
-        float sum = 0;
-        for (float item : items) {
-            sum += item;
+
+    public int getUnperiodicitySegment() {
+        if (checkNaN(this.unperiodicitySegment)) {
+            this.unperiodicitySegment = ptCalculator.calculateUnperiodicitySegment(items, getPeriod());
         }
-        return sum / items.size();
+        return (int) this.unperiodicitySegment;
+
     }
 
-    private float calculateDispersion() {
-        float sumOfDeviation = 0;
+    public boolean checkByIndectSign() {
+        int countOfPars = 0;
 
-        for (float item : items) {
-            sumOfDeviation += Math.pow(item - getMathExpectation(), 2);
+        for (int i = 0; i < items.size() / 2; i++){
+            if (Math.pow(items.get(2 * i), 2) + Math.pow(items.get(2 * i + 1), 2) < 1) {
+                countOfPars++;
+            }
         }
-        return sumOfDeviation / items.size();
+        return (2 * countOfPars / items.size() - Math.PI / 2) < e;
     }
 
-    private float calculateSigma() {
-        // TODO Check formula
-        return (float) Math.sqrt(getDispersion());
+    private boolean checkNaN(float value) {
+        return Float.isNaN(value);
     }
 
-    private float calculatePeriod() {
-        // TODO Auto-generated method stub
-        return 0;
+    public void drawHistogram() {
+        HistogramBuilder.getInstance().buildHistogram(items, 20);
     }
-//>>>>>>>>>    
+
 }
