@@ -6,15 +6,13 @@ CREATE SCHEMA IF NOT EXISTS `bank_users` DEFAULT CHARACTER SET utf8 ;
 USE `bank_users` ;
 
 -- -----------------------------------------------------
--- Table `bank_users`.`address`
+-- Table `bank_users`.`city`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bank_users`.`address` ;
+DROP TABLE IF EXISTS `bank_users`.`city` ;
 
-CREATE  TABLE IF NOT EXISTS `bank_users`.`address` (
+CREATE  TABLE IF NOT EXISTS `bank_users`.`city` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `RealCity` VARCHAR(255) NOT NULL ,
-  `RealStreet` VARCHAR(255) NOT NULL ,
-  `OfficialStreet` VARCHAR(255) NOT NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -34,11 +32,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `bank_users`.`familystatuses`
+-- Table `bank_users`.`familystatus`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bank_users`.`familystatuses` ;
+DROP TABLE IF EXISTS `bank_users`.`familystatus` ;
 
-CREATE  TABLE IF NOT EXISTS `bank_users`.`familystatuses` (
+CREATE  TABLE IF NOT EXISTS `bank_users`.`familystatus` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `Status` VARCHAR(255) NOT NULL ,
   PRIMARY KEY (`id`) )
@@ -47,11 +45,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `bank_users`.`nationalitys`
+-- Table `bank_users`.`nationality`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bank_users`.`nationalitys` ;
+DROP TABLE IF EXISTS `bank_users`.`nationality` ;
 
-CREATE  TABLE IF NOT EXISTS `bank_users`.`nationalitys` (
+CREATE  TABLE IF NOT EXISTS `bank_users`.`nationality` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `Nationality` VARCHAR(255) NOT NULL DEFAULT 'NULL' ,
   PRIMARY KEY (`id`) )
@@ -101,7 +99,7 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`user` (
   `LastName` VARCHAR(255) NOT NULL ,
   `MidleName` VARCHAR(255) NOT NULL ,
   `Birthday` DATE NOT NULL ,
-  `Sex_id` INT NOT NULL ,
+  `Sex_id` TINYINT(1) NOT NULL ,
   `Passport_id` INT(11) NOT NULL ,
   `Address_id` INT(11) NOT NULL ,
   `MobilePhone` VARCHAR(255) NULL DEFAULT NULL ,
@@ -110,15 +108,16 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`user` (
   `FamilyStatus` INT(11) NOT NULL ,
   `Nationality_id` INT(11) NOT NULL ,
   `Disability_id` INT(11) NOT NULL ,
-  `Pensioner` TINYINT(4) NOT NULL ,
+  `Pensioner` TINYINT(1) NOT NULL ,
   `MonthProfit` INT(11) NULL DEFAULT NULL ,
+  `Official Street` VARCHAR(255) NOT NULL ,
+  `Real Street` VARCHAR(255) NOT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `Address_id` (`Address_id` ASC) ,
   INDEX `FamilyStatus` (`FamilyStatus` ASC) ,
   INDEX `Nationality_id` (`Nationality_id` ASC) ,
   INDEX `Disability_id` (`Disability_id` ASC) ,
   INDEX `Sex_id` (`Sex_id` ASC) ,
-  INDEX `user_sex` (`Sex_id` ASC) ,
   CONSTRAINT `user_ibfk_1`
     FOREIGN KEY (`Passport_id` )
     REFERENCES `bank_users`.`passportinfo` (`id` )
@@ -126,23 +125,18 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`user` (
     ON UPDATE RESTRICT,
   CONSTRAINT `user_ibfk_2`
     FOREIGN KEY (`Address_id` )
-    REFERENCES `bank_users`.`address` (`id` ),
+    REFERENCES `bank_users`.`city` (`id` ),
   CONSTRAINT `user_ibfk_3`
     FOREIGN KEY (`FamilyStatus` )
-    REFERENCES `bank_users`.`familystatuses` (`id` ),
+    REFERENCES `bank_users`.`familystatus` (`id` ),
   CONSTRAINT `user_ibfk_4`
     FOREIGN KEY (`Nationality_id` )
-    REFERENCES `bank_users`.`nationalitys` (`id` ),
+    REFERENCES `bank_users`.`nationality` (`id` ),
   CONSTRAINT `user_ibfk_5`
     FOREIGN KEY (`Disability_id` )
     REFERENCES `bank_users`.`disabilitys` (`id` )
     ON DELETE RESTRICT
-    ON UPDATE RESTRICT,
-  CONSTRAINT `user_sex`
-    FOREIGN KEY (`Sex_id` )
-    REFERENCES `bank_users`.`sexs` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE RESTRICT)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
