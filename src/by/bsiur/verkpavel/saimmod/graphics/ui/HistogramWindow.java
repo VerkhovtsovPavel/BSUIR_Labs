@@ -19,6 +19,7 @@ public class HistogramWindow extends JPanel {
         mainFrame.setContentPane(new HistogramWindow(sectionSizes));
         mainFrame.setSize(screenSize, screenSize);
         mainFrame.setVisible(true);
+        mainFrame.setResizable(false);
         mainFrame.setBackground(Color.white);
     }
 
@@ -28,14 +29,15 @@ public class HistogramWindow extends JPanel {
     }
 
     public void paint(final Graphics g) {
-        int offset = screenSize / sectionSizes.length - 1;
+        int offset = screenSize / sectionSizes.length;
+        offset-= 20/sectionSizes.length;
         scalingSection();
         for (int i = 0; i < sectionSizes.length; i++) {
             g.drawRect(offset * i, (int) (screenSize - sectionSizes[i] - offsetToBottom), offset,
                     (int)sectionSizes[i]);
         }
     }
-
+    
     private void scalingSection() {
         for (int i = 0; i < sectionSizes.length; i++) {
 

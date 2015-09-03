@@ -54,7 +54,6 @@ public class ProbabilityTheoryCalculator {
         while (!items.get(i).equals(items.get(i + period))) {
             i++;
         }
-
         return i + period;
     }
 }

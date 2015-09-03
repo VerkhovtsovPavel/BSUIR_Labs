@@ -5,8 +5,8 @@ import by.bsiur.verkpavel.saimmod.distributions.UniformDistribution;
 
 public class Main {
     public static void main(String[] args){
-        //170, 33, 7
-    	BaseDistribution distribution = new UniformDistribution(170, 33, 7);
+        //3, 69712349, 1
+    	BaseDistribution distribution = new UniformDistribution(3, 69712349, 1);
     	distribution.build();
     	distribution.consoleInfo();
     	distribution.drawHistogram();

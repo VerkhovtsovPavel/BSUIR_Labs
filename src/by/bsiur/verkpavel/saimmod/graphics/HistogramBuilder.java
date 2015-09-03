@@ -15,27 +15,23 @@ public class HistogramBuilder {
     }
     
     public void buildHistogram(ArrayList<Float> distribution, int sectionCount){
-        calculateOccurrence(distribution, sectionCount);
         HistogramWindow.create(calculateOccurrence(distribution, sectionCount));
     }
     
     private float[] foundMaxAndMin(ArrayList<Float> distribution){
-        float[] minMax = new float[2];
-        
-        minMax[0] = Float.MAX_VALUE;
-        minMax[1] = Float.MIN_VALUE;
+        float min = Float.MAX_VALUE;
+        float max = Float.MIN_VALUE;
         
         for(float value : distribution)
         {
-            if(value < minMax[0]){
-                minMax[0] = value;
+            if(value < min){
+                min = value;
             }
-            if(value>minMax[1]){
-                minMax[1] = value;
+            if(value>max){
+                max = value;
             }
-            
         }
-        return minMax;
+        return new float[]{min, max};
     }
     
     private float[] calculateOccurrence(ArrayList<Float> distribution, int sectionCount){
