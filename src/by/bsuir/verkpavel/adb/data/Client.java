@@ -66,7 +66,19 @@ public class Client {
         this.salary = salary;
     }
 
-    public void setId(int id) {
+    public Client(int id, String firstName, String lastName,
+			String middleName, String bornDate, boolean isMan,
+			String passportSeries, String passportNumber,
+			String whoGivePassport, String passportTakeDate,
+			String identifyNumber, String bornPlace, int realCity,
+			String realAddress, String homePhone, String mobilePhone,
+			String eMail, String officialAddress, int familyStatus,
+			int nationality, int disability, boolean pensioner, int salary) {
+		this(firstName, lastName, middleName, bornDate, isMan, passportSeries, passportNumber, whoGivePassport, passportTakeDate, identifyNumber, bornPlace, realCity, realAddress, homePhone, mobilePhone, eMail, officialAddress, familyStatus, nationality, disability, pensioner, salary);
+		this.id = id;
+	}
+
+	public void setId(int id) {
         this.id = id;
         
     }

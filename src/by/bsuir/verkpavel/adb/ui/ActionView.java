@@ -2,8 +2,6 @@ package by.bsuir.verkpavel.adb.ui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,13 +9,11 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -29,35 +25,37 @@ import by.bsuir.verkpavel.adb.data.DataProvider;
 
 public class ActionView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
-    private JPanel mainPanel;
+    protected JPanel mainPanel;
 
-    private JTextField firstNameField;
-    private JTextField lastNameField;
-    private JTextField middleNameField;
-    private JTextField realAddressField;
-    private JTextField officialAddressTextField;
-    private JTextField emailField;
-    private JTextField passportSeriesField;
-    private JTextField whoGivePassportField;
-    private JTextField bornPlaceField;
+    protected JTextField firstNameField;
+    protected JTextField lastNameField;
+    protected JTextField middleNameField;
+    protected JTextField realAddressField;
+    protected JTextField officialAddressTextField;
+    protected JTextField emailField;
+    protected JTextField passportSeriesField;
+    protected JTextField whoGivePassportField;
+    protected JTextField bornPlaceField;
 
-    private JFormattedTextField bornDateField;
-    private JFormattedTextField passportTakeDateField;
-    private JFormattedTextField homePhoneField;
-    private JFormattedTextField mobilePhoneField;
-    private JFormattedTextField passportNumberField;
-    private JFormattedTextField idertifyNumberField;
-    private JFormattedTextField salaryField;
+    protected JFormattedTextField bornDateField;
+    protected JFormattedTextField passportTakeDateField;
+    protected JFormattedTextField homePhoneField;
+    protected JFormattedTextField mobilePhoneField;
+    protected JFormattedTextField passportNumberField;
+    protected JFormattedTextField idertifyNumberField;
+    protected JFormattedTextField salaryField;
 
-    private JRadioButton manRadioButton;
-    private JRadioButton womanRadioButton;
+    protected JRadioButton manRadioButton;
+    protected JRadioButton womanRadioButton;
 
-    private JComboBox<String> realCityComboBox;
-    private JComboBox<String> familyStatusComboBox;
-    private JComboBox<String> nationalityComboBox;
-    private JComboBox<String> disabilityComboBox;
+    protected JComboBox<String> realCityComboBox;
+    protected JComboBox<String> familyStatusComboBox;
+    protected JComboBox<String> nationalityComboBox;
+    protected JComboBox<String> disabilityComboBox;
 
-    private JCheckBox pensionerCheckBox;
+    protected JCheckBox pensionerCheckBox;
+    
+    protected static Client currentClient;
 
     private static void initialaze(ActionView actionView) {
         ActionView frame = null;
@@ -70,8 +68,9 @@ public class ActionView extends JFrame {
         frame.setVisible(true);
     }
 
-    public static void create(ActionMode mode) {
+    public static void create(ActionMode mode, Client client) {
         try {
+        	currentClient = client;
             ActionView actionView = null;
             switch (mode) {
             case ADD:
@@ -206,18 +205,46 @@ public class ActionView extends JFrame {
         customActions();
     }
 
-    protected void customActions() {
+    protected void customActions() throws ParseException {
         // TODO Auto-generated method stub
+    }
+    
+    protected void fillFields(Client client) throws ParseException{
+    	firstNameField.setText(client.firstName);
+        lastNameField.setText(client.lastName);
+        middleNameField.setText(client.middleName);
+        realAddressField.setText(client.realAddress);
+        officialAddressTextField.setText(client.officialAddress);
+        emailField.setText(client.eMail);
+        passportSeriesField.setText(client.passportSeries);
+        whoGivePassportField.setText(client.whoGivePassport);
+        bornPlaceField.setText(client.bornPlace);
+
+        bornDateField.setValue(new SimpleDateFormat("yyyy-MM-dd").parseObject(client.bornDate));
+        passportTakeDateField.setValue(new SimpleDateFormat("yyyy-MM-dd").parseObject(client.passportTakeDate));
+        homePhoneField.setValue(client.homePhone);
+        mobilePhoneField.setValue(client.mobilePhone);
+        passportNumberField.setValue(client.passportNumber);
+        idertifyNumberField.setValue(client.identifyNumber);
+        salaryField.setValue(client.salary);
+
+        manRadioButton.setSelected(client.isMan);
+        womanRadioButton.setSelected(!client.isMan);
+
+        realCityComboBox.setSelectedIndex(client.realCity);
+        familyStatusComboBox.setSelectedIndex(client.familyStatus);
+        nationalityComboBox.setSelectedIndex(client.nationality);
+        disabilityComboBox.setSelectedIndex(client.disability);
+
+        pensionerCheckBox.setSelected(client.pensioner);
     }
 
     private void initialazeLayout() {
         setResizable(false);
-        setTitle("\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u043A\u043B\u0438\u0435\u043D\u0442\u0430");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         mainPanel = new JPanel();
         setContentPane(mainPanel);
         mainPanel.setLayout(null);
-
     }
 
     private void createElements() throws ParseException {
@@ -226,71 +253,71 @@ public class ActionView extends JFrame {
     }
 
     private void createActionElements() throws ParseException {
-        JButton saveBtn = new JButton("\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C");
-        saveBtn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                String firstName = firstNameField.getText();
-                String lastName = lastNameField.getText();
-                String middleName = middleNameField.getText();
-                String bornDate = bornDateField.getText();
-
-                boolean isMan = manRadioButton.isSelected();
-
-                String passportSeries = passportSeriesField.getText();
-                String passportNumber = passportNumberField.getText();
-                String whoGivePassport = whoGivePassportField.getText();
-                String passportTakeDate = passportTakeDateField.getText();
-                String identifyNumber = idertifyNumberField.getText();
-                String bornPlace = bornPlaceField.getText();
-
-                int realCity = realCityComboBox.getSelectedIndex();
-                String realAddress = realAddressField.getText();
-                String homePhone = homePhoneField.getText();
-                String mobilePhone = mobilePhoneField.getText();
-                String eMail = emailField.getText();
-
-                String officialAddress = officialAddressTextField.getText();
-                int familyStatus = familyStatusComboBox.getSelectedIndex();
-                int nationality = nationalityComboBox.getSelectedIndex();
-                int disability = disabilityComboBox.getSelectedIndex();
-                boolean pensioner = pensionerCheckBox.isSelected();
-
-                int salary = ((Double) salaryField.getValue()).intValue();
-
-                if (checkRequiredFields(firstName, lastName, middleName, bornDate, passportSeries,
-                        passportNumber, whoGivePassport, passportTakeDate, identifyNumber,
-                        bornPlace, realCity, realAddress, officialAddress, familyStatus,
-                        nationality, disability)) {
-                    DataProvider.getInstance().saveClient(
-                            new Client(firstName, lastName, middleName, bornDate, isMan,
-                                    passportSeries, passportNumber, whoGivePassport,
-                                    passportTakeDate, identifyNumber, bornPlace, realCity,
-                                    realAddress, homePhone, mobilePhone, eMail, officialAddress,
-                                    familyStatus, nationality, disability, pensioner, salary));
-                } else {
-                    JOptionPane.showMessageDialog(null, "Не все обязательные поля заполнены!",
-                            "Error", JOptionPane.PLAIN_MESSAGE);
-                }
-            }
-
-            private boolean checkRequiredFields(Object... fields) {
-                for (Object field : fields) {
-                    if (field instanceof String) {
-                        if (((String) field).trim().isEmpty())
-                            return false;
-                    } else {
-                        if (((Integer) field).intValue() == -1) {
-                            return false;
-                        }
-                    }
-                }
-                return true;
-            }
-
-        });
-        saveBtn.setBounds(219, 416, 216, 23);
-        mainPanel.add(saveBtn);
+//        JButton saveBtn = new JButton("\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C");
+//        saveBtn.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                String firstName = firstNameField.getText();
+//                String lastName = lastNameField.getText();
+//                String middleName = middleNameField.getText();
+//                String bornDate = bornDateField.getText();
+//
+//                boolean isMan = manRadioButton.isSelected();
+//
+//                String passportSeries = passportSeriesField.getText();
+//                String passportNumber = passportNumberField.getText();
+//                String whoGivePassport = whoGivePassportField.getText();
+//                String passportTakeDate = passportTakeDateField.getText();
+//                String identifyNumber = idertifyNumberField.getText();
+//                String bornPlace = bornPlaceField.getText();
+//
+//                int realCity = realCityComboBox.getSelectedIndex();
+//                String realAddress = realAddressField.getText();
+//                String homePhone = homePhoneField.getText();
+//                String mobilePhone = mobilePhoneField.getText();
+//                String eMail = emailField.getText();
+//
+//                String officialAddress = officialAddressTextField.getText();
+//                int familyStatus = familyStatusComboBox.getSelectedIndex();
+//                int nationality = nationalityComboBox.getSelectedIndex();
+//                int disability = disabilityComboBox.getSelectedIndex();
+//                boolean pensioner = pensionerCheckBox.isSelected();
+//
+//                int salary = ((Double) salaryField.getValue()).intValue();
+//
+//                if (checkRequiredFields(firstName, lastName, middleName, bornDate, passportSeries,
+//                        passportNumber, whoGivePassport, passportTakeDate, identifyNumber,
+//                        bornPlace, realCity, realAddress, officialAddress, familyStatus,
+//                        nationality, disability)) {
+//                    DataProvider.getInstance().saveClient(
+//                            new Client(firstName, lastName, middleName, bornDate, isMan,
+//                                    passportSeries, passportNumber, whoGivePassport,
+//                                    passportTakeDate, identifyNumber, bornPlace, realCity,
+//                                    realAddress, homePhone, mobilePhone, eMail, officialAddress,
+//                                    familyStatus, nationality, disability, pensioner, salary));
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!",
+//                            "Error", JOptionPane.PLAIN_MESSAGE);
+//                }
+//            }
+//
+//            private boolean checkRequiredFields(Object... fields) {
+//                for (Object field : fields) {
+//                    if (field instanceof String) {
+//                        if (((String) field).trim().isEmpty())
+//                            return false;
+//                    } else {
+//                        if (((Integer) field).intValue() == -1) {
+//                            return false;
+//                        }
+//                    }
+//                }
+//                return true;
+//            }
+//
+//        });
+//        saveBtn.setBounds(219, 416, 216, 23);
+//        mainPanel.add(saveBtn);
 
         firstNameField = new JTextField();
         firstNameField.setColumns(10);
@@ -416,7 +443,7 @@ public class ActionView extends JFrame {
         salaryField.setBounds(79, 390, 114, 20);
         mainPanel.add(salaryField);
         salaryField.setColumns(10);
-        salaryField.setValue(0.0);
+        salaryField.setValue(0);
 
     }
 
