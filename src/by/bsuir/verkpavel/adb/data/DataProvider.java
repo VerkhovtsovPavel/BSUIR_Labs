@@ -126,4 +126,9 @@ public class DataProvider {
 
         return disabilitys;
     }
+
+    public void saveClient(Client client) {
+        // TODO Auto-generated method stub
+        
+    }
 }

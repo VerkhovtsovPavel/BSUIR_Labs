@@ -16,8 +16,8 @@ public class ShowUsersView extends JFrame {
     private JPanel mainPanel;
 
     private static void initialaze() {
-        AddView frame = new AddView();
-        frame.setSize(490, 420);
+        ShowUsersView frame = new ShowUsersView();
+        frame.setSize(460, 310);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
@@ -29,7 +29,7 @@ public class ShowUsersView extends JFrame {
         initialaze();
     }
 
-    public ShowUsersView() {
+    private ShowUsersView() {
         configureDefaultLayot();
     }
 
@@ -49,20 +49,24 @@ public class ShowUsersView extends JFrame {
             }
 
         });
-        editBtn.setBounds(25, 238, 111, 23);
+        editBtn.setBounds(10, 238, 137, 23);
         mainPanel.add(editBtn);
 
         JLabel usersLbl = new JLabel("\u041A\u043B\u0438\u0435\u043D\u0442\u044B");
-        usersLbl.setBounds(188, 34, 66, 14);
+        usersLbl.setBounds(190, 6, 66, 14);
         mainPanel.add(usersLbl);
         
         JList<String> list = new JList<String>();
-        list.setBounds(10, 59, 422, 149);
+        list.setBounds(10, 32, 422, 176);
         mainPanel.add(list);
         
         JButton deleteBtn = new JButton("\u0423\u0434\u0430\u043B\u0438\u0442\u044C");
         deleteBtn.setBounds(321, 238, 111, 23);
         mainPanel.add(deleteBtn);
+        
+        JButton addButton = new JButton("\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C");
+        addButton.setBounds(174, 238, 111, 23);
+        mainPanel.add(addButton);
     } 
 }
 
