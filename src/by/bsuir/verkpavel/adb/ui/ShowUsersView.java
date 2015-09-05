@@ -4,12 +4,17 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+
+import by.bsuir.verkpavel.adb.data.Client;
+import by.bsuir.verkpavel.adb.data.DataProvider;
 
 public class ShowUsersView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
@@ -56,7 +61,8 @@ public class ShowUsersView extends JFrame {
         usersLbl.setBounds(190, 6, 66, 14);
         mainPanel.add(usersLbl);
         
-        JList<String> list = new JList<String>();
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        JList<String> list = new JList<String>(listModel);
         list.setBounds(10, 32, 422, 176);
         mainPanel.add(list);
         
@@ -67,6 +73,12 @@ public class ShowUsersView extends JFrame {
         JButton addButton = new JButton("\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C");
         addButton.setBounds(174, 238, 111, 23);
         mainPanel.add(addButton);
+        
+        ArrayList<Client> clients = DataProvider.getInstance().getAllClients();
+        
+        for(Client client : clients){
+           listModel.addElement(client.firstName+" "+client.lastName+" "+client.middleName);
+        }
     } 
 }
 

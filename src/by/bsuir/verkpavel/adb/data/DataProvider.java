@@ -11,18 +11,17 @@ public class DataProvider {
     static DataProvider instance;
     private Connection connection;
 
-    private static final String DB_PATH = "jdbc:mysql://localhost:3306/menu";
+    private static final String DB_PATH = "jdbc:mysql://localhost:3306/bank_users";
     private static final String DB_USER_NAME = "root";
     private static final String DB_PASSWORD = "123456";
-
-    private static final String SELECT_MENU = "SELECT `idDish`, `dishName`, `cost`, `dishClass`, GROUP_CONCAT(`Name`) AS `products` FROM `dish` JOIN `dish_has_products` ON `Dish_idDish`=`idDish` JOIN `products` ON `Products_idProducts` = `idProducts` GROUP BY (`idDish`);";
 
     private DataProvider() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.connection = DriverManager.getConnection(DB_PATH, DB_USER_NAME, DB_PASSWORD);
         } catch (ClassNotFoundException e) {
-            return;
+            System.out.println("DB driver not found");
+            e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -34,25 +33,6 @@ public class DataProvider {
             instance = new DataProvider();
         }
         return instance;
-    }
-
-    public Object getData() {
-        Statement statement = null;
-        try {
-            statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(SELECT_MENU);
-
-            // while (rs.next()) {
-            // int id = rs.getInt("idDish");
-            // String dishName = rs.getString("dishName");
-            // int cost = rs.getInt("cost");
-            // String dishClass = rs.getString("dishClass");
-            // }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return null;
     }
 
     public ArrayList<String> getCityList() {
@@ -100,7 +80,7 @@ public class DataProvider {
 
             ResultSet rs = statement.executeQuery("SELECT `Nationality` FROM `nationality`;");
             while (rs.next()) {
-                nationalitys.add(rs.getString("Nationalitys"));
+                nationalitys.add(rs.getString("Nationality"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -128,7 +108,130 @@ public class DataProvider {
     }
 
     public void saveClient(Client client) {
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(createInsertClientPassportInfoQuery(client));
+            statement.executeUpdate(createInsertClientQuery(client));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateClient(Client client) {
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(createUpdateClientQuery(client));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<Client> getAllClients() {
+        ArrayList<Client> clients = new ArrayList<Client>();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            String firstName;
+            String lastName;
+            String middleName;
+            String bornDate;
+
+            boolean isMan;
+
+            String passportSeries;
+            String passportNumber;
+            String whoGivePassport;
+            String passportTakeDate;
+            String identifyNumber;
+            String bornPlace;
+
+            int realCity;
+            String realAddress;
+            String homePhone;
+            String mobilePhone;
+            String eMail;
+
+            String officialAddress;
+            int familyStatus;
+            int nationality;
+            int disability;
+            boolean pensioner;
+            int salary;
+
+            ResultSet clientsRS = statement.executeQuery("SELECT * FROM bank_users.user JOIN bank_users.passportinfo WHERE user.id = passportinfo.id;");
+            while (clientsRS.next()) {
+                firstName = clientsRS.getString("FirstName");
+                lastName = clientsRS.getString("LastName");
+                middleName = clientsRS.getString("MidleName");
+                bornDate = clientsRS.getString("BirthDay");
+                isMan = convertIntToBool(clientsRS.getInt("Sex"));
+                realCity = clientsRS.getInt("Address_id");
+                mobilePhone = clientsRS.getString("MobilePhone");
+                homePhone = clientsRS.getString("HomePhone");
+                eMail = clientsRS.getString("E-mail");
+                familyStatus = clientsRS.getInt("FamilyStatus");
+                nationality = clientsRS.getInt("Nationality_id");
+                disability = clientsRS.getInt("Disability_id");
+                pensioner = convertIntToBool(clientsRS.getInt("Pensioner"));
+                salary = clientsRS.getInt("MonthProfit");
+                officialAddress = clientsRS.getString("Official Street");
+                realAddress = clientsRS.getString("Real Street");
+                passportSeries = clientsRS.getString("Serios");
+                passportNumber = clientsRS.getString("Number");
+                whoGivePassport = clientsRS.getString("WhoGives");
+                passportTakeDate = clientsRS.getString("DateGives");
+                identifyNumber = clientsRS.getString("IndifyNumber");
+                bornPlace = clientsRS.getString("BornPlace");
+
+                Client client = new Client(firstName, lastName, middleName, bornDate, isMan,
+                        passportSeries, passportNumber, whoGivePassport, passportTakeDate,
+                        identifyNumber, bornPlace, realCity, realAddress, homePhone, mobilePhone,
+                        eMail, officialAddress, familyStatus, nationality, disability, pensioner,
+                        salary);
+
+                client.setId(clientsRS.getInt("id"));
+
+                clients.add(client);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return clients;
+
+    }
+
+    private String createUpdateClientQuery(Client client) {
         // TODO Auto-generated method stub
-        
+        return null;
+    }
+
+    private String createInsertClientPassportInfoQuery(Client client) {
+        return String
+                .format("INSERT INTO `bank_users`.`passportinfo` (`id`, `Serios`, `Number`, `WhoGives`, `DateGives`, `IndifyNumber`, `BornPlace`) VALUES (NULL, '%s', '%s', '%s', '%s', '%s', '%s' );",
+                        client.passportSeries, client.passportNumber, client.whoGivePassport,
+                        client.passportTakeDate, client.identifyNumber, client.bornPlace);
+    }
+
+    private String createInsertClientQuery(Client client) {
+        return String
+                .format("INSERT INTO `bank_users`.`user`  (`id`, `FirstName`, `LastName`, `MidleName`, `Birthday`, `Sex`, `Address_id`, `MobilePhone`, `HomePhone`, `E-mail`, `FamilyStatus`, `Nationality_id`, `Disability_id`, `Pensioner`, `MonthProfit`, `Official Street`, `Real Street`) VALUES (NULL, '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s', '%s', '%d', '%d', '%d', '%d', '%d', '%s', '%s');",
+                        client.firstName, client.lastName, client.middleName, client.bornDate,
+                        convertBoolToInt(client.isMan), client.realCity + 1, client.mobilePhone,
+                        client.homePhone, client.eMail, client.familyStatus + 1,
+                        client.nationality + 1, client.disability + 1,
+                        convertBoolToInt(client.pensioner), client.salary, client.officialAddress,
+                        client.realAddress);
+    }
+
+    private int convertBoolToInt(boolean bool) {
+        return bool ? 1 : 0;
+    }
+
+    private boolean convertIntToBool(int integer) {
+        return integer == 0 ? false : true;
     }
 }

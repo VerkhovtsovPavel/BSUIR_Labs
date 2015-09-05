@@ -15,25 +15,27 @@ public class Client {
     public String identifyNumber;
     public String bornPlace;
 
-    public String realCity;
+    public int realCity;
     public String realAddress;
     public String homePhone;
     public String mobilePhone;
     public String eMail;
 
     public String officialAddress;
-    public String familyStatus;
-    public String nationality;
-    public String disability;
+    public int familyStatus;
+    public int nationality;
+    public int disability;
     public boolean pensioner;
 
     public int salary;
+    
+    public int id;
 
     public Client(String firstName, String lastName, String middleName, String bornDate,
             boolean isMan, String passportSeries, String passportNumber, String whoGivePassport,
-            String passportTakeDate, String identifyNumber, String bornPlace, String realCity,
+            String passportTakeDate, String identifyNumber, String bornPlace, int realCity,
             String realAddress, String homePhone, String mobilePhone, String eMail,
-            String officialAddress, String familyStatus, String nationality, String disability,
+            String officialAddress, int familyStatus, int nationality, int disability,
             boolean pensioner, int salary) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -62,5 +64,10 @@ public class Client {
         this.pensioner = pensioner;
 
         this.salary = salary;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+        
     }
 }
