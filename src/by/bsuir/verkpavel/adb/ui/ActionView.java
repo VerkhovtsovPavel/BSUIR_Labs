@@ -108,7 +108,7 @@ public class ActionView extends JFrame {
         mainPanel.add(firstNameLbl);
 
         JLabel FirstNamelbl = new JLabel("\u0418\u043C\u044F");
-        FirstNamelbl.setBounds(299, 14, 49, 14);
+        FirstNamelbl.setBounds(289, 11, 49, 14);
         mainPanel.add(FirstNamelbl);
 
         JLabel MiddleNamelbl = new JLabel("\u041E\u0442\u0447\u0435\u0441\u0442\u0432\u043E");
@@ -121,12 +121,12 @@ public class ActionView extends JFrame {
 
         JLabel birthday_label = new JLabel(
                 "\u0414\u0430\u0442\u0430 \u0440\u043E\u0436\u0434\u0435\u043D\u0438\u044F");
-        birthday_label.setBounds(131, 40, 102, 14);
+        birthday_label.setBounds(131, 40, 126, 14);
         mainPanel.add(birthday_label);
 
         JLabel city_label = new JLabel(
                 "\u0413\u043E\u0440\u043E\u0434 \u043F\u0440\u043E\u0436\u0438\u0432\u0430\u043D\u0438\u044F");
-        city_label.setBounds(252, 42, 126, 16);
+        city_label.setBounds(252, 42, 141, 16);
         mainPanel.add(city_label);
 
         JLabel realAddress_lbl = new JLabel(
@@ -141,12 +141,12 @@ public class ActionView extends JFrame {
 
         JLabel homePhonelabel = new JLabel(
                 "\u0414\u043E\u043C. \u0442\u0435\u043B\u0435\u0444\u043E\u043D");
-        homePhonelabel.setBounds(10, 121, 86, 16);
+        homePhonelabel.setBounds(10, 121, 102, 16);
         mainPanel.add(homePhonelabel);
 
         JLabel mobilePhonelabel = new JLabel(
                 "\u041C\u043E\u0431. \u0442\u0435\u043B\u0435\u0444\u043E\u043D");
-        mobilePhonelabel.setBounds(10, 161, 86, 16);
+        mobilePhonelabel.setBounds(10, 161, 102, 16);
         mainPanel.add(mobilePhonelabel);
 
         JLabel emailLbl = new JLabel("E-mail");
@@ -160,22 +160,22 @@ public class ActionView extends JFrame {
 
         JLabel passSeriesLabel = new JLabel(
                 "\u0421\u0435\u0440\u0438\u044F \u043F\u0430\u0441\u043F\u043E\u0440\u0442\u0430");
-        passSeriesLabel.setBounds(10, 264, 102, 14);
+        passSeriesLabel.setBounds(0, 266, 115, 14);
         mainPanel.add(passSeriesLabel);
 
         JLabel familyStatusLabel = new JLabel(
                 "\u0421\u0435\u043C\u0435\u0439\u043D\u043E\u0435 \u043F\u043E\u043B\u043E\u0436\u0435\u043D\u0438\u0435");
-        familyStatusLabel.setBounds(10, 205, 141, 16);
+        familyStatusLabel.setBounds(0, 205, 156, 16);
         mainPanel.add(familyStatusLabel);
 
         JLabel nationalityLabel = new JLabel(
                 "\u0413\u0440\u0430\u0436\u0434\u0430\u043D\u0441\u0442\u0432\u043E");
-        nationalityLabel.setBounds(151, 205, 126, 16);
+        nationalityLabel.setBounds(163, 205, 126, 16);
         mainPanel.add(nationalityLabel);
 
         JLabel passNumberLabel = new JLabel(
                 "\u041D\u043E\u043C\u0435\u0440 \u043F\u0430\u0441\u043F\u043E\u0440\u0442\u0430");
-        passNumberLabel.setBounds(161, 266, 102, 14);
+        passNumberLabel.setBounds(161, 266, 128, 14);
         mainPanel.add(passNumberLabel);
 
         JLabel disabilityLabel = new JLabel(
@@ -185,7 +185,7 @@ public class ActionView extends JFrame {
 
         JLabel indentNumberLabel = new JLabel(
                 "\u0418\u043D\u0434\u0435\u0442. \u043D\u043E\u043C\u0435\u0440");
-        indentNumberLabel.setBounds(359, 264, 102, 14);
+        indentNumberLabel.setBounds(376, 266, 102, 14);
         mainPanel.add(indentNumberLabel);
 
         JLabel whoGiveLbl = new JLabel("\u041A\u0435\u043C \u0432\u044B\u0434\u0430\u043D");
@@ -194,11 +194,11 @@ public class ActionView extends JFrame {
 
         JLabel bornPlaceLabel = new JLabel(
                 "\u041C\u0435\u0441\u0442\u043E \u0440\u043E\u0436\u0434\u0435\u043D\u0438\u044F");
-        bornPlaceLabel.setBounds(10, 348, 102, 14);
+        bornPlaceLabel.setBounds(10, 348, 146, 14);
         mainPanel.add(bornPlaceLabel);
 
         JLabel salaryLabel = new JLabel("\u0417\u0430\u0440\u043F\u043B\u0430\u0442\u0430");
-        salaryLabel.setBounds(10, 392, 66, 16);
+        salaryLabel.setBounds(10, 392, 102, 16);
         mainPanel.add(salaryLabel);
     }
 
@@ -326,11 +326,11 @@ public class ActionView extends JFrame {
         mainPanel.add(familyStatusComboBox);
 
         nationalityComboBox = new JComboBox<String>();
-        nationalityComboBox.setBounds(151, 223, 126, 26);
+        nationalityComboBox.setBounds(163, 223, 126, 26);
         mainPanel.add(nationalityComboBox);
 
         disabilityComboBox = new JComboBox<String>();
-        disabilityComboBox.setBounds(289, 223, 126, 26);
+        disabilityComboBox.setBounds(299, 223, 126, 26);
         mainPanel.add(disabilityComboBox);
 
         pensionerCheckBox = new JCheckBox("\u041F\u0435\u043D\u0441\u0438\u043E\u043D\u0435\u0440");
@@ -345,19 +345,19 @@ public class ActionView extends JFrame {
         MaskFormatter passportSeriesMask = new MaskFormatter("UU");
         passportSeriesField = new JFormattedTextField(passportSeriesMask);
         passportSeriesField.setColumns(10);
-        passportSeriesField.setBounds(109, 259, 35, 23);
+        passportSeriesField.setBounds(121, 260, 35, 23);
         mainPanel.add(passportSeriesField);
 
         MaskFormatter passportNumberMask = new MaskFormatter("#######");
         passportNumberField = new JFormattedTextField(passportNumberMask);
         passportNumberField.setColumns(10);
-        passportNumberField.setBounds(260, 261, 88, 23);
+        passportNumberField.setBounds(281, 262, 88, 23);
         mainPanel.add(passportNumberField);
 
         MaskFormatter passportidertIfyNumberMask = new MaskFormatter("#######U###UU#");
         idertifyNumberField = new JFormattedTextField(passportidertIfyNumberMask);
         idertifyNumberField.setColumns(10);
-        idertifyNumberField.setBounds(458, 259, 191, 23);
+        idertifyNumberField.setBounds(479, 262, 191, 23);
         mainPanel.add(idertifyNumberField);
 
         whoGivePassportField = new JTextField();
@@ -367,7 +367,7 @@ public class ActionView extends JFrame {
 
         bornPlaceField = new JTextField();
         bornPlaceField.setColumns(10);
-        bornPlaceField.setBounds(116, 345, 533, 23);
+        bornPlaceField.setBounds(159, 345, 490, 23);
         mainPanel.add(bornPlaceField);
 
         NumberFormat format = NumberFormat.getCurrencyInstance(Locale.getDefault());
@@ -378,7 +378,7 @@ public class ActionView extends JFrame {
         formatter.setAllowsInvalid(false);
         formatter.setOverwriteMode(true);
         salaryField = new JFormattedTextField(formatter);
-        salaryField.setBounds(79, 390, 114, 20);
+        salaryField.setBounds(120, 391, 114, 20);
         mainPanel.add(salaryField);
         salaryField.setColumns(10);
         salaryField.setValue(0);

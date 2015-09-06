@@ -81,7 +81,7 @@ public class ShowUsersView extends JFrame {
 
 		});
 
-		editBtn.setBounds(10, 238, 137, 23);
+		editBtn.setBounds(10, 238, 152, 23);
 		mainPanel.add(editBtn);
 
 		JLabel usersLbl = new JLabel(
