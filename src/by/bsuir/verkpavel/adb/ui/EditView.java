@@ -57,14 +57,16 @@ public class EditView extends ActionView {
                         passportNumber, whoGivePassport, passportTakeDate, identifyNumber,
                         bornPlace, realCity, realAddress, officialAddress, familyStatus,
                         nationality, disability)) {
-                    DataProvider.getInstance().updateClient(
-                            new Client(currentClient.id, firstName, lastName, middleName, bornDate, isMan,
-                                    passportSeries, passportNumber, whoGivePassport,
-                                    passportTakeDate, identifyNumber, bornPlace, realCity,
-                                    realAddress, homePhone, mobilePhone, eMail, officialAddress,
-                                    familyStatus, nationality, disability, pensioner, salary));
+                    currentClient = new Client(currentClient.id, firstName, lastName, middleName, bornDate, isMan,
+                            passportSeries, passportNumber, whoGivePassport,
+                            passportTakeDate, identifyNumber, bornPlace, realCity,
+                            realAddress, homePhone, mobilePhone, eMail, officialAddress,
+                            familyStatus, nationality, disability, pensioner, salary);
+                    DataProvider.getInstance().updateClient(currentClient);
+                    dispose();
+                    ShowUsersView.create();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Не все обязательные поля заполнены!",
+                    JOptionPane.showMessageDialog(null, "\u0417\u0430\u043F\u043E\u043B\u043D\u0435\u043D\u044B \u043D\u0435 \u0432\u0441\u0435 \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435 \u043F\u043E\u043B\u044F!",
                             "Error", JOptionPane.PLAIN_MESSAGE);
                 }
             }

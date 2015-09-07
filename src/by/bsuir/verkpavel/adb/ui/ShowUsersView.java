@@ -19,6 +19,8 @@ import by.bsuir.verkpavel.adb.data.DataProvider;
 public class ShowUsersView extends JFrame {
 	private static final long serialVersionUID = 2883993883146596569L;
 	private JPanel mainPanel;
+	
+   ArrayList<Client> clients;
 
 	private static void initialaze() {
 		ShowUsersView frame = new ShowUsersView();
@@ -33,8 +35,8 @@ public class ShowUsersView extends JFrame {
 	public static void create() {
 		initialaze();
 	}
-
-	private ShowUsersView() {
+	
+   private ShowUsersView() {
 		configureDefaultLayot();
 	}
 
@@ -45,9 +47,9 @@ public class ShowUsersView extends JFrame {
 		mainPanel = new JPanel();
 		setContentPane(mainPanel);
 		mainPanel.setLayout(null);
-
-		final ArrayList<Client> clients = DataProvider.getInstance()
-				.getAllClients();
+		
+        clients = DataProvider.getInstance()
+                .getAllClients();
 
 		final DefaultListModel<String> listModel = new DefaultListModel<>();
 		final JList<String> list = new JList<String>(listModel);
@@ -59,6 +61,7 @@ public class ShowUsersView extends JFrame {
 					if (list.getSelectedIndex() != -1)
 						ActionView.create(ActionMode.SHOW,
 								clients.get(list.getSelectedIndex()));
+					    dispose();
 				}
 			}
 		});
@@ -69,9 +72,11 @@ public class ShowUsersView extends JFrame {
 		editBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (list.getSelectedIndex() != -1)
+				if (list.getSelectedIndex() != -1){
 					ActionView.create(ActionMode.EDIT,
 							clients.get(list.getSelectedIndex()));
+					dispose();
+			}
 			}
 
 		});
@@ -96,7 +101,6 @@ public class ShowUsersView extends JFrame {
 					listModel.remove(list.getSelectedIndex());
 				}
 			}
-
 		}
 
 		);
@@ -116,6 +120,7 @@ public class ShowUsersView extends JFrame {
 		addButton.setBounds(174, 238, 111, 23);
 		mainPanel.add(addButton);
 
+		listModel.clear();
 		for (Client client : clients) {
 			listModel.addElement(client.firstName + " " + client.lastName + " "
 					+ client.middleName);

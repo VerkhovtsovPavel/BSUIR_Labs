@@ -66,6 +66,13 @@ public class ActionView extends JFrame {
         int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
         frame.setLocation(x, y);
         frame.setVisible(true);
+        
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                ShowUsersView.create();
+            }
+        });
     }
 
     public static void create(ActionMode mode, Client client) {
@@ -88,12 +95,9 @@ public class ActionView extends JFrame {
             e.printStackTrace();
         }
     }
+    
+    
 
-    /**
-     * Create the frame.
-     * 
-     * @throws ParseException
-     */
     protected ActionView() throws ParseException {
         configureDefaultLayot();
     }
@@ -206,7 +210,7 @@ public class ActionView extends JFrame {
     }
 
     protected void customActions() throws ParseException {
-        // TODO Auto-generated method stub
+       
     }
     
     protected void fillFields(Client client) throws ParseException{
@@ -231,10 +235,10 @@ public class ActionView extends JFrame {
         manRadioButton.setSelected(client.isMan);
         womanRadioButton.setSelected(!client.isMan);
 
-        realCityComboBox.setSelectedIndex(client.realCity);
-        familyStatusComboBox.setSelectedIndex(client.familyStatus);
-        nationalityComboBox.setSelectedIndex(client.nationality);
-        disabilityComboBox.setSelectedIndex(client.disability);
+        realCityComboBox.setSelectedIndex(client.realCity-1);
+        familyStatusComboBox.setSelectedIndex(client.familyStatus-1);
+        nationalityComboBox.setSelectedIndex(client.nationality-1);
+        disabilityComboBox.setSelectedIndex(client.disability-1);
 
         pensionerCheckBox.setSelected(client.pensioner);
     }
@@ -253,72 +257,6 @@ public class ActionView extends JFrame {
     }
 
     private void createActionElements() throws ParseException {
-//        JButton saveBtn = new JButton("\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C");
-//        saveBtn.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                String firstName = firstNameField.getText();
-//                String lastName = lastNameField.getText();
-//                String middleName = middleNameField.getText();
-//                String bornDate = bornDateField.getText();
-//
-//                boolean isMan = manRadioButton.isSelected();
-//
-//                String passportSeries = passportSeriesField.getText();
-//                String passportNumber = passportNumberField.getText();
-//                String whoGivePassport = whoGivePassportField.getText();
-//                String passportTakeDate = passportTakeDateField.getText();
-//                String identifyNumber = idertifyNumberField.getText();
-//                String bornPlace = bornPlaceField.getText();
-//
-//                int realCity = realCityComboBox.getSelectedIndex();
-//                String realAddress = realAddressField.getText();
-//                String homePhone = homePhoneField.getText();
-//                String mobilePhone = mobilePhoneField.getText();
-//                String eMail = emailField.getText();
-//
-//                String officialAddress = officialAddressTextField.getText();
-//                int familyStatus = familyStatusComboBox.getSelectedIndex();
-//                int nationality = nationalityComboBox.getSelectedIndex();
-//                int disability = disabilityComboBox.getSelectedIndex();
-//                boolean pensioner = pensionerCheckBox.isSelected();
-//
-//                int salary = ((Double) salaryField.getValue()).intValue();
-//
-//                if (checkRequiredFields(firstName, lastName, middleName, bornDate, passportSeries,
-//                        passportNumber, whoGivePassport, passportTakeDate, identifyNumber,
-//                        bornPlace, realCity, realAddress, officialAddress, familyStatus,
-//                        nationality, disability)) {
-//                    DataProvider.getInstance().saveClient(
-//                            new Client(firstName, lastName, middleName, bornDate, isMan,
-//                                    passportSeries, passportNumber, whoGivePassport,
-//                                    passportTakeDate, identifyNumber, bornPlace, realCity,
-//                                    realAddress, homePhone, mobilePhone, eMail, officialAddress,
-//                                    familyStatus, nationality, disability, pensioner, salary));
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "�� ��� ������������ ���� ���������!",
-//                            "Error", JOptionPane.PLAIN_MESSAGE);
-//                }
-//            }
-//
-//            private boolean checkRequiredFields(Object... fields) {
-//                for (Object field : fields) {
-//                    if (field instanceof String) {
-//                        if (((String) field).trim().isEmpty())
-//                            return false;
-//                    } else {
-//                        if (((Integer) field).intValue() == -1) {
-//                            return false;
-//                        }
-//                    }
-//                }
-//                return true;
-//            }
-//
-//        });
-//        saveBtn.setBounds(219, 416, 216, 23);
-//        mainPanel.add(saveBtn);
-
         firstNameField = new JTextField();
         firstNameField.setColumns(10);
         firstNameField.setBounds(79, 8, 210, 23);
