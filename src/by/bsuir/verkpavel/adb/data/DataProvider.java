@@ -270,7 +270,7 @@ public class DataProvider {
 		try {
 			statement = connection.createStatement();
 			statement.executeUpdate("DELETE FROM `user` WHERE `id` = "
-					+ client.id + ";"
+					+ client.id + ";\n"
 					+ "DELETE FROM `passportinfo` WHERE `id` = " + client.id
 					+ ";");
 		} catch (SQLException e) {
