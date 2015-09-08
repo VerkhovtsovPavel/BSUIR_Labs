@@ -3,6 +3,7 @@ package by.bsuir.verkpavel.adb.ui;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -57,14 +58,19 @@ public class AddView extends ActionView {
                         passportNumber, whoGivePassport, passportTakeDate, identifyNumber,
                         bornPlace, realCity, realAddress, officialAddress, familyStatus,
                         nationality, disability)) {
-                    DataProvider.getInstance().saveClient(
+                	if(((Date)bornDateField.getValue()).after(new Date())|| ((Date)passportTakeDateField.getValue()).after(new Date())){
+                		JOptionPane.showMessageDialog(null, "Дата позже сегодняжней!",
+                                "Error", JOptionPane.PLAIN_MESSAGE);
+                		return;
+                	}
+                	JOptionPane.showMessageDialog(null,  DataProvider.getInstance().saveClient(
                             new Client(firstName, lastName, middleName, bornDate, isMan,
                                     passportSeries, passportNumber, whoGivePassport,
                                     passportTakeDate, identifyNumber, bornPlace, realCity,
                                     realAddress, homePhone, mobilePhone, eMail, officialAddress,
-                                    familyStatus, nationality, disability, pensioner, salary));
-                    dispose();
+                                    familyStatus, nationality, disability, pensioner, salary)), "Message", JOptionPane.PLAIN_MESSAGE);
                     ShowUsersView.create();
+                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "\u0417\u0430\u043F\u043E\u043B\u043D\u0435\u043D\u044B \u043D\u0435 \u0432\u0441\u0435 \u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435 \u043F\u043E\u043B\u044F!",
                             "Error", JOptionPane.PLAIN_MESSAGE);

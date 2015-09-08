@@ -3,6 +3,7 @@ package by.bsuir.verkpavel.adb.ui;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -57,6 +58,11 @@ public class EditView extends ActionView {
                         passportNumber, whoGivePassport, passportTakeDate, identifyNumber,
                         bornPlace, realCity, realAddress, officialAddress, familyStatus,
                         nationality, disability)) {
+                	if(((Date)bornDateField.getValue()).after(new Date())|| ((Date)passportTakeDateField.getValue()).after(new Date())){
+                		JOptionPane.showMessageDialog(null, "Дата позже сегодняжней!",
+                                "Error", JOptionPane.PLAIN_MESSAGE);
+                		return;
+                	}
                     currentClient = new Client(currentClient.id, firstName, lastName, middleName, bornDate, isMan,
                             passportSeries, passportNumber, whoGivePassport,
                             passportTakeDate, identifyNumber, bornPlace, realCity,
