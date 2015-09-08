@@ -230,7 +230,7 @@ public class ActionView extends JFrame {
         mobilePhoneField.setValue(client.mobilePhone);
         passportNumberField.setValue(client.passportNumber);
         idertifyNumberField.setValue(client.identifyNumber);
-        salaryField.setValue(client.salary);
+        salaryField.setValue((double)client.salary);
 
         manRadioButton.setSelected(client.isMan);
         womanRadioButton.setSelected(!client.isMan);
@@ -381,7 +381,7 @@ public class ActionView extends JFrame {
         salaryField.setBounds(120, 391, 114, 20);
         mainPanel.add(salaryField);
         salaryField.setColumns(10);
-        salaryField.setValue(0);
+        salaryField.setValue(0.0);
 
     }
 

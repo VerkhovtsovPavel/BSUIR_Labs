@@ -96,9 +96,11 @@ public class ShowUsersView extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (list.getSelectedIndex() != -1) {
+				    int selection = list.getSelectedIndex() ;
 					DataProvider.getInstance().deleteClient(
-							clients.get(list.getSelectedIndex()));
-					listModel.remove(list.getSelectedIndex());
+							clients.get(selection));
+					listModel.remove(selection);
+					clients.remove(selection);
 				}
 			}
 		}
