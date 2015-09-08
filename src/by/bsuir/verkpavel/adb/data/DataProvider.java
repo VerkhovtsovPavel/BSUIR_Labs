@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 public class DataProvider {
     static DataProvider instance;
     private Connection connection;
@@ -107,15 +109,19 @@ public class DataProvider {
         return disabilitys;
     }
 
-    public void saveClient(Client client) {
+    public String saveClient(Client client) {
         Statement statement;
         try {
             statement = connection.createStatement();
             statement.executeUpdate(createInsertClientPassportInfoQuery(client));
             statement.executeUpdate(createInsertClientQuery(client));
+        }catch(MySQLIntegrityConstraintViolationException e){
+        	return "Клиент с таким номером паспорта и серией или идентифиционым номером уже существует";
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
+        return "Клиент успешно добавлен";
     }
 
     public void updateClient(Client client) {

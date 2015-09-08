@@ -1,7 +1,11 @@
 package by.bsuir.verkpavel.adb.ui;
 
 import java.awt.Dimension;
+import java.awt.RenderingHints.Key;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -262,6 +266,16 @@ public class ActionView extends JFrame {
         firstNameField = new JTextField();
         firstNameField.setColumns(10);
         firstNameField.setBounds(79, 8, 210, 23);
+        firstNameField.addKeyListener(new KeyAdapter() {
+			
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				if("йцукенгшщзхъфывапролджэячсмитьбю".contains((""+arg0.getKeyChar()).toLowerCase())){
+					arg0.setKeyChar("".toCharArray()[0]);
+				}
+				
+			};
+		});
         mainPanel.add(firstNameField);
 
         lastNameField = new JTextField();
