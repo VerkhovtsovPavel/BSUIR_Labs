@@ -19,11 +19,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `bank_users`.`disabilitys`
+-- Table `bank_users`.`disability`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bank_users`.`disabilitys` ;
+DROP TABLE IF EXISTS `bank_users`.`disability` ;
 
-CREATE  TABLE IF NOT EXISTS `bank_users`.`disabilitys` (
+CREATE  TABLE IF NOT EXISTS `bank_users`.`disability` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `Disability` VARCHAR(255) NOT NULL ,
   PRIMARY KEY (`id`) )
@@ -76,19 +76,6 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `bank_users`.`sexs`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `bank_users`.`sexs` ;
-
-CREATE  TABLE IF NOT EXISTS `bank_users`.`sexs` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `Sex` VARCHAR(10) NOT NULL DEFAULT 'NULL' ,
-  PRIMARY KEY (`id`) )
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
 -- Table `bank_users`.`user`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `bank_users`.`user` ;
@@ -99,8 +86,7 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`user` (
   `LastName` VARCHAR(255) NOT NULL ,
   `MidleName` VARCHAR(255) NOT NULL ,
   `Birthday` DATE NOT NULL ,
-  `Sex_id` TINYINT(1) NOT NULL ,
-  `Passport_id` INT(11) NOT NULL ,
+  `Sex` TINYINT(1) NOT NULL ,
   `Address_id` INT(11) NOT NULL ,
   `MobilePhone` VARCHAR(255) NULL DEFAULT NULL ,
   `HomePhone` VARCHAR(255) NULL DEFAULT NULL ,
@@ -117,9 +103,8 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`user` (
   INDEX `FamilyStatus` (`FamilyStatus` ASC) ,
   INDEX `Nationality_id` (`Nationality_id` ASC) ,
   INDEX `Disability_id` (`Disability_id` ASC) ,
-  INDEX `Sex_id` (`Sex_id` ASC) ,
   CONSTRAINT `user_ibfk_1`
-    FOREIGN KEY (`Passport_id` )
+    FOREIGN KEY (`id` )
     REFERENCES `bank_users`.`passportinfo` (`id` )
     ON DELETE RESTRICT
     ON UPDATE RESTRICT,
@@ -134,7 +119,7 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`user` (
     REFERENCES `bank_users`.`nationality` (`id` ),
   CONSTRAINT `user_ibfk_5`
     FOREIGN KEY (`Disability_id` )
-    REFERENCES `bank_users`.`disabilitys` (`id` )
+    REFERENCES `bank_users`.`disability` (`id` )
     ON DELETE RESTRICT
     ON UPDATE RESTRICT)
 ENGINE = InnoDB

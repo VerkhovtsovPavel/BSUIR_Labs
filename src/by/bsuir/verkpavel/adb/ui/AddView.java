@@ -51,7 +51,7 @@ public class AddView extends ActionView {
                 int disability = disabilityComboBox.getSelectedIndex();
                 boolean pensioner = pensionerCheckBox.isSelected();
 
-                int salary = (int) salaryField.getValue();
+                int salary = ((Double)salaryField.getValue()).intValue();
 
                 if (checkRequiredFields(firstName, lastName, middleName, bornDate, passportSeries,
                         passportNumber, whoGivePassport, passportTakeDate, identifyNumber,
