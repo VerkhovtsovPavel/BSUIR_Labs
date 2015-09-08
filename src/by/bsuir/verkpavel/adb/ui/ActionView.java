@@ -226,8 +226,10 @@ public class ActionView extends JFrame {
 
         bornDateField.setValue(new SimpleDateFormat("yyyy-MM-dd").parseObject(client.bornDate));
         passportTakeDateField.setValue(new SimpleDateFormat("yyyy-MM-dd").parseObject(client.passportTakeDate));
-        homePhoneField.setValue(client.homePhone);
-        mobilePhoneField.setValue(client.mobilePhone);
+        if(!client.homePhone.contains("+(   )-  -   -    "))
+            homePhoneField.setValue(client.homePhone);
+        if(!client.mobilePhone.contains("+(   )-  -   -    "))
+            mobilePhoneField.setValue(client.mobilePhone);
         passportNumberField.setValue(client.passportNumber);
         idertifyNumberField.setValue(client.identifyNumber);
         salaryField.setValue((double)client.salary);
