@@ -2,11 +2,11 @@ package by.bsuir.verkpavel.saimmod.distributions;
 
 
 public class UniformDistribution extends BaseDistribution {
-	private int startInterval;
-	private int endInterval;
+	private double startInterval;
+	private double endInterval;
 	private BaseDistribution baseDistribution;
 
-	public UniformDistribution(int a, int b, int length) {
+	public UniformDistribution(double a, double b, int length) {
 		super(length);
 		this.startInterval = a;
 		this.endInterval = b;
@@ -16,9 +16,9 @@ public class UniformDistribution extends BaseDistribution {
 
 	@Override
 	public void build() {
-		int intervalLength = endInterval - startInterval;
+		double intervalLength = endInterval - startInterval;
 		baseDistribution.build();
-		for(float item : baseDistribution.items){
+		for(double item : baseDistribution.items){
 			items.add(startInterval + intervalLength*item);
 		}
 
