@@ -2,7 +2,7 @@ package by.bsuir.verkpavel.saimmod.graphics;
 
 import java.util.ArrayList;
 
-import by.bsuir.verkpavel.saimmod.graphics.ui.HistogramWindow;
+import by.bsuir.verkpavel.saimmod.graphics.ui.Histogram;
 
 public class HistogramBuilder {
     private static HistogramBuilder instance;
@@ -14,15 +14,25 @@ public class HistogramBuilder {
         return instance;
     }
     
-    public void buildHistogram(ArrayList<Float> distribution, int sectionCount){
-        HistogramWindow.create(calculateOccurrence(distribution, sectionCount));
+    public void buildHistogram(ArrayList<Double> distribution, int sectionCount){
+        double[] histogramData = new double[distribution.size()];
+        
+        for(int i=0; i< distribution.size(); i++)
+            histogramData[i] = distribution.get(i);  
+        
+        
+        double[] minMax = foundMaxAndMin(distribution);
+        double max = minMax[1];
+        double min = minMax[0];
+         
+       new Histogram(histogramData, sectionCount, min ,max);
     }
     
-    private float[] foundMaxAndMin(ArrayList<Float> distribution){
-        float min = Float.MAX_VALUE;
-        float max = Float.MIN_VALUE;
+    private double[] foundMaxAndMin(ArrayList<Double> distribution){
+        double min = Double.MAX_VALUE;
+        double max = Double.MIN_VALUE;
         
-        for(float value : distribution)
+        for(double value : distribution)
         {
             if(value < min){
                 min = value;
@@ -31,22 +41,6 @@ public class HistogramBuilder {
                 max = value;
             }
         }
-        return new float[]{min, max};
-    }
-    
-    private float[] calculateOccurrence(ArrayList<Float> distribution, int sectionCount){
-        float[] minMax = foundMaxAndMin(distribution);
-        float max = minMax[1];
-        float min = minMax[0];
-        float sectionInterval = ((max-min)/sectionCount)+0.0001f;
-        float[] histogramData = new float[sectionCount];
-        
-        for(float currentValue : distribution)
-            histogramData[(int) ((currentValue-min)/sectionInterval)]++;
-        
-        for(int i=0; i< histogramData.length; i++)
-            histogramData[i]/=distribution.size();
-        
-        return histogramData;       
+        return new double[]{min, max};
     }
 }

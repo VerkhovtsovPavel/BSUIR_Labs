@@ -12,8 +12,8 @@ public class ExponensialDistribution extends BaseDistribution {
 	@Override
 	public void build() {
 		generator.build();
-		for(float item : generator.items){
-			items.add((float)(-1/(float)this.lambda*Math.log(1-item)));
+		for(double item : generator.items){
+			items.add((double)(-1/(double)this.lambda*Math.log(1-item)));
 		}
 
 	}

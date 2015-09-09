@@ -8,19 +8,19 @@ import by.bsuir.verkpavel.saimmod.graphics.HistogramBuilder;
 public abstract class BaseDistribution {
     protected int count = 1_000_000;
 
-    protected ArrayList<Float> items;
+    protected ArrayList<Double> items;
     protected ProbabilityTheoryCalculator ptCalculator;
 
-    private float mathematicalExpectation;
-    private float dispersion;
-    private float sigma;
+    private double mathematicalExpectation;
+    private double dispersion;
+    private double sigma;
 
     public BaseDistribution(int length) {
         this.ptCalculator = new ProbabilityTheoryCalculator();
-        this.items = new ArrayList<Float>();
-        this.mathematicalExpectation = Float.NaN;
-        this.dispersion = Float.NaN;
-        this.sigma = Float.NaN;
+        this.items = new ArrayList<Double>();
+        this.mathematicalExpectation = Double.NaN;
+        this.dispersion = Double.NaN;
+        this.sigma = Double.NaN;
         this.count = length;
         
     }
@@ -40,29 +40,29 @@ public abstract class BaseDistribution {
 		
 	}
 
-	public float getMathExpectation() {
+	public double getMathExpectation() {
         if (checkNaN(this.mathematicalExpectation)) {
             this.mathematicalExpectation = ptCalculator.calculateMathExpectation(this.items);
         }
         return this.mathematicalExpectation;
     }
 
-    public float getDispersion() {
+    public double getDispersion() {
         if (checkNaN(this.dispersion)) {
             this.dispersion = ptCalculator.calculateDispersion(items, getMathExpectation());
         }
         return this.dispersion;
     }
 
-    public float getSigma() {
+    public double getSigma() {
         if (checkNaN(this.sigma)) {
             this.sigma = ptCalculator.calculateSigma(getDispersion());
         }
         return this.sigma;
     }
 
-    protected boolean checkNaN(float value) {
-        return Float.isNaN(value);
+    protected boolean checkNaN(double value) {
+        return Double.isNaN(value);
     }
 
     public void drawHistogram() {

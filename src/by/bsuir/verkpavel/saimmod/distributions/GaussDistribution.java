@@ -1,11 +1,11 @@
 package by.bsuir.verkpavel.saimmod.distributions;
 
 public class GaussDistribution extends BaseDistribution{
-	private float initMathExperction;
-	private float initSigma;
+	private double initMathExperction;
+	private double initSigma;
 	private BaseDistribution generator;
 
-	public GaussDistribution(int a, int b,float mathExp, float sigma, int length) {
+	public GaussDistribution(int a, int b,double mathExp, double sigma, int length) {
 		super(length);
 		this.initMathExperction = mathExp;
 		this.initSigma = sigma;
@@ -16,11 +16,11 @@ public class GaussDistribution extends BaseDistribution{
 	@Override
 	public void build() {
 		for(int i=0; i<this.count; i++){
-			float sum =0;
+			double sum =0;
 			for(int j=0; j<6; j++){
 				sum+=(generator.items.get(6*i+j)-3);
 			}
-			items.add((float) (initMathExperction+initSigma*Math.sqrt(2)*sum));
+			items.add((double) (initMathExperction+initSigma*Math.sqrt(2)*sum));
 		}
 	}
 

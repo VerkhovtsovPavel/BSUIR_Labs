@@ -1,14 +1,14 @@
 package by.bsuir.verkpavel.saimmod.distributions;
 
 public class LemerDistribution extends BaseDistribution {
-    private final static float eps = 0.00001f;
+    private final static double eps = 0.00001f;
     
     private int a;
     private int m;
     private int r0;
     
-    private float period;
-    private float unperiodicitySegment;
+    private double period;
+    private double unperiodicitySegment;
 
     public LemerDistribution(int a, int m, int r0, int length) {
         super(length);
@@ -16,13 +16,13 @@ public class LemerDistribution extends BaseDistribution {
         this.m = m;
         this.r0 = r0;
         
-        this.period = Float.NaN;
-        this.unperiodicitySegment = Float.NaN;
+        this.period = Double.NaN;
+        this.unperiodicitySegment = Double.NaN;
     }
 
     @Override
     public void build() {
-        float r = r0;
+        double r = r0;
         for (int i = 0; i < count; i++) {
             r = (a * r % m);
             items.add(r/m);
