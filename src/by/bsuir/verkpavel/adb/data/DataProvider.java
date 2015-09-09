@@ -124,15 +124,18 @@ public class DataProvider {
         return "Клиент успешно добавлен";
     }
 
-    public void updateClient(Client client) {
+    public String updateClient(Client client) {
         Statement statement;
         try {
             statement = connection.createStatement();
             statement.executeUpdate(createUpdateClientQuery(client));
             statement.executeUpdate(createUpdateClientPassportInfoQuery(client));
+        }catch(MySQLIntegrityConstraintViolationException e){
+            return "Клиент с таким номером паспорта и серией или идентифиционым номером уже существует";
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return "Клиент успешно добавлен";
     }
 
     public ArrayList<Client> getAllClients() {
