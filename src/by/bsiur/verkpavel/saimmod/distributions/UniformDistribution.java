@@ -1,14 +1,14 @@
 package by.bsiur.verkpavel.saimmod.distributions;
 
 public class UniformDistribution extends BaseDistribution {
-    private final static double eps = 0.1f;
+    private final static float eps = 0.1f;
     
     private int a;
     private int m;
     private int r0;
     
-    private double period;
-    private double unperiodicitySegment;
+    private float period;
+    private float unperiodicitySegment;
 
     public UniformDistribution(int a, int m, int r0, int length) {
         super(length);
@@ -16,13 +16,13 @@ public class UniformDistribution extends BaseDistribution {
         this.m = m;
         this.r0 = r0;
         
-        this.period = Double.NaN;
-        this.unperiodicitySegment = Double.NaN;
+        this.period = Float.NaN;
+        this.unperiodicitySegment = Float.NaN;
     }
 
     @Override
     public void build() {
-        double r = r0;
+        float r = r0;
         for (int i = 0; i < count; i++) {
             r = (a * r % m);
             items.add(r/m);
@@ -65,7 +65,7 @@ public class UniformDistribution extends BaseDistribution {
                 countOfPars++;
             }
         }
-        double result = (double)2 * countOfPars / items.size();
+        float result = (float)2 * countOfPars / items.size();
         return new Object[]{Math.abs(result - Math.PI / 4) < eps, result};
     }
 }

@@ -4,30 +4,30 @@ import java.util.ArrayList;
 
 public class ProbabilityTheoryCalculator {
     
-    public double calculateMathExpectation(ArrayList<Double> items) {
-        double sum = 0;
-        for (double item : items) {
+    public float calculateMathExpectation(ArrayList<Float> items) {
+        float sum = 0;
+        for (float item : items) {
             sum += item;
         }
         return sum / items.size();
     }
 
-    public double calculateDispersion(ArrayList<Double> items, double mathExpectation) {
-        double sumOfDeviation = 0;
+    public float calculateDispersion(ArrayList<Float> items, float mathExpectation) {
+        float sumOfDeviation = 0;
 
-        for (double item : items) {
+        for (float item : items) {
             sumOfDeviation += Math.pow(item - mathExpectation, 2);
         }
         return sumOfDeviation / items.size();
     }
 
-    public double calculateSigma(double dispersion) {
-        return (double) Math.sqrt(dispersion);
+    public float calculateSigma(float dispersion) {
+        return (float) Math.sqrt(dispersion);
     }
 
-    public int calculatePeriod(ArrayList<Double> items) {
+    public int calculatePeriod(ArrayList<Float> items) {
         try {
-            double ac = items.get(items.size() - 1);
+            float ac = items.get(items.size() - 1);
             int i = 0;
 
             while (!items.get(i).equals(ac)) {
@@ -48,7 +48,7 @@ public class ProbabilityTheoryCalculator {
         }
     }
 
-    public int calculateUnperiodicitySegment(ArrayList<Double> items, int period) {
+    public int calculateUnperiodicitySegment(ArrayList<Float> items, int period) {
         int i = 0;
 
         while (!items.get(i).equals(items.get(i + period))) {

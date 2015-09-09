@@ -14,25 +14,25 @@ public class HistogramBuilder {
         return instance;
     }
     
-    public void buildHistogram(ArrayList<Double> distribution, int sectionCount){
+    public void buildHistogram(ArrayList<Float> distribution, int sectionCount){
         double[] histogramData = new double[distribution.size()];
         
         for(int i=0; i< distribution.size(); i++)
             histogramData[i] = distribution.get(i);  
         
         
-        double[] minMax = foundMaxAndMin(distribution);
-        double max = minMax[1];
-        double min = minMax[0];
+        float[] minMax = foundMaxAndMin(distribution);
+        float max = minMax[1];
+        float min = minMax[0];
          
        new Histogram(histogramData, sectionCount, min ,max);
     }
     
-    private double[] foundMaxAndMin(ArrayList<Double> distribution){
-        double min = Double.MAX_VALUE;
-        double max = Double.MIN_VALUE;
+    private float[] foundMaxAndMin(ArrayList<Float> distribution){
+        float min = Float.MAX_VALUE;
+        float max = Float.MIN_VALUE;
         
-        for(double value : distribution)
+        for(float value : distribution)
         {
             if(value < min){
                 min = value;
@@ -41,6 +41,6 @@ public class HistogramBuilder {
                 max = value;
             }
         }
-        return new double[]{min, max};
+        return new float[]{min, max};
     }
 }

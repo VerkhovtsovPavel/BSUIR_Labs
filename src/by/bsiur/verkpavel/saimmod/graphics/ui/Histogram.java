@@ -19,7 +19,7 @@ public class Histogram extends JFrame {
 
     private static final long serialVersionUID = 1L;
 
-    public Histogram(double[] a, int n, double max, double min) {
+    public Histogram(double[] a, int n, float max, float min) {
         JFreeChart chart = createChart(a, n, max, min);
 
         ChartPanel cpanel = new ChartPanel(chart);
@@ -31,7 +31,7 @@ public class Histogram extends JFrame {
         this.setVisible(true);
     }
 
-    private JFreeChart createChart(double[] values, int sectionCount, double min, double max) {
+    private JFreeChart createChart(double[] values, int sectionCount, float min, float max) {
 
         HistogramDataset dataset = new HistogramDataset();
         dataset.addSeries("Values", values, sectionCount, min, max);

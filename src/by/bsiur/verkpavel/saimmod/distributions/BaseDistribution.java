@@ -8,19 +8,19 @@ import by.bsiur.verkpavel.saimmod.graphics.HistogramBuilder;
 public abstract class BaseDistribution {
     protected int count;
 
-    protected ArrayList<Double> items;
+    protected ArrayList<Float> items;
     protected ProbabilityTheoryCalculator ptCalculator;
 
-    private double mathematicalExpectation;
-    private double dispersion;
-    private double sigma;
+    private float mathematicalExpectation;
+    private float dispersion;
+    private float sigma;
 
     public BaseDistribution(int length) {
         this.ptCalculator = new ProbabilityTheoryCalculator();
-        this.items = new ArrayList<Double>();
-        this.mathematicalExpectation = Double.NaN;
-        this.dispersion = Double.NaN;
-        this.sigma = Double.NaN;
+        this.items = new ArrayList<Float>();
+        this.mathematicalExpectation = Float.NaN;
+        this.dispersion = Float.NaN;
+        this.sigma = Float.NaN;
         this.count = length;
     }
 
@@ -32,29 +32,29 @@ public abstract class BaseDistribution {
         System.out.println("Sigma = " + getSigma());
     }
 
-    public double getMathExpectation() {
+    public float getMathExpectation() {
         if (checkNaN(this.mathematicalExpectation)) {
             this.mathematicalExpectation = ptCalculator.calculateMathExpectation(this.items);
         }
         return this.mathematicalExpectation;
     }
 
-    public double getDispersion() {
+    public float getDispersion() {
         if (checkNaN(this.dispersion)) {
             this.dispersion = ptCalculator.calculateDispersion(items, getMathExpectation());
         }
         return this.dispersion;
     }
 
-    public double getSigma() {
+    public float getSigma() {
         if (checkNaN(this.sigma)) {
             this.sigma = ptCalculator.calculateSigma(getDispersion());
         }
         return this.sigma;
     }
 
-    protected boolean checkNaN(double value) {
-        return Double.isNaN(value);
+    protected boolean checkNaN(float value) {
+        return Float.isNaN(value);
     }
 
     public void drawHistogram() {
