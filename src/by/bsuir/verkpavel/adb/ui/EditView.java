@@ -26,8 +26,9 @@ public class EditView extends ActionView {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Client client = getClient();
+                client.setId(currentClient.id);
                 if(client!=null){
-                    JOptionPane.showMessageDialog(null,  DataProvider.getInstance().updateClient(currentClient), "Message", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(null,  DataProvider.getInstance().updateClient(client), "Message", JOptionPane.PLAIN_MESSAGE);
                     ShowUsersView.create();
                     dispose();
                 }
