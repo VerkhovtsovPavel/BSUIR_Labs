@@ -27,6 +27,8 @@ public class GammaDistribution extends BaseDistribution {
 
 	@Override
 	public void introduce() {
+	    System.out.println(String.format(
+                "Gamma distribution with parameters lambda = %f, n = %d", this.lambda, this.setLength));
 	}	
 
 }

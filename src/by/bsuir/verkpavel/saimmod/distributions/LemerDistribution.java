@@ -3,14 +3,14 @@ package by.bsuir.verkpavel.saimmod.distributions;
 public class LemerDistribution extends BaseDistribution {
     private final static double eps = 0.00001f;
     
-    private int a;
-    private int m;
-    private int r0;
+    private double a;
+    private double m;
+    private double r0;
     
     private double period;
     private double unperiodicitySegment;
 
-    public LemerDistribution(int a, int m, int r0, int length) {
+    public LemerDistribution(double a, double m, double r0, int length) {
         super(length);
         this.a = a;
         this.m = m;
@@ -58,7 +58,7 @@ public class LemerDistribution extends BaseDistribution {
 	@Override
 	public void introduce() {
 		System.out.println(String.format(
-                "Lemer distribution with parameters a = %d, m = %d, R0 = %d", a, m, r0));
+                "Lemer distribution with parameters a = %f, m = %f, R0 = %f", a, m, r0));
 	}
 
 	@Override
