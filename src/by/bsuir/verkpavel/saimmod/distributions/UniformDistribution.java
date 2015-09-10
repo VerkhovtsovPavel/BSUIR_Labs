@@ -27,7 +27,7 @@ public class UniformDistribution extends BaseDistribution {
 	@Override
 	public void introduce() {
 		System.out.println(String.format(
-                "Uniform distribution with parameters a = %d, b = %d", this.startInterval, this.endInterval));
+                "Uniform distribution with parameters a = %f, b = %f", this.startInterval, this.endInterval));
 
 	}
 
