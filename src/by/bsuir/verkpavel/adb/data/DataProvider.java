@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import by.bsuir.verkpavel.adb.resources.RussianStrings;
+
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 public class DataProvider {
@@ -116,12 +118,12 @@ public class DataProvider {
             statement.executeUpdate(createInsertClientPassportInfoQuery(client));
             statement.executeUpdate(createInsertClientQuery(client));
         }catch(MySQLIntegrityConstraintViolationException e){
-        	return "Клиент с таким номером паспорта и серией или идентифиционым номером уже существует";
+        	return RussianStrings.DUBLICATE_PASSPORT_SERIOS_OR_IDENTIFY_NUMBER.get();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         
-        return "Клиент успешно добавлен";
+        return RussianStrings.CLIENT_SUCCESSFULLY_ADDED.get();
     }
 
     public String updateClient(Client client) {
@@ -130,12 +132,10 @@ public class DataProvider {
             statement = connection.createStatement();
             statement.executeUpdate(createUpdateClientQuery(client));
             statement.executeUpdate(createUpdateClientPassportInfoQuery(client));
-        }catch(MySQLIntegrityConstraintViolationException e){
-            return "Клиент с таким номером паспорта и серией или идентифиционым номером уже существует";
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return "Клиент успешно добавлен";
+        return RussianStrings.CLIENT_SUCCESSFULLY_UPDATED.get();
     }
 
     public ArrayList<Client> getAllClients() {
