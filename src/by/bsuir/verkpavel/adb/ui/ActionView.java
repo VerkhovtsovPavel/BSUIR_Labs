@@ -24,6 +24,7 @@ import javax.swing.text.NumberFormatter;
 
 import by.bsuir.verkpavel.adb.data.Client;
 import by.bsuir.verkpavel.adb.data.DataProvider;
+import by.bsuir.verkpavel.adb.resources.RussianStrings;
 
 public class ActionView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
@@ -56,6 +57,7 @@ public class ActionView extends JFrame {
     protected JComboBox<String> disabilityComboBox;
 
     protected JCheckBox pensionerCheckBox;
+    private SimpleDateFormat dateMask;
 
     protected static Client currentClient;
 
@@ -224,9 +226,8 @@ public class ActionView extends JFrame {
         whoGivePassportField.setText(client.whoGivePassport);
         bornPlaceField.setText(client.bornPlace);
 
-        bornDateField.setValue(new SimpleDateFormat("yyyy-MM-dd").parseObject(client.bornDate));
-        passportTakeDateField.setValue(new SimpleDateFormat("yyyy-MM-dd")
-                .parseObject(client.passportTakeDate));
+        bornDateField.setValue(dateMask.parseObject(client.bornDate));
+        passportTakeDateField.setValue(dateMask.parseObject(client.passportTakeDate));
         if (!client.homePhone.contains("+(   )-  -   -    "))
             homePhoneField.setValue(client.homePhone);
         if (!client.mobilePhone.contains("+(   )-  -   -    "))
@@ -293,7 +294,14 @@ public class ActionView extends JFrame {
                 realCity, realAddress, officialAddress, familyStatus, nationality, disability)) {
             if (((Date) bornDateField.getValue()).after(new Date())
                     || ((Date) passportTakeDateField.getValue()).after(new Date())) {
-                JOptionPane.showMessageDialog(null, "–î–∞—Ç–∞ –ø–æ–∑–∂–µ —Å–µ–≥–æ–¥–Ω—è–∂–Ω–µ–π!",
+                JOptionPane.showMessageDialog(null, RussianStrings.DATE_AFTER_NOW.get(),
+                        "Error", JOptionPane.PLAIN_MESSAGE);
+                return null;
+            }
+            
+            if (((Date) bornDateField.getValue()).before(new Date("01/01/1900"))
+                    || ((Date) passportTakeDateField.getValue()).before(new Date("01/01/1900"))) {
+                JOptionPane.showMessageDialog(null, RussianStrings.DATE_BEFORE_01011900.get(),
                         "Error", JOptionPane.PLAIN_MESSAGE);
                 return null;
             }
@@ -326,7 +334,7 @@ public class ActionView extends JFrame {
         firstNameField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent e) {
                 char key = e.getKeyChar();
-                if (!"ÈˆÛÍÂÌ„¯˘Áı˙Ù˚‚‡ÔÓÎ‰Ê˝ˇ˜ÒÏËÚ¸·˛".contains(""+Character.toLowerCase(key))) {
+                if (!RussianStrings.RUSSIAN_ALPHABET.get().contains(""+Character.toLowerCase(key))) {
                   e.consume();
                 }
               }
@@ -356,9 +364,9 @@ public class ActionView extends JFrame {
         sexRadioButtonGroup.add(manRadioButton);
         sexRadioButtonGroup.add(womanRadioButton);
 
-        SimpleDateFormat dataMask = new SimpleDateFormat("yyyy-MM-dd");
-        bornDateField = new JFormattedTextField(dataMask);
-        bornDateField.setValue(new java.util.Date()); // today
+        dateMask = new SimpleDateFormat("yyyy-MM-dd");
+        bornDateField = new JFormattedTextField(dateMask);
+        bornDateField.setValue(new java.util.Date());
         bornDateField.setBounds(131, 58, 92, 28);
         mainPanel.add(bornDateField);
 
@@ -408,9 +416,9 @@ public class ActionView extends JFrame {
         pensionerCheckBox.setBounds(443, 227, 104, 18);
         mainPanel.add(pensionerCheckBox);
 
-        passportTakeDateField = new JFormattedTextField(dataMask);
+        passportTakeDateField = new JFormattedTextField(dateMask);
         passportTakeDateField.setBounds(10, 308, 92, 28);
-        passportTakeDateField.setValue(new java.util.Date()); // today
+        passportTakeDateField.setValue(new java.util.Date());
         mainPanel.add(passportTakeDateField);
 
         MaskFormatter passportSeriesMask = new MaskFormatter("UU");
