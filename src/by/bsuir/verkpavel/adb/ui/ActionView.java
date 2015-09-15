@@ -2,12 +2,16 @@ package by.bsuir.verkpavel.adb.ui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JCheckBox;
@@ -397,6 +401,21 @@ public class ActionView extends JFrame {
 
         emailField = new JTextField();
         emailField.setBounds(399, 161, 271, 28);
+        emailField.addFocusListener(new FocusListener() {
+            
+            @Override
+            public void focusLost(FocusEvent e) {
+                if(!emailField.getText().trim().matches("^([\\w\\.\\-_]+)?\\w+@[\\w-_]+(\\.\\w+){1,}$")){
+                    emailField.setText("");
+                }
+                //[a-zA-Z0-9_]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?!([a-zA-Z0-9]*\\.[a-zA-Z0-9]*\\.[a-zA-Z0-9]*\\.))(?:[A-Za-z0-9](?:[a-zA-Z0-9-]*[A-Za-z0-9])?\\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?
+            }
+            
+            @Override
+            public void focusGained(FocusEvent e) {
+                
+            }
+        });
         mainPanel.add(emailField);
         emailField.setColumns(10);
 
