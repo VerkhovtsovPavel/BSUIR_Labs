@@ -6,14 +6,14 @@ import java.util.Queue;
 import queuingSystem.BaseQSElement;
 import queuingSystem.secondStepOfProcessing.SecondStepOfProcessing;
 
-public class CMOQueue extends BaseQSElement {
+public class QSQueue extends BaseQSElement {
     public int totalTimeInQuequ;
     public int totalLengthQuequ;
     
     private Queue<Client> queue = new LinkedList<Client>();
     private SecondStepOfProcessing ssp;
 
-    public CMOQueue(SecondStepOfProcessing ssp) {
+    public QSQueue(SecondStepOfProcessing ssp) {
         this.ssp = ssp;
     }
 

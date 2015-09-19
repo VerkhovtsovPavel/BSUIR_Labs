@@ -2,7 +2,7 @@ package main;
 
 import queuingSystem.clientGenerator.ClientGenerator;
 import queuingSystem.firstStepOfProcessing.FirstStepOfProcessing;
-import queuingSystem.queue.CMOQueue;
+import queuingSystem.queue.QSQueue;
 import queuingSystem.secondStepOfProcessing.SecondStepOfProcessing;
 
 public class Main {
@@ -14,7 +14,7 @@ public class Main {
     
     public static void main(String[] args) {
        SecondStepOfProcessing secondStepOfProcessing = new SecondStepOfProcessing(prodationOfSecondStepOfProcessing);
-       CMOQueue cmoQueue = new CMOQueue(secondStepOfProcessing);
+       QSQueue cmoQueue = new QSQueue(secondStepOfProcessing);
        FirstStepOfProcessing firstStepOfProcessing = new FirstStepOfProcessing(prodationOfFirstStepOfProcessing, cmoQueue);
        ClientGenerator clientGenerator = new ClientGenerator(firstStepOfProcessing, prodationOfGenerator);
 
