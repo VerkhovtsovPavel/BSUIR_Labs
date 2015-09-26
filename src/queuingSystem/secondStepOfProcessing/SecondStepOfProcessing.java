@@ -29,7 +29,6 @@ public class SecondStepOfProcessing extends BaseQSElement{
         }
     }
 
-
     @Override
     public void tact() {
         if(!isFree){

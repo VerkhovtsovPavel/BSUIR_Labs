@@ -7,8 +7,8 @@ import queuingSystem.secondStepOfProcessing.SecondStepOfProcessing;
 
 public class Main {
     private static final double prodationOfGenerator = 0.75;
-    private static final double prodationOfFirstStepOfProcessing = 0.65;
-    private static final double prodationOfSecondStepOfProcessing = 0.60;
+    private static final double prodationOfFirstStepOfProcessing = 0.7;
+    private static final double prodationOfSecondStepOfProcessing = 0.65;
     
     private static final int countOfTacts = 1000;
     

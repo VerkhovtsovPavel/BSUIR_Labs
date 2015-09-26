@@ -27,7 +27,6 @@ public class ClientGenerator extends BaseQSElement{
     }
     
     public boolean pushClient(boolean client){
-        if(isUserCreated)
            if(fsp.pushClient(isUserCreated)){
                isBlocked = false;
            }

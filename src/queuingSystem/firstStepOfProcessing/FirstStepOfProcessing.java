@@ -27,7 +27,13 @@ public class FirstStepOfProcessing extends BaseQSElement{
             }
             return true;
         }else{
-            return false;
+            if(incomingClient){
+                return false;
+            }
+            else{
+                return true;
+            }
+            
         }
         
         
