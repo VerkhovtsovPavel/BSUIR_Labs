@@ -10,7 +10,7 @@ public class Main {
     private static final double prodationOfFirstStepOfProcessing = 0.7;
     private static final double prodationOfSecondStepOfProcessing = 0.65;
     
-    private static final int countOfTacts = 1000;
+    private static final int countOfTacts = 1000000;
     
     public static void main(String[] args) {
        SecondStepOfProcessing secondStepOfProcessing = new SecondStepOfProcessing(prodationOfSecondStepOfProcessing);
@@ -27,7 +27,7 @@ public class Main {
            clientGenerator.pushClient(true);
        }
        
-       System.out.println("Total processed task> "+secondStepOfProcessing.processedTask);
+       System.out.println("Absolutely bandwidth> "+(float)secondStepOfProcessing.processedTask / countOfTacts);
        System.out.println("Average queue length> "+(float)cmoQueue.totalLengthQuequ/countOfTacts);
        System.out.println("Average time in queue> "+(float)cmoQueue.totalTimeInQuequ/secondStepOfProcessing.processedTask);
     }
