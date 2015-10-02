@@ -12,7 +12,7 @@ public class TimePeriodGenerator {
     }
 
     public int getInterval() {
-        return (int) (-1/(double)this.intens*Math.log(1-generator.nextDouble())*500);
+        return (int) (-1/(double)this.intens*Math.log(1-generator.nextDouble())*3600)+1;
     }
 
 
