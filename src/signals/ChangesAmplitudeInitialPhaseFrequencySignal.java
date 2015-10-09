@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class ChangesAmplitudeInitialPhaseFrequencySignal extends BaseSignal {
 
-    public ChangesAmplitudeInitialPhaseFrequencySignal(int amplitude, int frequency, double initilaPhase, int N) {
-        super(amplitude, frequency, initilaPhase, N);
+    public ChangesAmplitudeInitialPhaseFrequencySignal(int amplitude, double initilaPhase, int N) {
+        super(amplitude, initilaPhase, N);
     }
 
     public void buildGraphOfSum(int count) {
@@ -22,17 +22,17 @@ public class ChangesAmplitudeInitialPhaseFrequencySignal extends BaseSignal {
                 charts.get(0).set(j, charts.get(0).get(j) + charts.get(i).get(j));
             }
         }
-        chartDrawer.addDataset(charts.get(0), 1, calculationStep);
+        chartDrawer.addDataset(charts.get(0), 1, 1);
         chartDrawer.draw();
     }
 
     @Override
     protected ArrayList<Double> calculateData(int number) {
         ArrayList<Double> values = new ArrayList<Double>();
-        for (double i = 0; i < 10; i += calculationStep) {
+        for (int n = 0; n < N; n ++) {
             values.add((amplitude + number)
-                    * Math.cos(2 * Math.PI * n *i * (frequency - number) / N
-                            + (initialPhase + number * Math.PI / 6)));
+                    * Math.cos(2 * Math.PI * n * (number+1)  / N
+                            + (initialPhase + (float)number/6)));
         }
         return values;
     }
