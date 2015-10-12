@@ -36,9 +36,15 @@ public class Main {
 
 		System.out.println("Average queue length> "
 				+ (float) Processor.getCountTasksInQueue() / (workTime * countOfQuerySystems));
+		
+	      System.out.println("Average tasks in system> "
+	                + (float) Processor.getCountTasksInSystem() / (workTime * countOfQuerySystems));
+		
 		System.out.println("Average time in queue> "
 				+ Processor.getAverageTimeInQueue() + " hours");
-
+		
+	      System.out.println("Average time in system> "
+	                + Processor.getAverageTimeInSystem() + " hours");
 	}
 
 	private static void createQuerySystems() {
