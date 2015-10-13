@@ -20,6 +20,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.InternationalFormatter;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 
@@ -45,6 +47,8 @@ public class ActionView extends JFrame {
 
     private JComboBox<String> depositTypeComboBox;
     private JComboBox<String> currencyComboBox;
+    private JComboBox<String> clientComboBox;
+    
     private SimpleDateFormat dateMask;
 
     private static void initialaze(ActionView actionView) {
@@ -245,27 +249,10 @@ public class ActionView extends JFrame {
         depositPeriodTextField.setBounds(515, 149, 134, 28);
         depositPeriodTextField.setEditable(false);
         mainPanel.add(depositPeriodTextField);
-
-        currencyComboBox = new JComboBox<String>();
-        currencyComboBox.setBounds(174, 34, 126, 26);
-        currencyComboBox.addActionListener(new ActionListener () {
-            public void actionPerformed(ActionEvent e) {
-                String type = (String) currencyComboBox.getSelectedItem();
-                //TODO Implement
-                switch (type) {
-                case "BYR":
-                    
-                    break;
-
-                default:
-                    break;
-                }
-            }
-        });
-        mainPanel.add(currencyComboBox);
-
+        
         // TODO Change format by currency
-        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("RU"));
+        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("ru_RU"));
+        
         format.setMaximumFractionDigits(0);
         NumberFormatter formatter = new NumberFormatter(format);
         formatter.setMinimum(1.0);
@@ -284,14 +271,39 @@ public class ActionView extends JFrame {
         persentTextField.setBounds(342, 208, 114, 20);
         mainPanel.add(persentTextField);
 
-        JComboBox<String> clientComboBox = new JComboBox<String>();
+        clientComboBox = new JComboBox<String>();
         clientComboBox.setBounds(79, 84, 624, 26);
         mainPanel.add(clientComboBox);
+        
+        currencyComboBox = new JComboBox<String>();
+        currencyComboBox.setBounds(174, 34, 126, 26);
+        currencyComboBox.addActionListener(new ActionListener () {
+            public void actionPerformed(ActionEvent e) {
+                String type = (String) currencyComboBox.getSelectedItem();
+                //TODO Implement
+                switch (type) {
+                case "EUR":
+                    depositSumField.setFormatterFactory(new DefaultFormatterFactory(new InternationalFormatter(NumberFormat.getCurrencyInstance(Locale.GERMANY))));
+                    break;
+                case "USD":
+                    depositSumField.setFormatterFactory(new DefaultFormatterFactory(new InternationalFormatter(NumberFormat.getCurrencyInstance(Locale.US))));
+                    break; 
+                case "BYR":
+                    NumberFormat rf = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("ru"));
+                    depositSumField.setFormatterFactory(new DefaultFormatterFactory(new InternationalFormatter(NumberFormat.getCurrencyInstance(Locale.forLanguageTag("ru")))));
+                    break;     
+                default:
+                    break;
+                }
+            }
+        });
+        mainPanel.add(currencyComboBox);
     }
 
     private void fillComboBoxes() {
         fillComboBox(depositTypeComboBox, DataProvider.getInstance().getDepositTypeList());
         fillComboBox(currencyComboBox, DataProvider.getInstance().getCurrency());
+        fillComboBox(clientComboBox, DataProvider.getInstance().getUserFullNames());
     }
 
     private void fillComboBox(JComboBox<String> target, ArrayList<String> source) {

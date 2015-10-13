@@ -12,6 +12,7 @@ import by.bsuir.verkpavel.adb.data.entity.Deposit;
 import by.bsuir.verkpavel.adb.resources.RussianStrings;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 //TODO Maybe delegate operation with client and deposits separate objects 
 public class DataProvider {
     private static DataProvider instance;
@@ -118,12 +119,12 @@ public class DataProvider {
             statement = connection.createStatement();
             statement.executeUpdate(createInsertClientPassportInfoQuery(client));
             statement.executeUpdate(createInsertClientQuery(client));
-        }catch(MySQLIntegrityConstraintViolationException e){
-        	return RussianStrings.DUBLICATE_PASSPORT_SERIOS_OR_IDENTIFY_NUMBER.get();
+        } catch (MySQLIntegrityConstraintViolationException e) {
+            return RussianStrings.DUBLICATE_PASSPORT_SERIOS_OR_IDENTIFY_NUMBER.get();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return RussianStrings.CLIENT_SUCCESSFULLY_ADDED.get();
     }
 
@@ -272,15 +273,15 @@ public class DataProvider {
         }
     }
 
-	public ArrayList<Deposit> getAllDeposits() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public ArrayList<Deposit> getAllDeposits() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	public String saveDeposit(Deposit deposit) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public String saveDeposit(Deposit deposit) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
     public ArrayList<String> getDepositTypeList() {
         ArrayList<String> depositTypes = new ArrayList<String>();
@@ -316,5 +317,24 @@ public class DataProvider {
         }
 
         return currencys;
+    }
+
+    public ArrayList<String> getUserFullNames() {
+        ArrayList<String> clients = new ArrayList<String>();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+
+            ResultSet clientsRS = statement.executeQuery("SELECT * FROM bank_users.user;");
+            while (clientsRS.next()) {
+                clients.add(String.format("%s %s %s", clientsRS.getString("LastName"),
+                        clientsRS.getString("FirstName"), clientsRS.getString("MidleName")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return clients;
+
     }
 }
