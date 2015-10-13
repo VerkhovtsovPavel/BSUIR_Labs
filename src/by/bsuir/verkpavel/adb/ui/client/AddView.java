@@ -18,26 +18,26 @@ public class AddView extends ActionView {
     }
 
     @Override
-	protected void customActions() {
-		setTitle("\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u043A\u043B\u0438\u0435\u043D\u0442\u0430");
-		
+    protected void customActions() {
+        setTitle("\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u043A\u043B\u0438\u0435\u043D\u0442\u0430");
+
         JButton saveBtn = new JButton("\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C");
         saveBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Client client = getClient();
-                if(client!=null){
-                	JOptionPane.showMessageDialog(null,  DataProvider.getInstance().saveClient(
-                            client), "Message", JOptionPane.PLAIN_MESSAGE);
+                if (client != null) {
+                    JOptionPane.showMessageDialog(null,
+                            DataProvider.getInstance().saveClient(client), "Message",
+                            JOptionPane.PLAIN_MESSAGE);
                     ShowUsersView.create();
                     dispose();
-                } 
+                }
             }
-
 
         });
         saveBtn.setBounds(219, 416, 216, 23);
         mainPanel.add(saveBtn);
-	}
+    }
 
 }

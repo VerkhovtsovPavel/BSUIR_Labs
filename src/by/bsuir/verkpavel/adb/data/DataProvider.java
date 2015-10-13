@@ -12,9 +12,9 @@ import by.bsuir.verkpavel.adb.data.entity.Deposit;
 import by.bsuir.verkpavel.adb.resources.RussianStrings;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
-
+//TODO Maybe delegate operation with client and deposits separate objects 
 public class DataProvider {
-    static DataProvider instance;
+    private static DataProvider instance;
     private Connection connection;
 
     private static final String DB_PATH = "jdbc:mysql://localhost:3306/bank_users?useUnicode=true&characterEncoding=utf8";
@@ -31,7 +31,6 @@ public class DataProvider {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     };
 
     public static DataProvider getInstance() {
@@ -271,7 +270,6 @@ public class DataProvider {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
 	public ArrayList<Deposit> getAllDeposits() {
@@ -283,4 +281,40 @@ public class DataProvider {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+    public ArrayList<String> getDepositTypeList() {
+        ArrayList<String> depositTypes = new ArrayList<String>();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+
+            ResultSet rs = statement.executeQuery("SELECT `type` FROM `deposittype`;");
+            while (rs.next()) {
+                depositTypes.add(rs.getString("type"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return depositTypes;
+    }
+
+    public ArrayList<String> getCurrency() {
+        ArrayList<String> currencys = new ArrayList<String>();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+
+            ResultSet rs = statement.executeQuery("SELECT `description` FROM `currency`;");
+            while (rs.next()) {
+                currencys.add(rs.getString("description"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return currencys;
+    }
 }

@@ -36,33 +36,33 @@ public class ActionView extends JFrame {
     
     protected JPanel mainPanel;
 
-    protected JTextField firstNameField;
-    protected JTextField lastNameField;
-    protected JTextField middleNameField;
-    protected JTextField realAddressField;
-    protected JTextField officialAddressTextField;
-    protected JTextField emailField;
-    protected JTextField passportSeriesField;
-    protected JTextField whoGivePassportField;
-    protected JTextField bornPlaceField;
+    private JTextField firstNameField;
+    private JTextField lastNameField;
+    private JTextField middleNameField;
+    private JTextField realAddressField;
+    private JTextField officialAddressTextField;
+    private JTextField emailField;
+    private JTextField passportSeriesField;
+    private JTextField whoGivePassportField;
+    private JTextField bornPlaceField;
 
-    protected JFormattedTextField bornDateField;
-    protected JFormattedTextField passportTakeDateField;
-    protected JFormattedTextField homePhoneField;
-    protected JFormattedTextField mobilePhoneField;
-    protected JFormattedTextField passportNumberField;
-    protected JFormattedTextField idertifyNumberField;
-    protected JFormattedTextField salaryField;
+    private JFormattedTextField bornDateField;
+    private JFormattedTextField passportTakeDateField;
+    private JFormattedTextField homePhoneField;
+    private JFormattedTextField mobilePhoneField;
+    private JFormattedTextField passportNumberField;
+    private JFormattedTextField idertifyNumberField;
+    private JFormattedTextField salaryField;
 
-    protected JRadioButton manRadioButton;
-    protected JRadioButton womanRadioButton;
+    private JRadioButton manRadioButton;
+    private JRadioButton womanRadioButton;
 
-    protected JComboBox<String> realCityComboBox;
-    protected JComboBox<String> familyStatusComboBox;
-    protected JComboBox<String> nationalityComboBox;
-    protected JComboBox<String> disabilityComboBox;
+    private JComboBox<String> realCityComboBox;
+    private JComboBox<String> familyStatusComboBox;
+    private JComboBox<String> nationalityComboBox;
+    private JComboBox<String> disabilityComboBox;
 
-    protected JCheckBox pensionerCheckBox;
+    private JCheckBox pensionerCheckBox;
     private SimpleDateFormat dateMask;
 
     protected static Client currentClient;
