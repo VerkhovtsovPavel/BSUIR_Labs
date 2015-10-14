@@ -4,11 +4,11 @@ import java.awt.Component;
 import java.text.ParseException;
 
 public class ShowView extends ActionView {
+    private static final long serialVersionUID = 5886161954641963633L;
+    
     protected ShowView() throws ParseException {
         super();
     }
-
-    private static final long serialVersionUID = 5886161954641963633L;
 
     @Override
     protected void customActions() throws ParseException {

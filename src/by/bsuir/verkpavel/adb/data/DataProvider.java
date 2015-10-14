@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import by.bsuir.verkpavel.adb.data.entity.Account;
 import by.bsuir.verkpavel.adb.data.entity.Client;
 import by.bsuir.verkpavel.adb.data.entity.Deposit;
 import by.bsuir.verkpavel.adb.resources.RussianStrings;
@@ -336,5 +337,10 @@ public class DataProvider {
         }
         return clients;
 
+    }
+
+    public ArrayList<Account> getAllAccounts() {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

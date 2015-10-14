@@ -95,6 +95,7 @@ public class ShowDepositsView extends JFrame {
 		mainPanel.add(addButton);
 
 		listModel.clear();
+		//TODO implement getAllDeposits() and uncommented
 //		for (Deposit deposit : deposits) {
 //			listModel.addElement(deposit.number);
 //		}

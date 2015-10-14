@@ -9,9 +9,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import by.bsuir.verkpavel.adb.ui.account.ShowAccountsView;
 import by.bsuir.verkpavel.adb.ui.client.ShowUsersView;
 import by.bsuir.verkpavel.adb.ui.deposit.ShowDepositsView;
-
+//TODO Rename UI classes
 public class MainView extends JFrame {
 	private static final long serialVersionUID = 2883993883146596569L;
 	private JPanel mainPanel;
@@ -57,7 +58,7 @@ public class MainView extends JFrame {
 				dispose();
 			}
 		});
-		clientsBtn.setBounds(255, 106, 111, 23);
+		clientsBtn.setBounds(170, 106, 111, 23);
 		mainPanel.add(clientsBtn);
 
 		JButton depositButton = new JButton("Депозиты");
@@ -68,7 +69,18 @@ public class MainView extends JFrame {
 				dispose();
 			}
 		});
-		depositButton.setBounds(107, 107, 111, 23);
+		depositButton.setBounds(49, 106, 111, 23);
 		mainPanel.add(depositButton);
+		
+		JButton accountButton = new JButton("Счета");
+		accountButton.setBounds(291, 106, 111, 23);
+		accountButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                ShowAccountsView.create();
+                dispose();
+            }
+        });
+		mainPanel.add(accountButton);
 	}
 }

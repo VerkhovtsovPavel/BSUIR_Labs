@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.Format;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,7 +20,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.InternationalFormatter;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 
@@ -29,8 +27,8 @@ import by.bsuir.verkpavel.adb.data.DataProvider;
 import by.bsuir.verkpavel.adb.data.entity.Deposit;
 import by.bsuir.verkpavel.adb.resources.RussianStrings;
 import by.bsuir.verkpavel.adb.ui.ActionMode;
-
-public class ActionView extends JFrame {
+//TODO Check field formats
+public abstract class ActionView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
     private static final Calendar maxDate = Calendar.getInstance();
     protected static Deposit currentDeposit;
@@ -48,13 +46,13 @@ public class ActionView extends JFrame {
     private JComboBox<String> depositTypeComboBox;
     private JComboBox<String> currencyComboBox;
     private JComboBox<String> clientComboBox;
-    
+
     private SimpleDateFormat dateMask;
 
     private static void initialaze(ActionView actionView) {
         ActionView frame = null;
         frame = actionView;
-        frame.setSize(690, 480);
+        frame.setSize(750, 350);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
@@ -68,7 +66,7 @@ public class ActionView extends JFrame {
             }
         });
 
-        maxDate.set(Calendar.YEAR, 1900);
+        maxDate.set(Calendar.YEAR, 2100);
         maxDate.set(Calendar.MONTH, Calendar.JANUARY);
         maxDate.set(Calendar.DAY_OF_MONTH, 1);
     }
@@ -207,7 +205,8 @@ public class ActionView extends JFrame {
         }
         return null;
     }
-
+    
+    //TODO Check correct work
     private boolean checkRequiredFields(Object... fields) {
         for (Object field : fields) {
             if (field instanceof String) {
@@ -249,52 +248,53 @@ public class ActionView extends JFrame {
         depositPeriodTextField.setBounds(515, 149, 134, 28);
         depositPeriodTextField.setEditable(false);
         mainPanel.add(depositPeriodTextField);
-        
-        // TODO Change format by currency
-        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("ru_RU"));
-        
-        format.setMaximumFractionDigits(0);
-        NumberFormatter formatter = new NumberFormatter(format);
-        formatter.setMinimum(1.0);
-        formatter.setMaximum(10000000.0);
-        formatter.setAllowsInvalid(false);
-        formatter.setOverwriteMode(true);
-        depositSumField = new JFormattedTextField(formatter);
+
+        depositSumField = new JFormattedTextField();
         depositSumField.setBounds(114, 208, 114, 20);
         mainPanel.add(depositSumField);
         depositSumField.setColumns(10);
         depositSumField.setValue(1.0);
-
-        // TODO Add format
-        persentTextField = new JFormattedTextField((Format) null);
+        
+        //TODO Use formatter to set minimum value 0.01
+        NumberFormat persentFormat = NumberFormat.getPercentInstance();
+        persentFormat.setMaximumFractionDigits(2);
+        persentTextField = new JFormattedTextField(persentFormat);
         persentTextField.setColumns(10);
+        persentTextField.setValue(new Float(0.056));
         persentTextField.setBounds(342, 208, 114, 20);
         mainPanel.add(persentTextField);
 
         clientComboBox = new JComboBox<String>();
         clientComboBox.setBounds(79, 84, 624, 26);
         mainPanel.add(clientComboBox);
-        
+
         currencyComboBox = new JComboBox<String>();
         currencyComboBox.setBounds(174, 34, 126, 26);
-        currencyComboBox.addActionListener(new ActionListener () {
+        currencyComboBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String type = (String) currencyComboBox.getSelectedItem();
-                //TODO Implement
+                NumberFormat format = null;
                 switch (type) {
                 case "EUR":
-                    depositSumField.setFormatterFactory(new DefaultFormatterFactory(new InternationalFormatter(NumberFormat.getCurrencyInstance(Locale.GERMANY))));
+                    format = NumberFormat.getCurrencyInstance(Locale.GERMANY);
                     break;
                 case "USD":
-                    depositSumField.setFormatterFactory(new DefaultFormatterFactory(new InternationalFormatter(NumberFormat.getCurrencyInstance(Locale.US))));
-                    break; 
-                case "BYR":
-                    NumberFormat rf = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("ru"));
-                    depositSumField.setFormatterFactory(new DefaultFormatterFactory(new InternationalFormatter(NumberFormat.getCurrencyInstance(Locale.forLanguageTag("ru")))));
-                    break;     
-                default:
+                    format = NumberFormat.getCurrencyInstance(Locale.US);
                     break;
+                case "BYR":
+                    format = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("be-BY"));
+                    break;
+                default:
+                    format = NumberFormat.getCurrencyInstance();
                 }
+                format.setMaximumFractionDigits(0);
+                NumberFormatter formatter = new NumberFormatter(format);
+                formatter.setMinimum(1.0);
+                formatter.setMaximum(10000000.0);
+                formatter.setAllowsInvalid(false);
+                formatter.setOverwriteMode(true);
+
+                depositSumField.setFormatterFactory(new DefaultFormatterFactory(formatter));
             }
         });
         mainPanel.add(currencyComboBox);

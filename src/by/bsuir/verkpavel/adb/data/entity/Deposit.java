@@ -2,9 +2,9 @@ package by.bsuir.verkpavel.adb.data.entity;
 
 public class Deposit {
 
-	public Deposit(String startDate2, int depositType2, String contractNumber2,
-			String depositPeriod2, int currency, int depositSum2) {
-		// TODO Auto-generated constructor stub
+	public Deposit(String startDate, int depositType, String contractNumber,
+			String depositPeriod, int currency, int depositSum) {
+		//TODO Add fields and save data
 	}
 	public String number;
 	public int depositType;
