@@ -21,7 +21,6 @@ public class AccountProvider {
         return instance;
     }
     
-    
     public ArrayList<Account> getAllAccounts() {
         // TODO Auto-generated method stub
         return null;
@@ -37,12 +36,14 @@ public class AccountProvider {
     }
 
     public Account getCashBoxAccount() {
-        // TODO Auto-generated method stub
+        // TODO Auto-generated method stub\
+        // 1010
         return null;
     }
     
     public Account getFDBAccount() {
         // TODO Auto-generated method stub
+        // 7327
         return null;
     }
 }
