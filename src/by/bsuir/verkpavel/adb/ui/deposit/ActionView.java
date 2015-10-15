@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,10 +29,18 @@ import by.bsuir.verkpavel.adb.data.DataProvider;
 import by.bsuir.verkpavel.adb.data.entity.Deposit;
 import by.bsuir.verkpavel.adb.resources.RussianStrings;
 import by.bsuir.verkpavel.adb.ui.ActionMode;
+
 //TODO Check field formats
 public abstract class ActionView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
-    private static final Calendar maxDate = Calendar.getInstance();
+    private static final Calendar maxDate;
+    static {
+        maxDate = Calendar.getInstance();
+        maxDate.set(Calendar.YEAR, 2100);
+        maxDate.set(Calendar.MONTH, Calendar.JANUARY);
+        maxDate.set(Calendar.DAY_OF_MONTH, 1);
+    }
+    
     protected static Deposit currentDeposit;
 
     protected JPanel mainPanel;
@@ -59,16 +69,12 @@ public abstract class ActionView extends JFrame {
         frame.setLocation(x, y);
         frame.setVisible(true);
 
-        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+        frame.addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            public void windowClosing(WindowEvent windowEvent) {
                 ShowDepositsView.create();
             }
         });
-
-        maxDate.set(Calendar.YEAR, 2100);
-        maxDate.set(Calendar.MONTH, Calendar.JANUARY);
-        maxDate.set(Calendar.DAY_OF_MONTH, 1);
     }
 
     public static void create(ActionMode mode, Deposit deposit) {
@@ -184,7 +190,7 @@ public abstract class ActionView extends JFrame {
         int depositSum = ((Double) depositSumField.getValue()).intValue();
 
         double persent = (Double) persentTextField.getValue();
-
+        // TODO Change message text
         if (checkRequiredFields(startDate, endDate, depositType, contractNumber, depositPeriod,
                 currency, persent, depositType)) {
             if (((Date) startDateField.getValue()).before(new Date())
@@ -200,13 +206,13 @@ public abstract class ActionView extends JFrame {
                         "Error", JOptionPane.PLAIN_MESSAGE);
                 return null;
             }
-            return new Deposit(startDate, depositType, contractNumber, depositPeriod, currency,
-                    depositSum);
+            return new Deposit(contractNumber, depositType, startDate, endDate, depositPeriod,
+                    currency, persent, depositSum, /* TODO Add real client id */1);
         }
         return null;
     }
-    
-    //TODO Check correct work
+
+    // TODO Check correct work
     private boolean checkRequiredFields(Object... fields) {
         for (Object field : fields) {
             if (field instanceof String) {
@@ -237,6 +243,7 @@ public abstract class ActionView extends JFrame {
         depositTypeComboBox.setBounds(23, 34, 126, 26);
         mainPanel.add(depositTypeComboBox);
 
+        // TODO Change to real contact number mask
         MaskFormatter contractNumberMask = new MaskFormatter("#######U###UU#");
         contractNumberField = new JFormattedTextField(contractNumberMask);
         contractNumberField.setBounds(338, 32, 365, 28);
@@ -254,8 +261,8 @@ public abstract class ActionView extends JFrame {
         mainPanel.add(depositSumField);
         depositSumField.setColumns(10);
         depositSumField.setValue(1.0);
-        
-        //TODO Use formatter to set minimum value 0.01
+
+        // TODO Use formatter to set minimum value 0.01
         NumberFormat persentFormat = NumberFormat.getPercentInstance();
         persentFormat.setMaximumFractionDigits(2);
         persentTextField = new JFormattedTextField(persentFormat);

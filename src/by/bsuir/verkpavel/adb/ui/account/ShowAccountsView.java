@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
@@ -32,9 +34,9 @@ public class ShowAccountsView extends JFrame {
         frame.setLocation(x, y);
         frame.setVisible(true);
 
-        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+        frame.addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            public void windowClosing(WindowEvent windowEvent) {
                 MainView.create();
             }
         });
@@ -81,11 +83,11 @@ public class ShowAccountsView extends JFrame {
         addButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                DataProvider.getInstance().addTransaction((Account)null, (Account)null, 1000);
             }
 
         });
-        addButton.setBounds(124, 238, 151, 23);
+        addButton.setBounds(141, 238, 151, 23);
         mainPanel.add(addButton);
 
         listModel.clear();

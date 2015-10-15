@@ -6,7 +6,10 @@ public enum RussianStrings {
     RUSSIAN_ALPHABET("йцукенгшщзхъфывапролджэячсмитьбюё"),
     CLIENT_SUCCESSFULLY_ADDED("Клиент успешно добавлен"),
     DUBLICATE_PASSPORT_SERIOS_OR_IDENTIFY_NUMBER("Дублирование номера и серии паспорта или индентификационного номера"),
-    CLIENT_SUCCESSFULLY_UPDATED("Клиент успешно обновлен");
+    CLIENT_SUCCESSFULLY_UPDATED("Клиент успешно обновлен"),
+    
+    DUBLICATE_CONTRACT_NUMBER("Дублирование номера договора"),
+    CONTRACT_SUCCESSFULLY_ADDED("Контракт успешно добавлен");
     
     
     private String value;

@@ -6,6 +6,8 @@ import java.awt.event.WindowEvent;
 import java.text.ParseException;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 
 import by.bsuir.verkpavel.adb.data.entity.Account;
@@ -15,6 +17,9 @@ public class ShowView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
     protected static Account currentAccount;
 
+    private JList<Long> debitList;
+    private JList<Long> creditList;
+    
     protected JPanel mainPanel;
 
     private static void initialaze(ShowView actionView) {
@@ -46,6 +51,7 @@ public class ShowView extends JFrame {
     }
 
     protected ShowView() throws ParseException {
+        setTitle("Счет");
         configureDefaultLayot();
     }
 
@@ -68,9 +74,22 @@ public class ShowView extends JFrame {
     }
 
     private void createLabels() {
+        JLabel debitLabel = new JLabel("Дебит");
+        debitLabel.setBounds(107, 11, 46, 14);
+        mainPanel.add(debitLabel);
+        
+        JLabel creditLabel = new JLabel("Кредит");
+        creditLabel.setBounds(441, 11, 46, 14);
+        mainPanel.add(creditLabel);
     }
 
     private void createActionElements() throws ParseException {
-
+        debitList = new JList<Long>();
+        debitList.setBounds(32, 287, 240, -250);
+        mainPanel.add(debitList);
+        
+        creditList = new JList<Long>();
+        creditList.setBounds(327, 287, 240, -250);
+        mainPanel.add(creditList);
     }
 }

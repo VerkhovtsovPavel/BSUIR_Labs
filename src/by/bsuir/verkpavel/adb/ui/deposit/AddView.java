@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import by.bsuir.verkpavel.adb.data.DataProvider;
+import by.bsuir.verkpavel.adb.data.entity.Account;
 import by.bsuir.verkpavel.adb.data.entity.Deposit;
 
 public class AddView extends ActionView {
@@ -29,6 +30,8 @@ public class AddView extends ActionView {
                 if(deposit!=null){
                 	JOptionPane.showMessageDialog(null,  DataProvider.getInstance().saveDeposit(
                 			deposit), "Message", JOptionPane.PLAIN_MESSAGE);
+                	Account mainUserAccount = DataProvider.getInstance().getAccountByDeposit(deposit);
+                	DataProvider.getInstance().addTransaction(mainUserAccount, DataProvider.getInstance().getCashBoxAccount(), deposit.depositSum);
                     ShowDepositsView.create();
                     dispose();
                 } 
