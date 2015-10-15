@@ -68,7 +68,7 @@ public class ShowAccountsView extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     if (list.getSelectedIndex() != -1)
-                        ShowView.create(accounts.get(list.getSelectedIndex()));
+                        ShowView.create(null/*accounts.get(list.getSelectedIndex())*/);
                     dispose();
                 }
             }
@@ -91,6 +91,8 @@ public class ShowAccountsView extends JFrame {
         mainPanel.add(addButton);
 
         listModel.clear();
+        
+        listModel.addElement("10105478367837468");
         // TODO Implement getAllAccounts() and uncommented
         // for (Account account : accounts) {
         // listModel.addElement(account.number);

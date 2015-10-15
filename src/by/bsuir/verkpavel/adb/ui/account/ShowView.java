@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.text.ParseException;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -12,7 +13,6 @@ import javax.swing.JPanel;
 
 import by.bsuir.verkpavel.adb.data.entity.Account;
 
-//TODO Create UI
 public class ShowView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
     protected static Account currentAccount;
@@ -25,7 +25,7 @@ public class ShowView extends JFrame {
     private static void initialaze(ShowView actionView) {
         ShowView frame = null;
         frame = actionView;
-        frame.setSize(750, 350);
+        frame.setSize(600, 350);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
@@ -74,6 +74,7 @@ public class ShowView extends JFrame {
     }
 
     private void createLabels() {
+
         JLabel debitLabel = new JLabel("Дебит");
         debitLabel.setBounds(107, 11, 46, 14);
         mainPanel.add(debitLabel);
@@ -84,12 +85,17 @@ public class ShowView extends JFrame {
     }
 
     private void createActionElements() throws ParseException {
-        debitList = new JList<Long>();
-        debitList.setBounds(32, 287, 240, -250);
+        DefaultListModel<Long> debitListModel = new DefaultListModel<Long>();;
+        
+        DefaultListModel<Long> creditListModel = new DefaultListModel<Long>();       
+        creditList = new JList<Long>(creditListModel);
+        creditList.setBounds(327, 37, 240, 250);
+        mainPanel.add(creditList);
+        debitList = new JList<Long>(debitListModel);
+        debitList.setBounds(32, 37, 240, 250);
         mainPanel.add(debitList);
         
-        creditList = new JList<Long>();
-        creditList.setBounds(327, 287, 240, -250);
-        mainPanel.add(creditList);
+        debitListModel.addElement((long) 255);
+        creditListModel.addElement((long) 256);
     }
 }
