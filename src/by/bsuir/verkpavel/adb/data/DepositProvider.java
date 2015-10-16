@@ -32,7 +32,6 @@ public class DepositProvider {
         Statement statement;
         try {
             statement = connection.createStatement();
-            //TODO Add client
             ResultSet rs = statement.executeQuery("SELECT * FROM `deposit`;");
             while (rs.next()) {
                 Deposit deposit = new Deposit();
@@ -43,7 +42,7 @@ public class DepositProvider {
                 deposit.startDate = rs.getString("startDate");
                 deposit.endDate = rs.getString("endDate");
                 deposit.persent = rs.getDouble("persent");
-                
+                deposit.client = rs.getInt("user_id");
                 deposits.add(deposit);
             }
         } catch (SQLException e) {
@@ -52,7 +51,7 @@ public class DepositProvider {
 
         return deposits;
     }
-
+    //TODO Add unique index on depositNumber
     public String saveDeposit(Deposit deposit) {
         Statement statement;
         try {
@@ -69,9 +68,9 @@ public class DepositProvider {
 
     private String createInsertDepositQuery(Deposit deposit) {
         return String
-                .format("INSERT INTO `deposit`  (`id`, `deposittype`, `currency`, `startDate`, `endDate`, `sum`, `persent`, `depositNumber`) VALUES(NULL, %d, %d, %s, %s, %f, %f, %s);",
+                .format("INSERT INTO `deposit`  (`id`, `deposittype`, `currency`, `startDate`, `endDate`, `sum`, `persent`, `depositNumber`, `user_id`) VALUES(NULL, '%d', '%d', '%s', '%s', '%f', '%f', '%s','%d');",
                         deposit.depositType, deposit.currency, deposit.startDate, deposit.endDate,
-                        deposit.depositSum, deposit.persent, deposit.contractNumber);
+                        deposit.depositSum, deposit.persent, deposit.contractNumber, deposit.client);
     }
 
     public ArrayList<String> getDepositTypeList() {

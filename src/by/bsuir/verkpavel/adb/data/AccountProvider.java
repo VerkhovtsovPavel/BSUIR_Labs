@@ -36,7 +36,7 @@ public class AccountProvider {
     }
 
     public Account getCashBoxAccount() {
-        // TODO Auto-generated method stub\
+        // TODO Auto-generated method stub
         // 1010
         return null;
     }

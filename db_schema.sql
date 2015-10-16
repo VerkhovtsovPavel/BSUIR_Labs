@@ -48,16 +48,21 @@ COLLATE = utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `bank_users`.`disability`
+-- Table `bank_users`.`passportinfo`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bank_users`.`disability` ;
+DROP TABLE IF EXISTS `bank_users`.`passportinfo` ;
 
-CREATE  TABLE IF NOT EXISTS `bank_users`.`disability` (
+CREATE  TABLE IF NOT EXISTS `bank_users`.`passportinfo` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `Disability` VARCHAR(255) NOT NULL ,
+  `Serios` CHAR(2) NOT NULL ,
+  `Number` VARCHAR(15) NOT NULL ,
+  `WhoGives` VARCHAR(255) NOT NULL ,
+  `DateGives` DATE NOT NULL ,
+  `IndifyNumber` VARCHAR(255) NOT NULL ,
+  `BornPlace` VARCHAR(255) NOT NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
+AUTO_INCREMENT = 15
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -90,21 +95,16 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `bank_users`.`passportinfo`
+-- Table `bank_users`.`disability`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bank_users`.`passportinfo` ;
+DROP TABLE IF EXISTS `bank_users`.`disability` ;
 
-CREATE  TABLE IF NOT EXISTS `bank_users`.`passportinfo` (
+CREATE  TABLE IF NOT EXISTS `bank_users`.`disability` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `Serios` CHAR(2) NOT NULL ,
-  `Number` VARCHAR(15) NOT NULL ,
-  `WhoGives` VARCHAR(255) NOT NULL ,
-  `DateGives` DATE NOT NULL ,
-  `IndifyNumber` VARCHAR(255) NOT NULL ,
-  `BornPlace` VARCHAR(255) NOT NULL ,
+  `Disability` VARCHAR(255) NOT NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB
-AUTO_INCREMENT = 15
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -162,28 +162,37 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `bank_users`.`deposit` ;
 
 CREATE  TABLE IF NOT EXISTS `bank_users`.`deposit` (
-  `id` INT NOT NULL ,
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `deposittype` INT(11) NOT NULL ,
   `currency` INT(11) NOT NULL ,
   `startDate` DATE NOT NULL ,
   `endDate` DATE NOT NULL ,
   `sum` DOUBLE NOT NULL ,
   `persent` DOUBLE NOT NULL ,
-  `depositNumber` VARCHAR(45) NOT NULL ,
+  `depositNumber` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
+  `user_id` INT(11) NOT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_deposit_deposittype1` (`deposittype` ASC) ,
   INDEX `fk_deposit_currency1` (`currency` ASC) ,
+  INDEX `fk_deposit_user1` (`user_id` ASC) ,
+  CONSTRAINT `fk_deposit_currency1`
+    FOREIGN KEY (`currency` )
+    REFERENCES `bank_users`.`currency` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   CONSTRAINT `fk_deposit_deposittype1`
     FOREIGN KEY (`deposittype` )
     REFERENCES `bank_users`.`deposittype` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_deposit_currency1`
-    FOREIGN KEY (`currency` )
-    REFERENCES `bank_users`.`currency` (`id` )
+  CONSTRAINT `fk_deposit_user1`
+    FOREIGN KEY (`user_id` )
+    REFERENCES `bank_users`.`user` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
 
 
 

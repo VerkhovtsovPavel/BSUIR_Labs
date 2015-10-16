@@ -182,14 +182,13 @@ public abstract class ActionView extends JFrame {
         // TODO Add check end > start
         long depositPeriod = ChronoUnit.DAYS.between(LocalDate.parse(startDate, dateMask),
                 LocalDate.parse(endDate, dateMask));
-        // startDateField.getValue(), endDateField.getValue());
         int currency = currencyComboBox.getSelectedIndex();
         int depositSum = ((Double) depositSumField.getValue()).intValue();
 
         float persent = (float) persentTextField.getValue();
         // TODO Change message text
         if (checkRequiredFields(startDate, endDate, contractNumber)) {
-            if (!((LocalDate) startDateField.getValue()).isAfter(LocalDate.now())
+            if (((LocalDate) startDateField.getValue()).isAfter(LocalDate.now())
                     || ((LocalDate) endDateField.getValue()).isBefore((LocalDate) startDateField
                             .getValue())) {
                 JOptionPane.showMessageDialog(null, RussianStrings.DATE_AFTER_NOW.get(), "Error",
@@ -209,7 +208,6 @@ public abstract class ActionView extends JFrame {
         return null;
     }
 
-    // TODO Check correct work
     private boolean checkRequiredFields(String... fields) {
         for (String field : fields) {
             if (field.trim().isEmpty())
@@ -253,10 +251,12 @@ public abstract class ActionView extends JFrame {
         depositSumField.setColumns(10);
         depositSumField.setValue(1.0);
 
-        // TODO Use formatter to set minimum value 0.01
         NumberFormat persentFormat = NumberFormat.getPercentInstance();
         persentFormat.setMaximumFractionDigits(2);
-        persentTextField = new JFormattedTextField(persentFormat);
+        NumberFormatter persentsFormatter = new NumberFormatter(persentFormat);
+        persentsFormatter.setMinimum((float)0.0001);
+        persentsFormatter.setMaximum((float)3);
+        persentTextField = new JFormattedTextField(persentsFormatter);
         persentTextField.setColumns(10);
         persentTextField.setValue(new Float(0.056));
         persentTextField.setBounds(342, 208, 114, 20);
