@@ -36,8 +36,6 @@ public class AddView extends ActionView {
                     dispose();
                 } 
             }
-
-
         });
         saveBtn.setBounds(219, 280, 216, 23);
         mainPanel.add(saveBtn);

@@ -2,7 +2,6 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
-DROP SCHEMA IF EXISTS `bank_users` ;
 CREATE SCHEMA IF NOT EXISTS `bank_users` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
 USE `bank_users` ;
 
@@ -18,6 +17,34 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`city` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `bank_users`.`currency`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `bank_users`.`currency` ;
+
+CREATE  TABLE IF NOT EXISTS `bank_users`.`currency` (
+  `id` INT(11) NOT NULL ,
+  `description` VARCHAR(4) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
+
+
+-- -----------------------------------------------------
+-- Table `bank_users`.`deposittype`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `bank_users`.`deposittype` ;
+
+CREATE  TABLE IF NOT EXISTS `bank_users`.`deposittype` (
+  `id` INT(11) NOT NULL ,
+  `type` VARCHAR(100) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -130,26 +157,32 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `bank_users`.`currency`
+-- Table `bank_users`.`deposit`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bank_users`.`currency` ;
+DROP TABLE IF EXISTS `bank_users`.`deposit` ;
 
-CREATE  TABLE IF NOT EXISTS `bank_users`.`currency` (
+CREATE  TABLE IF NOT EXISTS `bank_users`.`deposit` (
   `id` INT NOT NULL ,
-  `description` VARCHAR(4) NOT NULL ,
-  PRIMARY KEY (`id`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `bank_users`.`deposittype`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `bank_users`.`deposittype` ;
-
-CREATE  TABLE IF NOT EXISTS `bank_users`.`deposittype` (
-  `id` INT NOT NULL ,
-  `type` VARCHAR(100) NOT NULL ,
-  PRIMARY KEY (`id`) )
+  `deposittype` INT(11) NOT NULL ,
+  `currency` INT(11) NOT NULL ,
+  `startDate` DATE NOT NULL ,
+  `endDate` DATE NOT NULL ,
+  `sum` DOUBLE NOT NULL ,
+  `persent` DOUBLE NOT NULL ,
+  `depositNumber` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_deposit_deposittype1` (`deposittype` ASC) ,
+  INDEX `fk_deposit_currency1` (`currency` ASC) ,
+  CONSTRAINT `fk_deposit_deposittype1`
+    FOREIGN KEY (`deposittype` )
+    REFERENCES `bank_users`.`deposittype` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_deposit_currency1`
+    FOREIGN KEY (`currency` )
+    REFERENCES `bank_users`.`currency` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 

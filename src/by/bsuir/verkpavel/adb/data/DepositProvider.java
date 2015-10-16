@@ -27,8 +27,30 @@ public class DepositProvider {
     }
 
     public ArrayList<Deposit> getAllDeposits() {
-        // TODO Auto-generated method stub
-        return null;
+        ArrayList<Deposit> deposits = new ArrayList<Deposit>();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            //TODO Add client
+            ResultSet rs = statement.executeQuery("SELECT * FROM `deposit`;");
+            while (rs.next()) {
+                Deposit deposit = new Deposit();
+                deposit.contractNumber = rs.getString("depositNumber");
+                deposit.currency = rs.getInt("currency");
+                deposit.depositType = rs.getInt("deposittype");
+                deposit.depositSum = rs.getDouble("sum");
+                deposit.startDate = rs.getString("startDate");
+                deposit.endDate = rs.getString("endDate");
+                deposit.persent = rs.getDouble("persent");
+                
+                deposits.add(deposit);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return deposits;
     }
 
     public String saveDeposit(Deposit deposit) {
@@ -45,11 +67,11 @@ public class DepositProvider {
         return RussianStrings.CONTRACT_SUCCESSFULLY_ADDED.get();
     }
 
-    // TODO Implement real insert
     private String createInsertDepositQuery(Deposit deposit) {
         return String
-                .format("INSERT INTO `deposits`  (`id`, `FirstName`, `LastName`, `MidleName`, `Birthday`, `Sex`, `Address_id`, `MobilePhone`, `HomePhone`, `E-mail`, `FamilyStatus`, `Nationality_id`, `Disability_id`, `Pensioner`, `MonthProfit`, `Official Street`, `Real Street`) VALUES (NULL, '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s', '%s', '%d', '%d', '%d', '%d', '%d', '%s', '%s');",
-                        deposit.contractNumber, deposit.client);
+                .format("INSERT INTO `deposit`  (`id`, `deposittype`, `currency`, `startDate`, `endDate`, `sum`, `persent`, `depositNumber`) VALUES(NULL, %d, %d, %s, %s, %f, %f, %s);",
+                        deposit.depositType, deposit.currency, deposit.startDate, deposit.endDate,
+                        deposit.depositSum, deposit.persent, deposit.contractNumber);
     }
 
     public ArrayList<String> getDepositTypeList() {

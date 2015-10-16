@@ -8,10 +8,10 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 import javax.swing.JComboBox;
@@ -33,14 +33,8 @@ import by.bsuir.verkpavel.adb.ui.ActionMode;
 //TODO Check field formats
 public abstract class ActionView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
-    private static final Calendar maxDate;
-    static {
-        maxDate = Calendar.getInstance();
-        maxDate.set(Calendar.YEAR, 2100);
-        maxDate.set(Calendar.MONTH, Calendar.JANUARY);
-        maxDate.set(Calendar.DAY_OF_MONTH, 1);
-    }
-    
+    private static final LocalDate maxDate = LocalDate.of(2100, 1, 1);
+
     protected static Deposit currentDeposit;
 
     protected JPanel mainPanel;
@@ -57,7 +51,7 @@ public abstract class ActionView extends JFrame {
     private JComboBox<String> currencyComboBox;
     private JComboBox<String> clientComboBox;
 
-    private SimpleDateFormat dateMask;
+    private DateTimeFormatter dateMask;
 
     private static void initialaze(ActionView actionView) {
         ActionView frame = null;
@@ -157,9 +151,9 @@ public abstract class ActionView extends JFrame {
         contractNumberField.setText(deposit.contractNumber);
         currencyComboBox.setSelectedIndex(deposit.currency - 1);
 
-        startDateField.setValue(dateMask.parseObject(deposit.startDate));
-        endDateField.setValue(dateMask.parseObject(deposit.endDate));
-        depositPeriodTextField.setText(deposit.depositPeriod);
+        startDateField.setValue(dateMask.parse(deposit.startDate));
+        endDateField.setValue(dateMask.parse(deposit.endDate));
+        depositPeriodTextField.setText("" + deposit.depositPeriod);
 
         depositSumField.setValue((double) deposit.depositSum);
         persentTextField.setValue((double) deposit.persent);
@@ -185,23 +179,26 @@ public abstract class ActionView extends JFrame {
         int depositType = depositTypeComboBox.getSelectedIndex();
         String contractNumber = contractNumberField.getText();
 
-        String depositPeriod = depositPeriodTextField.getText();
+        // TODO Add check end > start
+        long depositPeriod = ChronoUnit.DAYS.between(LocalDate.parse(startDate, dateMask),
+                LocalDate.parse(endDate, dateMask));
+        // startDateField.getValue(), endDateField.getValue());
         int currency = currencyComboBox.getSelectedIndex();
         int depositSum = ((Double) depositSumField.getValue()).intValue();
 
-        double persent = (Double) persentTextField.getValue();
+        float persent = (float) persentTextField.getValue();
         // TODO Change message text
-        if (checkRequiredFields(startDate, endDate, depositType, contractNumber, depositPeriod,
-                currency, persent, depositType)) {
-            if (((Date) startDateField.getValue()).before(new Date())
-                    || ((Date) endDateField.getValue()).before((Date) startDateField.getValue())) {
+        if (checkRequiredFields(startDate, endDate, contractNumber)) {
+            if (!((LocalDate) startDateField.getValue()).isAfter(LocalDate.now())
+                    || ((LocalDate) endDateField.getValue()).isBefore((LocalDate) startDateField
+                            .getValue())) {
                 JOptionPane.showMessageDialog(null, RussianStrings.DATE_AFTER_NOW.get(), "Error",
                         JOptionPane.PLAIN_MESSAGE);
                 return null;
             }
 
-            if (((Date) startDateField.getValue()).after(maxDate.getTime())
-                    || ((Date) endDateField.getValue()).after(maxDate.getTime())) {
+            if (((LocalDate) startDateField.getValue()).isAfter(maxDate)
+                    || ((LocalDate) endDateField.getValue()).isAfter(maxDate)) {
                 JOptionPane.showMessageDialog(null, RussianStrings.DATE_BEFORE_01011900.get(),
                         "Error", JOptionPane.PLAIN_MESSAGE);
                 return null;
@@ -213,29 +210,23 @@ public abstract class ActionView extends JFrame {
     }
 
     // TODO Check correct work
-    private boolean checkRequiredFields(Object... fields) {
-        for (Object field : fields) {
-            if (field instanceof String) {
-                if (((String) field).trim().isEmpty())
-                    return false;
-            } else {
-                if (((Integer) field).intValue() == -1) {
-                    return false;
-                }
-            }
+    private boolean checkRequiredFields(String... fields) {
+        for (String field : fields) {
+            if (field.trim().isEmpty())
+                return false;
         }
         return true;
     }
 
     private void createActionElements() throws ParseException {
-        dateMask = new SimpleDateFormat("yyyy-MM-dd");
+        dateMask = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         startDateField = new JFormattedTextField(dateMask);
-        startDateField.setValue(new java.util.Date());
+        startDateField.setValue(LocalDate.now());
         startDateField.setBounds(114, 149, 92, 28);
         mainPanel.add(startDateField);
 
         endDateField = new JFormattedTextField(dateMask);
-        endDateField.setValue(new java.util.Date());
+        endDateField.setValue(LocalDate.now().plusDays(1));
         endDateField.setBounds(322, 149, 92, 28);
         mainPanel.add(endDateField);
 
