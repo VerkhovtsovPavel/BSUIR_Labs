@@ -1,6 +1,9 @@
 package by.bsuir.verkpavel.adb.data;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import by.bsuir.verkpavel.adb.data.entity.Account;
@@ -36,9 +39,21 @@ public class AccountProvider {
     }
 
     public Account getCashBoxAccount() {
-        // TODO Auto-generated method stub
-        // 1010
-        return null;
+    	Account cashBox = null;
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            ResultSet accounts =  statement.executeQuery("SELECT * FROM `account` WHERE `deposit_id` IS NULL");
+            while (accounts.next()){
+            	if(accounts.getString("number").startsWith("1010")){
+            		//TODO Fill all fields
+            		cashBox = new Account();
+            	}
+            } 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cashBox;
     }
     
     public Account getFDBAccount() {

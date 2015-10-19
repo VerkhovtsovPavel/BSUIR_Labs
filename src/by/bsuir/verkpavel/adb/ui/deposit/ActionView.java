@@ -188,8 +188,14 @@ public abstract class ActionView extends JFrame {
 
 	protected Deposit getDeposit() {
 		LocalDate startDate = (LocalDate) startDateField.getModel().getValue();
-		LocalDate endDate = (LocalDate) endDateField.getModel().getValue();
 
+		LocalDate endDate = null;
+
+		if (endDateField.getComponent(1).isEnabled()) {
+			endDate = (LocalDate) endDateField.getModel().getValue();
+		}else{
+			endDate = startDate.plusMonths(1);
+		}
 		int depositType = depositTypeComboBox.getSelectedIndex() + 1;
 		String contractNumber = contractNumberField.getText();
 		int currency = currencyComboBox.getSelectedIndex() + 1;
