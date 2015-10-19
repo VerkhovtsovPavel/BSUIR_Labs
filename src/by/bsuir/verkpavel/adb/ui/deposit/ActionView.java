@@ -12,7 +12,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Locale;
+import java.util.Properties;
 
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -24,6 +26,10 @@ import javax.swing.JTextField;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
+
+import org.jdatepicker.AbstractDateModel;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
 
 import by.bsuir.verkpavel.adb.data.DataProvider;
 import by.bsuir.verkpavel.adb.data.entity.Deposit;
@@ -218,8 +224,30 @@ public abstract class ActionView extends JFrame {
 
     private void createActionElements() throws ParseException {
         dateMask = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        startDateField = new JFormattedTextField(dateMask);
-        startDateField.setValue(LocalDate.now());
+        AbstractDateModel<LocalDate> model = new AbstractDateModel<LocalDate>() {
+
+            @Override
+            protected LocalDate fromCalendar(Calendar cal) {
+                return LocalDate.of(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+            }
+
+            @Override
+            protected Calendar toCalendar(LocalDate ld) {
+                Calendar cal = Calendar.getInstance();
+                cal.set(ld.getYear(), ld.getMonthValue(), ld.getDayOfMonth());
+                return cal;
+            }
+        };
+        Properties p = new Properties();
+        p.put("text.today", "Today");
+        p.put("text.month", "Month");
+        p.put("text.year", "Year");
+        //TODO Investigate side effect
+        JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+        //TODO Move to field
+        JDatePickerImpl startDateField = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+        model.setValue(LocalDate.now());
+        model.getValue();
         startDateField.setBounds(114, 149, 92, 28);
         mainPanel.add(startDateField);
 
