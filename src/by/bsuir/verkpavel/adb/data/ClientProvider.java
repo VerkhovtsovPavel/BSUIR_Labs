@@ -268,8 +268,8 @@ public class ClientProvider {
 
             ResultSet clientsRS = statement.executeQuery("SELECT * FROM bank_users.user;");
             while (clientsRS.next()) {
-                clients.add(String.format("%s %s %s", clientsRS.getString("LastName"),
-                        clientsRS.getString("FirstName"), clientsRS.getString("MidleName")));
+                clients.add(String.format("%s %s %s %d", clientsRS.getString("LastName"),
+                        clientsRS.getString("FirstName"), clientsRS.getString("MidleName"), clientsRS.getInt("id")));
             }
         } catch (SQLException e) {
             e.printStackTrace();

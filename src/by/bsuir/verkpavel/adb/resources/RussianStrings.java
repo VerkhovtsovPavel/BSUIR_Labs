@@ -9,7 +9,9 @@ public enum RussianStrings {
     CLIENT_SUCCESSFULLY_UPDATED("Клиент успешно обновлен"),
     
     DUBLICATE_CONTRACT_NUMBER("Дублирование номера договора"),
-    CONTRACT_SUCCESSFULLY_ADDED("Контракт успешно добавлен");
+    CONTRACT_SUCCESSFULLY_ADDED("Контракт успешно добавлен"), 
+    DATE_AFTER_MAX_DATE("Дата позже максимальной"), 
+    STARTDATEBEFORENOW_OR_ENDDATEBEFORESTART("Начальная даты раньше текущей или дата окончания раньше даты начала");
     
     
     private String value;

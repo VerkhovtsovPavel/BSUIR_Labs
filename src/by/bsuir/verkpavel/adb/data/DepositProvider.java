@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import by.bsuir.verkpavel.adb.data.entity.Deposit;
 import by.bsuir.verkpavel.adb.resources.RussianStrings;
@@ -52,6 +53,7 @@ public class DepositProvider {
         return deposits;
     }
     //TODO Add unique index on depositNumber
+    //TODO Fix problem with truncate sum and u
     public String saveDeposit(Deposit deposit) {
         Statement statement;
         try {
@@ -68,7 +70,7 @@ public class DepositProvider {
 
     private String createInsertDepositQuery(Deposit deposit) {
         return String
-                .format("INSERT INTO `deposit`  (`id`, `deposittype`, `currency`, `startDate`, `endDate`, `sum`, `persent`, `depositNumber`, `user_id`) VALUES(NULL, '%d', '%d', '%s', '%s', '%f', '%f', '%s','%d');",
+                .format(Locale.ENGLISH, "INSERT INTO `deposit`  (`id`, `deposittype`, `currency`, `startDate`, `endDate`, `sum`, `persent`, `depositNumber`, `user_id`) VALUES(NULL, '%d', '%d', '%s', '%s', %f, %f, '%s','%d');",
                         deposit.depositType, deposit.currency, deposit.startDate, deposit.endDate,
                         deposit.depositSum, deposit.persent, deposit.contractNumber, deposit.client);
     }
