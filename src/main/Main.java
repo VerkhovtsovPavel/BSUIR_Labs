@@ -2,7 +2,6 @@ package main;
 
 import signals.ChangesAmplitudeInitialPhaseFrequencySignal;
 
-//Rename functions
 public class Main {
     private static int bornDate = 8; 
     private static int groupNumber = 2;
@@ -15,5 +14,7 @@ public class Main {
        ChangesAmplitudeInitialPhaseFrequencySignal changesAmplitudeInitialPhaseFrequency = new ChangesAmplitudeInitialPhaseFrequencySignal(amplitude, initialPhase, N);
        changesAmplitudeInitialPhaseFrequency.buildGraphOfSum(5);
        System.out.println("Math expection> "+changesAmplitudeInitialPhaseFrequency.getMathExpection());
+       System.out.println("Dispirsion> "+changesAmplitudeInitialPhaseFrequency.buildDispersion());
+       changesAmplitudeInitialPhaseFrequency.buildRGraph();
     }
 }
