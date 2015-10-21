@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public abstract class BaseSignal {
     protected int amplitude;
-    protected int frequency;
     protected double initialPhase;
     protected int N;
     protected int n;
