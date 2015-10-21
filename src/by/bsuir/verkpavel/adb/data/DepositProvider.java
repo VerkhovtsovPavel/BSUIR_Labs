@@ -53,7 +53,6 @@ public class DepositProvider {
         return deposits;
     }
     //TODO Add unique index on depositNumber
-    //TODO Fix problem with truncate sum and u
     public String saveDeposit(Deposit deposit) {
         Statement statement;
         try {

@@ -100,8 +100,8 @@ public class DataProvider {
         return accountProvider.getAllAccounts();
     }
 
-    public void addTransaction(Account from, Account to, double summ) {
-        accountProvider.addTransaction(from, to);  
+    public void addTransaction(Account from, Account to, double sum) {
+        accountProvider.addTransaction(from, to, sum);  
     }
 
     public Account getAccountByDeposit(Deposit deposit) {
@@ -110,5 +110,9 @@ public class DataProvider {
 
     public Account getCashBoxAccount() {
         return accountProvider.getCashBoxAccount();
+    }
+
+    public void createAccountsByDeposit(Deposit deposit) {
+        accountProvider.createAccountByDeposit(deposit);
     }
 }
