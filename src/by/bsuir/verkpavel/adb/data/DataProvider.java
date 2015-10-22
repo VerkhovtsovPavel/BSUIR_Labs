@@ -2,7 +2,9 @@ package by.bsuir.verkpavel.adb.data;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import by.bsuir.verkpavel.adb.data.entity.Account;
@@ -114,5 +116,9 @@ public class DataProvider {
 
     public void createAccountsByDeposit(Deposit deposit) {
         accountProvider.createAccountByDeposit(deposit);
+    }
+    
+    public Account getFDBAccount() {
+        return accountProvider.getFDBAccount();
     }
 }

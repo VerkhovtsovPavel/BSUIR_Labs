@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 
 import by.bsuir.verkpavel.adb.data.DataProvider;
 import by.bsuir.verkpavel.adb.data.entity.Account;
+import by.bsuir.verkpavel.adb.data.entity.Deposit;
 import by.bsuir.verkpavel.adb.ui.MainView;
 
 public class ShowAccountsView extends JFrame {
@@ -87,6 +88,28 @@ public class ShowAccountsView extends JFrame {
         addButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                ArrayList<Deposit> deposits = DataProvider.getInstance().getAllDeposits();
+                for (Deposit deposit : deposits) {
+                    // TODO Implement check
+                    if (deposit.startDate == null/* Today */) {
+                        DataProvider.getInstance().addTransaction(
+                                DataProvider.getInstance().getAccountByDeposit(deposit)[0],
+                                DataProvider.getInstance().getFDBAccount(), deposit.depositSum);
+                    }
+                    // TODO Implement check and check deposit type
+                    if (true/* Today last day of month */&& deposit.depositType == 1) {
+                        DataProvider.getInstance().addTransaction(
+                                DataProvider.getInstance().getFDBAccount(),
+                                DataProvider.getInstance().getAccountByDeposit(deposit)[1],
+                                deposit.depositSum * deposit.persent / 12);
+                    }
+                    
+                    if(deposit.endDate == null/* Today */){
+                        if(deposit.depositType==2){
+                            
+                        }
+                    }
+                }
                 DataProvider.getInstance().addTransaction((Account) null, (Account) null, 1000);
             }
 
