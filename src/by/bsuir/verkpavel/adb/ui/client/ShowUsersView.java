@@ -66,9 +66,10 @@ public class ShowUsersView extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                    if (list.getSelectedIndex() != -1)
+                    if (list.getSelectedIndex() != -1) {
                         ActionView.create(ActionMode.SHOW, clients.get(list.getSelectedIndex()));
-                    dispose();
+                        dispose();
+                    }
                 }
             }
         });

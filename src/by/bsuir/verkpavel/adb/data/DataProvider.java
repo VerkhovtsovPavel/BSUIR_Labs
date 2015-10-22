@@ -104,7 +104,7 @@ public class DataProvider {
         accountProvider.addTransaction(from, to, sum);  
     }
 
-    public Account getAccountByDeposit(Deposit deposit) {
+    public Account[] getAccountByDeposit(Deposit deposit) {
         return accountProvider.getAccountByDeposit(deposit);
     }
 

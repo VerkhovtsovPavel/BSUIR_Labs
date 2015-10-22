@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Random;
 
 import by.bsuir.verkpavel.adb.data.entity.Account;
 import by.bsuir.verkpavel.adb.data.entity.Deposit;
@@ -24,6 +25,10 @@ public class AccountProvider {
         }
         return instance;
     }
+    
+    private Account getAccountFromResultSet(ResultSet resultSet) throws SQLException{
+       return new Account(resultSet.getInt("id"),resultSet.getString("number"), resultSet.getInt("type"), resultSet.getInt("deposit_id"));
+    }
 
     public ArrayList<Account> getAllAccounts() {
         ArrayList<Account> accounts = new ArrayList<Account>();
@@ -32,8 +37,7 @@ public class AccountProvider {
             statement = connection.createStatement();
             ResultSet accountsSet = statement.executeQuery("SELECT * FROM `account`");
             while (accountsSet.next()) {
-                // TODO Fill all fields
-                Account account = new Account();
+                Account account = getAccountFromResultSet(accountsSet);
                 accounts.add(account);
             }
         } catch (SQLException e) {
@@ -60,8 +64,6 @@ public class AccountProvider {
     }
 
     public void addTransaction(Account from, Account to, double sum) {
-        // TODO Don't think about account type, just add to record in
-        // `transaction` from(-) to(+) sum
         Statement statement;
         try {
             statement = connection.createStatement();
@@ -77,24 +79,21 @@ public class AccountProvider {
         }
     }
 
-    public Account getAccountByDeposit(Deposit deposit) {
-        Account accountByDeposit = null;
+    public Account[] getAccountByDeposit(Deposit deposit) {
+        Account[] personalAccounts = new Account[2];
         Statement statement;
         try {
             statement = connection.createStatement();
             ResultSet accounts = statement
                     .executeQuery("SELECT * FROM `account` WHERE `deposit_id` = " + deposit.id);
-            while (accounts.next()) {
-                // TODO Fill all fields
-                // TODO Queue return 2 records
-                // TODO Create method to check deposit account sub-type (main or percents) 
-                accountByDeposit = new Account();
-            }
-
+                accounts.next();
+                personalAccounts[0] = getAccountFromResultSet(accounts);
+                accounts.next();
+                personalAccounts[1] = getAccountFromResultSet(accounts);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return accountByDeposit;
+        return personalAccounts;
     }
 
     public Account getCashBoxAccount() {
@@ -106,8 +105,7 @@ public class AccountProvider {
                     .executeQuery("SELECT * FROM `account` WHERE `deposit_id` IS NULL");
             while (accounts.next()) {
                 if (accounts.getString("number").startsWith("1010")) {
-                    // TODO Fill all fields
-                    cashBox = new Account();
+                    cashBox = getAccountFromResultSet(accounts);
                 }
             }
         } catch (SQLException e) {
@@ -125,8 +123,7 @@ public class AccountProvider {
                     .executeQuery("SELECT * FROM `account` WHERE `deposit_id` IS NULL");
             while (accounts.next()) {
                 if (accounts.getString("number").startsWith("7327")) {
-                    // TODO Fill all fields
-                    fdba = new Account();
+                    fdba =  getAccountFromResultSet(accounts);
                 }
             }
         } catch (SQLException e) {
@@ -139,22 +136,22 @@ public class AccountProvider {
         Statement statement;
         try {
             statement = connection.createStatement();
-            // TODO Maybe change generate number process
             statement
                     .executeUpdate(String
-                            .format("INSERT INTO `bank_users`.`account` (`id`, `number`, `type`, `deposit_id`) VALUES (NULL, '3014%s', '%d', '%d'",
-                                    generateNumber(), 1, deposit.id));
+                            .format("INSERT INTO `account` (`id`, `number`, `type`, `deposit_id`) VALUES (NULL, '3014%s', '%d', '%d'",
+                                    generateNumber(deposit,0), 1, deposit.id));
             statement
                     .executeUpdate(String
-                            .format("INSERT INTO `bank_users`.`account` (`id`, `number`, `type`, `deposit_id`) VALUES (NULL, '3014%s', '%d', '%d'",
-                                    generateNumber(), 1, deposit.id));
+                            .format("INSERT INTO `account` (`id`, `number`, `type`, `deposit_id`) VALUES (NULL, '3014%s', '%d', '%d'",
+                                    generateNumber(deposit,1), 1, deposit.id));
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private String generateNumber() {
-        // TODO Implement
-        return "65466645646554";
+    private String generateNumber(Deposit deposit, int type) {
+        // TODO Maybe change generate number process
+        // TODO Check work
+        return deposit.id.substring(0, 4)+(1000+new Random().nextInt(8999))+type;
     }
 }
