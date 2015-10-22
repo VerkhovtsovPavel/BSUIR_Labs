@@ -36,6 +36,7 @@ public class DepositProvider {
             ResultSet rs = statement.executeQuery("SELECT * FROM `deposit`;");
             while (rs.next()) {
                 Deposit deposit = new Deposit();
+                deposit.id = rs.getInt("id");
                 deposit.contractNumber = rs.getString("depositNumber");
                 deposit.currency = rs.getInt("currency");
                 deposit.depositType = rs.getInt("deposittype");
@@ -52,12 +53,17 @@ public class DepositProvider {
 
         return deposits;
     }
-    //TODO Add unique index on depositNumber
+
+    // TODO Add unique index on depositNumber
     public String saveDeposit(Deposit deposit) {
         Statement statement;
         try {
             statement = connection.createStatement();
             statement.executeUpdate(createInsertDepositQuery(deposit));
+            
+            ResultSet rs = statement.executeQuery("SELECT MAX(`id`) AS 'id' FROM `deposit`;");
+            rs.next();
+            deposit.id = rs.getInt("id");
         } catch (MySQLIntegrityConstraintViolationException e) {
             return RussianStrings.DUBLICATE_CONTRACT_NUMBER.get();
         } catch (SQLException e) {
@@ -69,7 +75,8 @@ public class DepositProvider {
 
     private String createInsertDepositQuery(Deposit deposit) {
         return String
-                .format(Locale.ENGLISH, "INSERT INTO `deposit`  (`id`, `deposittype`, `currency`, `startDate`, `endDate`, `sum`, `persent`, `depositNumber`, `user_id`) VALUES(NULL, '%d', '%d', '%s', '%s', %f, %f, '%s','%d');",
+                .format(Locale.ENGLISH,
+                        "INSERT INTO `deposit`  (`id`, `deposittype`, `currency`, `startDate`, `endDate`, `sum`, `persent`, `depositNumber`, `user_id`) VALUES(NULL, '%d', '%d', '%s', '%s', %f, %f, '%s','%d');",
                         deposit.depositType, deposit.currency, deposit.startDate, deposit.endDate,
                         deposit.depositSum, deposit.persent, deposit.contractNumber, deposit.client);
     }
@@ -107,5 +114,16 @@ public class DepositProvider {
             e.printStackTrace();
         }
         return currencys;
+    }
+
+    public void updateDepositEndDate(Deposit deposit, String newDate) {
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(String.format(
+                    "UPDATE `deposit` SET `endDate` = '%s' WHERE `id` = '%d;", deposit.id, newDate));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

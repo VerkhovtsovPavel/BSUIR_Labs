@@ -70,10 +70,10 @@ public class AccountProvider {
             // TODO No transactional
             statement.executeUpdate(String.format(Locale.ENGLISH,
                     "INSERT INTO `transaction` (`id`, `account_id`, sum) VALUES (NULL, %d, %f",
-                    from.number, -sum));
+                    from.id, -sum));
             statement.executeUpdate(String.format(Locale.ENGLISH,
                     "INSERT INTO `transaction` (`id`, `account_id`, sum) VALUES (NULL, %d, %f",
-                    to.number, sum));
+                    to.id, sum));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -138,11 +138,11 @@ public class AccountProvider {
             statement = connection.createStatement();
             statement
                     .executeUpdate(String
-                            .format("INSERT INTO `account` (`id`, `number`, `type`, `deposit_id`) VALUES (NULL, '3014%s', '%d', '%d'",
+                            .format("INSERT INTO `account` (`id`, `number`, `type`, `deposit_id`) VALUES (NULL, '3014%s', '%d', '%d')",
                                     generateNumber(deposit,0), 1, deposit.id));
             statement
                     .executeUpdate(String
-                            .format("INSERT INTO `account` (`id`, `number`, `type`, `deposit_id`) VALUES (NULL, '3014%s', '%d', '%d'",
+                            .format("INSERT INTO `account` (`id`, `number`, `type`, `deposit_id`) VALUES (NULL, '3014%s', '%d', '%d')",
                                     generateNumber(deposit,1), 1, deposit.id));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -152,6 +152,6 @@ public class AccountProvider {
     private String generateNumber(Deposit deposit, int type) {
         // TODO Maybe change generate number process
         // TODO Check work
-        return deposit.id.substring(0, 4)+(1000+new Random().nextInt(8999))+type;
+        return deposit.contractNumber.substring(0, 4)+(1000+new Random().nextInt(8999))+type;
     }
 }

@@ -6,6 +6,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
@@ -22,6 +25,7 @@ import by.bsuir.verkpavel.adb.ui.MainView;
 
 public class ShowAccountsView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
+    private DateTimeFormatter dateMask = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private JPanel mainPanel;
 
     ArrayList<Account> accounts;
@@ -69,10 +73,7 @@ public class ShowAccountsView extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     if (list.getSelectedIndex() != -1) {
-                        ShowView.create(null/*
-                                             * accounts.get(list.getSelectedIndex
-                                             * ())
-                                             */);
+                        ShowView.create(accounts.get(list.getSelectedIndex()));
                         dispose();
                     }
                 }
@@ -90,36 +91,40 @@ public class ShowAccountsView extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 ArrayList<Deposit> deposits = DataProvider.getInstance().getAllDeposits();
                 for (Deposit deposit : deposits) {
-                    // TODO Implement check
-                    if (deposit.startDate == null/* Today */) {
+                    if (LocalDate.parse(deposit.startDate, dateMask).isEqual(LocalDate.now())) {
                         DataProvider.getInstance().addTransaction(
                                 DataProvider.getInstance().getAccountByDeposit(deposit)[0],
                                 DataProvider.getInstance().getFDBAccount(), deposit.depositSum);
                     }
                     // TODO Implement check and check deposit type
-                    if (true/* Today last day of month */&& deposit.depositType == 1) {
+                    if (LocalDate.now().getDayOfMonth() == LocalDate.now().lengthOfMonth()) {
                         DataProvider.getInstance().addTransaction(
                                 DataProvider.getInstance().getFDBAccount(),
                                 DataProvider.getInstance().getAccountByDeposit(deposit)[1],
                                 deposit.depositSum * deposit.persent / 12);
+                        if(deposit.depositType == 1){
+                            DataProvider.getInstance().addTransaction(
+                                    DataProvider.getInstance().getAccountByDeposit(deposit)[1],
+                                    DataProvider.getInstance().getCashBoxAccount(),
+                                    deposit.depositSum * deposit.persent / 12);
+                        }
                     }
                     
-                    if(deposit.endDate == null/* Today */){
+                    if(LocalDate.parse(deposit.endDate, dateMask).isEqual(LocalDate.now())){
+                        if(deposit.depositType==1){
+                            DataProvider.getInstance().updateDepositEndDate(deposit, LocalDate.parse(deposit.endDate, dateMask).plusMonths(1).format(dateMask));
+                        }
                         if(deposit.depositType==2){
-                            
+                              DataProvider.getInstance().addTransaction(DataProvider.getInstance().getAccountByDeposit(deposit)[1], DataProvider.getInstance().getCashBoxAccount(), (ChronoUnit.MONTHS.between(LocalDate.parse(deposit.startDate, dateMask), LocalDate.parse(deposit.endDate, dateMask))/12*deposit.persent));
+                              DataProvider.getInstance().addTransaction(DataProvider.getInstance().getAccountByDeposit(deposit)[0], DataProvider.getInstance().getCashBoxAccount(), deposit.depositSum);
                         }
                     }
                 }
-                DataProvider.getInstance().addTransaction((Account) null, (Account) null, 1000);
-            }
-
-        });
+            }        });
         addButton.setBounds(141, 238, 151, 23);
         mainPanel.add(addButton);
 
         listModel.clear();
-
-        listModel.addElement("10105478367837468");
         for (Account account : accounts) {
             listModel.addElement(account.number);
         }

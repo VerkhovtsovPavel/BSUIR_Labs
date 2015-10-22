@@ -10,7 +10,7 @@ public class Deposit {
 	public double depositSum;
 	public double persent;
 	public int client;
-    public String id;
+    public int id;
 
 	public Deposit(String contractNumber, int depositType, String startDate,
 			String endDate, int currency, double persent, long depositSum,

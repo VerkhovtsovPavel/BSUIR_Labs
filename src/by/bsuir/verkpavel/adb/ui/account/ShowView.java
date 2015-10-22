@@ -95,7 +95,11 @@ public class ShowView extends JFrame {
         debitList.setBounds(32, 37, 240, 250);
         mainPanel.add(debitList);
         
-        debitListModel.addElement((long) 255);
-        creditListModel.addElement((long) 256);
+        fillListsByAccount();
+    }
+
+    private void fillListsByAccount() {
+        // TODO Get all transaction by account and sort they by lists using deposit type and transaction sign
+        
     }
 }
