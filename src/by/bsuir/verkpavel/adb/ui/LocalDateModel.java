@@ -1,4 +1,4 @@
-package by.bsuir.verkpavel.adb.ui.deposit;
+package by.bsuir.verkpavel.adb.ui;
 
 import java.time.LocalDate;
 import java.util.Calendar;

@@ -151,7 +151,6 @@ public class AccountProvider {
 
     private String generateNumber(Deposit deposit, int type) {
         // TODO Maybe change generate number process
-        // TODO Check work
         return deposit.contractNumber.substring(0, 4)+(1000+new Random().nextInt(8999))+type;
     }
 }

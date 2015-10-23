@@ -96,7 +96,6 @@ public class ShowAccountsView extends JFrame {
                                 DataProvider.getInstance().getAccountByDeposit(deposit)[0],
                                 DataProvider.getInstance().getFDBAccount(), deposit.depositSum);
                     }
-                    // TODO Implement check and check deposit type
                     if (LocalDate.now().getDayOfMonth() == LocalDate.now().lengthOfMonth()) {
                         DataProvider.getInstance().addTransaction(
                                 DataProvider.getInstance().getFDBAccount(),

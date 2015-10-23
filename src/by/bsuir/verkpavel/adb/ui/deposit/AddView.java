@@ -31,7 +31,6 @@ public class AddView extends ActionView {
                 	JOptionPane.showMessageDialog(null,  DataProvider.getInstance().saveDeposit(
                 			deposit), "Message", JOptionPane.PLAIN_MESSAGE);
                 	DataProvider.getInstance().createAccountsByDeposit(deposit);
-                	//TODO Check the index of main account is always 0
                 	Account mainUserAccount = DataProvider.getInstance().getAccountByDeposit(deposit)[0];
                 	DataProvider.getInstance().addTransaction(mainUserAccount, DataProvider.getInstance().getCashBoxAccount(), deposit.depositSum);
                     ShowDepositsView.create();

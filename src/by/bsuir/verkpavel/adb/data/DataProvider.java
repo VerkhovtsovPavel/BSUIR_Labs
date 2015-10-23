@@ -123,4 +123,9 @@ public class DataProvider {
     public Account getFDBAccount() {
         return accountProvider.getFDBAccount();
     }
+
+    public ArrayList<Double> getTransatcionsByAccount(Account account) {
+        return accountProvider.getTransactionByAccount(account);
+        
+    }
 }

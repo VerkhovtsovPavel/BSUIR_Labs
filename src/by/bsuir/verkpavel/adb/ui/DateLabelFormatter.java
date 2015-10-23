@@ -1,4 +1,4 @@
-package by.bsuir.verkpavel.adb.ui.deposit;
+package by.bsuir.verkpavel.adb.ui;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
