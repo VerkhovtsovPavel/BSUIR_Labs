@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import by.bsuir.verkpavel.adb.data.entity.Account;
 import by.bsuir.verkpavel.adb.data.entity.Client;
 import by.bsuir.verkpavel.adb.data.entity.Deposit;
+import by.bsuir.verkpavel.adb.data.entity.TransactionsInfo;
 
 public class DataProvider {
     private static DataProvider instance;
@@ -104,8 +105,12 @@ public class DataProvider {
         return accountProvider.getAllAccounts();
     }
 
-    public void addTransaction(Account from, Account to, double sum) {
-        accountProvider.addTransaction(from, to, sum);  
+    public void addTransaction(Account from, Account to, double sum, int currency) {
+        try {
+            accountProvider.addTransaction(from, to, sum, currency);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }  
     }
 
     public Account[] getAccountByDeposit(Deposit deposit) {
@@ -124,7 +129,7 @@ public class DataProvider {
         return accountProvider.getFDBAccount();
     }
 
-    public ArrayList<Double> getTransatcionsByAccount(Account account) {
+    public ArrayList<TransactionsInfo> getTransatcionsByAccount(Account account) {
         return accountProvider.getTransactionByAccount(account);
         
     }

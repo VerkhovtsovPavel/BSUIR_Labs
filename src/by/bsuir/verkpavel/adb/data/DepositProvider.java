@@ -54,7 +54,6 @@ public class DepositProvider {
         return deposits;
     }
 
-    // TODO Add unique index on depositNumber
     public String saveDeposit(Deposit deposit) {
         Statement statement;
         try {

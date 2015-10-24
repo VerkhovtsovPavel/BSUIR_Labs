@@ -15,17 +15,18 @@ import javax.swing.JPanel;
 
 import by.bsuir.verkpavel.adb.data.DataProvider;
 import by.bsuir.verkpavel.adb.data.entity.Account;
+import by.bsuir.verkpavel.adb.data.entity.TransactionsInfo;
 import by.bsuir.verkpavel.adb.data.entity.Account.AccountType;
 
 public class ShowView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
     protected static Account currentAccount;
 
-    private JList<Double> debitList;
-    private JList<Double> creditList;
+    private JList<String> debitList;
+    private JList<String> creditList;
 
-    private DefaultListModel<Double> debitListModel;
-    private DefaultListModel<Double> creditListModel;
+    private DefaultListModel<String> debitListModel;
+    private DefaultListModel<String> creditListModel;
 
     protected JPanel mainPanel;
 
@@ -92,13 +93,13 @@ public class ShowView extends JFrame {
     }
 
     private void createActionElements() throws ParseException {
-        debitListModel = new DefaultListModel<Double>();
+        debitListModel = new DefaultListModel<String>();
         ;
-        creditListModel = new DefaultListModel<Double>();
-        creditList = new JList<Double>(creditListModel);
+        creditListModel = new DefaultListModel<String>();
+        creditList = new JList<String>(creditListModel);
         creditList.setBounds(327, 37, 240, 250);
         mainPanel.add(creditList);
-        debitList = new JList<Double>(debitListModel);
+        debitList = new JList<String>(debitListModel);
         debitList.setBounds(32, 37, 240, 250);
         mainPanel.add(debitList);
 
@@ -106,20 +107,21 @@ public class ShowView extends JFrame {
     }
 
     private void fillListsByAccount() {
-        ArrayList<Double> transactionsSum = DataProvider.getInstance().getTransatcionsByAccount(
+        ArrayList<TransactionsInfo> transactions = DataProvider.getInstance().getTransatcionsByAccount(
                 currentAccount);
-        for (double sum : transactionsSum) {
+        for (TransactionsInfo transaction : transactions) {
+            String value = String.format("%.2f %s",transaction.sum, transaction.currency);
             if (currentAccount.type == AccountType.ACTIVE) {
-                if (sum < 0) {
-                    creditListModel.addElement(sum);
+                if (transaction.sum < 0) {
+                    creditListModel.addElement(value);
                 } else {
-                    debitListModel.addElement(sum);
+                    debitListModel.addElement(value);
                 }
             } else {
-                if (sum > 0) {
-                    creditListModel.addElement(sum);
+                if (transaction.sum > 0) {
+                    creditListModel.addElement(value);
                 } else {
-                    debitListModel.addElement(sum);
+                    debitListModel.addElement(value);
                 }
             }
         }

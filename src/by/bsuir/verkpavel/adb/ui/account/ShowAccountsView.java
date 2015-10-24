@@ -8,24 +8,27 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import by.bsuir.verkpavel.adb.data.DataProvider;
 import by.bsuir.verkpavel.adb.data.entity.Account;
 import by.bsuir.verkpavel.adb.data.entity.Deposit;
+import by.bsuir.verkpavel.adb.data.entity.TransactionsInfo;
 import by.bsuir.verkpavel.adb.ui.MainView;
 
 public class ShowAccountsView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
     private DateTimeFormatter dateMask = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private LocalDate lastClosedDate = LocalDate.MIN;
     private JPanel mainPanel;
 
     ArrayList<Account> accounts;
@@ -89,37 +92,71 @@ public class ShowAccountsView extends JFrame {
         addButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ArrayList<Deposit> deposits = DataProvider.getInstance().getAllDeposits();
-                for (Deposit deposit : deposits) {
-                    if (LocalDate.parse(deposit.startDate, dateMask).isEqual(LocalDate.now())) {
-                        DataProvider.getInstance().addTransaction(
-                                DataProvider.getInstance().getAccountByDeposit(deposit)[0],
-                                DataProvider.getInstance().getFDBAccount(), deposit.depositSum);
-                    }
-                    if (LocalDate.now().getDayOfMonth() == LocalDate.now().lengthOfMonth()) {
+                if (LocalDate.now().isAfter(lastClosedDate)) {
+                    ArrayList<Deposit> deposits = DataProvider.getInstance().getAllDeposits();
+                    for (Deposit deposit : deposits) {
                         DataProvider.getInstance().addTransaction(
                                 DataProvider.getInstance().getFDBAccount(),
                                 DataProvider.getInstance().getAccountByDeposit(deposit)[1],
-                                deposit.depositSum * deposit.persent / 12);
-                        if(deposit.depositType == 1){
+                                deposit.depositSum * deposit.persent / 360, deposit.currency);
+
+                        if (LocalDate.parse(deposit.startDate, dateMask).isEqual(LocalDate.now())) {
                             DataProvider.getInstance().addTransaction(
-                                    DataProvider.getInstance().getAccountByDeposit(deposit)[1],
-                                    DataProvider.getInstance().getCashBoxAccount(),
-                                    deposit.depositSum * deposit.persent / 12);
+                                    DataProvider.getInstance().getAccountByDeposit(deposit)[0],
+                                    DataProvider.getInstance().getFDBAccount(), deposit.depositSum,
+                                    deposit.currency);
+                        }
+                        if (LocalDate.now().getDayOfMonth() == LocalDate.now().lengthOfMonth()) {
+                            if (deposit.depositType == 1) {
+                                DataProvider.getInstance().addTransaction(
+                                        DataProvider.getInstance().getAccountByDeposit(deposit)[1],
+                                        DataProvider.getInstance().getCashBoxAccount(),
+                                        getPersentsSum(deposit), deposit.currency);
+                            }
+                        }
+
+                        if (LocalDate.parse(deposit.endDate, dateMask).isEqual(LocalDate.now())) {
+                            if (deposit.depositType == 1) {
+                                DataProvider.getInstance().updateDepositEndDate(
+                                        deposit,
+                                        LocalDate.parse(deposit.endDate, dateMask).plusMonths(1)
+                                                .format(dateMask));
+                                DataProvider.getInstance().addTransaction(
+                                        DataProvider.getInstance().getAccountByDeposit(deposit)[1],
+                                        DataProvider.getInstance().getCashBoxAccount(),
+                                        getPersentsSum(deposit), deposit.currency);
+                            }
+                            if (deposit.depositType == 2) {
+                                DataProvider.getInstance().addTransaction(
+                                        DataProvider.getInstance().getAccountByDeposit(deposit)[1],
+                                        DataProvider.getInstance().getCashBoxAccount(),
+                                        getPersentsSum(deposit), deposit.currency);
+                                DataProvider.getInstance().addTransaction(
+                                        DataProvider.getInstance().getAccountByDeposit(deposit)[0],
+                                        DataProvider.getInstance().getCashBoxAccount(),
+                                        deposit.depositSum, deposit.currency);
+                            }
                         }
                     }
-                    
-                    if(LocalDate.parse(deposit.endDate, dateMask).isEqual(LocalDate.now())){
-                        if(deposit.depositType==1){
-                            DataProvider.getInstance().updateDepositEndDate(deposit, LocalDate.parse(deposit.endDate, dateMask).plusMonths(1).format(dateMask));
-                        }
-                        if(deposit.depositType==2){
-                              DataProvider.getInstance().addTransaction(DataProvider.getInstance().getAccountByDeposit(deposit)[1], DataProvider.getInstance().getCashBoxAccount(), (ChronoUnit.MONTHS.between(LocalDate.parse(deposit.startDate, dateMask), LocalDate.parse(deposit.endDate, dateMask))/12*deposit.persent));
-                              DataProvider.getInstance().addTransaction(DataProvider.getInstance().getAccountByDeposit(deposit)[0], DataProvider.getInstance().getCashBoxAccount(), deposit.depositSum);
-                        }
-                    }
+                    lastClosedDate = LocalDate.now();
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "Текущий день предшествует либо равен последнему закрытому дню",
+                            "Error", JOptionPane.PLAIN_MESSAGE);
                 }
-            }        });
+            }
+
+            private double getPersentsSum(Deposit deposit) {
+                List<TransactionsInfo> transactions = DataProvider.getInstance()
+                        .getTransatcionsByAccount(
+                                DataProvider.getInstance().getAccountByDeposit(deposit)[1]);
+                double totalPersentsSum = 0;
+                for (TransactionsInfo transactionsInfo : transactions) {
+                    totalPersentsSum += transactionsInfo.sum;
+                }
+                return totalPersentsSum;
+            }
+        });
         addButton.setBounds(141, 238, 151, 23);
         mainPanel.add(addButton);
 

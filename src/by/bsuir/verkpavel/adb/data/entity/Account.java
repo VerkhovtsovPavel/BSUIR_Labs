@@ -9,7 +9,7 @@ public class Account {
     public Account(int id, String number, int type, int deposit_id) {
         this.id = id;
         this.number = number;
-        this.type = AccountType.values()[type];
+        this.type = AccountType.values()[type-1];
         this.deposit_id = deposit_id;
     }
 

@@ -6,55 +6,31 @@ CREATE SCHEMA IF NOT EXISTS `bank_users` DEFAULT CHARACTER SET utf8 COLLATE utf8
 USE `bank_users` ;
 
 -- -----------------------------------------------------
--- Table `bank_users`.`city`
+-- Table `bank_users`.`currency`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bank_users`.`city` ;
+DROP TABLE IF EXISTS `bank_users`.`currency` ;
 
-CREATE  TABLE IF NOT EXISTS `bank_users`.`city` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `RealCity` VARCHAR(255) NOT NULL ,
+CREATE  TABLE IF NOT EXISTS `bank_users`.`currency` (
+  `id` INT(11) NOT NULL ,
+  `description` VARCHAR(4) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `bank_users`.`disability`
+-- Table `bank_users`.`deposittype`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bank_users`.`disability` ;
+DROP TABLE IF EXISTS `bank_users`.`deposittype` ;
 
-CREATE  TABLE IF NOT EXISTS `bank_users`.`disability` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `Disability` VARCHAR(255) NOT NULL ,
+CREATE  TABLE IF NOT EXISTS `bank_users`.`deposittype` (
+  `id` INT(11) NOT NULL ,
+  `type` VARCHAR(100) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `bank_users`.`familystatus`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `bank_users`.`familystatus` ;
-
-CREATE  TABLE IF NOT EXISTS `bank_users`.`familystatus` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `Status` VARCHAR(255) NOT NULL ,
-  PRIMARY KEY (`id`) )
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `bank_users`.`nationality`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `bank_users`.`nationality` ;
-
-CREATE  TABLE IF NOT EXISTS `bank_users`.`nationality` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `Nationality` VARCHAR(255) NOT NULL DEFAULT 'NULL' ,
-  PRIMARY KEY (`id`) )
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -70,10 +46,65 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`passportinfo` (
   `DateGives` DATE NOT NULL ,
   `IndifyNumber` VARCHAR(255) NOT NULL ,
   `BornPlace` VARCHAR(255) NOT NULL ,
-  PRIMARY KEY (`id`) ,
-  UNIQUE INDEX `index2` (`IndifyNumber` ASC) ,
-  UNIQUE INDEX `index3` (`Number` ASC, `Serios` ASC) )
+  PRIMARY KEY (`id`) )
 ENGINE = InnoDB
+AUTO_INCREMENT = 8
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `bank_users`.`city`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `bank_users`.`city` ;
+
+CREATE  TABLE IF NOT EXISTS `bank_users`.`city` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `RealCity` VARCHAR(255) NOT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 11
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `bank_users`.`familystatus`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `bank_users`.`familystatus` ;
+
+CREATE  TABLE IF NOT EXISTS `bank_users`.`familystatus` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `Status` VARCHAR(255) NOT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 7
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `bank_users`.`nationality`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `bank_users`.`nationality` ;
+
+CREATE  TABLE IF NOT EXISTS `bank_users`.`nationality` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `Nationality` VARCHAR(255) NOT NULL DEFAULT 'NULL' ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 11
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `bank_users`.`disability`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `bank_users`.`disability` ;
+
+CREATE  TABLE IF NOT EXISTS `bank_users`.`disability` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `Disability` VARCHAR(255) NOT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 11
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -105,12 +136,9 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`user` (
   INDEX `FamilyStatus` (`FamilyStatus` ASC) ,
   INDEX `Nationality_id` (`Nationality_id` ASC) ,
   INDEX `Disability_id` (`Disability_id` ASC) ,
-  INDEX `index6` () ,
   CONSTRAINT `user_ibfk_1`
     FOREIGN KEY (`id` )
-    REFERENCES `bank_users`.`passportinfo` (`id` )
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT,
+    REFERENCES `bank_users`.`passportinfo` (`id` ),
   CONSTRAINT `user_ibfk_2`
     FOREIGN KEY (`Address_id` )
     REFERENCES `bank_users`.`city` (`id` ),
@@ -122,39 +150,10 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`user` (
     REFERENCES `bank_users`.`nationality` (`id` ),
   CONSTRAINT `user_ibfk_5`
     FOREIGN KEY (`Disability_id` )
-    REFERENCES `bank_users`.`disability` (`id` )
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT)
+    REFERENCES `bank_users`.`disability` (`id` ))
 ENGINE = InnoDB
+AUTO_INCREMENT = 10
 DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `bank_users`.`currency`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `bank_users`.`currency` ;
-
-CREATE  TABLE IF NOT EXISTS `bank_users`.`currency` (
-  `id` INT(11) NOT NULL ,
-  `description` VARCHAR(4) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
-  PRIMARY KEY (`id`) )
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_unicode_ci;
-
-
--- -----------------------------------------------------
--- Table `bank_users`.`deposittype`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `bank_users`.`deposittype` ;
-
-CREATE  TABLE IF NOT EXISTS `bank_users`.`deposittype` (
-  `id` INT(11) NOT NULL ,
-  `type` VARCHAR(100) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
-  PRIMARY KEY (`id`) )
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -176,6 +175,7 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`deposit` (
   INDEX `fk_deposit_deposittype1` (`deposittype` ASC) ,
   INDEX `fk_deposit_currency1` (`currency` ASC) ,
   INDEX `fk_deposit_user1` (`user_id` ASC) ,
+  UNIQUE INDEX `depositNumber_UNIQUE` (`depositNumber` ASC) ,
   CONSTRAINT `fk_deposit_currency1`
     FOREIGN KEY (`currency` )
     REFERENCES `bank_users`.`currency` (`id` )
@@ -192,7 +192,7 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`deposit` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 7
+AUTO_INCREMENT = 10
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
 
@@ -215,6 +215,7 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`account` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
 
@@ -228,14 +229,22 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`transaction` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `account_id` INT(11) NOT NULL ,
   `sum` DOUBLE NOT NULL ,
+  `currency_id` INT(11) NOT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_transaction_account1_idx` (`account_id` ASC) ,
+  INDEX `fk_transaction_currency1` (`currency_id` ASC) ,
   CONSTRAINT `fk_transaction_account1`
     FOREIGN KEY (`account_id` )
     REFERENCES `bank_users`.`account` (`id` )
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_transaction_currency1`
+    FOREIGN KEY (`currency_id` )
+    REFERENCES `bank_users`.`currency` (`id` )
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
 

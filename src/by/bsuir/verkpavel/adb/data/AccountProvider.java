@@ -10,6 +10,7 @@ import java.util.Random;
 
 import by.bsuir.verkpavel.adb.data.entity.Account;
 import by.bsuir.verkpavel.adb.data.entity.Deposit;
+import by.bsuir.verkpavel.adb.data.entity.TransactionsInfo;
 
 public class AccountProvider {
     private static AccountProvider instance;
@@ -25,9 +26,10 @@ public class AccountProvider {
         }
         return instance;
     }
-    
-    private Account getAccountFromResultSet(ResultSet resultSet) throws SQLException{
-       return new Account(resultSet.getInt("id"),resultSet.getString("number"), resultSet.getInt("type"), resultSet.getInt("deposit_id"));
+
+    private Account getAccountFromResultSet(ResultSet resultSet) throws SQLException {
+        return new Account(resultSet.getInt("id"), resultSet.getString("number"),
+                resultSet.getInt("type"), resultSet.getInt("deposit_id"));
     }
 
     public ArrayList<Account> getAllAccounts() {
@@ -46,16 +48,17 @@ public class AccountProvider {
         return accounts;
     }
 
-    public ArrayList<Double> getTransactionByAccount(Account account) {
-        ArrayList<Double> operations = new ArrayList<>();
+    public ArrayList<TransactionsInfo> getTransactionByAccount(Account account) {
+        ArrayList<TransactionsInfo> operations = new ArrayList<>();
         Statement statement;
         try {
             statement = connection.createStatement();
             ResultSet transactions = statement
-                    .executeQuery("SELECT `sum` FROM `transaction` WHERE `account_id` = "
-                            + account.number);
+                    .executeQuery("SELECT `sum`, `description` FROM `transaction` JOIN `currency` WHERE `transaction`.`currency_id`= `currency`.`id` AND `account_id` ="
+                            + account.id);
             while (transactions.next()) {
-                operations.add(transactions.getDouble("sum"));
+                operations.add(new TransactionsInfo(transactions.getDouble("sum"), transactions
+                        .getString("description")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -63,19 +66,28 @@ public class AccountProvider {
         return operations;
     }
 
-    public void addTransaction(Account from, Account to, double sum) {
+    public void addTransaction(Account from, Account to, double sum, int currency)
+            throws SQLException {
         Statement statement;
         try {
+            connection.setAutoCommit(false);
             statement = connection.createStatement();
-            // TODO No transactional
-            statement.executeUpdate(String.format(Locale.ENGLISH,
-                    "INSERT INTO `transaction` (`id`, `account_id`, sum) VALUES (NULL, %d, %f",
-                    from.id, -sum));
-            statement.executeUpdate(String.format(Locale.ENGLISH,
-                    "INSERT INTO `transaction` (`id`, `account_id`, sum) VALUES (NULL, %d, %f",
-                    to.id, sum));
+            statement
+                    .executeUpdate(String
+                            .format(Locale.ENGLISH,
+                                    "INSERT INTO `transaction` (`id`, `account_id`, `sum`, `currency_id`) VALUES (NULL, '%d', %f, '%d')",
+                                    from.id, -sum, currency));
+            statement
+                    .executeUpdate(String
+                            .format(Locale.ENGLISH,
+                                    "INSERT INTO `transaction` (`id`, `account_id`, `sum`, `currency_id`) VALUES (NULL, '%d', '%f', '%d')",
+                                    to.id, sum, currency));
+            connection.commit();
         } catch (SQLException e) {
+            connection.rollback();
             e.printStackTrace();
+        } finally {
+            connection.setAutoCommit(true);
         }
     }
 
@@ -86,10 +98,14 @@ public class AccountProvider {
             statement = connection.createStatement();
             ResultSet accounts = statement
                     .executeQuery("SELECT * FROM `account` WHERE `deposit_id` = " + deposit.id);
-                accounts.next();
-                personalAccounts[0] = getAccountFromResultSet(accounts);
-                accounts.next();
-                personalAccounts[1] = getAccountFromResultSet(accounts);
+            while (accounts.next()) {
+                if (accounts.getString("number").endsWith("0")) {
+                    personalAccounts[0] = getAccountFromResultSet(accounts);
+                } else {
+                    personalAccounts[1] = getAccountFromResultSet(accounts);
+                }
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -123,7 +139,7 @@ public class AccountProvider {
                     .executeQuery("SELECT * FROM `account` WHERE `deposit_id` IS NULL");
             while (accounts.next()) {
                 if (accounts.getString("number").startsWith("7327")) {
-                    fdba =  getAccountFromResultSet(accounts);
+                    fdba = getAccountFromResultSet(accounts);
                 }
             }
         } catch (SQLException e) {
@@ -139,18 +155,18 @@ public class AccountProvider {
             statement
                     .executeUpdate(String
                             .format("INSERT INTO `account` (`id`, `number`, `type`, `deposit_id`) VALUES (NULL, '3014%s', '%d', '%d')",
-                                    generateNumber(deposit,0), 1, deposit.id));
+                                    generateNumber(deposit, 0), 2, deposit.id));
             statement
                     .executeUpdate(String
                             .format("INSERT INTO `account` (`id`, `number`, `type`, `deposit_id`) VALUES (NULL, '3014%s', '%d', '%d')",
-                                    generateNumber(deposit,1), 1, deposit.id));
+                                    generateNumber(deposit, 1), 2, deposit.id));
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     private String generateNumber(Deposit deposit, int type) {
-        // TODO Maybe change generate number process
-        return deposit.contractNumber.substring(0, 4)+(1000+new Random().nextInt(8999))+type;
+        return deposit.contractNumber.substring(0, 4) + (1000 + new Random().nextInt(8999)) + ""
+                + type;
     }
 }

@@ -39,7 +39,6 @@ import by.bsuir.verkpavel.adb.ui.ActionMode;
 import by.bsuir.verkpavel.adb.ui.DateLabelFormatter;
 import by.bsuir.verkpavel.adb.ui.LocalDateModel;
 
-//TODO Check field formats
 public abstract class ActionView extends JFrame {
 	private static final long serialVersionUID = 2883993883146596569L;
 	private static final LocalDate maxDate = LocalDate.of(2100, 1, 1);
@@ -311,7 +310,7 @@ public abstract class ActionView extends JFrame {
 		});
 		mainPanel.add(depositTypeComboBox);
 
-		// FIXME Change to real contact number mask
+		// FIXME Maybe change to real contact number mask
 		MaskFormatter contractNumberMask = new MaskFormatter("#######U###UU#");
 		contractNumberField = new JFormattedTextField(contractNumberMask);
 		contractNumberField.setBounds(338, 32, 365, 28);
