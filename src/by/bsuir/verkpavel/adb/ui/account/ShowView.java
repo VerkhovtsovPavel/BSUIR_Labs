@@ -88,7 +88,7 @@ public class ShowView extends JFrame {
         mainPanel.add(debitLabel);
 
         JLabel creditLabel = new JLabel("Кредит");
-        creditLabel.setBounds(441, 11, 46, 14);
+        creditLabel.setBounds(441, 11, 80, 14);
         mainPanel.add(creditLabel);
     }
 
