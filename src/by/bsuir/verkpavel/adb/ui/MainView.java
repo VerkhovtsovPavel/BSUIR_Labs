@@ -14,7 +14,8 @@ import javax.swing.JPanel;
 import by.bsuir.verkpavel.adb.ui.account.ShowAccountsView;
 import by.bsuir.verkpavel.adb.ui.client.ShowUsersView;
 import by.bsuir.verkpavel.adb.ui.deposit.ShowDepositsView;
-
+//FIXME Adapt UI by L430
+//FIXME Change size of deposit type comboBox
 public class MainView extends JFrame {
 	private static final long serialVersionUID = 2883993883146596569L;
 	private JPanel mainPanel;

@@ -171,11 +171,11 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`deposit` (
   `persent` DOUBLE NOT NULL ,
   `depositNumber` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
   `user_id` INT(11) NOT NULL ,
+  `isActive` TINYINT(1) NOT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_deposit_deposittype1` (`deposittype` ASC) ,
   INDEX `fk_deposit_currency1` (`currency` ASC) ,
   INDEX `fk_deposit_user1` (`user_id` ASC) ,
-  UNIQUE INDEX `depositNumber_UNIQUE` (`depositNumber` ASC) ,
   CONSTRAINT `fk_deposit_currency1`
     FOREIGN KEY (`currency` )
     REFERENCES `bank_users`.`currency` (`id` )
@@ -192,7 +192,7 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`deposit` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 10
+AUTO_INCREMENT = 17
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
 
@@ -215,7 +215,7 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`account` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 5
+AUTO_INCREMENT = 19
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
 
@@ -244,7 +244,7 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`transaction` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 129
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
 

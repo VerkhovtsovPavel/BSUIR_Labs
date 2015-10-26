@@ -90,6 +90,32 @@ public class AccountProvider {
             connection.setAutoCommit(true);
         }
     }
+    
+    
+    public void addMonoTransaction(Account from, Account to, double sum, int currency)
+            throws SQLException {
+        Statement statement;
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.createStatement();
+            statement
+                    .executeUpdate(String
+                            .format(Locale.ENGLISH,
+                                    "INSERT INTO `transaction` (`id`, `account_id`, `sum`, `currency_id`) VALUES (NULL, '%d', %f, '%d')",
+                                    from.id, sum, currency));
+            statement
+                    .executeUpdate(String
+                            .format(Locale.ENGLISH,
+                                    "INSERT INTO `transaction` (`id`, `account_id`, `sum`, `currency_id`) VALUES (NULL, '%d', '%f', '%d')",
+                                    to.id, sum, currency));
+            connection.commit();
+        } catch (SQLException e) {
+            connection.rollback();
+            e.printStackTrace();
+        } finally {
+            connection.setAutoCommit(true);
+        }
+    }
 
     public Account[] getAccountByDeposit(Deposit deposit) {
         Account[] personalAccounts = new Account[2];

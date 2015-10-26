@@ -6,6 +6,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -28,11 +33,12 @@ import by.bsuir.verkpavel.adb.ui.MainView;
 public class ShowAccountsView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
     private DateTimeFormatter dateMask = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private LocalDate lastClosedDate = LocalDate.MIN;
+    private static LocalDate lastClosedDate = LocalDate.MIN;
     private JPanel mainPanel;
 
     ArrayList<Account> accounts;
 
+    // MAYBE Use enum to deposit types
     private static void initialaze() {
         ShowAccountsView frame = new ShowAccountsView();
         frame.setSize(460, 310);
@@ -42,12 +48,43 @@ public class ShowAccountsView extends JFrame {
         frame.setLocation(x, y);
         frame.setVisible(true);
 
+        lastClosedDate = getLastClosedDate();
+
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent windowEvent) {
+                saveLastClosedDate();
                 MainView.create();
             }
+
+            private void saveLastClosedDate() {
+                try {
+                    FileOutputStream fos = new FileOutputStream("lastClosedDayDate.out");
+                    ObjectOutputStream oos = new ObjectOutputStream(fos);
+                    oos.writeObject(lastClosedDate);
+                    oos.flush();
+                    oos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         });
+    }
+
+    private static LocalDate getLastClosedDate() {
+        LocalDate ld = null;
+        try {
+            FileInputStream fis = new FileInputStream("lastClosedDayDate.out");
+            ObjectInputStream oin = new ObjectInputStream(fis);
+            ld = (LocalDate) oin.readObject();
+            oin.close();
+        } catch (IOException | ClassNotFoundException e1) {
+        }
+
+        if (ld != null) {
+            return ld;
+        }
+        return lastClosedDate;
     }
 
     public static void create() {
@@ -93,7 +130,7 @@ public class ShowAccountsView extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (LocalDate.now().isAfter(lastClosedDate)) {
-                    ArrayList<Deposit> deposits = DataProvider.getInstance().getAllDeposits();
+                    ArrayList<Deposit> deposits = DataProvider.getInstance().getAllActiveDeposits();
                     for (Deposit deposit : deposits) {
                         DataProvider.getInstance().addTransaction(
                                 DataProvider.getInstance().getFDBAccount(),
@@ -107,37 +144,47 @@ public class ShowAccountsView extends JFrame {
                                     deposit.currency);
                         }
                         if (LocalDate.now().getDayOfMonth() == LocalDate.now().lengthOfMonth()) {
-                            if (deposit.depositType == 1) {
-                                DataProvider.getInstance().addTransaction(
+                            if (deposit.depositType == 2) {
+                                DataProvider.getInstance().addMonoTransaction(
                                         DataProvider.getInstance().getAccountByDeposit(deposit)[1],
                                         DataProvider.getInstance().getCashBoxAccount(),
-                                        getPersentsSum(deposit), deposit.currency);
+                                        -getPersentsSum(deposit), deposit.currency);
                             }
                         }
 
                         if (LocalDate.parse(deposit.endDate, dateMask).isEqual(LocalDate.now())) {
-                            if (deposit.depositType == 1) {
+                            if (deposit.depositType == 2) {
                                 DataProvider.getInstance().updateDepositEndDate(
                                         deposit,
                                         LocalDate.parse(deposit.endDate, dateMask).plusMonths(1)
                                                 .format(dateMask));
-                                DataProvider.getInstance().addTransaction(
+                                DataProvider.getInstance().addMonoTransaction(
                                         DataProvider.getInstance().getAccountByDeposit(deposit)[1],
                                         DataProvider.getInstance().getCashBoxAccount(),
-                                        getPersentsSum(deposit), deposit.currency);
+                                        -getPersentsSum(deposit), deposit.currency);
                             }
-                            if (deposit.depositType == 2) {
-                                DataProvider.getInstance().addTransaction(
+                            if (deposit.depositType == 1) {
+                                DataProvider.getInstance().addMonoTransaction(
                                         DataProvider.getInstance().getAccountByDeposit(deposit)[1],
                                         DataProvider.getInstance().getCashBoxAccount(),
-                                        getPersentsSum(deposit), deposit.currency);
+                                        -getPersentsSum(deposit), deposit.currency);
+
                                 DataProvider.getInstance().addTransaction(
+                                        DataProvider.getInstance().getFDBAccount(),
+                                        DataProvider.getInstance().getAccountByDeposit(deposit)[0],
+                                        deposit.depositSum, deposit.currency);
+
+                                DataProvider.getInstance().addMonoTransaction(
                                         DataProvider.getInstance().getAccountByDeposit(deposit)[0],
                                         DataProvider.getInstance().getCashBoxAccount(),
-                                        deposit.depositSum, deposit.currency);
+                                        -deposit.depositSum, deposit.currency);
+                                
+                                DataProvider.getInstance().disableDeposit(deposit);
                             }
                         }
                     }
+                    JOptionPane.showMessageDialog(null, "Текущий день (" + LocalDate.now()
+                            + ") успешно закрыт", "Error", JOptionPane.PLAIN_MESSAGE);
                     lastClosedDate = LocalDate.now();
                 } else {
                     JOptionPane.showMessageDialog(null,

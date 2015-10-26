@@ -10,6 +10,7 @@ import by.bsuir.verkpavel.adb.data.entity.Client;
 import by.bsuir.verkpavel.adb.data.entity.Deposit;
 import by.bsuir.verkpavel.adb.data.entity.TransactionsInfo;
 
+//MAYBE Remove this facade and use separate class or add three getInstance methods
 public class DataProvider {
     private static DataProvider instance;
     private Connection connection;
@@ -26,7 +27,6 @@ public class DataProvider {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.connection = DriverManager.getConnection(DB_PATH, DB_USER_NAME, DB_PASSWORD);
-
             this.clientProvider = ClientProvider.getInstance(connection);
             this.depositProvider = DepositProvider.getInstance(connection);
             this.accountProvider = AccountProvider.getInstance(connection);
@@ -96,7 +96,7 @@ public class DataProvider {
     public ArrayList<Deposit> getAllDeposits() {
         return depositProvider.getAllDeposits();
     }
-    
+
     public void updateDepositEndDate(Deposit deposit, String newDate) {
         depositProvider.updateDepositEndDate(deposit, newDate);
     }
@@ -110,7 +110,15 @@ public class DataProvider {
             accountProvider.addTransaction(from, to, sum, currency);
         } catch (SQLException e) {
             e.printStackTrace();
-        }  
+        }
+    }
+
+    public void addMonoTransaction(Account from, Account to, double sum, int currency) {
+        try {
+            accountProvider.addMonoTransaction(from, to, sum, currency);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public Account[] getAccountByDeposit(Deposit deposit) {
@@ -124,13 +132,21 @@ public class DataProvider {
     public void createAccountsByDeposit(Deposit deposit) {
         accountProvider.createAccountByDeposit(deposit);
     }
-    
+
     public Account getFDBAccount() {
         return accountProvider.getFDBAccount();
     }
 
     public ArrayList<TransactionsInfo> getTransatcionsByAccount(Account account) {
         return accountProvider.getTransactionByAccount(account);
-        
+
+    }
+
+    public ArrayList<Deposit> getAllActiveDeposits() {
+        return depositProvider.getAllActiveDeposits();
+    }
+
+    public void disableDeposit(Deposit deposit) {
+        depositProvider.disableDeposit(deposit);
     }
 }

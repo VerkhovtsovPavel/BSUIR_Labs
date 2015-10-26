@@ -16,5 +16,7 @@ public class ShowView extends ActionView {
         for (Component component : mainPanel.getComponents()) {
             component.setEnabled(false);
         }
+        startDateField.getComponent(1).setEnabled(false);
+        endDateField.getComponent(1).setEnabled(false);
     }
 }

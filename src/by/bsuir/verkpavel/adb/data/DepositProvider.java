@@ -59,7 +59,7 @@ public class DepositProvider {
         try {
             statement = connection.createStatement();
             statement.executeUpdate(createInsertDepositQuery(deposit));
-            
+
             ResultSet rs = statement.executeQuery("SELECT MAX(`id`) AS 'id' FROM `deposit`;");
             rs.next();
             deposit.id = rs.getInt("id");
@@ -75,7 +75,7 @@ public class DepositProvider {
     private String createInsertDepositQuery(Deposit deposit) {
         return String
                 .format(Locale.ENGLISH,
-                        "INSERT INTO `deposit`  (`id`, `deposittype`, `currency`, `startDate`, `endDate`, `sum`, `persent`, `depositNumber`, `user_id`) VALUES(NULL, '%d', '%d', '%s', '%s', %f, %f, '%s','%d');",
+                        "INSERT INTO `deposit`  (`id`, `deposittype`, `currency`, `startDate`, `endDate`, `sum`, `persent`, `depositNumber`, `user_id`, `isActive`) VALUES(NULL, '%d', '%d', '%s', '%s', %f, %f, '%s','%d', '1');",
                         deposit.depositType, deposit.currency, deposit.startDate, deposit.endDate,
                         deposit.depositSum, deposit.persent, deposit.contractNumber, deposit.client);
     }
@@ -119,10 +119,50 @@ public class DepositProvider {
         Statement statement;
         try {
             statement = connection.createStatement();
-            statement.executeUpdate(String.format(
-                    "UPDATE `deposit` SET `endDate` = '%s' WHERE `id` = '%d;", deposit.id, newDate));
+            statement.executeUpdate(String
+                    .format("UPDATE `deposit` SET `endDate` = '%s' WHERE `id` = '%d';", newDate,
+                            deposit.id));
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<Deposit> getAllActiveDeposits() {
+        ArrayList<Deposit> deposits = new ArrayList<Deposit>();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM `deposit` WHERE `isActive` = 1;");
+            while (rs.next()) {
+                Deposit deposit = new Deposit();
+                deposit.id = rs.getInt("id");
+                deposit.contractNumber = rs.getString("depositNumber");
+                deposit.currency = rs.getInt("currency");
+                deposit.depositType = rs.getInt("deposittype");
+                deposit.depositSum = rs.getDouble("sum");
+                deposit.startDate = rs.getString("startDate");
+                deposit.endDate = rs.getString("endDate");
+                deposit.persent = rs.getDouble("persent");
+                deposit.client = rs.getInt("user_id");
+                deposits.add(deposit);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return deposits;
+    }
+
+    public void disableDeposit(Deposit deposit) {
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(String.format(
+                    "UPDATE `deposit` SET `isActive` = '0' WHERE `id` = '%d';", deposit.id));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }

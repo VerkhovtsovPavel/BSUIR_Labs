@@ -110,7 +110,7 @@ public class ShowView extends JFrame {
         ArrayList<TransactionsInfo> transactions = DataProvider.getInstance().getTransatcionsByAccount(
                 currentAccount);
         for (TransactionsInfo transaction : transactions) {
-            String value = String.format("%.2f %s",transaction.sum, transaction.currency);
+            String value = String.format("%.2f %s",Math.abs(transaction.sum), transaction.currency);
             if (currentAccount.type == AccountType.ACTIVE) {
                 if (transaction.sum < 0) {
                     creditListModel.addElement(value);

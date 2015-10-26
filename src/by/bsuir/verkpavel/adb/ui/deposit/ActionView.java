@@ -49,9 +49,9 @@ public abstract class ActionView extends JFrame {
 
 	private JTextField depositPeriodTextField;
 
-	private JDatePickerImpl startDateField;
+	protected JDatePickerImpl startDateField;
 	private DateModel<LocalDate> startDateModel;
-	private JDatePickerImpl endDateField;
+	protected JDatePickerImpl endDateField;
 	private DateModel<LocalDate> endDateModel;
 
 	private JFormattedTextField contractNumberField;
