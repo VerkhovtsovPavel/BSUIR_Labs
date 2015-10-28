@@ -1,0 +1,1 @@
+SET @@global.wait_timeout = 2147483
