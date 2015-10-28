@@ -20,9 +20,9 @@ public class ClientProvider {
         this.connection = connection;
     }
     
-    public static ClientProvider getInstance(Connection connection) {
+    public static ClientProvider getInstance() {
         if (instance == null) {
-            instance = new ClientProvider(connection);
+            instance = new ClientProvider(ConnectionManager.getInstance().getConnection());
         }
         return instance;
     }

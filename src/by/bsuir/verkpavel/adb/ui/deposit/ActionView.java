@@ -32,7 +32,8 @@ import org.jdatepicker.DateModel;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 
-import by.bsuir.verkpavel.adb.data.DataProvider;
+import by.bsuir.verkpavel.adb.data.ClientProvider;
+import by.bsuir.verkpavel.adb.data.DepositProvider;
 import by.bsuir.verkpavel.adb.data.entity.Deposit;
 import by.bsuir.verkpavel.adb.resources.RussianStrings;
 import by.bsuir.verkpavel.adb.ui.ActionMode;
@@ -111,7 +112,7 @@ public abstract class ActionView extends JFrame {
 
 	private void createLabels() {
 		JLabel startDate_label = new JLabel("Дата начала");
-		startDate_label.setBounds(23, 193, 81, 14);
+		startDate_label.setBounds(12, 193, 92, 14);
 		mainPanel.add(startDate_label);
 
 		JLabel depositType_label = new JLabel("Вид депозита");
@@ -119,11 +120,11 @@ public abstract class ActionView extends JFrame {
 		mainPanel.add(depositType_label);
 
 		JLabel contractNumberlbl = new JLabel("Номер договора");
-		contractNumberlbl.setBounds(220, 88, 101, 16);
+		contractNumberlbl.setBounds(183, 87, 138, 16);
 		mainPanel.add(contractNumberlbl);
 
 		JLabel depositPeriodLabel = new JLabel("Срок договора");
-		depositPeriodLabel.setBounds(424, 192, 81, 16);
+		depositPeriodLabel.setBounds(488, 192, 114, 16);
 		mainPanel.add(depositPeriodLabel);
 
 		JLabel currencyLabel = new JLabel("Вид валюты");
@@ -131,11 +132,11 @@ public abstract class ActionView extends JFrame {
 		mainPanel.add(currencyLabel);
 
 		JLabel depositSumLabel = new JLabel("Сумма вклада");
-		depositSumLabel.setBounds(23, 247, 92, 16);
+		depositSumLabel.setBounds(12, 247, 103, 16);
 		mainPanel.add(depositSumLabel);
 
 		JLabel endDatelabel = new JLabel("Дата окончания");
-		endDatelabel.setBounds(229, 193, 92, 14);
+		endDatelabel.setBounds(237, 193, 126, 14);
 		mainPanel.add(endDatelabel);
 
 		JLabel persentlabel = new JLabel("Проценты");
@@ -143,7 +144,7 @@ public abstract class ActionView extends JFrame {
 		mainPanel.add(persentlabel);
 
 		JLabel clientLabel = new JLabel("Клиент");
-		clientLabel.setBounds(23, 124, 46, 14);
+		clientLabel.setBounds(23, 124, 58, 14);
 		mainPanel.add(clientLabel);
 	}
 
@@ -249,7 +250,7 @@ public abstract class ActionView extends JFrame {
 		startDateField = new JDatePickerImpl(datePanel,
 				new DateLabelFormatter());
 		startDateModel.setValue(LocalDate.now());
-		startDateField.setBounds(114, 186, 92, 28);
+		startDateField.setBounds(114, 186, 114, 28);
 		startDateModel.addChangeListener(new ChangeListener() {
 
 			@Override
@@ -272,7 +273,7 @@ public abstract class ActionView extends JFrame {
 		endDateField = new JDatePickerImpl(endDatePanel,
 				new DateLabelFormatter());
 		endDateModel.setValue(LocalDate.now().plusDays(1));
-		endDateField.setBounds(322, 186, 92, 28);
+		endDateField.setBounds(361, 193, 115, 28);
 		endDateModel.addChangeListener(new ChangeListener() {
 
 			@Override
@@ -310,7 +311,7 @@ public abstract class ActionView extends JFrame {
 		});
 		mainPanel.add(depositTypeComboBox);
 
-		// FIXME Maybe change to real contact number mask
+		//MAYBE change to real contact number mask
 		MaskFormatter contractNumberMask = new MaskFormatter("#######U###UU#");
 		contractNumberField = new JFormattedTextField(contractNumberMask);
 		contractNumberField.setBounds(322, 82, 381, 28);
@@ -319,13 +320,13 @@ public abstract class ActionView extends JFrame {
 
 		depositPeriodTextField = new JTextField();
 		depositPeriodTextField.setColumns(10);
-		depositPeriodTextField.setBounds(515, 186, 134, 28);
+		depositPeriodTextField.setBounds(601, 187, 134, 28);
 		depositPeriodTextField.setText("1");
 		depositPeriodTextField.setEditable(false);
 		mainPanel.add(depositPeriodTextField);
 
 		depositSumField = new JFormattedTextField();
-		depositSumField.setBounds(114, 245, 114, 20);
+		depositSumField.setBounds(136, 246, 114, 20);
 		depositSumField.setColumns(10);
 		depositSumField.setValue(1.0);
 		mainPanel.add(depositSumField);
@@ -338,7 +339,7 @@ public abstract class ActionView extends JFrame {
 		persentTextField = new JFormattedTextField(persentsFormatter);
 		persentTextField.setColumns(10);
 		persentTextField.setValue(new Float(0.056));
-		persentTextField.setBounds(342, 245, 114, 20);
+		persentTextField.setBounds(372, 246, 114, 20);
 		mainPanel.add(persentTextField);
 
 		clientComboBox = new JComboBox<String>();
@@ -380,10 +381,10 @@ public abstract class ActionView extends JFrame {
 	}
 
 	private void fillComboBoxes() {
-		fillComboBox(depositTypeComboBox, DataProvider.getInstance()
+		fillComboBox(depositTypeComboBox, DepositProvider.getInstance()
 				.getDepositTypeList());
-		fillComboBox(currencyComboBox, DataProvider.getInstance().getCurrency());
-		fillComboBox(clientComboBox, DataProvider.getInstance()
+		fillComboBox(currencyComboBox, DepositProvider.getInstance().getCurrency());
+		fillComboBox(clientComboBox, ClientProvider.getInstance()
 				.getUserFullNames());
 	}
 

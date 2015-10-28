@@ -13,8 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
-import by.bsuir.verkpavel.adb.data.DataProvider;
-import by.bsuir.verkpavel.adb.data.entity.Deposit;
+import by.bsuir.verkpavel.adb.data.CreditProvider;
+import by.bsuir.verkpavel.adb.data.entity.Credit;
 import by.bsuir.verkpavel.adb.ui.ActionMode;
 import by.bsuir.verkpavel.adb.ui.MainView;
 
@@ -22,7 +22,7 @@ public class ShowCreditsView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
     private JPanel mainPanel;
 
-    ArrayList<Deposit> deposits;
+    ArrayList<Credit> credits;
 
     private static void initialaze() {
         ShowCreditsView frame = new ShowCreditsView();
@@ -46,7 +46,7 @@ public class ShowCreditsView extends JFrame {
     }
 
     private ShowCreditsView() {
-        setTitle("Депозиты");
+        setTitle("Кредиты");
         configureDefaultLayot();
     }
 
@@ -57,7 +57,7 @@ public class ShowCreditsView extends JFrame {
         setContentPane(mainPanel);
         mainPanel.setLayout(null);
 
-        deposits = DataProvider.getInstance().getAllDeposits();
+        credits = CreditProvider.getInstance().getAllCredits();
 
         final DefaultListModel<String> listModel = new DefaultListModel<>();
         final JList<String> list = new JList<String>(listModel);
@@ -67,7 +67,7 @@ public class ShowCreditsView extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     if (list.getSelectedIndex() != -1) {
-                        ActionView.create(ActionMode.SHOW, deposits.get(list.getSelectedIndex()));
+                        ActionView.create(ActionMode.SHOW, credits.get(list.getSelectedIndex()));
                         dispose();
                     }
                 }
@@ -90,10 +90,11 @@ public class ShowCreditsView extends JFrame {
         });
         addButton.setBounds(174, 238, 111, 23);
         mainPanel.add(addButton);
-
-        listModel.clear();
-        for (Deposit deposit : deposits) {
-            listModel.addElement(deposit.contractNumber);
-        }
+        
+        //FIXME Implement getAllCredits() method and uncommented
+        /*listModel.clear();
+        for (Credit credit : credits) {
+            listModel.addElement(credit.contractNumber);
+        }*/
     }
 }

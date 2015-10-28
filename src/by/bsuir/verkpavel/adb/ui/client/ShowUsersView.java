@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
-import by.bsuir.verkpavel.adb.data.DataProvider;
+import by.bsuir.verkpavel.adb.data.ClientProvider;
 import by.bsuir.verkpavel.adb.data.entity.Client;
 import by.bsuir.verkpavel.adb.ui.ActionMode;
 import by.bsuir.verkpavel.adb.ui.MainView;
@@ -57,7 +57,7 @@ public class ShowUsersView extends JFrame {
         setContentPane(mainPanel);
         mainPanel.setLayout(null);
 
-        clients = DataProvider.getInstance().getAllClients();
+        clients = ClientProvider.getInstance().getAllClients();
 
         final DefaultListModel<String> listModel = new DefaultListModel<>();
         final JList<String> list = new JList<String>(listModel);
@@ -102,7 +102,7 @@ public class ShowUsersView extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 if (list.getSelectedIndex() != -1) {
                     int selection = list.getSelectedIndex();
-                    DataProvider.getInstance().deleteClient(clients.get(selection));
+                    ClientProvider.getInstance().deleteClient(clients.get(selection));
                     listModel.remove(selection);
                     clients.remove(selection);
                 }

@@ -7,7 +7,7 @@ import java.text.ParseException;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import by.bsuir.verkpavel.adb.data.DataProvider;
+import by.bsuir.verkpavel.adb.data.ClientProvider;
 import by.bsuir.verkpavel.adb.data.entity.Client;
 
 public class EditView extends ActionView {
@@ -28,7 +28,7 @@ public class EditView extends ActionView {
                 Client client = getClient();
                 if(client!=null){
                     client.setId(currentClient.id);
-                    JOptionPane.showMessageDialog(null,  DataProvider.getInstance().updateClient(client), "Message", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(null,  ClientProvider.getInstance().updateClient(client), "Message", JOptionPane.PLAIN_MESSAGE);
                     ShowUsersView.create();
                     dispose();
                 }

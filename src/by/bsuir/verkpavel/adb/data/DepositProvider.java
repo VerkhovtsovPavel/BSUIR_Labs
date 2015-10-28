@@ -20,9 +20,9 @@ public class DepositProvider {
         this.connection = connection;
     }
 
-    public static DepositProvider getInstance(Connection connection) {
+    public static DepositProvider getInstance() {
         if (instance == null) {
-            instance = new DepositProvider(connection);
+            instance = new DepositProvider(ConnectionManager.getInstance().getConnection());
         }
         return instance;
     }

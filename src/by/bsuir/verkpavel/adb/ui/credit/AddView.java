@@ -7,9 +7,10 @@ import java.text.ParseException;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import by.bsuir.verkpavel.adb.data.DataProvider;
+import by.bsuir.verkpavel.adb.data.AccountProvider;
+import by.bsuir.verkpavel.adb.data.CreditProvider;
 import by.bsuir.verkpavel.adb.data.entity.Account;
-import by.bsuir.verkpavel.adb.data.entity.Deposit;
+import by.bsuir.verkpavel.adb.data.entity.Credit;
 
 public class AddView extends ActionView {
     private static final long serialVersionUID = -5177836715738946733L;
@@ -20,19 +21,20 @@ public class AddView extends ActionView {
 
     @Override
 	protected void customActions() {
-		setTitle("Добавление депозита");
+		setTitle("Добавление кредита");
 		
         JButton saveBtn = new JButton("\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C");
         saveBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Deposit deposit = getDeposit();
-                if(deposit!=null){
-                	JOptionPane.showMessageDialog(null,  DataProvider.getInstance().saveDeposit(
-                			deposit), "Message", JOptionPane.PLAIN_MESSAGE);
-                	DataProvider.getInstance().createAccountsByDeposit(deposit);
-                	Account mainUserAccount = DataProvider.getInstance().getAccountByDeposit(deposit)[0];
-                	DataProvider.getInstance().addMonoTransaction(DataProvider.getInstance().getCashBoxAccount(), mainUserAccount, deposit.depositSum, deposit.currency);
+                Credit credit = getCredit();
+                if(credit!=null){
+                	JOptionPane.showMessageDialog(null,  CreditProvider.getInstance().saveCredit(
+                			credit), "Message", JOptionPane.PLAIN_MESSAGE);
+                	AccountProvider.getInstance().createAccountsByCredit(credit);
+                	Account mainUserAccount = AccountProvider.getInstance().getAccountByCredit(credit)[0];
+                	//TODO Add transaction from FDB to mainUserAccount
+                	AccountProvider.getInstance().addMonoTransaction(AccountProvider.getInstance().getCashBoxAccount(), mainUserAccount, credit.sum, credit.currency);
                     ShowCreditsView.create();
                     dispose();
                 } 

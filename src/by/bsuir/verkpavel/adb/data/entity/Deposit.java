@@ -13,7 +13,7 @@ public class Deposit {
     public int id;
 
 	public Deposit(String contractNumber, int depositType, String startDate,
-			String endDate, int currency, double persent, long depositSum,
+			String endDate, int currency, double persent, double depositSum,
 			int client) {
 		this.contractNumber = contractNumber;
 		this.depositType = depositType;

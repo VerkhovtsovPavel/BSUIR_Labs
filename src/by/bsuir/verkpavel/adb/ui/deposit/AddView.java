@@ -7,7 +7,8 @@ import java.text.ParseException;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import by.bsuir.verkpavel.adb.data.DataProvider;
+import by.bsuir.verkpavel.adb.data.AccountProvider;
+import by.bsuir.verkpavel.adb.data.DepositProvider;
 import by.bsuir.verkpavel.adb.data.entity.Account;
 import by.bsuir.verkpavel.adb.data.entity.Deposit;
 
@@ -28,11 +29,11 @@ public class AddView extends ActionView {
             public void mouseClicked(MouseEvent e) {
                 Deposit deposit = getDeposit();
                 if(deposit!=null){
-                	JOptionPane.showMessageDialog(null,  DataProvider.getInstance().saveDeposit(
+                	JOptionPane.showMessageDialog(null,  DepositProvider.getInstance().saveDeposit(
                 			deposit), "Message", JOptionPane.PLAIN_MESSAGE);
-                	DataProvider.getInstance().createAccountsByDeposit(deposit);
-                	Account mainUserAccount = DataProvider.getInstance().getAccountByDeposit(deposit)[0];
-                	DataProvider.getInstance().addMonoTransaction(DataProvider.getInstance().getCashBoxAccount(), mainUserAccount, deposit.depositSum, deposit.currency);
+                	AccountProvider.getInstance().createAccountsByDeposit(deposit);
+                	Account mainUserAccount = AccountProvider.getInstance().getAccountByDeposit(deposit)[0];
+                	AccountProvider.getInstance().addMonoTransaction(AccountProvider.getInstance().getCashBoxAccount(), mainUserAccount, deposit.depositSum, deposit.currency);
                     ShowDepositsView.create();
                     dispose();
                 } 

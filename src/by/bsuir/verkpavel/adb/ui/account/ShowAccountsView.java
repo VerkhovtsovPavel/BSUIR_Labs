@@ -24,7 +24,8 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import by.bsuir.verkpavel.adb.data.DataProvider;
+import by.bsuir.verkpavel.adb.data.AccountProvider;
+import by.bsuir.verkpavel.adb.data.DepositProvider;
 import by.bsuir.verkpavel.adb.data.entity.Account;
 import by.bsuir.verkpavel.adb.data.entity.Deposit;
 import by.bsuir.verkpavel.adb.data.entity.TransactionsInfo;
@@ -103,7 +104,7 @@ public class ShowAccountsView extends JFrame {
         setContentPane(mainPanel);
         mainPanel.setLayout(null);
 
-        accounts = DataProvider.getInstance().getAllAccounts();
+        accounts = AccountProvider.getInstance().getAllAccounts();
 
         final DefaultListModel<String> listModel = new DefaultListModel<>();
         final JList<String> list = new JList<String>(listModel);
@@ -130,56 +131,56 @@ public class ShowAccountsView extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (LocalDate.now().isAfter(lastClosedDate)) {
-                    ArrayList<Deposit> deposits = DataProvider.getInstance().getAllActiveDeposits();
+                    ArrayList<Deposit> deposits = DepositProvider.getInstance().getAllActiveDeposits();
                     for (Deposit deposit : deposits) {
-                        DataProvider.getInstance().addTransaction(
-                                DataProvider.getInstance().getFDBAccount(),
-                                DataProvider.getInstance().getAccountByDeposit(deposit)[1],
+                        AccountProvider.getInstance().addTransaction(
+                                AccountProvider.getInstance().getFDBAccount(),
+                                AccountProvider.getInstance().getAccountByDeposit(deposit)[1],
                                 deposit.depositSum * deposit.persent / 360, deposit.currency);
 
                         if (LocalDate.parse(deposit.startDate, dateMask).isEqual(LocalDate.now())) {
-                            DataProvider.getInstance().addTransaction(
-                                    DataProvider.getInstance().getAccountByDeposit(deposit)[0],
-                                    DataProvider.getInstance().getFDBAccount(), deposit.depositSum,
+                            AccountProvider.getInstance().addTransaction(
+                                    AccountProvider.getInstance().getAccountByDeposit(deposit)[0],
+                                    AccountProvider.getInstance().getFDBAccount(), deposit.depositSum,
                                     deposit.currency);
                         }
                         if (LocalDate.now().getDayOfMonth() == LocalDate.now().lengthOfMonth()) {
                             if (deposit.depositType == 2) {
-                                DataProvider.getInstance().addMonoTransaction(
-                                        DataProvider.getInstance().getAccountByDeposit(deposit)[1],
-                                        DataProvider.getInstance().getCashBoxAccount(),
+                                AccountProvider.getInstance().addMonoTransaction(
+                                        AccountProvider.getInstance().getAccountByDeposit(deposit)[1],
+                                        AccountProvider.getInstance().getCashBoxAccount(),
                                         -getPersentsSum(deposit), deposit.currency);
                             }
                         }
 
                         if (LocalDate.parse(deposit.endDate, dateMask).isEqual(LocalDate.now())) {
                             if (deposit.depositType == 2) {
-                                DataProvider.getInstance().updateDepositEndDate(
+                                DepositProvider.getInstance().updateDepositEndDate(
                                         deposit,
                                         LocalDate.parse(deposit.endDate, dateMask).plusMonths(1)
                                                 .format(dateMask));
-                                DataProvider.getInstance().addMonoTransaction(
-                                        DataProvider.getInstance().getAccountByDeposit(deposit)[1],
-                                        DataProvider.getInstance().getCashBoxAccount(),
+                                AccountProvider.getInstance().addMonoTransaction(
+                                        AccountProvider.getInstance().getAccountByDeposit(deposit)[1],
+                                        AccountProvider.getInstance().getCashBoxAccount(),
                                         -getPersentsSum(deposit), deposit.currency);
                             }
                             if (deposit.depositType == 1) {
-                                DataProvider.getInstance().addMonoTransaction(
-                                        DataProvider.getInstance().getAccountByDeposit(deposit)[1],
-                                        DataProvider.getInstance().getCashBoxAccount(),
+                                AccountProvider.getInstance().addMonoTransaction(
+                                        AccountProvider.getInstance().getAccountByDeposit(deposit)[1],
+                                        AccountProvider.getInstance().getCashBoxAccount(),
                                         -getPersentsSum(deposit), deposit.currency);
 
-                                DataProvider.getInstance().addTransaction(
-                                        DataProvider.getInstance().getFDBAccount(),
-                                        DataProvider.getInstance().getAccountByDeposit(deposit)[0],
+                                AccountProvider.getInstance().addTransaction(
+                                        AccountProvider.getInstance().getFDBAccount(),
+                                        AccountProvider.getInstance().getAccountByDeposit(deposit)[0],
                                         deposit.depositSum, deposit.currency);
 
-                                DataProvider.getInstance().addMonoTransaction(
-                                        DataProvider.getInstance().getAccountByDeposit(deposit)[0],
-                                        DataProvider.getInstance().getCashBoxAccount(),
+                                AccountProvider.getInstance().addMonoTransaction(
+                                        AccountProvider.getInstance().getAccountByDeposit(deposit)[0],
+                                        AccountProvider.getInstance().getCashBoxAccount(),
                                         -deposit.depositSum, deposit.currency);
                                 
-                                DataProvider.getInstance().disableDeposit(deposit);
+                                DepositProvider.getInstance().disableDeposit(deposit);
                             }
                         }
                     }
@@ -194,9 +195,9 @@ public class ShowAccountsView extends JFrame {
             }
 
             private double getPersentsSum(Deposit deposit) {
-                List<TransactionsInfo> transactions = DataProvider.getInstance()
-                        .getTransatcionsByAccount(
-                                DataProvider.getInstance().getAccountByDeposit(deposit)[1]);
+                List<TransactionsInfo> transactions = AccountProvider.getInstance()
+                        .getTransactionsByAccount(
+                                AccountProvider.getInstance().getAccountByDeposit(deposit)[1]);
                 double totalPersentsSum = 0;
                 for (TransactionsInfo transactionsInfo : transactions) {
                     totalPersentsSum += transactionsInfo.sum;

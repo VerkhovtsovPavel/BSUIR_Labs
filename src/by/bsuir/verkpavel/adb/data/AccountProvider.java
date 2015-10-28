@@ -9,6 +9,7 @@ import java.util.Locale;
 import java.util.Random;
 
 import by.bsuir.verkpavel.adb.data.entity.Account;
+import by.bsuir.verkpavel.adb.data.entity.Credit;
 import by.bsuir.verkpavel.adb.data.entity.Deposit;
 import by.bsuir.verkpavel.adb.data.entity.TransactionsInfo;
 
@@ -20,9 +21,9 @@ public class AccountProvider {
         this.connection = connection;
     }
 
-    public static AccountProvider getInstance(Connection connection) {
+    public static AccountProvider getInstance() {
         if (instance == null) {
-            instance = new AccountProvider(connection);
+            instance = new AccountProvider(ConnectionManager.getInstance().getConnection());
         }
         return instance;
     }
@@ -48,7 +49,7 @@ public class AccountProvider {
         return accounts;
     }
 
-    public ArrayList<TransactionsInfo> getTransactionByAccount(Account account) {
+    public ArrayList<TransactionsInfo> getTransactionsByAccount(Account account) {
         ArrayList<TransactionsInfo> operations = new ArrayList<>();
         Statement statement;
         try {
@@ -66,54 +67,59 @@ public class AccountProvider {
         return operations;
     }
 
-    public void addTransaction(Account from, Account to, double sum, int currency)
-            throws SQLException {
-        Statement statement;
+    public void addTransaction(Account from, Account to, double sum, int currency) {
         try {
-            connection.setAutoCommit(false);
-            statement = connection.createStatement();
-            statement
-                    .executeUpdate(String
-                            .format(Locale.ENGLISH,
-                                    "INSERT INTO `transaction` (`id`, `account_id`, `sum`, `currency_id`) VALUES (NULL, '%d', %f, '%d')",
-                                    from.id, -sum, currency));
-            statement
-                    .executeUpdate(String
-                            .format(Locale.ENGLISH,
-                                    "INSERT INTO `transaction` (`id`, `account_id`, `sum`, `currency_id`) VALUES (NULL, '%d', '%f', '%d')",
-                                    to.id, sum, currency));
-            connection.commit();
+            Statement statement;
+            try {
+                connection.setAutoCommit(false);
+                statement = connection.createStatement();
+                statement
+                        .executeUpdate(String
+                                .format(Locale.ENGLISH,
+                                        "INSERT INTO `transaction` (`id`, `account_id`, `sum`, `currency_id`) VALUES (NULL, '%d', %f, '%d')",
+                                        from.id, -sum, currency));
+                statement
+                        .executeUpdate(String
+                                .format(Locale.ENGLISH,
+                                        "INSERT INTO `transaction` (`id`, `account_id`, `sum`, `currency_id`) VALUES (NULL, '%d', '%f', '%d')",
+                                        to.id, sum, currency));
+                connection.commit();
+            } catch (SQLException e) {
+                connection.rollback();
+                e.printStackTrace();
+            } finally {
+                connection.setAutoCommit(true);
+            }
         } catch (SQLException e) {
-            connection.rollback();
             e.printStackTrace();
-        } finally {
-            connection.setAutoCommit(true);
         }
     }
-    
-    
-    public void addMonoTransaction(Account from, Account to, double sum, int currency)
-            throws SQLException {
-        Statement statement;
+
+    public void addMonoTransaction(Account from, Account to, double sum, int currency) {
         try {
-            connection.setAutoCommit(false);
-            statement = connection.createStatement();
-            statement
-                    .executeUpdate(String
-                            .format(Locale.ENGLISH,
-                                    "INSERT INTO `transaction` (`id`, `account_id`, `sum`, `currency_id`) VALUES (NULL, '%d', %f, '%d')",
-                                    from.id, sum, currency));
-            statement
-                    .executeUpdate(String
-                            .format(Locale.ENGLISH,
-                                    "INSERT INTO `transaction` (`id`, `account_id`, `sum`, `currency_id`) VALUES (NULL, '%d', '%f', '%d')",
-                                    to.id, sum, currency));
-            connection.commit();
+            Statement statement;
+            try {
+                connection.setAutoCommit(false);
+                statement = connection.createStatement();
+                statement
+                        .executeUpdate(String
+                                .format(Locale.ENGLISH,
+                                        "INSERT INTO `transaction` (`id`, `account_id`, `sum`, `currency_id`) VALUES (NULL, '%d', %f, '%d')",
+                                        from.id, sum, currency));
+                statement
+                        .executeUpdate(String
+                                .format(Locale.ENGLISH,
+                                        "INSERT INTO `transaction` (`id`, `account_id`, `sum`, `currency_id`) VALUES (NULL, '%d', '%f', '%d')",
+                                        to.id, sum, currency));
+                connection.commit();
+            } catch (SQLException e) {
+                connection.rollback();
+                e.printStackTrace();
+            } finally {
+                connection.setAutoCommit(true);
+            }
         } catch (SQLException e) {
-            connection.rollback();
             e.printStackTrace();
-        } finally {
-            connection.setAutoCommit(true);
         }
     }
 
@@ -174,7 +180,7 @@ public class AccountProvider {
         return fdba;
     }
 
-    public void createAccountByDeposit(Deposit deposit) {
+    public void createAccountsByDeposit(Deposit deposit) {
         Statement statement;
         try {
             statement = connection.createStatement();
@@ -191,8 +197,19 @@ public class AccountProvider {
         }
     }
 
+    //TODO Create base class to Deposit and Credit
     private String generateNumber(Deposit deposit, int type) {
         return deposit.contractNumber.substring(0, 4) + (1000 + new Random().nextInt(8999)) + ""
                 + type;
+    }
+
+    public Account[] getAccountByCredit(Credit credit) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    public void createAccountsByCredit(Credit credit) {
+        // TODO Auto-generated method stub
+        
     }
 }

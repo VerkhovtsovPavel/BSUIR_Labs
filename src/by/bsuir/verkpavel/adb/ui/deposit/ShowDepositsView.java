@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
-import by.bsuir.verkpavel.adb.data.DataProvider;
+import by.bsuir.verkpavel.adb.data.DepositProvider;
 import by.bsuir.verkpavel.adb.data.entity.Deposit;
 import by.bsuir.verkpavel.adb.ui.ActionMode;
 import by.bsuir.verkpavel.adb.ui.MainView;
@@ -57,7 +57,7 @@ public class ShowDepositsView extends JFrame {
         setContentPane(mainPanel);
         mainPanel.setLayout(null);
 
-        deposits = DataProvider.getInstance().getAllDeposits();
+        deposits = DepositProvider.getInstance().getAllDeposits();
 
         final DefaultListModel<String> listModel = new DefaultListModel<>();
         final JList<String> list = new JList<String>(listModel);

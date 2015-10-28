@@ -12,7 +12,7 @@ public class ShowView extends ActionView {
 
     @Override
     protected void customActions() throws ParseException {
-        fillFields(currentDeposit);
+        fillFields(currentCredit);
         for (Component component : mainPanel.getComponents()) {
             component.setEnabled(false);
         }

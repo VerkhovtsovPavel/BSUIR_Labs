@@ -13,10 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
-import by.bsuir.verkpavel.adb.data.DataProvider;
+import by.bsuir.verkpavel.adb.data.AccountProvider;
 import by.bsuir.verkpavel.adb.data.entity.Account;
-import by.bsuir.verkpavel.adb.data.entity.TransactionsInfo;
 import by.bsuir.verkpavel.adb.data.entity.Account.AccountType;
+import by.bsuir.verkpavel.adb.data.entity.TransactionsInfo;
 
 public class ShowView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
@@ -88,7 +88,7 @@ public class ShowView extends JFrame {
         mainPanel.add(debitLabel);
 
         JLabel creditLabel = new JLabel("Кредит");
-        creditLabel.setBounds(441, 11, 46, 14);
+        creditLabel.setBounds(441, 11, 80, 14);
         mainPanel.add(creditLabel);
     }
 
@@ -107,7 +107,7 @@ public class ShowView extends JFrame {
     }
 
     private void fillListsByAccount() {
-        ArrayList<TransactionsInfo> transactions = DataProvider.getInstance().getTransatcionsByAccount(
+        ArrayList<TransactionsInfo> transactions = AccountProvider.getInstance().getTransactionsByAccount(
                 currentAccount);
         for (TransactionsInfo transaction : transactions) {
             String value = String.format("%.2f %s",Math.abs(transaction.sum), transaction.currency);

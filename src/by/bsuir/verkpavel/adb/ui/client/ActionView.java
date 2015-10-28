@@ -27,7 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 
-import by.bsuir.verkpavel.adb.data.DataProvider;
+import by.bsuir.verkpavel.adb.data.ClientProvider;
 import by.bsuir.verkpavel.adb.data.entity.Client;
 import by.bsuir.verkpavel.adb.resources.RussianStrings;
 import by.bsuir.verkpavel.adb.ui.ActionMode;
@@ -492,10 +492,10 @@ public class ActionView extends JFrame {
     }
 
     private void fillComboBoxes() {
-        fillComboBox(realCityComboBox, DataProvider.getInstance().getCityList());
-        fillComboBox(familyStatusComboBox, DataProvider.getInstance().getFamilyStatuses());
-        fillComboBox(nationalityComboBox, DataProvider.getInstance().getNationalitys());
-        fillComboBox(disabilityComboBox, DataProvider.getInstance().getDisabilitys());
+        fillComboBox(realCityComboBox, ClientProvider.getInstance().getCityList());
+        fillComboBox(familyStatusComboBox, ClientProvider.getInstance().getFamilyStatuses());
+        fillComboBox(nationalityComboBox, ClientProvider.getInstance().getNationalitys());
+        fillComboBox(disabilityComboBox, ClientProvider.getInstance().getDisabilitys());
     }
 
     private void fillComboBox(JComboBox<String> target, ArrayList<String> source) {

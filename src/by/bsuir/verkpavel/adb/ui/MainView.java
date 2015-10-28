@@ -13,9 +13,11 @@ import javax.swing.JPanel;
 
 import by.bsuir.verkpavel.adb.ui.account.ShowAccountsView;
 import by.bsuir.verkpavel.adb.ui.client.ShowUsersView;
+import by.bsuir.verkpavel.adb.ui.credit.ShowCreditsView;
 import by.bsuir.verkpavel.adb.ui.deposit.ShowDepositsView;
-//FIXME Adapt UI by L430
-//FIXME Change size of deposit type comboBox
+
+
+//TODO Add credit button + listener
 public class MainView extends JFrame {
 	private static final long serialVersionUID = 2883993883146596569L;
 	private JPanel mainPanel;
@@ -85,5 +87,16 @@ public class MainView extends JFrame {
             }
         });
 		mainPanel.add(accountButton);
+		
+		JButton creditButton = new JButton("Кредиты");
+		creditButton.setBounds(291, 106, 111, 23);
+		creditButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                ShowCreditsView.create();
+                dispose();
+            }
+        });
+        mainPanel.add(accountButton);
 	}
 }
