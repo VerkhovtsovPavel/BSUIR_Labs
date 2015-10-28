@@ -39,8 +39,8 @@ public class DepositProvider {
                 deposit.id = rs.getInt("id");
                 deposit.contractNumber = rs.getString("depositNumber");
                 deposit.currency = rs.getInt("currency");
-                deposit.depositType = rs.getInt("deposittype");
-                deposit.depositSum = rs.getDouble("sum");
+                deposit.type = rs.getInt("deposittype");
+                deposit.sum = rs.getDouble("sum");
                 deposit.startDate = rs.getString("startDate");
                 deposit.endDate = rs.getString("endDate");
                 deposit.persent = rs.getDouble("persent");
@@ -76,8 +76,8 @@ public class DepositProvider {
         return String
                 .format(Locale.ENGLISH,
                         "INSERT INTO `deposit`  (`id`, `deposittype`, `currency`, `startDate`, `endDate`, `sum`, `persent`, `depositNumber`, `user_id`, `isActive`) VALUES(NULL, '%d', '%d', '%s', '%s', %f, %f, '%s','%d', '1');",
-                        deposit.depositType, deposit.currency, deposit.startDate, deposit.endDate,
-                        deposit.depositSum, deposit.persent, deposit.contractNumber, deposit.client);
+                        deposit.type, deposit.currency, deposit.startDate, deposit.endDate,
+                        deposit.sum, deposit.persent, deposit.contractNumber, deposit.client);
     }
 
     public ArrayList<String> getDepositTypeList() {
@@ -139,8 +139,8 @@ public class DepositProvider {
                 deposit.id = rs.getInt("id");
                 deposit.contractNumber = rs.getString("depositNumber");
                 deposit.currency = rs.getInt("currency");
-                deposit.depositType = rs.getInt("deposittype");
-                deposit.depositSum = rs.getDouble("sum");
+                deposit.type = rs.getInt("deposittype");
+                deposit.sum = rs.getDouble("sum");
                 deposit.startDate = rs.getString("startDate");
                 deposit.endDate = rs.getString("endDate");
                 deposit.persent = rs.getDouble("persent");

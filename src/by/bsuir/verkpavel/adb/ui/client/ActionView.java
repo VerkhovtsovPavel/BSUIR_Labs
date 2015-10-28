@@ -313,7 +313,7 @@ public class ActionView extends JFrame {
             
             if (((Date) bornDateField.getValue()).before(minDate.getTime())
                     || ((Date) passportTakeDateField.getValue()).before(minDate.getTime())) {
-                JOptionPane.showMessageDialog(null, RussianStrings.DATE_BEFORE_01011900.get(),
+                JOptionPane.showMessageDialog(null, RussianStrings.DATE_BEFORE_MIN_DATE.get(),
                         "Error", JOptionPane.PLAIN_MESSAGE);
                 return null;
             }

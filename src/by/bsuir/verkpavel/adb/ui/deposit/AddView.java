@@ -33,7 +33,7 @@ public class AddView extends ActionView {
                 			deposit), "Message", JOptionPane.PLAIN_MESSAGE);
                 	AccountProvider.getInstance().createAccountsByDeposit(deposit);
                 	Account mainUserAccount = AccountProvider.getInstance().getAccountByDeposit(deposit)[0];
-                	AccountProvider.getInstance().addMonoTransaction(AccountProvider.getInstance().getCashBoxAccount(), mainUserAccount, deposit.depositSum, deposit.currency);
+                	AccountProvider.getInstance().addMonoTransaction(AccountProvider.getInstance().getCashBoxAccount(), mainUserAccount, deposit.sum, deposit.currency);
                     ShowDepositsView.create();
                     dispose();
                 } 

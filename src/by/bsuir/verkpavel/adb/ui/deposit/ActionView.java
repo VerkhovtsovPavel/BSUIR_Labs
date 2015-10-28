@@ -160,7 +160,7 @@ public abstract class ActionView extends JFrame {
 	}
 
 	protected void fillFields(Deposit deposit) throws ParseException {
-		depositTypeComboBox.setSelectedIndex(deposit.depositType - 1);
+		depositTypeComboBox.setSelectedIndex(deposit.type - 1);
 		contractNumberField.setText(deposit.contractNumber);
 		currencyComboBox.setSelectedIndex(deposit.currency - 1);
 
@@ -170,7 +170,7 @@ public abstract class ActionView extends JFrame {
 				+ ChronoUnit.DAYS.between(startDateModel.getValue(),
 						endDateModel.getValue()));
 
-		depositSumField.setValue((double) deposit.depositSum);
+		depositSumField.setValue((double) deposit.sum);
 		persentTextField.setValue((double) deposit.persent);
 	}
 

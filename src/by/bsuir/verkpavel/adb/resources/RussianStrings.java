@@ -1,8 +1,10 @@
 package by.bsuir.verkpavel.adb.resources;
 
+
+//MAYBE Remove this class
 public enum RussianStrings {
     DATE_AFTER_NOW("Дата позже текущей!"),
-    DATE_BEFORE_01011900("Дата раньше 01.01.1900!"),
+    DATE_BEFORE_MIN_DATE("Дата раньше минимальной!"),
     RUSSIAN_ALPHABET("йцукенгшщзхъфывапролджэячсмитьбюё"),
     CLIENT_SUCCESSFULLY_ADDED("Клиент успешно добавлен"),
     DUBLICATE_PASSPORT_SERIOS_OR_IDENTIFY_NUMBER("Дублирование номера и серии паспорта или индентификационного номера"),

@@ -123,6 +123,7 @@ public class AccountProvider {
         }
     }
 
+    //TODO Rename field `deposit_id` to `contract_id` in DB and use this method to get accounts by credit
     public Account[] getAccountByDeposit(Deposit deposit) {
         Account[] personalAccounts = new Account[2];
         Statement statement;
@@ -197,19 +198,30 @@ public class AccountProvider {
         }
     }
 
-    //TODO Create base class to Deposit and Credit
+    // TODO Create base class to Deposit and Credit
     private String generateNumber(Deposit deposit, int type) {
         return deposit.contractNumber.substring(0, 4) + (1000 + new Random().nextInt(8999)) + ""
                 + type;
     }
 
     public Account[] getAccountByCredit(Credit credit) {
-        // TODO Auto-generated method stub
-        return null;
+        return getAccountByDeposit(credit);
     }
 
     public void createAccountsByCredit(Credit credit) {
-        // TODO Auto-generated method stub
-        
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement
+                    .executeUpdate(String
+                            .format("INSERT INTO `account` (`id`, `number`, `type`, `deposit_id`) VALUES (NULL, '2400%s', '%d', '%d')",
+                                    generateNumber(credit, 0), 1, credit.id));
+            statement
+                    .executeUpdate(String
+                            .format("INSERT INTO `account` (`id`, `number`, `type`, `deposit_id`) VALUES (NULL, '2400%s', '%d', '%d')",
+                                    generateNumber(credit, 1), 1, credit.id));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

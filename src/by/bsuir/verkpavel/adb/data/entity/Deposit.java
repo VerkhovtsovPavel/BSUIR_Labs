@@ -2,12 +2,12 @@ package by.bsuir.verkpavel.adb.data.entity;
 
 public class Deposit {
 
-	public int depositType;
+	public int type;
 	public String contractNumber;
 	public int currency;
 	public String startDate;
 	public String endDate;
-	public double depositSum;
+	public double sum;
 	public double persent;
 	public int client;
     public int id;
@@ -16,11 +16,11 @@ public class Deposit {
 			String endDate, int currency, double persent, double depositSum,
 			int client) {
 		this.contractNumber = contractNumber;
-		this.depositType = depositType;
+		this.type = depositType;
 		this.currency = currency;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.depositSum = depositSum;
+		this.sum = depositSum;
 		this.persent = persent;
 		this.client = client;
 	}

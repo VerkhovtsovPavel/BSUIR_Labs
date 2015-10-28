@@ -136,16 +136,16 @@ public class ShowAccountsView extends JFrame {
                         AccountProvider.getInstance().addTransaction(
                                 AccountProvider.getInstance().getFDBAccount(),
                                 AccountProvider.getInstance().getAccountByDeposit(deposit)[1],
-                                deposit.depositSum * deposit.persent / 360, deposit.currency);
+                                deposit.sum * deposit.persent / 360, deposit.currency);
 
                         if (LocalDate.parse(deposit.startDate, dateMask).isEqual(LocalDate.now())) {
                             AccountProvider.getInstance().addTransaction(
                                     AccountProvider.getInstance().getAccountByDeposit(deposit)[0],
-                                    AccountProvider.getInstance().getFDBAccount(), deposit.depositSum,
+                                    AccountProvider.getInstance().getFDBAccount(), deposit.sum,
                                     deposit.currency);
                         }
                         if (LocalDate.now().getDayOfMonth() == LocalDate.now().lengthOfMonth()) {
-                            if (deposit.depositType == 2) {
+                            if (deposit.type == 2) {
                                 AccountProvider.getInstance().addMonoTransaction(
                                         AccountProvider.getInstance().getAccountByDeposit(deposit)[1],
                                         AccountProvider.getInstance().getCashBoxAccount(),
@@ -154,7 +154,7 @@ public class ShowAccountsView extends JFrame {
                         }
 
                         if (LocalDate.parse(deposit.endDate, dateMask).isEqual(LocalDate.now())) {
-                            if (deposit.depositType == 2) {
+                            if (deposit.type == 2) {
                                 DepositProvider.getInstance().updateDepositEndDate(
                                         deposit,
                                         LocalDate.parse(deposit.endDate, dateMask).plusMonths(1)
@@ -164,7 +164,7 @@ public class ShowAccountsView extends JFrame {
                                         AccountProvider.getInstance().getCashBoxAccount(),
                                         -getPersentsSum(deposit), deposit.currency);
                             }
-                            if (deposit.depositType == 1) {
+                            if (deposit.type == 1) {
                                 AccountProvider.getInstance().addMonoTransaction(
                                         AccountProvider.getInstance().getAccountByDeposit(deposit)[1],
                                         AccountProvider.getInstance().getCashBoxAccount(),
@@ -173,12 +173,12 @@ public class ShowAccountsView extends JFrame {
                                 AccountProvider.getInstance().addTransaction(
                                         AccountProvider.getInstance().getFDBAccount(),
                                         AccountProvider.getInstance().getAccountByDeposit(deposit)[0],
-                                        deposit.depositSum, deposit.currency);
+                                        deposit.sum, deposit.currency);
 
                                 AccountProvider.getInstance().addMonoTransaction(
                                         AccountProvider.getInstance().getAccountByDeposit(deposit)[0],
                                         AccountProvider.getInstance().getCashBoxAccount(),
-                                        -deposit.depositSum, deposit.currency);
+                                        -deposit.sum, deposit.currency);
                                 
                                 DepositProvider.getInstance().disableDeposit(deposit);
                             }

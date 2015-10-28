@@ -161,7 +161,7 @@ public abstract class ActionView extends JFrame {
 	}
 
 	protected void fillFields(Credit credit) throws ParseException {
-		creditTypeComboBox.setSelectedIndex(credit.creditType - 1);
+		creditTypeComboBox.setSelectedIndex(credit.type - 1);
 		contractNumberField.setText(credit.contractNumber);
 		currencyComboBox.setSelectedIndex(credit.currency - 1);
 

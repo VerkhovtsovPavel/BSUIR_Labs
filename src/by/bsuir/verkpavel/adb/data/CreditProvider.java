@@ -1,9 +1,15 @@
 package by.bsuir.verkpavel.adb.data;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import by.bsuir.verkpavel.adb.data.entity.Credit;
+
+//TODO Add credit table
+//TODO Add credit type table [id. type]
 
 public class CreditProvider {
 
@@ -33,7 +39,20 @@ public class CreditProvider {
     }
 
     public ArrayList<String> getCreditTypeList() {
-        // TODO Auto-generated method stub
-        return null;
+        ArrayList<String> creditTypes = new ArrayList<String>();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+
+            ResultSet rs = statement.executeQuery("SELECT `type` FROM `credittype`;");
+            while (rs.next()) {
+                creditTypes.add(rs.getString("type"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return creditTypes;
     }
 }
