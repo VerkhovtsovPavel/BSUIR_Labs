@@ -91,11 +91,10 @@ public class ShowCreditsView extends JFrame {
         });
         addButton.setBounds(174, 238, 111, 23);
         mainPanel.add(addButton);
-        
-        //FIXME Implement getAllCredits() method and uncommented
-        /*listModel.clear();
+
+        listModel.clear();
         for (Credit credit : credits) {
             listModel.addElement(credit.contractNumber);
-        }*/
+        }
     }
 }

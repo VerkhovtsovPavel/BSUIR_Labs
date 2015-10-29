@@ -312,7 +312,6 @@ public abstract class ActionView extends JFrame {
 		});
 		mainPanel.add(creditTypeComboBox);
 
-		// MAYBE change to real contact number mask
 		MaskFormatter contractNumberMask = new MaskFormatter("#######U###UU#");
 		contractNumberField = new JFormattedTextField(contractNumberMask);
 		contractNumberField.setBounds(322, 82, 381, 28);
@@ -365,7 +364,7 @@ public abstract class ActionView extends JFrame {
 				case "BYR":
 					format = NumberFormat.getCurrencyInstance(Locale
 							.forLanguageTag("be-BY"));
-					persentTextField.setValue(new Float(0.435));
+					persentTextField.setValue(new Float(0.42));
 					break;
 				default:
 					format = NumberFormat.getCurrencyInstance();
