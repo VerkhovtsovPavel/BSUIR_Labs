@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-//TODO Remove this facade and use separate classes
-//TODO Use this class like simple singleton connection manager
 public class ConnectionManager {
     private static ConnectionManager instance;
     private Connection connection;

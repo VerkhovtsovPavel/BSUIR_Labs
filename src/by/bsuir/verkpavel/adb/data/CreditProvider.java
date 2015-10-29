@@ -34,8 +34,29 @@ public class CreditProvider {
     }
 
     public ArrayList<Credit> getAllCredits() {
-        // FIXME Auto-generated method stub
-        return null;
+        ArrayList<Credit> credits = new ArrayList<Credit>();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM `deposit`;");
+            while (rs.next()) {
+                Credit credit = new Credit();
+                credit.id = rs.getInt("id");
+                credit.contractNumber = rs.getString("depositNumber");
+                credit.currency = rs.getInt("currency");
+                credit.type = rs.getInt("deposittype");
+                credit.sum = rs.getDouble("sum");
+                credit.startDate = rs.getString("startDate");
+                credit.endDate = rs.getString("endDate");
+                credit.persent = rs.getDouble("persent");
+                credit.client = rs.getInt("user_id");
+                credits.add(credit);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return credits;
     }
 
     public ArrayList<String> getCreditTypeList() {
