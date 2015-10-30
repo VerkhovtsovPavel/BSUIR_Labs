@@ -16,15 +16,13 @@ import by.bsuir.verkpavel.adb.ui.client.ShowUsersView;
 import by.bsuir.verkpavel.adb.ui.credit.ShowCreditsView;
 import by.bsuir.verkpavel.adb.ui.deposit.ShowDepositsView;
 
-
-//TODO Add credit button + listener
 public class MainView extends JFrame {
 	private static final long serialVersionUID = 2883993883146596569L;
 	private JPanel mainPanel;
 
 	private static void initialaze() {
 		MainView frame = new MainView();
-		frame.setSize(460, 310);
+		frame.setSize(332, 204);
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
 		int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
@@ -56,6 +54,7 @@ public class MainView extends JFrame {
 		mainPanel.setLayout(null);
 
 		JButton clientsBtn = new JButton("Клиенты");
+		clientsBtn.setBounds(47, 42, 111, 23);
 		clientsBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -63,22 +62,10 @@ public class MainView extends JFrame {
 				dispose();
 			}
 		});
-		clientsBtn.setBounds(170, 106, 111, 23);
 		mainPanel.add(clientsBtn);
 
-		JButton depositButton = new JButton("Депозиты");
-		depositButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				ShowDepositsView.create();
-				dispose();
-			}
-		});
-		depositButton.setBounds(49, 106, 111, 23);
-		mainPanel.add(depositButton);
-		
 		JButton accountButton = new JButton("Счета");
-		accountButton.setBounds(291, 106, 111, 23);
+		accountButton.setBounds(170, 42, 111, 23);
 		accountButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -88,8 +75,19 @@ public class MainView extends JFrame {
         });
 		mainPanel.add(accountButton);
 		
+		JButton depositButton = new JButton("Депозиты");
+		depositButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ShowDepositsView.create();
+				dispose();
+			}
+		});
+		depositButton.setBounds(170, 97, 111, 23);
+		mainPanel.add(depositButton);
+		
 		JButton creditButton = new JButton("Кредиты");
-		creditButton.setBounds(291, 106, 111, 23);
+		creditButton.setBounds(47, 97, 111, 23);
 		creditButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -97,6 +95,6 @@ public class MainView extends JFrame {
                 dispose();
             }
         });
-        mainPanel.add(accountButton);
+        mainPanel.add(creditButton);
 	}
 }

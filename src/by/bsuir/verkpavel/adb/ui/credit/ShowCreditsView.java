@@ -75,7 +75,7 @@ public class ShowCreditsView extends JFrame {
         });
         mainPanel.add(list);
 
-        JLabel usersLbl = new JLabel("Депозиты");
+        JLabel usersLbl = new JLabel("Кредиты");
         usersLbl.setBounds(190, 6, 76, 14);
         mainPanel.add(usersLbl);
 
@@ -85,6 +85,7 @@ public class ShowCreditsView extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 ActionView.create(ActionMode.ADD, null);
+                dispose();
             }
 
         });

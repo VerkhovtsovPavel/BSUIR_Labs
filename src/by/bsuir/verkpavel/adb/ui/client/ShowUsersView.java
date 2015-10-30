@@ -51,7 +51,7 @@ public class ShowUsersView extends JFrame {
 
     private void configureDefaultLayot() {
         setResizable(false);
-        setTitle("\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u043A\u043B\u0438\u0435\u043D\u0442\u0430");
+        setTitle("Список клиентов");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         mainPanel = new JPanel();
         setContentPane(mainPanel);

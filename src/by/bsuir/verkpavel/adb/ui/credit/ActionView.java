@@ -195,7 +195,7 @@ public abstract class ActionView extends JFrame {
 
 		if (endDateField.getComponent(1).isEnabled()) {
 			endDate = (LocalDate) endDateField.getModel().getValue();
-		}else{
+		} else {
 			endDate = startDate.plusMonths(1);
 		}
 		int depositType = creditTypeComboBox.getSelectedIndex() + 1;
@@ -312,7 +312,7 @@ public abstract class ActionView extends JFrame {
 		});
 		mainPanel.add(creditTypeComboBox);
 
-		//MAYBE change to real contact number mask
+		// MAYBE change to real contact number mask
 		MaskFormatter contractNumberMask = new MaskFormatter("#######U###UU#");
 		contractNumberField = new JFormattedTextField(contractNumberMask);
 		contractNumberField.setBounds(322, 82, 381, 28);
@@ -356,13 +356,16 @@ public abstract class ActionView extends JFrame {
 				switch (type) {
 				case "EUR":
 					format = NumberFormat.getCurrencyInstance(Locale.GERMANY);
+					persentTextField.setValue(new Float(0.075));
 					break;
 				case "USD":
 					format = NumberFormat.getCurrencyInstance(Locale.US);
+					persentTextField.setValue(new Float(0.075));
 					break;
 				case "BYR":
 					format = NumberFormat.getCurrencyInstance(Locale
 							.forLanguageTag("be-BY"));
+					persentTextField.setValue(new Float(0.435));
 					break;
 				default:
 					format = NumberFormat.getCurrencyInstance();
@@ -373,9 +376,8 @@ public abstract class ActionView extends JFrame {
 				formatter.setMaximum(10000000.0);
 				formatter.setAllowsInvalid(false);
 				formatter.setOverwriteMode(true);
-				creditSumField
-						.setFormatterFactory(new DefaultFormatterFactory(
-								formatter));
+				creditSumField.setFormatterFactory(new DefaultFormatterFactory(
+						formatter));
 			}
 		});
 		mainPanel.add(currencyComboBox);
@@ -384,7 +386,8 @@ public abstract class ActionView extends JFrame {
 	private void fillComboBoxes() {
 		fillComboBox(creditTypeComboBox, CreditProvider.getInstance()
 				.getCreditTypeList());
-		fillComboBox(currencyComboBox, DepositProvider.getInstance().getCurrency());
+		fillComboBox(currencyComboBox, DepositProvider.getInstance()
+				.getCurrency());
 		fillComboBox(clientComboBox, ClientProvider.getInstance()
 				.getUserFullNames());
 	}

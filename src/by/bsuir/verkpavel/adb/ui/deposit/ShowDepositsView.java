@@ -85,6 +85,7 @@ public class ShowDepositsView extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 ActionView.create(ActionMode.ADD, null);
+                dispose();
             }
 
         });
