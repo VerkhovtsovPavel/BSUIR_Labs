@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import by.bsuir.verkpavel.adb.data.entity.Client;
-import by.bsuir.verkpavel.adb.resources.RussianStrings;
+import by.bsuir.verkpavel.adb.resources.Messages;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
@@ -105,12 +105,12 @@ public class ClientProvider {
             statement.executeUpdate(createInsertClientPassportInfoQuery(client));
             statement.executeUpdate(createInsertClientQuery(client));
         } catch (MySQLIntegrityConstraintViolationException e) {
-            return RussianStrings.DUBLICATE_PASSPORT_SERIOS_OR_IDENTIFY_NUMBER.get();
+            return Messages.DUBLICATE_PASSPORT_SERIOS_OR_IDENTIFY_NUMBER.get();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return RussianStrings.CLIENT_SUCCESSFULLY_ADDED.get();
+        return Messages.CLIENT_SUCCESSFULLY_ADDED.get();
     }
 
     public String updateClient(Client client) {
@@ -122,7 +122,7 @@ public class ClientProvider {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return RussianStrings.CLIENT_SUCCESSFULLY_UPDATED.get();
+        return Messages.CLIENT_SUCCESSFULLY_UPDATED.get();
     }
 
     public ArrayList<Client> getAllClients() {

@@ -29,7 +29,7 @@ import javax.swing.text.NumberFormatter;
 
 import by.bsuir.verkpavel.adb.data.ClientProvider;
 import by.bsuir.verkpavel.adb.data.entity.Client;
-import by.bsuir.verkpavel.adb.resources.RussianStrings;
+import by.bsuir.verkpavel.adb.resources.Messages;
 import by.bsuir.verkpavel.adb.ui.ActionMode;
 
 public class ActionView extends JFrame {
@@ -306,14 +306,14 @@ public class ActionView extends JFrame {
                 realCity, realAddress, officialAddress, familyStatus, nationality, disability)) {
             if (((Date) bornDateField.getValue()).after(new Date())
                     || ((Date) passportTakeDateField.getValue()).after(new Date())) {
-                JOptionPane.showMessageDialog(null, RussianStrings.DATE_AFTER_NOW.get(),
+                JOptionPane.showMessageDialog(null, Messages.DATE_AFTER_NOW.get(),
                         "Error", JOptionPane.PLAIN_MESSAGE);
                 return null;
             }
             
             if (((Date) bornDateField.getValue()).before(minDate.getTime())
                     || ((Date) passportTakeDateField.getValue()).before(minDate.getTime())) {
-                JOptionPane.showMessageDialog(null, RussianStrings.DATE_BEFORE_MIN_DATE.get(),
+                JOptionPane.showMessageDialog(null, Messages.DATE_BEFORE_MIN_DATE.get(),
                         "Error", JOptionPane.PLAIN_MESSAGE);
                 return null;
             }
@@ -346,7 +346,7 @@ public class ActionView extends JFrame {
         firstNameField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent e) {
                 char key = e.getKeyChar();
-                if (!RussianStrings.RUSSIAN_ALPHABET.get().contains(""+Character.toLowerCase(key))) {
+                if (!Messages.RUSSIAN_ALPHABET.get().contains(""+Character.toLowerCase(key))) {
                   e.consume();
                 }
               }
@@ -416,7 +416,6 @@ public class ActionView extends JFrame {
                 if(!emailField.getText().trim().matches("^([\\w\\.\\-_]+)?\\w+@[\\w-_]+(\\.\\w+){1,}$")){
                     emailField.setText("");
                 }
-                //[a-zA-Z0-9_]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?!([a-zA-Z0-9]*\\.[a-zA-Z0-9]*\\.[a-zA-Z0-9]*\\.))(?:[A-Za-z0-9](?:[a-zA-Z0-9-]*[A-Za-z0-9])?\\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?
             }
             
             @Override

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import by.bsuir.verkpavel.adb.data.entity.Deposit;
-import by.bsuir.verkpavel.adb.resources.RussianStrings;
+import by.bsuir.verkpavel.adb.resources.Messages;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
@@ -64,12 +64,12 @@ public class DepositProvider {
             rs.next();
             deposit.id = rs.getInt("id");
         } catch (MySQLIntegrityConstraintViolationException e) {
-            return RussianStrings.DUBLICATE_CONTRACT_NUMBER.get();
+            return Messages.DUBLICATE_CONTRACT_NUMBER.get();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return RussianStrings.CONTRACT_SUCCESSFULLY_ADDED.get();
+        return Messages.CONTRACT_SUCCESSFULLY_ADDED.get();
     }
 
     private String createInsertDepositQuery(Deposit deposit) {

@@ -36,11 +36,14 @@ import by.bsuir.verkpavel.adb.data.ClientProvider;
 import by.bsuir.verkpavel.adb.data.CreditProvider;
 import by.bsuir.verkpavel.adb.data.DepositProvider;
 import by.bsuir.verkpavel.adb.data.entity.Credit;
-import by.bsuir.verkpavel.adb.resources.RussianStrings;
+import by.bsuir.verkpavel.adb.resources.Messages;
 import by.bsuir.verkpavel.adb.ui.ActionMode;
 import by.bsuir.verkpavel.adb.ui.DateLabelFormatter;
 import by.bsuir.verkpavel.adb.ui.LocalDateModel;
 
+//FIXME Period of credit must be:
+//TODO 1) More then month
+//TODO 2) Is an integer months
 public abstract class ActionView extends JFrame {
 	private static final long serialVersionUID = 2883993883146596569L;
 	private static final LocalDate maxDate = LocalDate.of(2100, 1, 1);
@@ -211,13 +214,13 @@ public abstract class ActionView extends JFrame {
 			if (startDate.isBefore(LocalDate.now())
 					|| endDate.isBefore(startDate)) {
 				JOptionPane.showMessageDialog(null,
-						RussianStrings.STARTDATEBEFORENOW_OR_ENDDATEBEFORESTART
+						Messages.STARTDATEBEFORENOW_OR_ENDDATEBEFORESTART
 								.get(), "Error", JOptionPane.PLAIN_MESSAGE);
 				return null;
 			}
 			if (startDate.isAfter(maxDate) || endDate.isAfter(maxDate)) {
 				JOptionPane.showMessageDialog(null,
-						RussianStrings.DATE_AFTER_MAX_DATE.get(), "Error",
+						Messages.DATE_AFTER_MAX_DATE.get(), "Error",
 						JOptionPane.PLAIN_MESSAGE);
 				return null;
 			}

@@ -123,7 +123,6 @@ public class AccountProvider {
         }
     }
 
-    //TODO Rename field `deposit_id` to `contract_id` in DB and use this method to get accounts by credit
     public Account[] getAccountByDeposit(Deposit deposit) {
         Account[] personalAccounts = new Account[2];
         Statement statement;
@@ -151,7 +150,7 @@ public class AccountProvider {
         try {
             statement = connection.createStatement();
             ResultSet accounts = statement
-                    .executeQuery("SELECT * FROM `account` WHERE `deposit_id` IS NULL");
+                    .executeQuery("SELECT * FROM `account` WHERE `deposit_id` IS NULL AND `credit_id` IS NULL");
             while (accounts.next()) {
                 if (accounts.getString("number").startsWith("1010")) {
                     cashBox = getAccountFromResultSet(accounts);
@@ -169,7 +168,7 @@ public class AccountProvider {
         try {
             statement = connection.createStatement();
             ResultSet accounts = statement
-                    .executeQuery("SELECT * FROM `account` WHERE `deposit_id` IS NULL");
+                    .executeQuery("SELECT * FROM `account` WHERE `deposit_id` IS NULL AND `credit_id` IS NULL");
             while (accounts.next()) {
                 if (accounts.getString("number").startsWith("7327")) {
                     fdba = getAccountFromResultSet(accounts);
@@ -205,7 +204,24 @@ public class AccountProvider {
     }
 
     public Account[] getAccountByCredit(Credit credit) {
-        return getAccountByDeposit(credit);
+        Account[] personalAccounts = new Account[2];
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            ResultSet accounts = statement
+                    .executeQuery("SELECT * FROM `account` WHERE `credit_id` = " + credit.id);
+            while (accounts.next()) {
+                if (accounts.getString("number").endsWith("0")) {
+                    personalAccounts[0] = getAccountFromResultSet(accounts);
+                } else {
+                    personalAccounts[1] = getAccountFromResultSet(accounts);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return personalAccounts;
     }
 
     public void createAccountsByCredit(Credit credit) {
@@ -214,11 +230,11 @@ public class AccountProvider {
             statement = connection.createStatement();
             statement
                     .executeUpdate(String
-                            .format("INSERT INTO `account` (`id`, `number`, `type`, `deposit_id`) VALUES (NULL, '2400%s', '%d', '%d')",
+                            .format("INSERT INTO `account` (`id`, `number`, `type`, `credit_id`) VALUES (NULL, '2400%s', '%d', '%d')",
                                     generateNumber(credit, 0), 1, credit.id));
             statement
                     .executeUpdate(String
-                            .format("INSERT INTO `account` (`id`, `number`, `type`, `deposit_id`) VALUES (NULL, '2400%s', '%d', '%d')",
+                            .format("INSERT INTO `account` (`id`, `number`, `type`, `credit_id`) VALUES (NULL, '2400%s', '%d', '%d')",
                                     generateNumber(credit, 1), 1, credit.id));
         } catch (SQLException e) {
             e.printStackTrace();

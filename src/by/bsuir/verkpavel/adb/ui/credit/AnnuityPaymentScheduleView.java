@@ -13,6 +13,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
 import by.bsuir.verkpavel.adb.data.entity.AnnuityPayment;
+import by.bsuir.verkpavel.adb.data.entity.Credit;
 import by.bsuir.verkpavel.adb.logic.credit.AnnuityCalculator;
 import by.bsuir.verkpavel.adb.logic.credit.SimpleAnnuityCalculator;
 
@@ -20,15 +21,11 @@ public class AnnuityPaymentScheduleView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
     private static AnnuityCalculator annuityCalculator;
 
-    private AnnuityPaymentScheduleView() {
+    private AnnuityPaymentScheduleView(Credit credit) {
         super("График аннуитетных платежей");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        annuityCalculator = new SimpleAnnuityCalculator();
+        annuityCalculator = new SimpleAnnuityCalculator(credit);
         ArrayList<AnnuityPayment> beans =  annuityCalculator.paymentsSheduling();
-
-        for (int i = 0; i < 30; i++) {
-            beans.add(new AnnuityPayment(i, 30 - i));
-        }
 
         TableModel model = new PaymentsTableModel(beans);
         JTable table = new JTable(model);
@@ -41,8 +38,8 @@ public class AnnuityPaymentScheduleView extends JFrame {
         setVisible(true);
     }
 
-    public static void create() {
-        new AnnuityPaymentScheduleView();
+    public static void create(Credit credit) {
+        new AnnuityPaymentScheduleView(credit);
     }
 
     public class PaymentsTableModel implements TableModel {
@@ -89,7 +86,7 @@ public class AnnuityPaymentScheduleView extends JFrame {
             AnnuityPayment bean = payments.get(rowIndex);
             switch (columnIndex) {
             case 0:
-                return rowIndex;
+                return rowIndex+1;
             case 1:
                 return bean.principalAmount;
             case 2:

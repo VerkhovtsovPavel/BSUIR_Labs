@@ -31,7 +31,7 @@ public class AddView extends ActionView {
                 if(credit!=null){
                 	JOptionPane.showMessageDialog(null,  CreditProvider.getInstance().saveCredit(
                 			credit), "Message", JOptionPane.PLAIN_MESSAGE);
-                	AnnuityPaymentScheduleView.create();
+                	AnnuityPaymentScheduleView.create(credit);
                 	AccountProvider.getInstance().createAccountsByCredit(credit);
                 	Account mainUserAccount = AccountProvider.getInstance().getAccountByCredit(credit)[0];
                 	//TODO Add transaction from FDB to mainUserAccount

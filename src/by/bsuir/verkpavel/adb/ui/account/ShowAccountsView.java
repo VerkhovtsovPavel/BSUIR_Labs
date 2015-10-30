@@ -12,9 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -25,21 +23,23 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import by.bsuir.verkpavel.adb.data.AccountProvider;
-import by.bsuir.verkpavel.adb.data.DepositProvider;
 import by.bsuir.verkpavel.adb.data.entity.Account;
-import by.bsuir.verkpavel.adb.data.entity.Deposit;
-import by.bsuir.verkpavel.adb.data.entity.TransactionsInfo;
+import by.bsuir.verkpavel.adb.logic.AbstractDayCloser;
+import by.bsuir.verkpavel.adb.logic.deposit.DepositDayCloser;
 import by.bsuir.verkpavel.adb.ui.MainView;
+//TODO Create secret procedure of closed month
+
+//Runtime.getRuntime().exec("cmd /C date " + strDateToSet); Win
+//date +%Y%m%d -s "20081128" Linux
 
 public class ShowAccountsView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
-    private DateTimeFormatter dateMask = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static LocalDate lastClosedDate = LocalDate.MIN;
     private JPanel mainPanel;
 
     ArrayList<Account> accounts;
+    ArrayList<AbstractDayCloser> dayClosers = new ArrayList<>();
 
-    // MAYBE Use enum to deposit types
     private static void initialaze() {
         ShowAccountsView frame = new ShowAccountsView();
         frame.setSize(460, 310);
@@ -95,6 +95,8 @@ public class ShowAccountsView extends JFrame {
     private ShowAccountsView() {
         setTitle("Счета");
         configureDefaultLayot();
+        
+        dayClosers.add(new DepositDayCloser());
     }
 
     private void configureDefaultLayot() {
@@ -131,61 +133,9 @@ public class ShowAccountsView extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (LocalDate.now().isAfter(lastClosedDate)) {
-                    ArrayList<Deposit> deposits = DepositProvider.getInstance().getAllActiveDeposits();
-                    for (Deposit deposit : deposits) {
-                        AccountProvider.getInstance().addTransaction(
-                                AccountProvider.getInstance().getFDBAccount(),
-                                AccountProvider.getInstance().getAccountByDeposit(deposit)[1],
-                                deposit.sum * deposit.persent / 360, deposit.currency);
-
-                        if (LocalDate.parse(deposit.startDate, dateMask).isEqual(LocalDate.now())) {
-                            AccountProvider.getInstance().addTransaction(
-                                    AccountProvider.getInstance().getAccountByDeposit(deposit)[0],
-                                    AccountProvider.getInstance().getFDBAccount(), deposit.sum,
-                                    deposit.currency);
-                        }
-                        if (LocalDate.now().getDayOfMonth() == LocalDate.now().lengthOfMonth()) {
-                            if (deposit.type == 2) {
-                                AccountProvider.getInstance().addMonoTransaction(
-                                        AccountProvider.getInstance().getAccountByDeposit(deposit)[1],
-                                        AccountProvider.getInstance().getCashBoxAccount(),
-                                        -getPersentsSum(deposit), deposit.currency);
-                            }
-                        }
-
-                        if (LocalDate.parse(deposit.endDate, dateMask).isEqual(LocalDate.now())) {
-                            if (deposit.type == 2) {
-                                DepositProvider.getInstance().updateDepositEndDate(
-                                        deposit,
-                                        LocalDate.parse(deposit.endDate, dateMask).plusMonths(1)
-                                                .format(dateMask));
-                                AccountProvider.getInstance().addMonoTransaction(
-                                        AccountProvider.getInstance().getAccountByDeposit(deposit)[1],
-                                        AccountProvider.getInstance().getCashBoxAccount(),
-                                        -getPersentsSum(deposit), deposit.currency);
-                            }
-                            if (deposit.type == 1) {
-                                AccountProvider.getInstance().addMonoTransaction(
-                                        AccountProvider.getInstance().getAccountByDeposit(deposit)[1],
-                                        AccountProvider.getInstance().getCashBoxAccount(),
-                                        -getPersentsSum(deposit), deposit.currency);
-
-                                AccountProvider.getInstance().addTransaction(
-                                        AccountProvider.getInstance().getFDBAccount(),
-                                        AccountProvider.getInstance().getAccountByDeposit(deposit)[0],
-                                        deposit.sum, deposit.currency);
-
-                                AccountProvider.getInstance().addMonoTransaction(
-                                        AccountProvider.getInstance().getAccountByDeposit(deposit)[0],
-                                        AccountProvider.getInstance().getCashBoxAccount(),
-                                        -deposit.sum, deposit.currency);
-                                
-                                DepositProvider.getInstance().disableDeposit(deposit);
-                            }
-                        }
+                    for(AbstractDayCloser dayCloser : dayClosers){
+                        dayCloser.closeDay();
                     }
-                    JOptionPane.showMessageDialog(null, "Текущий день (" + LocalDate.now()
-                            + ") успешно закрыт", "Error", JOptionPane.PLAIN_MESSAGE);
                     lastClosedDate = LocalDate.now();
                 } else {
                     JOptionPane.showMessageDialog(null,
@@ -194,16 +144,6 @@ public class ShowAccountsView extends JFrame {
                 }
             }
 
-            private double getPersentsSum(Deposit deposit) {
-                List<TransactionsInfo> transactions = AccountProvider.getInstance()
-                        .getTransactionsByAccount(
-                                AccountProvider.getInstance().getAccountByDeposit(deposit)[1]);
-                double totalPersentsSum = 0;
-                for (TransactionsInfo transactionsInfo : transactions) {
-                    totalPersentsSum += transactionsInfo.sum;
-                }
-                return totalPersentsSum;
-            }
         });
         addButton.setBounds(141, 238, 151, 23);
         mainPanel.add(addButton);

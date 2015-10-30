@@ -13,7 +13,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.Properties;
 
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -35,14 +34,15 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import by.bsuir.verkpavel.adb.data.ClientProvider;
 import by.bsuir.verkpavel.adb.data.DepositProvider;
 import by.bsuir.verkpavel.adb.data.entity.Deposit;
-import by.bsuir.verkpavel.adb.resources.RussianStrings;
+import by.bsuir.verkpavel.adb.resources.Properties;
+import by.bsuir.verkpavel.adb.resources.Messages;
 import by.bsuir.verkpavel.adb.ui.ActionMode;
 import by.bsuir.verkpavel.adb.ui.DateLabelFormatter;
 import by.bsuir.verkpavel.adb.ui.LocalDateModel;
 
 public abstract class ActionView extends JFrame {
 	private static final long serialVersionUID = 2883993883146596569L;
-	private static final LocalDate maxDate = LocalDate.of(2100, 1, 1);
+	private static final LocalDate maxDate = Properties.getMaxDate();
 
 	protected static Deposit currentDeposit;
 
@@ -210,13 +210,13 @@ public abstract class ActionView extends JFrame {
 			if (startDate.isBefore(LocalDate.now())
 					|| endDate.isBefore(startDate)) {
 				JOptionPane.showMessageDialog(null,
-						RussianStrings.STARTDATEBEFORENOW_OR_ENDDATEBEFORESTART
+						Messages.STARTDATEBEFORENOW_OR_ENDDATEBEFORESTART
 								.get(), "Error", JOptionPane.PLAIN_MESSAGE);
 				return null;
 			}
 			if (startDate.isAfter(maxDate) || endDate.isAfter(maxDate)) {
 				JOptionPane.showMessageDialog(null,
-						RussianStrings.DATE_AFTER_MAX_DATE.get(), "Error",
+						Messages.DATE_AFTER_MAX_DATE.get(), "Error",
 						JOptionPane.PLAIN_MESSAGE);
 				return null;
 			}
@@ -240,7 +240,7 @@ public abstract class ActionView extends JFrame {
 	}
 
 	private void createActionElements() throws ParseException {
-		Properties p = new Properties();
+		java.util.Properties p = new java.util.Properties();
 		p.put("text.today", "Today");
 		p.put("text.month", "Month");
 		p.put("text.year", "Year");

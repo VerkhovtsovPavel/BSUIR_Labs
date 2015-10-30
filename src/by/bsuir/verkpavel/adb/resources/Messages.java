@@ -1,8 +1,6 @@
 package by.bsuir.verkpavel.adb.resources;
 
-
-//MAYBE Remove this class
-public enum RussianStrings {
+public enum Messages {
     DATE_AFTER_NOW("Дата позже текущей!"),
     DATE_BEFORE_MIN_DATE("Дата раньше минимальной!"),
     RUSSIAN_ALPHABET("йцукенгшщзхъфывапролджэячсмитьбюё"),
@@ -17,7 +15,7 @@ public enum RussianStrings {
     
     
     private String value;
-    private RussianStrings(String value){
+    private Messages(String value){
         this.value = value;
     }
     public String get(){
