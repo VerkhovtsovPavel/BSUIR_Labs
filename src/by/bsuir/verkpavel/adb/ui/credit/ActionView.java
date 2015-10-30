@@ -44,6 +44,8 @@ import by.bsuir.verkpavel.adb.ui.LocalDateModel;
 //FIXME Period of credit must be:
 //TODO 1) More then month
 //TODO 2) Is an integer months
+
+//MAYBE Remove all currency exclude BYR
 public abstract class ActionView extends JFrame {
 	private static final long serialVersionUID = 2883993883146596569L;
 	private static final LocalDate maxDate = LocalDate.of(2100, 1, 1);

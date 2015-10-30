@@ -61,13 +61,13 @@ public class CreditProvider {
         Statement statement;
         try {
             statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM `deposit`;");
+            ResultSet rs = statement.executeQuery("SELECT * FROM `credit`;");
             while (rs.next()) {
                 Credit credit = new Credit();
                 credit.id = rs.getInt("id");
-                credit.contractNumber = rs.getString("depositNumber");
+                credit.contractNumber = rs.getString("creditNumber");
                 credit.currency = rs.getInt("currency");
-                credit.type = rs.getInt("deposittype");
+                credit.type = rs.getInt("credittype");
                 credit.sum = rs.getDouble("sum");
                 credit.startDate = rs.getString("startDate");
                 credit.endDate = rs.getString("endDate");
@@ -97,5 +97,17 @@ public class CreditProvider {
         }
 
         return creditTypes;
+    }
+    
+    public void disableCredit(Credit credit) {
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(String.format(
+                    "UPDATE `credit` SET `isActive` = '0' WHERE `id` = '%d';", credit.id));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }
