@@ -26,6 +26,7 @@ public class AnnuityPaymentScheduleView extends JFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         annuityCalculator = new SimpleAnnuityCalculator(credit);
         ArrayList<AnnuityPayment> beans =  annuityCalculator.paymentsSheduling();
+        credit.annuityPayment = beans;
 
         TableModel model = new PaymentsTableModel(beans);
         JTable table = new JTable(model);

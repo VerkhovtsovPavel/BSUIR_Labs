@@ -110,4 +110,31 @@ public class CreditProvider {
         }
 
     }
+
+    public ArrayList<Credit> getAllActiveCredits() {
+        ArrayList<Credit> credits = new ArrayList<Credit>();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM `credit` WHERE `isActive` = 1;");
+            while (rs.next()) {
+                Credit deposit = new Credit();
+                deposit.id = rs.getInt("id");
+                deposit.contractNumber = rs.getString("creditNumber");
+                deposit.currency = rs.getInt("currency");
+                deposit.type = rs.getInt("credittype");
+                deposit.sum = rs.getDouble("sum");
+                deposit.startDate = rs.getString("startDate");
+                deposit.endDate = rs.getString("endDate");
+                deposit.persent = rs.getDouble("persent");
+                deposit.client = rs.getInt("user_id");
+                credits.add(deposit);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return credits;
+    }
 }

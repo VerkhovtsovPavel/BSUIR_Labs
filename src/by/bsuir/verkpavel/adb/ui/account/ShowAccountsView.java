@@ -2,6 +2,8 @@ package by.bsuir.verkpavel.adb.ui.account;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -12,7 +14,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -25,6 +30,7 @@ import javax.swing.JPanel;
 import by.bsuir.verkpavel.adb.data.AccountProvider;
 import by.bsuir.verkpavel.adb.data.entity.Account;
 import by.bsuir.verkpavel.adb.logic.AbstractDayCloser;
+import by.bsuir.verkpavel.adb.logic.credit.CreditDayCloser;
 import by.bsuir.verkpavel.adb.logic.deposit.DepositDayCloser;
 import by.bsuir.verkpavel.adb.ui.MainView;
 //TODO Create secret procedure of closed month
@@ -95,8 +101,9 @@ public class ShowAccountsView extends JFrame {
     private ShowAccountsView() {
         setTitle("Счета");
         configureDefaultLayot();
-        
+
         dayClosers.add(new DepositDayCloser());
+        dayClosers.add(new CreditDayCloser());
     }
 
     private void configureDefaultLayot() {
@@ -132,25 +139,60 @@ public class ShowAccountsView extends JFrame {
         addButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (LocalDate.now().isAfter(lastClosedDate)) {
-                    for(AbstractDayCloser dayCloser : dayClosers){
-                        dayCloser.closeDay();
-                    }
-                    lastClosedDate = LocalDate.now();
-                } else {
-                    JOptionPane.showMessageDialog(null,
-                            "Текущий день предшествует либо равен последнему закрытому дню",
-                            "Error", JOptionPane.PLAIN_MESSAGE);
-                }
+                closeDay();
             }
-
         });
         addButton.setBounds(141, 238, 151, 23);
         mainPanel.add(addButton);
 
+        list.addKeyListener(new KeyListener() {
+
+            private final Set<Integer> pressed = new HashSet<Integer>();
+
+            @Override
+            public synchronized void keyPressed(KeyEvent e) {
+                pressed.add(e.getKeyCode());
+                if (pressed.contains(17) && pressed.contains(16) && pressed.contains(72)) {
+                    for(int i=0; i<3; i++){
+                        closeDay();
+                        try {
+                            //TODO Check work
+                            Runtime.getRuntime().exec("cmd /C date " + LocalDate.now().plusDays(1).format(DateTimeFormatter.ofPattern(("dd-MM-yy"))));
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public synchronized void keyReleased(KeyEvent e) {
+                pressed.remove(e.getKeyChar());
+            }
+
+            @Override
+            public void keyTyped(KeyEvent e) {/* Not used */
+            }
+        });
+
         listModel.clear();
         for (Account account : accounts) {
             listModel.addElement(account.number);
+        }
+    }
+
+    protected void closeDay() {
+        if (LocalDate.now().isAfter(lastClosedDate)) {
+            for (AbstractDayCloser dayCloser : dayClosers) {
+                dayCloser.closeDay();
+            }
+            lastClosedDate = LocalDate.now();
+            JOptionPane.showMessageDialog(null, "Текущий день (" + LocalDate.now()
+                    + ") успешно закрыт", "Info", JOptionPane.PLAIN_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Текущий день предшествует либо равен последнему закрытому дню", "Error",
+                    JOptionPane.PLAIN_MESSAGE);
         }
     }
 }

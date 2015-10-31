@@ -34,7 +34,7 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import by.bsuir.verkpavel.adb.data.ClientProvider;
 import by.bsuir.verkpavel.adb.data.DepositProvider;
 import by.bsuir.verkpavel.adb.data.entity.Deposit;
-import by.bsuir.verkpavel.adb.resources.Properties;
+import by.bsuir.verkpavel.adb.resources.ProjectProperties;
 import by.bsuir.verkpavel.adb.resources.Messages;
 import by.bsuir.verkpavel.adb.ui.ActionMode;
 import by.bsuir.verkpavel.adb.ui.DateLabelFormatter;
@@ -42,7 +42,7 @@ import by.bsuir.verkpavel.adb.ui.LocalDateModel;
 
 public abstract class ActionView extends JFrame {
 	private static final long serialVersionUID = 2883993883146596569L;
-	private static final LocalDate maxDate = Properties.getMaxDate();
+	private static final LocalDate maxDate = ProjectProperties.getMaxDate();
 
 	protected static Deposit currentDeposit;
 

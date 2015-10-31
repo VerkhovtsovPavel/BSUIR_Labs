@@ -4,18 +4,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import by.bsuir.verkpavel.adb.data.AccountProvider;
 import by.bsuir.verkpavel.adb.data.DepositProvider;
 import by.bsuir.verkpavel.adb.data.entity.Deposit;
 import by.bsuir.verkpavel.adb.data.entity.TransactionsInfo;
 import by.bsuir.verkpavel.adb.logic.AbstractDayCloser;
 
-public class DepositDayCloser extends AbstractDayCloser{
-    
+public class DepositDayCloser extends AbstractDayCloser {
+
     @Override
-    public void closeDay(){
+    public void closeDay() {
         ArrayList<Deposit> deposits = DepositProvider.getInstance().getAllActiveDeposits();
         for (Deposit deposit : deposits) {
             AccountProvider.getInstance().addTransaction(
@@ -62,18 +60,16 @@ public class DepositDayCloser extends AbstractDayCloser{
 
                     AccountProvider.getInstance().addMonoTransaction(
                             AccountProvider.getInstance().getAccountByDeposit(deposit)[0],
-                            AccountProvider.getInstance().getCashBoxAccount(),
-                            -deposit.sum, deposit.currency);
-                    
+                            AccountProvider.getInstance().getCashBoxAccount(), -deposit.sum,
+                            deposit.currency);
+
                     DepositProvider.getInstance().disableDeposit(deposit);
                 }
             }
         }
-        JOptionPane.showMessageDialog(null, "Текущий день (" + LocalDate.now()
-                + ") успешно закрыт", "Error", JOptionPane.PLAIN_MESSAGE);
     }
-    
-    private static double  getPersentsSum(Deposit deposit) {
+
+    private static double getPersentsSum(Deposit deposit) {
         List<TransactionsInfo> transactions = AccountProvider.getInstance()
                 .getTransactionsByAccount(
                         AccountProvider.getInstance().getAccountByDeposit(deposit)[1]);

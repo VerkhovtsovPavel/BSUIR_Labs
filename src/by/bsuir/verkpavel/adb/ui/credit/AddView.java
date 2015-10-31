@@ -34,8 +34,8 @@ public class AddView extends ActionView {
                 	AnnuityPaymentScheduleView.create(credit);
                 	AccountProvider.getInstance().createAccountsByCredit(credit);
                 	Account mainUserAccount = AccountProvider.getInstance().getAccountByCredit(credit)[0];
-                	//TODO Add transaction from FDB to mainUserAccount
-                	AccountProvider.getInstance().addMonoTransaction(AccountProvider.getInstance().getCashBoxAccount(), mainUserAccount, credit.sum, credit.currency);
+                	AccountProvider.getInstance().addTransaction(AccountProvider.getInstance().getFDBAccount(), mainUserAccount, credit.sum, credit.currency);
+                	AccountProvider.getInstance().addMonoTransaction(AccountProvider.getInstance().getCashBoxAccount(), mainUserAccount, -credit.sum, credit.currency);
                     ShowCreditsView.create();
                     dispose();
                 } 
