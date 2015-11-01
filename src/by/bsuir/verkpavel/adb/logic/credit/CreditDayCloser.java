@@ -36,13 +36,17 @@ public class CreditDayCloser extends AbstractDayCloser {
             }
             
             if(credit.type==1 && ChronoUnit.DAYS.between(LocalDate.parse(credit.startDate), LocalDate.now())%30==0 && !LocalDate.parse(credit.startDate).equals(LocalDate.now())){
-                int periodNumber = (int) (ChronoUnit.DAYS.between(LocalDate.parse(credit.startDate), LocalDate.now())%30);
+            	int periodNumber = (int) (ChronoUnit.DAYS.between(LocalDate.parse(credit.startDate), LocalDate.now())/30);
                 AnnuityPayment annuityPayment = credit.getAnnuityPayment().get(periodNumber-1);
-                AccountProvider.getInstance().addTransaction(
+                AccountProvider.getInstance().addMonoTransaction(
                         AccountProvider.getInstance().getCashBoxAccount(),
                         AccountProvider.getInstance().getAccountByCredit(credit)[0],
                         annuityPayment.principalAmount, credit.currency);
                 AccountProvider.getInstance().addTransaction(
+                        AccountProvider.getInstance().getAccountByCredit(credit)[1],
+                        AccountProvider.getInstance().getFDBAccount(),
+                        annuityPayment.percents, credit.currency);
+                AccountProvider.getInstance().addMonoTransaction(
                         AccountProvider.getInstance().getCashBoxAccount(),
                         AccountProvider.getInstance().getAccountByCredit(credit)[1],
                         annuityPayment.percents, credit.currency);
@@ -58,11 +62,11 @@ public class CreditDayCloser extends AbstractDayCloser {
                             AccountProvider.getInstance().getAccountByCredit(credit)[0],
                             AccountProvider.getInstance().getCashBoxAccount(), credit.sum,
                             credit.currency);
-                    AccountProvider.getInstance().addTransaction(
-                            AccountProvider.getInstance().getAccountByCredit(credit)[0],
-                            AccountProvider.getInstance().getFDBAccount(), credit.sum,
-                            credit.currency);
                 }
+                AccountProvider.getInstance().addTransaction(
+                        AccountProvider.getInstance().getAccountByCredit(credit)[0],
+                        AccountProvider.getInstance().getFDBAccount(), credit.sum,
+                        credit.currency);
                 CreditProvider.getInstance().disableCredit(credit);
             }
         }

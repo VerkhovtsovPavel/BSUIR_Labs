@@ -11,4 +11,9 @@ public class ProjectProperties {
     public static LocalDate getMaxDate(){
         return LocalDate.of(2100, 1, 1);
     }
+
+	public static String getSystemPassword() {
+	 //FIXME Chamge on real password 
+		return "Nice try.)";
+	}
 }

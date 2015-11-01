@@ -197,7 +197,6 @@ public class AccountProvider {
         }
     }
 
-    // TODO Create base class to Deposit and Credit
     private String generateNumber(Deposit deposit, int type) {
         return deposit.contractNumber.substring(0, 4) + (1000 + new Random().nextInt(8999)) + ""
                 + type;

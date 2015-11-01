@@ -68,7 +68,7 @@ public class AnnuityPaymentScheduleView extends JFrame {
         public String getColumnName(int columnIndex) {
             switch (columnIndex) {
             case 0:
-                return "Период";
+                return "Дата оплаты";
             case 1:
                 return "Основной долг";
             case 2:
@@ -87,7 +87,7 @@ public class AnnuityPaymentScheduleView extends JFrame {
             AnnuityPayment bean = payments.get(rowIndex);
             switch (columnIndex) {
             case 0:
-                return rowIndex+1;
+                return bean.payDate.toString();
             case 1:
                 return bean.principalAmount;
             case 2:
