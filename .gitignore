@@ -1,0 +1,5 @@
+.settings/
+.classpath
+*.out
+bin/
+/db/*.bak
