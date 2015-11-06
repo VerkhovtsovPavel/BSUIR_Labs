@@ -22,9 +22,7 @@ public class PerfectTime extends UnicastRemoteObject implements PerfectTimeI {
    // Регистрация для обслуживания RMI. Выбрасывает
    // исключения на консоль.
    public static void main(String[] args) throws Exception {
-      //System.setSecurityManager(new RMISecurityManager());
       PerfectTime pt = new PerfectTime();
-      //Naming.bind("//peppy:2005/PerfectTime", pt);
       Registry registry = LocateRegistry.createRegistry(12345);
       registry.bind("PerfectTime", pt);
       System.out.println("Ready to do time");

@@ -1,12 +1,20 @@
 package by.bsuir.verkpavel.adb.server.main;
 
-import java.io.IOException;
+import java.rmi.AlreadyBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
+import by.bsuir.verkpavel.adb.server.remote.RemoteBank;
 import by.bsuir.verkpavel.adb.server.ui.MainView;
 
 public class Main {
 
-	public static void main(String[] args) throws IOException {
-		MainView.create();
-	}
+    public static void main(String[] args) throws RemoteException, AlreadyBoundException {
+        RemoteBank rb = new RemoteBank();
+        Registry registry = LocateRegistry.createRegistry(12345);
+        registry.bind("RemoteBank", rb);
+        System.out.println("Ready to do time");
+        MainView.create();
+    }
 }
