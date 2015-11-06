@@ -7,13 +7,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import by.bsuir.verkpavel.adb.atm.remote.IRemoteBank;
+import by.bsuir.verkpavel.adb.server.remote.IRemoteBank;
 
 public class NotConnectionATMState extends BaseATMState {
     JLabel bigNoConnectionLabel;
 
-    public NotConnectionATMState(JPanel atmPanel, IRemoteBank server) {
-        super(atmPanel, server);
+    public NotConnectionATMState(JPanel atmPanel, IRemoteBank server, Stateble stateble, ATMStateManager stateManager) {
+        super(atmPanel, server, stateble, stateManager);
         bigNoConnectionLabel =new JLabel("No connection");
         bigNoConnectionLabel.setHorizontalAlignment(SwingConstants.CENTER);
         bigNoConnectionLabel.setFont(new Font("Arial Black", Font.ITALIC, 26));

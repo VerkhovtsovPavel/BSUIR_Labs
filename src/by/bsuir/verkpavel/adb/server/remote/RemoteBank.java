@@ -8,4 +8,10 @@ public class RemoteBank extends UnicastRemoteObject implements IRemoteBank{
 
     public RemoteBank() throws RemoteException {}
 
+    @Override
+    public boolean isAuthenticate(String cardNumber, String pinCode) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
 }

@@ -4,15 +4,20 @@ import java.awt.Component;
 
 import javax.swing.JPanel;
 
-import by.bsuir.verkpavel.adb.atm.remote.IRemoteBank;
+import by.bsuir.verkpavel.adb.server.remote.IRemoteBank;
 
 public abstract class BaseATMState {
     private JPanel _atmPanel;
     private IRemoteBank _server;
+    private ATMStateManager _stateManager;
+    private Stateble _statable;
    
-    public BaseATMState(JPanel atmPanel, IRemoteBank server){
+    public BaseATMState(JPanel atmPanel, IRemoteBank server, Stateble stateble, ATMStateManager stateManager){
         this._atmPanel = atmPanel;
         this._server = server;
+        this._stateManager = stateManager;
+        this._statable = stateble;
+        
     }
     
     public abstract void on();
@@ -30,6 +35,15 @@ public abstract class BaseATMState {
     public IRemoteBank getServer() {
         return _server;
     }
+    
+    public void setState(BaseATMState newState){
+        _statable.switchState(newState);
+    }
+
+    public ATMStateManager getStateManager() {
+        return _stateManager;
+    }
+
 }
 
 //TODO Implements concrete states

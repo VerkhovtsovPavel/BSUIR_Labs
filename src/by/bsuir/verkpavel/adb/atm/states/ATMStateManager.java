@@ -5,15 +5,15 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
-import by.bsuir.verkpavel.adb.atm.remote.IRemoteBank;
+import by.bsuir.verkpavel.adb.server.remote.IRemoteBank;
 
 public class ATMStateManager {
     private Map<String,BaseATMState> states;
     
-    public ATMStateManager(JPanel mainATMPanel, IRemoteBank server){
+    public ATMStateManager(JPanel mainATMPanel, IRemoteBank server, Stateble stateble){
         states =  new HashMap<String,BaseATMState>();
-        states.put("NoConnection", new NotConnectionATMState(mainATMPanel, server));
-        states.put("Authentication", new AuthenticationATMState(mainATMPanel,server));
+        states.put("NoConnection", new NotConnectionATMState(mainATMPanel, server, stateble, this));
+        states.put("Authentication", new AuthenticationATMState(mainATMPanel,server, stateble, this));
     }
     
     public BaseATMState getState(String state){
