@@ -1,4 +1,4 @@
-package by.bsuir.verkpavel.adb.atm_client.states;
+package by.bsuir.verkpavel.adb.atm_client.states.concrete;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -7,6 +7,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import by.bsuir.verkpavel.adb.atm_client.states.ATMStateManager;
+import by.bsuir.verkpavel.adb.atm_client.states.BaseATMState;
+import by.bsuir.verkpavel.adb.atm_client.states.Stateble;
 import by.bsuir.verkpavel.adb.shared.IRemoteBank;
 
 public class NotConnectionATMState extends BaseATMState {

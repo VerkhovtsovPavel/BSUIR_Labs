@@ -13,7 +13,7 @@ public class ProjectProperties {
     }
 
 	public static String getSystemPassword() {
-	 //FIXME Chamge on real password 
+	 //FIXME Change on real password 
 		return "Nice try.)";
 	}
 }

@@ -12,7 +12,6 @@ import by.bsuir.verkpavel.adb.bank_server.data.entity.Credit;
 import by.bsuir.verkpavel.adb.bank_server.data.entity.TransactionsInfo;
 import by.bsuir.verkpavel.adb.bank_server.logic.AbstractDayCloser;
 
-//TODO Check work
 public class CreditDayCloser extends AbstractDayCloser {
 
     @Override

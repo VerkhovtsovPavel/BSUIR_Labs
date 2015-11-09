@@ -79,26 +79,26 @@ public class ATMScreen extends JFrame implements Stateble{
         mainPanel.setLayout(null);
 
         JButton functionnalButton1 = new JButton("");
-        functionnalButton1.setBounds(10, 306, 111, 23);
+        functionnalButton1.setBounds(10, 306, 110, 25);
         functionnalButton1.addMouseListener(new ATMHardButtonListener());
         functionnalButton1.setMnemonic(1);
         mainPanel.add(functionnalButton1);
 
         JButton functionnalButton2 = new JButton("");
-        functionnalButton2.setBounds(375, 306, 111, 23);
+        functionnalButton2.setBounds(375, 306, 110, 25);
         functionnalButton2.addMouseListener(new ATMHardButtonListener());
         functionnalButton2.setMnemonic(2);
         mainPanel.add(functionnalButton2);
 
         JButton functionnalButton3 = new JButton("");
-        functionnalButton3.setBounds(375, 352, 111, 23);
+        functionnalButton3.setBounds(375, 352, 110, 25);
         functionnalButton3.addMouseListener(new ATMHardButtonListener());
         functionnalButton3.setMnemonic(3);
         mainPanel.add(functionnalButton3);
 
         JButton functionnalButton4 = new JButton("");
         functionnalButton4.setMnemonic(4);
-        functionnalButton4.setBounds(10, 352, 111, 23);
+        functionnalButton4.setBounds(10, 352, 110, 25);
         functionnalButton4.addMouseListener(new ATMHardButtonListener());
         mainPanel.add(functionnalButton4);
     }
