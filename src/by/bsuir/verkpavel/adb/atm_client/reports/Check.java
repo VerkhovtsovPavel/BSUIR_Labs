@@ -1,29 +1,45 @@
 package by.bsuir.verkpavel.adb.atm_client.reports;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 
 import pl.jsolve.templ4docx.core.Docx;
-import pl.jsolve.templ4docx.core.DocxTemplate;
 import pl.jsolve.templ4docx.core.VariablePattern;
+import pl.jsolve.templ4docx.variable.TextVariable;
+import pl.jsolve.templ4docx.variable.Variables;
 
 public class Check {
-    public static void generateCheck(){
-        DocxTemplate template = new DocxTemplate();
-        template.setVariablePattern(new VariablePattern("#{", "}")); 
-        String path = "res/1.dotx";
-         
-        // prepare map of variables for template
-        Map<String, String> variables = new HashMap<String, String>();
-        variables.put("#{firstName}", "John");
-        variables.put("#{lastName}", "Sky");
-         
-        Docx filledTemplate = template.fillTemplate(path, variables);
-         
-        template.save(filledTemplate, "C://filledDocument.docx");
+    public void generateCheck() {
+        Docx docx = new Docx("res/checkTemp.docx");
+        docx.setVariablePattern(new VariablePattern("#{", "}"));
+
+        // preparing variables
+        Variables variables = new Variables();
+        variables.addTextVariable(new TextVariable("#{firstname}", "Lukasz"));
+        variables.addTextVariable(new TextVariable("#{lastname}", "Stypka"));
+
+        // fill template
+        docx.fillTemplate(variables);
+
+        // save filled .docx file
+        docx.save("reports/lstypka.docx");
     }
-    
-    public static void main(String[] args){
-        generateCheck();
+
+    // TODO Check on Linux
+    public void openCheck(String filePath) {
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().open(new File("reports/lstypka.docx"));
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        Check check = new Check();
+        check.generateCheck();
+        check.openCheck(null);
     }
 }
