@@ -6,18 +6,24 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import by.bsuir.verkpavel.adb.atm_client.states.ATMStateManager;
 import by.bsuir.verkpavel.adb.atm_client.states.BaseATMState;
 import by.bsuir.verkpavel.adb.atm_client.states.Stateble;
+import by.bsuir.verkpavel.adb.atm_client.ui.companetns.ImagePanel;
 import by.bsuir.verkpavel.adb.shared.IRemoteBank;
 
 //TODO Beatify UI 
@@ -26,6 +32,7 @@ public class ATMScreen extends JFrame implements Stateble{
 
     private BaseATMState currentState;
     private JPanel mainPanel;
+    private JLabel wIcon_1;
 
     private static void initialaze() {
         ATMScreen frame = new ATMScreen();
@@ -101,6 +108,21 @@ public class ATMScreen extends JFrame implements Stateble{
         functionnalButton4.setBounds(10, 352, 110, 25);
         functionnalButton4.addMouseListener(new ATMHardButtonListener());
         mainPanel.add(functionnalButton4);
+        
+        ImagePanel logo = new ImagePanel("res/2.jpg");
+        logo.setBounds(375, 306, 110, 25);
+        mainPanel.add(logo);
+        
+        JLabel wIcon = null;
+        try {
+			wIcon_1 = new JLabel(new ImageIcon(ImageIO.read(new File("res/2.jpg"))));
+			wIcon_1.setSize(200, 300);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        mainPanel.add(wIcon_1);
+        
     }
 
     public void switchState(BaseATMState newState) {
