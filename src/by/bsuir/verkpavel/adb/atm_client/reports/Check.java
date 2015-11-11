@@ -27,7 +27,6 @@ public class Check {
         docx.save("reports/"+checkFilePath);
     }
 
-    // TODO Check on Linux
     public void openCheck(String filePath) {
         try {
             if (Desktop.isDesktopSupported()) {

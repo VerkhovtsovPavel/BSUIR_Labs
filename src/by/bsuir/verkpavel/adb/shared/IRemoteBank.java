@@ -6,6 +6,6 @@ import java.rmi.RemoteException;
 //TODO Copy interface back to server
 public interface IRemoteBank extends Remote{
 
-    boolean isAuthenticate(String cardNumber, String pinCode) throws RemoteException;
+    boolean isAuthenticate(OperationList operationList) throws RemoteException;
 
 }

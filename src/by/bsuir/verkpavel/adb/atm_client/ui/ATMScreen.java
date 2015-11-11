@@ -64,7 +64,7 @@ public class ATMScreen extends JFrame implements Stateble {
         try {
             registry = LocateRegistry.getRegistry(null, 12345);
             server = (IRemoteBank) registry.lookup("RemoteBank");
-            firstState = "Authentication";
+            firstState = "EnterCardNumber";
         } catch (RemoteException | NotBoundException e) {
             firstState = "NoConnection";
         }
@@ -129,6 +129,7 @@ public class ATMScreen extends JFrame implements Stateble {
         currentState.off();
         currentState = newState;
         currentState.on();
+        mainPanel.repaint();
     }
 
     private class ATMHardButtonListener extends MouseAdapter {

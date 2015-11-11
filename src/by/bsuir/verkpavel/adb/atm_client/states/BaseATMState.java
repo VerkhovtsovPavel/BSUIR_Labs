@@ -5,19 +5,20 @@ import java.awt.Component;
 import javax.swing.JPanel;
 
 import by.bsuir.verkpavel.adb.shared.IRemoteBank;
+import by.bsuir.verkpavel.adb.shared.OperationList;
 
 public abstract class BaseATMState {
     private JPanel _atmPanel;
     private IRemoteBank _server;
     private ATMStateManager _stateManager;
     private Stateble _statable;
+    private static OperationList _operationList = new OperationList();
    
     public BaseATMState(JPanel atmPanel, IRemoteBank server, Stateble stateble, ATMStateManager stateManager){
         this._atmPanel = atmPanel;
         this._server = server;
         this._stateManager = stateManager;
         this._statable = stateble;
-        
     }
     
     public abstract void on();
@@ -43,10 +44,9 @@ public abstract class BaseATMState {
     public ATMStateManager getStateManager() {
         return _stateManager;
     }
+    
+    public OperationList getOperationList() {
+        return _operationList;
+    }
 
 }
-
-//TODO Implements concrete states
-//TODO Initialize add state specific control in static section on each state
-//TODO Implement add(on) and remove(off) methods and call repaint in add(on)
-
