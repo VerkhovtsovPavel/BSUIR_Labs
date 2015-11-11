@@ -21,7 +21,7 @@ public class NotConnectionATMState extends BaseATMState {
         bigNoConnectionLabel.setHorizontalAlignment(SwingConstants.CENTER);
         bigNoConnectionLabel.setFont(new Font("Arial Black", Font.ITALIC, 26));
         bigNoConnectionLabel.setBackground(Color.WHITE);
-        bigNoConnectionLabel.setBounds(133, 11, 236, 355);
+        bigNoConnectionLabel.setBounds(133, 31, 236, 355);
     }
 
     @Override

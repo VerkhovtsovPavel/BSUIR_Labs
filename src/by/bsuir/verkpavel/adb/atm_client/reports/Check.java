@@ -9,28 +9,29 @@ import pl.jsolve.templ4docx.core.VariablePattern;
 import pl.jsolve.templ4docx.variable.TextVariable;
 import pl.jsolve.templ4docx.variable.Variables;
 
+//TODO Add check template
+//TODO Add unique number in check number
 public class Check {
-    public void generateCheck() {
-        Docx docx = new Docx("res/checkTemp.docx");
+    private String checkFilePath = "1.docx";
+    
+     public void generateCheck() {
+        Docx docx = new Docx("res/reportsTemplates/checkTemp.docx");
         docx.setVariablePattern(new VariablePattern("#{", "}"));
 
-        // preparing variables
         Variables variables = new Variables();
         variables.addTextVariable(new TextVariable("#{firstname}", "Lukasz"));
         variables.addTextVariable(new TextVariable("#{lastname}", "Stypka"));
 
-        // fill template
         docx.fillTemplate(variables);
 
-        // save filled .docx file
-        docx.save("reports/lstypka.docx");
+        docx.save("reports/"+checkFilePath);
     }
 
     // TODO Check on Linux
     public void openCheck(String filePath) {
         try {
             if (Desktop.isDesktopSupported()) {
-                Desktop.getDesktop().open(new File("reports/lstypka.docx"));
+                Desktop.getDesktop().open(new File("reports/"+checkFilePath));
             }
         } catch (IOException ioe) {
             ioe.printStackTrace();
