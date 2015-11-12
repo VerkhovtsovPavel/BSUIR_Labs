@@ -37,16 +37,18 @@ public abstract class BaseATMState {
         return _server;
     }
     
-    public void setState(BaseATMState newState){
-        _statable.switchState(newState);
+    public void setState(States newState){
+        _statable.switchState(_stateManager.getState(newState));
     }
-
-    public ATMStateManager getStateManager() {
-        return _stateManager;
-    }
-    
+   
     public OperationList getOperationList() {
         return _operationList;
+    }
+    
+    protected void destroySession(){
+        //TODO Take your card
+        _operationList.clearList();
+        _statable.switchState(_stateManager.getState(States.EnterCardNumberATMState));
     }
 
 }

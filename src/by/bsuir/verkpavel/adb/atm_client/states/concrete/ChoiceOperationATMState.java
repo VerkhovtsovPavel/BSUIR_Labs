@@ -1,34 +1,68 @@
 package by.bsuir.verkpavel.adb.atm_client.states.concrete;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import by.bsuir.verkpavel.adb.atm_client.states.ATMStateManager;
 import by.bsuir.verkpavel.adb.atm_client.states.BaseATMState;
 import by.bsuir.verkpavel.adb.atm_client.states.Stateble;
+import by.bsuir.verkpavel.adb.atm_client.states.States;
 import by.bsuir.verkpavel.adb.shared.IRemoteBank;
 
 public class ChoiceOperationATMState extends BaseATMState {
+    private JLabel showBalance;
+    private JLabel endWork;
+    private JLabel withdrawal;
+    private JLabel createPayment;
 
     public ChoiceOperationATMState(JPanel atmPanel, IRemoteBank server, Stateble stateble, ATMStateManager stateManager) {
         super(atmPanel, server, stateble, stateManager);
-        // TODO Add UI elements
+         
+        showBalance = new JLabel("Баланс");
+        showBalance.setBounds(131, 428, 108, 14);
+  
+        endWork = new JLabel("Завершение работы");
+        endWork.setBounds(131, 472, 128, 14);
+              
+        withdrawal = new JLabel("Снятие средств");
+        withdrawal.setBounds(266, 428, 101, 14);
+             
+        createPayment = new JLabel("Платежи");
+        createPayment.setBounds(286, 472, 118, 14);
     }
 
     @Override
     public void on() {
-        // TODO Auto-generated method stub
-
+        addComponent(showBalance);
+        addComponent(endWork);
+        addComponent(withdrawal);
+        addComponent(createPayment);
     }
 
     @Override
     public void off() {
-        // TODO Auto-generated method stub
-
+        removeComponent(showBalance);
+        removeComponent(endWork);
+        removeComponent(withdrawal);
+        removeComponent(createPayment);
     }
 
     @Override
     public void processHardButton(int buttonNumber) {
-        // TODO Auto-generated method stub
+        switch (buttonNumber) {
+        case 1:
+            setState(States.ViewBalancesATMState);
+            break;
+        case 2:
+            setState(States.CashWithdrawalATMState);
+            break;
+        case 3:
+            destroySession();
+            break;
+        case 4:
+            setState(States.PaymentsATMState);
+            break;    
+        }
 
     }
 

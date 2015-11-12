@@ -2,6 +2,7 @@ package by.bsuir.verkpavel.adb.atm_client.ui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -20,9 +21,10 @@ import javax.swing.JPanel;
 import by.bsuir.verkpavel.adb.atm_client.states.ATMStateManager;
 import by.bsuir.verkpavel.adb.atm_client.states.BaseATMState;
 import by.bsuir.verkpavel.adb.atm_client.states.Stateble;
+import by.bsuir.verkpavel.adb.atm_client.states.States;
 import by.bsuir.verkpavel.adb.atm_client.ui.companetns.ImageLabel;
 import by.bsuir.verkpavel.adb.shared.IRemoteBank;
-
+//TODO Check reports
 public class ATMScreen extends JFrame implements Stateble {
     private static final long serialVersionUID = 2299108317475457681L;
 
@@ -58,15 +60,15 @@ public class ATMScreen extends JFrame implements Stateble {
     }
 
     private void initialazeStates() {
-        String firstState;
+        States firstState;
         Registry registry;
         IRemoteBank server = null;
         try {
             registry = LocateRegistry.getRegistry(null, 12345);
             server = (IRemoteBank) registry.lookup("RemoteBank");
-            firstState = "EnterCardNumber";
+            firstState = States.EnterCardNumberATMState;
         } catch (RemoteException | NotBoundException e) {
-            firstState = "NoConnection";
+            firstState = States.NotConnectionATMState;
         }
         currentState = new ATMStateManager(mainPanel, server, this).getState(firstState);
         currentState.on();
@@ -80,6 +82,7 @@ public class ATMScreen extends JFrame implements Stateble {
         mainPanel.setBackground(Color.GRAY);
         setContentPane(mainPanel);
         mainPanel.setLayout(null);
+        mainPanel.setFont(new Font("Arial Black", Font.ITALIC, 9));
 
         addStaticATMElements();
         addDynamicATMElements();
@@ -137,6 +140,7 @@ public class ATMScreen extends JFrame implements Stateble {
         public void mouseClicked(MouseEvent e) {
             int buttonNumber = ((JButton) e.getComponent()).getMnemonic();
             currentState.processHardButton(buttonNumber);
+            System.out.println(buttonNumber);
         }
     }
 }

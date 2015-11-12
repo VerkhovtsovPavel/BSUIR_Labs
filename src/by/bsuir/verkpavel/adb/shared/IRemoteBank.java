@@ -8,4 +8,10 @@ public interface IRemoteBank extends Remote{
 
     boolean isAuthenticate(OperationList operationList) throws RemoteException;
 
+    boolean executePayments(OperationList operationList) throws RemoteException;
+
+    boolean executeWithdrawal(OperationList operationList) throws RemoteException;
+
+    double getBalance(OperationList operationList) throws RemoteException;
+
 }

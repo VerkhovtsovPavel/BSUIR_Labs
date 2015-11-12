@@ -19,4 +19,22 @@ public class RemoteBank extends UnicastRemoteObject implements IRemoteBank{
         return cardNumber.equals(pinCode);
     }
 
+    @Override
+    public boolean executePayments(OperationList operationList) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public boolean executeWithdrawal(OperationList operationList) throws RemoteException {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public double getBalance(OperationList operationList) throws RemoteException {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
 }

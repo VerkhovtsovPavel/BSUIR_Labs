@@ -1,4 +1,4 @@
-package by.bsuir.verkpavel.adb.atm_client.states.concrete;
+package by.bsuir.verkpavel.adb.atm_client.states.concrete.authentication;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -7,12 +7,14 @@ import javax.swing.JTextField;
 import by.bsuir.verkpavel.adb.atm_client.states.ATMStateManager;
 import by.bsuir.verkpavel.adb.atm_client.states.BaseATMState;
 import by.bsuir.verkpavel.adb.atm_client.states.Stateble;
+import by.bsuir.verkpavel.adb.atm_client.states.States;
 import by.bsuir.verkpavel.adb.shared.IRemoteBank;
 
 public class EnterCardNumberATMState extends BaseATMState {
     
     private JTextField cardNumberTb;
     private JLabel cardNumberLb;
+    private JLabel apply;
 
 
     public EnterCardNumberATMState(JPanel atmPanel, IRemoteBank server, Stateble stateble, ATMStateManager stateManager) {
@@ -25,18 +27,23 @@ public class EnterCardNumberATMState extends BaseATMState {
         cardNumberTb = new JTextField();
         cardNumberTb.setBounds(156, 259, 205, 20);
         cardNumberTb.setColumns(10);
+        
+        apply = new JLabel("Подтветдить");
+        apply.setBounds(286, 472, 118, 14);
     }
 
     @Override
     public void on() {
         addComponent(cardNumberTb);
         addComponent(cardNumberLb);
+        addComponent(apply);
     }
 
     @Override
     public void off() {
         removeComponent(cardNumberLb);
         removeComponent(cardNumberTb);
+        removeComponent(apply);
         cardNumberTb.setText("");
     }
 
@@ -45,7 +52,7 @@ public class EnterCardNumberATMState extends BaseATMState {
        switch(buttonNumber){
            case 4:
                getOperationList().addOperation("cardNumber", getCardNumber());
-               setState(getStateManager().getState("EnterPinCode"));
+               setState(States.EnterPinCodeATMState);
                break;
            case 3:
                this.cardNumberTb.setText("");
