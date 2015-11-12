@@ -1,9 +1,12 @@
 package by.bsuir.verkpavel.adb.atm_client.states.concrete.authentication;
 
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import by.bsuir.verkpavel.adb.atm_client.resources.ProjectProperties;
 import by.bsuir.verkpavel.adb.atm_client.states.ATMStateManager;
 import by.bsuir.verkpavel.adb.atm_client.states.BaseATMState;
 import by.bsuir.verkpavel.adb.atm_client.states.Stateble;
@@ -11,23 +14,22 @@ import by.bsuir.verkpavel.adb.atm_client.states.States;
 import by.bsuir.verkpavel.adb.shared.IRemoteBank;
 
 public class EnterCardNumberATMState extends BaseATMState {
-    
+
     private JTextField cardNumberTb;
     private JLabel cardNumberLb;
     private JLabel apply;
 
-
     public EnterCardNumberATMState(JPanel atmPanel, IRemoteBank server, Stateble stateble, ATMStateManager stateManager) {
         super(atmPanel, server, stateble, stateManager);
 
-      //TODO Add card number format
+        // TODO Add card number format
         cardNumberLb = new JLabel("Номер карты");
         cardNumberLb.setBounds(156, 234, 100, 14);
-        
-        cardNumberTb = new JTextField();
+
+        cardNumberTb = new JFormattedTextField(ProjectProperties.getCardNumberFormatter());
         cardNumberTb.setBounds(156, 259, 205, 20);
         cardNumberTb.setColumns(10);
-        
+
         apply = new JLabel("Подтветдить");
         apply.setBounds(286, 472, 118, 14);
     }
@@ -49,19 +51,22 @@ public class EnterCardNumberATMState extends BaseATMState {
 
     @Override
     public void processHardButton(int buttonNumber) {
-       switch(buttonNumber){
-           case 4:
-               getOperationList().addOperation("cardNumber", getCardNumber());
-               setState(States.EnterPinCodeATMState);
-               break;
-           case 3:
-               this.cardNumberTb.setText("");
-               break;
-       }
+        switch (buttonNumber) {
+        case 4:
+            if (getCardNumber().replaceAll(" ", "").length() == 16) {
+                getOperationList().addOperation("cardNumber", getCardNumber());
+                setState(States.EnterPinCodeATMState);
+            }else{
+                JOptionPane.showMessageDialog(null, "Неверный номер карты", "Error", JOptionPane.PLAIN_MESSAGE);
+            }
+            break;
+        case 3:
+            this.cardNumberTb.setText("");
+            break;
+        }
 
     }
 
-   
     private String getCardNumber() {
         return this.cardNumberTb.getText();
     }

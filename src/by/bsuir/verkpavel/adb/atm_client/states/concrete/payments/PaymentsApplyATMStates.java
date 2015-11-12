@@ -3,6 +3,7 @@ package by.bsuir.verkpavel.adb.atm_client.states.concrete.payments;
 import java.rmi.RemoteException;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -97,10 +98,10 @@ public class PaymentsApplyATMStates extends BaseATMState{
         case 4:
             try {
                 if(getServer().executePayments(getOperationList())){
-                    //TODO Dialog all OK
+                    JOptionPane.showMessageDialog(null, "Платеж успешно произведен", "Info", JOptionPane.PLAIN_MESSAGE);
                     //TODO Make check
                 }else{
-                    //TODO Dialog "Can't make payments"
+                    JOptionPane.showMessageDialog(null, "Недостаточно средств на счете", "Error", JOptionPane.PLAIN_MESSAGE);
                 }
                 setState(States.ChoiceOperationATMState);
             } catch (RemoteException e) {

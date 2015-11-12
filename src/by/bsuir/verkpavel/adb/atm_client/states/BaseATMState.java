@@ -2,6 +2,7 @@ package by.bsuir.verkpavel.adb.atm_client.states;
 
 import java.awt.Component;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import by.bsuir.verkpavel.adb.shared.IRemoteBank;
@@ -46,7 +47,7 @@ public abstract class BaseATMState {
     }
     
     protected void destroySession(){
-        //TODO Take your card
+        JOptionPane.showMessageDialog(null, "Заберите вашу карточку", "Error", JOptionPane.PLAIN_MESSAGE);
         _operationList.clearList();
         _statable.switchState(_stateManager.getState(States.EnterCardNumberATMState));
     }

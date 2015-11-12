@@ -51,7 +51,6 @@ public class BalanceInfoATMState extends BaseATMState {
     public void off() {
         removeComponent(sumLb);
         removeComponent(sumTf);
-
     }
 
     @Override

@@ -140,7 +140,6 @@ public class ATMScreen extends JFrame implements Stateble {
         public void mouseClicked(MouseEvent e) {
             int buttonNumber = ((JButton) e.getComponent()).getMnemonic();
             currentState.processHardButton(buttonNumber);
-            System.out.println(buttonNumber);
         }
     }
 }

@@ -1,15 +1,16 @@
 package by.bsuir.verkpavel.adb.atm_client.states.concrete.payments;
 
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import by.bsuir.verkpavel.adb.atm_client.resources.ProjectProperties;
 import by.bsuir.verkpavel.adb.atm_client.states.ATMStateManager;
 import by.bsuir.verkpavel.adb.atm_client.states.BaseATMState;
 import by.bsuir.verkpavel.adb.atm_client.states.Stateble;
 import by.bsuir.verkpavel.adb.atm_client.states.States;
 import by.bsuir.verkpavel.adb.shared.IRemoteBank;
-//TODO Add format to phone number
 //TODO Add format to sum
 public class PaymentsDetailsATMState extends BaseATMState {
 
@@ -25,8 +26,9 @@ public class PaymentsDetailsATMState extends BaseATMState {
 
         phoneNumberLb = new JLabel("Номер телефона");
         phoneNumberLb.setBounds(157, 236, 128, 14);
+        
+        phoneNumberTf = new JFormattedTextField(ProjectProperties.getPhoneNumberFormatter());
 
-        phoneNumberTf = new JTextField();
         phoneNumberTf.setBounds(157, 259, 171, 20);
         phoneNumberTf.setColumns(10);
 

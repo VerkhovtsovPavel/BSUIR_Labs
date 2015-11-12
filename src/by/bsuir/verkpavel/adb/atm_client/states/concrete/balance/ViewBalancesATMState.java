@@ -14,7 +14,7 @@ public class ViewBalancesATMState extends BaseATMState {
     private JLabel endWork;
     private JLabel showCreditBalance;
     private JLabel showDebitBalance;
-    //TODO Make show labels larger
+
     public ViewBalancesATMState(JPanel atmPanel, IRemoteBank server, Stateble stateble, ATMStateManager stateManager) {
         super(atmPanel, server, stateble, stateManager);
         

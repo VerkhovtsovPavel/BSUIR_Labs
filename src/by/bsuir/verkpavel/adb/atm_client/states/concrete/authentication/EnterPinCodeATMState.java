@@ -3,7 +3,9 @@ package by.bsuir.verkpavel.adb.atm_client.states.concrete.authentication;
 import java.rmi.RemoteException;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import by.bsuir.verkpavel.adb.atm_client.states.ATMStateManager;
@@ -22,17 +24,18 @@ public class EnterPinCodeATMState extends BaseATMState {
 
     public EnterPinCodeATMState(JPanel atmPanel, IRemoteBank server, Stateble stateble, ATMStateManager stateManager) {
         super(atmPanel, server, stateble, stateManager);
-        //TODO Add pin-code format
+        // TODO Add pin-code format
         pinCodelb = new JLabel("Пин код");
         pinCodelb.setBounds(156, 234, 100, 14);
-
-        pinCodeTb = new JTextField();
-        pinCodeTb.setColumns(10);
-        pinCodeTb.setBounds(156, 259, 205, 20);
         
+     // TODO Add pin-code format (length)
+        pinCodeTb = new JPasswordField();
+        pinCodeTb.setColumns(4);
+        pinCodeTb.setBounds(156, 259, 205, 20);
+
         endWork = new JLabel("Завершение работы");
         endWork.setBounds(131, 472, 128, 14);
-        
+
         apply = new JLabel("Подтветдить");
         apply.setBounds(286, 472, 118, 14);
     }
@@ -65,7 +68,7 @@ public class EnterPinCodeATMState extends BaseATMState {
             pinCodeTb.setText("");
         case 3:
             destroySession();
-            break;    
+            break;
         }
     }
 
@@ -75,12 +78,11 @@ public class EnterPinCodeATMState extends BaseATMState {
                 setState(States.ChoiceOperationATMState);
             } else {
                 if (attemptsCounter < 2) {
-                    // TODO Show dialog Incorrect pin
+                    JOptionPane.showMessageDialog(null, "Неверный пин код", "Error", JOptionPane.PLAIN_MESSAGE);
                     this.pinCodeTb.setText("");
-                    getOperationList().removeOperation("pinCode");
                     attemptsCounter++;
                 } else {
-                    // TODO Show dialog incorrect pin three times
+                    JOptionPane.showMessageDialog(null, "Неверный пин код введен три раза. Сессия завершена", "Error", JOptionPane.PLAIN_MESSAGE);
                     attemptsCounter = 0;
                     destroySession();
                 }

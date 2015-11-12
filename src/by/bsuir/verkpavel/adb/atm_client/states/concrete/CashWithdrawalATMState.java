@@ -3,17 +3,19 @@ package by.bsuir.verkpavel.adb.atm_client.states.concrete;
 import java.rmi.RemoteException;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import by.bsuir.verkpavel.adb.atm_client.states.ATMStateManager;
 import by.bsuir.verkpavel.adb.atm_client.states.BaseATMState;
 import by.bsuir.verkpavel.adb.atm_client.states.Stateble;
+import by.bsuir.verkpavel.adb.atm_client.states.States;
 import by.bsuir.verkpavel.adb.shared.IRemoteBank;
 
 //TODO Enable necessary sum show pop-up message
 //TODO Disable necessary sum show pop-up message
-//TODO Add money folmat
+//TODO Add money format
 public class CashWithdrawalATMState extends BaseATMState {
 
     private JLabel endWork;
@@ -57,10 +59,16 @@ public class CashWithdrawalATMState extends BaseATMState {
         case 4:
             getOperationList().addOperation("withdrawalSum", getSum());
             try {
-                getServer().executeWithdrawal(getOperationList());
+                if(getServer().executeWithdrawal(getOperationList())){
+                    JOptionPane.showMessageDialog(null, "Заберите деньги", "Info", JOptionPane.PLAIN_MESSAGE);
+                    //TODO Print check
+                    setState(States.ChoiceOperationATMState);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Недостаточно средств на счете", "Error", JOptionPane.PLAIN_MESSAGE);
+                    setState(States.ChoiceOperationATMState);
+                }
             } catch (RemoteException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                setState(States.NotConnectionATMState);
             }
             break;    
         }
