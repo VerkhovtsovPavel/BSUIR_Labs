@@ -232,4 +232,22 @@ public class AccountProvider {
             e.printStackTrace();
         }
     }
+
+    public Account getAccountByOrganization(String organization) {
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            ResultSet accounts = statement.executeQuery("SELECT * FROM `organization` WHERE `description` = "
+                    + organization);
+            accounts.next();
+
+            return getAccountFromResultSet(accounts);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+
+    }
+
 }

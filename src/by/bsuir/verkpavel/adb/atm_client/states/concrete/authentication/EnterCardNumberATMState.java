@@ -12,6 +12,7 @@ import by.bsuir.verkpavel.adb.atm_client.states.BaseATMState;
 import by.bsuir.verkpavel.adb.atm_client.states.Stateble;
 import by.bsuir.verkpavel.adb.atm_client.states.States;
 import by.bsuir.verkpavel.adb.shared.IRemoteBank;
+import by.bsuir.verkpavel.adb.shared.OperationType;
 
 public class EnterCardNumberATMState extends BaseATMState {
 
@@ -22,12 +23,12 @@ public class EnterCardNumberATMState extends BaseATMState {
     public EnterCardNumberATMState(JPanel atmPanel, IRemoteBank server, Stateble stateble, ATMStateManager stateManager) {
         super(atmPanel, server, stateble, stateManager);
 
-        // TODO Add card number format
+        
         cardNumberLb = new JLabel("Номер карты");
         cardNumberLb.setBounds(156, 234, 100, 14);
 
         cardNumberTb = new JFormattedTextField(ProjectProperties.getCardNumberFormatter());
-        cardNumberTb.setBounds(156, 259, 205, 20);
+        cardNumberTb.setBounds(156, 259, 165, 20);
         cardNumberTb.setColumns(10);
 
         apply = new JLabel("Подтветдить");
@@ -54,7 +55,7 @@ public class EnterCardNumberATMState extends BaseATMState {
         switch (buttonNumber) {
         case 4:
             if (getCardNumber().replaceAll(" ", "").length() == 16) {
-                getOperationList().addOperation("cardNumber", getCardNumber());
+                getOperationList().addOperation(OperationType.CardNumber, getCardNumber());
                 setState(States.EnterPinCodeATMState);
             }else{
                 JOptionPane.showMessageDialog(null, "Неверный номер карты", "Error", JOptionPane.PLAIN_MESSAGE);

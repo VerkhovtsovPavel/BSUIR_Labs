@@ -3,34 +3,45 @@ package by.bsuir.verkpavel.adb.atm_client.reports;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 import pl.jsolve.templ4docx.core.Docx;
+import pl.jsolve.templ4docx.core.DocxTemplate;
 import pl.jsolve.templ4docx.core.VariablePattern;
-import pl.jsolve.templ4docx.variable.TextVariable;
-import pl.jsolve.templ4docx.variable.Variables;
+//TODO Change check templates
+import by.bsuir.verkpavel.adb.shared.OperationList;
 
-//TODO Add check template
-//TODO Add unique number in check number
 public class Check {
-    private String checkFilePath = "1.docx";
-    
-     public void generateCheck() {
-        Docx docx = new Docx("res/reportsTemplates/checkTemp.docx");
-        docx.setVariablePattern(new VariablePattern("#{", "}"));
+    private String checkFilePath;
+    private OperationList operationList;
+    private CheckTypes type;
 
-        Variables variables = new Variables();
-        variables.addTextVariable(new TextVariable("#{firstname}", "Lukasz"));
-        variables.addTextVariable(new TextVariable("#{lastname}", "Stypka"));
-
-        docx.fillTemplate(variables);
-
-        docx.save("reports/"+checkFilePath);
+    public Check(OperationList operationList, CheckTypes type) {
+        this.checkFilePath = generateCheckID() + ".docx";
+        this.operationList = operationList;
+        this.type = type;
     }
 
-    public void openCheck(String filePath) {
+    public void generateCheck() {
+        DocxTemplate template = new DocxTemplate();
+        template.setVariablePattern(new VariablePattern("#{", "}")); 
+         
+        // TODO fill all possible fields
+        Map<String, String> variables = new HashMap<String, String>();
+        variables.put("#{firstName}", "John");
+        variables.put("#{lastName}", "Sky");
+         
+        Docx filledTemplate = template.fillTemplate(getTemplatePathByType(type), variables);
+         
+        template.save(filledTemplate, "reports/" + checkFilePath);
+    }
+
+    public void openCheck() {
         try {
             if (Desktop.isDesktopSupported()) {
-                Desktop.getDesktop().open(new File("reports/"+checkFilePath));
+                Desktop.getDesktop().open(new File("reports/" + checkFilePath));
             }
         } catch (IOException ioe) {
             ioe.printStackTrace();
@@ -38,8 +49,33 @@ public class Check {
     }
 
     public static void main(String[] args) {
-        Check check = new Check();
+        Check check = new Check(null, CheckTypes.BalanceCheck);
         check.generateCheck();
-        check.openCheck(null);
+        check.openCheck();
+    }
+
+    private String generateCheckID() {
+        StringBuffer buffer = new StringBuffer();
+        Random random = new Random();
+        for (int i = 0; i < 15; i++) {
+            buffer.append(random.nextInt(10));
+        }
+        return buffer.toString();
+    }
+
+    private String getTemplatePathByType(CheckTypes type) {
+        String templatePath = "res/reportsTemplates/";
+        switch (type) {
+        case BalanceCheck:
+            templatePath += "balanceCheckTemp.docx";
+            break;
+        case CashWithdrawalCheck:
+            templatePath += "cashWithdrawalCheckTemp.docx";
+            break;
+        case PaymentsCheck:
+            templatePath += "paymentsCheckTemp.docx";
+            break;
+        }
+        return templatePath;
     }
 }

@@ -24,7 +24,7 @@ import by.bsuir.verkpavel.adb.atm_client.states.Stateble;
 import by.bsuir.verkpavel.adb.atm_client.states.States;
 import by.bsuir.verkpavel.adb.atm_client.ui.companetns.ImageLabel;
 import by.bsuir.verkpavel.adb.shared.IRemoteBank;
-//TODO Check reports
+
 public class ATMScreen extends JFrame implements Stateble {
     private static final long serialVersionUID = 2299108317475457681L;
 

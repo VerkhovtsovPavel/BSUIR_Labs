@@ -11,7 +11,8 @@ import by.bsuir.verkpavel.adb.atm_client.states.BaseATMState;
 import by.bsuir.verkpavel.adb.atm_client.states.Stateble;
 import by.bsuir.verkpavel.adb.atm_client.states.States;
 import by.bsuir.verkpavel.adb.shared.IRemoteBank;
-//TODO Add format to sum
+import by.bsuir.verkpavel.adb.shared.OperationType;
+
 public class PaymentsDetailsATMState extends BaseATMState {
 
     private JLabel phoneNumberLb;
@@ -70,8 +71,8 @@ public class PaymentsDetailsATMState extends BaseATMState {
     public void processHardButton(int buttonNumber) {
         switch (buttonNumber) {
         case 4:
-            getOperationList().addOperation("phoneNumber", getPhoneNumber());
-            getOperationList().addOperation("paymentsSum", getSum());
+            getOperationList().addOperation(OperationType.PhoneNumber, getPhoneNumber());
+            getOperationList().addOperation(OperationType.OperationSum, getSum());
             setState(States.PaymentsApplyATMStates);
             break;
         case 3:

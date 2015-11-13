@@ -7,11 +7,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import by.bsuir.verkpavel.adb.atm_client.reports.Check;
+import by.bsuir.verkpavel.adb.atm_client.reports.CheckTypes;
 import by.bsuir.verkpavel.adb.atm_client.states.ATMStateManager;
 import by.bsuir.verkpavel.adb.atm_client.states.BaseATMState;
 import by.bsuir.verkpavel.adb.atm_client.states.Stateble;
 import by.bsuir.verkpavel.adb.atm_client.states.States;
 import by.bsuir.verkpavel.adb.shared.IRemoteBank;
+import by.bsuir.verkpavel.adb.shared.OperationType;
 
 public class PaymentsApplyATMStates extends BaseATMState{
 
@@ -70,13 +73,13 @@ public class PaymentsApplyATMStates extends BaseATMState{
     }
 
     private void fillFields() {    
-        phoneNumberTf.setText((String) getOperationList().getOperation("phoneNumber"));
+        phoneNumberTf.setText((String) getOperationList().getOperation(OperationType.PhoneNumber));
         phoneNumberTf.setEnabled(false);
         
-        sumTf.setText(""+getOperationList().getOperation("paymentsSum"));
+        sumTf.setText(""+getOperationList().getOperation(OperationType.OperationSum));
         sumTf.setEnabled(false);
         
-        operatorTf.setText((String) getOperationList().getOperation("mobileOperator"));
+        operatorTf.setText((String) getOperationList().getOperation(OperationType.Operator));
         operatorTf.setEnabled(false);  
     }
 
@@ -99,7 +102,9 @@ public class PaymentsApplyATMStates extends BaseATMState{
             try {
                 if(getServer().executePayments(getOperationList())){
                     JOptionPane.showMessageDialog(null, "Платеж успешно произведен", "Info", JOptionPane.PLAIN_MESSAGE);
-                    //TODO Make check
+                    Check check = new Check(getOperationList(), CheckTypes.PaymentsCheck);
+                    check.generateCheck();
+                    check.openCheck();
                 }else{
                     JOptionPane.showMessageDialog(null, "Недостаточно средств на счете", "Error", JOptionPane.PLAIN_MESSAGE);
                 }
@@ -112,8 +117,8 @@ public class PaymentsApplyATMStates extends BaseATMState{
             destroySession();
             break;
         case 2:
-            getOperationList().removeOperation("phoneNumber");
-            getOperationList().removeOperation("paymentsSum");  
+            getOperationList().removeOperation(OperationType.PhoneNumber);
+            getOperationList().removeOperation(OperationType.OperationSum);  
             setState(States.PaymentsDetailsATMState);
         default:
             break;

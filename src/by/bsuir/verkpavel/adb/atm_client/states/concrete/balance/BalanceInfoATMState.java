@@ -6,33 +6,49 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import by.bsuir.verkpavel.adb.atm_client.reports.Check;
+import by.bsuir.verkpavel.adb.atm_client.reports.CheckTypes;
 import by.bsuir.verkpavel.adb.atm_client.states.ATMStateManager;
 import by.bsuir.verkpavel.adb.atm_client.states.BaseATMState;
 import by.bsuir.verkpavel.adb.atm_client.states.Stateble;
 import by.bsuir.verkpavel.adb.atm_client.states.States;
 import by.bsuir.verkpavel.adb.shared.IRemoteBank;
 
-//TODO Add button to print check
 public class BalanceInfoATMState extends BaseATMState {
 
     private JLabel sumLb;
     private JTextField sumTf;
+    private JLabel endWork;
+    private JLabel printCheck;
+    private JLabel back;
 
     public BalanceInfoATMState(JPanel atmPanel, IRemoteBank server, Stateble stateble, ATMStateManager stateManager) {
         super(atmPanel, server, stateble, stateManager);
-        
+
         sumLb = new JLabel("Остаток на счете");
         sumLb.setBounds(157, 290, 128, 14);
 
         sumTf = new JTextField();
         sumTf.setColumns(10);
         sumTf.setBounds(157, 313, 171, 20);
+        
+        endWork = new JLabel("Завершение работы");
+        endWork.setBounds(131, 472, 128, 14);
+             
+        printCheck = new JLabel("Распечатать");
+        printCheck.setBounds(266, 428, 101, 14);
+        
+        back = new JLabel("Назад");
+        back.setBounds(131, 428, 108, 14);
     }
 
     @Override
     public void on() {
-       addComponent(sumLb);
-       addComponent(sumTf);
+        addComponent(sumLb);
+        addComponent(sumTf);
+        addComponent(endWork);
+        addComponent(printCheck);
+        addComponent(back);
         fillFields();
 
     }
@@ -40,7 +56,7 @@ public class BalanceInfoATMState extends BaseATMState {
     private void fillFields() {
         try {
             double balance = getServer().getBalance(getOperationList());
-            sumTf.setText(""+balance);
+            sumTf.setText("" + balance);
         } catch (RemoteException e) {
             setState(States.NotConnectionATMState);
         }
@@ -51,11 +67,26 @@ public class BalanceInfoATMState extends BaseATMState {
     public void off() {
         removeComponent(sumLb);
         removeComponent(sumTf);
+        removeComponent(endWork);
+        removeComponent(printCheck);
+        removeComponent(back);
     }
 
     @Override
     public void processHardButton(int buttonNumber) {
-        // TODO Auto-generated method stub
+        switch (buttonNumber) {
+        case 1:
+            setState(States.ChoiceOperationATMState);
+            break;
+        case 2:
+            Check check = new Check(getOperationList(), CheckTypes.BalanceCheck);
+            check.generateCheck();
+            check.openCheck();
+            break;
+        case 3:
+            destroySession();
+            break;
+        }
 
     }
 

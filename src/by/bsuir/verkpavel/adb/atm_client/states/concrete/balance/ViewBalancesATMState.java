@@ -8,6 +8,7 @@ import by.bsuir.verkpavel.adb.atm_client.states.BaseATMState;
 import by.bsuir.verkpavel.adb.atm_client.states.Stateble;
 import by.bsuir.verkpavel.adb.atm_client.states.States;
 import by.bsuir.verkpavel.adb.shared.IRemoteBank;
+import by.bsuir.verkpavel.adb.shared.OperationType;
 
 public class ViewBalancesATMState extends BaseATMState {
     
@@ -47,11 +48,11 @@ public class ViewBalancesATMState extends BaseATMState {
     public void processHardButton(int buttonNumber) {
         switch (buttonNumber) {
         case 1:
-            getOperationList().addOperation("accountType", "credit");
+            getOperationList().addOperation(OperationType.AccountType, "credit");
             setState(States.BalanceInfoATMState);
             break;
         case 2:
-            getOperationList().addOperation("accountType", "debit");
+            getOperationList().addOperation(OperationType.AccountType, "debit");
             setState(States.BalanceInfoATMState);
             break;    
         case 3:
