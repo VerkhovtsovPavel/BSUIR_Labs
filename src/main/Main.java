@@ -1,18 +1,18 @@
 package main;
 
-import random.SignalRandomParameters;
+import signals.Drawable;
+import signals.PolyharmonicsSignal;
+import signals.SimpleSignal;
 
 public class Main {
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-    	
-       for(int i=0; i<2000; i++){
-    	   System.out.println(SignalRandomParameters.getRandomAmplitude());
-       }
-
+    private static int N = 1024;
+    
+    public static void main(String[] args){
+        Drawable testSignal = new SimpleSignal(10, Math.PI/2, 1, N);
+        testSignal.buildGraph("Test Signal (Original)");
+        
+        Drawable polySignal = new PolyharmonicsSignal(N);
+        polySignal.buildGraph("Polyharmonics Signal (Original)");
+   
     }
-
 }
