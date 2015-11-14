@@ -17,7 +17,7 @@ public class NotConnectionATMState extends BaseATMState {
 
     public NotConnectionATMState(JPanel atmPanel, IRemoteBank server, Stateble stateble, ATMStateManager stateManager) {
         super(atmPanel, server, stateble, stateManager);
-        bigNoConnectionLabel =new JLabel("No connection");
+        bigNoConnectionLabel =new JLabel("Нет соединения");
         bigNoConnectionLabel.setHorizontalAlignment(SwingConstants.CENTER);
         bigNoConnectionLabel.setFont(new Font("Arial Black", Font.ITALIC, 26));
         bigNoConnectionLabel.setBackground(Color.WHITE);

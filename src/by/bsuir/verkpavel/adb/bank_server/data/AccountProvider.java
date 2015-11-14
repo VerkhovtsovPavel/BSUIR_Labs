@@ -237,12 +237,14 @@ public class AccountProvider {
         Statement statement;
         try {
             statement = connection.createStatement();
-            ResultSet accounts = statement.executeQuery("SELECT * FROM `organization` WHERE `description` = "
-                    + organization);
-            accounts.next();
-
-            return getAccountFromResultSet(accounts);
-
+            ResultSet org = statement.executeQuery("SELECT * FROM `organization` WHERE `description` = '"
+                    + organization+"'");
+            org.next();
+            int account_id = org.getInt("account_id");
+            
+            Account account = new Account();
+            account.id = account_id;
+            return account;
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -3,6 +3,7 @@ package by.bsuir.verkpavel.adb.atm_client.states.concrete.balance;
 import java.rmi.RemoteException;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -13,6 +14,7 @@ import by.bsuir.verkpavel.adb.atm_client.states.BaseATMState;
 import by.bsuir.verkpavel.adb.atm_client.states.Stateble;
 import by.bsuir.verkpavel.adb.atm_client.states.States;
 import by.bsuir.verkpavel.adb.shared.IRemoteBank;
+import by.bsuir.verkpavel.adb.shared.OperationType;
 
 public class BalanceInfoATMState extends BaseATMState {
 
@@ -21,6 +23,7 @@ public class BalanceInfoATMState extends BaseATMState {
     private JLabel endWork;
     private JLabel printCheck;
     private JLabel back;
+    private double balance;
 
     public BalanceInfoATMState(JPanel atmPanel, IRemoteBank server, Stateble stateble, ATMStateManager stateManager) {
         super(atmPanel, server, stateble, stateManager);
@@ -31,13 +34,13 @@ public class BalanceInfoATMState extends BaseATMState {
         sumTf = new JTextField();
         sumTf.setColumns(10);
         sumTf.setBounds(157, 313, 171, 20);
-        
+
         endWork = new JLabel("Завершение работы");
         endWork.setBounds(131, 472, 128, 14);
-             
+
         printCheck = new JLabel("Распечатать");
-        printCheck.setBounds(266, 428, 101, 14);
-        
+        printCheck.setBounds(286, 428, 101, 14);
+
         back = new JLabel("Назад");
         back.setBounds(131, 428, 108, 14);
     }
@@ -55,8 +58,14 @@ public class BalanceInfoATMState extends BaseATMState {
 
     private void fillFields() {
         try {
-            double balance = getServer().getBalance(getOperationList());
-            sumTf.setText("" + balance);
+            balance = getServer().getBalance(getOperationList());
+            if (Double.isNaN(balance)) {
+                JOptionPane.showMessageDialog(null, "С данной карточкой не связат депозитный счет", "Error",
+                        JOptionPane.PLAIN_MESSAGE);
+                setState(States.ViewBalancesATMState);
+            } else {
+                sumTf.setText(String.format("%.2f", balance));
+            }
         } catch (RemoteException e) {
             setState(States.NotConnectionATMState);
         }
@@ -79,6 +88,7 @@ public class BalanceInfoATMState extends BaseATMState {
             setState(States.ChoiceOperationATMState);
             break;
         case 2:
+            getOperationList().addOperation(OperationType.Balance, balance);
             Check check = new Check(getOperationList(), CheckTypes.BalanceCheck);
             check.generateCheck();
             check.openCheck();

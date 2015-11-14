@@ -14,7 +14,7 @@ public class Main {
         RemoteBank rb = new RemoteBank();
         Registry registry = LocateRegistry.createRegistry(12345);
         registry.bind("RemoteBank", rb);
-        System.out.println("Ready to do time");
+        System.out.println("Ready to work");
         MainView.create();
     }
 }

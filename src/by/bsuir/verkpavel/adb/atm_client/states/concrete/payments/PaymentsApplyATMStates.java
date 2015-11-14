@@ -27,6 +27,7 @@ public class PaymentsApplyATMStates extends BaseATMState{
     private JTextField operatorTf;
     private JLabel apply;
     private JLabel endWork;
+    private JLabel back;
 
     public PaymentsApplyATMStates(JPanel atmPanel, IRemoteBank server, Stateble stateble, ATMStateManager stateManager) {
         super(atmPanel, server, stateble, stateManager);
@@ -57,6 +58,9 @@ public class PaymentsApplyATMStates extends BaseATMState{
         
         endWork = new JLabel("Завершение работы");
         endWork.setBounds(131, 472, 128, 14);
+        
+        back = new JLabel("Назад");
+        back.setBounds(286, 428, 101, 14);
     }
 
     @Override
@@ -69,6 +73,7 @@ public class PaymentsApplyATMStates extends BaseATMState{
         addComponent(sumTf);
         addComponent(apply);
         addComponent(endWork);
+        addComponent(back);
         fillFields();
     }
 
@@ -76,7 +81,7 @@ public class PaymentsApplyATMStates extends BaseATMState{
         phoneNumberTf.setText((String) getOperationList().getOperation(OperationType.PhoneNumber));
         phoneNumberTf.setEnabled(false);
         
-        sumTf.setText(""+getOperationList().getOperation(OperationType.OperationSum));
+        sumTf.setText(String.format("%.2f", getOperationList().getOperation(OperationType.OperationSum)));
         sumTf.setEnabled(false);
         
         operatorTf.setText((String) getOperationList().getOperation(OperationType.Operator));
@@ -93,6 +98,7 @@ public class PaymentsApplyATMStates extends BaseATMState{
         removeComponent(sumTf);
         removeComponent(apply);
         removeComponent(endWork);
+        removeComponent(back);
     }
 
     @Override
@@ -106,7 +112,7 @@ public class PaymentsApplyATMStates extends BaseATMState{
                     check.generateCheck();
                     check.openCheck();
                 }else{
-                    JOptionPane.showMessageDialog(null, "Недостаточно средств на счете", "Error", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Во время платежа произошла ошибка", "Error", JOptionPane.PLAIN_MESSAGE);
                 }
                 setState(States.ChoiceOperationATMState);
             } catch (RemoteException e) {

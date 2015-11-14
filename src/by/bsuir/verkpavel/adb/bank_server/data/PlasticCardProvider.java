@@ -35,20 +35,29 @@ public class PlasticCardProvider {
             plasticCardSet.next();
             int account = plasticCardSet.getInt(type + "_id");
             List<TransactionsInfo> transactions;
-            if (type.equals("debit")) {
-                Deposit deposit = new Deposit();
-                deposit.id = account;
-                transactions = AccountProvider.getInstance().getTransactionsByAccount(
-                        AccountProvider.getInstance().getAccountByDeposit(deposit)[1]);
+            if (account == 0) {
+                balance = Double.NaN;
             } else {
-                Credit credit = new Credit();
-                credit.id = account;
-                transactions = AccountProvider.getInstance().getTransactionsByAccount(
-                        AccountProvider.getInstance().getAccountByCredit(credit)[1]);
-            }
+                if (type.equals("deposit")) {
 
-            for (TransactionsInfo transactionsInfo : transactions) {
-                balance += transactionsInfo.sum;
+                    Deposit deposit = new Deposit();
+                    deposit.id = account;
+                    transactions = AccountProvider.getInstance().getTransactionsByAccount(
+                            AccountProvider.getInstance().getAccountByDeposit(deposit)[0]);
+                    transactions.addAll(AccountProvider.getInstance().getTransactionsByAccount(
+                            AccountProvider.getInstance().getAccountByDeposit(deposit)[1]));
+                } else {
+                    Credit credit = new Credit();
+                    credit.id = account;
+                    transactions = AccountProvider.getInstance().getTransactionsByAccount(
+                            AccountProvider.getInstance().getAccountByCredit(credit)[0]);
+                    transactions.addAll(AccountProvider.getInstance().getTransactionsByAccount(
+                            AccountProvider.getInstance().getAccountByCredit(credit)[1]));
+                }
+
+                for (TransactionsInfo transactionsInfo : transactions) {
+                    balance += transactionsInfo.sum;
+                }
             }
 
         } catch (SQLException e) {
@@ -61,11 +70,12 @@ public class PlasticCardProvider {
         Statement statement;
         try {
             statement = connection.createStatement();
-            ResultSet plasticCardSet = statement.executeQuery("SELECT * FROM `plasticcard` WHERE `number` = '" + cardNumber + "' AND `pincode` = '"+pinCode+"'");
+            ResultSet plasticCardSet = statement.executeQuery("SELECT * FROM `plasticcard` WHERE `number` = '"
+                    + cardNumber + "' AND `pincode` = '" + pinCode + "'");
             return plasticCardSet.first();
 
         } catch (SQLException e) {
-           return false;
+            return false;
         }
     }
 }

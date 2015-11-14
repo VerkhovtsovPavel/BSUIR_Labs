@@ -13,6 +13,10 @@ public class Account {
         this.deposit_id = deposit_id;
     }
 
+    public Account() {
+        
+    }
+
     public enum AccountType {
         ACTIVE, PASSIVE, ACTIVE_PASSIVE
     }

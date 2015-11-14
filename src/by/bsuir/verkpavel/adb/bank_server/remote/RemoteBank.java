@@ -10,7 +10,6 @@ import by.bsuir.verkpavel.adb.shared.IRemoteBank;
 import by.bsuir.verkpavel.adb.shared.OperationList;
 import by.bsuir.verkpavel.adb.shared.OperationType;
 
-//TODO Add cards in DB
 public class RemoteBank extends UnicastRemoteObject implements IRemoteBank {
     private static final long serialVersionUID = 4330392012601578065L;
 

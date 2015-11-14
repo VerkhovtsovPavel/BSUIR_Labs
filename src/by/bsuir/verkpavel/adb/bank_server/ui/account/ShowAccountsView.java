@@ -34,6 +34,7 @@ import by.bsuir.verkpavel.adb.bank_server.logic.credit.CreditDayCloser;
 import by.bsuir.verkpavel.adb.bank_server.logic.deposit.DepositDayCloser;
 import by.bsuir.verkpavel.adb.bank_server.resources.ProjectProperties;
 import by.bsuir.verkpavel.adb.bank_server.ui.MainView;
+import javax.swing.JScrollPane;
 
 public class ShowAccountsView extends JFrame {
 	private static final long serialVersionUID = 2883993883146596569L;
@@ -127,7 +128,7 @@ public class ShowAccountsView extends JFrame {
 				}
 			}
 		});
-		mainPanel.add(list);
+		//mainPanel.add(list);
 
 		JLabel usersLbl = new JLabel("Счета");
 		usersLbl.setBounds(190, 6, 76, 14);
@@ -142,6 +143,10 @@ public class ShowAccountsView extends JFrame {
 		});
 		addButton.setBounds(141, 238, 151, 23);
 		mainPanel.add(addButton);
+		
+		JScrollPane scrollPane = new JScrollPane(list);
+		scrollPane.setBounds(10, 32, 422, 176);
+		mainPanel.add(scrollPane);
 
 		list.addKeyListener(new KeyListener() {
 

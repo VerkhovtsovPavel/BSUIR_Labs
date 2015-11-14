@@ -36,7 +36,7 @@ public class WithdrawalProvider {
 
             Credit credit = new Credit();
             credit.id = account;
-            Account userAccount = AccountProvider.getInstance().getAccountByCredit(credit)[1];
+            Account userAccount = AccountProvider.getInstance().getAccountByCredit(credit)[0];
 
             AccountProvider.getInstance().addTransaction(userAccount, cashBox, sum, 3);
 

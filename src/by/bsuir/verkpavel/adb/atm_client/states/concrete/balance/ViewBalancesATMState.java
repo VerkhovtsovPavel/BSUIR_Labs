@@ -52,7 +52,7 @@ public class ViewBalancesATMState extends BaseATMState {
             setState(States.BalanceInfoATMState);
             break;
         case 2:
-            getOperationList().addOperation(OperationType.AccountType, "debit");
+            getOperationList().addOperation(OperationType.AccountType, "deposit");
             setState(States.BalanceInfoATMState);
             break;    
         case 3:

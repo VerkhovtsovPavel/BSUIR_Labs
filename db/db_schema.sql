@@ -247,6 +247,7 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`deposit` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
 
@@ -287,7 +288,7 @@ COLLATE = utf8_unicode_ci;
 DROP TABLE IF EXISTS `bank_users`.`organization` ;
 
 CREATE  TABLE IF NOT EXISTS `bank_users`.`organization` (
-  `id` INT(11) NOT NULL ,
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `description` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
   `account_id` INT(11) NOT NULL ,
   PRIMARY KEY (`id`) ,
@@ -298,6 +299,7 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`organization` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
 
@@ -327,6 +329,7 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`plasticcard` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
 
@@ -355,7 +358,7 @@ CREATE  TABLE IF NOT EXISTS `bank_users`.`transaction` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 187
+AUTO_INCREMENT = 238
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
 

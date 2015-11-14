@@ -2,8 +2,10 @@ package by.bsuir.verkpavel.adb.atm_client.states.concrete.payments;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.DefaultFormatterFactory;
 
 import by.bsuir.verkpavel.adb.atm_client.resources.ProjectProperties;
 import by.bsuir.verkpavel.adb.atm_client.states.ATMStateManager;
@@ -18,7 +20,7 @@ public class PaymentsDetailsATMState extends BaseATMState {
     private JLabel phoneNumberLb;
     private JLabel sumLb;
     private JTextField phoneNumberTf;
-    private JTextField sumTf;
+    private JFormattedTextField sumTf;
     private JLabel endWork;
     private JLabel apply;
 
@@ -27,7 +29,7 @@ public class PaymentsDetailsATMState extends BaseATMState {
 
         phoneNumberLb = new JLabel("Номер телефона");
         phoneNumberLb.setBounds(157, 236, 128, 14);
-        
+
         phoneNumberTf = new JFormattedTextField(ProjectProperties.getPhoneNumberFormatter());
 
         phoneNumberTf.setBounds(157, 259, 171, 20);
@@ -36,13 +38,15 @@ public class PaymentsDetailsATMState extends BaseATMState {
         sumLb = new JLabel("Сумма");
         sumLb.setBounds(157, 290, 128, 14);
 
-        sumTf = new JTextField();
+        sumTf = new JFormattedTextField();
         sumTf.setColumns(10);
         sumTf.setBounds(157, 313, 171, 20);
-        
+        sumTf.setFormatterFactory(new DefaultFormatterFactory(ProjectProperties.getBYRFormatter()));
+        sumTf.setValue(1);
+
         endWork = new JLabel("Завершение работы");
         endWork.setBounds(131, 472, 128, 14);
-        
+
         apply = new JLabel("Подтвердить");
         apply.setBounds(286, 472, 118, 14);
     }
@@ -71,17 +75,21 @@ public class PaymentsDetailsATMState extends BaseATMState {
     public void processHardButton(int buttonNumber) {
         switch (buttonNumber) {
         case 4:
-            getOperationList().addOperation(OperationType.PhoneNumber, getPhoneNumber());
-            getOperationList().addOperation(OperationType.OperationSum, getSum());
-            setState(States.PaymentsApplyATMStates);
+            if (getPhoneNumber().equals("+(   )-  -   -    ")) {
+                JOptionPane.showMessageDialog(null, "Неверный номер телефона", "Error", JOptionPane.PLAIN_MESSAGE);
+            } else {
+                getOperationList().addOperation(OperationType.PhoneNumber, getPhoneNumber());
+                getOperationList().addOperation(OperationType.OperationSum, getSum());
+                setState(States.PaymentsApplyATMStates);
+            }
             break;
         case 3:
             destroySession();
         }
     }
 
-    private long getSum() {
-        return Long.valueOf(sumTf.getText());
+    private double getSum() {
+        return Double.valueOf("" + sumTf.getValue());
     }
 
     private String getPhoneNumber() {

@@ -3,6 +3,8 @@ package by.bsuir.verkpavel.adb.atm_client.reports;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -10,16 +12,18 @@ import java.util.Random;
 import pl.jsolve.templ4docx.core.Docx;
 import pl.jsolve.templ4docx.core.DocxTemplate;
 import pl.jsolve.templ4docx.core.VariablePattern;
-//TODO Change check templates
 import by.bsuir.verkpavel.adb.shared.OperationList;
+import by.bsuir.verkpavel.adb.shared.OperationType;
 
 public class Check {
     private String checkFilePath;
     private OperationList operationList;
     private CheckTypes type;
+    private String checkNumber;
 
     public Check(OperationList operationList, CheckTypes type) {
-        this.checkFilePath = generateCheckID() + ".docx";
+        this.checkNumber = generateCheckID();
+        this.checkFilePath = checkNumber + ".docx";
         this.operationList = operationList;
         this.type = type;
     }
@@ -28,11 +32,15 @@ public class Check {
         DocxTemplate template = new DocxTemplate();
         template.setVariablePattern(new VariablePattern("#{", "}")); 
          
-        // TODO fill all possible fields
         Map<String, String> variables = new HashMap<String, String>();
-        variables.put("#{firstName}", "John");
-        variables.put("#{lastName}", "Sky");
-         
+        variables.put("#{checkNumber}", checkNumber);
+        variables.put("#{balance}", String.format("%.2f", operationList.getOperation(OperationType.Balance)));
+        variables.put("#{accountType}", ""+operationList.getOperation(OperationType.AccountType));
+        variables.put("#{operator}", ""+operationList.getOperation(OperationType.Operator));
+        variables.put("#{phoneNumber}", ""+operationList.getOperation(OperationType.PhoneNumber));
+        variables.put("#{operationSum}", String.format("%.2f",operationList.getOperation(OperationType.OperationSum)));
+        variables.put("#{date}", LocalDate.now().toString() +" "+LocalTime.now().toString());
+              
         Docx filledTemplate = template.fillTemplate(getTemplatePathByType(type), variables);
          
         template.save(filledTemplate, "reports/" + checkFilePath);
@@ -48,13 +56,7 @@ public class Check {
         }
     }
 
-    public static void main(String[] args) {
-        Check check = new Check(null, CheckTypes.BalanceCheck);
-        check.generateCheck();
-        check.openCheck();
-    }
-
-    private String generateCheckID() {
+   private String generateCheckID() {
         StringBuffer buffer = new StringBuffer();
         Random random = new Random();
         for (int i = 0; i < 15; i++) {

@@ -54,8 +54,9 @@ public class EnterCardNumberATMState extends BaseATMState {
     public void processHardButton(int buttonNumber) {
         switch (buttonNumber) {
         case 4:
-            if (getCardNumber().replaceAll(" ", "").length() == 16) {
-                getOperationList().addOperation(OperationType.CardNumber, getCardNumber());
+            String cardNumber = getCardNumber().replaceAll(" ", "");
+            if (cardNumber.length() == 16) {
+                getOperationList().addOperation(OperationType.CardNumber, cardNumber);
                 setState(States.EnterPinCodeATMState);
             }else{
                 JOptionPane.showMessageDialog(null, "Неверный номер карты", "Error", JOptionPane.PLAIN_MESSAGE);

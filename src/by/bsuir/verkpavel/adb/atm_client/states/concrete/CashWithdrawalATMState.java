@@ -1,16 +1,14 @@
 package by.bsuir.verkpavel.adb.atm_client.states.concrete;
 
 import java.rmi.RemoteException;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.NumberFormatter;
 
+import by.bsuir.verkpavel.adb.atm_client.resources.ProjectProperties;
 import by.bsuir.verkpavel.adb.atm_client.states.ATMStateManager;
 import by.bsuir.verkpavel.adb.atm_client.states.BaseATMState;
 import by.bsuir.verkpavel.adb.atm_client.states.Stateble;
@@ -23,6 +21,7 @@ public class CashWithdrawalATMState extends BaseATMState {
     private JLabel endWork;
     private JLabel sumLb;
     private JFormattedTextField sumTf;
+    private JLabel apply;
 
     public CashWithdrawalATMState(JPanel atmPanel, IRemoteBank server, Stateble stateble, ATMStateManager stateManager) {
         super(atmPanel, server, stateble, stateManager);
@@ -33,11 +32,14 @@ public class CashWithdrawalATMState extends BaseATMState {
         sumTf = new JFormattedTextField();
         sumTf.setColumns(10);
         sumTf.setBounds(157, 313, 171, 20);
+        sumTf.setFormatterFactory(new DefaultFormatterFactory(ProjectProperties.getBYRFormatter()));
+        sumTf.setValue(1);
+        
+        apply = new JLabel("Подтвердить");
+        apply.setBounds(286, 472, 118, 14);
 
         endWork = new JLabel("Завершение работы");
         endWork.setBounds(131, 472, 128, 14);
-        
-        setMoneyFormat();
     }
 
     @Override
@@ -45,6 +47,7 @@ public class CashWithdrawalATMState extends BaseATMState {
         addComponent(endWork);
         addComponent(sumLb);
         addComponent(sumTf);
+        addComponent(apply);
     }
 
     @Override
@@ -52,6 +55,7 @@ public class CashWithdrawalATMState extends BaseATMState {
         removeComponent(endWork);
         removeComponent(sumLb);
         removeComponent(sumTf);
+        removeComponent(apply);
     }
 
     @Override
@@ -67,7 +71,7 @@ public class CashWithdrawalATMState extends BaseATMState {
                     JOptionPane.showMessageDialog(null, "Заберите деньги", "Info", JOptionPane.PLAIN_MESSAGE);
                     setState(States.PrintCheckQueryATMState);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Недостаточно средств на счете", "Error",
+                    JOptionPane.showMessageDialog(null, "Во время операции возникла ошибка", "Error",
                             JOptionPane.PLAIN_MESSAGE);
                     setState(States.ChoiceOperationATMState);
                 }
@@ -79,20 +83,7 @@ public class CashWithdrawalATMState extends BaseATMState {
 
     }
 
-    private long getSum() {
-        return Long.valueOf(sumTf.getText());
+    private double getSum() {
+        return Double.valueOf(""+sumTf.getValue());
     }
-
-    private void setMoneyFormat() {
-        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("be-BY"));
-
-        format.setMaximumFractionDigits(0);
-        NumberFormatter formatter = new NumberFormatter(format);
-        formatter.setMinimum(1.0);
-        formatter.setMaximum(10000000.0);
-        formatter.setAllowsInvalid(false);
-        formatter.setOverwriteMode(true);
-        sumTf.setFormatterFactory(new DefaultFormatterFactory(formatter));
-    }
-
 }
