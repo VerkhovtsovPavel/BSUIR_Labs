@@ -15,47 +15,54 @@ import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
 public class LineChart extends ApplicationFrame {
-    private static final long serialVersionUID = 1359626195414020994L;
-    private XYSeriesCollection dataset;
+	private static final long serialVersionUID = 1359626195414020994L;
+	private XYSeriesCollection dataset;
 
-    public LineChart(final String title) {
-        super(title);
-        dataset = new XYSeriesCollection();
-    }
+	public LineChart(final String title) {
+		super(title);
+		dataset = new XYSeriesCollection();
+	}
 
-    public void addDataset(ArrayList<Double> values, int number, double step) {
+	public void addDataset(ArrayList<Double> values, int number, double step) {
 
-        XYSeries series = new XYSeries(number);
-        for (int i = 0; i < values.size(); i++) {
-            series.add((double) i * step, values.get(i));
-        }
+		XYSeries series = new XYSeries(number);
+		for (int i = 0; i < values.size(); i++) {
+			series.add((double) i * step, values.get(i));
+		}
 
-        dataset.addSeries(series);
+		dataset.addSeries(series);
 
-    }
+	}
 
-    public void draw() {
-        final JFreeChart chart = ChartFactory.createXYLineChart(this.getTitle(), "X", "Y", dataset,
-                PlotOrientation.VERTICAL, true, true, false);
+	public void draw(String type) {
+		JFreeChart chart = null;
 
-        chart.setBackgroundPaint(Color.white);
+		if (type.equals("line")) {
+			chart = ChartFactory.createXYLineChart(this.getTitle(), "X", "Y",
+					dataset, PlotOrientation.VERTICAL, true, true, false);
+		} else if (type.equals("bar")) {
+			chart = ChartFactory.createXYBarChart(this.getTitle(), "X", false,
+					"Y", dataset, PlotOrientation.VERTICAL, true, true, false);
+		}
 
-        final XYPlot plot = chart.getXYPlot();
-        plot.setBackgroundPaint(Color.lightGray);
-        plot.setDomainGridlinePaint(Color.white);
-        plot.setRangeGridlinePaint(Color.white);
+		chart.setBackgroundPaint(Color.white);
 
-        final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-        rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+		final XYPlot plot = chart.getXYPlot();
+		plot.setBackgroundPaint(Color.lightGray);
+		plot.setDomainGridlinePaint(Color.white);
+		plot.setRangeGridlinePaint(Color.white);
 
-        final ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
-        setContentPane(chartPanel);
+		final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+		rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
 
-        this.pack();
-        RefineryUtilities.centerFrameOnScreen(this);
-        this.setVisible(true);
+		final ChartPanel chartPanel = new ChartPanel(chart);
+		chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
+		setContentPane(chartPanel);
 
-    }
+		this.pack();
+		RefineryUtilities.centerFrameOnScreen(this);
+		this.setVisible(true);
+
+	}
 
 }
