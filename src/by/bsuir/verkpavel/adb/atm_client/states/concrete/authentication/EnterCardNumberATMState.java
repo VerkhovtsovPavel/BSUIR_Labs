@@ -32,7 +32,7 @@ public class EnterCardNumberATMState extends BaseATMState {
         cardNumberTb.setColumns(10);
 
         apply = new JLabel("Подтветдить");
-        apply.setBounds(286, 472, 118, 14);
+        apply.setBounds(276, 472, 118, 14);
     }
 
     @Override

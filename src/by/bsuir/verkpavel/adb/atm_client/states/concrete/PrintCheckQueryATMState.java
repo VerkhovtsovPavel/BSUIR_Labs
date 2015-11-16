@@ -31,14 +31,14 @@ public class PrintCheckQueryATMState extends BaseATMState {
         bigPrintCheckLabel.setBackground(Color.WHITE);
         bigPrintCheckLabel.setBounds(133, 31, 236, 355);
   
-        endWork = new JLabel("Завершение работы");
+        endWork = new JLabel("Выход");
         endWork.setBounds(131, 472, 128, 14);
               
         yes = new JLabel("Да");
-        yes.setBounds(286, 428, 101, 14);
+        yes.setBounds(316, 428, 101, 14);
              
         no = new JLabel("Нет");
-        no.setBounds(286, 472, 118, 14);
+        no.setBounds(316, 472, 118, 14);
     }
 
     @Override

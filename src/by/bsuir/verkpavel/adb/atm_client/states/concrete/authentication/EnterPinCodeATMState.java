@@ -54,11 +54,11 @@ public class EnterPinCodeATMState extends BaseATMState {
         pinCodeTb.setColumns(4);
         pinCodeTb.setBounds(226, 259, 50, 20);
 
-        endWork = new JLabel("Завершение работы");
+        endWork = new JLabel("Выход");
         endWork.setBounds(131, 472, 128, 14);
 
         apply = new JLabel("Подтветдить");
-        apply.setBounds(286, 472, 118, 14);
+        apply.setBounds(276, 472, 118, 14);
     }
 
     @Override

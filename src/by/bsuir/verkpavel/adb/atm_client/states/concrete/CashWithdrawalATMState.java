@@ -36,9 +36,9 @@ public class CashWithdrawalATMState extends BaseATMState {
         sumTf.setValue(1);
         
         apply = new JLabel("Подтвердить");
-        apply.setBounds(286, 472, 118, 14);
+        apply.setBounds(276, 472, 118, 14);
 
-        endWork = new JLabel("Завершение работы");
+        endWork = new JLabel("Выход");
         endWork.setBounds(131, 472, 128, 14);
     }
 

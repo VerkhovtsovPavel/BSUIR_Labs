@@ -21,11 +21,11 @@ public class ChoiceOperationATMState extends BaseATMState {
         showBalance = new JLabel("Баланс");
         showBalance.setBounds(131, 428, 108, 14);
   
-        endWork = new JLabel("Завершение работы");
+        endWork = new JLabel("Выход");
         endWork.setBounds(131, 472, 128, 14);
               
         withdrawal = new JLabel("Снятие средств");
-        withdrawal.setBounds(266, 428, 101, 14);
+        withdrawal.setBounds(256, 428, 111, 14);
              
         createPayment = new JLabel("Платежи");
         createPayment.setBounds(286, 472, 118, 14);

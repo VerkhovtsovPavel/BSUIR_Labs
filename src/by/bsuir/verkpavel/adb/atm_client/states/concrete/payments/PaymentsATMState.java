@@ -23,14 +23,14 @@ public class PaymentsATMState extends BaseATMState {
        velcomPayments = new JLabel("Velcom");
        velcomPayments.setBounds(131, 428, 108, 14);
  
-       endWork = new JLabel("Завершение работы");
+       endWork = new JLabel("Выход");
        endWork.setBounds(131, 472, 128, 14);
              
        mtsPayments = new JLabel("MTC");
-       mtsPayments.setBounds(286, 428, 81, 14);
+       mtsPayments.setBounds(306, 428, 81, 14);
             
        lifePayment = new JLabel("Life");
-       lifePayment.setBounds(286, 472, 118, 14);
+       lifePayment.setBounds(306, 472, 118, 14);
     }
 
     @Override

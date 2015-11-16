@@ -19,13 +19,13 @@ public class ViewBalancesATMState extends BaseATMState {
     public ViewBalancesATMState(JPanel atmPanel, IRemoteBank server, Stateble stateble, ATMStateManager stateManager) {
         super(atmPanel, server, stateble, stateManager);
         
-        showCreditBalance = new JLabel("Кредитный счет");
+        showCreditBalance = new JLabel("Кредитный");
         showCreditBalance.setBounds(131, 428, 108, 14);
   
-        endWork = new JLabel("Завершение работы");
+        endWork = new JLabel("Выход");
         endWork.setBounds(131, 472, 128, 14);
               
-        showDebitBalance = new JLabel("Депозитный счет");
+        showDebitBalance = new JLabel("Депозитный");
         showDebitBalance.setBounds(266, 428, 101, 14);
     }
 

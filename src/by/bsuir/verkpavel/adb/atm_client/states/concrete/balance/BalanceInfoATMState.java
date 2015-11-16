@@ -35,7 +35,7 @@ public class BalanceInfoATMState extends BaseATMState {
         sumTf.setColumns(10);
         sumTf.setBounds(157, 313, 171, 20);
 
-        endWork = new JLabel("Завершение работы");
+        endWork = new JLabel("Выход");
         endWork.setBounds(131, 472, 128, 14);
 
         printCheck = new JLabel("Распечатать");

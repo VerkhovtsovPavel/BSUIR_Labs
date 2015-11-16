@@ -54,9 +54,9 @@ public class PaymentsApplyATMStates extends BaseATMState{
         operatorTf.setBounds(157, 200, 171,20);
         
         apply = new JLabel("Подтвердить");
-        apply.setBounds(286, 472, 118, 14);
+        apply.setBounds(276, 472, 118, 14);
         
-        endWork = new JLabel("Завершение работы");
+        endWork = new JLabel("Выход");
         endWork.setBounds(131, 472, 128, 14);
         
         back = new JLabel("Назад");
