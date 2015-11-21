@@ -109,14 +109,14 @@ public class Office implements Serializable {
 
 	public Delivery addDeliveries2(Delivery deliveries2) {
 		getDeliveries2().add(deliveries2);
-		deliveries2.setOffice2(this);
+		deliveries2.setToOffice(this);
 
 		return deliveries2;
 	}
 
 	public Delivery removeDeliveries2(Delivery deliveries2) {
 		getDeliveries2().remove(deliveries2);
-		deliveries2.setOffice2(null);
+		deliveries2.setToOffice(null);
 
 		return deliveries2;
 	}

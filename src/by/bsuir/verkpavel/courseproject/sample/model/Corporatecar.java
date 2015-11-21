@@ -1,154 +1,119 @@
 package by.bsuir.verkpavel.courseproject.sample.model;
 
-import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
+import by.bsuir.verkpavel.courseproject.dao.Entity;
 
-/**
- * The persistent class for the corporatecar database table.
- * 
- */
-@Entity
-public class Corporatecar implements Serializable {
-	private static final long serialVersionUID = 1L;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
-	@Id
-	private int idCorporateCar;
+@DatabaseTable(tableName = "corporatecar")
+public class Corporatecar implements Entity {
 
-	@Temporal(TemporalType.DATE)
-	private Date buyDate;
+    @DatabaseField(generatedId = true)
+    private int idCorporateCar;
 
-	private String mark;
+    @DatabaseField
+    private Date buyDate;
+    @DatabaseField
+    private String mark;
+    @DatabaseField
+    private int maxDepth;
+    @DatabaseField
+    private int maxHeight;
+    @DatabaseField
+    private int maxWeigth;
+    @DatabaseField
+    private int maxWidth;
+    @DatabaseField
+    private String number;
 
-	private int maxDepth;
+    @DatabaseField(foreign = true, columnName = "requiredDriverLicenceCategory")
+    private Driverlicencecategory driverlicencecategory;
 
-	private int maxHeight;
+    @DatabaseField(foreign = true, columnName = "currentLocation")
+    private Office office;
 
-	private int maxWeigth;
+    public Corporatecar() {
+    }
 
-	private int maxWidth;
+    public int getIdCorporateCar() {
+        return this.idCorporateCar;
+    }
 
-	private String number;
+    public void setIdCorporateCar(int idCorporateCar) {
+        this.idCorporateCar = idCorporateCar;
+    }
 
-	//bi-directional many-to-one association to Driverlicencecategory
-	@ManyToOne
-	@JoinColumn(name="requiredDriverLicenceCategory")
-	private Driverlicencecategory driverlicencecategory;
+    public Date getBuyDate() {
+        return this.buyDate;
+    }
 
-	//bi-directional many-to-one association to Office
-	@ManyToOne
-	@JoinColumn(name="currentLocation")
-	private Office office;
+    public void setBuyDate(Date buyDate) {
+        this.buyDate = buyDate;
+    }
 
-	//bi-directional many-to-one association to Delivery
-	@OneToMany(mappedBy="corporatecar")
-	private List<Delivery> deliveries;
+    public String getMark() {
+        return this.mark;
+    }
 
-	public Corporatecar() {
-	}
+    public void setMark(String mark) {
+        this.mark = mark;
+    }
 
-	public int getIdCorporateCar() {
-		return this.idCorporateCar;
-	}
+    public int getMaxDepth() {
+        return this.maxDepth;
+    }
 
-	public void setIdCorporateCar(int idCorporateCar) {
-		this.idCorporateCar = idCorporateCar;
-	}
+    public void setMaxDepth(int maxDepth) {
+        this.maxDepth = maxDepth;
+    }
 
-	public Date getBuyDate() {
-		return this.buyDate;
-	}
+    public int getMaxHeight() {
+        return this.maxHeight;
+    }
 
-	public void setBuyDate(Date buyDate) {
-		this.buyDate = buyDate;
-	}
+    public void setMaxHeight(int maxHeight) {
+        this.maxHeight = maxHeight;
+    }
 
-	public String getMark() {
-		return this.mark;
-	}
+    public int getMaxWeigth() {
+        return this.maxWeigth;
+    }
 
-	public void setMark(String mark) {
-		this.mark = mark;
-	}
+    public void setMaxWeigth(int maxWeigth) {
+        this.maxWeigth = maxWeigth;
+    }
 
-	public int getMaxDepth() {
-		return this.maxDepth;
-	}
+    public int getMaxWidth() {
+        return this.maxWidth;
+    }
 
-	public void setMaxDepth(int maxDepth) {
-		this.maxDepth = maxDepth;
-	}
+    public void setMaxWidth(int maxWidth) {
+        this.maxWidth = maxWidth;
+    }
 
-	public int getMaxHeight() {
-		return this.maxHeight;
-	}
+    public String getNumber() {
+        return this.number;
+    }
 
-	public void setMaxHeight(int maxHeight) {
-		this.maxHeight = maxHeight;
-	}
+    public void setNumber(String number) {
+        this.number = number;
+    }
 
-	public int getMaxWeigth() {
-		return this.maxWeigth;
-	}
+    public Driverlicencecategory getDriverlicencecategory() {
+        return this.driverlicencecategory;
+    }
 
-	public void setMaxWeigth(int maxWeigth) {
-		this.maxWeigth = maxWeigth;
-	}
+    public void setDriverlicencecategory(Driverlicencecategory driverlicencecategory) {
+        this.driverlicencecategory = driverlicencecategory;
+    }
 
-	public int getMaxWidth() {
-		return this.maxWidth;
-	}
+    public Office getOffice() {
+        return this.office;
+    }
 
-	public void setMaxWidth(int maxWidth) {
-		this.maxWidth = maxWidth;
-	}
-
-	public String getNumber() {
-		return this.number;
-	}
-
-	public void setNumber(String number) {
-		this.number = number;
-	}
-
-	public Driverlicencecategory getDriverlicencecategory() {
-		return this.driverlicencecategory;
-	}
-
-	public void setDriverlicencecategory(Driverlicencecategory driverlicencecategory) {
-		this.driverlicencecategory = driverlicencecategory;
-	}
-
-	public Office getOffice() {
-		return this.office;
-	}
-
-	public void setOffice(Office office) {
-		this.office = office;
-	}
-
-	public List<Delivery> getDeliveries() {
-		return this.deliveries;
-	}
-
-	public void setDeliveries(List<Delivery> deliveries) {
-		this.deliveries = deliveries;
-	}
-
-	public Delivery addDelivery(Delivery delivery) {
-		getDeliveries().add(delivery);
-		delivery.setCorporatecar(this);
-
-		return delivery;
-	}
-
-	public Delivery removeDelivery(Delivery delivery) {
-		getDeliveries().remove(delivery);
-		delivery.setCorporatecar(null);
-
-		return delivery;
-	}
-
+    public void setOffice(Office office) {
+        this.office = office;
+    }
 }

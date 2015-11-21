@@ -1,118 +1,91 @@
 package by.bsuir.verkpavel.courseproject.sample.model;
 
-import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
+import by.bsuir.verkpavel.courseproject.dao.Entity;
 
-/**
- * The persistent class for the delivery database table.
- * 
- */
-@Entity
-public class Delivery implements Serializable {
-	private static final long serialVersionUID = 1L;
+import com.j256.ormlite.field.DatabaseField;
 
-	@Id
-	private int idDelivery;
+public class Delivery implements Entity {
 
-	@Temporal(TemporalType.DATE)
-	private Date endDate;
+    @DatabaseField(generatedId = true)
+    private int idDelivery;
 
-	@Temporal(TemporalType.DATE)
-	private Date startDate;
+    @DatabaseField
+    private Date endDate;
 
-	//bi-directional many-to-one association to Corporatecar
-	@ManyToOne
-	@JoinColumn(name="idCorporateCar")
-	private Corporatecar corporatecar;
+    @DatabaseField
+    private Date startDate;
 
-	//bi-directional many-to-one association to Office
-	@ManyToOne
-	@JoinColumn(name="fromOffice")
-	private Office office1;
+    @DatabaseField(foreign = true, columnName = "idCorporateCar")
+    private Corporatecar corporatecar;
 
-	//bi-directional many-to-one association to Office
-	@ManyToOne
-	@JoinColumn(name="toOffice")
-	private Office office2;
+    @DatabaseField(foreign = true, columnName = "fromOffice")
+    private Office fromOffice;
 
-	//bi-directional many-to-one association to ParcelM2mDelivery
-	@OneToMany(mappedBy="delivery")
-	private List<ParcelM2mDelivery> parcelM2mDeliveries;
+    @DatabaseField(foreign = true, columnName = "toOffice")
+    private Office toOffice;
 
-	public Delivery() {
-	}
+    @DatabaseField(foreign = true, columnName = "idDeliveryStatus")
+    private Deliverystatus deliverystatus;
 
-	public int getIdDelivery() {
-		return this.idDelivery;
-	}
+    public Delivery() {
+    }
 
-	public void setIdDelivery(int idDelivery) {
-		this.idDelivery = idDelivery;
-	}
+    public int getIdDelivery() {
+        return this.idDelivery;
+    }
 
-	public Date getEndDate() {
-		return this.endDate;
-	}
+    public void setIdDelivery(int idDelivery) {
+        this.idDelivery = idDelivery;
+    }
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
+    public Date getEndDate() {
+        return this.endDate;
+    }
 
-	public Date getStartDate() {
-		return this.startDate;
-	}
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
+    public Date getStartDate() {
+        return this.startDate;
+    }
 
-	public Corporatecar getCorporatecar() {
-		return this.corporatecar;
-	}
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
 
-	public void setCorporatecar(Corporatecar corporatecar) {
-		this.corporatecar = corporatecar;
-	}
+    public Corporatecar getCorporatecar() {
+        return this.corporatecar;
+    }
 
-	public Office getOffice1() {
-		return this.office1;
-	}
+    public void setCorporatecar(Corporatecar corporatecar) {
+        this.corporatecar = corporatecar;
+    }
 
-	public void setOffice1(Office office1) {
-		this.office1 = office1;
-	}
+    public Office getFromOffice() {
+        return this.fromOffice;
+    }
 
-	public Office getOffice2() {
-		return this.office2;
-	}
+    public void setFromOffice(Office office) {
+        this.fromOffice = office;
+    }
 
-	public void setOffice2(Office office2) {
-		this.office2 = office2;
-	}
+    public Office getToOffice() {
+        return this.toOffice;
+    }
 
-	public List<ParcelM2mDelivery> getParcelM2mDeliveries() {
-		return this.parcelM2mDeliveries;
-	}
+    public void setToOffice(Office office) {
+        this.toOffice = office;
+    }
 
-	public void setParcelM2mDeliveries(List<ParcelM2mDelivery> parcelM2mDeliveries) {
-		this.parcelM2mDeliveries = parcelM2mDeliveries;
-	}
+    public Deliverystatus getDeliverystatus() {
+        return this.deliverystatus;
+    }
 
-	public ParcelM2mDelivery addParcelM2mDelivery(ParcelM2mDelivery parcelM2mDelivery) {
-		getParcelM2mDeliveries().add(parcelM2mDelivery);
-		parcelM2mDelivery.setDelivery(this);
-
-		return parcelM2mDelivery;
-	}
-
-	public ParcelM2mDelivery removeParcelM2mDelivery(ParcelM2mDelivery parcelM2mDelivery) {
-		getParcelM2mDeliveries().remove(parcelM2mDelivery);
-		parcelM2mDelivery.setDelivery(null);
-
-		return parcelM2mDelivery;
-	}
+    public void setDeliverystatus(Deliverystatus deliverystatus) {
+        this.deliverystatus = deliverystatus;
+    }
 
 }

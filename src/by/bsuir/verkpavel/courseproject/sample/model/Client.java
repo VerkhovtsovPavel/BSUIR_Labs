@@ -1,78 +1,56 @@
 package by.bsuir.verkpavel.courseproject.sample.model;
 
-import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
+import by.bsuir.verkpavel.courseproject.dao.Entity;
 
-/**
- * The persistent class for the client database table.
- * 
- */
-@Entity
-public class Client implements Serializable {
-	private static final long serialVersionUID = 1L;
+import com.j256.ormlite.dao.ForeignCollection;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
+import com.j256.ormlite.table.DatabaseTable;
 
-	@Id
-	private int idClient;
+@DatabaseTable(tableName = "client")
+public class Client implements Entity {
 
-	@Temporal(TemporalType.DATE)
-	private Date addDate;
+    @DatabaseField(generatedId = true)
+    private int idClient;
 
-	private String fullName;
+    @DatabaseField
+    private Date addDate;
+    @DatabaseField
+    private String fullName;
 
-	//bi-directional many-to-one association to Parcel
-	@OneToMany(mappedBy="client")
-	private List<Parcel> parcels;
+    @ForeignCollectionField
+    private ForeignCollection<Parcel> parcels;
 
-	public Client() {
-	}
+    public Client() {
+    }
 
-	public int getIdClient() {
-		return this.idClient;
-	}
+    public int getIdClient() {
+        return this.idClient;
+    }
 
-	public void setIdClient(int idClient) {
-		this.idClient = idClient;
-	}
+    public void setIdClient(int idClient) {
+        this.idClient = idClient;
+    }
 
-	public Date getAddDate() {
-		return this.addDate;
-	}
+    public Date getAddDate() {
+        return this.addDate;
+    }
 
-	public void setAddDate(Date addDate) {
-		this.addDate = addDate;
-	}
+    public void setAddDate(Date addDate) {
+        this.addDate = addDate;
+    }
 
-	public String getFullName() {
-		return this.fullName;
-	}
+    public String getFullName() {
+        return this.fullName;
+    }
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
-	public List<Parcel> getParcels() {
-		return this.parcels;
-	}
-
-	public void setParcels(List<Parcel> parcels) {
-		this.parcels = parcels;
-	}
-
-	public Parcel addParcel(Parcel parcel) {
-		getParcels().add(parcel);
-		parcel.setClient(this);
-
-		return parcel;
-	}
-
-	public Parcel removeParcel(Parcel parcel) {
-		getParcels().remove(parcel);
-		parcel.setClient(null);
-
-		return parcel;
-	}
-
+    public ForeignCollection<Parcel> getParcels() {
+        return this.parcels;
+    }
 }

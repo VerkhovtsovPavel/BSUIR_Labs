@@ -1,140 +1,115 @@
 package by.bsuir.verkpavel.courseproject.sample.model;
 
-import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
+import by.bsuir.verkpavel.courseproject.dao.Entity;
 
-/**
- * The persistent class for the employee database table.
- * 
- */
-@Entity
-public class Employee implements Serializable {
-	private static final long serialVersionUID = 1L;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
-	@Id
-	private int idEmployee;
+@DatabaseTable(tableName = "employee")
+public class Employee implements Entity {
 
-	@Temporal(TemporalType.DATE)
-	private Date birthday;
+    @DatabaseField(generatedId = true)
+    private int idEmployee;
 
-	private String fullName;
+    @DatabaseField
+    private Date birthday;
 
-	private String hireDate;
+    @DatabaseField
+    private String fullName;
 
-	//bi-directional many-to-one association to Driver
-	@OneToMany(mappedBy="employee")
-	private List<Driver> drivers;
+    @DatabaseField
+    private Date hireDate;
 
-	//bi-directional many-to-one association to Authentication
-	@ManyToOne
-	@JoinColumn(name="idAuthentication")
-	private Authentication authentication;
+    @DatabaseField(foreign = true, columnName = "idAuthentication")
+    private Authentication authentication;
 
-	//bi-directional many-to-one association to Office
-	@ManyToOne
-	@JoinColumn(name="idOffice")
-	private Office office;
+    @DatabaseField(foreign = true, columnName = "idOffice")
+    private Office office;
 
-	//bi-directional many-to-one association to Permission
-	@ManyToOne
-	@JoinColumn(name="idPermissions")
-	private Permission permission;
+    @DatabaseField(foreign = true, columnName = "idPermissions")
+    private Permission permission;
 
-	//bi-directional many-to-one association to Position
-	@ManyToOne
-	@JoinColumn(name="idPosition")
-	private Position position;
+    @DatabaseField(foreign = true, columnName = "idPosition")
+    private Position position;
 
-	public Employee() {
-	}
+    @DatabaseField(foreign = true, columnName = "idSalary")
+    private Salary salary;
 
-	public int getIdEmployee() {
-		return this.idEmployee;
-	}
+    public Employee() {
+    }
 
-	public void setIdEmployee(int idEmployee) {
-		this.idEmployee = idEmployee;
-	}
+    public int getIdEmployee() {
+        return this.idEmployee;
+    }
 
-	public Date getBirthday() {
-		return this.birthday;
-	}
+    public void setIdEmployee(int idEmployee) {
+        this.idEmployee = idEmployee;
+    }
 
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
+    public Date getBirthday() {
+        return this.birthday;
+    }
 
-	public String getFullName() {
-		return this.fullName;
-	}
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
+    public String getFullName() {
+        return this.fullName;
+    }
 
-	public String getHireDate() {
-		return this.hireDate;
-	}
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
-	public void setHireDate(String hireDate) {
-		this.hireDate = hireDate;
-	}
+    public Date getHireDate() {
+        return this.hireDate;
+    }
 
-	public List<Driver> getDrivers() {
-		return this.drivers;
-	}
+    public void setHireDate(Date hireDate) {
+        this.hireDate = hireDate;
+    }
 
-	public void setDrivers(List<Driver> drivers) {
-		this.drivers = drivers;
-	}
+    public Authentication getAuthentication() {
+        return this.authentication;
+    }
 
-	public Driver addDriver(Driver driver) {
-		getDrivers().add(driver);
-		driver.setEmployee(this);
+    public void setAuthentication(Authentication authentication) {
+        this.authentication = authentication;
+    }
 
-		return driver;
-	}
+    public Office getOffice() {
+        return this.office;
+    }
 
-	public Driver removeDriver(Driver driver) {
-		getDrivers().remove(driver);
-		driver.setEmployee(null);
+    public void setOffice(Office office) {
+        this.office = office;
+    }
 
-		return driver;
-	}
+    public Permission getPermission() {
+        return this.permission;
+    }
 
-	public Authentication getAuthentication() {
-		return this.authentication;
-	}
+    public void setPermission(Permission permission) {
+        this.permission = permission;
+    }
 
-	public void setAuthentication(Authentication authentication) {
-		this.authentication = authentication;
-	}
+    public Position getPosition() {
+        return this.position;
+    }
 
-	public Office getOffice() {
-		return this.office;
-	}
+    public void setPosition(Position position) {
+        this.position = position;
+    }
 
-	public void setOffice(Office office) {
-		this.office = office;
-	}
+    public Salary getSalary() {
+        return this.salary;
+    }
 
-	public Permission getPermission() {
-		return this.permission;
-	}
-
-	public void setPermission(Permission permission) {
-		this.permission = permission;
-	}
-
-	public Position getPosition() {
-		return this.position;
-	}
-
-	public void setPosition(Position position) {
-		this.position = position;
-	}
+    public void setSalary(Salary salary) {
+        this.salary = salary;
+    }
 
 }

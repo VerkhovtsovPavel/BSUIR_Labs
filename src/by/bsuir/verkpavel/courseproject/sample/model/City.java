@@ -1,66 +1,38 @@
 package by.bsuir.verkpavel.courseproject.sample.model;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
+import by.bsuir.verkpavel.courseproject.dao.Entity;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
 /**
  * The persistent class for the city database table.
  * 
  */
-@Entity
-public class City implements Serializable {
-	private static final long serialVersionUID = 1L;
+@DatabaseTable(tableName = "city")
+public class City implements Entity {
 
-	@Id
-	private int idCity;
+    @DatabaseField(generatedId = true)
+    private int idCity;
+    @DatabaseField
+    private String name;
 
-	private String name;
+    public City() {
+    }
 
-	//bi-directional many-to-one association to Street
-	@OneToMany(mappedBy="city")
-	private List<Street> streets;
+    public int getIdCity() {
+        return this.idCity;
+    }
 
-	public City() {
-	}
+    public void setIdCity(int idCity) {
+        this.idCity = idCity;
+    }
 
-	public int getIdCity() {
-		return this.idCity;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public void setIdCity(int idCity) {
-		this.idCity = idCity;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public List<Street> getStreets() {
-		return this.streets;
-	}
-
-	public void setStreets(List<Street> streets) {
-		this.streets = streets;
-	}
-
-	public Street addStreet(Street street) {
-		getStreets().add(street);
-		street.setCity(this);
-
-		return street;
-	}
-
-	public Street removeStreet(Street street) {
-		getStreets().remove(street);
-		street.setCity(null);
-
-		return street;
-	}
-
+    public void setName(String name) {
+        this.name = name;
+    }
 }
