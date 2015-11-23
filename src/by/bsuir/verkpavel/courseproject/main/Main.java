@@ -1,15 +1,17 @@
 package by.bsuir.verkpavel.courseproject.main;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
-import by.bsuir.verkpavel.courseproject.sample.model.Employee;
+import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
 import by.bsuir.verkpavel.courseproject.ui.EntityShowView;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         List<Entity> employees = new ArrayList<>();
         
         employees.add(new Employee());
@@ -18,7 +20,11 @@ public class Main {
         employees.add(new Employee());
         
         EntityShowView entityShowView = new EntityShowView(employees);
+        entityShowView.showView();
         
+        DeliveryServiceDao deliveryServiceDao = new DeliveryServiceDao();
+        deliveryServiceDao.getDaoByClass(Employee.class).queryForAll();
+
     }
 
 }

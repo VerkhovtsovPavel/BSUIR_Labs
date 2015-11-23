@@ -1,14 +1,10 @@
-package by.bsuir.verkpavel.courseproject.sample.model;
+package by.bsuir.verkpavel.courseproject.dao.entity;
 
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-/**
- * The persistent class for the authentication database table.
- * 
- */
 @DatabaseTable(tableName = "authentication")
 public class Authentication implements Entity {
     @DatabaseField(generatedId = true)

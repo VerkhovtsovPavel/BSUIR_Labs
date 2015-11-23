@@ -20,14 +20,16 @@ public class EntityShowView extends JFrame {
 
         TableModel model = TableModelFactory.getTableModel(beans);
         JTable table = new JTable(model);
-
         getContentPane().add(new JScrollPane(table));
+    }
+    
 
+    public void showView(){
         setPreferredSize(new Dimension(260, 220));
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
-    } 
+    }
 }
 
 

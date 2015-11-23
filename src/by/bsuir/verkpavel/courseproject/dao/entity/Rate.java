@@ -1,26 +1,21 @@
-package by.bsuir.verkpavel.courseproject.sample.model;
+package by.bsuir.verkpavel.courseproject.dao.entity;
 
-import java.io.Serializable;
-import javax.persistence.*;
+import by.bsuir.verkpavel.courseproject.dao.Entity;
+
+import com.j256.ormlite.field.DatabaseField;
 
 
-/**
- * The persistent class for the rate database table.
- * 
- */
-@Entity
-public class Rate implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Rate implements Entity {
 
-	@Id
+	@DatabaseField(generatedId = true)
 	private int idRate;
-
+	@DatabaseField
 	private float depth;
-
+	@DatabaseField
 	private float heigth;
-
+	@DatabaseField
 	private float weigth;
-
+	@DatabaseField
 	private float width;
 
 	public Rate() {

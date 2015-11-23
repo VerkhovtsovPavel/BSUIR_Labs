@@ -1,9 +1,9 @@
-package by.bsuir.verkpavel.courseproject.ui.tablemodel.entity;
+package by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete;
 
 import java.util.List;
 
 import by.bsuir.verkpavel.courseproject.dao.Entity;
-import by.bsuir.verkpavel.courseproject.sample.model.Employee;
+import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
 import by.bsuir.verkpavel.courseproject.ui.tablemodel.GeneralDeliveryServiceTableModel;
 
 public class EmployeeTableModel extends GeneralDeliveryServiceTableModel {

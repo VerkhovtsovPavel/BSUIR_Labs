@@ -1,4 +1,4 @@
-package by.bsuir.verkpavel.courseproject.sample.model;
+package by.bsuir.verkpavel.courseproject.dao.entity;
 
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 

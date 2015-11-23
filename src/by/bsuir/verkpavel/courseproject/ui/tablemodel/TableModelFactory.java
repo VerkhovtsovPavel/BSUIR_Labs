@@ -5,7 +5,7 @@ import java.util.List;
 import javax.swing.table.TableModel;
 
 import by.bsuir.verkpavel.courseproject.dao.Entity;
-import by.bsuir.verkpavel.courseproject.ui.tablemodel.entity.EmployeeTableModel;
+import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.EmployeeTableModel;
 
 public class TableModelFactory {
 
