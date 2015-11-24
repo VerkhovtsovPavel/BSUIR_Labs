@@ -2,44 +2,19 @@ package by.bsuir.verkpavel.courseproject.dao;
 
 import java.io.File;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.dao.DaoManager;
-import com.j256.ormlite.support.ConnectionSource;
 
 public class DAOUtil {
-    public static  Map<Class<?>,Dao<?,?>> getDAOs(ConnectionSource connectionSource) throws SQLException{
-        Package result = null;
-        for(Package p : Package.getPackages()) {
-           if (p.getName().equals("by.bsuir.verkpavel.courseproject.dao.entity")) {
-              result  = p;
-           }
-        }
-        
-        List<Class<?>> classes = getClassesForPackage(result);
-        HashMap<Class<?>, Dao<?,?>> DAOs = new HashMap<>();
-        
-        for(Class<?> c : classes){
-            DAOs.put(c, DaoManager.createDao(connectionSource, c));
-        }
-        
-        return DAOs;
-    }
     
-    private static List<Class<?>> getClassesForPackage(Package pkg) {
+    public static List<Class<?>> getClassesForPackage(String pkg) {
         ArrayList<Class<?>> classes = new ArrayList<Class<?>>();
-        String pkgname = pkg.getName();
-        String relPath = pkgname.replace('.', '/');
+        String relPath = pkg.replace('.', '/');
         URL resource = ClassLoader.getSystemClassLoader().getResource(relPath);
         if (resource == null) {
             throw new RuntimeException("Unexpected problem: No resource for " + relPath);
         }
-        classes.addAll(processDirectory(new File(resource.getPath()), pkgname));
+        classes.addAll(processDirectory(new File(resource.getPath()), pkg));
 
         return classes;
     }

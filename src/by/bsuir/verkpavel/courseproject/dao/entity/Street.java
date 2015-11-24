@@ -1,13 +1,12 @@
 package by.bsuir.verkpavel.courseproject.dao.entity;
 
-import java.io.Serializable;
+import by.bsuir.verkpavel.courseproject.dao.Entity;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "street")
-public class Street implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Street implements Entity {
 
     @DatabaseField(generatedId = true)
     private int idStreet;

@@ -6,6 +6,7 @@ import javax.swing.table.TableModel;
 
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.EmployeeTableModel;
+import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.StreetTableModel;
 
 public class TableModelFactory {
 
@@ -46,9 +47,7 @@ public class TableModelFactory {
         case "Position":
             return null;
         case "Street":
-            return null;
-        case "StreetPK":
-            return null;
+            return new StreetTableModel(beans);
         default:
             throw new IllegalArgumentException();
         }

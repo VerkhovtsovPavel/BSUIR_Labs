@@ -7,6 +7,7 @@ import java.util.List;
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
+import by.bsuir.verkpavel.courseproject.dao.entity.Street;
 import by.bsuir.verkpavel.courseproject.ui.EntityShowView;
 
 public class Main {
@@ -19,12 +20,8 @@ public class Main {
         employees.add(new Employee());
         employees.add(new Employee());
         
-        EntityShowView entityShowView = new EntityShowView(employees);
+        EntityShowView entityShowView = new EntityShowView(DeliveryServiceDao.getInstance().getDaoByClass(Street.class).queryForAll());
         entityShowView.showView();
-        
-        DeliveryServiceDao deliveryServiceDao = new DeliveryServiceDao();
-        deliveryServiceDao.getDaoByClass(Employee.class).queryForAll();
-
     }
 
 }
