@@ -5,7 +5,7 @@ import by.bsuir.verkpavel.courseproject.dao.Entity;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName = "street")
+@DatabaseTable(tableName = "Street")
 public class Street implements Entity {
 
     @DatabaseField(generatedId = true)
@@ -13,7 +13,7 @@ public class Street implements Entity {
     @DatabaseField
     private String name;
 
-    @DatabaseField(foreign = true, columnName = "idCity")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idCity")
     private City city;
 
     public Street() {

@@ -9,7 +9,7 @@ import com.j256.ormlite.table.DatabaseTable;
  * The persistent class for the city database table.
  * 
  */
-@DatabaseTable(tableName = "city")
+@DatabaseTable(tableName = "City")
 public class City implements Entity {
 
     @DatabaseField(generatedId = true)

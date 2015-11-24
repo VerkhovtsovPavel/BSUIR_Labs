@@ -11,7 +11,7 @@ import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 
 public class DeliveryServiceDao {
-    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/deliveryservice?useUnicode=true&characterEncoding=utf8";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/deliveryService?useUnicode=true&characterEncoding=utf8";
     private static final String DB_USER_NAME = "root";
     private static final String DB_PASSWORD = "123456";
 
