@@ -8,7 +8,7 @@ import by.bsuir.verkpavel.courseproject.ui.tablemodel.GeneralDeliveryServiceTabl
 
 public class DriverLicenceCategoryTableModel extends GeneralDeliveryServiceTableModel {
 
-    public DriverLicenceCategoryTableModel(List<Entity> beans) {
+    public DriverLicenceCategoryTableModel(List<? extends Entity> beans) {
         super(beans);
     }
 

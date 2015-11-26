@@ -2,7 +2,6 @@ package by.bsuir.verkpavel.courseproject.dao;
 
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.j256.ormlite.dao.Dao;
@@ -16,10 +15,10 @@ public class DeliveryServiceDao {
     private static final String DB_PASSWORD = "123456";
 
     private static final ConnectionSource connectionSource = createConnectionSouce();
-    
+
     private static final DeliveryServiceDao instance = new DeliveryServiceDao();
 
-    private Map<Class<?>, Dao<Entity, ?>> daos = new HashMap<>();
+    private Map<Class<? extends Entity>, Dao<? extends Entity, ?>> daos = new HashMap<>();
 
     private static ConnectionSource createConnectionSouce() {
         try {
@@ -31,28 +30,22 @@ public class DeliveryServiceDao {
     }
 
     private DeliveryServiceDao() {
-        try {
-            this.daos = createDAOsMap(); 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
 
-    public Dao<Entity, ?> getDaoByClass(Class<?> target) {
-        return daos.get(target);
+    public Dao<? extends Entity, ?> getDaoByClass(Class<? extends Entity> target) {
+        Dao<? extends Entity, ?> dao = daos.get(target);
+        if (dao == null) {
+            try {
+                dao = DaoManager.createDao(connectionSource, target);
+                daos.put(target, dao);
+            } catch (SQLException e) {
+            }
+        }
+        return dao;
     }
-    
-    public static DeliveryServiceDao getInstance(){
+
+    public static DeliveryServiceDao getInstance() {
         return instance;
-    }
-    
-    private static  Map<Class<?>,Dao<Entity,?>> createDAOsMap() throws SQLException{
-        List<Class<?>> classes = DAOUtil.getClassesForPackage("by.bsuir.verkpavel.courseproject.dao.entity");
-        HashMap<Class<?>, Dao<Entity,?>> DAOs = new HashMap<>();
-        
-        for(Class<?> c : classes){
-            DAOs.put(c, (Dao<Entity, ?>) DaoManager.createDao(connectionSource, c));
-        } 
-        return DAOs;
     }
 }

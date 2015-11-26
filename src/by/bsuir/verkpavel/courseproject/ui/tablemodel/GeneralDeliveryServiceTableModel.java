@@ -14,9 +14,9 @@ public abstract class GeneralDeliveryServiceTableModel implements TableModel {
 
     private Set<TableModelListener> listeners = new HashSet<TableModelListener>();
 
-    private List<Entity> _beans;
+    private List<? extends Entity> _beans;
 
-    public GeneralDeliveryServiceTableModel(List<Entity> beans) {
+    public GeneralDeliveryServiceTableModel(List<? extends Entity> beans) {
         this._beans = beans;
     }
 
@@ -40,7 +40,7 @@ public abstract class GeneralDeliveryServiceTableModel implements TableModel {
         
     }
     
-    public List<Entity> getBeans() {
+    public List<? extends Entity> getBeans() {
         return _beans;
     }
 }

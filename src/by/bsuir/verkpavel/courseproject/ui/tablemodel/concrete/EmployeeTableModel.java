@@ -8,7 +8,7 @@ import by.bsuir.verkpavel.courseproject.ui.tablemodel.GeneralDeliveryServiceTabl
 
 public class EmployeeTableModel extends GeneralDeliveryServiceTableModel {
 
-    public EmployeeTableModel(List<Entity> beans) {
+    public EmployeeTableModel(List<? extends Entity> beans) {
         super(beans);
     }
 

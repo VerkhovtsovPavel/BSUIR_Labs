@@ -14,7 +14,7 @@ import by.bsuir.verkpavel.courseproject.ui.tablemodel.TableModelFactory;
 public class EntityShowView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
 
-    public EntityShowView(List<Entity> beans) {
+    public EntityShowView(List<? extends Entity> beans) {
         super("Просмотр");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setPreferredSize(new Dimension(600, 50+20*beans.size()));

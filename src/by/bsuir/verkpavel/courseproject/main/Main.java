@@ -9,7 +9,6 @@ import by.bsuir.verkpavel.courseproject.dao.Entity;
 import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
 import by.bsuir.verkpavel.courseproject.dao.entity.Street;
 import by.bsuir.verkpavel.courseproject.ui.EntityShowView;
-import by.bsuir.verkpavel.courseproject.ui.MainView;
 
 //FIXME IOBE if table empty (TableModelFactory.java:15)
 
@@ -23,12 +22,8 @@ public class Main {
         employees.add(new Employee());
         employees.add(new Employee());
 
-        EntityShowView entityShowView = new EntityShowView(DeliveryServiceDao.getInstance().getDaoByClass(Street.class)
-                .queryForAll());
-        entityShowView.showView();
+        EntityShowView entityShowView = new EntityShowView(DeliveryServiceDao.getInstance().getDaoByClass(Employee.class).queryForAll());
         
-        MainView mainView = new MainView();
-        mainView.showView();
-
+        entityShowView.showView();
     }
 }

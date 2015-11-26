@@ -8,7 +8,7 @@ import by.bsuir.verkpavel.courseproject.ui.tablemodel.GeneralDeliveryServiceTabl
 
 public class PermissionTableModel extends GeneralDeliveryServiceTableModel {
 
-    public PermissionTableModel(List<Entity> beans) {
+    public PermissionTableModel(List<? extends Entity> beans) {
         super(beans);
     }
 

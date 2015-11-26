@@ -5,18 +5,17 @@ import by.bsuir.verkpavel.courseproject.dao.Entity;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-/**
- * The persistent class for the office database table.
- * 
- */
+//TODO Add new fields
 @DatabaseTable(tableName = "office")
 public class Office implements Entity {
 
     @DatabaseField(generatedId = true)
     private int idOffice;
 
-    @DatabaseField(foreign = true, columnName = "idStreet")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idStreet")
     private Street street;
+    
+    
 
     public Office() {
     }

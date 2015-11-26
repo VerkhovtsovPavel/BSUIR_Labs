@@ -8,7 +8,7 @@ import by.bsuir.verkpavel.courseproject.ui.tablemodel.GeneralDeliveryServiceTabl
 
 public class MarkParcelTableModel extends GeneralDeliveryServiceTableModel {
 
-    public MarkParcelTableModel(List<Entity> beans) {
+    public MarkParcelTableModel(List<? extends Entity> beans) {
         super(beans);
     }
 

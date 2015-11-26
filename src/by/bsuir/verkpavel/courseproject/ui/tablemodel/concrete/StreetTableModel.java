@@ -8,7 +8,7 @@ import by.bsuir.verkpavel.courseproject.ui.tablemodel.GeneralDeliveryServiceTabl
 
 public class StreetTableModel  extends GeneralDeliveryServiceTableModel{
 
-    public StreetTableModel(List<Entity> beans) {
+    public StreetTableModel(List<? extends Entity> beans) {
         super(beans);
     }
 

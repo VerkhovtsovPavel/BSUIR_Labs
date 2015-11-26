@@ -8,7 +8,7 @@ import by.bsuir.verkpavel.courseproject.ui.tablemodel.GeneralDeliveryServiceTabl
 
 public class ParcelTableModel extends GeneralDeliveryServiceTableModel {
 
-    public ParcelTableModel(List<Entity> beans) {
+    public ParcelTableModel(List<? extends Entity> beans) {
         super(beans);
     }
 

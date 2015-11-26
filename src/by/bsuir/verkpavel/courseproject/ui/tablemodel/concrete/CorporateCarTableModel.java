@@ -8,7 +8,7 @@ import by.bsuir.verkpavel.courseproject.ui.tablemodel.GeneralDeliveryServiceTabl
 
 public class CorporateCarTableModel extends GeneralDeliveryServiceTableModel {
 
-    public CorporateCarTableModel(List<Entity> beans) {
+    public CorporateCarTableModel(List<? extends Entity> beans) {
         super(beans);
     }
 

@@ -8,7 +8,7 @@ import by.bsuir.verkpavel.courseproject.ui.tablemodel.GeneralDeliveryServiceTabl
 
 public class PositionTableModel extends GeneralDeliveryServiceTableModel {
 
-    public PositionTableModel(List<Entity> beans) {
+    public PositionTableModel(List<? extends Entity> beans) {
         super(beans);
     }
 
