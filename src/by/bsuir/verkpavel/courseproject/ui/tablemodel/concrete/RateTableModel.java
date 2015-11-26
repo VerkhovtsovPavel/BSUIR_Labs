@@ -3,12 +3,12 @@ package by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete;
 import java.util.List;
 
 import by.bsuir.verkpavel.courseproject.dao.Entity;
-import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
+import by.bsuir.verkpavel.courseproject.dao.entity.Rate;
 import by.bsuir.verkpavel.courseproject.ui.tablemodel.GeneralDeliveryServiceTableModel;
 
-public class EmployeeTableModel extends GeneralDeliveryServiceTableModel {
+public class RateTableModel extends GeneralDeliveryServiceTableModel {
 
-    public EmployeeTableModel(List<Entity> beans) {
+    public RateTableModel(List<Entity> beans) {
         super(beans);
     }
 
@@ -17,34 +17,38 @@ public class EmployeeTableModel extends GeneralDeliveryServiceTableModel {
     }
 
     public int getColumnCount() {
-        return 4;
+        return 5;
     }
 
     public String getColumnName(int columnIndex) {
         switch (columnIndex) {
         case 0:
-            return "Ф.И.О";
+            return "Номер п.п";
         case 1:
-            return "Офис";
+            return "Стоимость (высота)";
         case 2:
-            return "День рождения";
+            return "Стоимость (ширина)";
         case 3:
-            return "Дата приема на работу";
+            return "Стоимость (глубина)";
+        case 4:
+            return "Стоимость (вес)";
         }
         return "";
     }
     
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Employee bean = (Employee) getBeans().get(rowIndex);
+        Rate bean = (Rate) getBeans().get(rowIndex);
         switch (columnIndex) {
         case 0:
-            return bean.getFullName();
+            return bean.getIdRate();
         case 1:
-            return bean.getOffice();
+            return bean.getHeigth();
         case 2:
-            return bean.getBirthday();
+            return bean.getWidth();
         case 3:
-            return bean.getHireDate();
+            return bean.getDepth();
+        case 4:
+            return bean.getWeigth();
         }
         return "";
     }

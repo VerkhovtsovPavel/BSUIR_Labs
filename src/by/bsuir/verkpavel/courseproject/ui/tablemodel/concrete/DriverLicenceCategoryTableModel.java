@@ -3,18 +3,18 @@ package by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete;
 import java.util.List;
 
 import by.bsuir.verkpavel.courseproject.dao.Entity;
-import by.bsuir.verkpavel.courseproject.dao.entity.Street;
+import by.bsuir.verkpavel.courseproject.dao.entity.DriverLicenceCategory;
 import by.bsuir.verkpavel.courseproject.ui.tablemodel.GeneralDeliveryServiceTableModel;
 
-public class StreetTableModel  extends GeneralDeliveryServiceTableModel{
+public class DriverLicenceCategoryTableModel extends GeneralDeliveryServiceTableModel {
 
-    public StreetTableModel(List<Entity> beans) {
+    public DriverLicenceCategoryTableModel(List<Entity> beans) {
         super(beans);
     }
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 2;
     }
 
     @Override
@@ -23,9 +23,7 @@ public class StreetTableModel  extends GeneralDeliveryServiceTableModel{
         case 0:
             return "Номер";
         case 1:
-            return "Улица";
-        case 2:
-            return "Город";
+            return "Обозначение";
         }
         return "";
     }
@@ -37,15 +35,15 @@ public class StreetTableModel  extends GeneralDeliveryServiceTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Street bean = (Street) getBeans().get(rowIndex);
+        DriverLicenceCategory bean = (DriverLicenceCategory) getBeans().get(rowIndex);
         switch (columnIndex) {
         case 0:
-            return bean.getIdStreet();
+            return bean.getIdDriverLicenceCategory();
         case 1:
-            return bean.getName();
-        case 2:
-            return bean.getCity().getName();
+            return bean.getDescription();
         }
         return "";
+
     }
+
 }

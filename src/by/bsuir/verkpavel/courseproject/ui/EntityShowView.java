@@ -15,17 +15,15 @@ public class EntityShowView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
 
     public EntityShowView(List<Entity> beans) {
-        super();
+        super("Просмотр");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-
+        setPreferredSize(new Dimension(600, 50+20*beans.size()));
         TableModel model = TableModelFactory.getTableModel(beans);
         JTable table = new JTable(model);
         getContentPane().add(new JScrollPane(table));
     }
     
-
     public void showView(){
-        setPreferredSize(new Dimension(260, 220));
         pack();
         setLocationRelativeTo(null);
         setVisible(true);

@@ -17,13 +17,13 @@ public class Parcel implements Entity {
     @DatabaseField
     private int width;
 
-    @DatabaseField(foreign = true, columnName = "idClient")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idClient")
     private Client client;
 
-    @DatabaseField(foreign = true, columnName = "idMarkParcel")
-    private Markparcel markparcel;
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idMarkParcel")
+    private MarkParcel markparcel;
 
-    @DatabaseField(foreign = true, columnName = "idPayments")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idPayments")
     private Payment payment;
 
     public Parcel() {
@@ -77,11 +77,11 @@ public class Parcel implements Entity {
         this.client = client;
     }
 
-    public Markparcel getMarkparcel() {
+    public MarkParcel getMarkParcel() {
         return this.markparcel;
     }
 
-    public void setMarkparcel(Markparcel markparcel) {
+    public void setMarkparcel(MarkParcel markparcel) {
         this.markparcel = markparcel;
     }
 

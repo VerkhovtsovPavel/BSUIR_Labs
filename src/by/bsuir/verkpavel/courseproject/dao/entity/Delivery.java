@@ -17,8 +17,8 @@ public class Delivery implements Entity {
     @DatabaseField
     private Date startDate;
 
-    @DatabaseField(foreign = true, columnName = "idCorporateCar")
-    private Corporatecar corporatecar;
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idCorporateCar")
+    private CorporateCar corporatecar;
 
     @DatabaseField(foreign = true, columnName = "fromOffice")
     private Office fromOffice;
@@ -26,9 +26,12 @@ public class Delivery implements Entity {
     @DatabaseField(foreign = true, columnName = "toOffice")
     private Office toOffice;
 
-    @DatabaseField(foreign = true, columnName = "idDeliveryStatus")
-    private Deliverystatus deliverystatus;
-
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idDeliveryStatus")
+    private DeliveryStatus deliverystatus;
+    
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idDriver")
+    private Driver driver;
+    
     public Delivery() {
     }
 
@@ -56,11 +59,11 @@ public class Delivery implements Entity {
         this.startDate = startDate;
     }
 
-    public Corporatecar getCorporatecar() {
+    public CorporateCar getCorporateCar() {
         return this.corporatecar;
     }
 
-    public void setCorporatecar(Corporatecar corporatecar) {
+    public void setCorporatecar(CorporateCar corporatecar) {
         this.corporatecar = corporatecar;
     }
 
@@ -80,12 +83,20 @@ public class Delivery implements Entity {
         this.toOffice = office;
     }
 
-    public Deliverystatus getDeliverystatus() {
+    public DeliveryStatus getDeliveryStatus() {
         return this.deliverystatus;
     }
 
-    public void setDeliverystatus(Deliverystatus deliverystatus) {
+    public void setDeliverystatus(DeliveryStatus deliverystatus) {
         this.deliverystatus = deliverystatus;
+    }
+    
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
     }
 
 }

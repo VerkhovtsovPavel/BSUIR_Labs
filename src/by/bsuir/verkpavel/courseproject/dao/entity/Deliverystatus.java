@@ -5,14 +5,14 @@ import by.bsuir.verkpavel.courseproject.dao.Entity;
 import com.j256.ormlite.field.DatabaseField;
 
 
-public class Deliverystatus implements Entity {
+public class DeliveryStatus implements Entity {
 
 	@DatabaseField(generatedId = true)
 	private int idDeliveryStatus;
 	@DatabaseField
 	private String description;
 
-	public Deliverystatus() {
+	public DeliveryStatus() {
 	}
 
 	public int getIdDeliveryStatus() {

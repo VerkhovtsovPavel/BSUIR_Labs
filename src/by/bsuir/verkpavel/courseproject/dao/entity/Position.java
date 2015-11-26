@@ -6,7 +6,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "position")
-class Position implements Entity {
+public class Position implements Entity {
 
     @DatabaseField(generatedId = true)
     private int idPosition;

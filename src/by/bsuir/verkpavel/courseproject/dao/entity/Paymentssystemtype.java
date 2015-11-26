@@ -6,14 +6,14 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "paymentssystemtype")
-public class Paymentssystemtype implements Entity {
+public class PaymentsSystemType implements Entity {
 
     @DatabaseField(generatedId = true)
     private int idPaymentsSystemType;
     @DatabaseField
     private String description;
 
-    public Paymentssystemtype() {
+    public PaymentsSystemType() {
     }
 
     public int getIdPaymentsSystemType() {

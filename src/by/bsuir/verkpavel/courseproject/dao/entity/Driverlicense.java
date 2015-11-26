@@ -6,7 +6,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "driverlicense")
-public class Driverlicense implements Entity {
+public class DriverLicense implements Entity {
 
     @DatabaseField(generatedId = true)
     private int idDriverLicense;
@@ -15,9 +15,9 @@ public class Driverlicense implements Entity {
     private String number;
 
     @DatabaseField(foreign = true, columnName = "idDriverLicenceCategory")
-    private Driverlicencecategory driverlicencecategory;
+    private DriverLicenceCategory driverlicencecategory;
 
-    public Driverlicense() {
+    public DriverLicense() {
     }
 
     public int getIdDriverLicense() {
@@ -36,11 +36,11 @@ public class Driverlicense implements Entity {
         this.number = number;
     }
 
-    public Driverlicencecategory getDriverlicencecategory() {
+    public DriverLicenceCategory getDriverlicencecategory() {
         return this.driverlicencecategory;
     }
 
-    public void setDriverlicencecategory(Driverlicencecategory driverlicencecategory) {
+    public void setDriverlicencecategory(DriverLicenceCategory driverlicencecategory) {
         this.driverlicencecategory = driverlicencecategory;
     }
 

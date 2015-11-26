@@ -6,7 +6,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "parcel_m2m_delivery")
-public class ParcelM2mDelivery implements Entity {
+public class ParcelM2MDelivery implements Entity {
 
     @DatabaseField(generatedId = true)
     private int idParcel_M2M_Delivery;
@@ -17,7 +17,7 @@ public class ParcelM2mDelivery implements Entity {
     @DatabaseField(foreign = true, columnName = "idParcel")
     private Parcel parcel;
 
-    public ParcelM2mDelivery() {
+    public ParcelM2MDelivery() {
     }
 
     public int getIdParcel_M2M_Delivery() {

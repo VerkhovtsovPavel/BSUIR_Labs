@@ -3,12 +3,12 @@ package by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete;
 import java.util.List;
 
 import by.bsuir.verkpavel.courseproject.dao.Entity;
-import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
+import by.bsuir.verkpavel.courseproject.dao.entity.Salary;
 import by.bsuir.verkpavel.courseproject.ui.tablemodel.GeneralDeliveryServiceTableModel;
 
-public class EmployeeTableModel extends GeneralDeliveryServiceTableModel {
+public class SalaryTableModel extends GeneralDeliveryServiceTableModel {
 
-    public EmployeeTableModel(List<Entity> beans) {
+    public SalaryTableModel(List<Entity> beans) {
         super(beans);
     }
 
@@ -17,34 +17,40 @@ public class EmployeeTableModel extends GeneralDeliveryServiceTableModel {
     }
 
     public int getColumnCount() {
-        return 4;
+        return 5;
     }
 
     public String getColumnName(int columnIndex) {
         switch (columnIndex) {
         case 0:
-            return "Ф.И.О";
+            return "Номер";
         case 1:
-            return "Офис";
+            return "Оклад";
         case 2:
-            return "День рождения";
+            return "Повышающий коэффициент";
         case 3:
-            return "Дата приема на работу";
+            return "Итог";
+        case 4:
+            return "Работник";
+            
         }
         return "";
     }
     
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Employee bean = (Employee) getBeans().get(rowIndex);
+        Salary bean = (Salary) getBeans().get(rowIndex);
         switch (columnIndex) {
         case 0:
-            return bean.getFullName();
+            return bean.getIdSalary();
         case 1:
-            return bean.getOffice();
+            return bean.getBaseRate();
         case 2:
-            return bean.getBirthday();
+            return bean.getRaisingFactor();
         case 3:
-            return bean.getHireDate();
+            return bean.getRaisingFactor() * bean.getBaseRate();
+        case 4:
+            return bean.getEmployee().getFullName();     
+            
         }
         return "";
     }

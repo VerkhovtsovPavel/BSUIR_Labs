@@ -29,7 +29,7 @@ public abstract class GeneralDeliveryServiceTableModel implements TableModel {
     }
 
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return true;
+        return false;
     }
 
     public void removeTableModelListener(TableModelListener listener) {

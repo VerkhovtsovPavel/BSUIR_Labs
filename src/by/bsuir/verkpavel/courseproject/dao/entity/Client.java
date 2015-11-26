@@ -9,7 +9,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName = "client")
+@DatabaseTable(tableName = "Client")
 public class Client implements Entity {
 
     @DatabaseField(generatedId = true)

@@ -8,7 +8,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "corporatecar")
-public class Corporatecar implements Entity {
+public class CorporateCar implements Entity {
 
     @DatabaseField(generatedId = true)
     private int idCorporateCar;
@@ -28,13 +28,13 @@ public class Corporatecar implements Entity {
     @DatabaseField
     private String number;
 
-    @DatabaseField(foreign = true, columnName = "requiredDriverLicenceCategory")
-    private Driverlicencecategory driverlicencecategory;
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "requiredDriverLicenceCategory")
+    private DriverLicenceCategory driverlicencecategory;
 
-    @DatabaseField(foreign = true, columnName = "currentLocation")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "currentLocation")
     private Office office;
 
-    public Corporatecar() {
+    public CorporateCar() {
     }
 
     public int getIdCorporateCar() {
@@ -101,11 +101,11 @@ public class Corporatecar implements Entity {
         this.number = number;
     }
 
-    public Driverlicencecategory getDriverlicencecategory() {
+    public DriverLicenceCategory getDriverlicencecategory() {
         return this.driverlicencecategory;
     }
 
-    public void setDriverlicencecategory(Driverlicencecategory driverlicencecategory) {
+    public void setDriverlicencecategory(DriverLicenceCategory driverlicencecategory) {
         this.driverlicencecategory = driverlicencecategory;
     }
 

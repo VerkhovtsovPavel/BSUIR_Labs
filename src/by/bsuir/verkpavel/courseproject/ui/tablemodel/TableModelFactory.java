@@ -5,6 +5,7 @@ import java.util.List;
 import javax.swing.table.TableModel;
 
 import by.bsuir.verkpavel.courseproject.dao.Entity;
+import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.DriverLicenceCategoryTableModel;
 import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.EmployeeTableModel;
 import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.StreetTableModel;
 
@@ -18,19 +19,19 @@ public class TableModelFactory {
             return null;
         case "Client":
             return null;
-        case "Corporatecar":
+        case "CorporateСar":
             return null;
         case "Delivery":
             return null;
         case "Driver":
             return null;
-        case "Driverlicencecategory":
-            return null;
-        case "Driverlicense":
+        case "DriverLicenceCategory":
+            return new DriverLicenceCategoryTableModel(beans);
+        case "DriverLicense":
             return null;
         case "Employee":
             return new EmployeeTableModel(beans);
-        case "Markparcel":
+        case "MarkParcel":
             return null;
         case "Office":
             return null;
@@ -40,7 +41,7 @@ public class TableModelFactory {
             return null;
         case "Payment":
             return null;
-        case "Paymentssystemtype":
+        case "PaymentsSystemType":
             return null;
         case "Permission":
             return null;

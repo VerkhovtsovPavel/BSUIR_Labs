@@ -5,7 +5,7 @@ import by.bsuir.verkpavel.courseproject.dao.Entity;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName = "authentication")
+@DatabaseTable(tableName = "Authentication")
 public class Authentication implements Entity {
     @DatabaseField(generatedId = true)
     private int idAuthentication;

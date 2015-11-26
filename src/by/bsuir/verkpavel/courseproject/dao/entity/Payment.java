@@ -20,8 +20,8 @@ public class Payment implements Entity {
 	@DatabaseField
 	private int sum;
 
-	@DatabaseField(foreign = true, columnName = "idPaymentsSystemType")
-	private Paymentssystemtype paymentssystemtype;
+	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idPaymentsSystemType")
+	private PaymentsSystemType paymentssystemtype;
 
 	public Payment() {
 	}
@@ -50,11 +50,11 @@ public class Payment implements Entity {
 		this.sum = sum;
 	}
 
-	public Paymentssystemtype getPaymentssystemtype() {
+	public PaymentsSystemType getPaymentsSystemType() {
 		return this.paymentssystemtype;
 	}
 
-	public void setPaymentssystemtype(Paymentssystemtype paymentssystemtype) {
+	public void setPaymentssystemtype(PaymentsSystemType paymentssystemtype) {
 		this.paymentssystemtype = paymentssystemtype;
 	}
 

@@ -5,7 +5,7 @@ import by.bsuir.verkpavel.courseproject.dao.Entity;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName = "salary")
+@DatabaseTable(tableName = "Salary")
 public class Salary implements Entity {
 
     @DatabaseField(generatedId = true)
@@ -14,6 +14,9 @@ public class Salary implements Entity {
     private double baseRate;
     @DatabaseField
     private double raisingFactor;
+    //FIXME Check work ASAP!!! 
+    @DatabaseField(foreign = true, columnName = "idEmployee")
+    private Employee employee;
 
     public Salary() {
     }
@@ -40,5 +43,13 @@ public class Salary implements Entity {
 
     public void setRaisingFactor(double raisingFactor) {
         this.raisingFactor = raisingFactor;
+    }
+    
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }

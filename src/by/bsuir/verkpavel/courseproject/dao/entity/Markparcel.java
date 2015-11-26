@@ -6,14 +6,16 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "markparcel")
-public class Markparcel implements Entity {
+public class MarkParcel implements Entity {
 
     @DatabaseField(generatedId = true)
     private int idMarkParcel;
     @DatabaseField
     private String description;
+    @DatabaseField
+    private float rate;
 
-    public Markparcel() {
+    public MarkParcel() {
     }
 
     public int getIdMarkParcel() {
@@ -30,6 +32,14 @@ public class Markparcel implements Entity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    
+    public float getRate() {
+        return rate;
+    }
+
+    public void setRate(float rate) {
+        this.rate = rate;
     }
 
 }

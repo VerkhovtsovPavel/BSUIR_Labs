@@ -10,9 +10,9 @@ public class Driver implements Entity {
     private int idDriver;
 
     @DatabaseField(foreign = true, columnName = "idDriverLicense")
-    private Driverlicense driverlicense;
+    private DriverLicense driverlicense;
 
-    @DatabaseField(foreign = true, columnName = "idEmployee")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idEmployee")
     private Employee employee;
 
     @DatabaseField(foreign = true, columnName = "currentLocation")
@@ -29,11 +29,11 @@ public class Driver implements Entity {
         this.idDriver = idDriver;
     }
 
-    public Driverlicense getDriverlicense() {
+    public DriverLicense getDriverlicense() {
         return this.driverlicense;
     }
 
-    public void setDriverlicense(Driverlicense driverlicense) {
+    public void setDriverlicense(DriverLicense driverlicense) {
         this.driverlicense = driverlicense;
     }
 
