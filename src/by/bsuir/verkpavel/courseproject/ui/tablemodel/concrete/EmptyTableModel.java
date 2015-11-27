@@ -9,6 +9,7 @@ public class EmptyTableModel extends GeneralDeliveryServiceTableModel {
 
     public EmptyTableModel(List<? extends Entity> beans) {
         super(beans);
+        beans.add(null); //Workaround to call getValueAt one time
     }
 
     @Override
@@ -18,7 +19,6 @@ public class EmptyTableModel extends GeneralDeliveryServiceTableModel {
 
     @Override
     public String getColumnName(int columnIndex) {
-        getValueAt(0, 0);
         return "Внимание!!";
     }
 

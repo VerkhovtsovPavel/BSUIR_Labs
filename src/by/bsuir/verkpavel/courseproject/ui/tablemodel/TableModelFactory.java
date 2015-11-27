@@ -2,8 +2,6 @@ package by.bsuir.verkpavel.courseproject.ui.tablemodel;
 
 import java.util.List;
 
-import javax.swing.table.TableModel;
-
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.ClientTableModel;
 import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.CorporateCarTableModel;
@@ -20,7 +18,7 @@ import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.StreetTableModel;
 //TODO Fix null returning
 public class TableModelFactory {
 
-    public static TableModel getTableModel(List<? extends Entity> beans) {
+    public static GeneralDeliveryServiceTableModel getTableModel(List<? extends Entity> beans) {
         if(beans.isEmpty()){
             return new EmptyTableModel(beans);
         }

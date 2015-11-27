@@ -17,7 +17,7 @@ public abstract class GeneralDeliveryServiceTableModel implements TableModel {
     private List<? extends Entity> _beans;
 
     public GeneralDeliveryServiceTableModel(List<? extends Entity> beans) {
-        this._beans = beans;
+        this._beans = beans; 
     }
 
     public void addTableModelListener(TableModelListener listener) {
@@ -43,4 +43,9 @@ public abstract class GeneralDeliveryServiceTableModel implements TableModel {
     public List<? extends Entity> getBeans() {
         return _beans;
     }
+    
+    public void processClick(int row, int column){
+        String selectedData = getValueAt(row, column).toString();
+        System.out.println("Selected: " + selectedData);
+    };
 }

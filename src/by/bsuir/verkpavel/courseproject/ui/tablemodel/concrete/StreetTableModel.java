@@ -1,12 +1,14 @@
 package by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 import by.bsuir.verkpavel.courseproject.dao.entity.Street;
+import by.bsuir.verkpavel.courseproject.ui.EntityShowView;
 import by.bsuir.verkpavel.courseproject.ui.tablemodel.GeneralDeliveryServiceTableModel;
 
-public class StreetTableModel  extends GeneralDeliveryServiceTableModel{
+public class StreetTableModel extends GeneralDeliveryServiceTableModel {
 
     public StreetTableModel(List<? extends Entity> beans) {
         super(beans);
@@ -48,4 +50,19 @@ public class StreetTableModel  extends GeneralDeliveryServiceTableModel{
         }
         return "";
     }
+
+    @Override
+    public void processClick(int row, int column) {
+        if (column == 2) {
+            String cityName = getValueAt(row, column).toString();
+            ArrayList<Street> streetInCity = new ArrayList<>();
+            for (Entity street : getBeans()) {
+                if (((Street) street).getCity().getName().equals(cityName)) {
+                    streetInCity.add((Street) street);
+                }
+            }
+            new EntityShowView(streetInCity).showView();
+        }
+    }
+
 }

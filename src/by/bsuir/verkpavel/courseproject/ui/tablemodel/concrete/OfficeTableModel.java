@@ -4,7 +4,7 @@ import java.util.List;
 
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 import by.bsuir.verkpavel.courseproject.ui.tablemodel.GeneralDeliveryServiceTableModel;
-//Finish implementation 
+//TODO Finish implementation 
 public class OfficeTableModel extends GeneralDeliveryServiceTableModel {
 
     public OfficeTableModel(List<? extends Entity> beans) {
