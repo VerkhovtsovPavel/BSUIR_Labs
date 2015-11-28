@@ -1,20 +1,20 @@
-package by.bsuir.verkpavel.courseproject.ui.tablemodel;
+package by.bsuir.verkpavel.courseproject.logic.tablemodel;
 
 import java.util.List;
 
 import by.bsuir.verkpavel.courseproject.dao.Entity;
-import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.ClientTableModel;
-import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.CorporateCarTableModel;
-import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.DeliveryTableModel;
-import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.DriverLicenceCategoryTableModel;
-import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.EmployeeTableModel;
-import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.EmptyTableModel;
-import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.MarkParcelTableModel;
-import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.OfficeTableModel;
-import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.ParcelTableModel;
-import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.PermissionTableModel;
-import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.PositionTableModel;
-import by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete.StreetTableModel;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.ClientTableModel;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.CorporateCarTableModel;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.DeliveryTableModel;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.DriverLicenceCategoryTableModel;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.EmployeeTableModel;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.EmptyTableModel;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.MarkParcelTableModel;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.OfficeTableModel;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.ParcelTableModel;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.PermissionTableModel;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.PositionTableModel;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.StreetTableModel;
 //TODO Fix null returning
 public class TableModelFactory {
 

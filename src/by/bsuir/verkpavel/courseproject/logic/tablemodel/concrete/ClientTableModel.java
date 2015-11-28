@@ -1,10 +1,10 @@
-package by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete;
+package by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete;
 
 import java.util.List;
 
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 import by.bsuir.verkpavel.courseproject.dao.entity.Client;
-import by.bsuir.verkpavel.courseproject.ui.tablemodel.GeneralDeliveryServiceTableModel;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.GeneralDeliveryServiceTableModel;
 
 public class ClientTableModel extends GeneralDeliveryServiceTableModel {
 

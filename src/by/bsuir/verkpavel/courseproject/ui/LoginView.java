@@ -9,16 +9,16 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
 
-import by.bsuir.verkpavel.courseproject.access.MenuAccessor;
-
-public class MainView extends JFrame {
+public class LoginView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
     private JPanel mainPanel;
-    
-    private JMenuBar menuBar;
+    private JTextField loginTextField;
+    private JTextField passwordTextField;
 
     public void showView() {
         this.setSize(332, 204);
@@ -36,58 +36,43 @@ public class MainView extends JFrame {
         });
     }
 
-    public MainView() {
+    public LoginView() {
         configureDefaultLayot();
-        //TODO Remove null
-        menuBar = MenuAccessor.createMenu(null);
-        setJMenuBar(menuBar);
     }
 
     private void configureDefaultLayot() {
         setResizable(false);
-        setTitle("Главная форма");
+        setTitle("Вход в систему");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         mainPanel = new JPanel();
         setContentPane(mainPanel);
         mainPanel.setLayout(null);
 
-        JButton clientsBtn = new JButton("Клиенты");
-        clientsBtn.setBounds(47, 42, 111, 23);
+        JButton clientsBtn = new JButton("Войти");
+        clientsBtn.setBounds(163, 213, 111, 23);
         clientsBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
         });
         mainPanel.add(clientsBtn);
-
-        JButton accountButton = new JButton("Счета");
-        accountButton.setBounds(170, 42, 111, 23);
-        accountButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-        });
-        mainPanel.add(accountButton);
-
-        JButton depositButton = new JButton("Депозиты");
-        depositButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-        });
-        depositButton.setBounds(170, 97, 111, 23);
-        mainPanel.add(depositButton);
-
-        JButton creditButton = new JButton("Кредиты");
-        creditButton.setBounds(47, 97, 111, 23);
-        creditButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-        });
-        mainPanel.add(creditButton);
+        
+        loginTextField = new JTextField();
+        loginTextField.setBounds(179, 26, 255, 20);
+        mainPanel.add(loginTextField);
+        loginTextField.setColumns(10);
+        
+        JLabel loginLabel = new JLabel("Имя пользователя");
+        loginLabel.setBounds(26, 29, 102, 14);
+        mainPanel.add(loginLabel);
+        
+        JLabel passwordLabel = new JLabel("Пароль");
+        passwordLabel.setBounds(26, 67, 102, 14);
+        mainPanel.add(passwordLabel);
+        
+        passwordTextField = new JPasswordField();
+        passwordTextField.setColumns(10);
+        passwordTextField.setBounds(179, 64, 255, 20);
+        mainPanel.add(passwordTextField);
     }
 }

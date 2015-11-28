@@ -1,4 +1,4 @@
-package by.bsuir.verkpavel.courseproject.ui.tablemodel;
+package by.bsuir.verkpavel.courseproject.logic.tablemodel;
 
 import java.util.HashSet;
 import java.util.List;

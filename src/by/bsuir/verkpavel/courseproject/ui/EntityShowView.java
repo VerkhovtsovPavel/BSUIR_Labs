@@ -10,8 +10,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import by.bsuir.verkpavel.courseproject.dao.Entity;
-import by.bsuir.verkpavel.courseproject.ui.tablemodel.GeneralDeliveryServiceTableModel;
-import by.bsuir.verkpavel.courseproject.ui.tablemodel.TableModelFactory;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.GeneralDeliveryServiceTableModel;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.TableModelFactory;
 
 public class EntityShowView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;

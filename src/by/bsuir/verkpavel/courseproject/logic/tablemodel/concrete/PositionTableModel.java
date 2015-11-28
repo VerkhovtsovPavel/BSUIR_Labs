@@ -1,14 +1,14 @@
-package by.bsuir.verkpavel.courseproject.ui.tablemodel.concrete;
+package by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete;
 
 import java.util.List;
 
 import by.bsuir.verkpavel.courseproject.dao.Entity;
-import by.bsuir.verkpavel.courseproject.dao.entity.Permission;
-import by.bsuir.verkpavel.courseproject.ui.tablemodel.GeneralDeliveryServiceTableModel;
+import by.bsuir.verkpavel.courseproject.dao.entity.Position;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.GeneralDeliveryServiceTableModel;
 
-public class PermissionTableModel extends GeneralDeliveryServiceTableModel {
+public class PositionTableModel extends GeneralDeliveryServiceTableModel {
 
-    public PermissionTableModel(List<? extends Entity> beans) {
+    public PositionTableModel(List<? extends Entity> beans) {
         super(beans);
     }
 
@@ -31,10 +31,10 @@ public class PermissionTableModel extends GeneralDeliveryServiceTableModel {
     }
     
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Permission bean = (Permission) getBeans().get(rowIndex);
+        Position bean = (Position) getBeans().get(rowIndex);
         switch (columnIndex) {
         case 0:
-            return bean.getIdPermissions();
+            return bean.getIdPosition();
         case 1:
             return bean.getDescription();
         }
