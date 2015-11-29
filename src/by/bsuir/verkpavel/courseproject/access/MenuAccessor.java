@@ -19,6 +19,13 @@ public class MenuAccessor {
 
     public static JMenuBar createMenu(Employee currentUser) {
         JMenuBar menuBar = new JMenuBar();
+        createPersonalMenu(menuBar, currentUser);
+        createEmployeeMenu(menuBar, currentUser);
+        createUsersMenu(menuBar, currentUser);
+        createDeliveryMenu(menuBar, currentUser);
+        createParcelMenu(menuBar, currentUser);
+        createCorporateCarMenu(menuBar, currentUser);
+        
         Font font = new Font("Verdana", Font.PLAIN, 11);
         JMenu fileMenu = new JMenu("File");
         fileMenu.setFont(font);
@@ -72,5 +79,39 @@ public class MenuAccessor {
         
         return menuBar;
     }
+
+	private static void createPersonalMenu(JMenuBar menuBar,
+			Employee currentUser) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void createCorporateCarMenu(JMenuBar menuBar,
+			Employee currentUser) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void createParcelMenu(JMenuBar menuBar, Employee currentUser) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void createDeliveryMenu(JMenuBar menuBar,
+			Employee currentUser) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void createUsersMenu(JMenuBar menuBar, Employee currentUser) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void createEmployeeMenu(JMenuBar menuBar,
+			Employee currentUser) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
