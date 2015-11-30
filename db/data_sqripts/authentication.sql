@@ -1,0 +1,9 @@
+INSERT INTO `deliveryservice`.`authentication` (`idAuthentication`, `userName`, `password`) VALUES (1, 'user1', '7c4a8d09ca3762af61e59520943dc26494f8941b');
+INSERT INTO `deliveryservice`.`authentication` (`idAuthentication`, `userName`, `password`) VALUES (2, 'user2', '7c4a8d09ca3762af61e59520943dc26494f8941b');
+INSERT INTO `deliveryservice`.`authentication` (`idAuthentication`, `userName`, `password`) VALUES (3, 'user3', '7c4a8d09ca3762af61e59520943dc26494f8941b');
+INSERT INTO `deliveryservice`.`authentication` (`idAuthentication`, `userName`, `password`) VALUES (4, 'user4', '7c4a8d09ca3762af61e59520943dc26494f8941b');
+INSERT INTO `deliveryservice`.`authentication` (`idAuthentication`, `userName`, `password`) VALUES (5, 'user5', '7c4a8d09ca3762af61e59520943dc26494f8941b');
+INSERT INTO `deliveryservice`.`authentication` (`idAuthentication`, `userName`, `password`) VALUES (6, 'user6', '7c4a8d09ca3762af61e59520943dc26494f8941b');
+INSERT INTO `deliveryservice`.`authentication` (`idAuthentication`, `userName`, `password`) VALUES (7, 'user7', '7c4a8d09ca3762af61e59520943dc26494f8941b');
+INSERT INTO `deliveryservice`.`authentication` (`idAuthentication`, `userName`, `password`) VALUES (8, 'user8', '7c4a8d09ca3762af61e59520943dc26494f8941b');
+INSERT INTO `deliveryservice`.`authentication` (`idAuthentication`, `userName`, `password`) VALUES (9, 'user9', '7c4a8d09ca3762af61e59520943dc26494f8941b');

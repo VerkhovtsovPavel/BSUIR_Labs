@@ -29,7 +29,6 @@ public class EmptyTableModel extends GeneralDeliveryServiceTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        //TODO Don't call fix
         return "В базе данных нет записей по данному аспекту";
     }
 

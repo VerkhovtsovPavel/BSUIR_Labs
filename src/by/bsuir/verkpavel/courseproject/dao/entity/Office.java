@@ -5,7 +5,6 @@ import by.bsuir.verkpavel.courseproject.dao.Entity;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-//TODO Add new fields
 @DatabaseTable(tableName = "office")
 public class Office implements Entity {
 
@@ -14,8 +13,12 @@ public class Office implements Entity {
 
     @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idStreet")
     private Street street;
-    
-    
+    @DatabaseField
+    private int home;
+    @DatabaseField
+    private String housing;
+    @DatabaseField
+    private int room;
 
     public Office() {
     }
@@ -28,25 +31,30 @@ public class Office implements Entity {
         this.idOffice = idOffice;
     }
 
-  
-   
+    public int getHome() {
+        return home;
+    }
 
-    
+    public void setHome(int home) {
+        this.home = home;
+    }
 
-   
+    public String getHousing() {
+        return housing;
+    }
 
-   
+    public void setHousing(String housing) {
+        this.housing = housing;
+    }
 
-   
-    
+    public int getRoom() {
+        return room;
+    }
 
-   
+    public void setRoom(int room) {
+        this.room = room;
+    }
 
-   
-
-    
-
-   
     public Street getStreet() {
         return this.street;
     }

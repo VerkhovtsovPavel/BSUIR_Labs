@@ -1,7 +1,7 @@
 INSERT INTO `deliveryService`.`Position` (`idPosition`, `description`) VALUES  (1, 'Главный бухгалтер');
 INSERT INTO `deliveryService`.`Position` (`idPosition`, `description`) VALUES  (2, 'Бухгалтер');
 
-INSERT INTO `deliveryService`.`Position` (`idPosition`, `description`) VALUES  (3, 'Специалист по кадкам');
+INSERT INTO `deliveryService`.`Position` (`idPosition`, `description`) VALUES  (3, 'Специалист по кадрам');
 INSERT INTO `deliveryService`.`Position` (`idPosition`, `description`) VALUES  (4, 'Уборщик');
 
 INSERT INTO `deliveryService`.`Position` (`idPosition`, `description`) VALUES  (5, 'Администратор базы данных');

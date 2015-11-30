@@ -13,10 +13,6 @@ import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
 
 public class MenuAccessor {
 
-    public MenuAccessor() {
-        // TODO Auto-generated constructor stub
-    }
-
     public static JMenuBar createMenu(Employee currentUser) {
         JMenuBar menuBar = new JMenuBar();
         createPersonalMenu(menuBar, currentUser);
@@ -25,7 +21,7 @@ public class MenuAccessor {
         createDeliveryMenu(menuBar, currentUser);
         createParcelMenu(menuBar, currentUser);
         createCorporateCarMenu(menuBar, currentUser);
-        
+
         Font font = new Font("Verdana", Font.PLAIN, 11);
         JMenu fileMenu = new JMenu("File");
         fileMenu.setFont(font);
@@ -52,7 +48,7 @@ public class MenuAccessor {
         timeRequired.setFont(font);
         timeRequired.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //ModalForm.create("Time required", true);
+                // ModalForm.create("Time required", true);
             }
         });
         otherSearches.add(timeRequired);
@@ -61,7 +57,7 @@ public class MenuAccessor {
         recipeName.setFont(font);
         recipeName.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //ModalForm.create("Recipe name", false);
+                // ModalForm.create("Recipe name", false);
             }
         });
         otherSearches.add(recipeName);
@@ -76,42 +72,65 @@ public class MenuAccessor {
         });
         fileMenu.add(exitItem);
         menuBar.add(fileMenu);
-        
+
         return menuBar;
     }
 
-	private static void createPersonalMenu(JMenuBar menuBar,
-			Employee currentUser) {
-		// TODO Auto-generated method stub
-		
-	}
+    private static void createPersonalMenu(JMenuBar menuBar, Employee currentUser) {
+        JMenu personalMenu = new JMenu("Мой профиль");
+        JMenuItem changeLogin = new JMenuItem("Изменить логин");
+        changeLogin.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //TODO Use value change view send old userName
+            }
+        });
+        
+        JMenuItem changePassword = new JMenuItem("Изменить пароль");
+        changePassword.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+              //TODO Use value change view send "Старый пароль"
+            }
+        });
+        
+        
+        JMenuItem logOut = new JMenuItem("Выйти из учетной записи");
+        logOut.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //TODO Go to login view and delete all session data
+            }
+        });
+        
+        personalMenu.add(changeLogin);
+        personalMenu.add(changePassword);
+        personalMenu.add(logOut);
+        
+        menuBar.add(personalMenu);
 
-	private static void createCorporateCarMenu(JMenuBar menuBar,
-			Employee currentUser) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 
-	private static void createParcelMenu(JMenuBar menuBar, Employee currentUser) {
-		// TODO Auto-generated method stub
-		
-	}
+    private static void createCorporateCarMenu(JMenuBar menuBar, Employee currentUser) {
+        // TODO Auto-generated method stub
 
-	private static void createDeliveryMenu(JMenuBar menuBar,
-			Employee currentUser) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 
-	private static void createUsersMenu(JMenuBar menuBar, Employee currentUser) {
-		// TODO Auto-generated method stub
-		
-	}
+    private static void createParcelMenu(JMenuBar menuBar, Employee currentUser) {
+        // TODO Auto-generated method stub
 
-	private static void createEmployeeMenu(JMenuBar menuBar,
-			Employee currentUser) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
+
+    private static void createDeliveryMenu(JMenuBar menuBar, Employee currentUser) {
+        // TODO Auto-generated method stub
+
+    }
+
+    private static void createUsersMenu(JMenuBar menuBar, Employee currentUser) {
+        // TODO Auto-generated method stub
+
+    }
+
+    private static void createEmployeeMenu(JMenuBar menuBar, Employee currentUser) {
+        // TODO Auto-generated method stub
+
+    }
 
 }

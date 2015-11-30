@@ -23,5 +23,6 @@ public class Main {
         EntityShowView entityShowView = new EntityShowView(DeliveryServiceDao.getInstance().getDaoByClass(Street.class).queryForAll());
         
         entityShowView.showView();
+       
     }
 }
