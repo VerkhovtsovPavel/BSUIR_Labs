@@ -9,6 +9,7 @@ import by.bsuir.verkpavel.courseproject.dao.Entity;
 import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
 import by.bsuir.verkpavel.courseproject.dao.entity.Street;
 import by.bsuir.verkpavel.courseproject.ui.EntityShowView;
+import by.bsuir.verkpavel.courseproject.ui.MainView;
 
 public class Main {
     
@@ -23,6 +24,8 @@ public class Main {
         EntityShowView entityShowView = new EntityShowView(DeliveryServiceDao.getInstance().getDaoByClass(Street.class).queryForAll());
         
         entityShowView.showView();
-       
-    }
+        
+        MainView mainView = new MainView();
+        mainView.showView();
+   }
 }

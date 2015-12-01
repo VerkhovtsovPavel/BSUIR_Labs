@@ -1,10 +1,8 @@
 package by.bsuir.verkpavel.courseproject.access;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -21,58 +19,6 @@ public class MenuAccessor {
         createDeliveryMenu(menuBar, currentUser);
         createParcelMenu(menuBar, currentUser);
         createCorporateCarMenu(menuBar, currentUser);
-
-        Font font = new Font("Verdana", Font.PLAIN, 11);
-        JMenu fileMenu = new JMenu("File");
-        fileMenu.setFont(font);
-        JMenuItem addRecipe = new JMenuItem("Add recipe");
-        addRecipe.setFont(font);
-        fileMenu.add(addRecipe);
-        addRecipe.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-        JMenuItem myRecipe = new JMenuItem("Recipe-book");
-        myRecipe.setFont(font);
-        myRecipe.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // ShowRecipe.create("Recipe-book", dbDriver.getAll());
-            }
-        });
-        fileMenu.add(myRecipe);
-        JMenu otherSearches = new JMenu("More searches");
-        otherSearches.setFont(font);
-        fileMenu.add(otherSearches);
-        ButtonGroup directionGroup = new ButtonGroup();
-        JMenuItem timeRequired = new JMenuItem("Time required");
-        timeRequired.setFont(font);
-        timeRequired.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // ModalForm.create("Time required", true);
-            }
-        });
-        otherSearches.add(timeRequired);
-        directionGroup.add(timeRequired);
-        JMenuItem recipeName = new JMenuItem("Recipe name");
-        recipeName.setFont(font);
-        recipeName.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // ModalForm.create("Recipe name", false);
-            }
-        });
-        otherSearches.add(recipeName);
-        directionGroup.add(recipeName);
-        fileMenu.addSeparator();
-        JMenuItem exitItem = new JMenuItem("Exit");
-        exitItem.setFont(font);
-        exitItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-        fileMenu.add(exitItem);
-        menuBar.add(fileMenu);
-
         return menuBar;
     }
 
@@ -81,46 +27,126 @@ public class MenuAccessor {
         JMenuItem changeLogin = new JMenuItem("Изменить логин");
         changeLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //TODO Use value change view send old userName
+                // TODO Use value change view send old userName
             }
         });
-        
+
         JMenuItem changePassword = new JMenuItem("Изменить пароль");
         changePassword.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-              //TODO Use value change view send "Старый пароль"
+
             }
         });
-        
-        
+
         JMenuItem logOut = new JMenuItem("Выйти из учетной записи");
         logOut.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //TODO Go to login view and delete all session data
+                // TODO Go to login view and delete all session data
             }
         });
-        
+
         personalMenu.add(changeLogin);
         personalMenu.add(changePassword);
         personalMenu.add(logOut);
-        
-        menuBar.add(personalMenu);
 
+        menuBar.add(personalMenu);
     }
 
     private static void createCorporateCarMenu(JMenuBar menuBar, Employee currentUser) {
-        // TODO Auto-generated method stub
+        JMenu personalMenu = new JMenu("Служебные машины");
+        JMenuItem addCar = new JMenuItem("Добавить машины");
+        addCar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO
+            }
+        });
 
+        JMenuItem cancelСar = new JMenuItem("Списать машины");
+        cancelСar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO
+            }
+        });
+
+        JMenuItem showCar = new JMenuItem("Просмотреть работников");
+        showCar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO
+            }
+        });
+
+        personalMenu.add(addCar);
+        personalMenu.add(cancelСar);
+        personalMenu.add(showCar);
+
+        menuBar.add(personalMenu);
     }
 
     private static void createParcelMenu(JMenuBar menuBar, Employee currentUser) {
-        // TODO Auto-generated method stub
+        JMenu personalMenu = new JMenu("Посылки");
+        JMenuItem addParcel = new JMenuItem("Добавить посылку");
+        addParcel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO
+            }
+        });
 
+        JMenuItem deleteParcel = new JMenuItem("Удалить посылку");
+        deleteParcel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO
+            }
+        });
+
+        JMenuItem showParcel = new JMenuItem("Просмотреть посылки");
+        showParcel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO
+            }
+        });
+
+        personalMenu.add(addParcel);
+        personalMenu.add(deleteParcel);
+        personalMenu.add(showParcel);
+
+        menuBar.add(personalMenu);
     }
 
     private static void createDeliveryMenu(JMenuBar menuBar, Employee currentUser) {
-        // TODO Auto-generated method stub
+        JMenu personalMenu = new JMenu("Доставки");
+        JMenuItem addDelivery = new JMenuItem("Создать доставку");
+        addDelivery.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO
+            }
+        });
 
+        JMenuItem addParcelToDelivery = new JMenuItem("Добавить товар в достаку");
+        addParcelToDelivery.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO
+            }
+        });
+
+        JMenuItem deleteParcelToDelivery = new JMenuItem("Удалить товар в достаку");
+        deleteParcelToDelivery.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO
+            }
+        });
+
+        JMenuItem showDelivery = new JMenuItem("Просмотреть доставки");
+        showDelivery.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO
+            }
+        });
+
+        personalMenu.add(addDelivery);
+        personalMenu.add(addParcelToDelivery);
+        personalMenu.add(showDelivery);
+
+        menuBar.add(personalMenu);
     }
 
     private static void createUsersMenu(JMenuBar menuBar, Employee currentUser) {
@@ -129,8 +155,32 @@ public class MenuAccessor {
     }
 
     private static void createEmployeeMenu(JMenuBar menuBar, Employee currentUser) {
-        // TODO Auto-generated method stub
+        JMenu personalMenu = new JMenu("Работники");
+        JMenuItem addEmployee = new JMenuItem("Добавить работника");
+        addEmployee.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO Use value change view send old userName
+            }
+        });
 
+        JMenuItem fireEmployee = new JMenuItem("Уволить работника");
+        fireEmployee.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO Use value change view send "Старый пароль"
+            }
+        });
+
+        JMenuItem showEmployee = new JMenuItem("Просмотреть работников");
+        showEmployee.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO Go to login view and delete all session data
+            }
+        });
+
+        personalMenu.add(addEmployee);
+        personalMenu.add(fireEmployee);
+        personalMenu.add(showEmployee);
+
+        menuBar.add(personalMenu);
     }
-
 }

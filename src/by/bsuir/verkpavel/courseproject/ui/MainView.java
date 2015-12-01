@@ -17,7 +17,7 @@ import by.bsuir.verkpavel.courseproject.access.MenuAccessor;
 public class MainView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
     private JPanel mainPanel;
-    
+
     private JMenuBar menuBar;
 
     public void showView() {
@@ -37,14 +37,14 @@ public class MainView extends JFrame {
     }
 
     public MainView() {
+        setResizable(false);
         configureDefaultLayot();
-        //TODO Remove null
+        // TODO Remove null
         menuBar = MenuAccessor.createMenu(null);
         setJMenuBar(menuBar);
     }
 
     private void configureDefaultLayot() {
-        setResizable(false);
         setTitle("Главная форма");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         mainPanel = new JPanel();
