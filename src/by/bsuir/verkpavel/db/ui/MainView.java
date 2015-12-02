@@ -114,12 +114,12 @@ public class MainView  extends JFrame {
                 
                 int countOfThreads = (int) countOfThreadsSpinner.getValue();
                 
-                DBDaoThreadPool dbThreadPool = new DBDaoThreadPool(countOfThreads, connectionString, userName, password);
+                //DBDaoThreadPool dbThreadPool = new DBDaoThreadPool(countOfThreads, connectionString, userName, password);
                 
                 int countOfRequest = (int) countOfRequestSpinner.getValue();
                 boolean isTransaction = transactionCheckBox.isSelected();
                 for(int i=0; i<countOfRequest; i++){
-                    dbThreadPool.addTask(new DBDaoTask(requestGenerator.getParametrazedQuery(), isTransaction));
+                    /*dbThreadPool.addTask(new DBDaoTask(*/requestGenerator.getParametrazedQuery()/*, isTransaction))*/;
                 }
                 
             }
