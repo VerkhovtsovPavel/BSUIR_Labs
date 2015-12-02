@@ -29,7 +29,6 @@ public class DBThread extends Thread {
             try {
                 task = taskQueue.poll(30, TimeUnit.SECONDS);
                 if (task != null) {
-                    log.info("Start execute query #"+task.getNumber());
                     if (task.getIsTransaction()) {
                         executeTransaction(task);
                     } else {
@@ -52,6 +51,7 @@ public class DBThread extends Thread {
     }
 
     private void executeTransaction(DBTask task) throws SQLException {
+        log.info("Start execute with transaction query #"+task.getNumber());
         String keyWord = task.getRequest().split(" ")[0].trim().toLowerCase();
         Statement statement = connection.createStatement();
         if (keyWord.equals("select")) {
@@ -64,6 +64,7 @@ public class DBThread extends Thread {
     }
 
     private void executeWithOutTransaction(DBTask task) {
+        log.info("Start execute query #"+task.getNumber());
         String keyWord = task.getRequest().split(" ")[0].trim().toLowerCase();
         try {
             connection.setAutoCommit(false);
