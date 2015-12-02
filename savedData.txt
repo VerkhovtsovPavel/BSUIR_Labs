@@ -1,0 +1,4 @@
+EPBYMINW4453/AdventureWorks2012;instance=SQLEXPRESS~User~123456~SELECT e.BusinessEntityID, [JobTitle], [Name], [StartTime], [EndTime] FROM HumanResources.EmployeeDepartmentHistory AS edh
+INNER JOIN HumanResources.Shift ON Shift.ShiftID = edh.ShiftID
+INNER JOIN HumanResources.Employee AS e ON edh.BusinessEntityID = e.BusinessEntityID
+WHERE Shift.Name={rValue('Night','Day')} AND e.BusinessEntityID = {rInt(45-200)};

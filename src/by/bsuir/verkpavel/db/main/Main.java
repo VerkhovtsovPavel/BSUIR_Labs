@@ -8,9 +8,9 @@ public class Main {
         MainView mainView = new MainView();
         mainView.showView();
         
-        //EPBYMINW4453\SQLEXPRESS localhost:1433
-        //MINSK/Pavel_Verkhovtsov
-        //""
+        //EPBYMINW4453/AdventureWorks2012;instance=SQLEXPRESS
+        //User
+        //123456
     }
 
 }

@@ -1,7 +1,6 @@
 package by.bsuir.verkpavel.db.dao.db.threadpool;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,32 +9,27 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 
-public class DBDaoThread extends Thread {
-    private Logger log = Logger.getLogger(DBDaoThread.class);
-
-    private static final String DB_PREF = "jdbc:jtds:sqlserver://";
+public class DBThread extends Thread {
+    private Logger log = Logger.getLogger(DBThread.class);
 
     private Connection connection;
 
-    private BlockingQueue<DBDaoTask> taskQueue;
+    private BlockingQueue<DBTask> taskQueue;
 
-    public DBDaoThread(BlockingQueue<DBDaoTask> tasks, String connectionString, String userName, String password){
+    public DBThread(BlockingQueue<DBTask> tasks, Connection connection) {
         this.taskQueue = tasks;
-        try {
-            this.connection = DriverManager.getConnection(DB_PREF+connectionString, userName, password);
-        } catch (SQLException e) {
-           log.fatal("Can't create connection", e);
-        }
+        this.connection = connection;
+
     }
 
     @Override
     public void run() {
-        DBDaoTask task = null;
+        DBTask task = null;
         while (!Thread.currentThread().isInterrupted()) {
             try {
                 task = taskQueue.poll(30, TimeUnit.SECONDS);
                 if (task != null) {
-                    log.info("Get new task");
+                    log.info("Start execute query #"+task.getNumber());
                     if (task.getIsTransaction()) {
                         executeTransaction(task);
                     } else {
@@ -44,6 +38,7 @@ public class DBDaoThread extends Thread {
                     synchronized (task) {
                         task.notify();
                     }
+                    log.info("Finish execute query #"+task.getNumber()+" without errors");
                 }
             } catch (SQLException e) {
                 log.error("Error while execute request", e);
@@ -56,7 +51,7 @@ public class DBDaoThread extends Thread {
         }
     }
 
-    private void executeTransaction(DBDaoTask task) throws SQLException {
+    private void executeTransaction(DBTask task) throws SQLException {
         String keyWord = task.getRequest().split(" ")[0].trim().toLowerCase();
         Statement statement = connection.createStatement();
         if (keyWord.equals("select")) {
@@ -68,7 +63,7 @@ public class DBDaoThread extends Thread {
 
     }
 
-    private void executeWithOutTransaction(DBDaoTask task) {
+    private void executeWithOutTransaction(DBTask task) {
         String keyWord = task.getRequest().split(" ")[0].trim().toLowerCase();
         try {
             connection.setAutoCommit(false);

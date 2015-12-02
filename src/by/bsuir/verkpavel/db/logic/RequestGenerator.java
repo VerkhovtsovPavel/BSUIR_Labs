@@ -12,7 +12,7 @@ public class RequestGenerator {
     private final String doublePattern = "\\{(rDouble)\\((\\d{1,6}\\-\\d{1,6})\\)\\}";
     private final String stringPattern = "\\{(rStr)\\((\\d{1,6}\\-\\d{1,6})\\)\\}";
     private final String intPattern = "\\{(rInt)\\((\\d{1,6}\\-\\d{1,6})\\)\\}";
-    private final String valuesPattern = "\\{(rValue)\\([\\w\\d]+([,]{0,1}[\\w\\d]+)*\\)\\}";
+    private final String valuesPattern = "\\{(rValue)\\([\\'\\w\\d]+(,[\\w\\d\\']+)*\\)\\}";
     
     
     private final char[] symbols = {'a', 'e', 'i', 'o','u','A','E','I','O','U','1', '2', '3', '4', '5', '6', '7', '8', '9', '0','b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','y','z','B','C','D','F','G','H','J','K','L','M','N','P','Q','R','S','T','V','W','X','Y','Z'};
@@ -39,8 +39,8 @@ public class RequestGenerator {
             preQuery = replaceDoubleParams(preQuery);
             preQuery = replaceValueParams(preQuery);
             result+=preQuery+"\n";
-            log.info(preQuery);
         }
+        log.info("Created query : "+result);
         return result;
         
     }
