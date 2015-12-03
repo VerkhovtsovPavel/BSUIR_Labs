@@ -28,7 +28,6 @@ public class Main {
         // mainView.showView();
 //        Object lock = new Object();
 //        ValueChangeView changeView = new ValueChangeView(23, lock);
-//        changeView.showView();
 //        waitNewValue(lock);
 //        String newValue = changeView.getNewValue();
 //        System.out.println(newValue);
@@ -39,17 +38,6 @@ public class Main {
         Dao<Client, Integer> streetDao = DeliveryServiceDao.getInstance().getDaoByClass(Client.class);
         EntityShowView entityShowView = new EntityShowView(streetDao.queryForAll());
         entityShowView.showView();
-
-    }
-
-    private static void waitNewValue(Object lock) {
-        synchronized (lock) {
-            try {
-                lock.wait();
-            } catch (InterruptedException e) {
-                
-            }
-        }
 
     }
 }

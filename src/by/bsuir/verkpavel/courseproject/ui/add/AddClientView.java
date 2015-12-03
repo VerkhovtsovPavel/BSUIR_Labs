@@ -4,14 +4,10 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.Date;
 
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,11 +15,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import org.apache.log4j.Logger;
+import org.jdesktop.swingx.JXDatePicker;
 
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.entity.Client;
 import by.bsuir.verkpavel.courseproject.resources.Messages;
-import by.bsuir.verkpavel.courseproject.resources.ProjectProperties;
 
 import com.j256.ormlite.dao.Dao;
 
@@ -33,14 +29,14 @@ public class AddClientView extends JFrame {
 
     private JPanel mainPanel;
     private JTextField userNameTextField;
-    private JFormattedTextField addDateField;
+    private JXDatePicker datePicker;
 
     public AddClientView() {
         configureDefaultLayot();
     }
-    
+
     public void showView() {
-        this.setSize(750, 130);
+        this.setSize(740, 160);
         this.setTitle("Добавление клиента");
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
@@ -51,9 +47,9 @@ public class AddClientView extends JFrame {
 
     private void createLabels() {
         JLabel addDateLabel = new JLabel("Дата добавления");
-        addDateLabel.setBounds(23, 65, 92, 14);
+        addDateLabel.setBounds(23, 79, 121, 14);
         mainPanel.add(addDateLabel);
-        
+
         JLabel userNameLabel = new JLabel("Имя пользователя");
         userNameLabel.setBounds(23, 25, 121, 14);
         mainPanel.add(userNameLabel);
@@ -62,12 +58,6 @@ public class AddClientView extends JFrame {
     private void configureDefaultLayot() {
         initialazeLayout();
         createElements();
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent windowEvent) {
-
-            }
-        });
     }
 
     private void initialazeLayout() {
@@ -85,12 +75,7 @@ public class AddClientView extends JFrame {
 
     private Client getClient() {
         String userName = userNameTextField.getText();
-        Date addDate = null;
-        try {
-            addDate = ProjectProperties.getDateFormatter().parse(addDateField.getText());
-        } catch (ParseException e) {
-            log .error("Error while parse user add date" ,e);
-        }
+        Date addDate = datePicker.getDate();
 
         Client client = new Client();
         client.setFullName(userName);
@@ -99,18 +84,17 @@ public class AddClientView extends JFrame {
     }
 
     private void createActionElements() {
-        addDateField = new JFormattedTextField(ProjectProperties.getDateFormatter());
-        addDateField.setValue(new java.util.Date());
-        addDateField.setBounds(154, 53, 74, 28);
-        mainPanel.add(addDateField);
-
         userNameTextField = new JTextField();
-        userNameTextField.setBounds(154, 22, 563, 20);
+        userNameTextField.setBounds(154, 14, 562, 38);
         mainPanel.add(userNameTextField);
         userNameTextField.setColumns(10);
+         
+        datePicker = new JXDatePicker();
+        datePicker.setBounds(156, 67, 174, 38);
+        mainPanel.add(datePicker);
 
         JButton addButton = new JButton("Добавить");
-        addButton.setBounds(294, 53, 423, 23);
+        addButton.setBounds(342, 64, 374, 41);
         addButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -118,14 +102,14 @@ public class AddClientView extends JFrame {
                 Dao<Client, Integer> clientDao = DeliveryServiceDao.getInstance().getDaoByClass(Client.class);
                 try {
                     clientDao.create(client);
-                    JOptionPane.showMessageDialog(null,
-                            Messages.CLIENT_SUCCESSFULLY_ADDED.get(), "Message",
+                    JOptionPane.showMessageDialog(null, Messages.CLIENT_SUCCESSFULLY_ADDED.get(), "Message",
                             JOptionPane.PLAIN_MESSAGE);
+                    log.info(Messages.CLIENT_SUCCESSFULLY_ADDED.get());
                     dispose();
-                } catch (SQLException e1) {
-                    JOptionPane.showMessageDialog(null,
-                            Messages.ERROR_WHILE_ADD_CLIENT.get(), "Error",
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, Messages.ERROR_WHILE_ADD_CLIENT.get(), "Error",
                             JOptionPane.PLAIN_MESSAGE);
+                    log.error(Messages.ERROR_WHILE_ADD_CLIENT.get(), ex);
                 }
             }
         });

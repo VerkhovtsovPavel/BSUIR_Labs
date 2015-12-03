@@ -21,6 +21,13 @@ public class Employee implements Entity {
 
     @DatabaseField
     private Date hireDate;
+    
+    @DatabaseField
+    private String phoneNumber;
+    
+    @DatabaseField
+    private String eMail;
+    
 
     @DatabaseField(foreign = true, columnName = "idAuthentication")
     private Authentication authentication;
@@ -110,6 +117,22 @@ public class Employee implements Entity {
 
     public void setSalary(Salary salary) {
         this.salary = salary;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
     }
 
 }
