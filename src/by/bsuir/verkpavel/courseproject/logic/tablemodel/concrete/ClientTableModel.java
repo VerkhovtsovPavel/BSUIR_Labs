@@ -5,6 +5,7 @@ import java.util.List;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 import by.bsuir.verkpavel.courseproject.dao.entity.Client;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.GeneralDeliveryServiceTableModel;
+import by.bsuir.verkpavel.courseproject.resources.ProjectProperties;
 
 public class ClientTableModel extends GeneralDeliveryServiceTableModel {
 
@@ -40,7 +41,7 @@ public class ClientTableModel extends GeneralDeliveryServiceTableModel {
         case 1:
             return bean.getFullName();
         case 2:
-            return bean.getAddDate();
+            return ProjectProperties.getDateFormatter().format(bean.getAddDate());
         }
         return "";
     }

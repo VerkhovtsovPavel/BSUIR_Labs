@@ -1,31 +1,55 @@
 package by.bsuir.verkpavel.courseproject.main;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
-import by.bsuir.verkpavel.courseproject.dao.Entity;
-import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
-import by.bsuir.verkpavel.courseproject.dao.entity.Street;
+import by.bsuir.verkpavel.courseproject.dao.entity.Client;
 import by.bsuir.verkpavel.courseproject.ui.EntityShowView;
-import by.bsuir.verkpavel.courseproject.ui.MainView;
+import by.bsuir.verkpavel.courseproject.ui.add.AddClientView;
+
+import com.j256.ormlite.dao.Dao;
 
 public class Main {
-    
-    public static void main(String[] args) throws SQLException{
-        List<Entity> employees = new ArrayList<>();
 
-        employees.add(new Employee());
-        employees.add(new Employee());
-        employees.add(new Employee());
-        employees.add(new Employee());
-
-        EntityShowView entityShowView = new EntityShowView(DeliveryServiceDao.getInstance().getDaoByClass(Street.class).queryForAll());
+    public static void main(String[] args) throws SQLException {
+        // List<Entity> employees = new ArrayList<>();
+        //
+        // employees.add(new Employee());
+        // employees.add(new Employee());
+        // employees.add(new Employee());
+        // employees.add(new Employee());
+        //
+        // Dao<Street, Integer> streetDao = DeliveryServiceDao.getInstance().getDaoByClass(Street.class);
+        // EntityShowView entityShowView = new EntityShowView(streetDao.queryForAll());
+        //
+        // entityShowView.showView();
+        //
+        // MainView mainView = new MainView();
+        // mainView.showView();
+//        Object lock = new Object();
+//        ValueChangeView changeView = new ValueChangeView(23, lock);
+//        changeView.showView();
+//        waitNewValue(lock);
+//        String newValue = changeView.getNewValue();
+//        System.out.println(newValue);
         
+        AddClientView addClientView = new AddClientView();
+        addClientView.showView();
+        
+        Dao<Client, Integer> streetDao = DeliveryServiceDao.getInstance().getDaoByClass(Client.class);
+        EntityShowView entityShowView = new EntityShowView(streetDao.queryForAll());
         entityShowView.showView();
-        
-        MainView mainView = new MainView();
-        mainView.showView();
-   }
+
+    }
+
+    private static void waitNewValue(Object lock) {
+        synchronized (lock) {
+            try {
+                lock.wait();
+            } catch (InterruptedException e) {
+                
+            }
+        }
+
+    }
 }

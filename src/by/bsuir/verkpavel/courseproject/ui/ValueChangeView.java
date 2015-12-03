@@ -19,10 +19,11 @@ public class ValueChangeView extends JFrame {
     private JPanel mainPanel;
     private JTextField oldValueTextField;
     private JTextField newValueTextField;
+    private Object lock;
 
 
     public void showView() {
-        this.setSize(332, 204);
+        this.setSize(445, 200);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
@@ -32,14 +33,19 @@ public class ValueChangeView extends JFrame {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent windowEvent) {
-                
+                synchronized (lock){
+                    lock.notify();
+                }
             }
         });
     }
 
-    public ValueChangeView(Object oldValue) {
+    public ValueChangeView(Object oldValue, Object lock) {
+        this.lock = lock;
         setResizable(false);
         configureDefaultLayot();
+        this.oldValueTextField.setText(oldValue.toString());
+        this.oldValueTextField.setEnabled(false);
     }
 
     private void configureDefaultLayot() {
@@ -72,6 +78,9 @@ public class ValueChangeView extends JFrame {
         submitBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                synchronized (lock){
+                    lock.notify();
+                }
                 dispose();
             }
         });

@@ -33,7 +33,8 @@ public class DeliveryServiceDao {
 
     }
 
-    public Dao<? extends Entity, ?> getDaoByClass(Class<? extends Entity> target) {
+    @SuppressWarnings("unchecked")
+    public <T> Dao<T, Integer> getDaoByClass(Class<? extends Entity> target){
         Dao<? extends Entity, ?> dao = daos.get(target);
         if (dao == null) {
             try {
@@ -42,7 +43,7 @@ public class DeliveryServiceDao {
             } catch (SQLException e) {
             }
         }
-        return dao;
+        return (Dao<T, Integer>)dao;
     }
 
     public static DeliveryServiceDao getInstance() {

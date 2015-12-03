@@ -15,7 +15,7 @@ public class MenuAccessor {
         JMenuBar menuBar = new JMenuBar();
         createPersonalMenu(menuBar, currentUser);
         createEmployeeMenu(menuBar, currentUser);
-        createUsersMenu(menuBar, currentUser);
+        createClientMenu(menuBar, currentUser);
         createDeliveryMenu(menuBar, currentUser);
         createParcelMenu(menuBar, currentUser);
         createCorporateCarMenu(menuBar, currentUser);
@@ -149,8 +149,34 @@ public class MenuAccessor {
         menuBar.add(personalMenu);
     }
 
-    private static void createUsersMenu(JMenuBar menuBar, Employee currentUser) {
-        // TODO Auto-generated method stub
+    private static void createClientMenu(JMenuBar menuBar, Employee currentUser) {
+        JMenu personalMenu = new JMenu("Клиенты");
+        JMenuItem addClient = new JMenuItem("Добавить клиента");
+        addClient.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO Use value change view send old userName
+            }
+        });
+
+        JMenuItem deleteClient = new JMenuItem("Удалить клиента");
+        deleteClient.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO Use value change view send "Старый пароль"
+            }
+        });
+
+        JMenuItem showClient = new JMenuItem("Просмотреть клиентов");
+        showClient.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO Go to login view and delete all session data
+            }
+        });
+
+        personalMenu.add(addClient);
+        personalMenu.add(deleteClient);
+        personalMenu.add(showClient);
+
+        menuBar.add(personalMenu);
 
     }
 
