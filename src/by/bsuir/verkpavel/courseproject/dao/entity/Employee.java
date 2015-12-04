@@ -35,13 +35,13 @@ public class Employee implements Entity {
     @DatabaseField(foreign = true, columnName = "idOffice")
     private Office office;
 
-    @DatabaseField(foreign = true, columnName = "idPermissions")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idPermissions")
     private Permission permission;
 
-    @DatabaseField(foreign = true, columnName = "idPosition")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idPosition")
     private Position position;
 
-    @DatabaseField(foreign = true, columnName = "idSalary")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idSalary")
     private Salary salary;
 
     public Employee() {

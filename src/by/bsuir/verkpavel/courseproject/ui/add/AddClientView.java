@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.SQLException;
 import java.util.Date;
 
 import javax.swing.JButton;
@@ -20,8 +19,6 @@ import org.jdesktop.swingx.JXDatePicker;
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.entity.Client;
 import by.bsuir.verkpavel.courseproject.resources.Messages;
-
-import com.j256.ormlite.dao.Dao;
 
 public class AddClientView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
@@ -88,7 +85,7 @@ public class AddClientView extends JFrame {
         userNameTextField.setBounds(154, 14, 562, 38);
         mainPanel.add(userNameTextField);
         userNameTextField.setColumns(10);
-         
+
         datePicker = new JXDatePicker();
         datePicker.setBounds(156, 67, 174, 38);
         mainPanel.add(datePicker);
@@ -99,19 +96,19 @@ public class AddClientView extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Client client = getClient();
-                Dao<Client, Integer> clientDao = DeliveryServiceDao.getInstance().getDaoByClass(Client.class);
-                try {
-                    clientDao.create(client);
+
+                boolean isSuccessfully = DeliveryServiceDao.getInstance().addRecond(client);
+                if (isSuccessfully) {
                     JOptionPane.showMessageDialog(null, Messages.CLIENT_SUCCESSFULLY_ADDED.get(), "Message",
                             JOptionPane.PLAIN_MESSAGE);
                     log.info(Messages.CLIENT_SUCCESSFULLY_ADDED.get());
                     dispose();
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, Messages.ERROR_WHILE_ADD_CLIENT.get(), "Error",
+                } else {
+                    JOptionPane.showMessageDialog(null, Messages.ERROR_WHILE_ADD_RECORD.get(), "Error",
                             JOptionPane.PLAIN_MESSAGE);
-                    log.error(Messages.ERROR_WHILE_ADD_CLIENT.get(), ex);
                 }
             }
+
         });
         mainPanel.add(addButton);
     }

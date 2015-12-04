@@ -14,6 +14,7 @@ import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.OfficeTableMod
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.ParcelTableModel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.PermissionTableModel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.PositionTableModel;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.SalaryTableModel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.StreetTableModel;
 //TODO Fix null returning
 public class TableModelFactory {
@@ -23,8 +24,6 @@ public class TableModelFactory {
             return new EmptyTableModel(beans);
         }
         switch (beans.get(0).getClass().getSimpleName()) { 
-        case "Authentication":
-            return null;
         case "City":
             return null;
         case "Client":
@@ -57,6 +56,8 @@ public class TableModelFactory {
             return new PositionTableModel(beans);
         case "Street":
             return new StreetTableModel(beans);
+        case "Salary":
+            return new SalaryTableModel(beans);
         default:
             throw new IllegalArgumentException();
         }

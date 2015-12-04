@@ -4,12 +4,13 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.swing.JButton;
@@ -17,19 +18,29 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 
+import org.apache.log4j.Logger;
 import org.jdesktop.swingx.JXDatePicker;
 
-import by.bsuir.verkpavel.courseproject.dao.entity.Client;
+import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
+import by.bsuir.verkpavel.courseproject.dao.entity.Authentication;
+import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
+import by.bsuir.verkpavel.courseproject.dao.entity.Office;
+import by.bsuir.verkpavel.courseproject.dao.entity.Permission;
+import by.bsuir.verkpavel.courseproject.dao.entity.Position;
+import by.bsuir.verkpavel.courseproject.dao.entity.Salary;
+import by.bsuir.verkpavel.courseproject.resources.Messages;
 import by.bsuir.verkpavel.courseproject.resources.ProjectProperties;
 
 public class AddEmployeeView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
-    private static final Calendar minDate = Calendar.getInstance();
+
+    private static Logger log = Logger.getLogger(AddEmployeeView.class);
 
     private JPanel mainPanel;
 
@@ -39,18 +50,22 @@ public class AddEmployeeView extends JFrame {
     private JTextField passwordField;
 
     private JXDatePicker bornDateField;
-    private JFormattedTextField hireDateField;
+    private JXDatePicker hireDateField;
     private JFormattedTextField mobilePhoneField;
-    private JFormattedTextField passportNumberField;
-    private JFormattedTextField idertifyNumberField;
     private JFormattedTextField salaryField;
     private JComboBox<String> positionComboBox;
     private JComboBox<String> permissionComboBox;
     private JComboBox<String> officeComboBox;
-    private SimpleDateFormat dateMask;
+
+    private List<Position> positions;
+
+    private List<Permission> permissions;
+
+    private List<Office> offices;
 
     private void initialaze() {
-        this.setSize(690, 480);
+        this.setSize(720, 400);
+        this.setTitle("Добавление работника");
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
@@ -60,21 +75,18 @@ public class AddEmployeeView extends JFrame {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent windowEvent) {
-                
+
             }
         });
-
-        minDate.set(Calendar.YEAR, 1900);
-        minDate.set(Calendar.MONTH, Calendar.JANUARY);
-        minDate.set(Calendar.DAY_OF_MONTH, 1);
     }
 
     public void showView() {
         initialaze();
     }
 
-    private AddEmployeeView() {
+    public AddEmployeeView() {
         configureDefaultLayot();
+        fillComboBoxes();
     }
 
     private void createLabels() {
@@ -91,15 +103,14 @@ public class AddEmployeeView extends JFrame {
         mainPanel.add(mobilePhonelabel);
 
         JLabel emailLbl = new JLabel("E-mail");
-        emailLbl.setBounds(309, 65, 55, 16);
+        emailLbl.setBounds(335, 65, 48, 16);
         mainPanel.add(emailLbl);
 
         JLabel hireDateLbl = new JLabel("Даты приема на работу");
-        hireDateLbl.setBounds(132, 43, 157, 14);
+        hireDateLbl.setBounds(179, 43, 157, 14);
         mainPanel.add(hireDateLbl);
 
-        JLabel positionLabel = new JLabel(
-                "Должность");
+        JLabel positionLabel = new JLabel("Должность");
         positionLabel.setBounds(20, 153, 133, 16);
         mainPanel.add(positionLabel);
 
@@ -115,8 +126,7 @@ public class AddEmployeeView extends JFrame {
         userNameLbl.setBounds(16, 241, 126, 14);
         mainPanel.add(userNameLbl);
 
-        JLabel passwordLabel = new JLabel(
-                "Пароль");
+        JLabel passwordLabel = new JLabel("Пароль");
         passwordLabel.setBounds(16, 271, 102, 14);
         mainPanel.add(passwordLabel);
 
@@ -143,35 +153,49 @@ public class AddEmployeeView extends JFrame {
         createActionElements();
     }
 
-    protected Client getEmployee() {
+    private Employee getEmployee() {
+
         String fullName = fullNameField.getText();
         Date bornDate = bornDateField.getDate();
+        Date hireDate = hireDateField.getDate();
 
-        String passportNumber = passportNumberField.getText();
-        String whoGivePassport = userNameField.getText();
-        String passportTakeDate = hireDateField.getText();
-        String identifyNumber = idertifyNumberField.getText();
-        String bornPlace = passwordField.getText();
-
+        String login = userNameField.getText();
+        String password = passwordField.getText();
 
         String mobilePhone = mobilePhoneField.getText();
         String eMail = emailField.getText();
 
+        Position position = positions.get(positionComboBox.getSelectedIndex());
+        Permission permission = permissions.get(permissionComboBox.getSelectedIndex());
+        Office office = offices.get(officeComboBox.getSelectedIndex());
 
-        int familyStatus = positionComboBox.getSelectedIndex();
-        int nationality = permissionComboBox.getSelectedIndex();
-        int disability = officeComboBox.getSelectedIndex();
+        int salaryValue = ((Double) salaryField.getValue()).intValue();
 
-        int salary = ((Double) salaryField.getValue()).intValue();
+        Authentication authentication = new Authentication();
+        authentication.setUserName(login);
+        authentication.setPassword(password);
 
+        Salary salary = new Salary();
+        salary.setBaseRate(salaryValue);
+        salary.setRaisingFactor(1.0);
 
-           
+        Employee employee = new Employee();
+        employee.setAuthentication(authentication);
+        employee.setSalary(salary);
+        employee.setPosition(position);
+        employee.setPermission(permission);
+        employee.setOffice(office);
+
+        employee.setFullName(fullName);
+        employee.setBirthday(bornDate);
+        employee.setHireDate(hireDate);
+        employee.setPhoneNumber(mobilePhone);
+        employee.seteMail(eMail);
+
         return null;
     }
 
-
-
-    private void createActionElements()  {
+    private void createActionElements() {
         fullNameField = new JTextField();
         fullNameField.setColumns(10);
         fullNameField.setBounds(79, 8, 593, 28);
@@ -185,15 +209,12 @@ public class AddEmployeeView extends JFrame {
         });
         mainPanel.add(fullNameField);
 
-        dateMask = ProjectProperties.getDateFormatter();
-
         bornDateField = new JXDatePicker();
-        bornDateField.setValue(new java.util.Date());
-        bornDateField.setBounds(156, 67, 174, 38);
+        bornDateField.setDate(new Date());
+        bornDateField.setBounds(16, 60, 152, 38);
         mainPanel.add(bornDateField);
 
         MaskFormatter phoneNumberMask = ProjectProperties.getPhoneNumberMask();
-
         mobilePhoneField = new JFormattedTextField(phoneNumberMask);
         mobilePhoneField.setColumns(10);
         mobilePhoneField.setBounds(112, 104, 259, 28);
@@ -230,9 +251,9 @@ public class AddEmployeeView extends JFrame {
         officeComboBox.setBounds(299, 171, 126, 26);
         mainPanel.add(officeComboBox);
 
-        hireDateField = new JFormattedTextField(dateMask);
-        hireDateField.setBounds(132, 61, 92, 28);
-        hireDateField.setValue(new java.util.Date());
+        hireDateField = new JXDatePicker();
+        hireDateField.setBounds(179, 60, 144, 38);
+        hireDateField.setDate(new Date());
         mainPanel.add(hireDateField);
 
         userNameField = new JTextField();
@@ -245,7 +266,7 @@ public class AddEmployeeView extends JFrame {
         passwordField.setBounds(160, 267, 502, 28);
         mainPanel.add(passwordField);
 
-        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
         format.setMaximumFractionDigits(0);
         NumberFormatter formatter = new NumberFormatter(format);
         formatter.setMinimum(0.0);
@@ -257,10 +278,43 @@ public class AddEmployeeView extends JFrame {
         mainPanel.add(salaryField);
         salaryField.setColumns(10);
         salaryField.setValue(0.0);
-        
+
         JButton addButton = new JButton("Добавить");
         addButton.setBounds(282, 327, 89, 23);
+        addButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Employee employee = getEmployee();
+                
+                boolean isSuccessfully = DeliveryServiceDao.getInstance().addRecond(employee);
+                if (isSuccessfully) {
+                    JOptionPane.showMessageDialog(null, Messages.EMPLOYEE_SUCCESSFULLY_ADDED.get(), "Message",
+                            JOptionPane.PLAIN_MESSAGE);
+                    log.info(Messages.EMPLOYEE_SUCCESSFULLY_ADDED.get());
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, Messages.ERROR_WHILE_ADD_RECORD.get(), "Error",
+                            JOptionPane.PLAIN_MESSAGE);
+                }
+            }
+        });
         mainPanel.add(addButton);
 
     }
+
+    private void fillComboBoxes() {
+        positions = DeliveryServiceDao.getInstance().getAllRecord(Position.class);
+        permissions = DeliveryServiceDao.getInstance().getAllRecord(Permission.class);
+        offices = DeliveryServiceDao.getInstance().getAllRecord(Office.class);
+
+//        fillComboBox(positionComboBox, positions, (Position p) -> (p.getDescription()));
+//        fillComboBox(permissionComboBox, permissions, (Permission p) -> (p.getDescription()));
+//        fillComboBox(officeComboBox, offices, (Office o) -> (o.getStreet().getName()));
+    }
+
+//    private <T> void fillComboBox(JComboBox<String> target, List<T> source, Function<T, String> func) {
+//        for (T item : source) {
+//            target.addItem(func.apply(item));
+//        }
+//    }
 }

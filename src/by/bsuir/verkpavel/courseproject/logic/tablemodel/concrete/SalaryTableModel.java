@@ -8,7 +8,7 @@ import by.bsuir.verkpavel.courseproject.logic.tablemodel.GeneralDeliveryServiceT
 
 public class SalaryTableModel extends GeneralDeliveryServiceTableModel {
 
-    public SalaryTableModel(List<Entity> beans) {
+    public SalaryTableModel(List<? extends Entity> beans) {
         super(beans);
     }
 
@@ -17,7 +17,7 @@ public class SalaryTableModel extends GeneralDeliveryServiceTableModel {
     }
 
     public int getColumnCount() {
-        return 5;
+        return 4;
     }
 
     public String getColumnName(int columnIndex) {
@@ -30,8 +30,6 @@ public class SalaryTableModel extends GeneralDeliveryServiceTableModel {
             return "Повышающий коэффициент";
         case 3:
             return "Итог";
-        case 4:
-            return "Работник";
             
         }
         return "";
@@ -47,9 +45,7 @@ public class SalaryTableModel extends GeneralDeliveryServiceTableModel {
         case 2:
             return bean.getRaisingFactor();
         case 3:
-            return bean.getRaisingFactor() * bean.getBaseRate();
-        case 4:
-            return bean.getEmployee().getFullName();     
+            return bean.getRaisingFactor() * bean.getBaseRate(); 
             
         }
         return "";

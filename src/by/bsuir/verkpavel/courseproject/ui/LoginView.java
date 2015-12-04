@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import by.bsuir.verkpavel.courseproject.access.PasswordEncryptor;
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.entity.Authentication;
+import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
 import by.bsuir.verkpavel.courseproject.resources.Messages;
 
 import com.j256.ormlite.dao.Dao;
@@ -88,6 +89,7 @@ public class LoginView extends JFrame {
                         Authentication.class);
                 QueryBuilder<Authentication, Integer> statementBuilder = authDao.queryBuilder();
                 Authentication authentication = null;
+                //TODO move to DAO
                 try {
                     statementBuilder.where().eq("userName", login).and().eq("password", passwordHash);
                     authentication = (Authentication) authDao.query(statementBuilder.prepare());
@@ -96,7 +98,8 @@ public class LoginView extends JFrame {
                     e.printStackTrace();
                 }
                 if (authentication != null) {
-                    MainView mainView = new MainView();
+                    Employee employee = null;/*getEmployeeByAuth()*/
+                    MainView mainView = new MainView(employee);
                     mainView.showView();
                 } else {
                     JOptionPane.showMessageDialog(null, Messages.INVALID_USERNAME_AND_PASSWORD.get(), "Error",

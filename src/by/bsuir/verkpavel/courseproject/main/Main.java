@@ -2,12 +2,9 @@ package by.bsuir.verkpavel.courseproject.main;
 
 import java.sql.SQLException;
 
-import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
-import by.bsuir.verkpavel.courseproject.dao.entity.Client;
-import by.bsuir.verkpavel.courseproject.ui.EntityShowView;
-import by.bsuir.verkpavel.courseproject.ui.add.AddClientView;
-
-import com.j256.ormlite.dao.Dao;
+import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
+import by.bsuir.verkpavel.courseproject.dao.entity.Permission;
+import by.bsuir.verkpavel.courseproject.ui.MainView;
 
 public class Main {
 
@@ -32,12 +29,14 @@ public class Main {
 //        String newValue = changeView.getNewValue();
 //        System.out.println(newValue);
         
-        AddClientView addClientView = new AddClientView();
-        addClientView.showView();
-        
-        Dao<Client, Integer> streetDao = DeliveryServiceDao.getInstance().getDaoByClass(Client.class);
-        EntityShowView entityShowView = new EntityShowView(streetDao.queryForAll());
-        entityShowView.showView();
+//        AddEmployeeView addEmployeeView  = new AddEmployeeView();
+//        addEmployeeView.showView();
+        Employee tempEmployee = new Employee();
+        Permission permission = new Permission();
+        permission.setIdPermissions(3);
+        tempEmployee.setPermission(permission);
+        MainView mainView = new MainView(tempEmployee);
+        mainView.showView();
 
     }
 }

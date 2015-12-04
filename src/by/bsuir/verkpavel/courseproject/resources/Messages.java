@@ -3,7 +3,8 @@ package by.bsuir.verkpavel.courseproject.resources;
 public enum Messages {
     INVALID_USERNAME_AND_PASSWORD("Введены неверные имя пользователя и пароль"),
     CLIENT_SUCCESSFULLY_ADDED("Клиент успешно добавлен"),
-    ERROR_WHILE_ADD_CLIENT("Ошибка при добавлении клиента");
+    ERROR_WHILE_ADD_RECORD("Ошибка при добавлении записи. Проверьте введенные данные или свяжитесь с администратором базы данных или тех. поддержкой"),
+    EMPLOYEE_SUCCESSFULLY_ADDED("Сотрудник успешно добавлен");
 
     private String value;
 

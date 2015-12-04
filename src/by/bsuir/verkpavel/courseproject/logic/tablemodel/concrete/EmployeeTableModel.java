@@ -19,7 +19,7 @@ public class EmployeeTableModel extends GeneralDeliveryServiceTableModel {
     public int getColumnCount() {
         return 4;
     }
-
+    //TODO Add fields
     public String getColumnName(int columnIndex) {
         switch (columnIndex) {
         case 0:

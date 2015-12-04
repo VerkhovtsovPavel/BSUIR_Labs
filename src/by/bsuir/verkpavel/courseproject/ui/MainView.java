@@ -13,6 +13,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
 import by.bsuir.verkpavel.courseproject.access.MenuAccessor;
+import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
 
 public class MainView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
@@ -36,11 +37,11 @@ public class MainView extends JFrame {
         });
     }
 
-    public MainView() {
+    public MainView(Employee currentUser) {
         setResizable(false);
         configureDefaultLayot();
         // TODO Remove null
-        menuBar = MenuAccessor.createMenu(null);
+        menuBar = MenuAccessor.createMenu(currentUser);
         setJMenuBar(menuBar);
     }
 

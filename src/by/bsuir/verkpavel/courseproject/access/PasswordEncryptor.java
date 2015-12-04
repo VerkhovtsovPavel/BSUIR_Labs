@@ -5,7 +5,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
 
+import org.apache.log4j.Logger;
+
 public class PasswordEncryptor {
+    private static Logger log = Logger.getLogger(PasswordEncryptor.class);
 
     public static String encryptPassword(String password)
     {
@@ -19,11 +22,11 @@ public class PasswordEncryptor {
         }
         catch(NoSuchAlgorithmException e)
         {
-            e.printStackTrace();
+            log.error("Can't find SHA1 algorithm");
         }
         catch(UnsupportedEncodingException e)
         {
-            e.printStackTrace();
+            log.error("Can't find UTF8 encoding");
         }
         return sha1;
     }
