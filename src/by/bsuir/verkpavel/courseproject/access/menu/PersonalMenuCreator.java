@@ -13,11 +13,11 @@ public class PersonalMenuCreator extends BaseMenuCreator {
 
     public PersonalMenuCreator(BaseMenuCreator next) {
         super(next);
-        personalMenu = new JMenu("Мой профиль");
     }
 
     @Override
     public void showMenu(JMenuBar menuBar) {
+        personalMenu = new JMenu("Мой профиль");
         JMenuItem changeLogin = new JMenuItem("Изменить логин");
         changeLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -42,7 +42,9 @@ public class PersonalMenuCreator extends BaseMenuCreator {
         personalMenu.add(changeLogin);
         personalMenu.add(changePassword);
         personalMenu.add(logOut);
+
         menuBar.add(personalMenu);
+
     }
 
     @Override

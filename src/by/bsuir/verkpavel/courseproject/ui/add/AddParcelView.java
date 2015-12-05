@@ -2,13 +2,8 @@ package by.bsuir.verkpavel.courseproject.ui.add;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.util.Date;
 import java.util.List;
@@ -21,22 +16,23 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.text.MaskFormatter;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.text.NumberFormatter;
 
 import org.apache.log4j.Logger;
 import org.jdesktop.swingx.JXDatePicker;
 
-import com.j256.ormlite.dao.Dao;
-
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
-import by.bsuir.verkpavel.courseproject.dao.entity.Authentication;
-import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
-import by.bsuir.verkpavel.courseproject.dao.entity.Office;
-import by.bsuir.verkpavel.courseproject.dao.entity.Permission;
-import by.bsuir.verkpavel.courseproject.dao.entity.Position;
-import by.bsuir.verkpavel.courseproject.dao.entity.Salary;
+import by.bsuir.verkpavel.courseproject.dao.Describable;
+import by.bsuir.verkpavel.courseproject.dao.entity.Client;
+import by.bsuir.verkpavel.courseproject.dao.entity.MarkParcel;
+import by.bsuir.verkpavel.courseproject.dao.entity.Parcel;
+import by.bsuir.verkpavel.courseproject.dao.entity.Payment;
+import by.bsuir.verkpavel.courseproject.dao.entity.PaymentsSystemType;
+import by.bsuir.verkpavel.courseproject.dao.entity.Rate;
 import by.bsuir.verkpavel.courseproject.resources.Messages;
 import by.bsuir.verkpavel.courseproject.resources.ProjectProperties;
 
@@ -47,24 +43,230 @@ public class AddParcelView extends JFrame {
 
     private JPanel mainPanel;
 
-    private JTextField fullNameField;
-    private JTextField emailField;
-    private JTextField userNameField;
-    private JTextField passwordField;
+    private JXDatePicker acceptanceDateField;
+    private JXDatePicker payDateField;
+    private JFormattedTextField sumField;
+    private JComboBox<String> markParcelComboBox;
+    private JComboBox<String> clientComboBox;
+    private JComboBox<String> paymentsSystemTypeComboBox;
+    private JSpinner widthSpinner;
+    private JSpinner weigthSpinner;
+    private JSpinner heightSpinner;
+    private JSpinner depthSpinner;
 
-    private JXDatePicker bornDateField;
-    private JXDatePicker hireDateField;
-    private JFormattedTextField mobilePhoneField;
-    private JFormattedTextField salaryField;
-    private JComboBox<String> positionComboBox;
-    private JComboBox<String> permissionComboBox;
-    private JComboBox<String> officeComboBox;
+    private List<Client> clients;
+    private List<MarkParcel> markParcels;
+    private List<PaymentsSystemType> paymentSystemTypes;
 
-    private List<Position> positions;
+    private Rate lastRate;
 
-    private List<Permission> permissions;
+    public AddParcelView() {
+        loadRates();
+        configureDefaultLayot();
+        fillComboBoxes();
+    }
 
-    private List<Office> offices;
+    private void configureDefaultLayot() {
+        initialazeLayout();
+        createElements();
+    }
+
+    private void createActionElements() {
+        acceptanceDateField = new JXDatePicker();
+        acceptanceDateField.setDate(new Date());
+        acceptanceDateField.setBounds(16, 28, 152, 38);
+        mainPanel.add(acceptanceDateField);
+
+        markParcelComboBox = new JComboBox<String>();
+        markParcelComboBox.setBounds(10, 171, 126, 26);
+        mainPanel.add(markParcelComboBox);
+
+        clientComboBox = new JComboBox<String>();
+        clientComboBox.setBounds(195, 40, 509, 26);
+        mainPanel.add(clientComboBox);
+
+        payDateField = new JXDatePicker();
+        payDateField.setBounds(16, 255, 144, 38);
+        payDateField.setDate(new Date());
+        mainPanel.add(payDateField);
+
+        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("be-BY"));
+        format.setMaximumFractionDigits(0);
+        NumberFormatter formatter = new NumberFormatter(format);
+        formatter.setMinimum(0.0);
+        formatter.setMaximum(10000000.0);
+        formatter.setAllowsInvalid(false);
+        formatter.setOverwriteMode(true);
+        sumField = new JFormattedTextField(formatter);
+        sumField.setBounds(237, 261, 114, 26);
+        mainPanel.add(sumField);
+        sumField.setColumns(10);
+        sumField.setValue(0.0);
+        sumField.setEnabled(false);
+        sumField.setValue(lastRate.getHeigth() + lastRate.getWeigth() + lastRate.getDepth() + lastRate.getWidth());
+
+        JButton addButton = new JButton("Добавить");
+        addButton.setBounds(265, 367, 89, 23);
+        addButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Parcel parcel = getParcel();
+
+                boolean isSuccessfully = DeliveryServiceDao.getInstance().addRecond(parcel);
+                if (isSuccessfully) {
+                    JOptionPane.showMessageDialog(null, Messages.PARCEL_SUCCESSFULLY_ADDED.get(), "Message",
+                            JOptionPane.PLAIN_MESSAGE);
+                    log.info(Messages.PARCEL_SUCCESSFULLY_ADDED.get());
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, Messages.ERROR_WHILE_ADD_RECORD.get(), "Error",
+                            JOptionPane.PLAIN_MESSAGE);
+                }
+            }
+        });
+        mainPanel.add(addButton);
+
+        paymentsSystemTypeComboBox = new JComboBox<String>();
+        paymentsSystemTypeComboBox.setBounds(419, 267, 126, 26);
+        mainPanel.add(paymentsSystemTypeComboBox);
+
+        heightSpinner = new JSpinner();
+        heightSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
+        heightSpinner.setBounds(60, 111, 58, 40);
+        heightSpinner.addChangeListener(new CostChange());
+        mainPanel.add(heightSpinner);
+
+        depthSpinner = new JSpinner();
+        depthSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
+        depthSpinner.setBounds(349, 111, 58, 40);
+        depthSpinner.addChangeListener(new CostChange());
+        mainPanel.add(depthSpinner);
+
+        weigthSpinner = new JSpinner();
+        weigthSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
+        weigthSpinner.setBounds(211, 111, 58, 40);
+        weigthSpinner.addChangeListener(new CostChange());
+        mainPanel.add(weigthSpinner);
+
+        widthSpinner = new JSpinner();
+        widthSpinner.setModel(new SpinnerNumberModel(1, 1, 250000, 1));
+        widthSpinner.setBounds(513, 108, 102, 40);
+        widthSpinner.addChangeListener(new CostChange());
+        mainPanel.add(widthSpinner);
+    }
+
+    private void createElements() {
+        createLabels();
+        createActionElements();
+    }
+
+    private void createLabels() {
+        JLabel acceptanceDate = new JLabel("Дата приема");
+        acceptanceDate.setBounds(16, 11, 102, 14);
+        mainPanel.add(acceptanceDate);
+
+        JLabel payDate = new JLabel("Даты оплаты");
+        payDate.setBounds(16, 238, 114, 14);
+        mainPanel.add(payDate);
+
+        JLabel parselTypeLabel = new JLabel("Тип посылки");
+        parselTypeLabel.setBounds(20, 153, 108, 16);
+        mainPanel.add(parselTypeLabel);
+
+        JLabel clientLabel = new JLabel("Клиент");
+        clientLabel.setBounds(195, 22, 126, 16);
+        mainPanel.add(clientLabel);
+
+        JLabel sumLabel = new JLabel("Сумма");
+        sumLabel.setBounds(183, 266, 44, 16);
+        mainPanel.add(sumLabel);
+
+        JLabel heigthLb = new JLabel("Высота");
+        heigthLb.setBounds(16, 114, 44, 14);
+        mainPanel.add(heigthLb);
+
+        JLabel widthLabel = new JLabel("Вес");
+        widthLabel.setBounds(481, 111, 22, 14);
+        mainPanel.add(widthLabel);
+
+        JLabel smLabel = new JLabel("см.");
+        smLabel.setBounds(128, 114, 22, 14);
+        mainPanel.add(smLabel);
+
+        JLabel label = new JLabel("см.");
+        label.setBounds(273, 114, 22, 14);
+        mainPanel.add(label);
+
+        JLabel label_1 = new JLabel("см.");
+        label_1.setBounds(419, 114, 22, 14);
+        mainPanel.add(label_1);
+
+        JLabel gramm = new JLabel("грамм");
+        gramm.setBounds(625, 114, 58, 14);
+        mainPanel.add(gramm);
+
+        JLabel paymentsTypeLabel = new JLabel("Cпособ оплаты");
+        paymentsTypeLabel.setBounds(429, 249, 108, 16);
+        mainPanel.add(paymentsTypeLabel);
+
+        JLabel weigthLabel = new JLabel("Ширина");
+        weigthLabel.setBounds(167, 114, 44, 14);
+        mainPanel.add(weigthLabel);
+
+        JLabel depthLabel = new JLabel("Глубина");
+        depthLabel.setBounds(305, 114, 44, 14);
+        mainPanel.add(depthLabel);
+    }
+
+    private void fillComboBox(JComboBox<String> target, List<? extends Describable> source) {
+        for (Describable item : source) {
+            target.addItem(item.getDescription());
+        }
+    }
+
+    private void fillComboBoxes() {
+        clients = DeliveryServiceDao.getInstance().getAllRecord(Client.class);
+        markParcels = DeliveryServiceDao.getInstance().getAllRecord(MarkParcel.class);
+        paymentSystemTypes = DeliveryServiceDao.getInstance().getAllRecord(PaymentsSystemType.class);
+
+        fillComboBox(clientComboBox, clients);
+        fillComboBox(markParcelComboBox, markParcels);
+        fillComboBox(paymentsSystemTypeComboBox, paymentSystemTypes);
+    }
+
+    private Parcel getParcel() {
+        Date acceptanceDate = acceptanceDateField.getDate();
+        Date payDate = payDateField.getDate();
+
+        Client client = clients.get(clientComboBox.getSelectedIndex());
+        MarkParcel markParsel = markParcels.get(markParcelComboBox.getSelectedIndex());
+        PaymentsSystemType paymentsSystemType = paymentSystemTypes.get(paymentsSystemTypeComboBox.getSelectedIndex());
+
+        int sumValue = ((Double) sumField.getValue()).intValue();
+
+        int height = (int) heightSpinner.getValue();
+        int weigth = (int) weigthSpinner.getValue();
+        int depth = (int) depthSpinner.getValue();
+        int width = (int) widthSpinner.getValue();
+
+        Payment payment = new Payment();
+        payment.setPaymentssystemtype(paymentsSystemType);
+        payment.setPayDate(payDate);
+        payment.setSum(sumValue);
+
+        Parcel parcel = new Parcel();
+        parcel.setPayment(payment);
+        parcel.setClient(client);
+        parcel.setMarkparcel(markParsel);
+
+        parcel.setAcceptanceDate(acceptanceDate);
+        parcel.setDepth(depth);
+        parcel.setHeight(height);
+        parcel.setWeight(weigth);
+        parcel.setWidth(width);
+
+        return parcel;
+    }
 
     private void initialaze() {
         this.setSize(720, 400);
@@ -74,73 +276,6 @@ public class AddParcelView extends JFrame {
         int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
         this.setLocation(x, y);
         this.setVisible(true);
-
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent windowEvent) {
-
-            }
-        });
-    }
-
-    public void showView() {
-        initialaze();
-    }
-
-    public AddParcelView() {
-        configureDefaultLayot();
-        fillComboBoxes();
-    }
-
-    private void createLabels() {
-        JLabel fullNameLbl = new JLabel("Ф.И.О.");
-        fullNameLbl.setBounds(16, 18, 55, 14);
-        mainPanel.add(fullNameLbl);
-
-        JLabel birthday_label = new JLabel("Дата рождения");
-        birthday_label.setBounds(16, 43, 102, 14);
-        mainPanel.add(birthday_label);
-
-        JLabel mobilePhonelabel = new JLabel("Моб. телефон");
-        mobilePhonelabel.setBounds(16, 110, 86, 16);
-        mainPanel.add(mobilePhonelabel);
-
-        JLabel emailLbl = new JLabel("E-mail");
-        emailLbl.setBounds(335, 65, 48, 16);
-        mainPanel.add(emailLbl);
-
-        JLabel hireDateLbl = new JLabel("Даты приема на работу");
-        hireDateLbl.setBounds(179, 43, 157, 14);
-        mainPanel.add(hireDateLbl);
-
-        JLabel positionLabel = new JLabel("Должность");
-        positionLabel.setBounds(20, 153, 133, 16);
-        mainPanel.add(positionLabel);
-
-        JLabel permissionsLabel = new JLabel("Права доступа");
-        permissionsLabel.setBounds(163, 153, 126, 16);
-        mainPanel.add(permissionsLabel);
-
-        JLabel officeLabel = new JLabel("Офис");
-        officeLabel.setBounds(299, 153, 76, 16);
-        mainPanel.add(officeLabel);
-
-        JLabel userNameLbl = new JLabel("Имя пользователя");
-        userNameLbl.setBounds(16, 241, 126, 14);
-        mainPanel.add(userNameLbl);
-
-        JLabel passwordLabel = new JLabel("Пароль");
-        passwordLabel.setBounds(16, 271, 102, 14);
-        mainPanel.add(passwordLabel);
-
-        JLabel salaryLabel = new JLabel("Зарплата");
-        salaryLabel.setBounds(463, 176, 68, 16);
-        mainPanel.add(salaryLabel);
-    }
-
-    private void configureDefaultLayot() {
-        initialazeLayout();
-        createElements();
     }
 
     private void initialazeLayout() {
@@ -151,175 +286,32 @@ public class AddParcelView extends JFrame {
         mainPanel.setLayout(null);
     }
 
-    private void createElements() {
-        createLabels();
-        createActionElements();
+    private void loadRates() {
+        List<Rate> rateList = DeliveryServiceDao.getInstance().getAllRecord(Rate.class);
+        if (rateList.isEmpty()) {
+            lastRate = ProjectProperties.getDefaultRate();
+            log.warn("Using default rates");
+        } else {
+            lastRate = rateList.get(rateList.size() - 1);
+        }
     }
 
-    private Employee getEmployee() {
-
-        String fullName = fullNameField.getText();
-        Date bornDate = bornDateField.getDate();
-        Date hireDate = hireDateField.getDate();
-
-        String login = userNameField.getText();
-        String password = passwordField.getText();
-
-        String mobilePhone = mobilePhoneField.getText();
-        String eMail = emailField.getText();
-
-        Position position = positions.get(positionComboBox.getSelectedIndex());
-        Permission permission = permissions.get(permissionComboBox.getSelectedIndex());
-        Office office = offices.get(officeComboBox.getSelectedIndex());
-
-        int salaryValue = ((Double) salaryField.getValue()).intValue();
-
-        Authentication authentication = new Authentication();
-        authentication.setUserName(login);
-        authentication.setPassword(password);
-
-        Salary salary = new Salary();
-        salary.setBaseRate(salaryValue);
-        salary.setRaisingFactor(1.0);
-
-        Employee employee = new Employee();
-        employee.setAuthentication(authentication);
-        employee.setSalary(salary);
-        employee.setPosition(position);
-        employee.setPermission(permission);
-        employee.setOffice(office);
-
-        employee.setFullName(fullName);
-        employee.setBirthday(bornDate);
-        employee.setHireDate(hireDate);
-        employee.setPhoneNumber(mobilePhone);
-        employee.seteMail(eMail);
-
-        return null;
+    public void showView() {
+        initialaze();
     }
 
-    private void createActionElements() {
-        fullNameField = new JTextField();
-        fullNameField.setColumns(10);
-        fullNameField.setBounds(79, 8, 593, 28);
-        fullNameField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent e) {
-                char key = e.getKeyChar();
-                if (!ProjectProperties.getRussianAlphabet().contains("" + Character.toLowerCase(key))) {
-                    e.consume();
-                }
-            }
-        });
-        mainPanel.add(fullNameField);
+    private class CostChange implements ChangeListener {
+        @Override
+        public void stateChanged(ChangeEvent e) {
+            int height = (int) heightSpinner.getValue();
+            int weigth = (int) weigthSpinner.getValue();
+            int depth = (int) depthSpinner.getValue();
+            int width = (int) widthSpinner.getValue();
 
-        bornDateField = new JXDatePicker();
-        bornDateField.setDate(new Date());
-        bornDateField.setBounds(16, 60, 152, 38);
-        mainPanel.add(bornDateField);
+            int cost = height * lastRate.getHeigth() + weigth * lastRate.getWeigth() + depth * lastRate.getDepth()
+                    + width * lastRate.getWidth();
 
-        MaskFormatter phoneNumberMask = ProjectProperties.getPhoneNumberMask();
-        mobilePhoneField = new JFormattedTextField(phoneNumberMask);
-        mobilePhoneField.setColumns(10);
-        mobilePhoneField.setBounds(112, 104, 259, 28);
-        mainPanel.add(mobilePhoneField);
-
-        emailField = new JTextField();
-        emailField.setBounds(386, 59, 286, 28);
-        emailField.addFocusListener(new FocusListener() {
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (!emailField.getText().trim().matches("^([\\w\\.\\-_]+)?\\w+@[\\w-_]+(\\.\\w+){1,}$")) {
-                    emailField.setText("");
-                }
-            }
-
-            @Override
-            public void focusGained(FocusEvent e) {
-
-            }
-        });
-        mainPanel.add(emailField);
-        emailField.setColumns(10);
-
-        positionComboBox = new JComboBox<String>();
-        positionComboBox.setBounds(10, 171, 126, 26);
-        mainPanel.add(positionComboBox);
-
-        permissionComboBox = new JComboBox<String>();
-        permissionComboBox.setBounds(163, 171, 126, 26);
-        mainPanel.add(permissionComboBox);
-
-        officeComboBox = new JComboBox<String>();
-        officeComboBox.setBounds(299, 171, 126, 26);
-        mainPanel.add(officeComboBox);
-
-        hireDateField = new JXDatePicker();
-        hireDateField.setBounds(179, 60, 144, 38);
-        hireDateField.setDate(new Date());
-        mainPanel.add(hireDateField);
-
-        userNameField = new JTextField();
-        userNameField.setColumns(10);
-        userNameField.setBounds(160, 232, 502, 28);
-        mainPanel.add(userNameField);
-
-        passwordField = new JTextField();
-        passwordField.setColumns(10);
-        passwordField.setBounds(160, 267, 502, 28);
-        mainPanel.add(passwordField);
-
-        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
-        format.setMaximumFractionDigits(0);
-        NumberFormatter formatter = new NumberFormatter(format);
-        formatter.setMinimum(0.0);
-        formatter.setMaximum(10000000.0);
-        formatter.setAllowsInvalid(false);
-        formatter.setOverwriteMode(true);
-        salaryField = new JFormattedTextField(formatter);
-        salaryField.setBounds(532, 171, 114, 26);
-        mainPanel.add(salaryField);
-        salaryField.setColumns(10);
-        salaryField.setValue(0.0);
-
-        JButton addButton = new JButton("Добавить");
-        addButton.setBounds(282, 327, 89, 23);
-        addButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Employee employee = getEmployee();
-                Dao<Employee, Integer> clientDao = DeliveryServiceDao.getInstance().getDaoByClass(Employee.class);
-                try {
-                    clientDao.create(employee);
-                    JOptionPane.showMessageDialog(null, Messages.EMPLOYEE_SUCCESSFULLY_ADDED.get(), "Message",
-                            JOptionPane.PLAIN_MESSAGE);
-                    log.info(Messages.CLIENT_SUCCESSFULLY_ADDED.get());
-                    dispose();
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, Messages.ERROR_WHILE_ADD_RECORD.get(), "Error",
-                            JOptionPane.PLAIN_MESSAGE);
-                    log.error(Messages.ERROR_WHILE_ADD_RECORD.get(), ex);
-                }
-            }
-        });
-        mainPanel.add(addButton);
-
+            sumField.setValue(cost);
+        }
     }
-
-    private void fillComboBoxes() {
-        positions = DeliveryServiceDao.getInstance().getAllRecord(Position.class);
-        permissions = DeliveryServiceDao.getInstance().getAllRecord(Permission.class);
-        offices = DeliveryServiceDao.getInstance().getAllRecord(Office.class);
-
-//        fillComboBox(positionComboBox, positions, (Position p) -> (p.getDescription()));
-//        fillComboBox(permissionComboBox, permissions, (Permission p) -> (p.getDescription()));
-//        fillComboBox(officeComboBox, offices, (Office o) -> (o.getStreet().getName()));
-    }
-
-//    private <T> void fillComboBox(JComboBox<String> target, List<T> source, Function<T, String> func) {
-//        for (T item : source) {
-//            target.addItem(func.apply(item));
-//        }
-//    }
-
 }

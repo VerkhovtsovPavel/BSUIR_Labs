@@ -1,12 +1,13 @@
 package by.bsuir.verkpavel.courseproject.dao.entity;
 
+import by.bsuir.verkpavel.courseproject.dao.Describable;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "paymentssystemtype")
-public class PaymentsSystemType implements Entity {
+public class PaymentsSystemType implements Entity, Describable {
 
     @DatabaseField(generatedId = true)
     private int idPaymentsSystemType;

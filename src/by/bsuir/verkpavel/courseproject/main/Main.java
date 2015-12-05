@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
 import by.bsuir.verkpavel.courseproject.dao.entity.Permission;
 import by.bsuir.verkpavel.courseproject.ui.MainView;
+import by.bsuir.verkpavel.courseproject.ui.add.AddEmployeeView;
+import by.bsuir.verkpavel.courseproject.ui.add.AddParcelView;
 
 public class Main {
 
@@ -37,6 +39,12 @@ public class Main {
         tempEmployee.setPermission(permission);
         MainView mainView = new MainView(tempEmployee);
         mainView.showView();
+        
+        AddEmployeeView addEmployeeView = new AddEmployeeView();
+        addEmployeeView.showView();
+        
+        AddParcelView addParcelView = new AddParcelView();
+        addParcelView.showView();
 
     }
 }

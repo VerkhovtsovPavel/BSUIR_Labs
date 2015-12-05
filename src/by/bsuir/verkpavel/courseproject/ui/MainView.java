@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
-import by.bsuir.verkpavel.courseproject.access.MenuAccessor;
+import by.bsuir.verkpavel.courseproject.access.MenuCreator;
 import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
 
 public class MainView extends JFrame {
@@ -22,7 +22,7 @@ public class MainView extends JFrame {
     private JMenuBar menuBar;
 
     public void showView() {
-        this.setSize(332, 204);
+        this.setSize(532, 204);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
@@ -41,7 +41,7 @@ public class MainView extends JFrame {
         setResizable(false);
         configureDefaultLayot();
         // TODO Remove null
-        menuBar = MenuAccessor.createMenu(currentUser);
+        menuBar = MenuCreator.createPermissibleMenu(currentUser);
         setJMenuBar(menuBar);
     }
 

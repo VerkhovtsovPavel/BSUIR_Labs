@@ -1,12 +1,13 @@
 package by.bsuir.verkpavel.courseproject.dao.entity;
 
-import by.bsuir.verkpavel.courseproject.dao.Entity;
-
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import by.bsuir.verkpavel.courseproject.dao.Describable;
+import by.bsuir.verkpavel.courseproject.dao.Entity;
+
 @DatabaseTable(tableName = "office")
-public class Office implements Entity {
+public class Office implements Entity, Describable {
 
     @DatabaseField(generatedId = true)
     private int idOffice;
@@ -61,6 +62,11 @@ public class Office implements Entity {
 
     public void setStreet(Street street) {
         this.street = street;
+    }
+
+    @Override
+    public String getDescription() {
+       return getStreet().getCity()+", " + getStreet().getName() + ", "+getHome();
     }
 
 }

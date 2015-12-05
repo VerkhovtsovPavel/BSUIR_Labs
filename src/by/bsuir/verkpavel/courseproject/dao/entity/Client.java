@@ -2,6 +2,7 @@ package by.bsuir.verkpavel.courseproject.dao.entity;
 
 import java.util.Date;
 
+import by.bsuir.verkpavel.courseproject.dao.Describable;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 
 import com.j256.ormlite.dao.ForeignCollection;
@@ -10,7 +11,7 @@ import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "Client")
-public class Client implements Entity {
+public class Client implements Entity, Describable {
 
     @DatabaseField(generatedId = true)
     private int idClient;
@@ -52,5 +53,10 @@ public class Client implements Entity {
 
     public ForeignCollection<Parcel> getParcels() {
         return this.parcels;
+    }
+
+    @Override
+    public String getDescription() {
+        return getFullName();
     }
 }

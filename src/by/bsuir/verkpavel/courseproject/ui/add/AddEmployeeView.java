@@ -28,6 +28,7 @@ import org.apache.log4j.Logger;
 import org.jdesktop.swingx.JXDatePicker;
 
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
+import by.bsuir.verkpavel.courseproject.dao.Describable;
 import by.bsuir.verkpavel.courseproject.dao.entity.Authentication;
 import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
 import by.bsuir.verkpavel.courseproject.dao.entity.Office;
@@ -307,14 +308,14 @@ public class AddEmployeeView extends JFrame {
         permissions = DeliveryServiceDao.getInstance().getAllRecord(Permission.class);
         offices = DeliveryServiceDao.getInstance().getAllRecord(Office.class);
 
-//        fillComboBox(positionComboBox, positions, (Position p) -> (p.getDescription()));
-//        fillComboBox(permissionComboBox, permissions, (Permission p) -> (p.getDescription()));
-//        fillComboBox(officeComboBox, offices, (Office o) -> (o.getStreet().getName()));
+        fillComboBox(positionComboBox, positions);
+        fillComboBox(permissionComboBox, permissions);
+        fillComboBox(officeComboBox, offices);
     }
 
-//    private <T> void fillComboBox(JComboBox<String> target, List<T> source, Function<T, String> func) {
-//        for (T item : source) {
-//            target.addItem(func.apply(item));
-//        }
-//    }
+    private void fillComboBox(JComboBox<String> target, List<? extends Describable> source) {
+        for (Describable item : source) {
+            target.addItem(item.getDescription());
+        }
+    }
 }

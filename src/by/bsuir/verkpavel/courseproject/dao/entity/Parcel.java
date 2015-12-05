@@ -1,8 +1,10 @@
 package by.bsuir.verkpavel.courseproject.dao.entity;
 
-import by.bsuir.verkpavel.courseproject.dao.Entity;
+import java.util.Date;
 
 import com.j256.ormlite.field.DatabaseField;
+
+import by.bsuir.verkpavel.courseproject.dao.Entity;
 
 public class Parcel implements Entity {
 
@@ -13,9 +15,12 @@ public class Parcel implements Entity {
     @DatabaseField
     private int height;
     @DatabaseField
-    private double weight;
+    private int weight;
     @DatabaseField
     private int width;
+    
+    @DatabaseField
+    private Date acceptanceDate;
 
     @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idClient")
     private Client client;
@@ -53,11 +58,11 @@ public class Parcel implements Entity {
         this.height = height;
     }
 
-    public double getWeight() {
+    public int getWeight() {
         return this.weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 
@@ -91,5 +96,13 @@ public class Parcel implements Entity {
 
     public void setPayment(Payment payment) {
         this.payment = payment;
+    }
+
+    public Date getAcceptanceDate() {
+        return acceptanceDate;
+    }
+
+    public void setAcceptanceDate(Date acceptanceDate) {
+        this.acceptanceDate = acceptanceDate;
     }
 }

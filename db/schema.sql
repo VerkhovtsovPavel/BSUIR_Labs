@@ -152,6 +152,8 @@ CREATE  TABLE IF NOT EXISTS `deliveryService`.`Employee` (
   `idPermissions` INT NOT NULL ,
   `idOffice` INT NOT NULL ,
   `birthday` DATE NOT NULL ,
+  `phoneNumber` VARCHAR(15) NOT NULL ,
+  `eMail` VARCHAR(145) NOT NULL ,
   `idSalary` INT NOT NULL ,
   PRIMARY KEY (`idEmployee`) ,
   INDEX `fk_Employee_Authentication1` (`idAuthentication` ASC) ,
@@ -344,10 +346,11 @@ CREATE  TABLE IF NOT EXISTS `deliveryService`.`Parcel` (
   `height` INT NOT NULL ,
   `width` INT NOT NULL ,
   `depth` INT NOT NULL ,
-  `weight` DOUBLE NOT NULL ,
+  `weight` INT NOT NULL ,
   `idMarkParcel` INT NOT NULL ,
   `idClient` INT NOT NULL ,
   `idPayments` INT NOT NULL ,
+  `acceptanceDate` DATE NOT NULL ,
   PRIMARY KEY (`idParcel`) ,
   INDEX `fk_Parcel_MarkParcel1` (`idMarkParcel` ASC) ,
   INDEX `fk_Parcel_Client1` (`idClient` ASC) ,
@@ -462,9 +465,9 @@ DROP TABLE IF EXISTS `deliveryService`.`Rate` ;
 
 CREATE  TABLE IF NOT EXISTS `deliveryService`.`Rate` (
   `idRate` INT NOT NULL ,
-  `heigth` FLOAT NOT NULL ,
-  `width` FLOAT NOT NULL ,
-  `depth` FLOAT NOT NULL ,
+  `heigth` INT NOT NULL ,
+  `width` INT NOT NULL ,
+  `depth` INT NOT NULL ,
   `weigth` FLOAT NOT NULL ,
   PRIMARY KEY (`idRate`) )
 ENGINE = InnoDB;

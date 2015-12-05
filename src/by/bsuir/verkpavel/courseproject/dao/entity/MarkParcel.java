@@ -1,12 +1,13 @@
 package by.bsuir.verkpavel.courseproject.dao.entity;
 
+import by.bsuir.verkpavel.courseproject.dao.Describable;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "markparcel")
-public class MarkParcel implements Entity {
+public class MarkParcel implements Entity, Describable {
 
     @DatabaseField(generatedId = true)
     private int idMarkParcel;
