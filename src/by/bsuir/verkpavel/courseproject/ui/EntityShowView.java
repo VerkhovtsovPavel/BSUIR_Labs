@@ -15,6 +15,7 @@ import by.bsuir.verkpavel.courseproject.logic.tablemodel.TableModelFactory;
 
 public class EntityShowView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
+    private boolean isDelete;
 
     public EntityShowView(List<? extends Entity> beans) {
         super("Просмотр");
@@ -26,6 +27,11 @@ public class EntityShowView extends JFrame {
         getContentPane().add(new JScrollPane(table));
     }
 
+    public EntityShowView(List<? extends Entity> beans, boolean isDelete) {
+        this(beans);
+        this.isDelete = isDelete;
+    }
+
     private void createDoubleClickListener(final JTable table) {
         final GeneralDeliveryServiceTableModel model = (GeneralDeliveryServiceTableModel) table.getModel();
         table.addMouseListener(new MouseAdapter() {
@@ -33,7 +39,11 @@ public class EntityShowView extends JFrame {
                 if (e.getClickCount() == 2) {
                     int selectedRow = table.getSelectedRow();
                     int selectedColumns = table.getSelectedColumn();
-                    model.processClick(selectedRow, selectedColumns);
+                    if (isDelete) {
+                        model.processDelete(selectedRow, selectedColumns);
+                    } else {
+                        model.processClick(selectedRow, selectedColumns);
+                    }
                 }
             }
         });

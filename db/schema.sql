@@ -111,14 +111,14 @@ DROP TABLE IF EXISTS `deliveryService`.`Office` ;
 
 CREATE  TABLE IF NOT EXISTS `deliveryService`.`Office` (
   `idOffice` INT NOT NULL AUTO_INCREMENT ,
-  `Street_idStreet` INT NOT NULL ,
+  `idStreet` INT NOT NULL ,
   `home` INT NOT NULL ,
   `housing` VARCHAR(2) NULL ,
   `room` INT NULL ,
   PRIMARY KEY (`idOffice`) ,
-  INDEX `fk_Office_Street1` (`Street_idStreet` ASC) ,
+  INDEX `fk_Office_Street1` (`idStreet` ASC) ,
   CONSTRAINT `fk_Office_Street1`
-    FOREIGN KEY (`Street_idStreet` )
+    FOREIGN KEY (`idStreet` )
     REFERENCES `deliveryService`.`Street` (`idStreet` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -152,8 +152,8 @@ CREATE  TABLE IF NOT EXISTS `deliveryService`.`Employee` (
   `idPermissions` INT NOT NULL ,
   `idOffice` INT NOT NULL ,
   `birthday` DATE NOT NULL ,
-  `phoneNumber` VARCHAR(15) NOT NULL ,
-  `eMail` VARCHAR(145) NOT NULL ,
+  `phoneNumber` VARCHAR(15) NOT NULL DEFAULT '\"\"' ,
+  `eMail` VARCHAR(145) NOT NULL DEFAULT '\"\"' ,
   `idSalary` INT NOT NULL ,
   PRIMARY KEY (`idEmployee`) ,
   INDEX `fk_Employee_Authentication1` (`idAuthentication` ASC) ,
@@ -468,7 +468,7 @@ CREATE  TABLE IF NOT EXISTS `deliveryService`.`Rate` (
   `heigth` INT NOT NULL ,
   `width` INT NOT NULL ,
   `depth` INT NOT NULL ,
-  `weigth` FLOAT NOT NULL ,
+  `weigth` INT NOT NULL ,
   PRIMARY KEY (`idRate`) )
 ENGINE = InnoDB;
 

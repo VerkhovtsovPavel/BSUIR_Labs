@@ -270,7 +270,7 @@ public class AddParcelView extends JFrame {
 
     private void initialaze() {
         this.setSize(720, 400);
-        this.setTitle("Добавление работника");
+        this.setTitle("Добавление посылки");
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);

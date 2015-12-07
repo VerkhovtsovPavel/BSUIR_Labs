@@ -66,7 +66,7 @@ public class Office implements Entity, Describable {
 
     @Override
     public String getDescription() {
-       return getStreet().getCity()+", " + getStreet().getName() + ", "+getHome();
+       return getStreet().getCity().getName()+", " + getStreet().getName() + ", "+getHome();
     }
 
 }

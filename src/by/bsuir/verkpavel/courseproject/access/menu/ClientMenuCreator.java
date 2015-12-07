@@ -2,10 +2,16 @@ package by.bsuir.verkpavel.courseproject.access.menu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+
+import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
+import by.bsuir.verkpavel.courseproject.dao.entity.Client;
+import by.bsuir.verkpavel.courseproject.ui.EntityShowView;
+import by.bsuir.verkpavel.courseproject.ui.add.AddClientView;
 
 public class ClientMenuCreator extends BaseMenuCreator {
 
@@ -21,7 +27,9 @@ public class ClientMenuCreator extends BaseMenuCreator {
         JMenuItem showClient = new JMenuItem("Просмотреть клиентов");
         showClient.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO Go to login view and delete all session data
+                List<Client> clients = DeliveryServiceDao.getInstance().getAllRecord(Client.class);
+                EntityShowView entityShowView = new EntityShowView(clients);
+                entityShowView.showView();
             }
         });
         personalMenu.add(showClient);
@@ -33,7 +41,8 @@ public class ClientMenuCreator extends BaseMenuCreator {
         JMenuItem addClient = new JMenuItem("Добавить клиента");
         addClient.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO Use value change view send old userName
+                AddClientView addClientView = new AddClientView();
+                addClientView.showView();
             }
         });
         personalMenu.add(addClient);

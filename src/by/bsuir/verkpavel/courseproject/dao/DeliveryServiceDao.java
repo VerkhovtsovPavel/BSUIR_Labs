@@ -80,4 +80,16 @@ public class DeliveryServiceDao {
             return false;
         }
     }
+
+    public boolean deleteRecord(Entity deletedEntity) {
+        Dao<Entity, Integer> dao = getDaoByClass(deletedEntity.getClass());
+        try {
+            dao.delete(deletedEntity);
+            return true;
+        } catch (SQLException e) {
+            log.error(Messages.ERROR_WHILE_DELETE_RECORD.get(), e);
+            return false;
+        }
+        
+    }
 }

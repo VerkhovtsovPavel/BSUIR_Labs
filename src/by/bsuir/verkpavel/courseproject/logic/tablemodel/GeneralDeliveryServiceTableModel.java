@@ -9,6 +9,7 @@ import javax.swing.table.TableModel;
 
 import org.apache.log4j.Logger;
 
+import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 
 public abstract class GeneralDeliveryServiceTableModel implements TableModel {
@@ -61,5 +62,10 @@ public abstract class GeneralDeliveryServiceTableModel implements TableModel {
                 log.error("Error while wait on monitor", e);
             }
         }
+    }
+
+    public final void processDelete(int selectedRow, int selectedColumns) {
+        Entity deletedEntity = _beans.get(selectedRow);
+        DeliveryServiceDao.getInstance().deleteRecord(deletedEntity);
     }
 }

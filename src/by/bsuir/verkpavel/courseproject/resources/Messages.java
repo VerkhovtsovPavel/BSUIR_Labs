@@ -5,7 +5,8 @@ public enum Messages {
     CLIENT_SUCCESSFULLY_ADDED("Клиент успешно добавлен"),
     ERROR_WHILE_ADD_RECORD("Ошибка при добавлении записи. Проверьте введенные данные или свяжитесь с администратором базы данных или тех. поддержкой"),
     EMPLOYEE_SUCCESSFULLY_ADDED("Сотрудник успешно добавлен"),
-    PARCEL_SUCCESSFULLY_ADDED("Посылка успешно добавлен");
+    PARCEL_SUCCESSFULLY_ADDED("Посылка успешно добавлен"),
+    ERROR_WHILE_DELETE_RECORD("Ошибка при удалении записи. Проверьте введенные данные или свяжитесь с администратором базы данных или тех. поддержкой");
 
     private String value;
 
