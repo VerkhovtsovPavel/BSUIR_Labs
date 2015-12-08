@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,14 +17,13 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import com.j256.ormlite.stmt.QueryBuilder;
+
 import by.bsuir.verkpavel.courseproject.access.PasswordEncryptor;
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.entity.Authentication;
 import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
 import by.bsuir.verkpavel.courseproject.resources.Messages;
-
-import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.stmt.QueryBuilder;
 
 public class LoginView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
@@ -85,26 +85,37 @@ public class LoginView extends JFrame {
                 String login = loginTextField.getText();
                 String passwordHash = PasswordEncryptor.encryptPassword(passwordTextField.getText());
 
-                Dao<Authentication, Integer> authDao = DeliveryServiceDao.getInstance().getDaoByClass(
-                        Authentication.class);
-                QueryBuilder<Authentication, Integer> statementBuilder = authDao.queryBuilder();
-                Authentication authentication = null;
-                //TODO move to DAO
-                try {
-                    statementBuilder.where().eq("userName", login).and().eq("password", passwordHash);
-                    authentication = (Authentication) authDao.query(statementBuilder.prepare());
-                } catch (SQLException e) {
+                QueryBuilder<Authentication, Integer> statementBuilder = DeliveryServiceDao.getInstance()
+                        .getQueryBuilderByClass(Authentication.class);
 
-                    e.printStackTrace();
+                try {
+                    // TODO move to DAO
+                    statementBuilder.where().eq("userName", login).and().eq("password", passwordHash);
+                } catch (SQLException e) {
                 }
-                if (authentication != null) {
-                    Employee employee = null;/*getEmployeeByAuth()*/
+                List<Authentication> authentications = DeliveryServiceDao.getInstance()
+                        .getExeciteQuery(statementBuilder, Authentication.class);
+
+                if (!authentications.isEmpty()) {
+                    Employee employee = getEmployeeByAuth(authentications.get(0));
                     MainView mainView = new MainView(employee);
                     mainView.showView();
                 } else {
                     JOptionPane.showMessageDialog(null, Messages.INVALID_USERNAME_AND_PASSWORD.get(), "Error",
                             JOptionPane.PLAIN_MESSAGE);
                 }
+            }
+
+            private Employee getEmployeeByAuth(Authentication authentication) {
+                QueryBuilder<Employee, Integer> statementBuilder = DeliveryServiceDao.getInstance()
+                        .getQueryBuilderByClass(Employee.class);
+                try {
+                    statementBuilder.where().idEq(authentication.getIdAuthentication());
+                } catch (SQLException e) {
+                }
+                List<Employee> employees = DeliveryServiceDao.getInstance().getExeciteQuery(statementBuilder,
+                        Employee.class);
+                return employees.get(0);
             }
         });
         mainPanel.add(clientsBtn);

@@ -6,12 +6,14 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.GeneralDeliveryServiceTableModel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.TableModelFactory;
+import by.bsuir.verkpavel.courseproject.resources.Messages;
 
 public class EntityShowView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
@@ -40,7 +42,10 @@ public class EntityShowView extends JFrame {
                     int selectedRow = table.getSelectedRow();
                     int selectedColumns = table.getSelectedColumn();
                     if (isDelete) {
-                        model.processDelete(selectedRow, selectedColumns);
+                        int result = JOptionPane.showConfirmDialog(EntityShowView.this, Messages.CONFIRM_DELETE.get());
+                        if (result == JOptionPane.OK_OPTION) {
+                            model.processDelete(selectedRow, selectedColumns);
+                        }
                     } else {
                         model.processClick(selectedRow, selectedColumns);
                     }

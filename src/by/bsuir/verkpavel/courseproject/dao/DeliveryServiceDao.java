@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 
 import by.bsuir.verkpavel.courseproject.resources.Messages;
@@ -39,6 +40,10 @@ public class DeliveryServiceDao {
     private DeliveryServiceDao() {
 
     }
+    
+    public static DeliveryServiceDao getInstance() {
+        return instance;
+    }
 
     @SuppressWarnings("unchecked")
     public <T> Dao<T, Integer> getDaoByClass(Class<? extends Entity> target){
@@ -54,16 +59,27 @@ public class DeliveryServiceDao {
         }
         return (Dao<T, Integer>)dao;
     }
-
-    public static DeliveryServiceDao getInstance() {
-        return instance;
-    }
     
     @SuppressWarnings("unchecked")
     public <T> List<T> getAllRecord(Class<? extends Entity> target){
         Dao<? extends Entity, Integer> dao = getDaoByClass(target);
         try {
             return (List<T>)dao.queryForAll();
+        } catch (SQLException e) {
+            log.info("Error while get records by "+target.getSimpleName(), e);
+        }
+        return null;
+    }
+    
+    @SuppressWarnings("unchecked")
+    public <T>   QueryBuilder<T, Integer> getQueryBuilderByClass(Class<? extends Entity> target){
+        return (QueryBuilder<T, Integer>) daos.get(target).queryBuilder();
+    }
+    
+    public <T> List<T> getExeciteQuery(QueryBuilder<T, Integer> query, Class<? extends Entity> target){
+        Dao<T, Integer> dao = getDaoByClass(target);
+        try {
+            return (List<T>)dao.query(query.prepare());
         } catch (SQLException e) {
             log.info("Error while get records by "+target.getSimpleName(), e);
         }
@@ -88,6 +104,18 @@ public class DeliveryServiceDao {
             return true;
         } catch (SQLException e) {
             log.error(Messages.ERROR_WHILE_DELETE_RECORD.get(), e);
+            return false;
+        }
+        
+    }
+
+    public boolean updateRecord(Entity deletedEntity) {
+        Dao<Entity, Integer> dao = getDaoByClass(deletedEntity.getClass());
+        try {
+            dao.update(deletedEntity);
+            return true;
+        } catch (SQLException e) {
+            log.error(Messages.ERROR_WHILE_UPDATE_RECORD.get(), e);
             return false;
         }
         

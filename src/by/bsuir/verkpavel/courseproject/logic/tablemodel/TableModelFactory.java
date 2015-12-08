@@ -28,7 +28,7 @@ public class TableModelFactory {
             return null;
         case "Client":
             return new ClientTableModel(beans);
-        case "CorporateСar":
+        case "CorporateCar":
             return new CorporateCarTableModel(beans);
         case "Delivery":
             return new DeliveryTableModel(beans);

@@ -40,7 +40,6 @@ public class MainView extends JFrame {
     public MainView(Employee currentUser) {
         setResizable(false);
         configureDefaultLayot();
-        // TODO Remove null
         menuBar = MenuCreator.createPermissibleMenu(currentUser);
         setJMenuBar(menuBar);
     }

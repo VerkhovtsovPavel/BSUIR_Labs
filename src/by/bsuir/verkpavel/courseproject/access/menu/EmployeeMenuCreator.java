@@ -2,10 +2,16 @@ package by.bsuir.verkpavel.courseproject.access.menu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+
+import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
+import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
+import by.bsuir.verkpavel.courseproject.ui.EntityShowView;
+import by.bsuir.verkpavel.courseproject.ui.add.AddEmployeeView;
 
 public class EmployeeMenuCreator extends BaseMenuCreator {
 
@@ -21,7 +27,9 @@ public class EmployeeMenuCreator extends BaseMenuCreator {
         JMenuItem showEmployee = new JMenuItem("Просмотреть работников");
         showEmployee.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO Go to login view and delete all session data
+                List<Employee> entity = DeliveryServiceDao.getInstance().getAllRecord(Employee.class);
+                EntityShowView entityShowView = new EntityShowView(entity);
+                entityShowView.showView();
             }
         });
         employeelMenu.add(showEmployee);
@@ -34,7 +42,8 @@ public class EmployeeMenuCreator extends BaseMenuCreator {
         JMenuItem addEmployee = new JMenuItem("Добавить работника");
         addEmployee.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO Use value change view send old userName
+                AddEmployeeView addEmployeeView = new AddEmployeeView();
+                addEmployeeView.showView();
             }
         });
 
@@ -46,7 +55,9 @@ public class EmployeeMenuCreator extends BaseMenuCreator {
         JMenuItem fireEmployee = new JMenuItem("Уволить работника");
         fireEmployee.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO Use value change view send "Старый пароль"
+                List<Employee> entity = DeliveryServiceDao.getInstance().getAllRecord(Employee.class);
+                EntityShowView entityShowView = new EntityShowView(entity, true);
+                entityShowView.showView();
             }
         });
         employeelMenu.add(fireEmployee);

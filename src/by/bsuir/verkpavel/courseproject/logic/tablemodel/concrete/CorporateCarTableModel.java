@@ -69,7 +69,7 @@ public class CorporateCarTableModel extends GeneralDeliveryServiceTableModel {
         case 8:
             return bean.getDriverlicencecategory().getDescription();
         case 9:
-            return bean.getOffice() == null ? "В дороге" : bean.getOffice(); 
+            return bean.getOffice() == null ? "В дороге" : bean.getOffice().getDescription(); 
         }
         return "";
     }

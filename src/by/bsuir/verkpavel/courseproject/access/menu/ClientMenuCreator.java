@@ -54,7 +54,9 @@ public class ClientMenuCreator extends BaseMenuCreator {
         JMenuItem deleteClient = new JMenuItem("Удалить клиента");
         deleteClient.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO Use value change view send "Старый пароль"
+                List<Client> clients = DeliveryServiceDao.getInstance().getAllRecord(Client.class);
+                EntityShowView entityShowView = new EntityShowView(clients, true);
+                entityShowView.showView();
             }
         });
         personalMenu.add(deleteClient);

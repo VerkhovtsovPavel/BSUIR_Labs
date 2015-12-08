@@ -7,6 +7,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import by.bsuir.verkpavel.courseproject.ui.LoginView;
+
 public class PersonalMenuCreator extends BaseMenuCreator {
 
     private JMenu personalMenu;
@@ -35,7 +37,8 @@ public class PersonalMenuCreator extends BaseMenuCreator {
         JMenuItem logOut = new JMenuItem("Выйти из учетной записи");
         logOut.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO Go to login view and delete all session data
+                LoginView loginView = new LoginView();
+                loginView.showView();
             }
         });
 
@@ -49,13 +52,13 @@ public class PersonalMenuCreator extends BaseMenuCreator {
 
     @Override
     public void editMenu(JMenuBar menuBar) {
-        // TODO Auto-generated method stub
+        // Not need implement
 
     }
 
     @Override
     public void deleteMenu(JMenuBar menuBar) {
-        // TODO Auto-generated method stub
+       // Not need implement
 
     }
 

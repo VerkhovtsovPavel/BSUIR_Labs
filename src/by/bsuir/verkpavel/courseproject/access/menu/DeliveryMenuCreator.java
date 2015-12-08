@@ -2,10 +2,17 @@ package by.bsuir.verkpavel.courseproject.access.menu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+
+import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
+import by.bsuir.verkpavel.courseproject.dao.entity.Delivery;
+import by.bsuir.verkpavel.courseproject.ui.EntityShowView;
+import by.bsuir.verkpavel.courseproject.ui.add.AddDeliveryView;
+import by.bsuir.verkpavel.courseproject.ui.add.AddParcelToDeliveryView;
 
 public class DeliveryMenuCreator extends BaseMenuCreator {
 
@@ -21,7 +28,9 @@ public class DeliveryMenuCreator extends BaseMenuCreator {
         JMenuItem showDelivery = new JMenuItem("Просмотреть доставки");
         showDelivery.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO
+                List<Delivery> entity = DeliveryServiceDao.getInstance().getAllRecord(Delivery.class);
+                EntityShowView entityShowView = new EntityShowView(entity);
+                entityShowView.showView();
             }
         });
         personalMenu.add(showDelivery);
@@ -33,14 +42,16 @@ public class DeliveryMenuCreator extends BaseMenuCreator {
         JMenuItem addDelivery = new JMenuItem("Создать доставку");
         addDelivery.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO
+                AddDeliveryView addDeliveryView = new AddDeliveryView();
+                addDeliveryView.showView();
             }
         });
 
         JMenuItem addParcelToDelivery = new JMenuItem("Добавить товар в достаку");
         addParcelToDelivery.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO
+                AddParcelToDeliveryView addParcelToDeliveryView = new AddParcelToDeliveryView();
+                addParcelToDeliveryView.showView();
             }
         });
         personalMenu.add(addDelivery);

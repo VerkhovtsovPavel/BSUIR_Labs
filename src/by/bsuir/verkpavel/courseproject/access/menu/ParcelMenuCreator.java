@@ -2,10 +2,16 @@ package by.bsuir.verkpavel.courseproject.access.menu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+
+import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
+import by.bsuir.verkpavel.courseproject.dao.entity.Parcel;
+import by.bsuir.verkpavel.courseproject.ui.EntityShowView;
+import by.bsuir.verkpavel.courseproject.ui.add.AddParcelView;
 
 public class ParcelMenuCreator extends BaseMenuCreator {
 
@@ -21,7 +27,9 @@ public class ParcelMenuCreator extends BaseMenuCreator {
         JMenuItem showParcel = new JMenuItem("Просмотреть посылки");
         showParcel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO
+                List<Parcel> entity = DeliveryServiceDao.getInstance().getAllRecord(Parcel.class);
+                EntityShowView entityShowView = new EntityShowView(entity);
+                entityShowView.showView();
             }
         });
         parcellMenu.add(showParcel);
@@ -33,7 +41,8 @@ public class ParcelMenuCreator extends BaseMenuCreator {
         JMenuItem addParcel = new JMenuItem("Добавить посылку");
         addParcel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO
+                AddParcelView addParcelView = new AddParcelView();
+                addParcelView.showView();
             }
         });
         parcellMenu.add(addParcel);

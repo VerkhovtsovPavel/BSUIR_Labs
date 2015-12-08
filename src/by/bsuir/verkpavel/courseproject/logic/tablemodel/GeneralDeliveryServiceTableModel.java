@@ -1,5 +1,6 @@
 package by.bsuir.verkpavel.courseproject.logic.tablemodel;
 
+import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -47,8 +48,8 @@ public abstract class GeneralDeliveryServiceTableModel implements TableModel {
     public List<? extends Entity> getBeans() {
         return _beans;
     }
-    
-    //TODO Make abstract or remove implementation
+
+    // TODO Make abstract or remove implementation
     public void processClick(int row, int column) {
         String selectedData = getValueAt(row, column).toString();
         log.debug(String.format("Selected: row %d, colum %d, value %s ", row, column, selectedData));
@@ -66,6 +67,21 @@ public abstract class GeneralDeliveryServiceTableModel implements TableModel {
 
     public final void processDelete(int selectedRow, int selectedColumns) {
         Entity deletedEntity = _beans.get(selectedRow);
-        DeliveryServiceDao.getInstance().deleteRecord(deletedEntity);
+        Field[] fields = deletedEntity.getClass().getFields();
+        boolean useUpdate = false;
+        for (Field field : fields) {
+            if (field.getName().equals("isActive")) {
+                useUpdate = true;
+                try {
+                    field.setBoolean(deletedEntity, true);
+                } catch (IllegalArgumentException | IllegalAccessException e) {
+                }
+            }
+        }
+        if (useUpdate) {
+            DeliveryServiceDao.getInstance().updateRecord(deletedEntity);
+        } else {
+            DeliveryServiceDao.getInstance().deleteRecord(deletedEntity);
+        }
     }
 }
