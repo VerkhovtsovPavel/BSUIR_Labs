@@ -25,7 +25,7 @@ import by.bsuir.verkpavel.courseproject.dao.entity.DeliveryStatus;
 import by.bsuir.verkpavel.courseproject.dao.entity.Driver;
 import by.bsuir.verkpavel.courseproject.dao.entity.Office;
 import by.bsuir.verkpavel.courseproject.resources.Messages;
-//TODO Change UI
+
 public class AddDeliveryView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
 
@@ -58,24 +58,28 @@ public class AddDeliveryView extends JFrame {
     private void createActionElements() {
         startDateField = new JXDatePicker();
         startDateField.setDate(new Date());
-        startDateField.setBounds(16, 28, 152, 38);
+        startDateField.setBounds(195, 255, 152, 40);
         mainPanel.add(startDateField);
 
         fromOfficesComboBox = new JComboBox<String>();
-        fromOfficesComboBox.setBounds(10, 171, 126, 26);
+        fromOfficesComboBox.setBounds(16, 104, 764, 26);
         mainPanel.add(fromOfficesComboBox);
+        
+        toOfficesComboBox = new JComboBox<String>();
+        toOfficesComboBox.setBounds(16, 184, 764, 26);
+        mainPanel.add(toOfficesComboBox);
 
         corporateCarComboBox = new JComboBox<String>();
-        corporateCarComboBox.setBounds(195, 40, 509, 26);
+        corporateCarComboBox.setBounds(16, 40, 764, 26);
         mainPanel.add(corporateCarComboBox);
 
         endDateField = new JXDatePicker();
-        endDateField.setBounds(16, 255, 144, 38);
+        endDateField.setBounds(16, 255, 144, 40);
         endDateField.setDate(new Date());
         mainPanel.add(endDateField);
 
         JButton addButton = new JButton("Добавить");
-        addButton.setBounds(265, 367, 89, 23);
+        addButton.setBounds(365, 427, 89, 23);
         addButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -96,8 +100,12 @@ public class AddDeliveryView extends JFrame {
         mainPanel.add(addButton);
 
         driversComboBox = new JComboBox<String>();
-        driversComboBox.setBounds(419, 267, 126, 26);
+        driversComboBox.setBounds(419, 267, 361, 26);
         mainPanel.add(driversComboBox);
+        
+        JLabel toOfficeLabel = new JLabel("В");
+        toOfficeLabel.setBounds(22, 151, 108, 16);
+        mainPanel.add(toOfficeLabel);
     }
 
     private void createElements() {
@@ -107,24 +115,24 @@ public class AddDeliveryView extends JFrame {
 
     private void createLabels() {
         JLabel startDate = new JLabel("Дата отправки");
-        startDate.setBounds(16, 11, 102, 14);
+        startDate.setBounds(195, 238, 102, 14);
         mainPanel.add(startDate);
 
         JLabel endDate = new JLabel("Даты прибытия");
         endDate.setBounds(16, 238, 114, 14);
         mainPanel.add(endDate);
 
-        JLabel parselTypeLabel = new JLabel("Тип посылки");
-        parselTypeLabel.setBounds(20, 153, 108, 16);
-        mainPanel.add(parselTypeLabel);
+        JLabel fromOfficeLabel = new JLabel("Из");
+        fromOfficeLabel.setBounds(22, 77, 108, 16);
+        mainPanel.add(fromOfficeLabel);
 
-        JLabel clientLabel = new JLabel("Клиент");
-        clientLabel.setBounds(195, 22, 126, 16);
-        mainPanel.add(clientLabel);
+        JLabel corporateCarLabel = new JLabel("Машина");
+        corporateCarLabel.setBounds(16, 13, 126, 16);
+        mainPanel.add(corporateCarLabel);
 
-        JLabel paymentsTypeLabel = new JLabel("Cпособ оплаты");
-        paymentsTypeLabel.setBounds(429, 249, 108, 16);
-        mainPanel.add(paymentsTypeLabel);
+        JLabel driverLabel = new JLabel("Водитель");
+        driverLabel.setBounds(429, 249, 108, 16);
+        mainPanel.add(driverLabel);
     }
 
     private void fillComboBox(JComboBox<String> target, List<? extends Describable> source) {
@@ -170,7 +178,7 @@ public class AddDeliveryView extends JFrame {
     }
 
     private void initialaze() {
-        this.setSize(720, 400);
+        this.setSize(800, 500);
         this.setTitle("Добавление доставки");
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);

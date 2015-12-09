@@ -10,7 +10,7 @@ public class Driver implements Entity, Describable {
     @DatabaseField(generatedId = true)
     private int idDriver;
 
-    @DatabaseField(foreign = true, columnName = "idDriverLicense")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idDriverLicense")
     private DriverLicense driverlicense;
 
     @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idEmployee")

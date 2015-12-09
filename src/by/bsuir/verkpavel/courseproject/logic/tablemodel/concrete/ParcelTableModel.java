@@ -5,6 +5,7 @@ import java.util.List;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 import by.bsuir.verkpavel.courseproject.dao.entity.Parcel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.GeneralDeliveryServiceTableModel;
+import by.bsuir.verkpavel.courseproject.resources.ProjectProperties;
 
 public class ParcelTableModel extends GeneralDeliveryServiceTableModel {
 
@@ -41,9 +42,7 @@ public class ParcelTableModel extends GeneralDeliveryServiceTableModel {
         case 8:
             return "Способ платежа";
         case 9:
-            return "Дата оплаты";
-            
-                    
+            return "Дата оплаты";          
         }
         return "";
     }
@@ -68,9 +67,9 @@ public class ParcelTableModel extends GeneralDeliveryServiceTableModel {
         case 7:
             return bean.getPayment().getSum();
         case 8:
-            return bean.getPayment().getPayDate();
+            return bean.getPayment().getPaymentsSystemType().getDescription();
         case 9:
-            return bean.getDepth();
+            return ProjectProperties.getDateFormatter().format(bean.getPayment().getPayDate());
         }
         return "";
     }

@@ -5,6 +5,7 @@ import java.util.List;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 import by.bsuir.verkpavel.courseproject.dao.entity.CorporateCar;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.GeneralDeliveryServiceTableModel;
+import by.bsuir.verkpavel.courseproject.resources.ProjectProperties;
 
 public class CorporateCarTableModel extends GeneralDeliveryServiceTableModel {
 
@@ -41,8 +42,7 @@ public class CorporateCarTableModel extends GeneralDeliveryServiceTableModel {
         case 8:
             return "Необходимая категория прав";
         case 9:
-            return "Текущий офис";
-            
+            return "Текущий офис"; 
         }
         return "";
     }
@@ -57,7 +57,7 @@ public class CorporateCarTableModel extends GeneralDeliveryServiceTableModel {
         case 2:
             return bean.getNumber();
         case 3:
-            return bean.getBuyDate();
+            return ProjectProperties.getDateFormatter().format(bean.getBuyDate());
         case 4:
             return bean.getMaxHeight();
         case 5:
@@ -73,6 +73,4 @@ public class CorporateCarTableModel extends GeneralDeliveryServiceTableModel {
         }
         return "";
     }
-    
-    
 }

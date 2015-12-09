@@ -10,7 +10,7 @@ import javax.swing.JMenuItem;
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.entity.Authentication;
 import by.bsuir.verkpavel.courseproject.ui.LoginView;
-import by.bsuir.verkpavel.courseproject.ui.ValueChangeView;
+import by.bsuir.verkpavel.courseproject.ui.change.ValueChangeView;
 
 public class PersonalMenuCreator extends BaseMenuCreator {
 
@@ -26,12 +26,11 @@ public class PersonalMenuCreator extends BaseMenuCreator {
         JMenuItem changeLogin = new JMenuItem("Изменить логин");
         changeLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Object lock = new Object();
                 Authentication authentication = getEmployee().getAuthentication();
- 
-                ValueChangeView valueChangeView = new ValueChangeView(authentication.getUserName(), lock);
-                waitNewValue(lock);
-                
+                ValueChangeView valueChangeView = new ValueChangeView(authentication.getUserName());
+                valueChangeView.showView();
+                //TODO Don't work
+                waitNewValue(valueChangeView);
                 String newLogin = valueChangeView.getNewValue();
                 if (!newLogin.isEmpty()) {
                     authentication.setUserName(newLogin);
@@ -43,9 +42,9 @@ public class PersonalMenuCreator extends BaseMenuCreator {
         JMenuItem changePassword = new JMenuItem("Изменить пароль");
         changePassword.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Object lock = new Object();
-                ValueChangeView valueChangeView = new ValueChangeView("Старый пароль", lock);
-                waitNewValue(lock);
+                ValueChangeView valueChangeView = new ValueChangeView("Старый пароль");
+                valueChangeView.showView();
+                waitNewValue(valueChangeView );
                 String newPassword = valueChangeView.getNewValue();
                 if (!newPassword.isEmpty()) {
                     Authentication authentication = getEmployee().getAuthentication();

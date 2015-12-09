@@ -30,7 +30,7 @@ public class Employee implements Entity, Describable {
     private String eMail;
     
 
-    @DatabaseField(foreign = true, columnName = "idAuthentication")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idAuthentication")
     private Authentication authentication;
 
     @DatabaseField(foreign = true, columnName = "idOffice")

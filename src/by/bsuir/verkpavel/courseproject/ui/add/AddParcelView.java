@@ -77,7 +77,7 @@ public class AddParcelView extends JFrame {
     private void createActionElements() {
         acceptanceDateField = new JXDatePicker();
         acceptanceDateField.setDate(new Date());
-        acceptanceDateField.setBounds(16, 28, 152, 38);
+        acceptanceDateField.setBounds(16, 28, 152, 40);
         mainPanel.add(acceptanceDateField);
 
         markParcelComboBox = new JComboBox<String>();
@@ -89,7 +89,7 @@ public class AddParcelView extends JFrame {
         mainPanel.add(clientComboBox);
 
         payDateField = new JXDatePicker();
-        payDateField.setBounds(16, 255, 144, 38);
+        payDateField.setBounds(16, 255, 144, 40);
         payDateField.setDate(new Date());
         mainPanel.add(payDateField);
 
@@ -195,6 +195,9 @@ public class AddParcelView extends JFrame {
         JLabel widthLabel = new JLabel("Вес");
         widthLabel.setBounds(481, 111, 22, 14);
         mainPanel.add(widthLabel);
+        
+        JLabel officeLabel = new JLabel("Офис");
+        officeLabel.setBounds(299, 171, 22, 14);
 
         JLabel smLabel = new JLabel("см.");
         smLabel.setBounds(128, 114, 22, 14);
@@ -278,7 +281,7 @@ public class AddParcelView extends JFrame {
     }
 
     private void initialaze() {
-        this.setSize(720, 400);
+        this.setSize(720, 500);
         this.setTitle("Добавление посылки");
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);

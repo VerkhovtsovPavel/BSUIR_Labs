@@ -5,6 +5,7 @@ import java.util.List;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.GeneralDeliveryServiceTableModel;
+import by.bsuir.verkpavel.courseproject.resources.ProjectProperties;
 
 public class EmployeeTableModel extends GeneralDeliveryServiceTableModel {
 
@@ -17,9 +18,9 @@ public class EmployeeTableModel extends GeneralDeliveryServiceTableModel {
     }
 
     public int getColumnCount() {
-        return 4;
+        return 7;
     }
-    //TODO Add fields
+    
     public String getColumnName(int columnIndex) {
         switch (columnIndex) {
         case 0:
@@ -27,9 +28,16 @@ public class EmployeeTableModel extends GeneralDeliveryServiceTableModel {
         case 1:
             return "Офис";
         case 2:
-            return "День рождения";
+            return "День рождения"; 
         case 3:
             return "Дата приема на работу";
+        case 4:
+            return "Номер телефона";
+        case 5:
+            return "Email";
+        case 6:
+            return "Должность";     
+            
         }
         return "";
     }
@@ -40,11 +48,17 @@ public class EmployeeTableModel extends GeneralDeliveryServiceTableModel {
         case 0:
             return bean.getFullName();
         case 1:
-            return bean.getOffice();
+            return bean.getOffice().getDescription();
         case 2:
-            return bean.getBirthday();
+            return ProjectProperties.getDateFormatter().format(bean.getBirthday());
         case 3:
-            return bean.getHireDate();
+            return ProjectProperties.getDateFormatter().format(bean.getHireDate());
+        case 4:
+            return bean.getPhoneNumber();
+        case 5:
+            return bean.geteMail();
+        case 6:
+            return bean.getPosition().getDescription();
         }
         return "";
     }

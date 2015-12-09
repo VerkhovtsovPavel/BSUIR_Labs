@@ -1,4 +1,4 @@
-package by.bsuir.verkpavel.courseproject.ui;
+package by.bsuir.verkpavel.courseproject.ui.change;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -19,7 +19,7 @@ public class ValueChangeView extends JFrame {
     private JPanel mainPanel;
     private JTextField oldValueTextField;
     private JTextField newValueTextField;
-    private Object lock;
+    public boolean isFinish;
 
 
     public void showView() {
@@ -33,15 +33,12 @@ public class ValueChangeView extends JFrame {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent windowEvent) {
-                synchronized (lock){
-                    lock.notify();
-                }
+                isFinish = true;
             }
         });
     }
 
-    public ValueChangeView(Object oldValue, Object lock) {
-        this.lock = lock;
+    public ValueChangeView(Object oldValue) {
         setResizable(false);
         configureDefaultLayot();
         this.oldValueTextField.setText(oldValue.toString());
@@ -78,9 +75,7 @@ public class ValueChangeView extends JFrame {
         submitBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                synchronized (lock){
-                    lock.notify();
-                }
+                isFinish = true;
                 dispose();
             }
         });

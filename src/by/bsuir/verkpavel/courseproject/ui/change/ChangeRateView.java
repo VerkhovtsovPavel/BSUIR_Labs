@@ -7,24 +7,29 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+
+import org.apache.log4j.Logger;
 
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
-import by.bsuir.verkpavel.courseproject.dao.Describable;
-import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
-import by.bsuir.verkpavel.courseproject.dao.entity.Parcel;
-import by.bsuir.verkpavel.courseproject.dao.entity.Salary;
+import by.bsuir.verkpavel.courseproject.dao.entity.Rate;
+import by.bsuir.verkpavel.courseproject.resources.ProjectProperties;
 
 public class ChangeRateView extends JFrame {
-    // TODO Change UI
     private static final long serialVersionUID = 2883993883146596569L;
+    private static Logger log = Logger.getLogger(ChangeRateView.class);
+    
     private JPanel mainPanel;
-    private JComboBox<String> employeeComboBox;
-    private List<Employee> employees;
-    private Salary currentSalary;
+    private JSpinner heightSpinner;
+    private JSpinner depthSpinner;
+    private JSpinner weigthSpinner;
+    private JSpinner widthSpinner;
+    private Rate lastRate;
+
 
     public void showView() {
         this.setSize(445, 200);
@@ -37,12 +42,12 @@ public class ChangeRateView extends JFrame {
 
     public ChangeRateView() {
         setResizable(false);
+        loadRates();
         configureDefaultLayot();
-        fillComboBoxes();
     }
 
     private void configureDefaultLayot() {
-        setTitle("Изменение зарплаты");
+        setTitle("Изменение тарифов");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         mainPanel = new JPanel();
         setContentPane(mainPanel);
@@ -51,10 +56,6 @@ public class ChangeRateView extends JFrame {
         JLabel parcelLabel = new JLabel("Посылка");
         parcelLabel.setBounds(24, 21, 114, 14);
         mainPanel.add(parcelLabel);
-
-        employeeComboBox = new JComboBox<String>();
-        employeeComboBox.setBounds(172, 15, 255, 25);
-        mainPanel.add(employeeComboBox);
 
         JLabel deliveryLabel = new JLabel("Доставка");
         deliveryLabel.setBounds(24, 70, 114, 14);
@@ -66,25 +67,55 @@ public class ChangeRateView extends JFrame {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                double baseRate = 0;
-                double raisingFactor = 0;
-                currentSalary.setBaseRate(baseRate);
-                currentSalary.setRaisingFactor(raisingFactor);
-                DeliveryServiceDao.getInstance().updateRecord(currentSalary);
+                int height = (int) heightSpinner.getValue();
+                int weigth = (int) weigthSpinner.getValue();
+                int depth = (int) depthSpinner.getValue();
+                int width = (int) widthSpinner.getValue();
+                
+                Rate rate = new Rate();
+                rate.setHeigth(height);
+                rate.setDepth(depth);
+                rate.setWeigth(weigth);
+                rate.setWidth(width);
+                
+                DeliveryServiceDao.getInstance().addRecord(rate);
             }
         });
         mainPanel.add(submitBtn);
+        
+        heightSpinner = new JSpinner();
+        heightSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
+        heightSpinner.setBounds(60, 111, 58, 40);
+        heightSpinner.setValue(lastRate.getHeigth());
+        mainPanel.add(heightSpinner);
+
+        depthSpinner = new JSpinner();
+        depthSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
+        depthSpinner.setBounds(349, 111, 58, 40);
+        depthSpinner.setValue(lastRate.getDepth());
+        mainPanel.add(depthSpinner);
+
+        weigthSpinner = new JSpinner();
+        weigthSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
+        weigthSpinner.setBounds(211, 111, 58, 40);
+        weigthSpinner.setValue(lastRate.getWeigth());
+        mainPanel.add(weigthSpinner);
+
+        widthSpinner = new JSpinner();
+        widthSpinner.setModel(new SpinnerNumberModel(1, 1, 250000, 1));
+        widthSpinner.setBounds(513, 108, 102, 40);
+        widthSpinner.setValue(lastRate.getWidth());
+        mainPanel.add(widthSpinner);
     }
 
-    private void fillComboBox(JComboBox<String> target, List<? extends Describable> source) {
-        for (Describable item : source) {
-            target.addItem(item.getDescription());
+    private void loadRates() {
+        List<Rate> rateList = DeliveryServiceDao.getInstance().getAllRecord(Rate.class);
+        if (rateList.isEmpty()) {
+            lastRate = ProjectProperties.getDefaultRate();
+            log.warn("Using default rates");
+        } else {
+            lastRate = rateList.get(rateList.size() - 1);
         }
-    }
-
-    private void fillComboBoxes() {
-        employees = DeliveryServiceDao.getInstance().getAllRecord(Parcel.class);
-        fillComboBox(employeeComboBox, employees);
     }
 
 }

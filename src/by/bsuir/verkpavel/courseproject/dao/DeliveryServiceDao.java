@@ -85,10 +85,10 @@ public class DeliveryServiceDao {
     }
     
     @SuppressWarnings("unchecked")
-    public <T> List<T> getRecordById(int id, Class<? extends Entity> target) {
+    public <T> T getRecordById(int id, Class<? extends Entity> target) {
         Dao<? extends Entity, Integer> dao = getDaoByClass(target);
         try {
-            return (List<T>) dao.queryForId(id);
+            return (T) dao.queryForId(id);
         } catch (SQLException e) {
             log.info("Error while get records by " + target.getSimpleName(), e);
         }
@@ -97,7 +97,7 @@ public class DeliveryServiceDao {
 
     @SuppressWarnings("unchecked")
     public <T> QueryBuilder<T, Integer> getQueryBuilderByClass(Class<? extends Entity> target) {
-        return (QueryBuilder<T, Integer>) daos.get(target).queryBuilder();
+        return (QueryBuilder<T, Integer>) getDaoByClass(target).queryBuilder();
     }
 
     public <T> List<T> getExeciteQuery(QueryBuilder<T, Integer> query, Class<? extends Entity> target) {

@@ -57,12 +57,12 @@ public class LoginView extends JFrame {
         mainPanel.setLayout(null);
 
         loginTextField = new JTextField();
-        loginTextField.setBounds(179, 26, 255, 20);
+        loginTextField.setBounds(179, 23, 255, 23);
         mainPanel.add(loginTextField);
         loginTextField.setColumns(10);
 
         JLabel loginLabel = new JLabel("Имя пользователя");
-        loginLabel.setBounds(26, 29, 102, 14);
+        loginLabel.setBounds(26, 29, 130, 14);
         mainPanel.add(loginLabel);
 
         JLabel passwordLabel = new JLabel("Пароль");
@@ -71,7 +71,7 @@ public class LoginView extends JFrame {
 
         passwordTextField = new JPasswordField();
         passwordTextField.setColumns(10);
-        passwordTextField.setBounds(179, 64, 255, 20);
+        passwordTextField.setBounds(179, 61, 255, 23);
         mainPanel.add(passwordTextField);
 
         JButton clientsBtn = new JButton("Войти");
@@ -89,6 +89,7 @@ public class LoginView extends JFrame {
                     Employee employee = getEmployeeByAuth(authentications.get(0));
                     MainView mainView = new MainView(employee);
                     mainView.showView();
+                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, Messages.INVALID_USERNAME_AND_PASSWORD.get(), "Error",
                             JOptionPane.PLAIN_MESSAGE);
@@ -96,9 +97,9 @@ public class LoginView extends JFrame {
             }
 
             private Employee getEmployeeByAuth(Authentication authentication) {
-                List<Employee> employees = DeliveryServiceDao.getInstance()
+                Employee employee = DeliveryServiceDao.getInstance()
                         .getRecordById(authentication.getIdAuthentication(), Employee.class);
-                return employees.get(0);
+                return employee;
             }
         });
         mainPanel.add(clientsBtn);

@@ -2,18 +2,17 @@ package by.bsuir.verkpavel.courseproject.ui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
 import by.bsuir.verkpavel.courseproject.access.MenuCreator;
 import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
+import by.bsuir.verkpavel.courseproject.ui.companetns.ImageLabel;
+import java.awt.Color;
 
 public class MainView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
@@ -22,7 +21,7 @@ public class MainView extends JFrame {
     private JMenuBar menuBar;
 
     public void showView() {
-        this.setSize(532, 204);
+        this.setSize(532, 210);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
@@ -38,6 +37,7 @@ public class MainView extends JFrame {
     }
 
     public MainView(Employee currentUser) {
+        setBackground(Color.WHITE);
         setResizable(false);
         configureDefaultLayot();
         menuBar = MenuCreator.createPermissibleMenu(currentUser);
@@ -48,46 +48,12 @@ public class MainView extends JFrame {
         setTitle("Главная форма");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         mainPanel = new JPanel();
+        mainPanel.setBackground(Color.WHITE);
         setContentPane(mainPanel);
         mainPanel.setLayout(null);
 
-        JButton clientsBtn = new JButton("Клиенты");
-        clientsBtn.setBounds(47, 42, 111, 23);
-        clientsBtn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-            }
-        });
-        mainPanel.add(clientsBtn);
-
-        JButton accountButton = new JButton("Счета");
-        accountButton.setBounds(170, 42, 111, 23);
-        accountButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-        });
-        mainPanel.add(accountButton);
-
-        JButton depositButton = new JButton("Депозиты");
-        depositButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-        });
-        depositButton.setBounds(170, 97, 111, 23);
-        mainPanel.add(depositButton);
-
-        JButton creditButton = new JButton("Кредиты");
-        creditButton.setBounds(47, 97, 111, 23);
-        creditButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-        });
-        mainPanel.add(creditButton);
+        ImageLabel logoIcon = new ImageLabel("res/background.jpeg");
+        logoIcon.setBounds(6, 6, 521, 154);
+        mainPanel.add(logoIcon);
     }
 }

@@ -49,8 +49,8 @@ public abstract class GeneralDeliveryServiceTableModel implements TableModel {
         return _beans;
     }
 
-    // TODO Make abstract or remove implementation
     public void processClick(int row, int column) {
+        log.debug("Default haldler");
         String selectedData = getValueAt(row, column).toString();
         log.debug(String.format("Selected: row %d, colum %d, value %s ", row, column, selectedData));
     };
