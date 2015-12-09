@@ -16,7 +16,6 @@ import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.PermissionTabl
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.PositionTableModel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.SalaryTableModel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.StreetTableModel;
-//TODO Fix null returning
 public class TableModelFactory {
 
     public static GeneralDeliveryServiceTableModel getTableModel(List<? extends Entity> beans) {
@@ -32,12 +31,8 @@ public class TableModelFactory {
             return new CorporateCarTableModel(beans);
         case "Delivery":
             return new DeliveryTableModel(beans);
-        case "Driver":
-            return null;
         case "DriverLicenceCategory":
             return new DriverLicenceCategoryTableModel(beans);
-        case "DriverLicense":
-            return null;
         case "Employee":
             return new EmployeeTableModel(beans);
         case "MarkParcel":
@@ -47,9 +42,9 @@ public class TableModelFactory {
         case "Parcel":
             return new ParcelTableModel(beans);
         case "Payment":
-            return null;
+            return new PaymentTableModel(beans);
         case "PaymentsSystemType":
-            return null;
+            return new PaymentsSystemTypeTableModel(beans);
         case "Permission":
             return new PermissionTableModel(beans);
         case "Position":

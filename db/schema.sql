@@ -351,10 +351,12 @@ CREATE  TABLE IF NOT EXISTS `deliveryService`.`Parcel` (
   `idClient` INT NOT NULL ,
   `idPayments` INT NOT NULL ,
   `acceptanceDate` DATE NOT NULL ,
+  `toOffice` INT NOT NULL ,
   PRIMARY KEY (`idParcel`) ,
   INDEX `fk_Parcel_MarkParcel1` (`idMarkParcel` ASC) ,
   INDEX `fk_Parcel_Client1` (`idClient` ASC) ,
   INDEX `fk_Parcel_Payments1` (`idPayments` ASC) ,
+  INDEX `fk_Parcel_Office1` (`toOffice` ASC) ,
   CONSTRAINT `fk_Parcel_MarkParcel1`
     FOREIGN KEY (`idMarkParcel` )
     REFERENCES `deliveryService`.`MarkParcel` (`idMarkParcel` )
@@ -368,6 +370,11 @@ CREATE  TABLE IF NOT EXISTS `deliveryService`.`Parcel` (
   CONSTRAINT `fk_Parcel_Payments1`
     FOREIGN KEY (`idPayments` )
     REFERENCES `deliveryService`.`Payments` (`idPayments` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Parcel_Office1`
+    FOREIGN KEY (`toOffice` )
+    REFERENCES `deliveryService`.`Office` (`idOffice` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

@@ -2,13 +2,14 @@ package by.bsuir.verkpavel.courseproject.dao.entity;
 
 import java.util.Date;
 
+import by.bsuir.verkpavel.courseproject.dao.Describable;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "corporatecar")
-public class CorporateCar implements Entity {
+public class CorporateCar implements Entity, Describable {
 
     @DatabaseField(generatedId = true)
     private int idCorporateCar;
@@ -115,5 +116,10 @@ public class CorporateCar implements Entity {
 
     public void setOffice(Office office) {
         this.office = office;
+    }
+
+    @Override
+    public String getDescription() {
+        return String.format("%s %s %s", getMark(), getDriverlicencecategory().getDescription(), getNumber());
     }
 }

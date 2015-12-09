@@ -13,11 +13,12 @@ import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 
+import by.bsuir.verkpavel.courseproject.dao.entity.Authentication;
 import by.bsuir.verkpavel.courseproject.resources.Messages;
 
 public class DeliveryServiceDao {
     private static Logger log = Logger.getLogger(DeliveryServiceDao.class);
-    
+
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/deliveryService?useUnicode=true&characterEncoding=utf8";
     private static final String DB_USER_NAME = "root";
     private static final String DB_PASSWORD = "123456";
@@ -40,53 +41,76 @@ public class DeliveryServiceDao {
     private DeliveryServiceDao() {
 
     }
-    
+
     public static DeliveryServiceDao getInstance() {
         return instance;
     }
 
     @SuppressWarnings("unchecked")
-    public <T> Dao<T, Integer> getDaoByClass(Class<? extends Entity> target){
+    public <T> Dao<T, Integer> getDaoByClass(Class<? extends Entity> target) {
         Dao<? extends Entity, ?> dao = daos.get(target);
         if (dao == null) {
             try {
                 dao = DaoManager.createDao(connectionSource, target);
                 daos.put(target, dao);
-                log.info("Create dao for "+target.getSimpleName());
+                log.info("Create dao for " + target.getSimpleName());
             } catch (SQLException e) {
-                log.info("Error while create dao for "+target.getSimpleName(), e);
+                log.info("Error while create dao for " + target.getSimpleName(), e);
             }
         }
-        return (Dao<T, Integer>)dao;
+        return (Dao<T, Integer>) dao;
     }
-    
+
     @SuppressWarnings("unchecked")
-    public <T> List<T> getAllRecord(Class<? extends Entity> target){
+    public <T> List<T> getAllRecord(Class<? extends Entity> target) {
         Dao<? extends Entity, Integer> dao = getDaoByClass(target);
         try {
-            return (List<T>)dao.queryForAll();
+            return (List<T>) dao.queryForAll();
         } catch (SQLException e) {
-            log.info("Error while get records by "+target.getSimpleName(), e);
+            log.info("Error while get records by " + target.getSimpleName(), e);
         }
         return null;
+    }
+    
+    public List<Authentication> getAuthentication(String login, String password){
+        QueryBuilder<Authentication, Integer> statementBuilder = DeliveryServiceDao.getInstance()
+                .getQueryBuilderByClass(Authentication.class);
+        try {
+            statementBuilder.where().eq("userName", login).and().eq("password", password);
+        } catch (SQLException e) {
+            log.info("Error while get authentication", e);
+        }
+        return DeliveryServiceDao.getInstance()
+                .getExeciteQuery(statementBuilder, Authentication.class);
     }
     
     @SuppressWarnings("unchecked")
-    public <T>   QueryBuilder<T, Integer> getQueryBuilderByClass(Class<? extends Entity> target){
-        return (QueryBuilder<T, Integer>) daos.get(target).queryBuilder();
-    }
-    
-    public <T> List<T> getExeciteQuery(QueryBuilder<T, Integer> query, Class<? extends Entity> target){
-        Dao<T, Integer> dao = getDaoByClass(target);
+    public <T> List<T> getRecordById(int id, Class<? extends Entity> target) {
+        Dao<? extends Entity, Integer> dao = getDaoByClass(target);
         try {
-            return (List<T>)dao.query(query.prepare());
+            return (List<T>) dao.queryForId(id);
         } catch (SQLException e) {
-            log.info("Error while get records by "+target.getSimpleName(), e);
+            log.info("Error while get records by " + target.getSimpleName(), e);
         }
         return null;
     }
-    
-    public boolean addRecond(Entity entity){
+
+    @SuppressWarnings("unchecked")
+    public <T> QueryBuilder<T, Integer> getQueryBuilderByClass(Class<? extends Entity> target) {
+        return (QueryBuilder<T, Integer>) daos.get(target).queryBuilder();
+    }
+
+    public <T> List<T> getExeciteQuery(QueryBuilder<T, Integer> query, Class<? extends Entity> target) {
+        Dao<T, Integer> dao = getDaoByClass(target);
+        try {
+            return (List<T>) dao.query(query.prepare());
+        } catch (SQLException e) {
+            log.info("Error while get records by " + target.getSimpleName(), e);
+        }
+        return null;
+    }
+
+    public boolean addRecord(Entity entity) {
         Dao<Entity, Integer> dao = getDaoByClass(entity.getClass());
         try {
             dao.create(entity);
@@ -106,7 +130,7 @@ public class DeliveryServiceDao {
             log.error(Messages.ERROR_WHILE_DELETE_RECORD.get(), e);
             return false;
         }
-        
+
     }
 
     public boolean updateRecord(Entity deletedEntity) {
@@ -118,6 +142,6 @@ public class DeliveryServiceDao {
             log.error(Messages.ERROR_WHILE_UPDATE_RECORD.get(), e);
             return false;
         }
-        
+
     }
 }

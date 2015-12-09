@@ -2,12 +2,20 @@ package by.bsuir.verkpavel.courseproject.access.menu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import by.bsuir.verkpavel.courseproject.ui.LoginView;
+import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
+import by.bsuir.verkpavel.courseproject.dao.entity.Delivery;
+import by.bsuir.verkpavel.courseproject.dao.entity.DriverLicenceCategory;
+import by.bsuir.verkpavel.courseproject.dao.entity.MarkParcel;
+import by.bsuir.verkpavel.courseproject.dao.entity.PaymentsSystemType;
+import by.bsuir.verkpavel.courseproject.dao.entity.Permission;
+import by.bsuir.verkpavel.courseproject.dao.entity.Position;
+import by.bsuir.verkpavel.courseproject.ui.EntityShowView;
 
 public class ModerationMenuCreator extends BaseMenuCreator {
 
@@ -20,33 +28,66 @@ public class ModerationMenuCreator extends BaseMenuCreator {
 
     @Override
     public void showMenu(JMenuBar menuBar) {
-        //TODO CHange on showing lists
-        moderationMenu = new JMenu("Мой профиль");
-        JMenuItem changeLogin = new JMenuItem("Изменить логин");
-        changeLogin.addActionListener(new ActionListener() {
+        JMenuItem showDeliveryStatus = new JMenuItem("Просмотр статуса доставки");
+        showDeliveryStatus.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO Use value change view send old userName
+                List<Delivery> entity = DeliveryServiceDao.getInstance().getAllRecord(Delivery.class);
+                EntityShowView entityShowView = new EntityShowView(entity);
+                entityShowView.showView();
             }
         });
 
-        JMenuItem changePassword = new JMenuItem("Изменить пароль");
-        changePassword.addActionListener(new ActionListener() {
+        JMenuItem showDriverLicenceCategory = new JMenuItem("Просмотр категорий прав");
+        showDriverLicenceCategory.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO Use value change view send old password
+                List<DriverLicenceCategory> entity = DeliveryServiceDao.getInstance().getAllRecord(DriverLicenceCategory.class);
+                EntityShowView entityShowView = new EntityShowView(entity);
+                entityShowView.showView();
             }
         });
 
-        JMenuItem logOut = new JMenuItem("Выйти из учетной записи");
-        logOut.addActionListener(new ActionListener() {
+        JMenuItem showMarkParcel = new JMenuItem("Просмотр типов посылок");
+        showMarkParcel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                LoginView loginView = new LoginView();
-                loginView.showView();
-            }
+                List<MarkParcel> entity = DeliveryServiceDao.getInstance().getAllRecord(MarkParcel.class);
+                EntityShowView entityShowView = new EntityShowView(entity);
+                entityShowView.showView();
+            }   
+        });
+        
+        JMenuItem showPaymentsSystemType = new JMenuItem("Просмотр способов оплаты");
+        showMarkParcel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                List<PaymentsSystemType> entity = DeliveryServiceDao.getInstance().getAllRecord(PaymentsSystemType.class);
+                EntityShowView entityShowView = new EntityShowView(entity);
+                entityShowView.showView();
+            }   
+        });
+        
+        JMenuItem showPermission = new JMenuItem("Просмотр прав доступа");
+        showMarkParcel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                List<Permission> entity = DeliveryServiceDao.getInstance().getAllRecord(Permission.class);
+                EntityShowView entityShowView = new EntityShowView(entity);
+                entityShowView.showView();
+            }   
+        });
+        
+        JMenuItem showPossition = new JMenuItem("Просмотр должностей");
+        showMarkParcel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                List<Position> entity = DeliveryServiceDao.getInstance().getAllRecord(Position.class);
+                EntityShowView entityShowView = new EntityShowView(entity);
+                entityShowView.showView();
+            }   
         });
 
-        moderationMenu.add(changeLogin);
-        moderationMenu.add(changePassword);
-        moderationMenu.add(logOut);
+        moderationMenu.add(showDeliveryStatus);
+        moderationMenu.add(showDriverLicenceCategory);
+        moderationMenu.add(showMarkParcel);
+        moderationMenu.add(showPaymentsSystemType);
+        moderationMenu.add(showPermission);
+        moderationMenu.add(showPossition);
 
         menuBar.add(moderationMenu); 
 

@@ -7,7 +7,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
+import by.bsuir.verkpavel.courseproject.dao.entity.Authentication;
 import by.bsuir.verkpavel.courseproject.ui.LoginView;
+import by.bsuir.verkpavel.courseproject.ui.ValueChangeView;
 
 public class PersonalMenuCreator extends BaseMenuCreator {
 
@@ -23,14 +26,32 @@ public class PersonalMenuCreator extends BaseMenuCreator {
         JMenuItem changeLogin = new JMenuItem("Изменить логин");
         changeLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO Use value change view send old userName
+                Object lock = new Object();
+                Authentication authentication = getEmployee().getAuthentication();
+ 
+                ValueChangeView valueChangeView = new ValueChangeView(authentication.getUserName(), lock);
+                waitNewValue(lock);
+                
+                String newLogin = valueChangeView.getNewValue();
+                if (!newLogin.isEmpty()) {
+                    authentication.setUserName(newLogin);
+                    DeliveryServiceDao.getInstance().updateRecord(authentication);
+                }
             }
         });
 
         JMenuItem changePassword = new JMenuItem("Изменить пароль");
         changePassword.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO Use value change view send old password
+                Object lock = new Object();
+                ValueChangeView valueChangeView = new ValueChangeView("Старый пароль", lock);
+                waitNewValue(lock);
+                String newPassword = valueChangeView.getNewValue();
+                if (!newPassword.isEmpty()) {
+                    Authentication authentication = getEmployee().getAuthentication();
+                    authentication.setPassword(newPassword);
+                    DeliveryServiceDao.getInstance().updateRecord(authentication);
+                }
             }
         });
 
@@ -58,7 +79,7 @@ public class PersonalMenuCreator extends BaseMenuCreator {
 
     @Override
     public void deleteMenu(JMenuBar menuBar) {
-       // Not need implement
+        // Not need implement
 
     }
 

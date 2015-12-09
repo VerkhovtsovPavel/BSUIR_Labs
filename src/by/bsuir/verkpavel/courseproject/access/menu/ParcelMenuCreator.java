@@ -53,7 +53,9 @@ public class ParcelMenuCreator extends BaseMenuCreator {
         JMenuItem deleteParcel = new JMenuItem("Удалить посылку");
         deleteParcel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO
+                List<Parcel> entity = DeliveryServiceDao.getInstance().getAllRecord(Parcel.class);
+                EntityShowView entityShowView = new EntityShowView(entity, true);
+                entityShowView.showView();
             }
         });
         parcellMenu.add(deleteParcel);

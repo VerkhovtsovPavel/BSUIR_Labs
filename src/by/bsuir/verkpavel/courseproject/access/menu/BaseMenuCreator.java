@@ -2,9 +2,14 @@ package by.bsuir.verkpavel.courseproject.access.menu;
 
 import javax.swing.JMenuBar;
 
+import org.apache.log4j.Logger;
+
 import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
 
 public abstract class BaseMenuCreator {
+    
+    private static final Logger log = Logger.getLogger(BaseMenuCreator.class);
+    
     private BaseMenuCreator next;
     private Employee employee;
     private JMenuBar menuBar;
@@ -39,5 +44,19 @@ public abstract class BaseMenuCreator {
     public abstract void editMenu(JMenuBar menuBar);
 
     public abstract void deleteMenu(JMenuBar menuBar);
+    
+    public Employee getEmployee() {
+        return employee;
+    }
+    
+    protected static void waitNewValue(Object lock) {
+        synchronized (lock) {
+            try {
+                lock.wait();
+            } catch (InterruptedException e) {
+                log.error("Error while wait on monitor", e);
+            }
+        }
+    }
 
 }

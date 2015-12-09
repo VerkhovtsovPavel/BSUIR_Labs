@@ -4,34 +4,28 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.NumberFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.text.NumberFormatter;
 
 import org.apache.log4j.Logger;
 import org.jdesktop.swingx.JXDatePicker;
 
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.Describable;
-import by.bsuir.verkpavel.courseproject.dao.entity.Client;
-import by.bsuir.verkpavel.courseproject.dao.entity.MarkParcel;
-import by.bsuir.verkpavel.courseproject.dao.entity.Parcel;
-import by.bsuir.verkpavel.courseproject.dao.entity.Payment;
-import by.bsuir.verkpavel.courseproject.dao.entity.PaymentsSystemType;
+import by.bsuir.verkpavel.courseproject.dao.entity.CorporateCar;
+import by.bsuir.verkpavel.courseproject.dao.entity.Delivery;
+import by.bsuir.verkpavel.courseproject.dao.entity.DeliveryStatus;
+import by.bsuir.verkpavel.courseproject.dao.entity.Driver;
+import by.bsuir.verkpavel.courseproject.dao.entity.Office;
 import by.bsuir.verkpavel.courseproject.resources.Messages;
-
+//TODO Change UI
 public class AddDeliveryView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
 
@@ -39,22 +33,19 @@ public class AddDeliveryView extends JFrame {
 
     private JPanel mainPanel;
 
-    private JXDatePicker acceptanceDateField;
-    private JXDatePicker payDateField;
-    private JFormattedTextField sumField;
-    private JComboBox<String> markParcelComboBox;
-    private JComboBox<String> clientComboBox;
-    private JComboBox<String> paymentsSystemTypeComboBox;
-    private JSpinner widthSpinner;
-    private JSpinner weigthSpinner;
-    private JSpinner heightSpinner;
-    private JSpinner depthSpinner;
+    private JXDatePicker startDateField;
+    private JXDatePicker endDateField;
 
-    private List<Client> clients;
-    private List<MarkParcel> markParcels;
-    private List<PaymentsSystemType> paymentSystemTypes;
+    private JComboBox<String> fromOfficesComboBox;
+    private JComboBox<String> toOfficesComboBox;
+    private JComboBox<String> corporateCarComboBox;
+    private JComboBox<String> driversComboBox;
 
-    public AddDeliveryView() {
+    private List<CorporateCar> corporateCars;
+    private List<Office> offices;
+    private List<Driver> drivers;
+
+     public AddDeliveryView() {
         configureDefaultLayot();
         fillComboBoxes();
     }
@@ -65,50 +56,36 @@ public class AddDeliveryView extends JFrame {
     }
 
     private void createActionElements() {
-        acceptanceDateField = new JXDatePicker();
-        acceptanceDateField.setDate(new Date());
-        acceptanceDateField.setBounds(16, 28, 152, 38);
-        mainPanel.add(acceptanceDateField);
+        startDateField = new JXDatePicker();
+        startDateField.setDate(new Date());
+        startDateField.setBounds(16, 28, 152, 38);
+        mainPanel.add(startDateField);
 
-        markParcelComboBox = new JComboBox<String>();
-        markParcelComboBox.setBounds(10, 171, 126, 26);
-        mainPanel.add(markParcelComboBox);
+        fromOfficesComboBox = new JComboBox<String>();
+        fromOfficesComboBox.setBounds(10, 171, 126, 26);
+        mainPanel.add(fromOfficesComboBox);
 
-        clientComboBox = new JComboBox<String>();
-        clientComboBox.setBounds(195, 40, 509, 26);
-        mainPanel.add(clientComboBox);
+        corporateCarComboBox = new JComboBox<String>();
+        corporateCarComboBox.setBounds(195, 40, 509, 26);
+        mainPanel.add(corporateCarComboBox);
 
-        payDateField = new JXDatePicker();
-        payDateField.setBounds(16, 255, 144, 38);
-        payDateField.setDate(new Date());
-        mainPanel.add(payDateField);
-
-        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("be-BY"));
-        format.setMaximumFractionDigits(0);
-        NumberFormatter formatter = new NumberFormatter(format);
-        formatter.setMinimum(0.0);
-        formatter.setMaximum(10000000.0);
-        formatter.setAllowsInvalid(false);
-        formatter.setOverwriteMode(true);
-        sumField = new JFormattedTextField(formatter);
-        sumField.setBounds(237, 261, 114, 26);
-        mainPanel.add(sumField);
-        sumField.setColumns(10);
-        sumField.setValue(0.0);
-        sumField.setEnabled(false);
+        endDateField = new JXDatePicker();
+        endDateField.setBounds(16, 255, 144, 38);
+        endDateField.setDate(new Date());
+        mainPanel.add(endDateField);
 
         JButton addButton = new JButton("Добавить");
         addButton.setBounds(265, 367, 89, 23);
         addButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Parcel parcel = getParcel();
+                Delivery delivery = getDelivery();
 
-                boolean isSuccessfully = DeliveryServiceDao.getInstance().addRecond(parcel);
+                boolean isSuccessfully = DeliveryServiceDao.getInstance().addRecord(delivery);
                 if (isSuccessfully) {
-                    JOptionPane.showMessageDialog(null, Messages.PARCEL_SUCCESSFULLY_ADDED.get(), "Message",
+                    JOptionPane.showMessageDialog(null, Messages.DELIVERY_SUCCESSFULLY_ADDED.get(), "Message",
                             JOptionPane.PLAIN_MESSAGE);
-                    log.info(Messages.PARCEL_SUCCESSFULLY_ADDED.get());
+                    log.info(Messages.DELIVERY_SUCCESSFULLY_ADDED.get());
                     dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, Messages.ERROR_WHILE_ADD_RECORD.get(), "Error",
@@ -118,29 +95,9 @@ public class AddDeliveryView extends JFrame {
         });
         mainPanel.add(addButton);
 
-        paymentsSystemTypeComboBox = new JComboBox<String>();
-        paymentsSystemTypeComboBox.setBounds(419, 267, 126, 26);
-        mainPanel.add(paymentsSystemTypeComboBox);
-
-        heightSpinner = new JSpinner();
-        heightSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
-        heightSpinner.setBounds(60, 111, 58, 40);
-        mainPanel.add(heightSpinner);
-
-        depthSpinner = new JSpinner();
-        depthSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
-        depthSpinner.setBounds(349, 111, 58, 40);
-        mainPanel.add(depthSpinner);
-
-        weigthSpinner = new JSpinner();
-        weigthSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
-        weigthSpinner.setBounds(211, 111, 58, 40);
-        mainPanel.add(weigthSpinner);
-
-        widthSpinner = new JSpinner();
-        widthSpinner.setModel(new SpinnerNumberModel(1, 1, 250000, 1));
-        widthSpinner.setBounds(513, 108, 102, 40);
-        mainPanel.add(widthSpinner);
+        driversComboBox = new JComboBox<String>();
+        driversComboBox.setBounds(419, 267, 126, 26);
+        mainPanel.add(driversComboBox);
     }
 
     private void createElements() {
@@ -149,13 +106,13 @@ public class AddDeliveryView extends JFrame {
     }
 
     private void createLabels() {
-        JLabel acceptanceDate = new JLabel("Дата приема");
-        acceptanceDate.setBounds(16, 11, 102, 14);
-        mainPanel.add(acceptanceDate);
+        JLabel startDate = new JLabel("Дата отправки");
+        startDate.setBounds(16, 11, 102, 14);
+        mainPanel.add(startDate);
 
-        JLabel payDate = new JLabel("Даты оплаты");
-        payDate.setBounds(16, 238, 114, 14);
-        mainPanel.add(payDate);
+        JLabel endDate = new JLabel("Даты прибытия");
+        endDate.setBounds(16, 238, 114, 14);
+        mainPanel.add(endDate);
 
         JLabel parselTypeLabel = new JLabel("Тип посылки");
         parselTypeLabel.setBounds(20, 153, 108, 16);
@@ -165,45 +122,9 @@ public class AddDeliveryView extends JFrame {
         clientLabel.setBounds(195, 22, 126, 16);
         mainPanel.add(clientLabel);
 
-        JLabel sumLabel = new JLabel("Сумма");
-        sumLabel.setBounds(183, 266, 44, 16);
-        mainPanel.add(sumLabel);
-
-        JLabel heigthLb = new JLabel("Высота");
-        heigthLb.setBounds(16, 114, 44, 14);
-        mainPanel.add(heigthLb);
-
-        JLabel widthLabel = new JLabel("Вес");
-        widthLabel.setBounds(481, 111, 22, 14);
-        mainPanel.add(widthLabel);
-
-        JLabel smLabel = new JLabel("см.");
-        smLabel.setBounds(128, 114, 22, 14);
-        mainPanel.add(smLabel);
-
-        JLabel label = new JLabel("см.");
-        label.setBounds(273, 114, 22, 14);
-        mainPanel.add(label);
-
-        JLabel label_1 = new JLabel("см.");
-        label_1.setBounds(419, 114, 22, 14);
-        mainPanel.add(label_1);
-
-        JLabel gramm = new JLabel("грамм");
-        gramm.setBounds(625, 114, 58, 14);
-        mainPanel.add(gramm);
-
         JLabel paymentsTypeLabel = new JLabel("Cпособ оплаты");
         paymentsTypeLabel.setBounds(429, 249, 108, 16);
         mainPanel.add(paymentsTypeLabel);
-
-        JLabel weigthLabel = new JLabel("Ширина");
-        weigthLabel.setBounds(167, 114, 44, 14);
-        mainPanel.add(weigthLabel);
-
-        JLabel depthLabel = new JLabel("Глубина");
-        depthLabel.setBounds(305, 114, 44, 14);
-        mainPanel.add(depthLabel);
     }
 
     private void fillComboBox(JComboBox<String> target, List<? extends Describable> source) {
@@ -213,52 +134,44 @@ public class AddDeliveryView extends JFrame {
     }
 
     private void fillComboBoxes() {
-        clients = DeliveryServiceDao.getInstance().getAllRecord(Client.class);
-        markParcels = DeliveryServiceDao.getInstance().getAllRecord(MarkParcel.class);
-        paymentSystemTypes = DeliveryServiceDao.getInstance().getAllRecord(PaymentsSystemType.class);
+        corporateCars = DeliveryServiceDao.getInstance().getAllRecord(CorporateCar.class);
+        offices = DeliveryServiceDao.getInstance().getAllRecord(Office.class);
+        drivers = DeliveryServiceDao.getInstance().getAllRecord(Driver.class);
 
-        fillComboBox(clientComboBox, clients);
-        fillComboBox(markParcelComboBox, markParcels);
-        fillComboBox(paymentsSystemTypeComboBox, paymentSystemTypes);
+        fillComboBox(corporateCarComboBox, corporateCars);
+        fillComboBox(fromOfficesComboBox, offices);
+        fillComboBox(toOfficesComboBox, offices);
+        fillComboBox(driversComboBox, drivers);
     }
 
-    private Parcel getParcel() {
-        Date acceptanceDate = acceptanceDateField.getDate();
-        Date payDate = payDateField.getDate();
+    private Delivery getDelivery() {
+        Date startDate = startDateField.getDate();
+        Date endDate = endDateField.getDate();
 
-        Client client = clients.get(clientComboBox.getSelectedIndex());
-        MarkParcel markParsel = markParcels.get(markParcelComboBox.getSelectedIndex());
-        PaymentsSystemType paymentsSystemType = paymentSystemTypes.get(paymentsSystemTypeComboBox.getSelectedIndex());
+        CorporateCar corporateCar = corporateCars.get(corporateCarComboBox.getSelectedIndex());
+        Office fromOffice = offices.get(fromOfficesComboBox.getSelectedIndex());
+        Office toOffice = offices.get(toOfficesComboBox.getSelectedIndex());
+        Driver driver = drivers.get(driversComboBox.getSelectedIndex());
 
-        int sumValue = ((Double) sumField.getValue()).intValue();
+        Delivery delivery = new Delivery();
+        delivery.setCorporatecar(corporateCar);
+        delivery.setDriver(driver);
+        delivery.setEndDate(endDate);
+        delivery.setStartDate(startDate);
+        delivery.setFromOffice(fromOffice);
+        delivery.setToOffice(toOffice);
+        
+        DeliveryStatus deliveryStatus = new DeliveryStatus();
+        deliveryStatus.setIdDeliveryStatus(1);
+        
+        delivery.setDeliverystatus(deliveryStatus);
 
-        int height = (int) heightSpinner.getValue();
-        int weigth = (int) weigthSpinner.getValue();
-        int depth = (int) depthSpinner.getValue();
-        int width = (int) widthSpinner.getValue();
-
-        Payment payment = new Payment();
-        payment.setPaymentssystemtype(paymentsSystemType);
-        payment.setPayDate(payDate);
-        payment.setSum(sumValue);
-
-        Parcel parcel = new Parcel();
-        parcel.setPayment(payment);
-        parcel.setClient(client);
-        parcel.setMarkparcel(markParsel);
-
-        parcel.setAcceptanceDate(acceptanceDate);
-        parcel.setDepth(depth);
-        parcel.setHeight(height);
-        parcel.setWeight(weigth);
-        parcel.setWidth(width);
-
-        return parcel;
+        return delivery;
     }
 
     private void initialaze() {
         this.setSize(720, 400);
-        this.setTitle("Добавление посылки");
+        this.setTitle("Добавление доставки");
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
@@ -273,7 +186,6 @@ public class AddDeliveryView extends JFrame {
         setContentPane(mainPanel);
         mainPanel.setLayout(null);
     }
-
 
     public void showView() {
         initialaze();

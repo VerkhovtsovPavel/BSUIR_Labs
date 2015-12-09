@@ -4,9 +4,10 @@ import java.util.Date;
 
 import com.j256.ormlite.field.DatabaseField;
 
+import by.bsuir.verkpavel.courseproject.dao.Describable;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 
-public class Parcel implements Entity {
+public class Parcel implements Entity, Describable {
 
     @DatabaseField(generatedId = true)
     private int idParcel;
@@ -21,6 +22,9 @@ public class Parcel implements Entity {
     
     @DatabaseField
     private Date acceptanceDate;
+    
+    @DatabaseField(foreign = true, columnName = "toOffice")
+    private Office toOffice;
 
     @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idClient")
     private Client client;
@@ -104,5 +108,10 @@ public class Parcel implements Entity {
 
     public void setAcceptanceDate(Date acceptanceDate) {
         this.acceptanceDate = acceptanceDate;
+    }
+
+    @Override
+    public String getDescription() {
+        return String.format("%s (%d*%d*%d) вес %d", markparcel.getDescription(), getWeight(), getHeight(), getDepth(), getWidth());
     }
 }

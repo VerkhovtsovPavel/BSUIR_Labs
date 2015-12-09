@@ -6,8 +6,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.text.NumberFormat;
 import java.util.Date;
 import java.util.List;
@@ -72,13 +70,6 @@ public class AddEmployeeView extends JFrame {
         int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
         this.setLocation(x, y);
         this.setVisible(true);
-
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent windowEvent) {
-
-            }
-        });
     }
 
     public void showView() {
@@ -287,7 +278,7 @@ public class AddEmployeeView extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 Employee employee = getEmployee();
                 
-                boolean isSuccessfully = DeliveryServiceDao.getInstance().addRecond(employee);
+                boolean isSuccessfully = DeliveryServiceDao.getInstance().addRecord(employee);
                 if (isSuccessfully) {
                     JOptionPane.showMessageDialog(null, Messages.EMPLOYEE_SUCCESSFULLY_ADDED.get(), "Message",
                             JOptionPane.PLAIN_MESSAGE);

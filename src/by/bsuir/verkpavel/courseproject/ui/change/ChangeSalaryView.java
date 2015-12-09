@@ -1,4 +1,4 @@
-package by.bsuir.verkpavel.courseproject.ui.add;
+package by.bsuir.verkpavel.courseproject.ui.change;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -14,18 +14,17 @@ import javax.swing.JPanel;
 
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.Describable;
-import by.bsuir.verkpavel.courseproject.dao.entity.Delivery;
+import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
 import by.bsuir.verkpavel.courseproject.dao.entity.Parcel;
-import by.bsuir.verkpavel.courseproject.dao.entity.ParcelM2MDelivery;
+import by.bsuir.verkpavel.courseproject.dao.entity.Salary;
 
-public class AddParcelToDeliveryView extends JFrame {
+public class ChangeSalaryView  extends JFrame {
+    //TODO Change UI
     private static final long serialVersionUID = 2883993883146596569L;
     private JPanel mainPanel;
-    private JComboBox<String> parcelComboBox;
-    private JComboBox<String> deliveryComboBox;
-    private List<Parcel> parcels;
-    private List<Delivery> deliveries;
-    private boolean isDelete;
+    private JComboBox<String> employeeComboBox;
+    private List<Employee> employees;
+    private Salary currentSalary;
 
     public void showView() {
         this.setSize(445, 200);
@@ -36,16 +35,14 @@ public class AddParcelToDeliveryView extends JFrame {
         this.setVisible(true);
     }
 
-    public AddParcelToDeliveryView(boolean isDelete) {
-        //TODO Change logic list filing
-        this.isDelete = isDelete;
+    public ChangeSalaryView() {
         setResizable(false);
         configureDefaultLayot();
         fillComboBoxes();
     }
 
     private void configureDefaultLayot() {
-        setTitle("Добавление посылки в доставку");
+        setTitle("Изменение зарплаты");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         mainPanel = new JPanel();
         setContentPane(mainPanel);
@@ -55,32 +52,25 @@ public class AddParcelToDeliveryView extends JFrame {
         parcelLabel.setBounds(24, 21, 114, 14);
         mainPanel.add(parcelLabel);
         
-        parcelComboBox = new JComboBox<String>();
-        parcelComboBox.setBounds(172, 15, 255, 25);
-        mainPanel.add(parcelComboBox);
+        employeeComboBox = new JComboBox<String>();
+        employeeComboBox.setBounds(172, 15, 255, 25);
+        mainPanel.add(employeeComboBox);
         
         JLabel deliveryLabel = new JLabel("Доставка");
         deliveryLabel.setBounds(24, 70, 114, 14);
         mainPanel.add(deliveryLabel);
         
-        deliveryComboBox =  new JComboBox<String>();
-        deliveryComboBox.setBounds(172, 64, 255, 25);
-        mainPanel.add(deliveryComboBox);
-       
-        
-        JButton submitBtn = new JButton(isDelete ? "Удалить" : "Добавить");
+        JButton submitBtn = new JButton("Сохранить");
         submitBtn.setBounds(158, 113, 93, 30);
         submitBtn.addMouseListener(new MouseAdapter() {
+
             @Override
             public void mouseClicked(MouseEvent e) {
-                ParcelM2MDelivery parcelM2MDelivery = new ParcelM2MDelivery();
-                parcelM2MDelivery.setDelivery(deliveries.get(deliveryComboBox.getSelectedIndex()));
-                parcelM2MDelivery.setParcel(parcels.get(parcelComboBox.getSelectedIndex()));
-                if(isDelete){
-                    DeliveryServiceDao.getInstance().deleteRecord(parcelM2MDelivery);
-                }else{
-                    DeliveryServiceDao.getInstance().addRecord(parcelM2MDelivery);
-                }
+                double baseRate = 0;
+                double raisingFactor = 0;
+                currentSalary.setBaseRate(baseRate);
+                currentSalary.setRaisingFactor(raisingFactor);
+                DeliveryServiceDao.getInstance().updateRecord(currentSalary);
             }
         });
         mainPanel.add(submitBtn);
@@ -93,10 +83,8 @@ public class AddParcelToDeliveryView extends JFrame {
     }
 
     private void fillComboBoxes() {
-        parcels = DeliveryServiceDao.getInstance().getAllRecord(Parcel.class);
-        deliveries = DeliveryServiceDao.getInstance().getAllRecord(Delivery.class);
-        
-        fillComboBox(parcelComboBox, parcels);
-        fillComboBox(deliveryComboBox, deliveries);
+        employees = DeliveryServiceDao.getInstance().getAllRecord(Parcel.class);
+        fillComboBox(employeeComboBox, employees);
     }
+
 }

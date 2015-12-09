@@ -97,7 +97,7 @@ public class AddClientView extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 Client client = getClient();
 
-                boolean isSuccessfully = DeliveryServiceDao.getInstance().addRecond(client);
+                boolean isSuccessfully = DeliveryServiceDao.getInstance().addRecord(client);
                 if (isSuccessfully) {
                     JOptionPane.showMessageDialog(null, Messages.CLIENT_SUCCESSFULLY_ADDED.get(), "Message",
                             JOptionPane.PLAIN_MESSAGE);

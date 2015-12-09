@@ -29,6 +29,7 @@ import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.Describable;
 import by.bsuir.verkpavel.courseproject.dao.entity.Client;
 import by.bsuir.verkpavel.courseproject.dao.entity.MarkParcel;
+import by.bsuir.verkpavel.courseproject.dao.entity.Office;
 import by.bsuir.verkpavel.courseproject.dao.entity.Parcel;
 import by.bsuir.verkpavel.courseproject.dao.entity.Payment;
 import by.bsuir.verkpavel.courseproject.dao.entity.PaymentsSystemType;
@@ -53,10 +54,12 @@ public class AddParcelView extends JFrame {
     private JSpinner weigthSpinner;
     private JSpinner heightSpinner;
     private JSpinner depthSpinner;
+    private JComboBox<String> officeComboBox;
 
     private List<Client> clients;
     private List<MarkParcel> markParcels;
     private List<PaymentsSystemType> paymentSystemTypes;
+    private List<Office> offices;
 
     private Rate lastRate;
 
@@ -112,7 +115,7 @@ public class AddParcelView extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 Parcel parcel = getParcel();
 
-                boolean isSuccessfully = DeliveryServiceDao.getInstance().addRecond(parcel);
+                boolean isSuccessfully = DeliveryServiceDao.getInstance().addRecord(parcel);
                 if (isSuccessfully) {
                     JOptionPane.showMessageDialog(null, Messages.PARCEL_SUCCESSFULLY_ADDED.get(), "Message",
                             JOptionPane.PLAIN_MESSAGE);
@@ -153,6 +156,10 @@ public class AddParcelView extends JFrame {
         widthSpinner.setBounds(513, 108, 102, 40);
         widthSpinner.addChangeListener(new CostChange());
         mainPanel.add(widthSpinner);
+        
+        officeComboBox = new JComboBox<String>();
+        officeComboBox.setBounds(299, 171, 126, 26);
+        mainPanel.add(officeComboBox);
     }
 
     private void createElements() {
@@ -228,10 +235,12 @@ public class AddParcelView extends JFrame {
         clients = DeliveryServiceDao.getInstance().getAllRecord(Client.class);
         markParcels = DeliveryServiceDao.getInstance().getAllRecord(MarkParcel.class);
         paymentSystemTypes = DeliveryServiceDao.getInstance().getAllRecord(PaymentsSystemType.class);
-
+        offices = DeliveryServiceDao.getInstance().getAllRecord(Office.class);
+        
         fillComboBox(clientComboBox, clients);
         fillComboBox(markParcelComboBox, markParcels);
         fillComboBox(paymentsSystemTypeComboBox, paymentSystemTypes);
+        fillComboBox(officeComboBox, offices);
     }
 
     private Parcel getParcel() {

@@ -14,7 +14,7 @@ public class DriverLicense implements Entity {
     @DatabaseField
     private String number;
 
-    @DatabaseField(foreign = true, columnName = "idDriverLicenceCategory")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idDriverLicenceCategory")
     private DriverLicenceCategory driverlicencecategory;
 
     public DriverLicense() {

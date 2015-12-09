@@ -65,23 +65,28 @@ public abstract class GeneralDeliveryServiceTableModel implements TableModel {
         }
     }
 
-    public final void processDelete(int selectedRow, int selectedColumns) {
+    public final boolean processDelete(int selectedRow, int selectedColumns) {
         Entity deletedEntity = _beans.get(selectedRow);
         Field[] fields = deletedEntity.getClass().getFields();
         boolean useUpdate = false;
         for (Field field : fields) {
             if (field.getName().equals("isActive")) {
                 useUpdate = true;
-                try {
-                    field.setBoolean(deletedEntity, true);
-                } catch (IllegalArgumentException | IllegalAccessException e) {
-                }
+                setFielsValue(field, deletedEntity, true);
             }
         }
         if (useUpdate) {
-            DeliveryServiceDao.getInstance().updateRecord(deletedEntity);
+           return DeliveryServiceDao.getInstance().updateRecord(deletedEntity);
         } else {
-            DeliveryServiceDao.getInstance().deleteRecord(deletedEntity);
+            return DeliveryServiceDao.getInstance().deleteRecord(deletedEntity);
+        }
+    }
+
+    private void setFielsValue(Field field, Object deletedEntity, boolean value) {
+        try {
+            field.setBoolean(deletedEntity, value);
+        } catch (IllegalArgumentException | IllegalAccessException e) {
+            log.error("Error while try set value in field", e);
         }
     }
 }

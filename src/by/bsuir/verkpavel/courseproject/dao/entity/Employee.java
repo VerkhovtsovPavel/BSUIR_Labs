@@ -2,13 +2,14 @@ package by.bsuir.verkpavel.courseproject.dao.entity;
 
 import java.util.Date;
 
+import by.bsuir.verkpavel.courseproject.dao.Describable;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "employee")
-public class Employee implements Entity {
+public class Employee implements Entity, Describable {
 
     @DatabaseField(generatedId = true)
     private int idEmployee;
@@ -133,6 +134,11 @@ public class Employee implements Entity {
 
     public void seteMail(String eMail) {
         this.eMail = eMail;
+    }
+
+    @Override
+    public String getDescription() {
+        return getFullName();
     }
 
 }

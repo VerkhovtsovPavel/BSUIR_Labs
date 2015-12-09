@@ -2,11 +2,12 @@ package by.bsuir.verkpavel.courseproject.dao.entity;
 
 import java.util.Date;
 
+import by.bsuir.verkpavel.courseproject.dao.Describable;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 
 import com.j256.ormlite.field.DatabaseField;
 
-public class Delivery implements Entity {
+public class Delivery implements Entity, Describable {
 
     @DatabaseField(generatedId = true)
     private int idDelivery;
@@ -97,6 +98,11 @@ public class Delivery implements Entity {
 
     public void setDriver(Driver driver) {
         this.driver = driver;
+    }
+
+    @Override
+    public String getDescription() {
+        return String.format("%d %s", getIdDelivery(), getCorporateCar().getNumber(), getDriver().getEmployee().getFullName());
     }
 
 }

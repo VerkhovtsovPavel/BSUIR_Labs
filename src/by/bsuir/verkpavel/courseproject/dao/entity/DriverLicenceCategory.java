@@ -3,7 +3,6 @@ package by.bsuir.verkpavel.courseproject.dao.entity;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 
 import com.j256.ormlite.field.DatabaseField;
-//TODO Maybe add long description about each category
 public class DriverLicenceCategory implements Entity {
 
     @DatabaseField(generatedId = true)

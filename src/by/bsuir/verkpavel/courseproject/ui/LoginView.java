@@ -6,7 +6,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -16,8 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
-import com.j256.ormlite.stmt.QueryBuilder;
 
 import by.bsuir.verkpavel.courseproject.access.PasswordEncryptor;
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
@@ -85,16 +82,8 @@ public class LoginView extends JFrame {
                 String login = loginTextField.getText();
                 String passwordHash = PasswordEncryptor.encryptPassword(passwordTextField.getText());
 
-                QueryBuilder<Authentication, Integer> statementBuilder = DeliveryServiceDao.getInstance()
-                        .getQueryBuilderByClass(Authentication.class);
-
-                try {
-                    // TODO move to DAO
-                    statementBuilder.where().eq("userName", login).and().eq("password", passwordHash);
-                } catch (SQLException e) {
-                }
                 List<Authentication> authentications = DeliveryServiceDao.getInstance()
-                        .getExeciteQuery(statementBuilder, Authentication.class);
+                        .getAuthentication(login, passwordHash);
 
                 if (!authentications.isEmpty()) {
                     Employee employee = getEmployeeByAuth(authentications.get(0));
@@ -107,14 +96,8 @@ public class LoginView extends JFrame {
             }
 
             private Employee getEmployeeByAuth(Authentication authentication) {
-                QueryBuilder<Employee, Integer> statementBuilder = DeliveryServiceDao.getInstance()
-                        .getQueryBuilderByClass(Employee.class);
-                try {
-                    statementBuilder.where().idEq(authentication.getIdAuthentication());
-                } catch (SQLException e) {
-                }
-                List<Employee> employees = DeliveryServiceDao.getInstance().getExeciteQuery(statementBuilder,
-                        Employee.class);
+                List<Employee> employees = DeliveryServiceDao.getInstance()
+                        .getRecordById(authentication.getIdAuthentication(), Employee.class);
                 return employees.get(0);
             }
         });
