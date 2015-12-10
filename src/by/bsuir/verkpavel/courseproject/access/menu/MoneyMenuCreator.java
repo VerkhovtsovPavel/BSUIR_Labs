@@ -48,7 +48,7 @@ public class MoneyMenuCreator extends BaseMenuCreator {
         moneyMenu.add(showRate);
         
         JMenuItem showPayments = new JMenuItem("Просмотреть платежи");
-        showRate.addActionListener(new ActionListener() {
+        showPayments.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 List<Payment> entity = DeliveryServiceDao.getInstance().getAllRecord(Payment.class);
                 EntityShowView entityShowView = new EntityShowView(entity);

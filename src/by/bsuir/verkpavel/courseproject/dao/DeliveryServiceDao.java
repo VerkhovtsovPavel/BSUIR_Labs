@@ -10,10 +10,12 @@ import org.apache.log4j.Logger;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.stmt.DeleteBuilder;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 
 import by.bsuir.verkpavel.courseproject.dao.entity.Authentication;
+import by.bsuir.verkpavel.courseproject.dao.entity.ParcelM2MDelivery;
 import by.bsuir.verkpavel.courseproject.resources.Messages;
 
 public class DeliveryServiceDao {
@@ -72,7 +74,8 @@ public class DeliveryServiceDao {
         return null;
     }
     
-    public List<Authentication> getAuthentication(String login, String password){
+
+    public List<Authentication> getAuthentication(String login, String password) {
         QueryBuilder<Authentication, Integer> statementBuilder = DeliveryServiceDao.getInstance()
                 .getQueryBuilderByClass(Authentication.class);
         try {
@@ -80,10 +83,21 @@ public class DeliveryServiceDao {
         } catch (SQLException e) {
             log.info("Error while get authentication", e);
         }
-        return DeliveryServiceDao.getInstance()
-                .getExeciteQuery(statementBuilder, Authentication.class);
+        return DeliveryServiceDao.getInstance().getExeciteQuery(statementBuilder, Authentication.class);
     }
     
+    @SuppressWarnings("unchecked")
+    public <T> List<T> getActiveRecords(Class<? extends Entity> target) {
+        QueryBuilder<? extends Entity, Integer> statementBuilder = DeliveryServiceDao.getInstance()
+                .getQueryBuilderByClass(target);
+        try {
+            statementBuilder.where().eq("isActive", 1);
+        } catch (SQLException e) {
+            log.info("Error while get authentication", e);
+        }
+        return (List<T>) DeliveryServiceDao.getInstance().getExeciteQuery(statementBuilder, target);
+    }
+
     @SuppressWarnings("unchecked")
     public <T> T getRecordById(int id, Class<? extends Entity> target) {
         Dao<? extends Entity, Integer> dao = getDaoByClass(target);
@@ -98,6 +112,17 @@ public class DeliveryServiceDao {
     @SuppressWarnings("unchecked")
     public <T> QueryBuilder<T, Integer> getQueryBuilderByClass(Class<? extends Entity> target) {
         return (QueryBuilder<T, Integer>) getDaoByClass(target).queryBuilder();
+    }
+
+    public boolean refreshRecord(Entity entity) {
+        Dao<Entity, Integer> dao = getDaoByClass(entity.getClass());
+        try {
+            dao.refresh(entity);
+            return true;
+        } catch (SQLException e) {
+            log.error(Messages.ERROR_WHILE_ADD_RECORD.get(), e);
+            return false;
+        }
     }
 
     public <T> List<T> getExeciteQuery(QueryBuilder<T, Integer> query, Class<? extends Entity> target) {
@@ -143,5 +168,19 @@ public class DeliveryServiceDao {
             return false;
         }
 
+    }
+
+    public boolean deleteParcelFromDelivery(ParcelM2MDelivery parcelM2MDelivery) {
+        Dao<ParcelM2MDelivery, Integer> dao = getDaoByClass(ParcelM2MDelivery.class);
+        try {
+            DeleteBuilder<ParcelM2MDelivery, Integer> deleteBuilder = dao.deleteBuilder();
+            deleteBuilder.where().eq("idParcel", parcelM2MDelivery.getParcel().getIdParcel()).and().eq("idDelivery", parcelM2MDelivery.getDelivery().getIdDelivery());
+            dao.delete(deleteBuilder.prepare());
+            return true;
+        } catch (SQLException e) {
+            log.error(Messages.ERROR_WHILE_DELETE_RECORD.get(), e);
+            return false;
+        }
+        
     }
 }

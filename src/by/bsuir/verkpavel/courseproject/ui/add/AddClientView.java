@@ -19,6 +19,7 @@ import org.jdesktop.swingx.JXDatePicker;
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.entity.Client;
 import by.bsuir.verkpavel.courseproject.resources.Messages;
+import by.bsuir.verkpavel.courseproject.resources.ProjectProperties;
 
 public class AddClientView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
@@ -83,8 +84,16 @@ public class AddClientView extends JFrame {
     private void createActionElements() {
         userNameTextField = new JTextField();
         userNameTextField.setBounds(154, 14, 562, 38);
-        mainPanel.add(userNameTextField);
         userNameTextField.setColumns(10);
+        userNameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent e) {
+                char key = e.getKeyChar();
+                if (!ProjectProperties.getRussianAlphabet().contains("" + Character.toLowerCase(key))) {
+                    e.consume();
+                }
+            }
+        });
+        mainPanel.add(userNameTextField);
 
         datePicker = new JXDatePicker();
         datePicker.setBounds(156, 67, 174, 38);

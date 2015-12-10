@@ -9,7 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
-import by.bsuir.verkpavel.courseproject.dao.entity.Delivery;
+import by.bsuir.verkpavel.courseproject.dao.entity.DeliveryStatus;
 import by.bsuir.verkpavel.courseproject.dao.entity.DriverLicenceCategory;
 import by.bsuir.verkpavel.courseproject.dao.entity.MarkParcel;
 import by.bsuir.verkpavel.courseproject.dao.entity.PaymentsSystemType;
@@ -31,7 +31,7 @@ public class ModerationMenuCreator extends BaseMenuCreator {
         JMenuItem showDeliveryStatus = new JMenuItem("Просмотр статуса доставки");
         showDeliveryStatus.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                List<Delivery> entity = DeliveryServiceDao.getInstance().getAllRecord(Delivery.class);
+                List<DeliveryStatus> entity = DeliveryServiceDao.getInstance().getAllRecord(DeliveryStatus.class);
                 EntityShowView entityShowView = new EntityShowView(entity);
                 entityShowView.showView();
             }
@@ -56,7 +56,7 @@ public class ModerationMenuCreator extends BaseMenuCreator {
         });
         
         JMenuItem showPaymentsSystemType = new JMenuItem("Просмотр способов оплаты");
-        showMarkParcel.addActionListener(new ActionListener() {
+        showPaymentsSystemType.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 List<PaymentsSystemType> entity = DeliveryServiceDao.getInstance().getAllRecord(PaymentsSystemType.class);
                 EntityShowView entityShowView = new EntityShowView(entity);
@@ -65,7 +65,7 @@ public class ModerationMenuCreator extends BaseMenuCreator {
         });
         
         JMenuItem showPermission = new JMenuItem("Просмотр прав доступа");
-        showMarkParcel.addActionListener(new ActionListener() {
+        showPermission.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 List<Permission> entity = DeliveryServiceDao.getInstance().getAllRecord(Permission.class);
                 EntityShowView entityShowView = new EntityShowView(entity);
@@ -74,7 +74,7 @@ public class ModerationMenuCreator extends BaseMenuCreator {
         });
         
         JMenuItem showPossition = new JMenuItem("Просмотр должностей");
-        showMarkParcel.addActionListener(new ActionListener() {
+        showPossition.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 List<Position> entity = DeliveryServiceDao.getInstance().getAllRecord(Position.class);
                 EntityShowView entityShowView = new EntityShowView(entity);

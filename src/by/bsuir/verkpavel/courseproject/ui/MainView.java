@@ -24,7 +24,7 @@ public class MainView extends JFrame {
 
     public void showView() {
         self = this;
-        this.setSize(532, 210);
+        this.setSize(620, 210);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
@@ -56,7 +56,7 @@ public class MainView extends JFrame {
         mainPanel.setLayout(null);
 
         ImageLabel logoIcon = new ImageLabel("res/background.jpeg");
-        logoIcon.setBounds(6, 6, 521, 154);
+        logoIcon.setBounds(6, 6, 595, 154);
         mainPanel.add(logoIcon);
     }
     

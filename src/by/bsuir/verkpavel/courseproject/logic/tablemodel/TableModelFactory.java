@@ -5,6 +5,7 @@ import java.util.List;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.ClientTableModel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.CorporateCarTableModel;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.DeliveryStatusTableModel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.DeliveryTableModel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.DriverLicenceCategoryTableModel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.EmployeeTableModel;
@@ -16,6 +17,7 @@ import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.PaymentTableMo
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.PaymentsSystemTypeTableModel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.PermissionTableModel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.PositionTableModel;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.RateTableModel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.SalaryTableModel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.StreetTableModel;
 public class TableModelFactory {
@@ -55,6 +57,10 @@ public class TableModelFactory {
             return new StreetTableModel(beans);
         case "Salary":
             return new SalaryTableModel(beans);
+        case "DeliveryStatus":
+            return new DeliveryStatusTableModel(beans);
+        case "Rate":
+            return new RateTableModel(beans);    
         default:
             throw new IllegalArgumentException();
         }

@@ -5,6 +5,7 @@ import java.util.List;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 import by.bsuir.verkpavel.courseproject.dao.entity.Payment;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.GeneralDeliveryServiceTableModel;
+import by.bsuir.verkpavel.courseproject.resources.ProjectProperties;
 
 public class PaymentTableModel extends GeneralDeliveryServiceTableModel {
 
@@ -44,7 +45,7 @@ public class PaymentTableModel extends GeneralDeliveryServiceTableModel {
         case 2:    
             return bean.getPaymentsSystemType().getDescription();
         case 3:
-            return bean.getPayDate();
+            return ProjectProperties.getDateFormatter().format(bean.getPayDate());
         }
         return "";
     }

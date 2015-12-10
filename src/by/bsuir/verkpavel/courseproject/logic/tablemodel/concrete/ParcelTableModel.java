@@ -2,6 +2,7 @@ package by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete;
 
 import java.util.List;
 
+import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 import by.bsuir.verkpavel.courseproject.dao.entity.Parcel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.GeneralDeliveryServiceTableModel;
@@ -67,6 +68,7 @@ public class ParcelTableModel extends GeneralDeliveryServiceTableModel {
         case 7:
             return bean.getPayment().getSum();
         case 8:
+            DeliveryServiceDao.getInstance().refreshRecord(bean.getPayment().getPaymentsSystemType());
             return bean.getPayment().getPaymentsSystemType().getDescription();
         case 9:
             return ProjectProperties.getDateFormatter().format(bean.getPayment().getPayDate());

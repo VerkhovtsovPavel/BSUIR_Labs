@@ -36,7 +36,7 @@ import by.bsuir.verkpavel.courseproject.dao.entity.PaymentsSystemType;
 import by.bsuir.verkpavel.courseproject.dao.entity.Rate;
 import by.bsuir.verkpavel.courseproject.resources.Messages;
 import by.bsuir.verkpavel.courseproject.resources.ProjectProperties;
-
+//TODO Fix UI
 public class AddParcelView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
 

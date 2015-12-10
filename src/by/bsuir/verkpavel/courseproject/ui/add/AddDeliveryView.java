@@ -2,6 +2,8 @@ package by.bsuir.verkpavel.courseproject.ui.add;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Date;
@@ -45,7 +47,11 @@ public class AddDeliveryView extends JFrame {
     private List<Office> offices;
     private List<Driver> drivers;
 
-     public AddDeliveryView() {
+    private Office office;
+
+    protected int lastOfficeIndex;
+
+    public AddDeliveryView() {
         configureDefaultLayot();
         fillComboBoxes();
     }
@@ -58,13 +64,22 @@ public class AddDeliveryView extends JFrame {
     private void createActionElements() {
         startDateField = new JXDatePicker();
         startDateField.setDate(new Date());
-        startDateField.setBounds(195, 255, 152, 40);
+        startDateField.setBounds(22, 255, 152, 40);
+        startDateField.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(startDateField.getDate().after(endDateField.getDate())){
+                    endDateField.setDate(startDateField.getDate());
+                } 
+            }
+        });
         mainPanel.add(startDateField);
-
+        
         fromOfficesComboBox = new JComboBox<String>();
         fromOfficesComboBox.setBounds(16, 104, 764, 26);
         mainPanel.add(fromOfficesComboBox);
-        
+
         toOfficesComboBox = new JComboBox<String>();
         toOfficesComboBox.setBounds(16, 184, 764, 26);
         mainPanel.add(toOfficesComboBox);
@@ -74,13 +89,23 @@ public class AddDeliveryView extends JFrame {
         mainPanel.add(corporateCarComboBox);
 
         endDateField = new JXDatePicker();
-        endDateField.setBounds(16, 255, 144, 40);
+        endDateField.setBounds(209, 255, 144, 40);
         endDateField.setDate(new Date());
+        endDateField.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(startDateField.getDate().after(endDateField.getDate())){
+                    endDateField.setDate(startDateField.getDate());
+                }  
+            }
+        });
         mainPanel.add(endDateField);
 
         JButton addButton = new JButton("Добавить");
-        addButton.setBounds(365, 427, 89, 23);
+        addButton.setBounds(315, 307, 139, 40);
         addButton.addMouseListener(new MouseAdapter() {
+
             @Override
             public void mouseClicked(MouseEvent e) {
                 Delivery delivery = getDelivery();
@@ -102,10 +127,6 @@ public class AddDeliveryView extends JFrame {
         driversComboBox = new JComboBox<String>();
         driversComboBox.setBounds(419, 267, 361, 26);
         mainPanel.add(driversComboBox);
-        
-        JLabel toOfficeLabel = new JLabel("В");
-        toOfficeLabel.setBounds(22, 151, 108, 16);
-        mainPanel.add(toOfficeLabel);
     }
 
     private void createElements() {
@@ -115,12 +136,16 @@ public class AddDeliveryView extends JFrame {
 
     private void createLabels() {
         JLabel startDate = new JLabel("Дата отправки");
-        startDate.setBounds(195, 238, 102, 14);
+        startDate.setBounds(22, 238, 102, 14);
         mainPanel.add(startDate);
 
         JLabel endDate = new JLabel("Даты прибытия");
-        endDate.setBounds(16, 238, 114, 14);
+        endDate.setBounds(209, 238, 114, 14);
         mainPanel.add(endDate);
+        
+        JLabel toOfficeLabel = new JLabel("В");
+        toOfficeLabel.setBounds(22, 151, 108, 16);
+        mainPanel.add(toOfficeLabel);
 
         JLabel fromOfficeLabel = new JLabel("Из");
         fromOfficeLabel.setBounds(22, 77, 108, 16);
@@ -148,7 +173,23 @@ public class AddDeliveryView extends JFrame {
 
         fillComboBox(corporateCarComboBox, corporateCars);
         fillComboBox(fromOfficesComboBox, offices);
-        fillComboBox(toOfficesComboBox, offices);
+
+        fromOfficesComboBox.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (office != null) {
+                    offices.add(lastOfficeIndex, office);
+                }
+                lastOfficeIndex = fromOfficesComboBox.getSelectedIndex();
+                office = offices.get(fromOfficesComboBox.getSelectedIndex());
+                offices.remove(office);
+                toOfficesComboBox.removeAllItems();
+                fillComboBox(toOfficesComboBox, offices);
+            }
+        });
+        
+        fromOfficesComboBox.setSelectedIndex(1);
         fillComboBox(driversComboBox, drivers);
     }
 
@@ -168,17 +209,17 @@ public class AddDeliveryView extends JFrame {
         delivery.setStartDate(startDate);
         delivery.setFromOffice(fromOffice);
         delivery.setToOffice(toOffice);
-        
+
         DeliveryStatus deliveryStatus = new DeliveryStatus();
         deliveryStatus.setIdDeliveryStatus(1);
-        
+
         delivery.setDeliverystatus(deliveryStatus);
 
         return delivery;
     }
 
     private void initialaze() {
-        this.setSize(800, 500);
+        this.setSize(800, 400);
         this.setTitle("Добавление доставки");
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);

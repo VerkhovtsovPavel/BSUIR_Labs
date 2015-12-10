@@ -8,7 +8,7 @@ import by.bsuir.verkpavel.courseproject.logic.tablemodel.GeneralDeliveryServiceT
 
 public class RateTableModel extends GeneralDeliveryServiceTableModel {
 
-    public RateTableModel(List<Entity> beans) {
+    public RateTableModel(List<? extends Entity> beans) {
         super(beans);
     }
 

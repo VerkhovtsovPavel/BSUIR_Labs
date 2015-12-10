@@ -77,7 +77,7 @@ public class DeliveryTableModel extends GeneralDeliveryServiceTableModel {
         List<ParcelM2MDelivery> p2d = DeliveryServiceDao.getInstance().getAllRecord(ParcelM2MDelivery.class);
         List<Parcel> bookedParcel = new ArrayList<Parcel>();
         for (ParcelM2MDelivery pm2md : p2d) {
-            if (pm2md.getDelivery().equals(delivery)) {
+            if (pm2md.getDelivery().getIdDelivery()==delivery.getIdDelivery()) {
                 bookedParcel.add(pm2md.getParcel());
             }
         }

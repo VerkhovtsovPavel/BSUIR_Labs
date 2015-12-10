@@ -77,12 +77,13 @@ public class AddParcelToDeliveryView extends JFrame {
                             .getAllRecord(ParcelM2MDelivery.class);
                     List<Parcel> bookedParcel = new ArrayList<Parcel>();
                     for (ParcelM2MDelivery pm2md : p2d) {
-                        if (pm2md.getDelivery().equals(delivery)) {
+                        if (pm2md.getDelivery().getIdDelivery() == delivery.getIdDelivery()) {
                             bookedParcel.add(pm2md.getParcel());
                         }
                     }
-                    deliveryComboBox.removeAll();
-                    fillComboBox(deliveryComboBox, bookedParcel);
+                    parcelComboBox.removeAllItems();
+                    parcels = bookedParcel;
+                    fillComboBox(parcelComboBox, bookedParcel);
                 }
 
             }
@@ -94,15 +95,22 @@ public class AddParcelToDeliveryView extends JFrame {
         submitBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ParcelM2MDelivery parcelM2MDelivery = new ParcelM2MDelivery();
-                parcelM2MDelivery.setDelivery(deliveries.get(deliveryComboBox.getSelectedIndex()));
-                parcelM2MDelivery.setParcel(parcels.get(parcelComboBox.getSelectedIndex()));
-                if (isDelete) {
-                    DeliveryServiceDao.getInstance().deleteRecord(parcelM2MDelivery);
-                } else {
-                    DeliveryServiceDao.getInstance().addRecord(parcelM2MDelivery);
-                    parcels.remove(parcelComboBox.getSelectedIndex());
-                    parcelComboBox.remove(parcelComboBox.getSelectedIndex());
+                int index = parcelComboBox.getSelectedIndex();
+                if (index != -1) {
+                    ParcelM2MDelivery parcelM2MDelivery = new ParcelM2MDelivery();
+                    parcelM2MDelivery.setDelivery(deliveries.get(deliveryComboBox.getSelectedIndex()));
+                    parcelM2MDelivery.setParcel(parcels.get(index));
+                    if (isDelete) {
+                        DeliveryServiceDao.getInstance().deleteParcelFromDelivery(parcelM2MDelivery);
+                        parcels.remove(parcelComboBox.getSelectedIndex());
+                        parcelComboBox.removeAllItems();
+                        fillComboBox(parcelComboBox, parcels);
+                    } else {
+                        DeliveryServiceDao.getInstance().addRecord(parcelM2MDelivery);
+                        parcels.remove(parcelComboBox.getSelectedIndex());
+                        parcelComboBox.removeAllItems();
+                        fillComboBox(parcelComboBox, parcels);
+                    }
                 }
             }
         });
@@ -123,9 +131,13 @@ public class AddParcelToDeliveryView extends JFrame {
             List<ParcelM2MDelivery> p2d = DeliveryServiceDao.getInstance().getAllRecord(ParcelM2MDelivery.class);
             List<Parcel> bookedParcel = new ArrayList<Parcel>();
             for (ParcelM2MDelivery pm2md : p2d) {
-                bookedParcel.add(pm2md.getParcel());
+                for(Parcel parcel : parcels){
+                    if(parcel.getIdParcel()==pm2md.getParcel().getIdParcel())
+                            bookedParcel.add(parcel);
+                }
             }
             parcels.removeAll(bookedParcel);
+            
             fillComboBox(parcelComboBox, parcels);
         }
         fillComboBox(deliveryComboBox, deliveries);

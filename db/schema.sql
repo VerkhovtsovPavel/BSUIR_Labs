@@ -446,12 +446,11 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `deliveryService`.`Parcel_M2M_Delivery` ;
 
 CREATE  TABLE IF NOT EXISTS `deliveryService`.`Parcel_M2M_Delivery` (
-  `idParcel_M2M_Delivery` INT NOT NULL AUTO_INCREMENT ,
   `idDelivery` INT NOT NULL ,
   `idParcel` INT NOT NULL ,
-  PRIMARY KEY (`idParcel_M2M_Delivery`) ,
   INDEX `fk_Parcel_M2M_Delivery_Delivery1` (`idDelivery` ASC) ,
   INDEX `fk_Parcel_M2M_Delivery_Parcel1` (`idParcel` ASC) ,
+  PRIMARY KEY (`idDelivery`, `idParcel`) ,
   CONSTRAINT `fk_Parcel_M2M_Delivery_Delivery1`
     FOREIGN KEY (`idDelivery` )
     REFERENCES `deliveryService`.`Delivery` (`idDelivery` )
@@ -471,7 +470,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `deliveryService`.`Rate` ;
 
 CREATE  TABLE IF NOT EXISTS `deliveryService`.`Rate` (
-  `idRate` INT NOT NULL ,
+  `idRate` INT NOT NULL AUTO_INCREMENT ,
   `heigth` INT NOT NULL ,
   `width` INT NOT NULL ,
   `depth` INT NOT NULL ,

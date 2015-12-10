@@ -3,12 +3,12 @@ package by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete;
 import java.util.List;
 
 import by.bsuir.verkpavel.courseproject.dao.Entity;
-import by.bsuir.verkpavel.courseproject.dao.entity.Salary;
+import by.bsuir.verkpavel.courseproject.dao.entity.DeliveryStatus;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.GeneralDeliveryServiceTableModel;
 
-public class SalaryTableModel extends GeneralDeliveryServiceTableModel {
+public class DeliveryStatusTableModel extends GeneralDeliveryServiceTableModel {
 
-    public SalaryTableModel(List<? extends Entity> beans) {
+    public DeliveryStatusTableModel(List<? extends Entity> beans) {
         super(beans);
     }
 
@@ -17,7 +17,7 @@ public class SalaryTableModel extends GeneralDeliveryServiceTableModel {
     }
 
     public int getColumnCount() {
-        return 4;
+        return 2;
     }
 
     public String getColumnName(int columnIndex) {
@@ -25,30 +25,21 @@ public class SalaryTableModel extends GeneralDeliveryServiceTableModel {
         case 0:
             return "Номер";
         case 1:
-            return "Оклад";
-        case 2:
-            return "Повышающий коэффициент";
-        case 3:
-            return "Итог";
-            
+            return "Описание";
         }
         return "";
     }
     
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Salary bean = (Salary) getBeans().get(rowIndex);
+        DeliveryStatus bean = (DeliveryStatus) getBeans().get(rowIndex);
         switch (columnIndex) {
         case 0:
-            return bean.getIdSalary();
+            return bean.getIdDeliveryStatus();
         case 1:
-            return String.format("%.2f", bean.getBaseRate());
-        case 2:
-            return bean.getRaisingFactor();
-        case 3:
-            return String.format("%.2f", bean.getRaisingFactor() * bean.getBaseRate());      
+            return bean.getDescription();
         }
         return "";
     }
     
-    
+
 }

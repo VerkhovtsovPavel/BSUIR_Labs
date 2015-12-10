@@ -19,7 +19,6 @@ import javax.swing.SpinnerNumberModel;
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.Describable;
 import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
-import by.bsuir.verkpavel.courseproject.dao.entity.Parcel;
 import by.bsuir.verkpavel.courseproject.dao.entity.Salary;
 
 public class ChangeSalaryView  extends JFrame {
@@ -30,11 +29,11 @@ public class ChangeSalaryView  extends JFrame {
     private Salary currentSalary;
     private JSpinner baseRateSpinner;
     private JSpinner raisingFactorSpinner;
-    private JLabel label;
-    private JLabel label_1;
+    private JLabel baseRateLabel;
+    private JLabel raseFactorLabel;
 
     public void showView() {
-        this.setSize(445, 200);
+        this.setSize(450, 290);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
@@ -80,17 +79,18 @@ public class ChangeSalaryView  extends JFrame {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                double baseRate = 0;
-                double raisingFactor = 0;
+                double baseRate = (double) baseRateSpinner.getValue();
+                double raisingFactor = (double) raisingFactorSpinner.getValue();
                 currentSalary.setBaseRate(baseRate);
                 currentSalary.setRaisingFactor(raisingFactor);
                 DeliveryServiceDao.getInstance().updateRecord(currentSalary);
+                //TODO Add message
             }
         });
         mainPanel.add(submitBtn);
         
         baseRateSpinner = new JSpinner();
-        baseRateSpinner.setModel(new SpinnerNumberModel(100000, 100000, 5000000, 100000));
+        baseRateSpinner.setModel(new SpinnerNumberModel(1000000.0, 100000.0, 5000000.0, 100000.0));
         baseRateSpinner.setBounds(68, 86, 335, 40);
         mainPanel.add(baseRateSpinner);
 
@@ -99,13 +99,13 @@ public class ChangeSalaryView  extends JFrame {
         raisingFactorSpinner.setBounds(248, 137, 155, 40);
         mainPanel.add(raisingFactorSpinner);
         
-        label = new JLabel("Оклад");
-        label.setBounds(10, 105, 48, 14);
-        mainPanel.add(label);
+        baseRateLabel = new JLabel("Оклад");
+        baseRateLabel.setBounds(10, 105, 48, 14);
+        mainPanel.add(baseRateLabel);
         
-        label_1 = new JLabel("Повышающий коэффицент");
-        label_1.setBounds(10, 161, 178, 14);
-        mainPanel.add(label_1);
+        raseFactorLabel = new JLabel("Повышающий коэффицент");
+        raseFactorLabel.setBounds(10, 161, 178, 14);
+        mainPanel.add(raseFactorLabel);
     }
     
     private void fillComboBox(JComboBox<String> target, List<? extends Describable> source) {
@@ -115,7 +115,7 @@ public class ChangeSalaryView  extends JFrame {
     }
 
     private void fillComboBoxes() {
-        employees = DeliveryServiceDao.getInstance().getAllRecord(Parcel.class);
+        employees = DeliveryServiceDao.getInstance().getAllRecord(Employee.class);
         fillComboBox(employeeComboBox, employees);
     }
 

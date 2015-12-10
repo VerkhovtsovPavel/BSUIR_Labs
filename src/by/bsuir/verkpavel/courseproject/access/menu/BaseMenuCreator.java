@@ -40,6 +40,11 @@ public abstract class BaseMenuCreator {
     public abstract void editMenu(JMenuBar menuBar);
 
     public abstract void deleteMenu(JMenuBar menuBar);
+    
+    public BaseMenuCreator setNext(BaseMenuCreator next){
+        this.next = next;
+        return next;
+    }
 
     public Employee getEmployee() {
         return employee;

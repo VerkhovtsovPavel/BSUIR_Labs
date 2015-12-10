@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
@@ -32,7 +31,7 @@ public class ChangeRateView extends JFrame {
 
 
     public void showView() {
-        this.setSize(445, 200);
+        this.setSize(450, 175);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
@@ -53,16 +52,8 @@ public class ChangeRateView extends JFrame {
         setContentPane(mainPanel);
         mainPanel.setLayout(null);
 
-        JLabel parcelLabel = new JLabel("Посылка");
-        parcelLabel.setBounds(24, 21, 114, 14);
-        mainPanel.add(parcelLabel);
-
-        JLabel deliveryLabel = new JLabel("Доставка");
-        deliveryLabel.setBounds(24, 70, 114, 14);
-        mainPanel.add(deliveryLabel);
-
         JButton submitBtn = new JButton("Сохранить");
-        submitBtn.setBounds(158, 113, 93, 30);
+        submitBtn.setBounds(168, 87, 93, 30);
         submitBtn.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -79,31 +70,33 @@ public class ChangeRateView extends JFrame {
                 rate.setWidth(width);
                 
                 DeliveryServiceDao.getInstance().addRecord(rate);
+                //TODO Add message
+                dispose();
             }
         });
         mainPanel.add(submitBtn);
         
         heightSpinner = new JSpinner();
         heightSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
-        heightSpinner.setBounds(60, 111, 58, 40);
+        heightSpinner.setBounds(10, 21, 92, 40);
         heightSpinner.setValue(lastRate.getHeigth());
         mainPanel.add(heightSpinner);
 
         depthSpinner = new JSpinner();
         depthSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
-        depthSpinner.setBounds(349, 111, 58, 40);
+        depthSpinner.setBounds(215, 21, 93, 40);
         depthSpinner.setValue(lastRate.getDepth());
         mainPanel.add(depthSpinner);
 
         weigthSpinner = new JSpinner();
         weigthSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
-        weigthSpinner.setBounds(211, 111, 58, 40);
+        weigthSpinner.setBounds(112, 21, 93, 40);
         weigthSpinner.setValue(lastRate.getWeigth());
         mainPanel.add(weigthSpinner);
 
         widthSpinner = new JSpinner();
         widthSpinner.setModel(new SpinnerNumberModel(1, 1, 250000, 1));
-        widthSpinner.setBounds(513, 108, 102, 40);
+        widthSpinner.setBounds(332, 21, 102, 40);
         widthSpinner.setValue(lastRate.getWidth());
         mainPanel.add(widthSpinner);
     }

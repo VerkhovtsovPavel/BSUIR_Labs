@@ -41,7 +41,7 @@ public class CorporateCarMenuCreator extends BaseMenuCreator {
         JMenuItem addCar = new JMenuItem("Добавить машины");
         addCar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
+               //TODO Add view
             }
         });
         corporateCarMenu.add(addCar);
