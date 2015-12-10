@@ -17,10 +17,13 @@ import java.awt.Color;
 public class MainView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
     private JPanel mainPanel;
+    
+    private static JFrame self;
 
     private JMenuBar menuBar;
 
     public void showView() {
+        self = this;
         this.setSize(532, 210);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
@@ -55,5 +58,11 @@ public class MainView extends JFrame {
         ImageLabel logoIcon = new ImageLabel("res/background.jpeg");
         logoIcon.setBounds(6, 6, 521, 154);
         mainPanel.add(logoIcon);
+    }
+    
+    public static void closeForm(){
+       if(self!=null){
+           self.dispose();
+       }
     }
 }

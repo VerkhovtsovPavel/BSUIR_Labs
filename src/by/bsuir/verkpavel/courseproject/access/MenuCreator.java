@@ -15,7 +15,7 @@ public class MenuCreator {
 
     public static JMenuBar createPermissibleMenu(Employee currentUser) {
         JMenuBar menuBar = new JMenuBar();
-
+        //TODO Use employee position
         BaseMenuCreator menuCreator = new PersonalMenuCreator(new ClientMenuCreator(new EmployeeMenuCreator(
                 new CorporateCarMenuCreator(new ParcelMenuCreator(new DeliveryMenuCreator(null))))));
         menuCreator.process(currentUser, menuBar);

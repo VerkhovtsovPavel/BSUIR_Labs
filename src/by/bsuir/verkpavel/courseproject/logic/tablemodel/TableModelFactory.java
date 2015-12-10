@@ -12,6 +12,8 @@ import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.EmptyTableMode
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.MarkParcelTableModel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.OfficeTableModel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.ParcelTableModel;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.PaymentTableModel;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.PaymentsSystemTypeTableModel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.PermissionTableModel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.PositionTableModel;
 import by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete.SalaryTableModel;

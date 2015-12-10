@@ -3,7 +3,6 @@ package by.bsuir.verkpavel.courseproject.access.menu;
 import javax.swing.JMenuBar;
 
 import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
-import by.bsuir.verkpavel.courseproject.ui.change.ValueChangeView;
 
 public abstract class BaseMenuCreator {
 
@@ -44,10 +43,5 @@ public abstract class BaseMenuCreator {
 
     public Employee getEmployee() {
         return employee;
-    }
-
-    protected static void waitNewValue(ValueChangeView lock) {
-        while (!lock.isFinish)
-            ;
     }
 }

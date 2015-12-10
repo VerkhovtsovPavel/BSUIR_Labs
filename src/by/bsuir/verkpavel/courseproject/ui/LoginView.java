@@ -57,7 +57,7 @@ public class LoginView extends JFrame {
         mainPanel.setLayout(null);
 
         loginTextField = new JTextField();
-        loginTextField.setBounds(179, 23, 255, 23);
+        loginTextField.setBounds(179, 23, 255, 26);
         mainPanel.add(loginTextField);
         loginTextField.setColumns(10);
 
@@ -71,7 +71,7 @@ public class LoginView extends JFrame {
 
         passwordTextField = new JPasswordField();
         passwordTextField.setColumns(10);
-        passwordTextField.setBounds(179, 61, 255, 23);
+        passwordTextField.setBounds(179, 61, 255, 26);
         mainPanel.add(passwordTextField);
 
         JButton clientsBtn = new JButton("Войти");

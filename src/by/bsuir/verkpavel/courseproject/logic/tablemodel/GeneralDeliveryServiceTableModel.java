@@ -55,16 +55,6 @@ public abstract class GeneralDeliveryServiceTableModel implements TableModel {
         log.debug(String.format("Selected: row %d, colum %d, value %s ", row, column, selectedData));
     };
 
-    protected static void waitNewValue(Object lock) {
-        synchronized (lock) {
-            try {
-                lock.wait();
-            } catch (InterruptedException e) {
-                log.error("Error while wait on monitor", e);
-            }
-        }
-    }
-
     public final boolean processDelete(int selectedRow, int selectedColumns) {
         Entity deletedEntity = _beans.get(selectedRow);
         Field[] fields = deletedEntity.getClass().getFields();

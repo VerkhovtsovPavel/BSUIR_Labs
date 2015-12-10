@@ -6,11 +6,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.entity.Authentication;
 import by.bsuir.verkpavel.courseproject.ui.LoginView;
-import by.bsuir.verkpavel.courseproject.ui.change.ValueChangeView;
+import by.bsuir.verkpavel.courseproject.ui.MainView;
 
 public class PersonalMenuCreator extends BaseMenuCreator {
 
@@ -26,15 +27,13 @@ public class PersonalMenuCreator extends BaseMenuCreator {
         JMenuItem changeLogin = new JMenuItem("Изменить логин");
         changeLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Authentication authentication = getEmployee().getAuthentication();
-                ValueChangeView valueChangeView = new ValueChangeView(authentication.getUserName());
-                valueChangeView.showView();
-                //TODO Don't work
-                waitNewValue(valueChangeView);
-                String newLogin = valueChangeView.getNewValue();
-                if (!newLogin.isEmpty()) {
+                String newLogin = JOptionPane.showInputDialog("Введите новое имя пользователя:");
+                if (newLogin!=null && !newLogin.isEmpty()) {
+                    Authentication authentication = getEmployee().getAuthentication();
                     authentication.setUserName(newLogin);
                     DeliveryServiceDao.getInstance().updateRecord(authentication);
+                    JOptionPane.showMessageDialog(null, "Имя пользователя успешно изменено", "Message",
+                            JOptionPane.PLAIN_MESSAGE);
                 }
             }
         });
@@ -42,14 +41,13 @@ public class PersonalMenuCreator extends BaseMenuCreator {
         JMenuItem changePassword = new JMenuItem("Изменить пароль");
         changePassword.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ValueChangeView valueChangeView = new ValueChangeView("Старый пароль");
-                valueChangeView.showView();
-                waitNewValue(valueChangeView );
-                String newPassword = valueChangeView.getNewValue();
-                if (!newPassword.isEmpty()) {
+                String newPassword = JOptionPane.showInputDialog("Введите новый пароль:");
+                if (newPassword!=null && !newPassword.isEmpty()) {
                     Authentication authentication = getEmployee().getAuthentication();
                     authentication.setPassword(newPassword);
                     DeliveryServiceDao.getInstance().updateRecord(authentication);
+                    JOptionPane.showMessageDialog(null, "Пароль успешно изменен", "Message",
+                            JOptionPane.PLAIN_MESSAGE);
                 }
             }
         });
@@ -59,6 +57,7 @@ public class PersonalMenuCreator extends BaseMenuCreator {
             public void actionPerformed(ActionEvent e) {
                 LoginView loginView = new LoginView();
                 loginView.showView();
+                MainView.closeForm();
             }
         });
 

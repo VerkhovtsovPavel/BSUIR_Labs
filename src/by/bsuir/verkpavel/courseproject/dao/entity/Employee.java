@@ -33,7 +33,7 @@ public class Employee implements Entity, Describable {
     @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idAuthentication")
     private Authentication authentication;
 
-    @DatabaseField(foreign = true, columnName = "idOffice")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idOffice")
     private Office office;
 
     @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idPermissions")

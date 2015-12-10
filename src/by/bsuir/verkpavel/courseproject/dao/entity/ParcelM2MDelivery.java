@@ -11,10 +11,10 @@ public class ParcelM2MDelivery implements Entity {
     @DatabaseField(generatedId = true)
     private int idParcel_M2M_Delivery;
 
-    @DatabaseField(foreign = true, columnName = "idDelivery")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idDelivery")
     private Delivery delivery;
 
-    @DatabaseField(foreign = true, columnName = "idParcel")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idParcel")
     private Parcel parcel;
 
     public ParcelM2MDelivery() {

@@ -1,9 +1,10 @@
-package by.bsuir.verkpavel.courseproject.logic.tablemodel;
+package by.bsuir.verkpavel.courseproject.logic.tablemodel.concrete;
 
 import java.util.List;
 
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 import by.bsuir.verkpavel.courseproject.dao.entity.PaymentsSystemType;
+import by.bsuir.verkpavel.courseproject.logic.tablemodel.GeneralDeliveryServiceTableModel;
 
 public class PaymentsSystemTypeTableModel extends GeneralDeliveryServiceTableModel {
 

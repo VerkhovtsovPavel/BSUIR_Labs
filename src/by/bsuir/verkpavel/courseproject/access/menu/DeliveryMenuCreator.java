@@ -47,7 +47,7 @@ public class DeliveryMenuCreator extends BaseMenuCreator {
             }
         });
 
-        JMenuItem addParcelToDelivery = new JMenuItem("Добавить товар в достаку");
+        JMenuItem addParcelToDelivery = new JMenuItem("Добавить товар в доставку");
         addParcelToDelivery.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 AddParcelToDeliveryView addParcelToDeliveryView = new AddParcelToDeliveryView(false);
@@ -60,7 +60,7 @@ public class DeliveryMenuCreator extends BaseMenuCreator {
 
     @Override
     public void deleteMenu(JMenuBar menuBar) {
-        JMenuItem deleteParcelToDelivery = new JMenuItem("Удалить товар в достаку");
+        JMenuItem deleteParcelToDelivery = new JMenuItem("Удалить товар в доставки");
         deleteParcelToDelivery.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 AddParcelToDeliveryView addParcelToDeliveryView = new AddParcelToDeliveryView(true);

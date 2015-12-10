@@ -21,18 +21,18 @@ public class Delivery implements Entity, Describable {
     @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idCorporateCar")
     private CorporateCar corporatecar;
 
-    @DatabaseField(foreign = true, columnName = "fromOffice")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "fromOffice")
     private Office fromOffice;
 
-    @DatabaseField(foreign = true, columnName = "toOffice")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "toOffice")
     private Office toOffice;
 
     @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idDeliveryStatus")
     private DeliveryStatus deliverystatus;
-    
+
     @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idDriver")
     private Driver driver;
-    
+
     public Delivery() {
     }
 
@@ -91,7 +91,7 @@ public class Delivery implements Entity, Describable {
     public void setDeliverystatus(DeliveryStatus deliverystatus) {
         this.deliverystatus = deliverystatus;
     }
-    
+
     public Driver getDriver() {
         return driver;
     }
@@ -102,7 +102,9 @@ public class Delivery implements Entity, Describable {
 
     @Override
     public String getDescription() {
-        return String.format("%d %s", getIdDelivery(), getCorporateCar().getNumber(), getDriver().getEmployee().getFullName());
+        return String.format("%d %s %s %s->%s", getIdDelivery(), getCorporateCar().getNumber(),
+                getDriver().getEmployee().getFullName(), getFromOffice().getDescription(),
+                getToOffice().getDescription());
     }
 
 }
