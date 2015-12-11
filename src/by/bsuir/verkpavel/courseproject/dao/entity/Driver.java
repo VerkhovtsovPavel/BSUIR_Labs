@@ -18,6 +18,9 @@ public class Driver implements Entity, Describable {
 
     @DatabaseField(foreign = true, columnName = "currentLocation")
     private Office office;
+    
+    @DatabaseField
+    private int isActive;
 
     public Driver() {
     }
@@ -57,6 +60,14 @@ public class Driver implements Entity, Describable {
     @Override
     public String getDescription() {
         return String.format("%s %s", getEmployee().getFullName(), getDriverlicense().getDriverlicencecategory().getDescription());
+    }
+
+    public int getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(int isActive) {
+        this.isActive = isActive;
     }
 
 }

@@ -28,6 +28,8 @@ public class CorporateCar implements Entity, Describable {
     private int maxWidth;
     @DatabaseField
     private String number;
+    @DatabaseField
+    private int isActive;
 
     @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "requiredDriverLicenceCategory")
     private DriverLicenceCategory driverlicencecategory;
@@ -121,5 +123,13 @@ public class CorporateCar implements Entity, Describable {
     @Override
     public String getDescription() {
         return String.format("%s %s %s", getMark(), getDriverlicencecategory().getDescription(), getNumber());
+    }
+
+    public int getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(int isActive) {
+        this.isActive = isActive;
     }
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
@@ -16,6 +17,7 @@ import org.apache.log4j.Logger;
 
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.entity.Rate;
+import by.bsuir.verkpavel.courseproject.resources.Messages;
 import by.bsuir.verkpavel.courseproject.resources.ProjectProperties;
 
 public class ChangeRateView extends JFrame {
@@ -70,7 +72,8 @@ public class ChangeRateView extends JFrame {
                 rate.setWidth(width);
                 
                 DeliveryServiceDao.getInstance().addRecord(rate);
-                //TODO Add message
+                JOptionPane.showMessageDialog(null, Messages.RATE_CHANGED.get(), "Message",
+                        JOptionPane.PLAIN_MESSAGE);
                 dispose();
             }
         });

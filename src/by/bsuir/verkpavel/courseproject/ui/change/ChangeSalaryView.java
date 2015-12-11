@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
@@ -20,6 +21,7 @@ import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.Describable;
 import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
 import by.bsuir.verkpavel.courseproject.dao.entity.Salary;
+import by.bsuir.verkpavel.courseproject.resources.Messages;
 
 public class ChangeSalaryView  extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
@@ -84,7 +86,8 @@ public class ChangeSalaryView  extends JFrame {
                 currentSalary.setBaseRate(baseRate);
                 currentSalary.setRaisingFactor(raisingFactor);
                 DeliveryServiceDao.getInstance().updateRecord(currentSalary);
-                //TODO Add message
+                JOptionPane.showMessageDialog(null, Messages.SALARY_CHANGED.get(), "Message",
+                        JOptionPane.PLAIN_MESSAGE);
             }
         });
         mainPanel.add(submitBtn);
@@ -115,7 +118,7 @@ public class ChangeSalaryView  extends JFrame {
     }
 
     private void fillComboBoxes() {
-        employees = DeliveryServiceDao.getInstance().getAllRecord(Employee.class);
+        employees = DeliveryServiceDao.getInstance().getActiveRecords(Employee.class);
         fillComboBox(employeeComboBox, employees);
     }
 

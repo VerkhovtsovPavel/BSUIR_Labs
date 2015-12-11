@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.entity.Delivery;
@@ -54,6 +55,40 @@ public class DeliveryMenuCreator extends BaseMenuCreator {
                 addParcelToDeliveryView.showView();
             }
         });
+        
+        JMenuItem sendDelivery = new JMenuItem("Отправить доставку");
+        sendDelivery.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //TODO Add implementation
+                    //- Get delivery by status 
+                    //- Change delivery status
+                    //- Change car current location
+                    //- Change driver current location
+                Object[] selectionValues = { "Pandas", "Dogs", "Horses" };
+                String initialSelection = "Dogs";
+                Object selection = JOptionPane.showInputDialog(null, "What are your favorite animals?",
+                    "Zoo Quiz", JOptionPane.QUESTION_MESSAGE, null, selectionValues, initialSelection);
+                System.out.println(selection);
+                
+            }
+        });
+        
+        JMenuItem receiveDelivery = new JMenuItem("Принять доставку");
+        receiveDelivery.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //TODO Add implementation
+                //- Get delivery by status 
+                //- Change delivery status
+                //- Change car current location
+                //- Change driver current location
+            Object[] selectionValues = { "Pandas", "Dogs", "Horses" };
+            String initialSelection = "Dogs";
+            Object selection = JOptionPane.showInputDialog(null, "What are your favorite animals?",
+                "Zoo Quiz", JOptionPane.QUESTION_MESSAGE, null, selectionValues, initialSelection);
+            System.out.println(selection);
+            }
+        });
+        
         personalMenu.add(addDelivery);
         personalMenu.add(addParcelToDelivery);
     }

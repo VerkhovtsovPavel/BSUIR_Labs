@@ -47,6 +47,8 @@ public class EntityShowView extends JFrame {
                             if(!model.processDelete(selectedRow, selectedColumns)){
                                 JOptionPane.showMessageDialog(null, Messages.ERROR_WHILE_DELETE_RECORD.get(), "Error",
                                         JOptionPane.PLAIN_MESSAGE);
+                            }else{
+                                table.repaint();
                             }
                         }
                     } else {

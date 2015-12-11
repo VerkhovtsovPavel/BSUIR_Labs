@@ -9,7 +9,9 @@ public enum Messages {
     ERROR_WHILE_DELETE_RECORD("Ошибка при удалении записи. Проверьте введенные данные или свяжитесь с администратором базы данных или тех. поддержкой"),
     CONFIRM_DELETE("Вы уверены в своих действиях?"),
     ERROR_WHILE_UPDATE_RECORD("Ошибка при удалении записи. Проверьте введенные данные или свяжитесь с администратором базы данных или тех. поддержкой"),
-    DELIVERY_SUCCESSFULLY_ADDED("Доставка успешно добавлен");
+    DELIVERY_SUCCESSFULLY_ADDED("Доставка успешно добавлен"),
+    SALARY_CHANGED("Зарплата успешно изменена"),
+    RATE_CHANGED("Тарифы успешно изменены");
 
     private String value;
 

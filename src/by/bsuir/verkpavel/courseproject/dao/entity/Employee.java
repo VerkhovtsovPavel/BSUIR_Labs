@@ -29,7 +29,9 @@ public class Employee implements Entity, Describable {
     @DatabaseField
     private String eMail;
     
-
+    @DatabaseField
+    private int isActive;
+    
     @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idAuthentication")
     private Authentication authentication;
 
@@ -139,6 +141,14 @@ public class Employee implements Entity, Describable {
     @Override
     public String getDescription() {
         return getFullName();
+    }
+
+    public int getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(int isActive) {
+        this.isActive = isActive;
     }
 
 }

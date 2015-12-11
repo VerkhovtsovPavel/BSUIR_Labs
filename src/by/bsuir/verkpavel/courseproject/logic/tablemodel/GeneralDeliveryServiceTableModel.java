@@ -12,6 +12,8 @@ import org.apache.log4j.Logger;
 
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
+import by.bsuir.verkpavel.courseproject.dao.entity.Driver;
+import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
 
 public abstract class GeneralDeliveryServiceTableModel implements TableModel {
 
@@ -62,19 +64,31 @@ public abstract class GeneralDeliveryServiceTableModel implements TableModel {
         for (Field field : fields) {
             if (field.getName().equals("isActive")) {
                 useUpdate = true;
-                setFielsValue(field, deletedEntity, true);
+                setFielsValue(field, deletedEntity, 0);
             }
         }
         if (useUpdate) {
+            if(deletedEntity.getClass().getSimpleName().equals("Employee")){
+                List<Driver> drivers = DeliveryServiceDao.getInstance().getAllRecord(Driver.class);
+                Driver deletedDriver = null;
+                for(Driver driver : drivers){
+                   if(driver.getEmployee().getIdEmployee()== ((Employee)deletedEntity).getIdEmployee()){
+                       deletedDriver = driver;
+                       break;
+                   }
+                }
+                    deletedDriver.setIsActive(0);
+                    DeliveryServiceDao.getInstance().updateRecord(deletedDriver);
+                }
            return DeliveryServiceDao.getInstance().updateRecord(deletedEntity);
         } else {
             return DeliveryServiceDao.getInstance().deleteRecord(deletedEntity);
         }
     }
 
-    private void setFielsValue(Field field, Object deletedEntity, boolean value) {
+    private void setFielsValue(Field field, Object deletedEntity, int value) {
         try {
-            field.setBoolean(deletedEntity, value);
+            field.setInt(deletedEntity, value);
         } catch (IllegalArgumentException | IllegalAccessException e) {
             log.error("Error while try set value in field", e);
         }

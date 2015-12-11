@@ -15,6 +15,8 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 
 import by.bsuir.verkpavel.courseproject.dao.entity.Authentication;
+import by.bsuir.verkpavel.courseproject.dao.entity.Delivery;
+import by.bsuir.verkpavel.courseproject.dao.entity.DeliveryStatus;
 import by.bsuir.verkpavel.courseproject.dao.entity.ParcelM2MDelivery;
 import by.bsuir.verkpavel.courseproject.resources.Messages;
 
@@ -61,6 +63,29 @@ public class DeliveryServiceDao {
             }
         }
         return (Dao<T, Integer>) dao;
+    }
+    
+    public DeliveryStatus getDeliveryStatusByDescription(String description){
+        QueryBuilder<DeliveryStatus, Integer> statementBuilder = DeliveryServiceDao.getInstance()
+                .getQueryBuilderByClass(DeliveryStatus.class);
+        try {
+            statementBuilder.where().eq("description", description);
+        } catch (SQLException e) {
+            log.info("Error while get authentication", e);
+        }
+        List<DeliveryStatus> deliveryStatus =  DeliveryServiceDao.getInstance().getExeciteQuery(statementBuilder, DeliveryStatus.class);
+        return !deliveryStatus.isEmpty() ? deliveryStatus.get(0) : null;
+    }
+    
+    public List<Delivery> getDeliveryByStatus(DeliveryStatus status){
+        QueryBuilder<Delivery, Integer> statementBuilder = DeliveryServiceDao.getInstance()
+                .getQueryBuilderByClass(Delivery.class);
+        try {
+            statementBuilder.where().eq("idDeliveryStatus", status.getIdDeliveryStatus());
+        } catch (SQLException e) {
+            log.info("Error while get authentication", e);
+        }
+        return DeliveryServiceDao.getInstance().getExeciteQuery(statementBuilder, Delivery.class);
     }
 
     @SuppressWarnings("unchecked")

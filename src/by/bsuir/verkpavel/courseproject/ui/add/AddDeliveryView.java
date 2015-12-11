@@ -167,9 +167,9 @@ public class AddDeliveryView extends JFrame {
     }
 
     private void fillComboBoxes() {
-        corporateCars = DeliveryServiceDao.getInstance().getAllRecord(CorporateCar.class);
+        corporateCars = DeliveryServiceDao.getInstance().getActiveRecords(CorporateCar.class);
         offices = DeliveryServiceDao.getInstance().getAllRecord(Office.class);
-        drivers = DeliveryServiceDao.getInstance().getAllRecord(Driver.class);
+        drivers = DeliveryServiceDao.getInstance().getActiveRecords(Driver.class);
 
         fillComboBox(corporateCarComboBox, corporateCars);
         fillComboBox(fromOfficesComboBox, offices);

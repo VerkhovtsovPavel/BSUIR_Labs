@@ -123,8 +123,8 @@ public class AddParcelToDeliveryView extends JFrame {
         }
     }
 
-    private void fillComboBoxes() {
-        deliveries = DeliveryServiceDao.getInstance().getAllRecord(Delivery.class);
+    private void fillComboBoxes() {  
+        deliveries = DeliveryServiceDao.getInstance().getDeliveryByStatus(DeliveryServiceDao.getInstance().getDeliveryStatusByDescription("Комплектуется"));
         if (!isDelete) {
             parcels = DeliveryServiceDao.getInstance().getAllRecord(Parcel.class);
 
