@@ -3,8 +3,11 @@ FOR EACH ROW
 BEGIN
     DECLARE msg VARCHAR(255);
     DECLARE corCarId INT;
-
+	
+    
     SET corCarID = SELECT `idCorporateCar` FROM `devivery` WHERE `idDevivery` = NEW.idDevivery;
+    
+    
 
     IF(NEW.cost<=(SELECT `cost` FROM `rates` WHERE `lot_id`=NEW.lot_id LIMIT 1)) THEN
         set msg = "INSERT ABORT: New lot cost lower then old lot cost";

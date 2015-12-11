@@ -11,6 +11,7 @@ import javax.swing.JMenuItem;
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.entity.CorporateCar;
 import by.bsuir.verkpavel.courseproject.ui.EntityShowView;
+import by.bsuir.verkpavel.courseproject.ui.add.AddCorparateCar;
 
 public class CorporateCarMenuCreator extends BaseMenuCreator {
 
@@ -41,7 +42,8 @@ public class CorporateCarMenuCreator extends BaseMenuCreator {
         JMenuItem addCar = new JMenuItem("Добавить машины");
         addCar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               //TODO Add view
+               AddCorparateCar addCorparateCar = new AddCorparateCar();
+               addCorparateCar.showView();
             }
         });
         corporateCarMenu.add(addCar);

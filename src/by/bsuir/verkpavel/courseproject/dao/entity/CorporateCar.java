@@ -28,7 +28,7 @@ public class CorporateCar implements Entity, Describable {
     private int maxWidth;
     @DatabaseField
     private String number;
-    @DatabaseField
+    @DatabaseField(defaultValue = "1")
     private int isActive;
 
     @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "requiredDriverLicenceCategory")

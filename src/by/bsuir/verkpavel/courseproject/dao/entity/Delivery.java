@@ -107,4 +107,11 @@ public class Delivery implements Entity, Describable {
                 getToOffice().getDescription());
     }
 
+    @Override
+    public String toString() {
+        return getDescription();
+    }
+    
+    
+
 }

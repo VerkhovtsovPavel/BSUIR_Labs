@@ -55,42 +55,55 @@ public class DeliveryMenuCreator extends BaseMenuCreator {
                 addParcelToDeliveryView.showView();
             }
         });
-        
+
         JMenuItem sendDelivery = new JMenuItem("Отправить доставку");
         sendDelivery.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //TODO Add implementation
-                    //- Get delivery by status 
-                    //- Change delivery status
-                    //- Change car current location
-                    //- Change driver current location
-                Object[] selectionValues = { "Pandas", "Dogs", "Horses" };
-                String initialSelection = "Dogs";
-                Object selection = JOptionPane.showInputDialog(null, "What are your favorite animals?",
-                    "Zoo Quiz", JOptionPane.QUESTION_MESSAGE, null, selectionValues, initialSelection);
-                System.out.println(selection);
-                
+                List<Delivery> deliveries = DeliveryServiceDao.getInstance().getDeliveryByStatus(
+                        DeliveryServiceDao.getInstance().getDeliveryStatusByDescription("Комплектуется"));
+                if (deliveries.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Нет заявок для отправки", "Message",
+                            JOptionPane.PLAIN_MESSAGE);
+                } else {
+                    Delivery selection = (Delivery) JOptionPane.showInputDialog(null, "Выберите доставку для отправки",
+                            "Отправка доставки", JOptionPane.QUESTION_MESSAGE, null, deliveries.toArray(),
+                            deliveries.get(0));
+                    selection.setDeliverystatus(
+                            DeliveryServiceDao.getInstance().getDeliveryStatusByDescription("В дороге"));
+                    selection.getCorporateCar().setOffice(null);
+                    selection.getDriver().setOffice(null);
+
+                    DeliveryServiceDao.getInstance().updateRecord(selection);
+                }
             }
         });
-        
+
         JMenuItem receiveDelivery = new JMenuItem("Принять доставку");
         receiveDelivery.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //TODO Add implementation
-                //- Get delivery by status 
-                //- Change delivery status
-                //- Change car current location
-                //- Change driver current location
-            Object[] selectionValues = { "Pandas", "Dogs", "Horses" };
-            String initialSelection = "Dogs";
-            Object selection = JOptionPane.showInputDialog(null, "What are your favorite animals?",
-                "Zoo Quiz", JOptionPane.QUESTION_MESSAGE, null, selectionValues, initialSelection);
-            System.out.println(selection);
+                List<Delivery> deliveries = DeliveryServiceDao.getInstance().getDeliveryByStatus(
+                        DeliveryServiceDao.getInstance().getDeliveryStatusByDescription("В дороге"));
+                if (deliveries.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Нет заявок для приема", "Message",
+                            JOptionPane.PLAIN_MESSAGE);
+                } else {
+                    Delivery selection = (Delivery) JOptionPane.showInputDialog(null, "Выберите доставку для приема",
+                            "Прием доставки", JOptionPane.QUESTION_MESSAGE, null, deliveries.toArray(),
+                            deliveries.get(0));
+                    selection.setDeliverystatus(
+                            DeliveryServiceDao.getInstance().getDeliveryStatusByDescription("В пункте выдачи"));
+                    selection.getCorporateCar().setOffice(getEmployee().getOffice());
+                    selection.getDriver().setOffice(getEmployee().getOffice());
+
+                    DeliveryServiceDao.getInstance().updateRecord(selection);
+                }
             }
         });
-        
+
         personalMenu.add(addDelivery);
         personalMenu.add(addParcelToDelivery);
+        personalMenu.add(sendDelivery);
+        personalMenu.add(receiveDelivery);
     }
 
     @Override

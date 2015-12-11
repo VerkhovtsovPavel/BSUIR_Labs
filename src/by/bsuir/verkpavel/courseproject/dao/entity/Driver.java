@@ -19,7 +19,7 @@ public class Driver implements Entity, Describable {
     @DatabaseField(foreign = true, columnName = "currentLocation")
     private Office office;
     
-    @DatabaseField
+    @DatabaseField(defaultValue = "1")
     private int isActive;
 
     public Driver() {

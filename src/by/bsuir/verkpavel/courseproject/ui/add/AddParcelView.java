@@ -36,6 +36,7 @@ import by.bsuir.verkpavel.courseproject.dao.entity.PaymentsSystemType;
 import by.bsuir.verkpavel.courseproject.dao.entity.Rate;
 import by.bsuir.verkpavel.courseproject.resources.Messages;
 import by.bsuir.verkpavel.courseproject.resources.ProjectProperties;
+
 //TODO Fix UI
 public class AddParcelView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
@@ -156,7 +157,7 @@ public class AddParcelView extends JFrame {
         widthSpinner.setBounds(513, 108, 102, 40);
         widthSpinner.addChangeListener(new CostChange());
         mainPanel.add(widthSpinner);
-        
+
         officeComboBox = new JComboBox<String>();
         officeComboBox.setBounds(299, 171, 126, 26);
         mainPanel.add(officeComboBox);
@@ -195,7 +196,7 @@ public class AddParcelView extends JFrame {
         JLabel widthLabel = new JLabel("Вес");
         widthLabel.setBounds(481, 111, 22, 14);
         mainPanel.add(widthLabel);
-        
+
         JLabel officeLabel = new JLabel("Офис");
         officeLabel.setBounds(299, 171, 22, 14);
 
@@ -239,7 +240,7 @@ public class AddParcelView extends JFrame {
         markParcels = DeliveryServiceDao.getInstance().getAllRecord(MarkParcel.class);
         paymentSystemTypes = DeliveryServiceDao.getInstance().getAllRecord(PaymentsSystemType.class);
         offices = DeliveryServiceDao.getInstance().getAllRecord(Office.class);
-        
+
         fillComboBox(clientComboBox, clients);
         fillComboBox(markParcelComboBox, markParcels);
         fillComboBox(paymentsSystemTypeComboBox, paymentSystemTypes);
@@ -320,10 +321,12 @@ public class AddParcelView extends JFrame {
             int depth = (int) depthSpinner.getValue();
             int width = (int) widthSpinner.getValue();
 
+            MarkParcel markParcel = markParcels.get(markParcelComboBox.getSelectedIndex());
+
             int cost = height * lastRate.getHeigth() + weigth * lastRate.getWeigth() + depth * lastRate.getDepth()
                     + width * lastRate.getWidth();
 
-            sumField.setValue(cost);
+            sumField.setValue(cost * markParcel.getRate());
         }
     }
 }
