@@ -27,3 +27,5 @@ source data_scripts/payments.sql;
 source data_scripts/parcel.sql;
 source data_scripts/delivery.sql;
 source data_scripts/parcel_m2m_delivery.sql;
+
+source ./triggers.sql;

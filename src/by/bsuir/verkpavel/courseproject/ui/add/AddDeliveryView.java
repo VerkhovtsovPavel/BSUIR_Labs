@@ -117,7 +117,7 @@ public class AddDeliveryView extends JFrame {
                     log.info(Messages.DELIVERY_SUCCESSFULLY_ADDED.get());
                     dispose();
                 } else {
-                    JOptionPane.showMessageDialog(null, Messages.ERROR_WHILE_ADD_RECORD.get(), "Error",
+                    JOptionPane.showMessageDialog(null, "Водитель имеет недопустимую категорию прав", "Error",
                             JOptionPane.PLAIN_MESSAGE);
                 }
             }

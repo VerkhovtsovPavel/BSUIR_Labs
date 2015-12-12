@@ -19,7 +19,7 @@ public class ParcelTableModel extends GeneralDeliveryServiceTableModel {
     }
 
     public int getColumnCount() {
-        return 10;
+        return 11;
     }
 
     public String getColumnName(int columnIndex) {
@@ -39,11 +39,13 @@ public class ParcelTableModel extends GeneralDeliveryServiceTableModel {
         case 6:
             return "Отметка";
         case 7:
-            return "Стоимость пересылки";
+        	return "Пункт назначения";
         case 8:
-            return "Способ платежа";
+            return "Стоимость пересылки";
         case 9:
-            return "Дата оплаты";          
+            return "Способ платежа";
+        case 10:
+            return "Дата оплаты";      
         }
         return "";
     }
@@ -66,11 +68,13 @@ public class ParcelTableModel extends GeneralDeliveryServiceTableModel {
         case 6:
             return bean.getMarkParcel().getDescription();
         case 7:
-            return bean.getPayment().getSum();
+        	return bean.getOffice().getDescription();
         case 8:
+            return bean.getPayment().getSum();
+        case 9:
             DeliveryServiceDao.getInstance().refreshRecord(bean.getPayment().getPaymentsSystemType());
             return bean.getPayment().getPaymentsSystemType().getDescription();
-        case 9:
+        case 10:
             return ProjectProperties.getDateFormatter().format(bean.getPayment().getPayDate());
         }
         return "";

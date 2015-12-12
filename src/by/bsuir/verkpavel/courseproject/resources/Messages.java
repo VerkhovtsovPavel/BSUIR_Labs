@@ -11,7 +11,8 @@ public enum Messages {
     ERROR_WHILE_UPDATE_RECORD("Ошибка при удалении записи. Проверьте введенные данные или свяжитесь с администратором базы данных или тех. поддержкой"),
     DELIVERY_SUCCESSFULLY_ADDED("Доставка успешно добавлен"),
     SALARY_CHANGED("Зарплата успешно изменена"),
-    RATE_CHANGED("Тарифы успешно изменены");
+    RATE_CHANGED("Тарифы успешно изменены"),
+    CORPORATE_CAR_SUCCESSFULLY_ADDED("Машина успешно добавлен");
 
     private String value;
 

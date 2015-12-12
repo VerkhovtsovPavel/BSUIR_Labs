@@ -18,7 +18,7 @@ public class EmployeeTableModel extends GeneralDeliveryServiceTableModel {
     }
 
     public int getColumnCount() {
-        return 7;
+        return 8;
     }
     
     public String getColumnName(int columnIndex) {
@@ -36,7 +36,10 @@ public class EmployeeTableModel extends GeneralDeliveryServiceTableModel {
         case 5:
             return "Email";
         case 6:
-            return "Должность";     
+            return "Должность";
+        case 7:
+            return "Статус";
+            
             
         }
         return "";
@@ -59,6 +62,8 @@ public class EmployeeTableModel extends GeneralDeliveryServiceTableModel {
             return bean.geteMail();
         case 6:
             return bean.getPosition().getDescription();
+        case 7:
+            return bean.getIsActive() == 1 ? "Активный" : "Уволен";    
         }
         return "";
     }

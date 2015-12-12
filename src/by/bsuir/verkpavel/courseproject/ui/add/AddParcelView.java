@@ -2,6 +2,8 @@ package by.bsuir.verkpavel.courseproject.ui.add;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.NumberFormat;
@@ -82,7 +84,24 @@ public class AddParcelView extends JFrame {
         mainPanel.add(acceptanceDateField);
 
         markParcelComboBox = new JComboBox<String>();
-        markParcelComboBox.setBounds(10, 171, 126, 26);
+        markParcelComboBox.setBounds(16, 200, 126, 26);
+        markParcelComboBox.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int height = (int) heightSpinner.getValue();
+                int weigth = (int) weigthSpinner.getValue();
+                int depth = (int) depthSpinner.getValue();
+                int width = (int) widthSpinner.getValue();
+
+                MarkParcel markParcel = markParcels.get(markParcelComboBox.getSelectedIndex());
+
+                int cost = height * lastRate.getHeigth() + weigth * lastRate.getWeigth() + depth * lastRate.getDepth()
+                        + width * lastRate.getWidth();
+
+                sumField.setValue(cost * markParcel.getRate());
+            }
+        });
         mainPanel.add(markParcelComboBox);
 
         clientComboBox = new JComboBox<String>();
@@ -110,7 +129,7 @@ public class AddParcelView extends JFrame {
         sumField.setValue(lastRate.getHeigth() + lastRate.getWeigth() + lastRate.getDepth() + lastRate.getWidth());
 
         JButton addButton = new JButton("Добавить");
-        addButton.setBounds(265, 367, 89, 23);
+        addButton.setBounds(322, 317, 89, 23);
         addButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -136,31 +155,35 @@ public class AddParcelView extends JFrame {
 
         heightSpinner = new JSpinner();
         heightSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
-        heightSpinner.setBounds(60, 111, 58, 40);
+        heightSpinner.setBounds(70, 111, 58, 40);
         heightSpinner.addChangeListener(new CostChange());
         mainPanel.add(heightSpinner);
 
         depthSpinner = new JSpinner();
         depthSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
-        depthSpinner.setBounds(349, 111, 58, 40);
+        depthSpinner.setBounds(426, 111, 58, 40);
         depthSpinner.addChangeListener(new CostChange());
         mainPanel.add(depthSpinner);
 
         weigthSpinner = new JSpinner();
         weigthSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
-        weigthSpinner.setBounds(211, 111, 58, 40);
+        weigthSpinner.setBounds(242, 111, 58, 40);
         weigthSpinner.addChangeListener(new CostChange());
         mainPanel.add(weigthSpinner);
 
         widthSpinner = new JSpinner();
         widthSpinner.setModel(new SpinnerNumberModel(1, 1, 250000, 1));
-        widthSpinner.setBounds(513, 108, 102, 40);
+        widthSpinner.setBounds(608, 111, 102, 40);
         widthSpinner.addChangeListener(new CostChange());
         mainPanel.add(widthSpinner);
 
         officeComboBox = new JComboBox<String>();
-        officeComboBox.setBounds(299, 171, 126, 26);
+        officeComboBox.setBounds(275, 200, 126, 26);
         mainPanel.add(officeComboBox);
+        
+        JLabel label = new JLabel("Пункт назначения");
+        label.setBounds(275, 172, 114, 16);
+        mainPanel.add(label);
     }
 
     private void createElements() {
@@ -178,7 +201,7 @@ public class AddParcelView extends JFrame {
         mainPanel.add(payDate);
 
         JLabel parselTypeLabel = new JLabel("Тип посылки");
-        parselTypeLabel.setBounds(20, 153, 108, 16);
+        parselTypeLabel.setBounds(16, 172, 108, 16);
         mainPanel.add(parselTypeLabel);
 
         JLabel clientLabel = new JLabel("Клиент");
@@ -190,30 +213,30 @@ public class AddParcelView extends JFrame {
         mainPanel.add(sumLabel);
 
         JLabel heigthLb = new JLabel("Высота");
-        heigthLb.setBounds(16, 114, 44, 14);
+        heigthLb.setBounds(16, 127, 44, 14);
         mainPanel.add(heigthLb);
 
         JLabel widthLabel = new JLabel("Вес");
-        widthLabel.setBounds(481, 111, 22, 14);
+        widthLabel.setBounds(574, 127, 22, 14);
         mainPanel.add(widthLabel);
 
         JLabel officeLabel = new JLabel("Офис");
         officeLabel.setBounds(299, 171, 22, 14);
 
         JLabel smLabel = new JLabel("см.");
-        smLabel.setBounds(128, 114, 22, 14);
+        smLabel.setBounds(138, 114, 22, 14);
         mainPanel.add(smLabel);
 
         JLabel label = new JLabel("см.");
-        label.setBounds(273, 114, 22, 14);
+        label.setBounds(304, 114, 22, 14);
         mainPanel.add(label);
 
         JLabel label_1 = new JLabel("см.");
-        label_1.setBounds(419, 114, 22, 14);
+        label_1.setBounds(496, 114, 22, 14);
         mainPanel.add(label_1);
 
         JLabel gramm = new JLabel("грамм");
-        gramm.setBounds(625, 114, 58, 14);
+        gramm.setBounds(720, 117, 58, 14);
         mainPanel.add(gramm);
 
         JLabel paymentsTypeLabel = new JLabel("Cпособ оплаты");
@@ -221,11 +244,11 @@ public class AddParcelView extends JFrame {
         mainPanel.add(paymentsTypeLabel);
 
         JLabel weigthLabel = new JLabel("Ширина");
-        weigthLabel.setBounds(167, 114, 44, 14);
+        weigthLabel.setBounds(172, 124, 58, 14);
         mainPanel.add(weigthLabel);
 
         JLabel depthLabel = new JLabel("Глубина");
-        depthLabel.setBounds(305, 114, 44, 14);
+        depthLabel.setBounds(357, 127, 71, 14);
         mainPanel.add(depthLabel);
     }
 
@@ -254,8 +277,8 @@ public class AddParcelView extends JFrame {
         Client client = clients.get(clientComboBox.getSelectedIndex());
         MarkParcel markParsel = markParcels.get(markParcelComboBox.getSelectedIndex());
         PaymentsSystemType paymentsSystemType = paymentSystemTypes.get(paymentsSystemTypeComboBox.getSelectedIndex());
-
-        int sumValue = ((Double) sumField.getValue()).intValue();
+        Office office = offices.get(officeComboBox.getSelectedIndex());
+        int sumValue = ((Float) sumField.getValue()).intValue();
 
         int height = (int) heightSpinner.getValue();
         int weigth = (int) weigthSpinner.getValue();
@@ -266,6 +289,8 @@ public class AddParcelView extends JFrame {
         payment.setPaymentssystemtype(paymentsSystemType);
         payment.setPayDate(payDate);
         payment.setSum(sumValue);
+        
+        DeliveryServiceDao.getInstance().addRecord(payment);
 
         Parcel parcel = new Parcel();
         parcel.setPayment(payment);
@@ -277,12 +302,14 @@ public class AddParcelView extends JFrame {
         parcel.setHeight(height);
         parcel.setWeight(weigth);
         parcel.setWidth(width);
+        
+        parcel.setOffice(office);
 
         return parcel;
     }
 
     private void initialaze() {
-        this.setSize(720, 500);
+        this.setSize(780, 400);
         this.setTitle("Добавление посылки");
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);

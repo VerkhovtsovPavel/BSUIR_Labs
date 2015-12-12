@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
@@ -106,10 +107,14 @@ public class AddParcelToDeliveryView extends JFrame {
                         parcelComboBox.removeAllItems();
                         fillComboBox(parcelComboBox, parcels);
                     } else {
-                        DeliveryServiceDao.getInstance().addRecord(parcelM2MDelivery);
-                        parcels.remove(parcelComboBox.getSelectedIndex());
-                        parcelComboBox.removeAllItems();
-                        fillComboBox(parcelComboBox, parcels);
+                        if (DeliveryServiceDao.getInstance().addRecord(parcelM2MDelivery)) {
+                            parcels.remove(parcelComboBox.getSelectedIndex());
+                            parcelComboBox.removeAllItems();
+                            fillComboBox(parcelComboBox, parcels);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Привышены габариты машины", "Error",
+                                    JOptionPane.PLAIN_MESSAGE);
+                        }
                     }
                 }
             }
@@ -123,21 +128,22 @@ public class AddParcelToDeliveryView extends JFrame {
         }
     }
 
-    private void fillComboBoxes() {  
-        deliveries = DeliveryServiceDao.getInstance().getDeliveryByStatus(DeliveryServiceDao.getInstance().getDeliveryStatusByDescription("Комплектуется"));
+    private void fillComboBoxes() {
+        deliveries = DeliveryServiceDao.getInstance()
+                .getDeliveryByStatus(DeliveryServiceDao.getInstance().getDeliveryStatusByDescription("Комплектуется"));
         if (!isDelete) {
             parcels = DeliveryServiceDao.getInstance().getAllRecord(Parcel.class);
 
             List<ParcelM2MDelivery> p2d = DeliveryServiceDao.getInstance().getAllRecord(ParcelM2MDelivery.class);
             List<Parcel> bookedParcel = new ArrayList<Parcel>();
             for (ParcelM2MDelivery pm2md : p2d) {
-                for(Parcel parcel : parcels){
-                    if(parcel.getIdParcel()==pm2md.getParcel().getIdParcel())
-                            bookedParcel.add(parcel);
+                for (Parcel parcel : parcels) {
+                    if (parcel.getIdParcel() == pm2md.getParcel().getIdParcel())
+                        bookedParcel.add(parcel);
                 }
             }
             parcels.removeAll(bookedParcel);
-            
+
             fillComboBox(parcelComboBox, parcels);
         }
         fillComboBox(deliveryComboBox, deliveries);

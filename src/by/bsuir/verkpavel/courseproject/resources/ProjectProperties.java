@@ -46,4 +46,13 @@ public class ProjectProperties {
         return rate;
     }
 
+	public static MaskFormatter getCarNumberMask() {
+        try {
+            return new MaskFormatter("UU-####-#");
+        } catch (ParseException e) {
+            log.error("Error while parse car nunber format", e);
+        }
+        return null;
+	}
+
 }

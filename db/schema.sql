@@ -131,7 +131,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `deliveryService`.`Salary` ;
 
 CREATE  TABLE IF NOT EXISTS `deliveryService`.`Salary` (
-  `idSalary` INT NOT NULL ,
+  `idSalary` INT NOT NULL AUTO_INCREMENT ,
   `baseRate` DOUBLE NOT NULL ,
   `raisingFactor` DOUBLE NOT NULL ,
   PRIMARY KEY (`idSalary`) )
@@ -152,7 +152,7 @@ CREATE  TABLE IF NOT EXISTS `deliveryService`.`Employee` (
   `idPermissions` INT NOT NULL ,
   `idOffice` INT NOT NULL ,
   `birthday` DATE NOT NULL ,
-  `phoneNumber` VARCHAR(15) NOT NULL DEFAULT '\"\"' ,
+  `phoneNumber` VARCHAR(18) NOT NULL DEFAULT '\"\"' ,
   `eMail` VARCHAR(145) NOT NULL DEFAULT '\"\"' ,
   `idSalary` INT NOT NULL ,
   `isActive` TINYINT(1) NOT NULL DEFAULT 1 ,
@@ -354,12 +354,12 @@ CREATE  TABLE IF NOT EXISTS `deliveryService`.`Parcel` (
   `idClient` INT NOT NULL ,
   `idPayments` INT NOT NULL ,
   `acceptanceDate` DATE NOT NULL ,
-  `toOffice` INT NOT NULL ,
+  `destination` INT NOT NULL ,
   PRIMARY KEY (`idParcel`) ,
   INDEX `fk_Parcel_MarkParcel1` (`idMarkParcel` ASC) ,
   INDEX `fk_Parcel_Client1` (`idClient` ASC) ,
   INDEX `fk_Parcel_Payments1` (`idPayments` ASC) ,
-  INDEX `fk_Parcel_Office1` (`toOffice` ASC) ,
+  INDEX `fk_Parcel_Office1` (`destination` ASC) ,
   CONSTRAINT `fk_Parcel_MarkParcel1`
     FOREIGN KEY (`idMarkParcel` )
     REFERENCES `deliveryService`.`MarkParcel` (`idMarkParcel` )
@@ -376,7 +376,7 @@ CREATE  TABLE IF NOT EXISTS `deliveryService`.`Parcel` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Parcel_Office1`
-    FOREIGN KEY (`toOffice` )
+    FOREIGN KEY (`destination` )
     REFERENCES `deliveryService`.`Office` (`idOffice` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

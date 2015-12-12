@@ -19,12 +19,9 @@ public class Parcel implements Entity, Describable {
     private int weight;
     @DatabaseField
     private int width;
-    
+
     @DatabaseField
     private Date acceptanceDate;
-    
-    @DatabaseField(foreign = true, columnName = "toOffice")
-    private Office toOffice;
 
     @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idClient")
     private Client client;
@@ -34,6 +31,9 @@ public class Parcel implements Entity, Describable {
 
     @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "idPayments")
     private Payment payment;
+
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "destination")
+    private Office office;
 
     public Parcel() {
     }
@@ -112,6 +112,15 @@ public class Parcel implements Entity, Describable {
 
     @Override
     public String getDescription() {
-        return String.format("%s (%d*%d*%d) вес %d", markparcel.getDescription(), getWeight(), getHeight(), getDepth(), getWidth());
+        return String.format("%s (%d*%d*%d) вес %d", markparcel.getDescription(), getWeight(), getHeight(), getDepth(),
+                getWidth());
+    }
+
+    public Office getOffice() {
+        return office;
+    }
+
+    public void setOffice(Office office) {
+        this.office = office;
     }
 }

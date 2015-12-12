@@ -1,6 +1,7 @@
 package by.bsuir.verkpavel.courseproject.logic.tablemodel;
 
-import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +13,7 @@ import org.apache.log4j.Logger;
 
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
+import by.bsuir.verkpavel.courseproject.dao.entity.Authentication;
 import by.bsuir.verkpavel.courseproject.dao.entity.Driver;
 import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
 
@@ -59,12 +61,12 @@ public abstract class GeneralDeliveryServiceTableModel implements TableModel {
 
     public final boolean processDelete(int selectedRow, int selectedColumns) {
         Entity deletedEntity = _beans.get(selectedRow);
-        Field[] fields = deletedEntity.getClass().getFields();
+        Method[] methods = deletedEntity.getClass().getMethods();
         boolean useUpdate = false;
-        for (Field field : fields) {
-            if (field.getName().equals("isActive")) {
+        for (Method method : methods) {
+            if (method.getName().equals("setIsActive")) {
                 useUpdate = true;
-                setFielsValue(field, deletedEntity, 0);
+                callMethod(method, deletedEntity, 0);
             }
         }
         if (useUpdate) {
@@ -79,6 +81,9 @@ public abstract class GeneralDeliveryServiceTableModel implements TableModel {
                 }
                     deletedDriver.setIsActive(0);
                     DeliveryServiceDao.getInstance().updateRecord(deletedDriver);
+                    Authentication authentication = ((Employee)deletedEntity).getAuthentication();
+                    authentication.setPassword("11111111");
+                    DeliveryServiceDao.getInstance().updateRecord(authentication);
                 }
            return DeliveryServiceDao.getInstance().updateRecord(deletedEntity);
         } else {
@@ -86,11 +91,12 @@ public abstract class GeneralDeliveryServiceTableModel implements TableModel {
         }
     }
 
-    private void setFielsValue(Field field, Object deletedEntity, int value) {
-        try {
-            field.setInt(deletedEntity, value);
-        } catch (IllegalArgumentException | IllegalAccessException e) {
-            log.error("Error while try set value in field", e);
-        }
+    private void callMethod(Method method, Object deletedEntity, int value) {
+            try {
+                method.invoke(deletedEntity, value);
+            } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+                log.error("Error while try set value in field", e);
+            }
+
     }
 }

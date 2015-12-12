@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
@@ -146,7 +147,6 @@ public class AddEmployeeView extends JFrame {
     }
 
     private Employee getEmployee() {
-
         String fullName = fullNameField.getText();
         Date bornDate = bornDateField.getDate();
         Date hireDate = hireDateField.getDate();
@@ -156,6 +156,10 @@ public class AddEmployeeView extends JFrame {
 
         String mobilePhone = mobilePhoneField.getText();
         String eMail = emailField.getText();
+
+        if (isEmptyFields(fullName, login, password)) {
+            return null;
+        }
 
         Position position = positions.get(positionComboBox.getSelectedIndex());
         Permission permission = permissions.get(permissionComboBox.getSelectedIndex());
@@ -167,9 +171,13 @@ public class AddEmployeeView extends JFrame {
         authentication.setUserName(login);
         authentication.setPassword(password);
 
+        DeliveryServiceDao.getInstance().addRecord(authentication);
+
         Salary salary = new Salary();
         salary.setBaseRate(salaryValue);
         salary.setRaisingFactor(1.0);
+
+        DeliveryServiceDao.getInstance().addRecord(salary);
 
         Employee employee = new Employee();
         employee.setAuthentication(authentication);
@@ -184,7 +192,17 @@ public class AddEmployeeView extends JFrame {
         employee.setPhoneNumber(mobilePhone);
         employee.seteMail(eMail);
 
-        return null;
+        return employee;
+    }
+
+    private boolean isEmptyFields(String... fields) {
+        for (String field : fields) {
+            if (field.trim().isEmpty()) {
+                return true;
+
+            }
+        }
+        return false;
     }
 
     private void createActionElements() {
@@ -253,7 +271,7 @@ public class AddEmployeeView extends JFrame {
         userNameField.setBounds(160, 232, 502, 28);
         mainPanel.add(userNameField);
 
-        passwordField = new JTextField();
+        passwordField = new JPasswordField();
         passwordField.setColumns(10);
         passwordField.setBounds(160, 267, 502, 28);
         mainPanel.add(passwordField);
@@ -277,16 +295,20 @@ public class AddEmployeeView extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Employee employee = getEmployee();
-                
-                boolean isSuccessfully = DeliveryServiceDao.getInstance().addRecord(employee);
-                if (isSuccessfully) {
-                    JOptionPane.showMessageDialog(null, Messages.EMPLOYEE_SUCCESSFULLY_ADDED.get(), "Message",
+                if (employee == null) {
+                    JOptionPane.showMessageDialog(null, "Заполнены не все обязательные поля", "Error",
                             JOptionPane.PLAIN_MESSAGE);
-                    log.info(Messages.EMPLOYEE_SUCCESSFULLY_ADDED.get());
-                    dispose();
                 } else {
-                    JOptionPane.showMessageDialog(null, Messages.ERROR_WHILE_ADD_RECORD.get(), "Error",
-                            JOptionPane.PLAIN_MESSAGE);
+                    boolean isSuccessfully = DeliveryServiceDao.getInstance().addRecord(employee);
+                    if (isSuccessfully) {
+                        JOptionPane.showMessageDialog(null, Messages.EMPLOYEE_SUCCESSFULLY_ADDED.get(), "Message",
+                                JOptionPane.PLAIN_MESSAGE);
+                        log.info(Messages.EMPLOYEE_SUCCESSFULLY_ADDED.get());
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, Messages.ERROR_WHILE_ADD_RECORD.get(), "Error",
+                                JOptionPane.PLAIN_MESSAGE);
+                    }
                 }
             }
         });

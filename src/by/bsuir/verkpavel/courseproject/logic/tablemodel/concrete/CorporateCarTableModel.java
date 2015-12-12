@@ -18,7 +18,7 @@ public class CorporateCarTableModel extends GeneralDeliveryServiceTableModel {
     }
 
     public int getColumnCount() {
-        return 10;
+        return 11;
     }
 
     public String getColumnName(int columnIndex) {
@@ -69,7 +69,9 @@ public class CorporateCarTableModel extends GeneralDeliveryServiceTableModel {
         case 8:
             return bean.getDriverlicencecategory().getDescription();
         case 9:
-            return bean.getOffice() == null ? "В дороге" : bean.getOffice().getDescription(); 
+            return bean.getOffice() == null ? "В дороге" : bean.getOffice().getDescription();
+        case 10:
+            return bean.getIsActive() == 1 ? "Активный" : "Списана";       
         }
         return "";
     }

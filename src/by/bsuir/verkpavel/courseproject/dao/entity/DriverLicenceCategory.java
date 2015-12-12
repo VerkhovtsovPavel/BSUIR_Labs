@@ -1,9 +1,10 @@
 package by.bsuir.verkpavel.courseproject.dao.entity;
 
+import by.bsuir.verkpavel.courseproject.dao.Describable;
 import by.bsuir.verkpavel.courseproject.dao.Entity;
 
 import com.j256.ormlite.field.DatabaseField;
-public class DriverLicenceCategory implements Entity {
+public class DriverLicenceCategory implements Entity, Describable {
 
     @DatabaseField(generatedId = true)
     private int idDriverLicenceCategory;
