@@ -92,7 +92,7 @@ public class AddParcelToDeliveryView extends JFrame {
         mainPanel.add(deliveryComboBox);
 
         JButton submitBtn = new JButton(isDelete ? "Удалить" : "Добавить");
-        submitBtn.setBounds(158, 113, 93, 30);
+        submitBtn.setBounds(158, 113, 127, 30);
         submitBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

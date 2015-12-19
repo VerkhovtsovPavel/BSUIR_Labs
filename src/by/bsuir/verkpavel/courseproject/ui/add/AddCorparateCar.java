@@ -31,258 +31,276 @@ import by.bsuir.verkpavel.courseproject.dao.entity.Office;
 import by.bsuir.verkpavel.courseproject.dao.entity.Rate;
 import by.bsuir.verkpavel.courseproject.resources.Messages;
 import by.bsuir.verkpavel.courseproject.resources.ProjectProperties;
+
 public class AddCorparateCar extends JFrame {
-    private static final long serialVersionUID = 2883993883146596569L;
+	private static final long serialVersionUID = 2883993883146596569L;
 
-    private static Logger log = Logger.getLogger(AddCorparateCar.class);
+	private static Logger log = Logger.getLogger(AddCorparateCar.class);
 
-    private JPanel mainPanel;
+	private JPanel mainPanel;
 
-    private JXDatePicker buyDateField;
-    private JFormattedTextField carNumber;
-    private JTextField carMark;
-    private JSpinner widthSpinner;
-    private JSpinner weigthSpinner;
-    private JSpinner heightSpinner;
-    private JSpinner depthSpinner;
-    private JComboBox<String> driverLicenceCategoryComboBox;
-    private JComboBox<String> officeComboBox;
+	private JXDatePicker buyDateField;
+	private JFormattedTextField carNumber;
+	private JTextField carMark;
+	private JSpinner widthSpinner;
+	private JSpinner weigthSpinner;
+	private JSpinner heightSpinner;
+	private JSpinner depthSpinner;
+	private JComboBox<String> driverLicenceCategoryComboBox;
+	private JComboBox<String> officeComboBox;
 
-    private List<DriverLicenceCategory> driverLicenceCategorys;
-    private List<Office> offices;
+	private List<DriverLicenceCategory> driverLicenceCategorys;
+	private List<Office> offices;
 
-    private Rate lastRate;
+	private Rate lastRate;
 
-    public AddCorparateCar() {
-        loadRates();
-        configureDefaultLayot();
-        fillComboBoxes();
-    }
+	public AddCorparateCar() {
+		loadRates();
+		configureDefaultLayot();
+		fillComboBoxes();
+	}
 
-    private void configureDefaultLayot() {
-        initialazeLayout();
-        createElements();
-    }
+	private void configureDefaultLayot() {
+		initialazeLayout();
+		createElements();
+	}
 
-    private void createActionElements() {
-        buyDateField = new JXDatePicker();
-        buyDateField.setDate(new Date());
-        buyDateField.setBounds(16, 28, 152, 40);
-        mainPanel.add(buyDateField);
+	private void createActionElements() {
+		buyDateField = new JXDatePicker();
+		buyDateField.setDate(new Date());
+		buyDateField.setBounds(16, 28, 152, 40);
+		mainPanel.add(buyDateField);
 
-        carNumber = new JFormattedTextField(ProjectProperties.getCarNumberMask());
-        carNumber.setBounds(327, 35, 114, 26);
-        carNumber.setColumns(10);
-        mainPanel.add(carNumber);
-        
-        carMark = new JTextField();
-        carMark.setBounds(183, 37, 114, 26);
-        carMark.setColumns(10);
-        mainPanel.add(carMark);
-        
-        JButton addButton = new JButton("Добавить");
-        addButton.setBounds(260, 302, 89, 23);
-        addButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-               CorporateCar parcel = getCorporateCar();
+		carNumber = new JFormattedTextField(
+				ProjectProperties.getCarNumberMask());
+		carNumber.setBounds(327, 35, 114, 26);
+		carNumber.setColumns(10);
+		mainPanel.add(carNumber);
 
-                boolean isSuccessfully = DeliveryServiceDao.getInstance().addRecord(parcel);
-                if (isSuccessfully) {
-                    JOptionPane.showMessageDialog(null, Messages.CORPORATE_CAR_SUCCESSFULLY_ADDED.get(), "Message",
-                            JOptionPane.PLAIN_MESSAGE);
-                    log.info(Messages.CORPORATE_CAR_SUCCESSFULLY_ADDED.get());
-                    dispose();
-                } else {
-                    JOptionPane.showMessageDialog(null, Messages.ERROR_WHILE_ADD_RECORD.get(), "Error",
-                            JOptionPane.PLAIN_MESSAGE);
-                }
-            }
-        });
-        mainPanel.add(addButton);
+		carMark = new JTextField();
+		carMark.setBounds(183, 37, 114, 26);
+		carMark.setColumns(10);
+		mainPanel.add(carMark);
 
-        driverLicenceCategoryComboBox = new JComboBox<String>();
-        driverLicenceCategoryComboBox.setBounds(463, 38, 126, 26);
-        mainPanel.add(driverLicenceCategoryComboBox);
+		JButton addButton = new JButton("Добавить");
+		addButton.setBounds(267, 313, 165, 23);
+		addButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				CorporateCar parcel = getCorporateCar();
+				if (carMark.getText().isEmpty() || carNumber.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null,
+							"Заполнены не все обязательные поля", "Error",
+							JOptionPane.PLAIN_MESSAGE);
+				} else {
+					boolean isSuccessfully = DeliveryServiceDao.getInstance()
+							.addRecord(parcel);
+					if (isSuccessfully) {
+						JOptionPane
+								.showMessageDialog(
+										null,
+										Messages.CORPORATE_CAR_SUCCESSFULLY_ADDED
+												.get(), "Message",
+										JOptionPane.PLAIN_MESSAGE);
+						log.info(Messages.CORPORATE_CAR_SUCCESSFULLY_ADDED
+								.get());
+						dispose();
+					} else {
+						JOptionPane.showMessageDialog(null,
+								Messages.ERROR_WHILE_ADD_RECORD.get(), "Error",
+								JOptionPane.PLAIN_MESSAGE);
+					}
+				}
+			}
+		});
+		mainPanel.add(addButton);
 
-        heightSpinner = new JSpinner();
-        heightSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
-        heightSpinner.setBounds(60, 111, 58, 40);
-        heightSpinner.addChangeListener(new CostChange());
-        mainPanel.add(heightSpinner);
+		driverLicenceCategoryComboBox = new JComboBox<String>();
+		driverLicenceCategoryComboBox.setBounds(463, 38, 126, 26);
+		mainPanel.add(driverLicenceCategoryComboBox);
 
-        depthSpinner = new JSpinner();
-        depthSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
-        depthSpinner.setBounds(379, 114, 58, 40);
-        depthSpinner.addChangeListener(new CostChange());
-        mainPanel.add(depthSpinner);
+		heightSpinner = new JSpinner();
+		heightSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
+		heightSpinner.setBounds(108, 100, 70, 40);
+		heightSpinner.addChangeListener(new CostChange());
+		mainPanel.add(heightSpinner);
 
-        weigthSpinner = new JSpinner();
-        weigthSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
-        weigthSpinner.setBounds(228, 114, 58, 40);
-        weigthSpinner.addChangeListener(new CostChange());
-        mainPanel.add(weigthSpinner);
+		depthSpinner = new JSpinner();
+		depthSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
+		depthSpinner.setBounds(498, 100, 70, 40);
+		depthSpinner.addChangeListener(new CostChange());
+		mainPanel.add(depthSpinner);
 
-        widthSpinner = new JSpinner();
-        widthSpinner.setModel(new SpinnerNumberModel(1, 1, 250000, 1));
-        widthSpinner.setBounds(513, 108, 102, 40);
-        widthSpinner.addChangeListener(new CostChange());
-        mainPanel.add(widthSpinner);
-        
-        officeComboBox = new JComboBox<String>();
-        officeComboBox.setBounds(16, 226, 638, 26);
-        mainPanel.add(officeComboBox);
-        
-        JLabel label = new JLabel("Офис");
-        label.setBounds(22, 202, 46, 14);
-        mainPanel.add(label);
-    }
+		weigthSpinner = new JSpinner();
+		weigthSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
+		weigthSpinner.setBounds(315, 100, 70, 40);
+		weigthSpinner.addChangeListener(new CostChange());
+		mainPanel.add(weigthSpinner);
 
-    private void createElements() {
-        createLabels();
-        createActionElements();
-    }
+		widthSpinner = new JSpinner();
+		widthSpinner.setModel(new SpinnerNumberModel(1, 1, 250000, 1));
+		widthSpinner.setBounds(54, 196, 102, 40);
+		widthSpinner.addChangeListener(new CostChange());
+		mainPanel.add(widthSpinner);
 
-    private void createLabels() {
-        JLabel acceptanceDate = new JLabel("Дата покупки");
-        acceptanceDate.setBounds(16, 11, 102, 14);
-        mainPanel.add(acceptanceDate);
+		officeComboBox = new JComboBox<String>();
+		officeComboBox.setBounds(16, 281, 638, 26);
+		mainPanel.add(officeComboBox);
 
-        JLabel parselTypeLabel = new JLabel("Марка");
-        parselTypeLabel.setBounds(183, 10, 86, 16);
-        mainPanel.add(parselTypeLabel);
+		JLabel label = new JLabel("Офис");
+		label.setBounds(22, 257, 46, 14);
+		mainPanel.add(label);
+	}
 
-        JLabel sumLabel = new JLabel("Номер");
-        sumLabel.setBounds(327, 10, 98, 16);
-        mainPanel.add(sumLabel);
+	private void createElements() {
+		createLabels();
+		createActionElements();
+	}
 
-        JLabel heigthLb = new JLabel("Высота");
-        heigthLb.setBounds(16, 114, 44, 14);
-        mainPanel.add(heigthLb);
+	private void createLabels() {
+		JLabel acceptanceDate = new JLabel("Дата покупки");
+		acceptanceDate.setBounds(16, 11, 102, 14);
+		mainPanel.add(acceptanceDate);
 
-        JLabel widthLabel = new JLabel("Вес");
-        widthLabel.setBounds(481, 111, 22, 14);
-        mainPanel.add(widthLabel);
-        
-        JLabel officeLabel = new JLabel("Офис");
-        officeLabel.setBounds(299, 171, 22, 14);
+		JLabel parselTypeLabel = new JLabel("Марка");
+		parselTypeLabel.setBounds(183, 10, 86, 16);
+		mainPanel.add(parselTypeLabel);
 
-        JLabel smLabel = new JLabel("см.");
-        smLabel.setBounds(128, 114, 22, 14);
-        mainPanel.add(smLabel);
+		JLabel sumLabel = new JLabel("Номер");
+		sumLabel.setBounds(327, 10, 98, 16);
+		mainPanel.add(sumLabel);
 
-        JLabel label = new JLabel("см.");
-        label.setBounds(290, 117, 22, 14);
-        mainPanel.add(label);
+		JLabel heigthLb = new JLabel("Высота");
+		heigthLb.setBounds(32, 112, 86, 14);
+		mainPanel.add(heigthLb);
 
-        JLabel label_1 = new JLabel("см.");
-        label_1.setBounds(449, 117, 22, 14);
-        mainPanel.add(label_1);
+		JLabel widthLabel = new JLabel("Вес");
+		widthLabel.setBounds(22, 199, 70, 17);
+		mainPanel.add(widthLabel);
 
-        JLabel gramm = new JLabel("грамм");
-        gramm.setBounds(625, 114, 58, 14);
-        mainPanel.add(gramm);
+		JLabel officeLabel = new JLabel("Офис");
+		officeLabel.setBounds(299, 171, 22, 14);
 
-        JLabel paymentsTypeLabel = new JLabel("Категория прав");
-        paymentsTypeLabel.setBounds(463, 11, 108, 16);
-        mainPanel.add(paymentsTypeLabel);
+		JLabel smLabel = new JLabel("см.");
+		smLabel.setBounds(196, 112, 22, 14);
+		mainPanel.add(smLabel);
 
-        JLabel weigthLabel = new JLabel("Ширина");
-        weigthLabel.setBounds(167, 114, 64, 14);
-        mainPanel.add(weigthLabel);
+		JLabel label = new JLabel("см.");
+		label.setBounds(403, 112, 22, 14);
+		mainPanel.add(label);
 
-        JLabel depthLabel = new JLabel("Глубина");
-        depthLabel.setBounds(322, 114, 64, 14);
-        mainPanel.add(depthLabel);
-    }
+		JLabel label_1 = new JLabel("см.");
+		label_1.setBounds(581, 112, 22, 14);
+		mainPanel.add(label_1);
 
-    private void fillComboBox(JComboBox<String> target, List<? extends Describable> source) {
-        for (Describable item : source) {
-            target.addItem(item.getDescription());
-        }
-    }
+		JLabel gramm = new JLabel("грамм");
+		gramm.setBounds(166, 202, 58, 14);
+		mainPanel.add(gramm);
 
-    private void fillComboBoxes() {
+		JLabel paymentsTypeLabel = new JLabel("Категория прав");
+		paymentsTypeLabel.setBounds(463, 11, 171, 16);
+		mainPanel.add(paymentsTypeLabel);
 
-        driverLicenceCategorys = DeliveryServiceDao.getInstance().getAllRecord(DriverLicenceCategory.class);
-        offices = DeliveryServiceDao.getInstance().getAllRecord(Office.class);
-        
-        fillComboBox(driverLicenceCategoryComboBox, driverLicenceCategorys);
-        fillComboBox(officeComboBox, offices);
-    }
+		JLabel weigthLabel = new JLabel("Ширина");
+		weigthLabel.setBounds(230, 100, 64, 14);
+		mainPanel.add(weigthLabel);
 
-    private CorporateCar getCorporateCar() {
-        Date buyDate = buyDateField.getDate();
-        Office office = offices.get(officeComboBox.getSelectedIndex());
-        DriverLicenceCategory driverLicenceCategory = driverLicenceCategorys.get(driverLicenceCategoryComboBox.getSelectedIndex());
+		JLabel depthLabel = new JLabel("Длина");
+		depthLabel.setBounds(432, 100, 64, 14);
+		mainPanel.add(depthLabel);
+	}
 
-        String carNumberValue = carNumber.getText();
-        String mark = carMark.getText();
+	private void fillComboBox(JComboBox<String> target,
+			List<? extends Describable> source) {
+		for (Describable item : source) {
+			target.addItem(item.getDescription());
+		}
+	}
 
-        int height = (int) heightSpinner.getValue();
-        int weigth = (int) weigthSpinner.getValue();
-        int depth = (int) depthSpinner.getValue();
-        int width = (int) widthSpinner.getValue();
+	private void fillComboBoxes() {
 
-        CorporateCar corporateCar = new CorporateCar();
-        corporateCar.setDriverlicencecategory(driverLicenceCategory);
-        corporateCar.setBuyDate(buyDate);
-        corporateCar.setNumber(carNumberValue);
+		driverLicenceCategorys = DeliveryServiceDao.getInstance().getAllRecord(
+				DriverLicenceCategory.class);
+		offices = DeliveryServiceDao.getInstance().getAllRecord(Office.class);
 
+		fillComboBox(driverLicenceCategoryComboBox, driverLicenceCategorys);
+		fillComboBox(officeComboBox, offices);
+	}
 
-        corporateCar.setMaxDepth(depth);
-        corporateCar.setMaxHeight(height);
-        corporateCar.setMaxWeigth(weigth);
-        corporateCar.setMaxWidth(width);
-        corporateCar.setMark(mark);
-        corporateCar.setOffice(office);
-        return corporateCar;
-    }
+	private CorporateCar getCorporateCar() {
+		Date buyDate = buyDateField.getDate();
+		Office office = offices.get(officeComboBox.getSelectedIndex());
+		DriverLicenceCategory driverLicenceCategory = driverLicenceCategorys
+				.get(driverLicenceCategoryComboBox.getSelectedIndex());
 
-    private void initialaze() {
-        this.setSize(700, 380);
-        this.setTitle("Добавление посылки");
-        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
-        int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
-        this.setLocation(x, y);
-        this.setVisible(true);
-    }
+		String carNumberValue = carNumber.getText();
+		String mark = carMark.getText();
 
-    private void initialazeLayout() {
-        setResizable(false);
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        mainPanel = new JPanel();
-        setContentPane(mainPanel);
-        mainPanel.setLayout(null);
-    }
+		int height = (int) heightSpinner.getValue();
+		int weigth = (int) weigthSpinner.getValue();
+		int depth = (int) depthSpinner.getValue();
+		int width = (int) widthSpinner.getValue();
 
-    private void loadRates() {
-        List<Rate> rateList = DeliveryServiceDao.getInstance().getAllRecord(Rate.class);
-        if (rateList.isEmpty()) {
-            lastRate = ProjectProperties.getDefaultRate();
-            log.warn("Using default rates");
-        } else {
-            lastRate = rateList.get(rateList.size() - 1);
-        }
-    }
+		CorporateCar corporateCar = new CorporateCar();
+		corporateCar.setDriverlicencecategory(driverLicenceCategory);
+		corporateCar.setBuyDate(buyDate);
+		corporateCar.setNumber(carNumberValue);
 
-    public void showView() {
-        initialaze();
-    }
+		corporateCar.setMaxDepth(depth);
+		corporateCar.setMaxHeight(height);
+		corporateCar.setMaxWeigth(weigth);
+		corporateCar.setMaxWidth(width);
+		corporateCar.setMark(mark);
+		corporateCar.setOffice(office);
+		return corporateCar;
+	}
 
-    private class CostChange implements ChangeListener {
-        @Override
-        public void stateChanged(ChangeEvent e) {
-            int height = (int) heightSpinner.getValue();
-            int weigth = (int) weigthSpinner.getValue();
-            int depth = (int) depthSpinner.getValue();
-            int width = (int) widthSpinner.getValue();
+	private void initialaze() {
+		this.setSize(680, 410);
+		this.setTitle("Добавление машину");
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
+		this.setLocation(x, y);
+		this.setVisible(true);
+	}
 
-            int cost = height * lastRate.getHeigth() + weigth * lastRate.getWeigth() + depth * lastRate.getDepth()
-                    + width * lastRate.getWidth();
+	private void initialazeLayout() {
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		mainPanel = new JPanel();
+		setContentPane(mainPanel);
+		mainPanel.setLayout(null);
+	}
 
-            carNumber.setValue(cost);
-        }
-    }
+	private void loadRates() {
+		List<Rate> rateList = DeliveryServiceDao.getInstance().getAllRecord(
+				Rate.class);
+		if (rateList.isEmpty()) {
+			lastRate = ProjectProperties.getDefaultRate();
+			log.warn("Using default rates");
+		} else {
+			lastRate = rateList.get(rateList.size() - 1);
+		}
+	}
+
+	public void showView() {
+		initialaze();
+	}
+
+	private class CostChange implements ChangeListener {
+		@Override
+		public void stateChanged(ChangeEvent e) {
+			int height = (int) heightSpinner.getValue();
+			int weigth = (int) weigthSpinner.getValue();
+			int depth = (int) depthSpinner.getValue();
+			int width = (int) widthSpinner.getValue();
+
+			int cost = height * lastRate.getHeigth() + weigth
+					* lastRate.getWeigth() + depth * lastRate.getDepth()
+					+ width * lastRate.getWidth();
+
+			carNumber.setValue(cost);
+		}
+	}
 }

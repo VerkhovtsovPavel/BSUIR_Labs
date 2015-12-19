@@ -11,6 +11,7 @@ import javax.swing.JMenuItem;
 import by.bsuir.verkpavel.courseproject.dao.DeliveryServiceDao;
 import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
 import by.bsuir.verkpavel.courseproject.ui.EntityShowView;
+import by.bsuir.verkpavel.courseproject.ui.add.AddDriverView;
 import by.bsuir.verkpavel.courseproject.ui.add.AddEmployeeView;
 
 public class EmployeeMenuCreator extends BaseMenuCreator {
@@ -47,7 +48,15 @@ public class EmployeeMenuCreator extends BaseMenuCreator {
             }
         });
 
+        JMenuItem addDriver = new JMenuItem("Добавить водителя");
+        addDriver.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                AddDriverView addEmployeeView = new AddDriverView();
+                addEmployeeView.showView();
+            }
+        });
         employeelMenu.add(addEmployee);
+        employeelMenu.add(addDriver);
     }
 
     @Override

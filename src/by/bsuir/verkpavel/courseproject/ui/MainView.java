@@ -24,7 +24,7 @@ public class MainView extends JFrame {
 
     public void showView() {
         self = this;
-        this.setSize(620, 210);
+        this.setSize(650, 220);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);

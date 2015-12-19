@@ -55,7 +55,7 @@ public class StreetTableModel extends GeneralDeliveryServiceTableModel {
     public void processClick(int row, int column) {
         if (column == 2) {
             String cityName = getValueAt(row, column).toString();
-            ArrayList<Street> streetInCity = new ArrayList<>();
+            ArrayList<Street> streetInCity = new ArrayList<Street>();
             for (Entity street : getBeans()) {
                 if (((Street) street).getCity().getName().equals(cityName)) {
                     streetInCity.add((Street) street);

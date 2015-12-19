@@ -35,6 +35,15 @@ public class ProjectProperties {
         }
         return null;
     }
+    
+    public static MaskFormatter getDriverLicenceMask(){
+    	try{
+    		return new MaskFormatter("#UU######");
+    	}catch (ParseException e) {
+            log.error("Error while parse driver licence format", e);
+        }
+        return null;
+    }
 
     public static Rate getDefaultRate() {
         Rate rate = new Rate();

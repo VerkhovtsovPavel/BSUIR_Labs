@@ -135,8 +135,8 @@ public class AddDeliveryView extends JFrame {
     }
 
     private void createLabels() {
-        JLabel startDate = new JLabel("Дата отправки");
-        startDate.setBounds(22, 238, 102, 14);
+        JLabel startDate = new JLabel("Дата отправления");
+        startDate.setBounds(22, 238, 152, 14);
         mainPanel.add(startDate);
 
         JLabel endDate = new JLabel("Даты прибытия");

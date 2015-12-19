@@ -1,8 +1,10 @@
 #"C:\Program Files (x86)\MySQL\MySQL Server 5.6\bin\mysql.exe" "--defaults-file=C:\ProgramData\MySQL\MySQL Server 5.6\my.ini" -uroot -p123456 --default-character-set=utf8 < runner.sql --verbose
+#mysql -u root -p123456 --verbose < runner.sql
 
-use deliveryService;
 
 source ./schema.sql;
+
+use deliveryService;
 
 source data_scripts/cityStreet.sql;
 source data_scripts/rate.sql;

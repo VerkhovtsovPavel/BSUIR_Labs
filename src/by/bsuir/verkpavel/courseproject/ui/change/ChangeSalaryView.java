@@ -57,7 +57,7 @@ public class ChangeSalaryView  extends JFrame {
         mainPanel.setLayout(null);
         
         JLabel employeeLabel = new JLabel("Работник");
-        employeeLabel.setBounds(24, 21, 61, 14);
+        employeeLabel.setBounds(8, 21, 77, 14);
         mainPanel.add(employeeLabel);
         
         employeeComboBox = new JComboBox<String>();
@@ -107,7 +107,7 @@ public class ChangeSalaryView  extends JFrame {
         mainPanel.add(baseRateLabel);
         
         raseFactorLabel = new JLabel("Повышающий коэффицент");
-        raseFactorLabel.setBounds(10, 161, 178, 14);
+        raseFactorLabel.setBounds(10, 161, 250, 14);
         mainPanel.add(raseFactorLabel);
     }
     

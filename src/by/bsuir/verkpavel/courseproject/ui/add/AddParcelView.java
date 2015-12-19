@@ -84,7 +84,7 @@ public class AddParcelView extends JFrame {
         mainPanel.add(acceptanceDateField);
 
         markParcelComboBox = new JComboBox<String>();
-        markParcelComboBox.setBounds(16, 200, 126, 26);
+        markParcelComboBox.setBounds(16, 268, 226, 26);
         markParcelComboBox.addActionListener(new ActionListener() {
             
             @Override
@@ -109,7 +109,7 @@ public class AddParcelView extends JFrame {
         mainPanel.add(clientComboBox);
 
         payDateField = new JXDatePicker();
-        payDateField.setBounds(16, 255, 144, 40);
+        payDateField.setBounds(16, 323, 144, 40);
         payDateField.setDate(new Date());
         mainPanel.add(payDateField);
 
@@ -121,7 +121,7 @@ public class AddParcelView extends JFrame {
         formatter.setAllowsInvalid(false);
         formatter.setOverwriteMode(true);
         sumField = new JFormattedTextField(formatter);
-        sumField.setBounds(237, 261, 114, 26);
+        sumField.setBounds(237, 329, 114, 26);
         mainPanel.add(sumField);
         sumField.setColumns(10);
         sumField.setValue(0.0);
@@ -129,7 +129,7 @@ public class AddParcelView extends JFrame {
         sumField.setValue(lastRate.getHeigth() + lastRate.getWeigth() + lastRate.getDepth() + lastRate.getWidth());
 
         JButton addButton = new JButton("Добавить");
-        addButton.setBounds(322, 317, 89, 23);
+        addButton.setBounds(286, 383, 181, 23);
         addButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -150,39 +150,39 @@ public class AddParcelView extends JFrame {
         mainPanel.add(addButton);
 
         paymentsSystemTypeComboBox = new JComboBox<String>();
-        paymentsSystemTypeComboBox.setBounds(419, 267, 126, 26);
+        paymentsSystemTypeComboBox.setBounds(419, 335, 296, 26);
         mainPanel.add(paymentsSystemTypeComboBox);
 
         heightSpinner = new JSpinner();
         heightSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
-        heightSpinner.setBounds(70, 111, 58, 40);
+        heightSpinner.setBounds(111, 115, 80, 40);
         heightSpinner.addChangeListener(new CostChange());
         mainPanel.add(heightSpinner);
 
         depthSpinner = new JSpinner();
         depthSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
-        depthSpinner.setBounds(426, 111, 58, 40);
+        depthSpinner.setBounds(556, 115, 80, 40);
         depthSpinner.addChangeListener(new CostChange());
         mainPanel.add(depthSpinner);
 
         weigthSpinner = new JSpinner();
         weigthSpinner.setModel(new SpinnerNumberModel(1, 1, 3000, 1));
-        weigthSpinner.setBounds(242, 111, 58, 40);
+        weigthSpinner.setBounds(335, 115, 80, 40);
         weigthSpinner.addChangeListener(new CostChange());
         mainPanel.add(weigthSpinner);
 
         widthSpinner = new JSpinner();
         widthSpinner.setModel(new SpinnerNumberModel(1, 1, 250000, 1));
-        widthSpinner.setBounds(608, 111, 102, 40);
+        widthSpinner.setBounds(59, 172, 102, 40);
         widthSpinner.addChangeListener(new CostChange());
         mainPanel.add(widthSpinner);
 
         officeComboBox = new JComboBox<String>();
-        officeComboBox.setBounds(275, 200, 126, 26);
+        officeComboBox.setBounds(275, 268, 441, 26);
         mainPanel.add(officeComboBox);
         
         JLabel label = new JLabel("Пункт назначения");
-        label.setBounds(275, 172, 114, 16);
+        label.setBounds(275, 240, 183, 16);
         mainPanel.add(label);
     }
 
@@ -197,11 +197,11 @@ public class AddParcelView extends JFrame {
         mainPanel.add(acceptanceDate);
 
         JLabel payDate = new JLabel("Даты оплаты");
-        payDate.setBounds(16, 238, 114, 14);
+        payDate.setBounds(16, 306, 114, 14);
         mainPanel.add(payDate);
 
         JLabel parselTypeLabel = new JLabel("Тип посылки");
-        parselTypeLabel.setBounds(16, 172, 108, 16);
+        parselTypeLabel.setBounds(16, 240, 108, 16);
         mainPanel.add(parselTypeLabel);
 
         JLabel clientLabel = new JLabel("Клиент");
@@ -209,46 +209,46 @@ public class AddParcelView extends JFrame {
         mainPanel.add(clientLabel);
 
         JLabel sumLabel = new JLabel("Сумма");
-        sumLabel.setBounds(183, 266, 44, 16);
+        sumLabel.setBounds(183, 334, 56, 16);
         mainPanel.add(sumLabel);
 
         JLabel heigthLb = new JLabel("Высота");
-        heigthLb.setBounds(16, 127, 44, 14);
+        heigthLb.setBounds(30, 127, 63, 14);
         mainPanel.add(heigthLb);
 
         JLabel widthLabel = new JLabel("Вес");
-        widthLabel.setBounds(574, 127, 22, 14);
+        widthLabel.setBounds(16, 188, 55, 14);
         mainPanel.add(widthLabel);
 
         JLabel officeLabel = new JLabel("Офис");
         officeLabel.setBounds(299, 171, 22, 14);
 
         JLabel smLabel = new JLabel("см.");
-        smLabel.setBounds(138, 114, 22, 14);
+        smLabel.setBounds(199, 127, 30, 14);
         mainPanel.add(smLabel);
 
         JLabel label = new JLabel("см.");
-        label.setBounds(304, 114, 22, 14);
+        label.setBounds(429, 127, 22, 14);
         mainPanel.add(label);
 
         JLabel label_1 = new JLabel("см.");
-        label_1.setBounds(496, 114, 22, 14);
+        label_1.setBounds(649, 127, 41, 14);
         mainPanel.add(label_1);
 
         JLabel gramm = new JLabel("грамм");
-        gramm.setBounds(720, 117, 58, 14);
+        gramm.setBounds(171, 178, 58, 14);
         mainPanel.add(gramm);
 
         JLabel paymentsTypeLabel = new JLabel("Cпособ оплаты");
-        paymentsTypeLabel.setBounds(429, 249, 108, 16);
+        paymentsTypeLabel.setBounds(429, 317, 108, 16);
         mainPanel.add(paymentsTypeLabel);
 
         JLabel weigthLabel = new JLabel("Ширина");
-        weigthLabel.setBounds(172, 124, 58, 14);
+        weigthLabel.setBounds(250, 127, 67, 14);
         mainPanel.add(weigthLabel);
 
-        JLabel depthLabel = new JLabel("Глубина");
-        depthLabel.setBounds(357, 127, 71, 14);
+        JLabel depthLabel = new JLabel("Длина");
+        depthLabel.setBounds(479, 127, 71, 14);
         mainPanel.add(depthLabel);
     }
 
@@ -309,7 +309,7 @@ public class AddParcelView extends JFrame {
     }
 
     private void initialaze() {
-        this.setSize(780, 400);
+        this.setSize(740, 470);
         this.setTitle("Добавление посылки");
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);

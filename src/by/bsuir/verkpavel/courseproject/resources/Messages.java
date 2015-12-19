@@ -12,7 +12,8 @@ public enum Messages {
     DELIVERY_SUCCESSFULLY_ADDED("Доставка успешно добавлен"),
     SALARY_CHANGED("Зарплата успешно изменена"),
     RATE_CHANGED("Тарифы успешно изменены"),
-    CORPORATE_CAR_SUCCESSFULLY_ADDED("Машина успешно добавлен");
+    CORPORATE_CAR_SUCCESSFULLY_ADDED("Машина успешно добавлена"),
+    DRIVER_SUCCESSFULLY_ADDED("Водитель успешно добавлен");
 
     private String value;
 

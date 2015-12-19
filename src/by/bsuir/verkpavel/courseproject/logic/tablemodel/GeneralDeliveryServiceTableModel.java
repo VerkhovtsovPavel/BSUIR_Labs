@@ -97,6 +97,5 @@ public abstract class GeneralDeliveryServiceTableModel implements TableModel {
             } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
                 log.error("Error while try set value in field", e);
             }
-
     }
 }

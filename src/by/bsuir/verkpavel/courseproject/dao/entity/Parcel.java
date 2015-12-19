@@ -34,6 +34,9 @@ public class Parcel implements Entity, Describable {
 
     @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "destination")
     private Office office;
+    
+    @DatabaseField
+    private int isActive;
 
     public Parcel() {
     }
@@ -123,4 +126,12 @@ public class Parcel implements Entity, Describable {
     public void setOffice(Office office) {
         this.office = office;
     }
+
+	public int getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(int isActive) {
+		this.isActive = isActive;
+	}
 }

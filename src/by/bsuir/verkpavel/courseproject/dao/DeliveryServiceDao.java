@@ -17,6 +17,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import by.bsuir.verkpavel.courseproject.dao.entity.Authentication;
 import by.bsuir.verkpavel.courseproject.dao.entity.Delivery;
 import by.bsuir.verkpavel.courseproject.dao.entity.DeliveryStatus;
+import by.bsuir.verkpavel.courseproject.dao.entity.Employee;
 import by.bsuir.verkpavel.courseproject.dao.entity.ParcelM2MDelivery;
 import by.bsuir.verkpavel.courseproject.resources.Messages;
 
@@ -31,7 +32,7 @@ public class DeliveryServiceDao {
 
     private static final DeliveryServiceDao instance = new DeliveryServiceDao();
 
-    private Map<Class<? extends Entity>, Dao<? extends Entity, ?>> daos = new HashMap<>();
+    private Map<Class<? extends Entity>, Dao<? extends Entity, ?>> daos = new HashMap<Class<? extends Entity>, Dao<? extends Entity, ?>>();
 
     private static ConnectionSource createConnectionSouce() {
         try {
@@ -208,4 +209,16 @@ public class DeliveryServiceDao {
         }
         
     }
+
+	public List<Employee> getDrivers() {
+		Dao<Employee, Integer> dao = getDaoByClass(Employee.class);
+        try {
+            QueryBuilder<Employee, Integer> queryBuilder = dao.queryBuilder();
+            queryBuilder.where().eq("idPosition", 7);
+            return dao.query(queryBuilder.prepare());
+        } catch (SQLException e) {
+            log.error(Messages.ERROR_WHILE_DELETE_RECORD.get(), e);
+            return null;
+        }
+	}
 }

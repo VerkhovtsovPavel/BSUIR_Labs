@@ -64,7 +64,7 @@ public class AddEmployeeView extends JFrame {
     private List<Office> offices;
 
     private void initialaze() {
-        this.setSize(720, 400);
+        this.setSize(690, 445);
         this.setTitle("Добавление работника");
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
@@ -88,7 +88,7 @@ public class AddEmployeeView extends JFrame {
         mainPanel.add(fullNameLbl);
 
         JLabel birthday_label = new JLabel("Дата рождения");
-        birthday_label.setBounds(16, 43, 102, 14);
+        birthday_label.setBounds(16, 43, 150, 14);
         mainPanel.add(birthday_label);
 
         JLabel mobilePhonelabel = new JLabel("Моб. телефон");
@@ -100,31 +100,31 @@ public class AddEmployeeView extends JFrame {
         mainPanel.add(emailLbl);
 
         JLabel hireDateLbl = new JLabel("Даты приема на работу");
-        hireDateLbl.setBounds(179, 43, 157, 14);
+        hireDateLbl.setBounds(179, 43, 209, 14);
         mainPanel.add(hireDateLbl);
 
         JLabel positionLabel = new JLabel("Должность");
-        positionLabel.setBounds(20, 153, 133, 16);
+        positionLabel.setBounds(24, 213, 133, 16);
         mainPanel.add(positionLabel);
 
         JLabel permissionsLabel = new JLabel("Права доступа");
-        permissionsLabel.setBounds(163, 153, 126, 16);
+        permissionsLabel.setBounds(432, 98, 126, 16);
         mainPanel.add(permissionsLabel);
 
         JLabel officeLabel = new JLabel("Офис");
-        officeLabel.setBounds(299, 153, 76, 16);
+        officeLabel.setBounds(14, 153, 76, 16);
         mainPanel.add(officeLabel);
 
         JLabel userNameLbl = new JLabel("Имя пользователя");
-        userNameLbl.setBounds(16, 241, 126, 14);
+        userNameLbl.setBounds(15, 289, 142, 14);
         mainPanel.add(userNameLbl);
 
         JLabel passwordLabel = new JLabel("Пароль");
-        passwordLabel.setBounds(16, 271, 102, 14);
+        passwordLabel.setBounds(22, 333, 102, 14);
         mainPanel.add(passwordLabel);
 
         JLabel salaryLabel = new JLabel("Зарплата");
-        salaryLabel.setBounds(463, 176, 68, 16);
+        salaryLabel.setBounds(448, 176, 83, 16);
         mainPanel.add(salaryLabel);
     }
 
@@ -250,15 +250,15 @@ public class AddEmployeeView extends JFrame {
         emailField.setColumns(10);
 
         positionComboBox = new JComboBox<String>();
-        positionComboBox.setBounds(10, 171, 126, 26);
+        positionComboBox.setBounds(14, 231, 649, 26);
         mainPanel.add(positionComboBox);
 
         permissionComboBox = new JComboBox<String>();
-        permissionComboBox.setBounds(163, 171, 126, 26);
+        permissionComboBox.setBounds(433, 116, 240, 26);
         mainPanel.add(permissionComboBox);
 
         officeComboBox = new JComboBox<String>();
-        officeComboBox.setBounds(299, 171, 126, 26);
+        officeComboBox.setBounds(15, 171, 410, 26);
         mainPanel.add(officeComboBox);
 
         hireDateField = new JXDatePicker();
@@ -268,12 +268,12 @@ public class AddEmployeeView extends JFrame {
 
         userNameField = new JTextField();
         userNameField.setColumns(10);
-        userNameField.setBounds(160, 232, 502, 28);
+        userNameField.setBounds(160, 287, 502, 28);
         mainPanel.add(userNameField);
 
         passwordField = new JPasswordField();
         passwordField.setColumns(10);
-        passwordField.setBounds(160, 267, 502, 28);
+        passwordField.setBounds(160, 325, 502, 28);
         mainPanel.add(passwordField);
 
         NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
@@ -290,7 +290,7 @@ public class AddEmployeeView extends JFrame {
         salaryField.setValue(0.0);
 
         JButton addButton = new JButton("Добавить");
-        addButton.setBounds(282, 327, 89, 23);
+        addButton.setBounds(216, 373, 220, 23);
         addButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
