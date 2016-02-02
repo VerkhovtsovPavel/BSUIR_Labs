@@ -1,10 +1,16 @@
 package by.verkpavel.iofs.main
 
-import by.verkpavel.iofs.documents.Document
+import by.verkpavel.iofs.documents.{DocumentSearcher, Document}
+
+import scala.io.StdIn
 
 
 object Main extends App {
-  Document("texts/English.txt").showRankFrequencies("English").showQuantityFrequencies("Quantity-Frequencies (English)").showKeyWords()
-//  ZipfParameters("texts/Russian.txt").showRankFrequencies("Russian").showQuantityFrequencies("Quantity-Frequencies (Russian)").showKeyWords()
-//  ZipfParameters("texts/Belarusian.txt").showRankFrequencies("Belarusian").showQuantityFrequencies("Quantity-Frequencies (Belarusian)").showKeyWords()
+  val searchEngine = new DocumentSearcher("texts\\Texts")
+
+  val query = StdIn.readLine()
+
+  val result = searchEngine.search("items взять")
+
+  println(result.foldLeft("Search result : \n")((res, elem) => res + elem._1.getFileName+" => "+elem._2.mkString(", ")+"\n"))
 }
