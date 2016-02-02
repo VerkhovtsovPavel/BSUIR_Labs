@@ -16,10 +16,10 @@ class ZipfParameters(val fileName: String) {
   def showRankFrequencies(preText : String = "") = {
     var uniqueFrequencies = SortedMap[Int, String]()(ReverseIntOrdering)
     uniqueFrequencies ++= (for ((k, v) <- wordFrequencies) yield (v, k))
-    uniqueFrequencies = uniqueFrequencies.slice(3, 17)
+    //uniqueFrequencies = uniqueFrequencies.slice(3, 17)
     printTable(preText, uniqueFrequencies)
 
-    val chart = new LineChart("Rank-Frequencies (preText)")
+    val chart = new LineChart("Rank-Frequencies ("+preText+")")
     chart.addDataset(uniqueFrequencies.keys.toList.map(_.toDouble / totalLength))
     chart.draw("Rank" ,"Frequencies")
 
@@ -49,7 +49,7 @@ class ZipfParameters(val fileName: String) {
       list = list ++ wordFrequencies.filter(_._2 == freq).keys
     }
 
-    println(list.take(15)mkString("Key words : (", ", ",")"))
+    println(list.slice(list.length/2 -5, list.length/2 +5).mkString("Key words : (", ", ",")"))
     this
   }
 
