@@ -5,32 +5,38 @@ import by.verkpavel.iofs.graph.LineChart
 import scala.collection.SortedMap
 import scala.io.Source
 
-class ZipfParameters(val fileName: String, val stopWordsFileName: String) {
+class ZipfParameters(val fileName: String) {
 
   val text = Source.fromFile(fileName).mkString.toLowerCase.replaceAll( """[\"\,\.\—\!\?\:\;\(\)]|( *- )""", " ").replaceAll( """([^\pL\pN\pP\pS\pZ])|([\xC2\xA0])""", " ").split("\\s+")
   val totalLength = text.foldLeft(0)(_ + _.length)
   var wordFrequencies = text.foldLeft(SortedMap[String, Int]())((map, word) => map + ((word, map.getOrElse(word, 0) + 1)))
+
   excludeStopWords()
 
-  def showRankFrequencies(preText : String) = {
+  def showRankFrequencies(preText : String = "") = {
     var uniqueFrequencies = SortedMap[Int, String]()(ReverseIntOrdering)
     uniqueFrequencies ++= (for ((k, v) <- wordFrequencies) yield (v, k))
-    //uniqueFrequencies = uniqueFrequencies.filter((t) =>  t._1 > 3 && t._1 < 17)
+    uniqueFrequencies = uniqueFrequencies.slice(3, 17)
     printTable(preText, uniqueFrequencies)
+
+    val chart = new LineChart("Rank-Frequencies (preText)")
+    chart.addDataset(uniqueFrequencies.keys.toList.map(_.toDouble / totalLength))
+    chart.draw("Rank" ,"Frequencies")
+
     this
   }
 
   def showQuantityFrequencies(chartTitle : String =  "Quantity-Frequencies") = {
     val maxFrequencies = wordFrequencies.values.max
 
-    var list = List[Int]()
+    var list = List[Double]()
     for (freq <- 1 to maxFrequencies) {
-      list = list :+ wordFrequencies.count(_._2 == freq)
+      list = list :+ wordFrequencies.count(_._2 == freq).toDouble
     }
 
     val chart = new LineChart(chartTitle)
     chart.addDataset(list)
-    chart.draw()
+    chart.draw("Frequencies", "Quantity")
 
     this
   }
@@ -50,7 +56,7 @@ class ZipfParameters(val fileName: String, val stopWordsFileName: String) {
   def showWordFrequencies() = println(wordFrequencies)
 
   private def excludeStopWords(): Unit = {
-    for (stopWord <- Source.fromFile(stopWordsFileName).mkString.split(",\\s*")) {
+    for (stopWord <- Source.fromFile("texts/stopWords.txt").mkString.split("(,\\s*)|(\\n)")) {
       wordFrequencies -= stopWord
     }
   }
@@ -74,5 +80,5 @@ class ZipfParameters(val fileName: String, val stopWordsFileName: String) {
 }
 
 object ZipfParameters{
-  def apply(fileName: String, stopWordsFileName: String) = new ZipfParameters(fileName, stopWordsFileName)
+  def apply(fileName: String) = new ZipfParameters(fileName)
 }
