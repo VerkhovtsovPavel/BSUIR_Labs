@@ -28,12 +28,12 @@ class Document(val file: File) {
     for (freq <- (1 to maxFrequencies).reverse) {
       list = list ++ wordFrequencies.filter(_._2 == freq).keys
     }
-    list.slice(list.length/2 -5, list.length/2 +5)
+    list.slice(list.length / 2 - 5, list.length / 2 + 5)
   }
-
 }
 
 object Document {
   def apply(file: File) = new Document(file)
-  def apply(fileName : String) = new Document(new File(fileName))
+
+  def apply(fileName: String) = new Document(new File(fileName))
 }
