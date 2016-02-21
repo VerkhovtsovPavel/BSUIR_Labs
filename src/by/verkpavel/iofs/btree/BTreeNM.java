@@ -2,18 +2,18 @@ package by.verkpavel.iofs.btree;
 
 import java.util.NoSuchElementException;
 
-public class BTree<T extends Comparable<T>> {
+public class BTreeNM<T extends Comparable<T>> {
 
-   private Node root;
+    private Node root;
 
-    public BTree() {
+    public BTreeNM() {
         root = null;
     }
 
     /**
      * Creates a balances tree using the given node as tree root.
      */
-    public BTree(Node root) {
+    public BTreeNM(Node root) {
         this.root = root;
     }
 
@@ -52,7 +52,7 @@ public class BTree<T extends Comparable<T>> {
         return inOrder(root);
     }
 
-   private void insert(T info, Node node, Node parent, boolean right) {
+    private void insert(T info, Node node, Node parent, boolean right) {
 
         if (node == null) {
             if (parent == null) {
@@ -154,7 +154,7 @@ public class BTree<T extends Comparable<T>> {
         restructDelete(delNode.parent, rightNode);
     }
 
-       private String inOrder(Node node) {
+    private String inOrder(Node node) {
 
         String result = "";
         if (node != null) {
@@ -165,7 +165,7 @@ public class BTree<T extends Comparable<T>> {
         return result;
     }
 
-      private void restructInsert(Node node, boolean wasRight) {
+    private void restructInsert(Node node, boolean wasRight) {
 
         if (node != root) {
             if (node.parent.balance == '_') {
@@ -461,3 +461,4 @@ public class BTree<T extends Comparable<T>> {
         }
     }
 }
+

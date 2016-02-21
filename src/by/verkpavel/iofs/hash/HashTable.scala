@@ -12,7 +12,7 @@ class HashTable[T](val size: Int) {
 
   def - (item : T): Unit = {
     val hashValue : Int = hashFunction(item)
-    table(hashValue) = table(hashValue) diff List(item)
+    table(hashValue) = table(hashValue).filter(_!=item)
   }
 
  def ? (item : T) = {
