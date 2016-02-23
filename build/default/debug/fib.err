@@ -1,0 +1,26 @@
+Warning[205] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 1 : Found directive in column 1. (LIST)
+Warning[205] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 4 : Found directive in column 1. (cblock)
+Warning[205] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 8 : Found directive in column 1. (ENDC)
+Warning[205] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 10 : Found directive in column 1. (org)
+Warning[205] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 11 : Found directive in column 1. (de)
+Warning[205] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 12 : Found directive in column 1. (org)
+Warning[203] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 13 : Found opcode in column 1. (goto)
+Message[302] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 17 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 20 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 22 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 23 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 24 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 27 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[203] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 29 : Found opcode in column 1. (return)
+Message[302] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 33 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[203] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 35 : Found opcode in column 1. (return)
+Warning[203] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 38 : Found opcode in column 1. (movlw)
+Warning[203] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 39 : Found opcode in column 1. (movwf)
+Warning[203] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 40 : Found opcode in column 1. (call)
+Warning[203] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 41 : Found opcode in column 1. (movf)
+Warning[203] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 42 : Found opcode in column 1. (movwf)
+Warning[203] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 43 : Found opcode in column 1. (movlw)
+Warning[203] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 44 : Found opcode in column 1. (movwf)
+Message[305] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 54 : Using default destination of 1 (file).
+Warning[203] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 62 : Found opcode in column 1. (goto)
+Warning[205] D:\UNIVERSITY\POVS\POVS-2.X\FIB.ASM 64 : Found directive in column 1. (end)
