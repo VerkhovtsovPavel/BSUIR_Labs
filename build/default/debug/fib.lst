@@ -1,4 +1,4 @@
-MPASM 5.66                           FIB.ASM   2-22-2016  21:49:54         PAGE  1
+MPASM 5.66                           FIB.ASM   2-24-2016  22:15:41         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -19,98 +19,103 @@ Warning[205]: Found directive in column 1. (LIST)
                       00207         LIST
                       00003 
 Warning[205]: Found directive in column 1. (cblock)
-                      00004 cblock  10h  ; ???? ???
-  00000010            00005         R1
-  00000011            00006         R2
-  00000012            00007         R3
+                      00004 cblock  20h  ; ???? ???
+  00000020            00005         R1
+  00000021            00006         R2
+  00000022            00007         R3
+  00000023            00008         R4
 Warning[205]: Found directive in column 1. (ENDC)
-                      00008 endc
-                      00009 
+                      00009 endc
+                      00010 
 Warning[205]: Found directive in column 1. (org)
-                      00010 org 2100h
+                      00011 org 2100h
 Warning[205]: Found directive in column 1. (de)
-2100   000F           00011 de 0fh ;????? ?????????
+2100   0005           00012 de 05h ;????? ?????????
 Warning[205]: Found directive in column 1. (org)
-                      00012 org 0
+                      00013 org 0
 Warning[203]: Found opcode in column 1. (goto)
-0000   2???           00013 goto Start
-                      00014 
-0001                  00015 EEPROM_WRITE
-0001   1683           00016         bsf STATUS, RP0
+0000   2???           00014 goto Start
+                      00015 
+0001                  00016 EEPROM_WRITE
+0001   1683           00017         bsf STATUS, RP0
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0002   1508           00017         bsf EECON1, WREN
-0003   138B           00018         bcf INTCON,GIE  ; ?????????? ?????? ??????????.
-0004   3055           00019         movlw 055h        ; ????????????
+0002   1508           00018         bsf EECON1, WREN
+0003   138B           00019         bcf INTCON,GIE  ; ?????????? ?????? ??????????.
+0004   3055           00020         movlw 055h        ; ????????????
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0005   0089           00020         movwf EECON2      ; ?????????
-0006   30AA           00021         movlw 0AAh        ; ??? ??????.
+0005   0089           00021         movwf EECON2      ; ?????????
+0006   30AA           00022         movlw 0AAh        ; ??? ??????.
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0007   0089           00022         movwf EECON2      ; ----"----
+0007   0089           00023         movwf EECON2      ; ----"----
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0008   1488           00023         bsf   EECON1,WR    ; ----"----
+0008   1488           00024         bsf   EECON1,WR    ; ----"----
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0009   1888           00024         btfsc EECON1,WR ; ?????????, ??????????? ?? ??????
-000A   2???           00025         goto $-1
-000B   178B           00026         bsf INTCON,GIE ; ???????? ???? ?????????? ?? ????????? ?????? ? EEPROM.
+0009   1888           00025         btfsc EECON1,WR ; ?????????, ??????????? ?? ??????
+000A   2???           00026         goto $-1
+000B   178B           00027         bsf INTCON,GIE ; ???????? ???? ?????????? ?? ????????? ?????? ? EEPROM.
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-000C   1108           00027         bcf EECON1,WREN   
-000D   1283           00028         bcf STATUS,RP0  ; ??????? ? ??????? ????.
+000C   1108           00028         bcf EECON1,WREN   
+000D   1283           00029         bcf STATUS,RP0  ; ??????? ? ??????? ????.
 Warning[203]: Found opcode in column 1. (return)
-000E   0008           00029 return
-MPASM 5.66                           FIB.ASM   2-22-2016  21:49:54         PAGE  2
+MPASM 5.66                           FIB.ASM   2-24-2016  22:15:41         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-                      00030 
-000F                  00031 EEPROM_READ
-000F   1683           00032         bsf STATUS, RP0
+000E   0008           00030 return
+                      00031 
+000F                  00032 EEPROM_READ
+000F   1683           00033         bsf STATUS, RP0
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0010   1408           00033         bsf EECON1, RD
-0011   1283           00034         bcf STATUS, RP0
+0010   1408           00034         bsf EECON1, RD
+0011   1283           00035         bcf STATUS, RP0
 Warning[203]: Found opcode in column 1. (return)
-0012   0008           00035 return
-                      00036 
-0013                  00037 Start
+0012   0008           00036 return
+                      00037 
+0013                  00038 Start
 Warning[203]: Found opcode in column 1. (movlw)
-0013   3000           00038 movlw 00h     ; ????????? ?? ?????? 0 ? EEPROM ???????????? ?? ????-?? ? R1
+0013   3000           00039 movlw 00h     ; ????????? ?? ?????? 0 ? EEPROM ???????????? ?? ????-?? ? R1
 Warning[203]: Found opcode in column 1. (movwf)
-0014   0089           00039 movwf EEADR
+0014   0089           00040 movwf EEADR
 Warning[203]: Found opcode in column 1. (call)
-0015   2???           00040 call EEPROM_READ
+0015   2???           00041 call EEPROM_READ
 Warning[203]: Found opcode in column 1. (movf)
-0016   0808           00041 movf EEDATA,W
+0016   0808           00042 movf EEDATA,W
 Warning[203]: Found opcode in column 1. (movwf)
-0017   0090           00042 movwf R1
+0017   00A2           00043 movwf R3
 Warning[203]: Found opcode in column 1. (movlw)
-0018   3000           00043 movlw 00h 
+0018   3000           00044 movlw 00h
 Warning[203]: Found opcode in column 1. (movwf)
-0019   0091           00044 movwf R2 ;r2 is the cycle counter
-001A                  00045 cycle
-001A   0811           00046         movf R2,0
-001B   0092           00047         movwf R3
-001C   0D92           00048         rlf R3,1; GRAY code: XGr=(X XOR (X SHL 1)) SHR 1
-001D   0812           00049         movf R3,0
-001E   0611           00050         xorwf R2,0
-001F   0092           00051         movwf R3
-0020   0C12           00052         rrf R3,0;? W ??? ???? ??? ??????? ???????? R2
-0021   0088           00053         movwf EEDATA   
+0019   00A1           00045 movwf R2
+Warning[203]: Found opcode in column 1. (movwf)
+001A   00A2           00046 movwf R3
+Warning[203]: Found opcode in column 1. (addlw)
+001B   3E01           00047 addlw 01h
+Warning[203]: Found opcode in column 1. (movwf)
+001C   00A0           00048 movwf R1
+Warning[203]: Found opcode in column 1. (movwf)
+001D   00A3           00049 movwf R4        
+001E                  00050 cycle
+001E   0820           00051         movf R1,0
+001F   0721           00052         addwf R2,0
+0020   0088           00053         movwf EEDATA   
+0021   0823           00054         movf R4,0      
+0022   0089           00055         movwf EEADR    
+0023   2???           00056         call EEPROM_WRITE
+0024   0AA3           00057         incf R4,1
+0025   0820           00058         movf R1,0
+0026   00A1           00059         movwf R2
+0027   0808           00060         movf EEDATA,0
+0028   00A0           00061         movwf R1
 Message[305]: Using default destination of 1 (file).
-0022   0A91           00054         incf R2
-0023   0811           00055         movf R2,0      
-0024   0089           00056         movwf EEADR    
-0025   2???           00057         call EEPROM_WRITE
-0026   0811           00058         movf R2,0
-0027   0210           00059         subwf R1,0
-0028   0092           00060         movwf R3
-0029   0F92           00061         incfsz R3,1
+0029   0BA2           00062         decfsz R3
 Warning[203]: Found opcode in column 1. (goto)
-002A   2???           00062 goto cycle
-                      00063 
+002A   2???           00063 goto cycle
+                      00064 
 Warning[205]: Found directive in column 1. (end)
-                      00064 end
-MPASM 5.66                           FIB.ASM   2-22-2016  21:49:54         PAGE  3
+                      00065 end
+MPASM 5.66                           FIB.ASM   2-24-2016  22:15:41         PAGE  3
 
 
 SYMBOL TABLE
@@ -147,9 +152,10 @@ PS0                               00000000
 PS1                               00000001
 PS2                               00000002
 PSA                               00000003
-R1                                00000010
-R2                                00000011
-R3                                00000012
+R1                                00000020
+R2                                00000021
+R3                                00000022
+R4                                00000023
 RA0                               00000000
 RA1                               00000001
 RA2                               00000002
@@ -168,13 +174,13 @@ RBIF                              00000000
 RD                                00000000
 RP0                               00000005
 RP1                               00000006
-STATUS                            00000003
-MPASM 5.66                           FIB.ASM   2-22-2016  21:49:54         PAGE  4
+MPASM 5.66                           FIB.ASM   2-24-2016  22:15:41         PAGE  4
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+STATUS                            00000003
 Start                             00000013
 T0CS                              00000005
 T0IE                              00000005
@@ -227,17 +233,17 @@ _WDT_ON                           00003FFF
 _XT_OSC                           00003FFD
 __16F84                           00000001
 __DEBUG                           
-__MPLAB_DEBUGGER_SIMULATOR        1
-MPASM 5.66                           FIB.ASM   2-22-2016  21:49:54         PAGE  5
+MPASM 5.66                           FIB.ASM   2-24-2016  22:15:41         PAGE  5
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-cycle                             0000001A
+__MPLAB_DEBUGGER_SIMULATOR        1
+cycle                             0000001E
 
 Errors   :     0
-Warnings :    18 reported,     0 suppressed
+Warnings :    22 reported,     0 suppressed
 Messages :     8 reported,     0 suppressed
 
 

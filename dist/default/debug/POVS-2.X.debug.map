@@ -1,5 +1,5 @@
 MPLINK 5.08, LINKER
-Linker Map File - Created Mon Feb 22 21:49:55 2016
+Linker Map File - Created Wed Feb 24 22:15:42 2016
 
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
@@ -26,7 +26,7 @@ Linker Map File - Created Mon Feb 22 21:49:55 2016
              EEPROM_WRITE   0x000001    program     static D:\University\POVS\POVS-2.X\fib.asm
                     Start   0x000013    program     static D:\University\POVS\POVS-2.X\fib.asm
              _.org_1_000A   0x00000a    program     static D:\University\POVS\POVS-2.X\fib.asm
-                    cycle   0x00001a    program     static D:\University\POVS\POVS-2.X\fib.asm
+                    cycle   0x00001e    program     static D:\University\POVS\POVS-2.X\fib.asm
 
 
 
@@ -37,6 +37,6 @@ Linker Map File - Created Mon Feb 22 21:49:55 2016
              _.org_1_000A   0x00000a    program     static D:\University\POVS\POVS-2.X\fib.asm
               EEPROM_READ   0x00000f    program     static D:\University\POVS\POVS-2.X\fib.asm
                     Start   0x000013    program     static D:\University\POVS\POVS-2.X\fib.asm
-                    cycle   0x00001a    program     static D:\University\POVS\POVS-2.X\fib.asm
+                    cycle   0x00001e    program     static D:\University\POVS\POVS-2.X\fib.asm
 
 
