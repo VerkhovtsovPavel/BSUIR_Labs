@@ -9,7 +9,7 @@ cblock  20h  ; ???? ???
 endc
 
 org 2100h
-de 05h ;????? ?????????
+de 0dh ;????? ?????????
 org 0
 goto Start
 
@@ -43,10 +43,14 @@ movf EEDATA,W
 movwf R3
 movlw 00h
 movwf R2
-movwf R3
 addlw 01h	
 movwf R1
-movwf R4	
+movwf R4
+movwf EEDATA   
+movf R4,0      
+movwf EEADR    
+call EEPROM_WRITE
+incf R4,1	
 cycle
 	movf R1,0
 	addwf R2,0
@@ -54,12 +58,11 @@ cycle
 	movf R4,0      
 	movwf EEADR    
 	call EEPROM_WRITE
-	incf R4,1
+	incf R4,f
 	movf R1,0
 	movwf R2
 	movf EEDATA,0
 	movwf R1
-	decfsz R3
+	decfsz R3,f
 goto cycle
-
 end
