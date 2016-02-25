@@ -5,12 +5,12 @@ import scala.io.Source
 import by.verkpavel.iofs.utils.Chronometry.time
 
 object Main extends App{
-  bTreeTest("res/test1000 000.txt")
-  hashTableTest("res/test1000 000.txt")
+  bTreeTest("res/test1 000.txt")
+  hashTableTest("res/test1 000.txt")
 
 def bTreeTest(fileName : String) = {
   println("----------------------")
-  println("BTree")
+  println("BTree " + Source.fromFile(fileName).mkString.split("""\s+""").size+ " elements")
   println("----------------------")
   val tree = new by.verkpavel.iofs.btree.nm.BTree(5)
 
@@ -29,7 +29,7 @@ def bTreeTest(fileName : String) = {
 
   def hashTableTest(fileName : String ) = {
     println("----------------------")
-    println("HashTable")
+    println("HashTable " + Source.fromFile(fileName).mkString.split("""\s+""").size+ " elements")
     println("----------------------")
     val hashTable = new HashTable[String](1000)
 
