@@ -18,10 +18,19 @@ class HuffmanCode(message : String) {
     this
   }
 
-  def printCode(): Unit = {
+  def printCode():HuffmanCode = {
     print(lettersCode.mkString("\n"))
     println()
     println("Average length = "+calculateAverageLength(list.head, 0))
+    this
+  }
+
+  def printCodedString() = {
+    println("Source messsage : " + message)
+    print("Coded message : ")
+    message.toCharArray.foreach((c) => print(lettersCode.getOrElse(c, " ")))
+    println()
+    println("-------------------")
   }
 
   private def buildTree(): Unit = {
