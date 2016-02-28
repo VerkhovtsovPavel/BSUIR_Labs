@@ -10,8 +10,11 @@ class Document(val category : String, val file: File) {
   val totalLength = text.foldLeft(0)(_ + _.length)
   var wordFrequencies = text.foldLeft(Map[String, Int]())((map, word) => map + ((word, map.getOrElse(word, 0) + 1)))
   excludeStopWords()
+  var vector = Array[Double](1)
 
-  def keyWord = foundKeyWords()
+  val countKeyWord = 30
+
+  def keyWords = foundKeyWords()
 
   private def excludeStopWords(): Unit = {
     for (stopWord <- Source.fromFile("res/stopWords.txt").mkString.split("(,\\s*)|(\\n)")) {
@@ -19,13 +22,17 @@ class Document(val category : String, val file: File) {
     }
   }
 
-  private def foundKeyWords() = {
+  private def foundKeyWords() : Map[String, Double] = {
     val maxFrequencies = wordFrequencies.values.max
-    var list = List[String]()
+    var list = Map[String, Int]()
     for (freq <- (1 to maxFrequencies).reverse) {
-      list = list ++ wordFrequencies.filter(_._2 == freq).keys
+      list = list ++ wordFrequencies.filter(_._2 == freq)
     }
-    list.slice(list.length / 2 - 5, list.length / 2 + 5)
+    list.slice(list.size / 2 - countKeyWord / 2, list.size / 2 + countKeyWord / 2).map(entity => (entity._1, entity._2.toDouble / totalLength))
+  }
+
+  def buildVector(convertDocumentToVector: (Document) => Array[Double]): Unit = {
+    vector = convertDocumentToVector(this)
   }
 }
 

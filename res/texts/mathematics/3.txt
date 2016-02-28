@@ -1,0 +1,80 @@
+Mathematics in the Financial Markets
+Stage: 5
+Article by Andre Rzym
+
+Published March 2002,February 2011.
+
+A few years ago I met with a student who was halfway through his PhD in theoretical physics. He was explaining to me how the world of finance held little interest, and how he would rather pursue a career with a higher mathematical content. My response was that I believed that every branch of mathematics that he used in his PhD was also being used somewhere in finance, and more besides.
+
+We could launch into a discussion of which aspects of mathematics are used in the world of finance, but I suspect that it would be rather jumping in at the deep end. My suspicion is that many people are not even aware of what the business of financial markets is, what the different jobs are, let alone what mathematical problems lurk within.
+
+By financial markets, I am talking about the business of trading (buying and selling) risk. So I am not talking about the 'retail' side of banking (i.e. your high street bank) and nor am I talking about advisory activities (mergers and acquisitions). While the familiar high street banks have financial market operations (Barclays, Royal Bank of Scotland etc.) the names of the big financial market players may be less familiar (Morgan-Chase, Deutsche Bank, Goldman Sachs, Merrill Lynch, Credit Suisse etc.)
+
+If you ask a chocolate manufacturer to describe his business, he will do it in one of two ways. He may talk about his different product lines (different brands of chocolate). Alternatively, he may talk about the different jobs that exist in his company - salesmen, production, quality control etc. It is exactly the same in the financial markets, and I am going to describe the business in both ways. I am going to describe the common "asset classes" that are traded (product lines) and the different roles that an employee may have. Having identified the role of the mathematician, I am going to try to illustrate some of the problems that he will come up against and then finally give some idea of starting salaries.
+
+The common Asset Classes
+
+What do we mean by risk? A bank has risk on "something" if the bank will lose (or make) money if that something goes up or down in value. There are a huge number of things on which a bank may have risk, so they are grouped (categorised) into "asset classes". The most common 5 types of asset class are:
+
+    Interest rates. These are the rates at which individuals, banks, corporates and sovereigns (i.e. governments) borrow and lend money. Rates are usually quoted to the nearest 0.01% and range in term from overnight to 30 years or beyond.
+    Foreign exchange. The rate at which one currency can be sold to buy another. If I have 1,000 pounds and an overdraft of 1,400 dollars, then the net value is zero if the exchange rate is 1.4. If the rate goes to 1.39, then I have a net overdraft.
+    Credit. If I loan money to Argentina, then I should demand a much higher rate of interest than if I loan money to the UK, because there is a greater likelihood that Argentina will not repay its debt and I won't get my money back.
+    Equities. This is just another name for shares, such as Marks & Spencer or Microsoft.
+    Commodities. Here we are talking about tangible things like oil, gas, gold etc.
+
+There are plenty of other more exotic ones, such as weather derivatives.
+
+What prompts a bank to enter into a trade? It will be for one of three reasons:
+
+    New business. The bank is helping a client (corporate or government) to manage (reduce) its risk.
+    Hedging. Due to market moves in interest rates, foreign exchange etc., the risk that a bank is exposed to has now increased. It therefore executes a trade to reduce the risk back to an acceptable level.
+    Proprietory. The bank has a 'view' (an opinion) on what is going to happen to interest rates etc. It therefore enters into a trade which will make it money if the view is correct (and will lose it money if the view is incorrect). It is basically gambling, but goes by the more dignified title of 'proprietory trading'.
+
+    Case 1 is the most important since that is where the bank is actually providing a service for someone else other than for just another bank. Take a few examples:
+        A corporate (e.g. IBM) finds that it is cheaper to borrow money in Sterling (GBP) than in Swiss Francs (CHF), but actually needs CHF. IBM achieves its goals of cheap funding in CHF via two transactions:
+
+        Firstly, it borrows at a cheap rate in GBP. It gets GBP cash upfront and is committed to pay interest over the life of the loan.
+
+        Secondly, IBM enters into a "swap" (an interest rate product) with a bank. Under this swap, IBM gives the bank the GBP cash that it has raised, and the bank pays the GBP interest on the loan. At the same time, the bank gives IBM CHF upfront, and IBM pays CHF interest to the bank.
+
+        From IBM's perspective, all the GBP cashflows cancel. On the CHF side IBM is getting cash upfront and paying interest going forward which is exactly what it wanted to do.
+        Suppose a UK retailer (whose earnings are obviously in Sterling) orders some clothing to be made in South Africa. The retailer will have to pay South African Rand for the clothes in the future. Rather than bear the risk of exchange rates moving, it enters into an "FX outright" (foreign exchange product) whereby a bank guarantees a sterling/Rand exchange rate at some point in the future.
+
+    These are the most basic types of trades. They get much more interesting when we start talking about "options" (the right but not the obligation to enter into some sort of transaction).
+
+    Roles within Financial Markets
+
+    People working in the financial markets are charcterised by the asset class (or classes) that they cover, and also what they do. The four main roles are (and I am leaving out all support functions here, like legal, accounting, settlement, IT etc.):
+        Sales
+        Structuring
+        Trading
+        Derivatives Research (commonly known as "quants")
+
+    Sales staff are like sales staff in every industry - they talk to clients, build up relationships with them, discuss what their clients are concerned about (or what the bank is trying to sell). They are rarely experts in the multitude of products available - their skill is in relationships and breadth of knowledge rather than depth - they simply need to be honest enough (with themselves) to ask other for help where necessary.
+
+    Structurers are more the experts in particular fields. They exist to provide a service to sales staff to come up with innovative and tailored solutions to client problems. They will also have built up experience of regulatory/accounting issues that may arise and how to solve them. They are very capable of pricing transactions, will have some understanding of how the trader will manage the risk of the trade, and have some familiarity with the workings of pricing models.
+
+    As trades come closer to dealing (the simplest deal can take 10 seconds from start to finish, more complex ones can easily take 6 months) the trader will become increasingly involved. He is the person who commits the bank to taking on risk, and will have risk limits within which he operates. Ultimate responsibility for a transaction pricing lies with the trader. When a deal is done, the sales/structuring effort moves on to something else, and the trader is responsible for ensuring that the deal is managed throughout its life so as not to lose money. He will do so by "hedging" - performing additional deals to minimise the net risks that he is exposed to. The mathematical skills of the trader depend very much on what type of risk he is tasked with managing. At the most technical end of the spectrum (so-called "hybrid" or "exotics" traders) it is a very technical task demanding clear understanding of pricing models and techniques. Ultimately, if a deal subsequently loses money, it is almost always the trader who takes the blame.
+
+    While the above description sketches the lifecycle of the deal, it gives no hint of the complexity of pricing that can be involved. Just as in physics, the financial community develops models to describe how the various assets move and interrelate. This is the job of the "quant". If a transaction is complex, a quant will also be involved in the pricing effort. He or she will advise on which models are suitable (if any), and if none are suitable the quant may either recommend not being involved with a trade (it being too risky or complex) or will set about producing a new model.
+
+    Mathematical Problems in Finance
+
+    What sort of mathematics is involved? Well many models mostly assume that asset prices go on "random walks". The simplest leads to a normal distribution, the most common leads to a lognormal distribution. The theory associated with these processes is "stochastic calculus" and has some unexpected results. For example, if y=f(x) and x is a stochastic variable, it is NOT true to say that dy=(df/dx)dx ! To do it correctly, you need something called Ito's lemma. To price an "option" on an asset which is evolving lognormally leads you to something called the "contingent claims equation", which is almost exactly the same as the partial differential equation for heat diffusion in physics! If you want to show that the contingent claims equation leads to the same result as an alternative approach which is intuitive (but analytically wrong) then you are going to need to be familiar with Green's functions. Does your problem involve both short term and long term interest rates? Then you had better be familiar with correlations, eigenvectors and eigenvalues. The list goes on - measure theory, sobol sequences for random numbers, poisson processes, nonlinear PDEs etc.
+
+    So if you like maths, you may want to at least explore the world of finance. To be a quant, you are most likely to need a PhD in something very mathematical. I have worked with quants (in London) who have been English, Dutch, French, Russian, Bulgarian, Romanian, Brazilian and Indian. The mix of nationalities in the business adds a lot to the enjoyment of the job. If degree level maths is as far as you go, then don't discount the other roles - there are some highly numerate people in them.
+
+    Early Salaries in Finance
+
+    The roles above may sound interesting, but what about pay? Firstly, a few observations:
+        As with any other career, don't focus solely on who is offering the most money. In the early years it is very important to be 'building up' your CV by doing lots of business in a range of asset classes and by there being plenty of people to learn from. It is much, much easier to move from a large respected institution than from somewhere that commands little respect.
+        It is easier to find a position within the support roles (IT, operations etc.) than in the roles I have described above. Think very carefully before joining a support role with a view to moving later. In my experience this is never easy.
+        The longer one works in the industry, the more the annual bonus dominates the salary. The bonus is, of course, discretionary and either a bad individual performance or poor market conditions (e.g. the default of Russia or the hangover from the Dot Com mania) could be a reason for it being severely curtailed. The bonus of an exceptional individual in any of the four roles will be much more than that of their more average peers.
+
+    As a graduate sales/structurer/trader, the starting salary is in the order of £35k. After 12 months, you will probably be in line for a bonus in the order of £15k. A few years later, I would guess that the base salary rises to about £60k with a bonus of maybe £75k.
+
+    For derivatives research, the starting salary and bonus is much the same. A few years later, I suspect that you are going to be lagging slightly the sale/structurer/trader in pay but the other side of the coin is that in hard times your job is more secure.
+
+    About the author
+
+    Andre has worked in the Financial Markets as a trader for the past 10 years. Over that period, he has traded interest rate and credit products in the emerging and developed markets. His particular area of concern is 'hybrid' products - pricing and managing combinations of interest rate, credit, foreign exchange and other types of risk. Andre has A levels in Maths, Further Maths, Physics, Chemistry and General Studies, and a degree from Cambridge in Natural Sciences.

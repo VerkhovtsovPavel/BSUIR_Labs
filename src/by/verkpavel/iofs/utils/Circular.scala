@@ -1,9 +1,12 @@
+package by.verkpavel.iofs.utils
+
 import scala.collection.mutable
 
 class Circular[A](list: Seq[A]) extends Iterator[A]{
 
   val elements = new mutable.Queue[A] ++= list
   var pos = 0
+  val realSize = list.length
 
   def next = {
     if (pos == elements.length)

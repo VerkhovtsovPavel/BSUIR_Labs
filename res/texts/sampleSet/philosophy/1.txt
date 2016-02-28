@@ -1,23 +1,714 @@
-WE were once taught that after having slept soundly through “the Dark Ages,” Europe was suddenly awakened in 1453 by the Fall of Constantinople. We now know that it had been light all the while and that Europe had, to say the least, been in a very lively state of somnambulism. We know that for many centuries before 1453 men had been living very intensely and very nobly; and with a seriousness and elevation of thought that have perhaps had no parallel. The age that created Gothic art, and dreamed so splendid a dream as the Holy Roman Empire, can scarcely be said to be lacking in imagination and enlightenment.	  1
-  But that something important happened to the European mind in and about the fifteenth century no scholar is so iconoclastic as to deny. It was not so much an awakening of thought as a change of direction which proved in the sequel to be amazingly fruitful. It may perhaps best be described as a return to the sources. This is characteristic of all of its more notable manifestations, such as the retrospect of antiquity, the reexamination of institutions, and the more direct observation of nature. This turn of thought back to the originals and roots of things, this general freshening up by the admixture of new experiences, had its effects upon every interest and work of man. So there was, among other things, a Renaissance philosophy, which meant chiefly a new study of some ancient philosophy. Pico of Mirandola founded a new cult of Plato; Pomponatius defended the Greek or Alexandrist interpretation of Aristotle against the Averroist and orthodox interpretations; while Montaigne 1 revived the ancient scepticism. But what was more significant for the future of philosophy, came not directly through the influence of the spirit of the age upon philosophy, but through the influence of this spirit first upon science, and, indirectly through science, upon philosophy. The great men of the age, so far as the future of philosophy is concerned, were not Pico and Pomponatius, but Copernicus and Galileo.	  2
+ Let us leave the Pythagoreans for the present; for it is enough to
+have touched on them as much as we have done. But as for those who
+posit the Ideas as causes, firstly, in seeking to grasp the causes
+of the things around us, they introduced others equal in number to
+these, as if a man who wanted to count things thought he would not
+be able to do it while they were few, but tried to count them when
+he had added to their number. For the Forms are practically equal
+to-or not fewer than-the things, in trying to explain which these
+thinkers proceeded from them to the Forms. For to each thing there
+answers an entity which has the same name and exists apart from the
+substances, and so also in the case of all other groups there is a one
+over many, whether the many are in this world or are eternal.
+    Further, of the ways in which we prove that the Forms exist,
+none is convincing; for from some no inference necessarily follows,
+and from some arise Forms even of things of which we think there are
+no Forms. For according to the arguments from the existence of the
+sciences there will be Forms of all things of which there are sciences
+and according to the 'one over many' argument there will be Forms even
+of negations, and according to the argument that there is an object
+for thought even when the thing has perished, there will be Forms of
+perishable things; for we have an image of these. Further, of the more
+accurate arguments, some lead to Ideas of relations, of which we say
+there is no independent class, and others introduce the 'third man'.
+    And in general the arguments for the Forms destroy the things
+for whose existence we are more zealous than for the existence of
+the Ideas; for it follows that not the dyad but number is first,
+i.e. that the relative is prior to the absolute,-besides all the other
+points on which certain people by following out the opinions held
+about the Ideas have come into conflict with the principles of the
+theory.
+    Further, according to the assumption on which our belief in the
+Ideas rests, there will be Forms not only of substances but also of
+many other things (for the concept is single not only in the case of
+substances but also in the other cases, and there are sciences not
+only of substance but also of other things, and a thousand other
+such difficulties confront them). But according to the necessities
+of the case and the opinions held about the Forms, if Forms can be
+shared in there must be Ideas of substances only. For they are not
+shared in incidentally, but a thing must share in its Form as in
+something not predicated of a subject (by 'being shared in
+incidentally' I mean that e.g. if a thing shares in 'double itself',
+it shares also in 'eternal', but incidentally; for 'eternal' happens
+to be predicable of the 'double'). Therefore the Forms will be
+substance; but the same terms indicate substance in this and in the
+ideal world (or what will be the meaning of saying that there is
+something apart from the particulars-the one over many?). And if the
+Ideas and the particulars that share in them have the same form, there
+will be something common to these; for why should '2' be one and the
+same in the perishable 2's or in those which are many but eternal, and
+not the same in the '2' itself' as in the particular 2? But if they
+have not the same form, they must have only the name in common, and it
+is as if one were to call both Callias and a wooden image a 'man',
+without observing any community between them.
+    Above all one might discuss the question what on earth the Forms
+contribute to sensible things, either to those that are eternal or
+to those that come into being and cease to be. For they cause
+neither movement nor any change in them. But again they help in no
+wise either towards the knowledge of the other things (for they are
+not even the substance of these, else they would have been in them),
+or towards their being, if they are not in the particulars which share
+in them; though if they were, they might be thought to be causes, as
+white causes whiteness in a white object by entering into its
+composition. But this argument, which first Anaxagoras and later
+Eudoxus and certain others used, is very easily upset; for it is not
+difficult to collect many insuperable objections to such a view.
+    But, further, all other things cannot come from the Forms in any
+of the usual senses of 'from'. And to say that they are patterns and
+the other things share in them is to use empty words and poetical
+metaphors. For what is it that works, looking to the Ideas? And
+anything can either be, or become, like another without being copied
+from it, so that whether Socrates or not a man Socrates like might
+come to be; and evidently this might be so even if Socrates were
+eternal. And there will be several patterns of the same thing, and
+therefore several Forms; e.g. 'animal' and 'two-footed' and also
+'man himself' will be Forms of man. Again, the Forms are patterns
+not only sensible things, but of Forms themselves also; i.e. the
+genus, as genus of various species, will be so; therefore the same
+thing will be pattern and copy.
+    Again, it would seem impossible that the substance and that of
+which it is the substance should exist apart; how, therefore, could
+the Ideas, being the substances of things, exist apart? In the Phaedo'
+the case is stated in this way-that the Forms are causes both of being
+and of becoming; yet when the Forms exist, still the things that share
+in them do not come into being, unless there is something to originate
+movement; and many other things come into being (e.g. a house or a
+ring) of which we say there are no Forms. Clearly, therefore, even the
+other things can both be and come into being owing to such causes as
+produce the things just mentioned.
+    Again, if the Forms are numbers, how can they be causes? Is it
+because existing things are other numbers, e.g. one number is man,
+another is Socrates, another Callias? Why then are the one set of
+numbers causes of the other set? It will not make any difference
+even if the former are eternal and the latter are not. But if it is
+because things in this sensible world (e.g. harmony) are ratios of
+numbers, evidently the things between which they are ratios are some
+one class of things. If, then, this--the matter--is some definite
+thing, evidently the numbers themselves too will be ratios of
+something to something else. E.g. if Callias is a numerical ratio
+between fire and earth and water and air, his Idea also will be a
+number of certain other underlying things; and man himself, whether it
+is a number in a sense or not, will still be a numerical ratio of
+certain things and not a number proper, nor will it be a of number
+merely because it is a numerical ratio.
+    Again, from many numbers one number is produced, but how can one
+Form come from many Forms? And if the number comes not from the many
+numbers themselves but from the units in them, e.g. in 10,000, how
+is it with the units? If they are specifically alike, numerous
+absurdities will follow, and also if they are not alike (neither the
+units in one number being themselves like one another nor those in
+other numbers being all like to all); for in what will they differ, as
+they are without quality? This is not a plausible view, nor is it
+consistent with our thought on the matter.
+    Further, they must set up a second kind of number (with which
+arithmetic deals), and all the objects which are called 'intermediate'
+by some thinkers; and how do these exist or from what principles do
+they proceed? Or why must they be intermediate between the things in
+this sensible world and the things-themselves?
+    Further, the units in must each come from a prior but this is
+impossible.
+    Further, why is a number, when taken all together, one?
+    Again, besides what has been said, if the units are diverse the
+Platonists should have spoken like those who say there are four, or
+two, elements; for each of these thinkers gives the name of element
+not to that which is common, e.g. to body, but to fire and earth,
+whether there is something common to them, viz. body, or not. But in
+fact the Platonists speak as if the One were homogeneous like fire
+or water; and if this is so, the numbers will not be substances.
+Evidently, if there is a One itself and this is a first principle,
+'one' is being used in more than one sense; for otherwise the theory
+is impossible.
+    When we wish to reduce substances to their principles, we state
+that lines come from the short and long (i.e. from a kind of small and
+great), and the plane from the broad and narrow, and body from the
+deep and shallow. Yet how then can either the plane contain a line, or
+the solid a line or a plane? For the broad and narrow is a different
+class from the deep and shallow. Therefore, just as number is not
+present in these, because the many and few are different from these,
+evidently no other of the higher classes will be present in the lower.
+But again the broad is not a genus which includes the deep, for then
+the solid would have been a species of plane. Further, from what
+principle will the presence of the points in the line be derived?
+Plato even used to object to this class of things as being a
+geometrical fiction. He gave the name of principle of the line-and
+this he often posited-to the indivisible lines. Yet these must have
+a limit; therefore the argument from which the existence of the line
+follows proves also the existence of the point.
+    In general, though philosophy seeks the cause of perceptible
+things, we have given this up (for we say nothing of the cause from
+which change takes its start), but while we fancy we are stating the
+substance of perceptible things, we assert the existence of a second
+class of substances, while our account of the way in which they are
+the substances of perceptible things is empty talk; for 'sharing',
+as we said before, means nothing.
+    Nor have the Forms any connexion with what we see to be the
+cause in the case of the arts, that for whose sake both all mind and
+the whole of nature are operative,-with this cause which we assert
+to be one of the first principles; but mathematics has come to be
+identical with philosophy for modern thinkers, though they say that it
+should be studied for the sake of other things. Further, one might
+suppose that the substance which according to them underlies as matter
+is too mathematical, and is a predicate and differentia of the
+substance, ie. of the matter, rather than matter itself; i.e. the
+great and the small are like the rare and the dense which the physical
+philosophers speak of, calling these the primary differentiae of the
+substratum; for these are a kind of excess and defect. And regarding
+movement, if the great and the small are to he movement, evidently the
+Forms will be moved; but if they are not to be movement, whence did
+movement come? The whole study of nature has been annihilated.
+    And what is thought to be easy-to show that all things are
+one-is not done; for what is proved by the method of setting out
+instances is not that all things are one but that there is a One
+itself,-if we grant all the assumptions. And not even this follows, if
+we do not grant that the universal is a genus; and this in some
+cases it cannot be.
+    Nor can it be explained either how the lines and planes and solids
+that come after the numbers exist or can exist, or what significance
+they have; for these can neither be Forms (for they are not
+numbers), nor the intermediates (for those are the objects of
+mathematics), nor the perishable things. This is evidently a
+distinct fourth class.
+    In general, if we search for the elements of existing things
+without distinguishing the many senses in which things are said to
+exist, we cannot find them, especially if the search for the
+elements of which things are made is conducted in this manner. For
+it is surely impossible to discover what 'acting' or 'being acted on',
+or 'the straight', is made of, but if elements can be discovered at
+all, it is only the elements of substances; therefore either to seek
+the elements of all existing things or to think one has them is
+incorrect.
+    And how could we learn the elements of all things? Evidently we
+cannot start by knowing anything before. For as he who is learning
+geometry, though he may know other things before, knows none of the
+things with which the science deals and about which he is to learn, so
+is it in all other cases. Therefore if there is a science of all
+things, such as some assert to exist, he who is learning this will
+know nothing before. Yet all learning is by means of premisses which
+are (either all or some of them) known before,-whether the learning be
+by demonstration or by definitions; for the elements of the definition
+must be known before and be familiar; and learning by induction
+proceeds similarly. But again, if the science were actually innate, it
+were strange that we are unaware of our possession of the greatest
+of sciences.
+    Again, how is one to come to know what all things are made of, and
+how is this to be made evident? This also affords a difficulty; for
+there might be a conflict of opinion, as there is about certain
+syllables; some say za is made out of s and d and a, while others
+say it is a distinct sound and none of those that are familiar.
+    Further, how could we know the objects of sense without having the
+sense in question? Yet we ought to, if the elements of which all
+things consist, as complex sounds consist of the clements proper to
+sound, are the same.
+                                  10
 
-THE COPERNICAN DISCOVERY
+    It is evident, then, even from what we have said before, that
+all men seem to seek the causes named in the Physics, and that we
+cannot name any beyond these; but they seek these vaguely; and
+though in a sense they have all been described before, in a sense they
+have not been described at all. For the earliest philosophy is, on all
+subjects, like one who lisps, since it is young and in its beginnings.
+For even Empedocles says bone exists by virtue of the ratio in it. Now
+this is the essence and the substance of the thing. But it is
+similarly necessary that flesh and each of the other tissues should be
+the ratio of its elements, or that not one of them should; for it is
+on account of this that both flesh and bone and everything else will
+exist, and not on account of the matter, which he names,-fire and
+earth and water and air. But while he would necessarily have agreed if
+another had said this, he has not said it clearly.
+    On these questions our views have been expressed before; but let
+us return to enumerate the difficulties that might be raised on
+these same points; for perhaps we may get from them some help
+towards our later difficulties.
+                                Book II
+                                   1
 
-  Copernicus 2 ventured to assert that the earth moved. He could scarcely have astonished and disturbed men more if he had actually set it moving. The belief in the earth as the firm center of creation, lighted by sun and moon, encircled by celestial spheres, and furnished for the great drama of man’s fall and redemption—this belief was itself the firm center of all human belief. It seemed impossible to move it without bringing down in ruin that whole grand scheme of things to which man had been fitting himself for centuries, and where he had at length come to feel himself at home. How shall one find a place for God, and a place for man, and how shall they find one another, in a universe with neither beginning nor end, neither center nor boundaries? This was the problem to which the great martyr Bruno devoted himself, and his death in 1600 may well serve as a monument to mark the beginning of modern philosophy.	  3
-  Bruno saw that the world can no longer be divided into terrestrial and celestial regions, with the empyrean beyond. There can be no God above nature, or before or after nature, because nature itself is infinite. The universe is a system of countless worlds, none more divine than the rest. God is therefore not local, but universal; he is the life and beauty of the whole. This idea, recovered by Bruno from Stoicism and Neo-Platonism, and appropriated to the needs of the age which Copernicus had robbed of its ancient landmarks, persisted in the latent pantheism of Descartes and his followers, and in the avowed pantheism of Spinoza, was suffered to lapse during the eighteenth century, was revived again by Lessing 3 and Herder, and became one of the central ideas of the great Romantic and Hegelian movements in Germany in the nineteenth century.	  4
+    THE investigation of the truth is in one way hard, in another
+easy. An indication of this is found in the fact that no one is able
+to attain the truth adequately, while, on the other hand, we do not
+collectively fail, but every one says something true about the
+nature of things, and while individually we contribute little or
+nothing to the truth, by the union of all a considerable amount is
+amassed. Therefore, since the truth seems to be like the proverbial
+door, which no one can fail to hit, in this respect it must be easy,
+but the fact that we can have a whole truth and not the particular
+part we aim at shows the difficulty of it.
+    Perhaps, too, as difficulties are of two kinds, the cause of the
+present difficulty is not in the facts but in us. For as the eyes of
+bats are to the blaze of day, so is the reason in our soul to the
+things which are by nature most evident of all.
+    It is just that we should be grateful, not only to those with
+whose views we may agree, but also to those who have expressed more
+superficial views; for these also contributed something, by developing
+before us the powers of thought. It is true that if there had been
+no Timotheus we should have been without much of our lyric poetry; but
+if there had been no Phrynis there would have been no Timotheus. The
+same holds good of those who have expressed views about the truth; for
+from some thinkers we have inherited certain opinions, while the
+others have been responsible for the appearance of the former.
+    It is right also that philosophy should be called knowledge of the
+truth. For the end of theoretical knowledge is truth, while that of
+practical knowledge is action (for even if they consider how things
+are, practical men do not study the eternal, but what is relative
+and in the present). Now we do not know a truth without its cause; and
+a thing has a quality in a higher degree than other things if in
+virtue of it the similar quality belongs to the other things as well
+(e.g. fire is the hottest of things; for it is the cause of the heat
+of all other things); so that that causes derivative truths to be true
+is most true. Hence the principles of eternal things must be always
+most true (for they are not merely sometimes true, nor is there any
+cause of their being, but they themselves are the cause of the being
+of other things), so that as each thing is in respect of being, so
+is it in respect of truth.
+                                   2
 
-THE CONTRIBUTION OF GALILEO
+    But evidently there is a first principle, and the causes of things
+are neither an infinite series nor infinitely various in kind. For
+neither can one thing proceed from another, as from matter, ad
+infinitum (e.g. flesh from earth, earth from air, air from fire, and
+so on without stopping), nor can the sources of movement form an
+endless series (man for instance being acted on by air, air by the
+sun, the sun by Strife, and so on without limit). Similarly the
+final causes cannot go on ad infinitum,-walking being for the sake
+of health, this for the sake of happiness, happiness for the sake of
+something else, and so one thing always for the sake of another. And
+the case of the essence is similar. For in the case of
+intermediates, which have a last term and a term prior to them, the
+prior must be the cause of the later terms. For if we had to say which
+of the three is the cause, we should say the first; surely not the
+last, for the final term is the cause of none; nor even the
+intermediate, for it is the cause only of one. (It makes no difference
+whether there is one intermediate or more, nor whether they are
+infinite or finite in number.) But of series which are infinite in
+this way, and of the infinite in general, all the parts down to that
+now present are alike intermediates; so that if there is no first
+there is no cause at all.
+    Nor can there be an infinite process downwards, with a beginning
+in the upward direction, so that water should proceed from fire, earth
+from water, and so always some other kind should be produced. For
+one thing comes from another in two ways-not in the sense in which
+'from' means 'after' (as we say 'from the Isthmian games come the
+Olympian'), but either (i) as the man comes from the boy, by the boy's
+changing, or (ii) as air comes from water. By 'as the man comes from
+the boy' we mean 'as that which has come to be from that which is
+coming to be' or 'as that which is finished from that which is being
+achieved' (for as becoming is between being and not being, so that
+which is becoming is always between that which is and that which is
+not; for the learner is a man of science in the making, and this is
+what is meant when we say that from a learner a man of science is
+being made); on the other hand, coming from another thing as water
+comes from air implies the destruction of the other thing. This is why
+changes of the former kind are not reversible, and the boy does not
+come from the man (for it is not that which comes to be something that
+comes to be as a result of coming to be, but that which exists after
+the coming to be; for it is thus that the day, too, comes from the
+morning-in the sense that it comes after the morning; which is the
+reason why the morning cannot come from the day); but changes of the
+other kind are reversible. But in both cases it is impossible that the
+number of terms should be infinite. For terms of the former kind,
+being intermediates, must have an end, and terms of the latter kind
+change back into one another, for the destruction of either is the
+generation of the other.
+    At the same time it is impossible that the first cause, being
+eternal, should be destroyed; for since the process of becoming is not
+infinite in the upward direction, that which is the first thing by
+whose destruction something came to be must be non-eternal.
+    Further, the final cause is an end, and that sort of end which
+is not for the sake of something else, but for whose sake everything
+else is; so that if there is to be a last term of this sort, the
+process will not be infinite; but if there is no such term, there will
+be no final cause, but those who maintain the infinite series
+eliminate the Good without knowing it (yet no one would try to do
+anything if he were not going to come to a limit); nor would there
+be reason in the world; the reasonable man, at least, always acts
+for a purpose, and this is a limit; for the end is a limit.
+    But the essence, also, cannot be reduced to another definition
+which is fuller in expression. For the original definition is always
+more of a definition, and not the later one; and in a series in
+which the first term has not the required character, the next has
+not it either. Further, those who speak thus destroy science; for it
+is not possible to have this till one comes to the unanalysable terms.
+And knowledge becomes impossible; for how can one apprehend things
+that are infinite in this way? For this is not like the case of the
+line, to whose divisibility there is no stop, but which we cannot
+think if we do not make a stop (for which reason one who is tracing
+the infinitely divisible line cannot be counting the possibilities
+of section), but the whole line also must be apprehended by
+something in us that does not move from part to part.-Again, nothing
+infinite can exist; and if it could, at least the notion of infinity
+is not infinite.
+    But if the kinds of causes had been infinite in number, then
+also knowledge would have been impossible; for we think we know,
+only when we have ascertained the causes, that but that which is
+infinite by addition cannot be gone through in a finite time.
+                                   3
 
-  Copernicus contributed to modern thought an epoch-making hypothesis. Galileo contributed something less definite, but even more germinal—a new method. It would be safer to say that he represented two methods, the method of discovery, and the method of exact or mathematical description. He was neither the only discoverer of his age nor the only mathematical physicist, but he was the preeminent embodiment of both of these moving ideas.	  5
-  In 1610, a year or so after the construction of his telescope, Galileo published his “Sidereal Messenger,” “announcing,” to quote from the title-page, “great and very wonderful spectacles, and offering them to the consideration of every one, but especially of philosophers and astronomers; which have been observed by Galileo Galilei … by the assistance of a perspective glass lately invented by him; namely, in the face of the moon, in innumerable fixed stars in the milky-way, in nebulous stars, but especially in four planets which revolve round Jupiter at different intervals and periods with a wonderful celerity.” This is the Galileo of the telescope, the prophet of an age of discovery. But greater than the Galileo of the telescope is the Galileo who formulated the three laws of motion, and so became the founder of the modern science of dynamics. He explained the fall of bodies to the earth, not by ascribing them to a vague force of gravity, but by formulating exact mathematical ratios of time and distance, so that it was possible to deduce, predict and prove, with quantitative exactness. In other words he brought the clearness and certainty of mathematics into the field of physical events.	  6
+    The effect which lectures produce on a hearer depends on his
+habits; for we demand the language we are accustomed to, and that
+which is different from this seems not in keeping but somewhat
+unintelligible and foreign because of its unwontedness. For it is
+the customary that is intelligible. The force of habit is shown by the
+laws, in which the legendary and childish elements prevail over our
+knowledge about them, owing to habit. Thus some people do not listen
+to a speaker unless he speaks mathematically, others unless he gives
+instances, while others expect him to cite a poet as witness. And some
+want to have everything done accurately, while others are annoyed by
+accuracy, either because they cannot follow the connexion of thought
+or because they regard it as pettifoggery. For accuracy has
+something of this character, so that as in trade so in argument some
+people think it mean. Hence one must be already trained to know how to
+take each sort of argument, since it is absurd to seek at the same
+time knowledge and the way of attaining knowledge; and it is not
+easy to get even one of the two.
+    The minute accuracy of mathematics is not to be demanded in all
+cases, but only in the case of things which have no matter. Hence
+method is not that of natural science; for presumably the whole of
+nature has matter. Hence we must inquire first what nature is: for
+thus we shall also see what natural science treats of (and whether
+it belongs to one science or to more to investigate the causes and the
+principles of things).
+                                Book III
+                                   1
 
-MODERN EMPIRICISM
+    WE must, with a view to the science which we are seeking, first
+recount the subjects that should be first discussed. These include
+both the other opinions that some have held on the first principles,
+and any point besides these that happens to have been overlooked.
+For those who wish to get clear of difficulties it is advantageous
+to discuss the difficulties well; for the subsequent free play of
+thought implies the solution of the previous difficulties, and it is
+not possible to untie a knot of which one does not know. But the
+difficulty of our thinking points to a 'knot' in the object; for in so
+far as our thought is in difficulties, it is in like case with those
+who are bound; for in either case it is impossible to go forward.
+Hence one should have surveyed all the difficulties beforehand, both
+for the purposes we have stated and because people who inquire without
+first stating the difficulties are like those who do not know where
+they have to go; besides, a man does not otherwise know even whether
+he has at any given time found what he is looking for or not; for
+the end is not clear to such a man, while to him who has first
+discussed the difficulties it is clear. Further, he who has heard
+all the contending arguments, as if they were the parties to a case,
+must be in a better position for judging.
+    The first problem concerns the subject which we discussed in our
+prefatory remarks. It is this-(1) whether the investigation of the
+causes belongs to one or to more sciences, and (2) whether such a
+science should survey only the first principles of substance, or
+also the principles on which all men base their proofs, e.g. whether
+it is possible at the same time to assert and deny one and the same
+thing or not, and all other such questions; and (3) if the science
+in question deals with substance, whether one science deals with all
+substances, or more than one, and if more, whether all are akin, or
+some of them must be called forms of Wisdom and the others something
+else. And (4) this itself is also one of the things that must be
+discussed-whether sensible substances alone should be said to exist or
+others also besides them, and whether these others are of one kind
+or there are several classes of substances, as is supposed by those
+who believe both in Forms and in mathematical objects intermediate
+between these and sensible things. Into these questions, then, as we
+say, we must inquire, and also (5) whether our investigation is
+concerned only with substances or also with the essential attributes
+of substances. Further, with regard to the same and other and like and
+unlike and contrariety, and with regard to prior and posterior and all
+other such terms about which the dialecticians try to inquire,
+starting their investigation from probable premises only,-whose
+business is it to inquire into all these? Further, we must discuss the
+essential attributes of these themselves; and we must ask not only
+what each of these is, but also whether one thing always has one
+contrary. Again (6), are the principles and elements of things the
+genera, or the parts present in each thing, into which it is
+divided; and (7) if they are the genera, are they the genera that
+are predicated proximately of the individuals, or the highest
+genera, e.g. is animal or man the first principle and the more
+independent of the individual instance? And (8) we must inquire and
+discuss especially whether there is, besides the matter, any thing
+that is a cause in itself or not, and whether this can exist apart
+or not, and whether it is one or more in number, and whether there
+is something apart from the concrete thing (by the concrete thing I
+mean the matter with something already predicated of it), or there
+is nothing apart, or there is something in some cases though not in
+others, and what sort of cases these are. Again (9) we ask whether the
+principles are limited in number or in kind, both those in the
+definitions and those in the substratum; and (10) whether the
+principles of perishable and of imperishable things are the same or
+different; and whether they are all imperishable or those of
+perishable things are perishable. Further (11) there is the question
+which is hardest of all and most perplexing, whether unity and
+being, as the Pythagoreans and Plato said, are not attributes of
+something else but the substance of existing things, or this is not
+the case, but the substratum is something else,-as Empedocles says,
+love; as some one else says, fire; while another says water or air.
+Again (12) we ask whether the principles are universal or like
+individual things, and (13) whether they exist potentially or
+actually, and further, whether they are potential or actual in any
+other sense than in reference to movement; for these questions also
+would present much difficulty. Further (14), are numbers and lines and
+figures and points a kind of substance or not, and if they are
+substances are they separate from sensible things or present in
+them? With regard to all these matters not only is it hard to get
+possession of the truth, but it is not easy even to think out the
+difficulties well.
+                                   2
 
-  Now this twofold influence of Galileo is the most important source of what is new in modern philosophy. Bacon and Locke were philosophical observers, trusting sense above reason, and animated by the spirit of discovery. Descartes, Hobbes, and Spinoza were mathematical philosophers, advocates of reason, not so much concerned at first to widen knowledge as to make it more certain.	  7
-  Bacon (1561–1626) was the founder of modern “empiricism,” or the philosophy of sense-experience. He criticized those faults of his age that he thought stood in the way of clear seeing, such faults as verbalism, anthropomorphism, or undue regard for tradition and authority. He formulated a new “Organon” (“Novum Organum” 4), a logic and methodology which was to correct and supplement the Aristotelian organon, and afford a basis for scientific procedure. But Bacon was significant not so much for what he formulated as for what he prophesied. He was the first to dream that magnificent dream which has been so largely realized in the course of the last century: the dream of the progressive control of nature through the patient and self-denying study of it. The kingdom of man, the “New Atlantis,” 5 is to be founded on knowledge. “Human knowledge and human power meet in one; for where the cause is not known, the effect cannot be produced. Nature to be commanded must be obeyed; and that which in contemplation is as the cause, is in operation as the rule.” Observe nature in order that you may use nature, thus converting it into the habitation, instrument, and treasure of man. Here is the supreme maxim of our modern world, and the chief ground of its peculiar confidence and hopefulness.	  8
+    (1) First then with regard to what we mentioned first, does it
+belong to one or to more sciences to investigate all the kinds of
+causes? How could it belong to one science to recognize the principles
+if these are not contrary?
+    Further, there are many things to which not all the principles
+pertain. For how can a principle of change or the nature of the good
+exist for unchangeable things, since everything that in itself and
+by its own nature is good is an end, and a cause in the sense that for
+its sake the other things both come to be and are, and since an end or
+purpose is the end of some action, and all actions imply change? So in
+the case of unchangeable things this principle could not exist, nor
+could there be a good itself. This is why in mathematics nothing is
+proved by means of this kind of cause, nor is there any
+demonstration of this kind-'because it is better, or worse'; indeed no
+one even mentions anything of the kind. And so for this reason some of
+the Sophists, e.g. Aristippus, used to ridicule mathematics; for in
+the arts (he maintained), even in the industrial arts, e.g. in
+carpentry and cobbling, the reason always given is 'because it is
+better, or worse,' but the mathematical sciences take no account of
+goods and evils.
+    But if there are several sciences of the causes, and a different
+science for each different principle, which of these sciences should
+be said to be that which we seek, or which of the people who possess
+them has the most scientific knowledge of the object in question?
+The same thing may have all the kinds of causes, e.g. the moving cause
+of a house is the art or the builder, the final cause is the
+function it fulfils, the matter is earth and stones, and the form is
+the definition. To judge from our previous discussion of the
+question which of the sciences should be called Wisdom, there is
+reason for applying the name to each of them. For inasmuch as it is
+most architectonic and authoritative and the other sciences, like
+slavewomen, may not even contradict it, the science of the end and
+of the good is of the nature of Wisdom (for the other things are for
+the sake of the end). But inasmuch as it was described' as dealing
+with the first causes and that which is in the highest sense object of
+knowledge, the science of substance must be of the nature of Wisdom.
+For since men may know the same thing in many ways, we say that he who
+recognizes what a thing is by its being so and so knows more fully
+than he who recognizes it by its not being so and so, and in the
+former class itself one knows more fully than another, and he knows
+most fully who knows what a thing is, not he who knows its quantity or
+quality or what it can by nature do or have done to it. And further in
+all cases also we think that the knowledge of each even of the
+things of which demonstration is possible is present only when we know
+what the thing is, e.g. what squaring a rectangle is, viz. that it
+is the finding of a mean; and similarly in all other cases. And we
+know about becomings and actions and about every change when we know
+the source of the movement; and this is other than and opposed to
+the end. Therefore it would seem to belong to different sciences to
+investigate these causes severally.
+    But (2), taking the starting-points of demonstration as well as
+the causes, it is a disputable question whether they are the object of
+one science or of more (by the starting-points of demonstration I mean
+the common beliefs, on which all men base their proofs); e.g. that
+everything must be either affirmed or denied, and that a thing
+cannot at the same time be and not be, and all other such
+premisses:-the question is whether the same science deals with them as
+with substance, or a different science, and if it is not one
+science, which of the two must be identified with that which we now
+seek.-It is not reasonable that these topics should be the object of
+one science; for why should it be peculiarly appropriate to geometry
+or to any other science to understand these matters? If then it
+belongs to every science alike, and cannot belong to all, it is not
+peculiar to the science which investigates substances, any more than
+to any other science, to know about these topics.-And, at the same
+time, in what way can there be a science of the first principles?
+For we are aware even now what each of them in fact is (at least
+even other sciences use them as familiar); but if there is a
+demonstrative science which deals with them, there will have to be
+an underlying kind, and some of them must be demonstrable attributes
+and others must be axioms (for it is impossible that there should be
+demonstration about all of them); for the demonstration must start
+from certain premisses and be about a certain subject and prove
+certain attributes. Therefore it follows that all attributes that
+are proved must belong to a single class; for all demonstrative
+sciences use the axioms.
+    But if the science of substance and the science which deals with
+the axioms are different, which of them is by nature more
+authoritative and prior? The axioms are most universal and are
+principles of all things. And if it is not the business of the
+philosopher, to whom else will it belong to inquire what is true and
+what is untrue about them?
+    (3) In general, do all substances fall under one science or
+under more than one? If the latter, to what sort of substance is the
+present science to be assigned?-On the other hand, it is not
+reasonable that one science should deal with all. For then there would
+be one demonstrative science dealing with all attributes. For ever
+demonstrative science investigates with regard to some subject its
+essential attributes, starting from the common beliefs. Therefore to
+investigate the essential attributes of one class of things,
+starting from one set of beliefs, is the business of one science.
+For the subject belongs to one science, and the premisses belong to
+one, whether to the same or to another; so that the attributes do so
+too, whether they are investigated by these sciences or by one
+compounded out of them.
+    (5) Further, does our investigation deal with substances alone
+or also with their attributes? I mean for instance, if the solid is
+a substance and so are lines and planes, is it the business of the
+same science to know these and to know the attributes of each of these
+classes (the attributes about which the mathematical sciences offer
+proofs), or of a different science? If of the same, the science of
+substance also must be a demonstrative science, but it is thought that
+there is no demonstration of the essence of things. And if of another,
+what will be the science that investigates the attributes of
+substance? This is a very difficult question.
+    (4) Further, must we say that sensible substances alone exist,
+or that there are others besides these? And are substances of one kind
+or are there in fact several kinds of substances, as those say who
+assert the existence both of the Forms and of the intermediates,
+with which they say the mathematical sciences deal?-The sense in which
+we say the Forms are both causes and self-dependent substances has
+been explained in our first remarks about them; while the theory
+presents difficulties in many ways, the most paradoxical thing of
+all is the statement that there are certain things besides those in
+the material universe, and that these are the same as sensible
+things except that they are eternal while the latter are perishable.
+For they say there is a man-himself and a horse-itself and
+health-itself, with no further qualification,-a procedure like that of
+the people who said there are gods, but in human form. For they were
+positing nothing but eternal men, nor are the Platonists making the
+Forms anything other than eternal sensible things.
+    Further, if we are to posit besides the Forms and the sensibles
+the intermediates between them, we shall have many difficulties. For
+clearly on the same principle there will be lines besides the
+lines-themselves and the sensible lines, and so with each of the other
+classes of things; so that since astronomy is one of these
+mathematical sciences there will also be a heaven besides the sensible
+heaven, and a sun and a moon (and so with the other heavenly bodies)
+besides the sensible. Yet how are we to believe in these things? It is
+not reasonable even to suppose such a body immovable, but to suppose
+it moving is quite impossible.-And similarly with the things of
+which optics and mathematical harmonics treat; for these also cannot
+exist apart from the sensible things, for the same reasons. For if
+there are sensible things and sensations intermediate between Form and
+individual, evidently there will also be animals intermediate
+between animals-themselves and the perishable animals.-We might also
+raise the question, with reference to which kind of existing things we
+must look for these sciences of intermediates. If geometry is to
+differ from mensuration only in this, that the latter deals with
+things that we perceive, and the former with things that are not
+perceptible, evidently there will also be a science other than
+medicine, intermediate between medical-science-itself and this
+individual medical science, and so with each of the other sciences.
+Yet how is this possible? There would have to be also healthy things
+besides the perceptible healthy things and the healthy-itself.--And at
+the same time not even this is true, that mensuration deals with
+perceptible and perishable magnitudes; for then it would have perished
+when they perished.
+    But on the other hand astronomy cannot be dealing with perceptible
+magnitudes nor with this heaven above us. For neither are
+perceptible lines such lines as the geometer speaks of (for no
+perceptible thing is straight or round in the way in which he
+defines 'straight' and 'round'; for a hoop touches a straight edge not
+at a point, but as Protagoras used to say it did, in his refutation of
+the geometers), nor are the movements and spiral orbits in the heavens
+like those of which astronomy treats, nor have geometrical points
+the same nature as the actual stars.-Now there are some who say that
+these so-called intermediates between the Forms and the perceptible
+things exist, not apart from the perceptible things, however, but in
+these; the impossible results of this view would take too long to
+enumerate, but it is enough to consider even such points as the
+following:-It is not reasonable that this should be so only in the
+case of these intermediates, but clearly the Forms also might be in
+the perceptible things; for both statements are parts of the same
+theory. Further, it follows from this theory that there are two solids
+in the same place, and that the intermediates are not immovable, since
+they are in the moving perceptible things. And in general to what
+purpose would one suppose them to exist indeed, but to exist in
+perceptible things? For the same paradoxical results will follow which
+we have already mentioned; there will be a heaven besides the
+heaven, only it will be not apart but in the same place; which is
+still more impossible.
+                                   3
 
-MODERN RATIONALISM
-
-  Descartes and Hobbes were the founders of modern rationalism, but each in a different way. Descartes (1596–1650) found mathematics a model of procedure. In other words, he proposed that men should philosophize after the manner of mathematics. He did not believe that mathematics, with its applications to physics, was itself the highest knowledge. He sought rather to formulate a logic that should be as exact as mathematics, but more fundamental and universal; thus affording a basis for the demonstration of the higher truths concerning God and the soul. The “Discourse on Method” 6 is a record of the author’s profound regard for mathematics and of his own search for a like certainty in philosophy.	  9
-  But Hobbes (1588–1679) was a follower of Galileo in a different sense. He proposed not so much to imitate mathematics as to adopt and extend it. He represents that idea which La Place so eloquently proclaimed a century later, and which the work of Newton seemed so nearly to realize, the idea of a universal mechanism, in which the laws of bodily motion should apply even to the origins of nature and to man. It was hoped thus to bring it about that all things should be as demonstrably known, and as certainly predictable, as the velocities and orbits of the planets. To this end the author of “The Leviathan” 7 regards both man and society, the little man and the giant composite man, as simply delicate and complicated mechanisms, moved by an impulse of self-seeking.	  10
-  These, then, are the three forms in which the science of the Renaissance as embodied in Galileo is communicated to modern philosophy. Bacon, Descartes, and Hobbes became in turn the sources of the new tendencies that make up the philosophy of the seventeenth and eighteenth centuries. The empiricism of Bacon was renewed in Locke, 8 who applied “the plain historical method” to the study of the human mind; continued by Berkeley, 9 who reduced even being to perception (“esse est, percipi”); was brought to a sceptical crisis in Hume; 10 but persisted as the national philosophy of England. The rationalism of Descartes afforded a basis for the great metaphysical systems of Continental philosophy, for the monism of Spinoza and the pluralism of Leibnitz; was degraded to a mere formalism and dogmatism in Wolff; but nevertheless persisted in the new idealistic German philosophy which was inspired by Kant. The physical philosophy of Hobbes, mingled with similar elements drawn from the philosophies of Locke and Descartes, developed into the French materialistic movement which attended the outbreak of the Revolution, and remains the model for all philosophers who seek to make a metaphysics out of physics. The forms which these three tendencies assumed during the eighteenth century, and especially their excessive emphasis on facts and necessities, provoked the great reaction which bore fruit in the following century, but which was already anticipated in Pascal’s philosophy of faith, 11 in Rousseau’s philosophy of feeling, 12 and in Lessing’s philosophy of development. 13
+    (6) Apart from the great difficulty of stating the case truly with
+regard to these matters, it is very hard to say, with regard to the
+first principles, whether it is the genera that should be taken as
+elements and principles, or rather the primary constituents of a
+thing; e.g. it is the primary parts of which articulate sounds consist
+that are thought to be elements and principles of articulate sound,
+not the common genus-articulate sound; and we give the name of
+'elements' to those geometrical propositions, the proofs of which
+are implied in the proofs of the others, either of all or of most.
+Further, both those who say there are several elements of corporeal
+things and those who say there is one, say the parts of which bodies
+are compounded and consist are principles; e.g. Empedocles says fire
+and water and the rest are the constituent elements of things, but
+does not describe these as genera of existing things. Besides this, if
+we want to examine the nature of anything else, we examine the parts
+of which, e.g. a bed consists and how they are put together, and
+then we know its nature.
+    To judge from these arguments, then, the principles of things
+would not be the genera; but if we know each thing by its
+definition, and the genera are the principles or starting-points of
+definitions, the genera must also be the principles of definable
+things. And if to get the knowledge of the species according to
+which things are named is to get the knowledge of things, the genera
+are at least starting-points of the species. And some also of those
+who say unity or being, or the great and the small, are elements of
+things, seem to treat them as genera.
+    But, again, it is not possible to describe the principles in
+both ways. For the formula of the essence is one; but definition by
+genera will be different from that which states the constituent
+parts of a thing.
+    (7) Besides this, even if the genera are in the highest degree
+principles, should one regard the first of the genera as principles,
+or those which are predicated directly of the individuals? This also
+admits of dispute. For if the universals are always more of the nature
+of principles, evidently the uppermost of the genera are the
+principles; for these are predicated of all things. There will,
+then, be as many principles of things as there are primary genera,
+so that both being and unity will be principles and substances; for
+these are most of all predicated of all existing things. But it is not
+possible that either unity or being should be a single genus of
+things; for the differentiae of any genus must each of them both
+have being and be one, but it is not possible for the genus taken
+apart from its species (any more than for the species of the genus) to
+be predicated of its proper differentiae; so that if unity or being is
+a genus, no differentia will either have being or be one. But if unity
+and being are not genera, neither will they be principles, if the
+genera are the principles. Again, the intermediate kinds, in whose
+nature the differentiae are included, will on this theory be genera,
+down to the indivisible species; but as it is, some are thought to
+be genera and others are not thought to be so. Besides this, the
+differentiae are principles even more than the genera; and if these
+also are principles, there comes to be practically an infinite
+number of principles, especially if we suppose the highest genus to be
+a principle.-But again, if unity is more of the nature of a principle,
+and the indivisible is one, and everything indivisible is so either in
+quantity or in species, and that which is so in species is the
+prior, and genera are divisible into species for man is not the
+genus of individual men), that which is predicated directly of the
+individuals will have more unity.-Further, in the case of things in
+which the distinction of prior and posterior is present, that which is
+predicable of these things cannot be something apart from them (e.g.
+if two is the first of numbers, there will not be a Number apart
+from the kinds of numbers; and similarly there will not be a Figure
+apart from the kinds of figures; and if the genera of these things
+do not exist apart from the species, the genera of other things will
+scarcely do so; for genera of these things are thought to exist if any
+do). But among the individuals one is not prior and another posterior.
+Further, where one thing is better and another worse, the better is
+always prior; so that of these also no genus can exist. From these
+considerations, then, the species predicated of individuals seem to be
+principles rather than the genera. But again, it is not easy to say in
+what sense these are to be taken as principles. For the principle or
+cause must exist alongside of the things of which it is the principle,
+and must be capable of existing in separation from them; but for
+what reason should we suppose any such thing to exist alongside of the
+individual, except that it is predicated universally and of all? But
+if this is the reason, the things that are more universal must be
+supposed to be more of the nature of principles; so that the highest
+genera would be the principles.
