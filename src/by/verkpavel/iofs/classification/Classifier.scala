@@ -1,6 +1,7 @@
 package by.verkpavel.iofs.classification
 
 import by.verkpavel.iofs.documents.Document
+import by.verkpavel.iofs.utils.Circular
 
 class Classifier(textSamples : Document*) {
   val parameters = buildParameters()
