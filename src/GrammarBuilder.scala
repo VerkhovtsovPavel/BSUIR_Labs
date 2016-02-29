@@ -1,6 +1,8 @@
 import scala.collection.mutable
+import scala.util.Random
 
 class GrammarBuilder(words : Array[String]) {
+
   val termChains = words.sortBy(_.length).reverse
   var linkCount = 0
 
@@ -8,6 +10,7 @@ class GrammarBuilder(words : Array[String]) {
 
   def build(): Unit ={
     firstStage()
+    thirdStage()
     secondStage()
   }
 
@@ -50,16 +53,16 @@ class GrammarBuilder(words : Array[String]) {
       case item : Terminate => Nil
     }
 
-  private def findAlternativeNode(termSeq: String, currentNode : GrammarItem = root): NonTerminate = {
+  private def findAlternativeNode(termSeq: String, currentNode : GrammarItem = root): Option[NonTerminate] = {
        if (currentNode.isInstanceOf[NonTerminate] && currentNode.asInstanceOf[NonTerminate].map.keys.toList.contains(termSeq.head.toString)) {
          val child = currentNode.asInstanceOf[NonTerminate].map(termSeq.head.toString)
          if (child.isInstanceOf[NonTerminate] && child.asInstanceOf[NonTerminate].map.contains(termSeq.tail) && child.asInstanceOf[NonTerminate].map(termSeq.tail).isInstanceOf[Terminate]) {
-           currentNode.asInstanceOf[NonTerminate]
+           Some(currentNode.asInstanceOf[NonTerminate])
          } else { currentNode.asInstanceOf[NonTerminate].map.values.map(findAlternativeNode(termSeq, _)).head }
-       }else{ currentNode.asInstanceOf[NonTerminate].map.values.map(findAlternativeNode(termSeq, _)).head }
+       }else{ None }
     }
 
-  def replaceNodes(oldNode: NonTerminate, newNode: NonTerminate, currentNode : GrammarItem = root) : Unit = {
+  private def replaceNodes(oldNode: NonTerminate, newNode: NonTerminate, currentNode : GrammarItem = root) : Unit = {
     currentNode match {
       case node : NonTerminate if node.map.values.toList.contains(oldNode) =>
         val key = oldNode.map.keys.filter(_.length == 2).head.head.toString
@@ -74,22 +77,68 @@ class GrammarBuilder(words : Array[String]) {
   private def secondStage(): Unit = {
     val nodesWithDoubleItems = buildDoubleTermElementsList()
     val transformationMap = mutable.Map[NonTerminate, NonTerminate]()
-    val w = for(node <- nodesWithDoubleItems)
-      transformationMap.put(node, findAlternativeNode(node.map.keys.filter(_.length == 2).head, root))
-
+    val w = for(node <- nodesWithDoubleItems) {
+      val altNode = findAlternativeNode(node.map.keys.filter(_.length == 2).head, root)
+      altNode match {
+        case Some(x) => transformationMap.put(node, x)
+        case None =>
+      }
+    }
     transformationMap.foreach((pair) => replaceNodes(pair._1, pair._2))
   }
 
-  def removeDuplicates(currentNode : GrammarItem): Unit = {
-    currentNode match {
-      case node : NonTerminate =>
-        for (pair <- node.map){
-          if(
-        }
+  private def removeDuplicates(currentNode : GrammarItem): Unit = {
+    var existNodes = List[(String,GrammarItem)]()
+    _removeDuplicates(currentNode)
+
+    def _removeDuplicates(currentNode : GrammarItem) : Unit = {
+      currentNode match {
+        case node : NonTerminate =>
+          for (pair <- node.map){
+            if(existNodes.count(_ equals pair) > 0)
+            {
+              node.map.put(pair._1, existNodes.filter(_ == pair).head._2)
+            }
+            else{
+              existNodes = existNodes :+ pair
+            }
+            node.map.values.foreach(_removeDuplicates)
+          }
+        case _ =>
+      }
     }
   }
 
   private def thirdStage() : Unit = {
     removeDuplicates(root)
+  }
+
+  def getWord(currentNode : GrammarItem = root) : String = {
+    currentNode match {
+      case NonTerminate(map) =>
+        val selectLink = new Random().nextInt(map.size)
+        val nextNode = map.values.toArray.apply(selectLink)
+        val symbol = map.keys.toArray.apply(selectLink)
+        symbol + getWord(nextNode)
+      case Terminate(s) => s
+    }
+  }
+
+  def getGrammar() : String = {
+    var counter = 0
+    var existNodes = List[GrammarItem]()
+
+    def _getGrammar(currentNode : GrammarItem, linkSymbol : String): String = {
+      currentNode match {
+        case node: NonTerminate if existNodes.contains(node) => ""
+        case node: NonTerminate =>
+          existNodes = existNodes :+ node
+          counter += 1
+          node.map.map((pair) => linkSymbol + "-> " + pair._1 + "A" +counter + ", " + _getGrammar(pair._2, "A" + counter)).mkString
+        case Terminate(s) => linkSymbol + "->" + s + ", "
+      }
+    }
+
+    _getGrammar(root, "S")
   }
 }
