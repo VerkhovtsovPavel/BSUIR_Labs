@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Shapes>
+   <shape>
+      <name>Rectangle</name>
+      <parameters>
+         <param>100</param>
+         <param>200</param>
+         <param>500</param>
+         <param>600</param>
+      </parameters>
+   </shape>
+   <shape>
+      <name>Oval</name>
+      <parameters>
+         <param>100</param>
+         <param>200</param>
+         <param>500</param>
+         <param>600</param>
+      </parameters>
+   </shape>
+   <shape>
+      <name>Line</name>
+      <parameters>
+         <param>100</param>
+         <param>200</param>
+         <param>500</param>
+         <param>600</param>
+      </parameters>
+   </shape>
+</Shapes>
