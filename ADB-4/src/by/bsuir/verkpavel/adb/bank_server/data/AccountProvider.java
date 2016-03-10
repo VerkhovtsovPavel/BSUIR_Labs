@@ -1,0 +1,255 @@
+package by.bsuir.verkpavel.adb.bank_server.data;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Random;
+
+import by.bsuir.verkpavel.adb.bank_server.data.entity.Account;
+import by.bsuir.verkpavel.adb.bank_server.data.entity.Credit;
+import by.bsuir.verkpavel.adb.bank_server.data.entity.Deposit;
+import by.bsuir.verkpavel.adb.bank_server.data.entity.TransactionsInfo;
+
+public class AccountProvider {
+    private static AccountProvider instance;
+    private Connection connection;
+
+    private AccountProvider(Connection connection) {
+        this.connection = connection;
+    }
+
+    public static AccountProvider getInstance() {
+        if (instance == null) {
+            instance = new AccountProvider(ConnectionManager.getInstance().getConnection());
+        }
+        return instance;
+    }
+
+    private Account getAccountFromResultSet(ResultSet resultSet) throws SQLException {
+        return new Account(resultSet.getInt("id"), resultSet.getString("number"), resultSet.getInt("type"),
+                resultSet.getInt("deposit_id"));
+    }
+
+    public ArrayList<Account> getAllAccounts() {
+        ArrayList<Account> accounts = new ArrayList<Account>();
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            ResultSet accountsSet = statement.executeQuery("SELECT * FROM `account`");
+            while (accountsSet.next()) {
+                Account account = getAccountFromResultSet(accountsSet);
+                accounts.add(account);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return accounts;
+    }
+
+    public ArrayList<TransactionsInfo> getTransactionsByAccount(Account account) {
+        ArrayList<TransactionsInfo> operations = new ArrayList<>();
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            ResultSet transactions = statement
+                    .executeQuery("SELECT `sum`, `description` FROM `transaction` JOIN `currency` WHERE `transaction`.`currency_id`= `currency`.`id` AND `account_id` ="
+                            + account.id);
+            while (transactions.next()) {
+                operations.add(new TransactionsInfo(transactions.getDouble("sum"), transactions
+                        .getString("description")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return operations;
+    }
+
+    public void addTransaction(Account from, Account to, double sum, int currency) {
+        try {
+            Statement statement;
+            try {
+                connection.setAutoCommit(false);
+                statement = connection.createStatement();
+                statement
+                        .executeUpdate(String
+                                .format(Locale.ENGLISH,
+                                        "INSERT INTO `transaction` (`id`, `account_id`, `sum`, `currency_id`) VALUES (NULL, '%d', %f, '%d')",
+                                        from.id, -sum, currency));
+                statement
+                        .executeUpdate(String
+                                .format(Locale.ENGLISH,
+                                        "INSERT INTO `transaction` (`id`, `account_id`, `sum`, `currency_id`) VALUES (NULL, '%d', '%f', '%d')",
+                                        to.id, sum, currency));
+                connection.commit();
+            } catch (SQLException e) {
+                connection.rollback();
+                e.printStackTrace();
+            } finally {
+                connection.setAutoCommit(true);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addMonoTransaction(Account from, Account to, double sum, int currency) {
+        try {
+            Statement statement;
+            try {
+                connection.setAutoCommit(false);
+                statement = connection.createStatement();
+                statement
+                        .executeUpdate(String
+                                .format(Locale.ENGLISH,
+                                        "INSERT INTO `transaction` (`id`, `account_id`, `sum`, `currency_id`) VALUES (NULL, '%d', %f, '%d')",
+                                        from.id, sum, currency));
+                statement
+                        .executeUpdate(String
+                                .format(Locale.ENGLISH,
+                                        "INSERT INTO `transaction` (`id`, `account_id`, `sum`, `currency_id`) VALUES (NULL, '%d', '%f', '%d')",
+                                        to.id, sum, currency));
+                connection.commit();
+            } catch (SQLException e) {
+                connection.rollback();
+                e.printStackTrace();
+            } finally {
+                connection.setAutoCommit(true);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Account[] getAccountByDeposit(Deposit deposit) {
+        Account[] personalAccounts = new Account[2];
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            ResultSet accounts = statement.executeQuery("SELECT * FROM `account` WHERE `deposit_id` = " + deposit.id);
+            while (accounts.next()) {
+                if (accounts.getString("number").endsWith("0")) {
+                    personalAccounts[0] = getAccountFromResultSet(accounts);
+                } else {
+                    personalAccounts[1] = getAccountFromResultSet(accounts);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return personalAccounts;
+    }
+
+    public Account getCashBoxAccount() {
+        Account cashBox = null;
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            ResultSet accounts = statement
+                    .executeQuery("SELECT * FROM `account` WHERE `deposit_id` IS NULL AND `credit_id` IS NULL");
+            while (accounts.next()) {
+                if (accounts.getString("number").startsWith("1010")) {
+                    cashBox = getAccountFromResultSet(accounts);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cashBox;
+    }
+
+    public Account getFDBAccount() {
+        Account fdba = null;
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            ResultSet accounts = statement
+                    .executeQuery("SELECT * FROM `account` WHERE `deposit_id` IS NULL AND `credit_id` IS NULL");
+            while (accounts.next()) {
+                if (accounts.getString("number").startsWith("7327")) {
+                    fdba = getAccountFromResultSet(accounts);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return fdba;
+    }
+
+    public void createAccountsByDeposit(Deposit deposit) {
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(String.format(
+                    "INSERT INTO `account` (`id`, `number`, `type`, `deposit_id`) VALUES (NULL, '3014%s', '%d', '%d')",
+                    generateNumber(deposit, 0), 2, deposit.id));
+            statement.executeUpdate(String.format(
+                    "INSERT INTO `account` (`id`, `number`, `type`, `deposit_id`) VALUES (NULL, '3014%s', '%d', '%d')",
+                    generateNumber(deposit, 1), 2, deposit.id));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String generateNumber(Deposit deposit, int type) {
+        return deposit.contractNumber.substring(0, 4) + (1000 + new Random().nextInt(8999)) + "" + type;
+    }
+
+    public Account[] getAccountByCredit(Credit credit) {
+        Account[] personalAccounts = new Account[2];
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            ResultSet accounts = statement.executeQuery("SELECT * FROM `account` WHERE `credit_id` = " + credit.id);
+            while (accounts.next()) {
+                if (accounts.getString("number").endsWith("0")) {
+                    personalAccounts[0] = getAccountFromResultSet(accounts);
+                } else {
+                    personalAccounts[1] = getAccountFromResultSet(accounts);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return personalAccounts;
+    }
+
+    public void createAccountsByCredit(Credit credit) {
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(String.format(
+                    "INSERT INTO `account` (`id`, `number`, `type`, `credit_id`) VALUES (NULL, '2400%s', '%d', '%d')",
+                    generateNumber(credit, 0), 1, credit.id));
+            statement.executeUpdate(String.format(
+                    "INSERT INTO `account` (`id`, `number`, `type`, `credit_id`) VALUES (NULL, '2400%s', '%d', '%d')",
+                    generateNumber(credit, 1), 1, credit.id));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Account getAccountByOrganization(String organization) {
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            ResultSet org = statement.executeQuery("SELECT * FROM `organization` WHERE `description` = '"
+                    + organization+"'");
+            org.next();
+            int account_id = org.getInt("account_id");
+            
+            Account account = new Account();
+            account.id = account_id;
+            return account;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+
+    }
+
+}
