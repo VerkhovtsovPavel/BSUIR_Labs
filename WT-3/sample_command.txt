@@ -1,0 +1,4 @@
+add topic:sample@mail.com:12-02-2012 19-57:Some text
+find -t "topic" [-e "sample@mail.com" -d "12-02-2012 19-57" -m "Some text"]
+sort [-t,-e,-d,-m]
+get -a
