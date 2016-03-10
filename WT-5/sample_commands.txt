@@ -1,0 +1,9 @@
+HashMap
+|from | source|
+---------------
+| get |	  DB  |
+| get |  XML  |
+---------------
+|save |  XML  |
+---------------
+|show | null  |

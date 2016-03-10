@@ -1,0 +1,1 @@
+SELECT `idDish`, `dishName`, `cost` ,`dishClass`, group_concat(`Name`) AS `products` FROM `dish` JOIN `dish_has_products` ON `Dish_idDish`=`idDish` JOIN `products` ON `Products_idProducts` = `idProducts` GROUP BY (`idDish`);

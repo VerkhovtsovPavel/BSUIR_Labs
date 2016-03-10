@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.bsuir.by/pavelVerk/menu menu.xsd" xmlns="http://www.bsuir.by/pavelVerk/menu">
+   <dish id="ID-1">
+      <name>Borsch</name>
+      <cost>100</cost>
+      <ingredients>
+         <ingredient>Salt</ingredient>
+         <ingredient>Potato</ingredient>
+         <ingredient>Beet</ingredient>
+         <ingredient>Cabbage</ingredient>
+      </ingredients>
+      <class>First course</class>
+   </dish>
+   <dish id="ID-2">
+      <name>Steak</name>
+      <cost>400</cost>
+      <ingredients>
+         <ingredient>Salt</ingredient>
+         <ingredient>Beef</ingredient>
+         <ingredient>Olive oil</ingredient>
+      </ingredients>
+      <class>Main course</class>
+   </dish>
+   <dish id="ID-3">
+      <name>Caesar salad</name>
+      <cost>120</cost>
+      <ingredients>
+         <ingredient>Salt</ingredient>
+         <ingredient>Feta cheese</ingredient>
+         <ingredient>Olives</ingredient>
+         <ingredient>Olive oil</ingredient>
+      </ingredients>
+      <class>First course</class>
+   </dish>
+   <dish id="ID-4">
+      <name>Vanilla ice cream</name>
+      <cost>80</cost>
+      <ingredients>
+         <ingredient>Milk</ingredient>
+         <ingredient>Sugar</ingredient>
+         <ingredient>Vanilla</ingredient>
+      </ingredients>
+      <class>Dessert</class>
+   </dish>
+</menu>
