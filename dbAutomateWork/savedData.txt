@@ -1,0 +1,1 @@
+EPBYMINW4453/AdventureWorks2012;instance=SQLEXPRESS~User~123456~INSERT INTO HumanResources.Shift(Name,StartTime, EndTime, ModifiedDate) VALUES({rStr(5-12)}, SYSDATETIME(), SYSDATETIME(), SYSDATETIME());
