@@ -1,0 +1,16 @@
+Add chocolate with cocoa 50 sweetness 10 cost 100
+Add zephyr with fruit apple sweetness 10 cost 100
+Add candiedRoastedNuts with nuts peanut sweetness 10 cost 100
+Add wrapper with snowball patterns red color cost 100
+
+Delete chocolate with cocoa 50 sweetness 10 cost 100
+Delete zephyr with fruit apple sweetness 10 cost 100
+Delete candiedRoastedNuts with nuts peanut sweetness 10 cost 100
+Delete wrapper with snowball patterns red color cost 100
+
+Clear present
+Print present
+
+
+RegExp : (((Add)|(Delete)) +(((wrapper with) +\w+ +(patterns) +\w+ +(color))|((chocolate with cocoa \d+)|(zephyr with fruit \w+)|(candiedRoastedNuts with nuts \w+)) sweetness \d+) cost \d+)|(((Clear)|(Print)) +(present))
+
