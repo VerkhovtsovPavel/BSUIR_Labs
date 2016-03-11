@@ -15,18 +15,19 @@ class Document(val file: File) {
   def getFileName = file.getAbsolutePath
 
   def buildSynopsis(size :  Double) : String = {
-    val sentences = Source.fromFile(file).mkString.split("\\.").map(_ + ".")
+    var sentences = Source.fromFile(file).mkString.split("\\.").map(_ + ".")
     var index = 0
-    var synopsis = ""
+    var synopsis = List[String]()
 
-    while(synopsis.length.toDouble / totalLength < size && index < keyWord.size)
+    while(synopsis.foldLeft(0)(_+_.length).toDouble / totalLength < size && index < keyWord.size)
     {
       for(sentence <- sentences if sentence contains keyWord(index)) {
-        synopsis+=sentence
+        synopsis = synopsis :+ sentence
       }
       index+=1
+      synopsis = synopsis.distinct
     }
-    synopsis.replaceAll("""[\n\r]""", "")
+    synopsis.mkString.replaceAll("""[\n\r]""", "")
   }
 
   private def excludeStopWords(): Unit = {
