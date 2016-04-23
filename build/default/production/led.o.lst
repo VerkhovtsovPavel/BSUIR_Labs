@@ -1,0 +1,297 @@
+MPASM 5.66                           LED.ASM   4-8-2016  13:00:56         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[205]: Found directive in column 1. (LIST)
+                      00001 LIST        p=16F84A     ; Установка типа микроконтроллера
+                      00002 #include <p16f84.inc>    
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ; Build date : Feb 01 2016
+                      00005 ;  MPASM PIC16F84 processor include
+                      00006 ; 
+                      00007 ;  (c) Copyright 1999-2016 Microchip Technology, All rights reserved
+                      00008 ;==========================================================================
+                      00009 
+Message[301]: MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+                      00207         LIST
+Warning[205]: Found directive in column 1. (cblock)
+                      00003 cblock  10h  ; Блок РОН
+  00000010            00004         COUNTER
+  00000011            00005         INT_COUNTER
+  00000012            00006         SCREEN
+  00000013            00007         W_TEMP
+  00000014            00008         STATUS_TEMP
+Warning[205]: Found directive in column 1. (ENDC)
+                      00009 endc
+                      00010         
+                      00011 
+Warning[205]: Found directive in column 1. (org)
+0000                  00012 org 0x00
+0000   2815           00013         goto    Start
+Warning[205]: Found directive in column 1. (org)
+0004                  00014 org 0x04
+0004   0093           00015         movwf   W_TEMP
+0005   0E03           00016         swapf   STATUS, W
+0006   190B           00017         btfsc   INTCON, T0IF
+0007   2836           00018         goto    Pre_timer_signal
+0008   188B           00019         btfsc   INTCON, INTF
+0009   282B           00020         goto Button_pushed
+000A                  00021 Restore_status_w
+000A   0E14           00022         swapf   STATUS_TEMP, W
+000B   0083           00023         movwf   STATUS
+000C   0E93           00024         swapf   W_TEMP, F
+000D   0E13           00025         swapf   W_TEMP, W
+000E   0009           00026         retfie
+                      00027         
+000F                  00028 Output
+000F   0810           00029         movfw   COUNTER
+0010   2045           00030         call    Display_table
+0011   0086           00031         movwf   PORTB
+                      00032         
+0012   0812           00033         movfw   SCREEN
+0013   0085           00034         movwf   PORTA
+0014   0008           00035         return
+                      00036 
+0015                  00037 Start
+MPASM 5.66                           LED.ASM   4-8-2016  13:00:56         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0015   138B           00038         bcf     INTCON, GIE
+0016   1683           00039         bsf     STATUS, RP0
+0017   0103           00040         clrw
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0018   0085           00041         movwf   TRISA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0019   0086           00042         movwf   TRISB
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+001A   1406           00043         bsf     TRISB, RB0
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+001B   0181           00044         clrf    OPTION_REG
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+001C   1501           00045         bsf     OPTION_REG, PS2
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+001D   1401           00046         bsf     OPTION_REG, PS0
+001E   1283           00047         bcf     STATUS, RP0
+001F   0085           00048         movwf   PORTA
+0020   0086           00049         movwf   PORTB
+0021   0181           00050         clrf    TMR0
+0022   168B           00051         bsf     INTCON, T0IE
+0023   160B           00052         bsf     INTCON, INTE
+0024   0190           00053         clrf    COUNTER
+0025   3001           00054         movlw   0x01
+0026   0092           00055         movwf   SCREEN
+0027   200F           00056         call    Output
+0028   178B           00057         bsf     INTCON, GIE
+0029                  00058 Loop
+0029   0000           00059         nop
+002A   2829           00060         goto    Loop
+                      00061         
+002B                  00062 Button_pushed
+002B   108B           00063         bcf     INTCON, INTF
+Message[305]: Using default destination of 1 (file).
+002C   0D92           00064         rlf     SCREEN
+002D   0812           00065         movfw   SCREEN
+002E   3C10           00066         sublw   0x10
+002F   1D03           00067         btfss   STATUS, Z
+0030   2834           00068         goto    Normal_work
+0031   3001           00069         movlw   0x01
+0032   0092           00070         movwf   SCREEN
+0033   0190           00071         clrf    COUNTER
+0034                  00072 Normal_work     
+0034   200F           00073         call    Output
+0035   280A           00074         goto    Restore_status_w
+                      00075 
+0036                  00076 Pre_timer_signal
+0036   110B           00077         bcf     INTCON, T0IF
+Message[305]: Using default destination of 1 (file).
+0037   0A91           00078         incf    INT_COUNTER
+0038   0811           00079         movfw   INT_COUNTER
+0039   3C4D           00080         sublw   0x4D
+003A   1D03           00081         btfss   STATUS, Z
+003B   280A           00082         goto    Restore_status_w
+MPASM 5.66                           LED.ASM   4-8-2016  13:00:56         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+003C   0191           00083         clrf    INT_COUNTER
+003D   283E           00084         goto    Timer_signal
+003E                  00085 Timer_signal
+Message[305]: Using default destination of 1 (file).
+003E   0A90           00086         incf    COUNTER
+003F   0810           00087         movfw   COUNTER
+0040   3C0A           00088         sublw   0x0A
+0041   1903           00089         btfsc   STATUS, Z
+0042   0190           00090         clrf    COUNTER
+0043   200F           00091         call    Output
+0044   280A           00092         goto    Restore_status_w
+                      00093         
+0045                  00094 Display_table
+0045   0782           00095         addwf   PCL, F
+0046   3481           00096         retlw   b'10000001' ;0
+0047   34F3           00097         retlw   b'11110011' ;1
+0048   3449           00098         retlw   b'01001001' ;2
+0049   3461           00099         retlw   b'01100001' ;3
+004A   3433           00100         retlw   b'00110011' ;4
+004B   3425           00101         retlw   b'00100101' ;5
+004C   3405           00102         retlw   b'00000101' ;6
+004D   34F1           00103         retlw   b'11110001' ;7
+004E   3401           00104         retlw   b'00000001' ;8
+004F   3421           00105         retlw   b'00100001' ;9
+Warning[205]: Found directive in column 1. (end)
+                      00106 end
+MPASM 5.66                           LED.ASM   4-8-2016  13:00:56         PAGE  4
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+Button_pushed                     0000002B
+C                                 00000000
+COUNTER                           00000010
+DC                                00000001
+Display_table                     00000045
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+F                                 00000001
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+INT_COUNTER                       00000011
+IRP                               00000007
+Loop                              00000029
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+Normal_work                       00000034
+OPTION_REG                        00000081
+Output                            0000000F
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+Pre_timer_signal                  00000036
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RD                                00000000
+MPASM 5.66                           LED.ASM   4-8-2016  13:00:56         PAGE  5
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RP0                               00000005
+RP1                               00000006
+Restore_status_w                  0000000A
+SCREEN                            00000012
+STATUS                            00000003
+STATUS_TEMP                       00000014
+Start                             00000015
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+Timer_signal                      0000003E
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+W_TEMP                            00000013
+Z                                 00000002
+_CONFIG                           00002007
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+MPASM 5.66                           LED.ASM   4-8-2016  13:00:56         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : X---XXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0040 : XXXXXXXXXXXXXXXX ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    77
+Program Memory Words Free:   947
+
+
+Errors   :     0
+Warnings :     6 reported,     0 suppressed
+Messages :    10 reported,     0 suppressed
+
+
