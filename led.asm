@@ -1,12 +1,9 @@
-LIST        p=16F84     ; Установка типа микроконтроллера
+LIST        p=16F84A     ; Установка типа микроконтроллера
 #include <p16f84.inc>    
 
 cblock  10h  ; Блок РОН
 	R1
 	R2
-	R3
-	R4
-	R5
 endc
 
 org 0
@@ -15,10 +12,10 @@ org 0
 Wait
 	movlw	0xF9
 	movwf	R2
-Waitloop
+WaitLoop
 	nop
 	decfsz	R2
-	goto	Waitloop
+	goto	WaitLoop
 	return
 
 Output
@@ -40,7 +37,7 @@ Output
 Start
 	bsf	STATUS,RP0
 	clrw
-	movwf	TRISA	; Очистка регистров TRISA и TRISB (устанавливает порты для работы на Output)
+	movwf	TRISA	 ; Очистка регистров TRISA и TRISB (устанавливает порты для работы на Output)
 	movwf	TRISB
 	bcf	STATUS,RP0
 	clrf	R1
