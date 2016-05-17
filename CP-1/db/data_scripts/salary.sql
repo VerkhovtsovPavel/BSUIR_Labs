@@ -1,0 +1,9 @@
+INSERT INTO `deliveryservice`.`salary` (`idSalary`, `baseRate`, `raisingFactor`) VALUES (1, 1000000, 2);
+INSERT INTO `deliveryservice`.`salary` (`idSalary`, `baseRate`, `raisingFactor`) VALUES (2, 1500000, 2);
+INSERT INTO `deliveryservice`.`salary` (`idSalary`, `baseRate`, `raisingFactor`) VALUES (3, 3000000, 2.2);
+INSERT INTO `deliveryservice`.`salary` (`idSalary`, `baseRate`, `raisingFactor`) VALUES (4, 1200000, 1.2);
+INSERT INTO `deliveryservice`.`salary` (`idSalary`, `baseRate`, `raisingFactor`) VALUES (5, 8000000, 1);
+INSERT INTO `deliveryservice`.`salary` (`idSalary`, `baseRate`, `raisingFactor`) VALUES (6, 1000000, 0.5);
+INSERT INTO `deliveryservice`.`salary` (`idSalary`, `baseRate`, `raisingFactor`) VALUES (7, 3000000, 0.75);
+INSERT INTO `deliveryservice`.`salary` (`idSalary`, `baseRate`, `raisingFactor`) VALUES (8, 4000000, 0.25);
+INSERT INTO `deliveryservice`.`salary` (`idSalary`, `baseRate`, `raisingFactor`) VALUES (9, 5000000, 2);
