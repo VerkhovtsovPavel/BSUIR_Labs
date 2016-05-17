@@ -1,0 +1,16 @@
+Warning[205] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-5\LED.ASM 1 : Found directive in column 1. (LIST)
+Message[301] C:\PROGRAM FILES\MICROCHIP\MPLABX\V3.25\MPASMX\P16F84.INC 34 : MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+Warning[205] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-5\LED.ASM 3 : Found directive in column 1. (cblock)
+Warning[205] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-5\LED.ASM 9 : Found directive in column 1. (ENDC)
+Warning[205] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-5\LED.ASM 12 : Found directive in column 1. (org)
+Warning[205] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-5\LED.ASM 14 : Found directive in column 1. (org)
+Message[302] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-5\LED.ASM 41 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-5\LED.ASM 42 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-5\LED.ASM 43 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-5\LED.ASM 44 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-5\LED.ASM 45 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-5\LED.ASM 46 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-5\LED.ASM 64 : Using default destination of 1 (file).
+Message[305] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-5\LED.ASM 78 : Using default destination of 1 (file).
+Message[305] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-5\LED.ASM 86 : Using default destination of 1 (file).
+Warning[205] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-5\LED.ASM 106 : Found directive in column 1. (end)
