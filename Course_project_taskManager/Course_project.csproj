@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{B34C485C-328D-432C-82C9-34622EBBEFE2}</ProjectGuid>
+    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Course_project</RootNamespace>
+    <AssemblyName>Course_project</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <NoWin32Manifest>False</NoWin32Manifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.Microsoft.Office.Core">
+      <HintPath>libs\Interop.Microsoft.Office.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.Microsoft.Office.Interop.Outlook">
+      <HintPath>libs\Interop.Microsoft.Office.Interop.Outlook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>libs\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>libs\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core">
+      <HintPath>libs\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Legacy">
+      <HintPath>libs\MongoDB.Driver.Legacy.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="source\Controller\TaskController.cs" />
+    <Compile Include="source\Controller\CommandType.cs" />
+    <Compile Include="source\Entity\DB\Task.cs" />
+    <Compile Include="source\Entity\DB\User.cs" />
+    <Compile Include="source\Entity\DB\UserGroups.cs" />
+    <Compile Include="source\Entity\TimeGap.cs" />
+    <Compile Include="source\Exception\CannotApportionTasks.cs" />
+    <Compile Include="source\Model\Command\AddFlexibleTaskCommand.cs" />
+    <Compile Include="source\Model\Command\ApportionFlexibleTasksCommand.cs" />
+    <Compile Include="source\Model\Command\GetTasksFromRangeCommand.cs" />
+    <Compile Include="source\Model\Command\GetTimeSpentByGroup.cs" />
+    <Compile Include="source\Model\Command\GetUserGroupsCommand.cs" />
+    <Compile Include="source\Model\Command\ImportTaskInOutlookCommand.cs" />
+    <Compile Include="source\Model\Command\LoginCommand.cs" />
+    <Compile Include="source\Model\Command\RegistrateCommand.cs" />
+    <Compile Include="source\Model\Command\RemoveTaskCommand.cs" />
+    <Compile Include="source\Model\Command\ShareTaskCommand.cs" />
+    <Compile Include="source\Model\Command\UpdateGroupsCommand.cs" />
+    <Compile Include="source\Model\Command\UpdateTaskCommand.cs" />
+    <Compile Include="source\Storage\FlexibleTasksStorage.cs" />
+    <Compile Include="source\TaskDao\Dao.cs" />
+    <Compile Include="source\Entity\FlexibleTask.cs" />
+    <Compile Include="source\Entity\Session.cs" />
+    <Compile Include="source\Exception\OutlookNotFoundException.cs" />
+    <Compile Include="source\Exception\SessionException.cs" />
+    <Compile Include="source\Controller\IController.cs" />
+    <Compile Include="source\TaskDao\IDao.cs" />
+    <Compile Include="source\TaskDao\LocalMongoDBDao.cs" />
+    <Compile Include="source\Model\CommandStore.cs" />
+    <Compile Include="source\Model\Command\AddPrivateTaskCommand.cs" />
+    <Compile Include="source\Model\Command\ICommand.cs" />
+    <Compile Include="source\Model\TaskCommandManager.cs" />
+    <Compile Include="source\Program.cs" />
+    <Compile Include="source\Utils\CommandLineCommander.cs" />
+    <Compile Include="source\Utils\DeepCloneUtils.cs" />
+    <Compile Include="source\Utils\HashUtils.cs" />
+    <Compile Include="source\Utils\RequestParameters.cs" />
+    <Compile Include="source\Utils\TimeUtils.cs" />
+    <Compile Include="source\Utils\ProjectProterties.cs" />
+    <Compile Include="source\Views\FlexibleTaskView.cs" />
+    <Compile Include="source\Views\FlexibleTaskView.Designer.cs">
+      <DependentUpon>FlexibleTaskView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="source\Views\UserGroupDialogView.cs" />
+    <Compile Include="source\Views\UserGroupDialogView.Designer.cs">
+      <DependentUpon>UserGroupDialogView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="source\Views\CalendarView.cs" />
+    <Compile Include="source\Views\CalendarView.Designer.cs">
+      <DependentUpon>CalendarView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="source\Views\HardTaskDialogView.cs" />
+    <Compile Include="source\Views\HardTaskDialogView.Designer.cs">
+      <DependentUpon>HardTaskDialogView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="source\Views\FlexibleTaskDialogView.cs" />
+    <Compile Include="source\Views\FlexibleTaskDialogView.Designer.cs">
+      <DependentUpon>FlexibleTaskDialogView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="source\Views\UserGroupView.cs" />
+    <Compile Include="source\Views\UserGroupView.Designer.cs">
+      <DependentUpon>UserGroupView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="source\Views\LoginView.cs" />
+    <Compile Include="source\Views\LoginView.Designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="source\Views\MainView.cs" />
+    <Compile Include="source\Views\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="source\Views\ProfilingView.cs" />
+    <Compile Include="source\Views\ProfilingView.Designer.cs">
+      <DependentUpon>ProfilingView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="source\Views\RegistrationView.cs" />
+    <Compile Include="source\Views\RegistrationView.Designer.cs">
+      <DependentUpon>RegistrationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="source\Views\TasksView.cs" />
+    <Compile Include="source\Views\TasksView.Designer.cs">
+      <DependentUpon>TasksView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="source\Views\ViewMode.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="libs" />
+    <Folder Include="source" />
+    <Folder Include="source\Controller" />
+    <Folder Include="source\Entity\DB" />
+    <Folder Include="source\Storage" />
+    <Folder Include="source\TaskDao" />
+    <Folder Include="source\Entity" />
+    <Folder Include="source\Model" />
+    <Folder Include="source\Exception" />
+    <Folder Include="source\Model\Command" />
+    <Folder Include="source\Utils" />
+    <Folder Include="source\Views" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="libs\Interop.Microsoft.Office.Core.dll" />
+    <None Include="libs\Interop.Microsoft.Office.Interop.Outlook.dll" />
+    <None Include="libs\MongoDB.Bson.dll" />
+    <None Include="libs\MongoDB.Driver.Core.dll" />
+    <None Include="libs\MongoDB.Driver.dll" />
+    <None Include="libs\MongoDB.Driver.Legacy.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="source\Views\FlexibleTaskView.resx">
+      <DependentUpon>FlexibleTaskView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="source\Views\FlexibleTaskDialogView.resx">
+      <DependentUpon>FlexibleTaskDialogView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="source\Views\HardTaskDialogView.resx">
+      <DependentUpon>HardTaskDialogView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="source\Views\UserGroupDialogView.resx">
+      <DependentUpon>UserGroupDialogView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="source\Views\CalendarView.resx">
+      <DependentUpon>CalendarView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="source\Views\UserGroupView.resx">
+      <DependentUpon>UserGroupView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="source\Views\LoginView.resx">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="source\Views\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="source\Views\ProfilingView.resx">
+      <DependentUpon>ProfilingView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="source\Views\RegistrationView.resx">
+      <DependentUpon>RegistrationView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="source\Views\TasksView.resx">
+      <DependentUpon>TasksView.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
