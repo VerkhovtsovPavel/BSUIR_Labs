@@ -1,0 +1,202 @@
+All about Infinity
+Stage: 3, 4 and 5
+Article by Katherine Körner
+
+Published May 2005,March 2007,February 2011.
+
+Infinity is not a number, and trying to treat it as one tends to be a pretty bad idea. At best you're likely to come away with a headache, at worst with the firm belief that 1 = 0.
+
+You may have met various ''paradoxes'' that play on this fact (and our instinct to ignore it) before. An infinitely long line, for instance, is surely infinitely many centimetres long. It's also, equally surely, infinitely many miles long. But each centimetre is a great deal shorter than each mile, so does this mean an infinitely long line is two different lengths at once?
+
+The answer, of course, is to assert confidently that the question is meaningless (and, if you're in the mood to be unkind, just shows how little the asker knows about proper mathematics) and then go back about your business untroubled by such silly quibbles.
+
+Or, as I will hopefully convince you over the course of this article, the answer is a simple ''No.''
+
+Counting the natural numbers
+We shouldn't treat infinity as a number. We can't count up to it, and if we have an infinitely large set we will never be able to count all of the objects in it. A set is a collection of objects. They can be any sort of objects, although generally mathematicians use them to talk about mathematical objects, such as numbers. An infinitely large set is, of course, one containing infinitely many objects. It seems strange, therefore, to talk about certain infinitely large sets being ''countably infinite'', but that is indeed what I'm about to do.
+
+Consider the natural numbers (the positive, whole numbers: 1, 2, 3, ...).
+
+There are infinitely many natural numbers (if there were only a finite number of them, there would have to be a largest natural number - what would happen if we added 1 to that number?) so the set containing all the natural numbers must be infinitely large. We'll never be able to count them all. However, we can list them in such a way that if we counted forever, we'd be sure not to miss any out.
+
+The natural numbers are what we use for counting anyway, so we can think of them as coming ready-listed. There is an obvious starting point (1) and a sensible order (1, 2, 3, ...).
+
+To illustrate what I mean by a sensible order, imagine what would happen if we tried to count the natural numbers randomly. However long we counted, we'd never be sure we'd counted them all - we could check for individual numbers in our random list, but we'd never know if they were all there, or when (if ever) we were going to reach a particular one.
+
+Now imagine what would happen if we tried to count the natural numbers by counting the odd numbers first and then the even ones. We'd count forever, and never start counting the even numbers.
+
+However, if we count them in the order given, we'll know once we've reached 100 that we've counted everything between 1 and 100 once and only once. We might never reach the end (in a finite time, at least) but we'll know we've not missed anything on the way and that it's just a matter of time before we reach any given number.
+
+That is, the only thing stopping us from counting them all is that we'll run out of breath before we run out of numbers. The proposed method of counting them all is sound, just impractical. This is what we mean by saying the natural numbers are countably infinite.
+
+In much the same way, any infinite set of numbers that can be put in a sensible, systematic order with a clear beginning such that we're sure to get everything if we count forever is thought of as countable.
+
+Counting other sets
+
+When we talk about comparing the sizes of two sets that contain finite numbers of objects (a set, C, containing some cats and a set, M, containing some baby mice, say) then one way to do so is to match each object in one set with exactly one object in another set and see if we have any left over. For the sets C and M, we can instruct each cat to catch exactly one baby mouse - no sharing allowed, nor hogging more than one mouse, nor letting one escape if the cat doesn't already have another one.
+
+If each cat does catch exactly one baby mouse - no more, no fewer - we know there are (or, at least, were) the same number of cats as mice. That is, the sets C and M were the same size. If any cats go hungry, there were more cats than mice (C was larger than M) and if any mice go free, there were more baby mice than cats (M was larger than C).
+
+This is called putting the objects into one-to-one correspondence, and the same can be done when comparing the sizes of infinite sets.
+
+Another way of thinking about countably infinite sets is that they are those sets whose objects can be put in a one-to-one correspondence with the set containing the natural numbers only. That is, if for each element in the set of the natural numbers there is exactly one - no more, no fewer - element in the set we're trying to count, then the set is the same size as the set containing the natural numbers: countably infinite.
+
+Putting the elements of an infinite set in sensible, systematic order with a clear beginning such that it's just a matter of time before we reach any particular element is, in fact, the same thing as putting those elements in one-to-one correspondence with the natural numbers.
+
+If the natural numbers are the cats from the above illustration and the elements to be counted are the baby mice, then the cats already have an order to line up in. Lining the mice up next to them so none escape and none are eaten together (putting them in a sensible order) is the same as allotting the cats their dinner (putting the elements of the two sets into one-to-one correspondence).
+
+Are the integers (all the whole numbers: ..., -2, -1, 0, 1, 2, 3, ...), therefore, countable?
+
+At first, you might think not. First we need to find a sensible beginning, and that may not be obvious. With the natural numbers, we just started at the smallest and worked up. But the integers don't have a smallest number (just as before, when showing there was no largest natural number, think to yourself: if there were a smallest integer, what would happen when we subtracted 1 from it?), so where can we begin?
+
+Say we start at 1 and work up, as before with the natural numbers. Then we count 1, 2, 3, ..., putting them into one-to-one correspondence as follows:
+
+Natural numbers 	1 	2 	3 	...
+Integers 	1 	2 	3 	...
+
+
+Here, the problem is however long we count for, we'll never start on the negative numbers. We'll never even get to zero.
+
+It is possible to do. Before reading on, try to think how. It may help to remember the problem we would have had counting the natural numbers if we had tried to count all the odd ones first.
+
+How to count the integers
+
+Consider the following table:
+
+Natural numbers 	1 	2 	3 	4 	5 	6 	7 	...
+Integers 	0 	-1 	1 	-2 	2 	-3 	3 	...
+
+Will each integer be listed once and only once?
+
+It may help (or it may not - don't dwell on this if it just confuses you) to visualise the integers as distinct points on an infinitely long line. Think of 0 as the centre of the line, and imagine a circle, centre 0, which increases in diameter as we count up, covering the numbers we've counted. After we've counted to the seventh integer on the list, say, the circle has a diameter of 6, and covers every number from -3 to 3.
+
+In other words, yes.
+
+Once we reach any integer on the list (p, say), any integer with the absolute value (that is, +n if n is positive and −n if n is negative) smaller than the absolute value of p will have been counted exactly once, and any number with a modulus larger than it will be yet to count. Whether −p has been counted obviously depends on whether p is greater or less than 0.
+
+So, while at first glance it might seem that there are more integers than natural numbers, this is not the case.
+
+This is exactly what happens in the so-called paradox I mentioned at the start of this article. You might at first think that for each natural number, n, there are two integers, ±n and so there are twice as many integers as naturals, which is not the case. In the same way, you might think an infinite number of miles takes you further than an infinite number of centimetres. In fact, the centimetres that go to make up the infinitely many miles can be put into one-to-one correspondence with the centimetres that go to make up the infinitely many centimeteres, so both take you the same distance.
+
+Counting the rationals
+
+How about the rational numbers? (all the numbers that can be written as one integer divided by another: ..., -2/3, 0/1, 1/1, 1/2, ...)
+
+In the case of the natural numbers and the integers, it was easy to check we'd counted every number in a given range. To check we'd counted all the natural numbers less than n, we merely needed to have counted up to n. To check we'd counted all the integers between n and m, we needed to check we'd counted as far as the absolute value of n or m, whichever is the largest.
+
+However, we can't count all the rational numbers in a given range, however small the range is.
+
+This is because between any two rationals, there is another rational. (If you're unconvinced, imagine x and y are two rationals between which there isn't another rational. How can (x+y)/2 not be rational?) Between -2 and 4 there are seven integers (including -2 and 4) and four natural numbers. There are, however, infinitely many rationals.
+
+How, then, could we possibly count them? We can never get anything in a given range, and there are infinitely many (non-overlapping) ranges we could be given. In fact, if there are infinitely many naturals (which there are) and infinitely many integers (which, again, there are) then surely there must be infinity-squared many rationals, because to get all the rationals you take each integer in turn and divide it by each natural number in turn, as in the following table:
+
+11 	12 	13 	14 	15 	16 	...
+21 	22 	23 	24 	25 	...
+31 	32 	33 	34 	...
+41 	42 	43 	...
+51 	51 	...
+61 	...
+...
+
+How can infinity-squared possibly be countable, and therefore the same as infinity?
+
+The first thing to do is to take a deep breath and remember that infinity is not a number . In fact, the rationals are countable. To prove this, consider the above table.
+
+Is the table a list of all the positive rationals?
+
+Consider the general term for a positive rational, p/q, where both p and q are positive. If it's on the table, then we know we've got all the positive rationals there. (If we hadn't, yet p/q were on the table, there would be a positive rational that can't be represented as p/q, which is not the case.) Is it there?
+
+Yes, it's on the pth row in the qth column.
+
+So, we have a complete list. However, trying to count along each row or column in turn gives problems - each row and column is infinitely long, after all, and so we'll never reach the end of the first to start on the second. Is there, then, a way of counting them without missing any out? Yes. Just follow the red line in the image below:
+
+So we know we've counted every rational at least once. Have we counted them at most once?
+
+Obviously, we haven't. 1/1 = 2/2 = 3/3 = ... means 1 is the first, fifth and thirteen number in the list.
+
+Why does this matter? It's a good habit to get into, certainly, but more than that it's useful here to convince ourselves that these sets of numbers are all the same size. If we don't check we're not counting the rationals too many times, what's to stop there being more natural numbers than there are rational ones?
+
+Intuitively, this seems to be a fairly silly fear (after all, the natural numbers are just the first column of the entire table of rationals) but if you're not doubting your intuition by this stage, I haven't explained what we're doing well enough.
+
+We could just check each number we reach against all the previous numbers, making sure it's not equal to any of them. That would work, but ignores the fact that the order in which we're counting these numbers means the first time we meet each one, it's in its simplest possible form.
+
+Consider our trusty p/q, in row p, column q. Assume this is the number in its simplest form - p and q have no common factors greater than 1. The next time we meet the same number, it'll be 2p/2q, which is in row 2p, column 2q, therefore on a diagonal further from our start point. (n+1)p/(n+1)q is always further along than np/nq (if you need convincing, find a formula to tell you which integer is the leftmost point on the diagonal passing through y/x).
+
+So every time we reach a rational not in its simplest form, ignore it.
+
+Hence the positive rationals can be put into one-to-one correspondence with the naturals, and so are countably infinite. Multiply by −1 and we get a similar list of the negative rationals. Then, just as we did with the integers, start at 0 and interleave the two lists:
+
+Natural numbers 	1 	2 	3 	4 	5 	6 	7 	...
+Rationals 	0 	11 	−11 	12 	−12 	21 	−21 	...
+
+We know we will have every positive and every negative rational, and zero, once and only once.
+
+Thus the natural numbers are countable, the integers are countable and the rationals are countable. It seems as if everything is countable, and therefore all the infinite sets of numbers you can care to mention - even ones our intuition tells contain more objects than there are natural numbers - are the same size.
+
+This is not the case.
+
+Counting the reals: Cantor's Diagonal Proof
+
+Are the real numbers countable? (The real numbers are all the irrationals - those numbers that cannot be written as one integer divided by another: π, 2√, e, ... - and the rationals together: 1, 4/5, π, ...)
+
+Every other set of numbers we've met so far has been countable. Each new set of numbers that feels as if it should be larger than the set of the natural numbers has been put into one-to-one correspondence with the natural numbers - all we needed was to work out how to list the numbers sensibly.
+
+The real numbers are made up of the rationals and the irrationals. The rationals are countable, so if the irrationals are countable then the reals must be countable - just interleave our two systematic lists and we'll get another systematic list.
+
+For the same reason, if the reals aren't countable, we'll know that the problem comes with the irrationals.
+
+You've probably met rational numbers in at least two guises - one is that they can be written as one integer divided by another, and the other is that they can be written as decimal expansions that eventually become repeating patterns.
+
+1/3 = 0. 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 ... - the threes repeat forever.
+
+3/8 = 0. 375 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ... - the zeros repeat forever.
+
+22/7 = 3. 142857 142857 142857 142857 ... - 142857 repeats forever.
+
+In fact, all real numbers can be represented as infinitely long decimal expansions. The rationals are the ones that eventually repeat and the irrationals are the ones that don't.
+
+π = 3. 14159 26535 89793 23846 ... - at no point does a finitely long string of digits start repeating for ever.
+
+Now, suppose the real numbers were countable. Then we could write a systematic list of all the real numbers. What is more, we could do it as list of decimal expansions.
+
+(In the following list, a(n,m) is the mth digit along in the nth number down the list.)
+
+a(0,0).a(0,1)a(0,2)a(0,3)a(0,4)a(0,5)...
+a(1,0).a(1,1)a(1,2)a(1,3)a(1,4)a(1,5)...
+a(2,0).a(2,1)a(2,2)a(2,3)a(2,4)a(2,5)...
+a(3,0).a(3,1)a(3,2)a(3,3)a(3,4)a(3,5)...
+a(4,0).a(4,1)a(4,2)a(4,3)a(4,4)a(4,5)...
+
+We might run into trouble with repeating a number without realising it (0.9 recurring = 1, for instance) but we can just check every number in our list off those that came before. It might be that the system we use to list the numbers lends itself to a neater method, as we found with the rationals, but even if it doesn't, this method will work.
+
+But can we be certain we haven't missed any out?
+
+One way of answering this question is to assume our list is, in fact, infinitely long. Then is it possible for it to contain every possible real number?
+
+The answer is that it isn't. Not all infinities are, we finally see, the same size. The problem, however - one raised and answered by Georg Cantor - is how to show this. How can we write down or describe a number that we know won't be on the list?
+
+Before reading on, take a moment to think about this yourself. It may help to think back to the title of this section: Cantor's Diagonal Proof.
+
+Consider the number A, where A=a(0,0).a(1,1)a(2,2)...a(n,n)... (If the list above had started 1.111..., 2.222..., 4.379..., A would start 1.27..., as 1 is the noughth digit of the noughth number, 2 is the first digit of the first number, and 7 is the second digit of the second number)
+
+Now, letting m take the value of all the natural numbers (and zero) in turn, do the following:
+
+If a(m,m)≠5, let b(m,m)=5.
+
+If a(m,m)=5, let b(m,m)=7.
+
+Then we have a new number, B=b(0,0).b(1,1)b(2,2)...b(n,n)...
+
+Is B on our list?
+
+Well, it's not the first number, because the first digits don't agree (if the first digit of the first number isn't 5, then the first digit of B is. And if the first digit of the first number is 5, then the first digit of B isn't). And it's not the second number, because the second digits don't agree. And it's not the nth number, because the nth digits don't agree...
+
+So B can't be the first number, and it can't be the second, and it can't be the nth, for any value of n, so it isn't on our list.
+
+We could still run into the problem mentioned earlier, that some numbers with recurring digits are the same number, even when the digits are different. However, this is a problem that only occurs when the digits involved are 0's and 9's, and the digits making up B were specially chosen so this would not happen.
+
+Therefore, we know that B is a unique number. This means the list isn't complete, and can never be complete. However cunning our system, even if the list is infinitely long it won't contain every real number.
+
+This means that we can't count all the real numbers - there are uncountably infinitely many.
+
+Katherine Korner is currently a second year undergraduate studying Mathematics at Balliol College, Oxford.

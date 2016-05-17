@@ -1,0 +1,371 @@
+In my three years working as a mathematics coach to 6th, 7th, and 8th grade teachers, I've often heard statements such as these. There seems to be an idea that somehow it is unfair to expect students to interpret problems on standardized tests and in curriculum texts: after all, what does evaluating student reading skills have to do with mathematics? When people I meet find out that I teach mathematics, they often say, “I did OK in math—except for those word problems.”
+
+To many teachers, mathematics is simply a matter of cueing up procedures for students, who then perform the appropriate calculations. Over and over, I hear teachers interpret problems for their students when asked what a question means or when a student says, “I don't know what to do.” This started me thinking about the mathematics teacher's role in helping students to interpret problems.
+
+Certainly teachers try to help students to read and interpret mathematics text and discuss problem-solving strategies with them. I hear them say such things as “of means times” and “total means you probably have to add something.” However, when you think about it, most strategies are still procedural—“follow this recipe”—rather than about helping students to read for understanding (i.e., to interpret text and to reason).
+
+Unless mathematics teachers are generalists and have been trained in reading instruction, they don't see literacy as part of their skill set. More important, they don't appreciate that reading a mathematics text or problem is really very different from other types of reading, requiring specific strategies unique to mathematics. In addition, most reading teachers do not teach the skills necessary to successfully read in mathematics class.
+
+Listening to teachers reword or interpret mathematics problems for their students has led me to start conversations with teachers about taking time to work specifically on reading and interpretation. One strategy we arrived at is for teachers to model their thinking out loud as they read and figure out what a problem is asking them to do. Other strategies include dialoguing with students about any difficulties they may have in understanding a problem and asking different students to share their understanding. The strategies that we have shared have come from years of working in the classroom to improve student comprehension. None of us had previously studied the unique difficulties involved in reading mathematics texts.
+
+All mathematics teachers recognize the need to teach their students to read and interpret what I'll call mathematical sentences: equations and inequalities. The National Council of Teachers of Mathematics (1996) states that, “[b]ecause mathematics is so often conveyed in symbols, oral and written communication about mathematical ideas is not always recognized as an important part of mathematics education. Students do not necessarily talk about mathematics naturally; teachers need to help them to do so” (p. 60). Knowing how to use the unique symbols that make up the shorthand of mathematical statements—such as numerals, operation signs, and variables that stand in for numbers—has always been part of what mathematics teachers are expected to teach. So in a limited way, we have always been reading teachers without realizing it.
+
+Martinez and Martinez (2001) highlight the importance of reading to mathematics students:
+
+    [Students] ... learn to use language to focus and work through problems, to communicate ideas coherently and clearly, to organize ideas and structure arguments, to extend their thinking and knowledge to encompass other perspectives and experiences, to understand their own problem-solving and thinking processes as well as those of others, and to develop flexibility in representing and interpreting ideas. At the same time, they begin to see mathematics, not as an isolated school subject, but as a life subject—an integral part of the greater world, with connections to concepts and knowledge encountered across the curriculum. (p. 47)
+
+James Bullock (1994) defines mathematics as a form of language invented by humans to discuss abstract concepts of numbers and space. He states that the power of the language is that it enables scientists to construct metaphors, which scientists call “models.” Mathematical models enable us to think critically about physical phenomena and explore in depth their underlying ideas. Our traditional form of mathematics education is really training, not education, and has deprived our students of becoming truly literate. Knowing what procedures to perform on cue, as a trained animal performs tricks, is not the basic purpose of learning mathematics. Unless we can apply mathematics to real life, we have not learned the discipline.
+
+If we intend for students to understand mathematical concepts rather than to produce specific performances, we must teach them to engage meaningfully with mathematics texts. When we talk about students learning to read such texts, we refer to a transaction in which the reader is able to ponder the ideas that the text presents. The meaning that readers draw will depend largely on their prior knowledge of the information and on the kinds of thinking they do after they read the text (Draper, 2002): Can they synthesize the information? Can they decide what information is important? Can they draw inferences from what they've read?
+Reading Requirements for Mathematics Text
+
+Let's look at some ways in which mathematics text differs from text in other subjects. Research has shown that mathematics texts contain more concepts per sentence and paragraph than any other type of text. They are written in a very compact style; each sentence contains a lot of information, with little redundancy. The text can contain words as well as numeric and non-numeric symbols to decode. In addition, a page may be laid out in such a way that the eye must travel in a different pattern than the traditional left-to-right one of most reading. There may also be graphics that must be understood for the text to make sense; these may sometimes include information that is intended to add to the comprehension of a problem but instead may be distracting. Finally, many texts are written above the grade level for which they are intended (Barton & Heidema, 2002).
+
+Most mathematics textbooks include a variety of sidebars containing prose and pictures both related and unrelated to the main topic being covered. In these we might find a mixed review of previous work, extra skills practice, a little vignette from an almanac, a historical fact, or a connection to something from another culture. Such sidebars often contain a series of questions that are not part of the actual exercises. Although they are probably added to give color and interest to the look of the page, they can be very confusing to readers, who might wonder what they are supposed to be paying attention to. Spending time early in the year analyzing the structure of the mathematics textbook with students can help them to read and comprehend that text.
+
+When I reflect on my own experiences in the classroom, I realize that students need help finding their way around a new text. They often will just read one sentence after another, not differentiating among problem statements, explanatory information, and supportive prose. As we strive to develop independent learners, asking students questions about the text structure can help them to focus on the idea that texts have an underlying organization, that different texts may have different structures, and that it is important to analyze the structure of the text being used.
+
+In addition to the unique page formatting and structure of most mathematics texts, the basic structure of mathematics problems differs from that of most informational writing. In a traditional reading paragraph, there is a topic sentence at the beginning and the remaining sentences fill in details that expand on and support this main idea; in a mathematics problem, the key idea often comes at the end of the paragraph, in the form of a question or statement to find something (e.g., “How many apples are left?” “Find the area and perimeter of the figure above.”). Students must learn to read through the problem to ascertain the main idea and then read it again to figure out which details and numbers relate to the question being posed and which are redundant. Students have to visualize the problem's context and then apply strategies that they think will lead to a solution, using the appropriate data from the problem statement.
+
+Some of the symbols, words, notations, and formats in which numbers appear can be confusing. For instance, when do you use the word number as opposed to numeral? Do you indicate numbers with numeric symbols, or with words? The term remainder can be used in problems solved by both division and subtraction. The equal sign can represent quantities of exactly the same value, or items that are equivalent.
+
+I have seen students read 12:10 on a digital clock and interpret it as meaning 12 1/10 hours instead of 12⅙. This illustrates the difficulty of using digital clocks to help students picture elapsed time: digital clocks only present us with digits for isolated moments in time, whereas analog clocks—with their circular faces, hand angles, and pie wedges—provide a concrete model of the fractional parts of an hour, thus adding to our understanding of how time is divided.
+Same Words, Different Languageys
+
+Adding to the confusion of this dense language of symbols is the fact that many mathematical terms have different meanings in everyday use. For example, the word similar means “alike” in everyday usage, whereas in mathematics it means that the ratios of the corresponding sides of two shapes are equivalent and corresponding angles are equal. Thus in everyday English, all rectangles are “similar” because they are alike, whereas in mathematics they are “similar” only if the ratio of the short sides equals the ratio of the long sides. Mathematical terms such as prime, median, mean, mode, product, combine, dividend, height, difference, example, and operation all have different meanings in common parlance.
+
+In addition to words, mathematical statements and questions are also understood differently when made in a non-mathematical context. For example, right angles are often drawn with one vertical line and with one perpendicular line extending from it to the right. When shown a right angle with the perpendicular line extending to the left, a student once asked a colleague of mine, “Is that a left angle?”
+
+According to Reuben Hersh (1997), students must be taught that the language we read and speak in mathematics class is actually a technical jargon, even though it may look and sound like regular English. For example, zero is not really a number in everyday language—when we say we have “a number of books” in English, we never mean zero (or one, for that matter). But in mathematics, 0 and 1 are both acceptable answers denoting the concept of “a number.” Similarly, when we “add” something in English, we invariably mean that we are increasing something. In mathematics, however, addition can result in an increase, a decrease, or no change at all depending on what number is being added. Hersh adds the following example: The answer to the question, “If you subtract zero from zero, what's the difference?” is, in mathematics, zero. We are explicitly asking for a numerical answer. But in English, the question can be interpreted as, “Who cares?” (i.e., “What's the difference?”).
+
+When a girl in a class I was observing was asked, in reference to a city map, “How might you go from City Hall to the police station?” she replied, “By car, walk—I don't know.” She understood “how” to mean “by what means” rather than “by following what path.” This student is not alone in finding such mathematics questions puzzling.
+Small Words, Big Differences
+
+In English there are many small words, such as pronouns, prepositions, and conjunctions, that make a big difference in student understanding of mathematics problems. For example:
+
+    The words of and off cause a lot of confusion in solving percentage problems, as the percent of something is quite distinct from the percent off something.
+    The word a can mean “any” in mathematics. When asking students to “show that a number divisible by 6 is even,” we aren't asking for a specific example, but for the students to show that all numbers divisible by 6 have to be even.
+    When we take the area “of” a triangle, we mean what the students think of as “inside” the triangle.
+    The square (second power) “of” the hypotenuse gives the same numerical value as the area of the square that can be constructed “on” the hypotenuse.
+
+A study by Kathryn Sullivan (1982) showed that even a brief, three-week program centered on helping students distinguish the mathematical usage of “small” words can significantly improve student mathematics computation scores. Words studied in the program cited by Sullivan include the, is, a, are, can, on, who, find, one, ones, ten, tens, and, or, number, numeral, how, many, how many, what, write, it, each, which, do, all, same, exercises, here, there, has, and have.
+
+I remember once observing a lesson on multiplying fractions using an area model. The teacher had asked me to script her “launch”—the segment of the lesson designed to prepare students for a paired or small-group exploration of the topic. Because the teacher felt that the mathematics textbook was too difficult for her students, she read the text aloud and asked students to restate what she said in their own words. My notes show that the teacher spoke in a soft, conversational tone. She clearly enunciated the content vocabulary required for the lesson and clarified the meanings of nouns and adjectives related to the topic, and of the verbs for the procedures necessary to complete the activity. However, my notes also showed that some pronouns had ambiguous referents (e.g., “You multiply it ...”) and that the teacher's soft tone made some prepositions barely audible. For example, the text asked students to find half of 2¼ pans of brownies (the teacher read it as “two and a fourth”). If they weren't following along in their books, what did the students hear—“two 'nda fourth” or “two 'nta fourths”? As a matter of fact, one student took a sheet of notebook paper and wrote “2/4” at the top. Next, he drew two squares. Finally he used horizontal lines to divide each square into fourths. I pointed to the “2/4” and asked what it meant. He replied, “Two-fourths is two pans divided into fourths.” And to that particular student, half of that quantity was one.
+
+Enunciating small but significant words more precisely, being more aware of the confusion that these words can engender, and emphasizing the correct use of these little land mines will not only enhance computational skills, but also help students answer open-response questions more accurately.
+Strategic Reading
+
+Literacy researchers have developed some basic strategies for reading to learn. Here is a summary of strategies outlined by Draper (2002):
+
+    Before reading, the strategic reader
+
+        Previews the text by looking at the title, the pictures, and the print in order to evoke relevant thoughts and memories
+        Builds background by activating appropriate prior knowledge about what he or she already knows about the topic (or story), the vocabulary, and the form in which the topic (or story) is presented
+        Sets purposes for reading by asking questions about what he or she wants to learn (know) during the reading episode
+
+    While reading, the strategic reader
+
+        Checks understanding of the text by paraphrasing the author's words
+        Monitors comprehension by using context clues to figure out unknown words and by imagining, inferencing, and predicting
+        Integrates new concepts with existing knowledge, continually revising purposes for reading
+
+    After reading, the strategic reader
+
+        Summarizes what has been read by retelling the plot of the story or the main idea of the text
+        Evaluates the ideas contained in the text
+        Makes applications of the ideas in the text to unique situations, extending the ideas to broader perspectives. (p. 524)
+
+Mathematics teachers can use this general outline in several ways. They can model the process by reading the problem out loud and paraphrasing the author's words and then talking through how they use context clues to figure out word meanings. Before reading, teachers can ask questions that they want students to consider as they approach a mathematics problem. Teachers can probe about the reading's vocabulary by asking questions such as, “Are we clear on the meaning of all of the words?” or “Does the context help or should we look the word up?” Also significant are questions about the meaning of the problem, such as, “Can I paraphrase the problem?” “Does the problem make sense to me?” or “Does my understanding incorporate everything I've read?”
+
+Reinforcing the idea that a piece of mathematics text needs to make sense (and that it can make sense) is exceedingly important. Teachers need to provide explicit scaffolding experiences to help students connect the text to their prior knowledge and to build such knowledge. In her book Yellow Brick Roads (2003), Janet Allen suggests that teachers need to ask themselves the following critical questions about a text:
+
+    What is the major concept?
+    How can I help students connect this concept to their lives?
+    Are there key concepts or specialized vocabulary that needs to be introduced because students could not get meaning from the context?
+    How could we use the pictures, charts, and graphs to predict or anticipate content?
+    What supplemental materials do I need to provide to support reading?
+
+Consider the following three situations I encountered while working with two 6th grade mathematics teachers and an 8th grade mathematics teacher:
+
+    In the first case, the 6th grade teacher was explicitly teaching students how to look for context clues. The question at hand required students to write “7 × 7 × 7 × 8 × 9 × 9” in exponential notation. The teacher suggested that the students look for a word in the text of the question that might help them. It was interesting to see the different ways that students interpreted this simple exercise. Some seemingly did not look at the words at all; they simply executed the calculation. Some knew the word notation and knew that write meant to reformat the problem. Those who also knew the word exponent were able to answer the problem correctly, whereas some of those who didn't know what exponent meant used a different type of notation to rewrite the problem in words. It is clear that simple exercises such as these can help students to interpret mathematics text by looking at all the words, rather than assuming that a calculation is always sought.
+    In the second case, students in a 6th grade class were asked to find the percentage of cat owners who said their cats had bad breath. In a survey, 80 out of 200 cat owners had said yes. The students used several different strategies to answer the question and discussed it as a class. They were then asked to read and answer some follow-up questions. The first one read, “If you survey 500 cat owners, about how many would you expect to say that their cats have bad breath? Explain your reasoning.” The students asked the teacher to help them understand what was being asked, and she complied, as teachers often do without thinking, by telling the students to use the 40 percent figure from the previous question.
+    If we are really trying to help students read and understand for themselves, we must ask them questions instead of explicitly telling them what the text means: “What information do you have that might help you answer this question?” “Does the fact that this is a ‘follow-up’ help us to decipher the question?”
+    In the third case, groups of 8th graders worked through a series of problems involving compound interest calculations. The main question read, “What are the initial value, rate of increase in value, and number of years that Sam is assuming?” In one group, a boy said loudly, “It's too hard to figure out! I don't want to use my brain,” and snapped his book shut. When questioned about his reaction, the boy just said, “Too many questions.”
+    Students often have difficulty with this sort of multipart question. They need to develop the simple strategy of taking the main question apart and listing the individual questions separately.
+    As a teacher, I often had students come to me for help understanding a problem. Just asking them to read the problem aloud would usually elicit, “Oh, now I get it.” My experience suggests that having students read problems aloud to themselves can help their understanding. I also think that, for some students, the attention of someone else listening may help them to focus.
+
+Other Reading Strategies
+
+In addition to helping students learn the meaning in mathematics text of “little” mathematics words and the precise mathematical meanings of familiar English words, teachers should help them understand the abstract, unfamiliar terminology of mathematics. As stated by Barton, Heidema, and Jordan (2002), and as I've learned from my own experience in the classroom, just giving students vocabulary lists with definitions, or asking them to look up the definitions, isn't enough for them to develop the conceptual meaning behind the words or to read and use the vocabulary accurately.
+
+Teachers can also introduce various maps, webs, and other graphic organizers to help students further organize mathematics meanings and concepts. Two graphic organizers that can be particularly useful in mathematics classes are the Frayer Model (Frayer, 1969) and the Semantic Feature Analysis Grid (Baldwin, 1981). In the Frayer Model, a sheet of paper is divided into four quadrants. In the first quadrant, the students define a given term in their own words; in the second quadrant, they list any facts that they know about the word; in the third quadrant, they list examples of the given term; and in the fourth quadrant, they list nonexamples. (See Figure 2.1 for an example of the Frayer Model.)
+
+Figure 2.1. Sample Frayer Model for Composite Numbers
+
+The Semantic Feature Analysis Grid helps students compare features of mathematical objects that are in the same category by providing a visual prompt of their similarities and differences. On the left side of the grid is a list of terms in the chosen category, and across the top is a list of properties that the objects might share. (An example of the Semantic Feature Analysis Grid is shown in Figure 2.2.)
+
+
+Figure 2.2. Sample Semantic Feature Analysis Grid for Quadrilaterals
+
+Term
+
+
+Sides Equal
+
+
+Angles Equal
+
+
+Opposite Sides Parallel
+
+
+Opposite Sides Equal
+
+
+Only One Pair of Parallel Sides
+
+
+Four Sides
+
+Parallelogram
+
+
+
+
+
+
+X
+
+
+X
+
+
+
+
+X
+
+Rectangle
+
+
+
+
+X
+
+
+X
+
+
+X
+
+
+
+
+X
+
+Rhombus
+
+
+X
+
+
+
+
+X
+
+
+X
+
+
+
+
+X
+
+Scalene Quadrilateral
+
+
+
+
+
+
+
+
+
+
+
+
+X
+
+Square
+
+
+X
+
+
+X
+
+
+X
+
+
+X
+
+
+
+
+X
+
+Trapezoid
+
+
+
+
+
+
+
+
+
+
+X
+
+
+X
+
+Another useful problem-solving process is the SQRQCQ process, developed by Leslie Fay (1965), which is a variation of Polya's four-step process (1973). The acronym SQRQCQ stands for the following terms and respective actions:
+
+    Survey. Read the problem quickly to get a general understanding of it.
+    Question. Ask what information the problem requires.
+    Read. Reread the problem to identify relevant information, facts, and details needed to solve it.
+    Question. Ask what operations must be performed, and in what order, to solve the problem.
+    Compute/Construct. Do the computations, or construct the solution.
+    Question. Ask whether the solution process seems correct and the answer reasonable.
+
+Teachers can model the steps for the students with a chosen problem and then have the students practice individually or in pairs. Students can then be asked to share their use of the strategy with a partner, within a group, or with the class.
+
+Elementary Classroom Issues
+
+Most elementary teachers teach mathematics as one of several subjects; in many cases, they teach reading as well as mathematics, unlike teachers in middle school and high school. They need to be aware of the particular difficulties involved in reading mathematical text. When encountering mathematical symbols, students face a multilevel decoding process: First they must recognize and separate out the confusing mathematical symbols (e.g., +, ×, <) without any phonic cues; then they must translate each symbol into English; and finally they must connect the symbol to the concept for which it stands and then carry out the operations indicated.
+Graphs and Tables
+
+Graphs are also particularly hard for elementary students to read. The first type of graph that most students encounter is the bar graph, which is most commonly “read” from bottom to top. There are many types of graphs—particularly in the mathematics, science, and social studies contexts—with different “directions of readability.”
+
+I became aware of the need to help students learn to stop and analyze graph and table structures when working with (what I thought were) simple matrix puzzles, involving only two rows and two columns, with an operation sign in the upper left corner. The numbers at the top and to the left were to be combined using the operation sign, and the answers were to be written in the interstices of the rows and columns. The idea was for the student to fill in any missing cells in the matrix. (Figure 2.3 is an example of a completed puzzle.)
+
+Figure 2.3. Sample Matrix Puzzle
+
+Several students had difficulty understanding what they were expected to do with the puzzle: What was to be added? Where did the answer go? This experience pointed out to me that specific strategies to decipher graphic representations need to be extensively modeled and repeatedly explored. It is important that students become aware that an underlying plan or pattern can usually be discovered by careful study.
+Guided Reading
+
+One strategy that may be familiar to elementary reading teachers, and which seems particularly useful in the context of mathematics, is that of guided reading sessions (Allen, 2003). In such sessions, the teacher is still responsible for helping students connect what they are reading to prior knowledge. The teacher should first present the text or graphic to students in small, coherent segments, being sure to process each segment before going on to the next one. As the reading progresses, the teacher should ask process questions that she wants the students to ask themselves in the future. They may be asked to predict what the reading will be about simply by reading the title of the piece (if there is one, such as a graph or story problem). Next the students should make two columns on a piece of paper, one headed “What I Predict” and the other headed “What I Know.” Once the students have silently read each section of the piece, they should fill out each column accordingly. At this point, the teacher should ask students questions such as the following:
+
+    What would you be doing in that situation?
+    Does this make sense?
+    What does the picture/graph/chart tell you?
+    How does the title connect to what we're reading?
+    Why are these words in capital letters?
+    Why is there extra white space here?
+    What does that word mean in this context?
+
+Figure 2.4 shows a simple example of a possible guided reading for a lesson from an algebra text. The text would be unveiled one paragraph (or equation) at a time rather than given to the students as one continuous passage.
+
+
+Figure 2.4. Guided Reading Example
+
+TEXT
+
+
+POSSIBLE QUESTIONS
+
+Solving Systems Using Substitution
+
+
+1. What does the title tell you?
+
+Problem
+
+
+From a car wash, a service club made $109 that was divided between the Girl Scouts and the Boy Scouts. There were twice as many girls as boys, so the decision was made to give the girls twice as much money. How much did each group receive?
+
+
+2. Before you read further, how would you translate this story problem into equations?
+
+Solution
+
+
+Translate each condition into an equation.
+
+Suppose the Boy Scouts receive B dollars and the Girl Scouts receive G dollars. We number the equations in the system for reference.
+
+
+3. What do they mean here by “condition”?
+
+The sum of the amounts is $109.
+
+(1) B + G = 109
+
+Girls get twice as much as boys.
+
+(2) G = 2B
+
+
+4. Did you come up with two equations in answer to question 2 above? Are the equations here the same as yours? If not, how are they different? Can you see a way to substitute?
+
+Since G = 2B in equation (2), you can substitute 2B for G in equation (1).
+
+
+B + 2B = 109
+
+3B = 109
+
+B = 36 1/3
+
+
+5. How did they arrive at this equation?
+
+6. Do you see how it follows?
+
+7. Does it make sense? How did they get this?
+
+To find G, substitute 36 1/3 for B in either equation. We use equation (2).
+
+
+8. Do this, then we'll read the next part.
+
+G = 2B
+
+= 2 × 36 1/3
+
+= 72 2/3
+
+
+So the solution is (B, G) = (36 1/3, 72 2/3).
+
+The Boy Scouts will receive $36.33, and the Girl Scouts will get $72.67.
+
+
+9. Did you get the same result?
+
+Check
+
+
+Are both conditions satisfied?
+
+
+10. What conditions do they mean here?
+
+Will the groups receive a total of $109?
+
+Yes, $36.33 + $72.67 = $109. Will the boys get twice as much as the girls? Yes, it is as close as possible.
+
+
+11. How would you show this?
+
+Where did they get this equation?
+
+Note: Text in the left column above is adapted from University of Chicago School Mathematics Project: Algebra (p. 536), by J. McConnell et al., 1990, Glenview, IL: Scott Foresman.
+
+Guided reading is best done in small groups, with the teacher encouraging students to think of their own questions as they read. A predetermined set of questions isn't necessary. The purpose of guided reading is to help students realize that they can engage with and make sense of the text, whether it be in language arts or mathematics.
+Conclusion
+
+Mathematics teachers don't need to become reading specialists in order to help students read mathematics texts, but they do need to recognize that students need their help reading in mathematical contexts. Teachers should make the strategic processes necessary for understanding mathematics explicit to students. Teachers must help students use strategies for acquiring vocabulary and reading word problems for meaning. Students are helped not by having their reading and interpreting done for them, but rather by being asked questions when they don't understand the text. The goal is for students to internalize these questions and use them on their own.
+
+Mathematics teachers are ultimately striving to help their students understand mathematics and to use it in all aspects of their lives. Being aware that students' prior knowledge and background affects their comprehension is vastly important, as is explicitly analyzing the organization of mathematics texts. When we share strategies for understanding text, question our students about their conceptual processes, and model strategies and questioning techniques, we are helping students to develop metacognitive processes for approaching mathematics tasks. Mathematics teachers should recognize that part of their job in helping their students become autonomous, self-directed learners is first to help them become strategic, facile readers of mathematics text.
