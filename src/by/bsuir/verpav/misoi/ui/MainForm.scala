@@ -35,6 +35,7 @@ class MainForm extends JFrame {
     chooser.setVisible(true)
     val filename = chooser.getDirectory+chooser.getFile
     val img = ImageIO.read(new File(filename))
+    img.
     val icon = new ImageIcon(img)
     imageLabel.setIcon(icon)
   }
