@@ -1,5 +1,6 @@
 package by.bsuir.verpav.misoi.main
 
+import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
 
@@ -18,11 +19,4 @@ object Main extends App{
 //
 //  |-|-|(dataFrequencies)
 
-  def extractColors (imageName : String) = {
-    val image = ImageIO.read(new File(imageName))
-    for(x <- 0 until image.getWidth; y <- 0 until image.getHeight()) yield {
-      val rgb = image.getRGB(x,y)
-      ((rgb >> 16) & 0xFF, (rgb >> 8) & 0xFF, rgb & 0xFF)
-    }
-  }
 }

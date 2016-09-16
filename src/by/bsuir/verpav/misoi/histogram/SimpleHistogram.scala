@@ -10,34 +10,42 @@ import javax.swing._
   */
 object SimpleHistogram {
 
-  def build(data: Map[Int, Int]): Unit = {
+  def build(data: Map[Int, Int], prefix : String): Unit = {
 
-    val frame = new JFrame("Histogram")
+    val frame = new JFrame(prefix + " Histogram")
     frame.setLayout(new BorderLayout())
-    frame.add(new JScrollPane(new Graph(data)))
-    frame.setJMenuBar(createMenuBar())
-    frame.pack()
-    frame.setLocationRelativeTo(null)
-    frame.setVisible(true)
 
-    def createMenuBar() = {
-      val menuBar = new JMenuBar()
-      val menu = new JMenu("File")
-      menuBar.add(menu)
-      val menuItem1 = new JMenuItem(" Save...   ")
-      menuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
-        Toolkit.getDefaultToolkit.getMenuShortcutKeyMask))
-      menu.add(menuItem1)
-      menuBar
+    val color = prefix match {
+      case "Red" => Some(Color.RED)
+      case "Blue" => Some(Color.BLUE)
+      case "Green" => Some(Color.GREEN)
+      case _ => None
     }
-  }
 
-  def |-|-| (data: Map[Int, Int]): Unit = {
-    build(data)
+        frame.add(new JScrollPane(new Graph(data, color)))
+        frame.setJMenuBar(createMenuBar())
+        frame.pack()
+        frame.setLocationRelativeTo(null)
+        frame.setVisible(true)
+
+        def createMenuBar() = {
+          val menuBar = new JMenuBar()
+          val menu = new JMenu("File")
+          menuBar.add(menu)
+          val menuItem1 = new JMenuItem(" Save...   ")
+          menuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
+            Toolkit.getDefaultToolkit.getMenuShortcutKeyMask))
+          menu.add(menuItem1)
+          menuBar
+        }
+    }
+
+  def |-|-| (data: Map[Int, Int], prefix : String = ""): Unit = {
+    build(data, prefix)
   }
 }
 
-class Graph(mapHistory: Map[Int, Int]) extends JPanel {
+class Graph(mapHistory: Map[Int, Int], color : Option[Color]) extends JPanel {
   val MIN_BAR_WIDTH = 4
   val graphWidth = (mapHistory.size * MIN_BAR_WIDTH) + 11
   val graphMinSize = new Dimension(graphWidth, 128)
@@ -66,7 +74,10 @@ class Graph(mapHistory: Map[Int, Int]) extends JPanel {
         val barHeight = Math.round((value / maxValue.toFloat) * height)
         val yPos = height + yOffset - barHeight
         val bar = new Rectangle2D.Float(xPos, yPos, barWidth, barHeight)
-        g2d.setColor(new Color(key, key, key))
+        if(color.isEmpty)
+          g2d.setColor(new Color(key, key, key))
+        else
+          g2d.setColor(color.get)
         g2d.fill(bar)
         g2d.setColor(Color.WHITE)
         g2d.draw(bar)
