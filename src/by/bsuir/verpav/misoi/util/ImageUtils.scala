@@ -1,6 +1,6 @@
 package by.bsuir.verpav.misoi.util
 
-import java.awt.image.BufferedImage
+import java.awt.image.{BufferedImage, WritableRaster}
 import java.io.File
 import javax.imageio.ImageIO
 
@@ -20,6 +20,21 @@ object ImageUtils {
       else{
         raster.setPixel(x, y, falseTransformation(rgb(0), rgb(1), rgb(2)))
       }
+    }
+    baseImage
+  }
+
+  def getNeighborhood(raster: WritableRaster, x: Int, y: Int, coreSize: Int, includePoint: Boolean) : Array[(Int, Int, Int)] = {
+    //TODO Add real implementation
+    Array[(Int, Int, Int)]((1,2,3))
+  }
+
+  def spatialImageTransformation(baseImage: BufferedImage, coreSize : Int, newPixelValue : Array[(Int, Int, Int)] => (Int, Int, Int)) = {
+    val raster = baseImage.getRaster
+    for(x <- 0 until baseImage.getWidth; y <- 0 until baseImage.getHeight()) {
+      val neighborhood  = getNeighborhood(raster, x, y, coreSize, false)
+      val newValue = newPixelValue(neighborhood)
+      raster.setPixel(x, y, Array[Int](newValue._1, newValue._2, newValue._3))
     }
     baseImage
   }

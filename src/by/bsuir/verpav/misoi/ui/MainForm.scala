@@ -174,17 +174,34 @@ class MainForm extends JFrame {
 
     val minFilter = new JMenuItem("Min")
     minFilter.setFont(font)
-    //minFilter.addActionListener()
+    minFilter.addActionListener(() => {
+      baseImage = ImageUtils.spatialImageTransformation(baseImage, 3,
+        (x : Array[(Int, Int, Int)]) => x.minBy((ImageUtils.pointBrightness _).tupled))
+      setImageToLabel()
+      startCalculateFrequencies()
+    })
     minMaxFilters.add(minFilter)
 
     val maxFilter = new JMenuItem("Max")
     maxFilter.setFont(font)
-    //maxFilter.addActionListener()
+    maxFilter.addActionListener(() => {
+      baseImage = ImageUtils.spatialImageTransformation(baseImage, 3,
+        (x : Array[(Int, Int, Int)]) => x.maxBy((ImageUtils.pointBrightness _).tupled))
+      setImageToLabel()
+      startCalculateFrequencies()
+    })
     minMaxFilters.add(maxFilter)
 
     val minMaxFilter = new JMenuItem("Min-Max")
     minMaxFilter.setFont(font)
-    //minMaxFilter.addActionListener()
+    minMaxFilters.addActionListener(() => {
+      baseImage = ImageUtils.spatialImageTransformation(baseImage, 3,
+        (x : Array[(Int, Int, Int)]) => x.minBy((ImageUtils.pointBrightness _).tupled))
+      baseImage = ImageUtils.spatialImageTransformation(baseImage, 3,
+        (x : Array[(Int, Int, Int)]) => x.maxBy((ImageUtils.pointBrightness _).tupled))
+      setImageToLabel()
+      startCalculateFrequencies()
+    })
     minMaxFilters.add(minMaxFilter)
 
     menuBar.add(fileMenu)
