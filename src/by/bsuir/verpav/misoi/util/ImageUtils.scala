@@ -44,13 +44,16 @@ object ImageUtils {
   }
 
   def spatialImageTransformation(baseImage: BufferedImage, coreSize : Int, newPixelValue : Array[(Int, Int, Int)] => (Int, Int, Int)) = {
+    val cm = baseImage.getColorModel
+    val isAlphaPremultiplied = cm.isAlphaPremultiplied
+    val newRaster = baseImage.copyData(null)
     val raster = baseImage.getRaster
     for(x <- 0 until baseImage.getWidth; y <- 0 until baseImage.getHeight()) {
       val neighborhood  = getNeighborhood(raster, x, y, coreSize, false)
       val newValue = newPixelValue(neighborhood)
-      raster.setPixel(x, y, Array[Int](newValue._1, newValue._2, newValue._3))
+      newRaster.setPixel(x, y, Array[Int](newValue._1, newValue._2, newValue._3))
     }
-    baseImage
+    new BufferedImage(cm, newRaster, isAlphaPremultiplied, null)
   }
 
   def extractColors (image : BufferedImage): Seq[(Int, Int, Int)] = {

@@ -23,21 +23,9 @@ object SimpleHistogram {
     }
 
         frame.add(new JScrollPane(new Graph(data, color)))
-        frame.setJMenuBar(createMenuBar())
         frame.pack()
         frame.setLocationRelativeTo(null)
         frame.setVisible(true)
-
-        def createMenuBar() = {
-          val menuBar = new JMenuBar()
-          val menu = new JMenu("File")
-          menuBar.add(menu)
-          val menuItem1 = new JMenuItem(" Save...   ")
-          menuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
-            Toolkit.getDefaultToolkit.getMenuShortcutKeyMask))
-          menu.add(menuItem1)
-          menuBar
-        }
     }
 
   def |-|-| (data: Array[Int], prefix : String = ""): Unit = {

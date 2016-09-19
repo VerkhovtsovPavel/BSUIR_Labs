@@ -17,7 +17,7 @@ import scala.concurrent.duration._
 /**
   * Created by Pavel_Verkhovtsov on 9/14/16.
   */
-class MainForm extends JFrame {
+object MainForm extends JFrame with App{
 
   var baseImage: BufferedImage = _
 
@@ -35,11 +35,12 @@ class MainForm extends JFrame {
   setVisible(true)
 
   def setImageToLabel(): Unit = {
-    //TODO Use related scale coefficients
-    //TODO Review label size and location
+    val dimension = Toolkit.getDefaultToolkit.getScreenSize
+
     val resizedImage = baseImage.getScaledInstance(imageLabel.getWidth, imageLabel.getHeight, Image.SCALE_SMOOTH)
     val icon = new ImageIcon(resizedImage)
     imageLabel.setIcon(icon)
+    JOptionPane.showConfirmDialog(this,"Image updated", "Image updated", JOptionPane.CLOSED_OPTION)
   }
 
   def startCalculateFrequencies(): Unit = {
@@ -114,11 +115,11 @@ class MainForm extends JFrame {
     val mainPanel = new JPanel()
     setContentPane(mainPanel)
     mainPanel.setLayout(null)
-    setSize(460, 310)
-    imageLabel.setSize(460, 310)
+    val dimension = Toolkit.getDefaultToolkit.getScreenSize
+    setSize((dimension.getWidth / 2).toInt , (dimension.getHeight / 2).toInt)
+    imageLabel.setSize((dimension.getWidth / 2).toInt, (dimension.getHeight / 2).toInt)
     imageLabel.setLocation(0, 0)
     this.add(imageLabel)
-    val dimension = Toolkit.getDefaultToolkit.getScreenSize
     val x1 = (dimension.getWidth - getWidth / 2).toInt
     val y1 = (dimension.getHeight - getHeight / 2).toInt
     setLocation(x1, y1)
@@ -246,8 +247,4 @@ class MainForm extends JFrame {
       lambda()
     }
   }
-}
-
-object MainForm {
-  def apply(): MainForm = new MainForm()
 }
