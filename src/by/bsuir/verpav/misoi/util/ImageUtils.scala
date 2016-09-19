@@ -4,6 +4,8 @@ import java.awt.image.{BufferedImage, WritableRaster}
 import java.io.File
 import javax.imageio.ImageIO
 
+import scala.collection.mutable.ArrayBuffer
+
 /**
   * Created by Pavel_Verkhovtsov on 9/16/16.
   */
@@ -25,8 +27,20 @@ object ImageUtils {
   }
 
   def getNeighborhood(raster: WritableRaster, x: Int, y: Int, coreSize: Int, includePoint: Boolean) : Array[(Int, Int, Int)] = {
-    //TODO Add real implementation
-    Array[(Int, Int, Int)]((1,2,3))
+    val delta = (coreSize-1)/2
+    val buffer = ArrayBuffer[(Int, Int, Int)]()
+
+    for(xx <- (x - delta) to (x + delta) if x!=xx; yy <- (y - delta) to (y + delta) if y!=yy){
+      try {
+        val rgb = raster.getPixel(xx, yy, null.asInstanceOf[Array[Int]])
+        buffer += ((rgb(0), rgb(1), rgb(2)))
+      } catch { case iob : ArrayIndexOutOfBoundsException => }
+    }
+    if(includePoint){
+      val rgb = raster.getPixel(x, y, null.asInstanceOf[Array[Int]])
+      buffer += ((rgb(0), rgb(1), rgb(2)))
+    }
+    buffer.toArray
   }
 
   def spatialImageTransformation(baseImage: BufferedImage, coreSize : Int, newPixelValue : Array[(Int, Int, Int)] => (Int, Int, Int)) = {

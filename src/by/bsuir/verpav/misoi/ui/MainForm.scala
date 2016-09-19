@@ -21,10 +21,12 @@ class MainForm extends JFrame {
 
   var baseImage: BufferedImage = _
 
-  var redFuture : Future[Map[Int, Int]] = _
-  var greenFuture : Future[Map[Int, Int]] = _
-  var blueFuture : Future[Map[Int, Int]] = _
-  var brightnessFuture : Future[Map[Int, Int]] = _
+  var redFuture : Future[Array[Int]] = _
+  var greenFuture : Future[Array[Int]] = _
+  var blueFuture : Future[Array[Int]] = _
+  var brightnessFuture : Future[Array[Int]] = _
+
+  var extractColorsFuture : Future[Seq[(Int, Int, Int)]] = _
 
   val imageLabel : JLabel = new JLabel()
 
@@ -43,19 +45,40 @@ class MainForm extends JFrame {
   def startCalculateFrequencies(): Unit = {
     import scala.concurrent.ExecutionContext.Implicits.global
 
-    Future { extractColors(baseImage)} onSuccess {
+    extractColorsFuture  = Future {extractColors(baseImage)}
+    extractColorsFuture onSuccess {
       case data =>
         redFuture = Future {
-          data.map(x => x._1).foldLeft(Map[Int, Int]())((map, word) => map + ((word, map.getOrElse(word, 0) + 1)))
+           val reds = data.map(x => x._1)
+           val freq = new Array[Int](256)
+            for(red <- reds){
+              freq(red)+=1
+            }
+          freq
         }
         greenFuture = Future {
-          data.map(x => x._2).foldLeft(Map[Int, Int]())((map, word) => map + ((word, map.getOrElse(word, 0) + 1)))
+          val greens = data.map(x => x._2)
+          val freq = new Array[Int](256)
+          for(green <- greens){
+            freq(green)+=1
+          }
+          freq
         }
         blueFuture = Future {
-          data.map(x => x._3).foldLeft(Map[Int, Int]())((map, word) => map + ((word, map.getOrElse(word, 0) + 1)))
+          val blues = data.map(x => x._1)
+          val freq = new Array[Int](256)
+          for(blue <- blues){
+            freq(blue)+=1
+          }
+          freq
         }
         brightnessFuture = Future {
-          data.map((ImageUtils.pointBrightness _).tupled).foldLeft(Map[Int, Int]())((map, word) => map + ((word, map.getOrElse(word, 0) + 1)))
+          val brightnesses = data.map((ImageUtils.pointBrightness _).tupled)
+          val freq = new Array[Int](256)
+          for(brig <- brightnesses){
+            freq(brig)+=1
+          }
+          freq
         }
     }
   }
@@ -77,6 +100,7 @@ class MainForm extends JFrame {
   }
 
   def buildHistogram(): Unit = {
+    Await.ready(extractColorsFuture, 60 second)
     |-|-|(Await.result(redFuture, 60.seconds), "Red")
     |-|-|(Await.result(greenFuture, 60.seconds), "Green")
     |-|-|(Await.result(blueFuture, 60.seconds), "Blue")
@@ -194,7 +218,7 @@ class MainForm extends JFrame {
 
     val minMaxFilter = new JMenuItem("Min-Max")
     minMaxFilter.setFont(font)
-    minMaxFilters.addActionListener(() => {
+    minMaxFilter.addActionListener(() => {
       baseImage = ImageUtils.spatialImageTransformation(baseImage, 3,
         (x : Array[(Int, Int, Int)]) => x.minBy((ImageUtils.pointBrightness _).tupled))
       baseImage = ImageUtils.spatialImageTransformation(baseImage, 3,

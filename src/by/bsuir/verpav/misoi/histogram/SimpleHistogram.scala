@@ -10,7 +10,7 @@ import javax.swing._
   */
 object SimpleHistogram {
 
-  def build(data: Map[Int, Int], prefix : String): Unit = {
+  def build(data: Array[Int], prefix : String): Unit = {
 
     val frame = new JFrame(prefix + " Histogram")
     frame.setLayout(new BorderLayout())
@@ -40,14 +40,14 @@ object SimpleHistogram {
         }
     }
 
-  def |-|-| (data: Map[Int, Int], prefix : String = ""): Unit = {
+  def |-|-| (data: Array[Int], prefix : String = ""): Unit = {
     build(data, prefix)
   }
 }
 
-class Graph(mapHistory: Map[Int, Int], color : Option[Color]) extends JPanel {
+class Graph(mapHistory: Array[Int], color : Option[Color]) extends JPanel {
   val MIN_BAR_WIDTH = 4
-  val graphWidth = (mapHistory.size * MIN_BAR_WIDTH) + 11
+  val graphWidth = (mapHistory.length * MIN_BAR_WIDTH) + 11
   val graphMinSize = new Dimension(graphWidth, 128)
   val graphPrefSize = new Dimension(graphWidth, 256)
   val xOffset = 5
@@ -63,19 +63,19 @@ class Graph(mapHistory: Map[Int, Int], color : Option[Color]) extends JPanel {
       val g2d = g.create().asInstanceOf[Graphics2D]
       g2d.setColor(Color.DARK_GRAY)
       g2d.drawRect(xOffset, yOffset, width, height)
-      val barWidth = Math.max(MIN_BAR_WIDTH, Math.floor(width / mapHistory.size.toFloat).toInt)
-      println("width = " + width + "; size = " + mapHistory.size + "; barWidth = " + barWidth)
+      val barWidth = Math.max(MIN_BAR_WIDTH, Math.floor(width / mapHistory.length.toFloat).toInt)
+      println("width = " + width + "; size = " + mapHistory.length + "; barWidth = " + barWidth)
 
-      val maxValue = mapHistory.values.max
+      val maxValue = mapHistory.max
 
       var xPos = xOffset
-      for (key <- mapHistory.keys.toArray.sorted) {
-        val value = mapHistory.get(key).get
+      for (i <- mapHistory.indices) {
+        val value = mapHistory(i)
         val barHeight = Math.round((value / maxValue.toFloat) * height)
         val yPos = height + yOffset - barHeight
         val bar = new Rectangle2D.Float(xPos, yPos, barWidth, barHeight)
         if(color.isEmpty)
-          g2d.setColor(new Color(key, key, key))
+          g2d.setColor(new Color(i, i, i))
         else
           g2d.setColor(color.get)
         g2d.fill(bar)
