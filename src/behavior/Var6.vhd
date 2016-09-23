@@ -1,13 +1,13 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 
-entity Var6 is port(
+entity Var5 is port(
 		W,X,Y,Z: in std_logic;
 		F: out std_logic
 		);
-end Var6;
+end Var5;
 --
-architecture Var6 of Var6 is	
+architecture Var5 of Var5 is	
 	signal WX : std_logic; 	 
 	signal WXY : std_logic; 
 	signal WXY2 : std_logic;
@@ -17,5 +17,5 @@ begin
 	WXY <= not(WX and Y);
 	WXY2 <= not((not W) or X or (not Y)); 
 	WZ <= not(W or Z);
-	F <= WZ and WXY and WXY2;
-end Var6;  
+	F <= not(WZ) and not(WXY) and not(WXY2);
+end Var5;  

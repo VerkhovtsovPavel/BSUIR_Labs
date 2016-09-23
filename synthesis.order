@@ -10,3 +10,5 @@ i<>.\src\NAND3.vhd
 i<>.\src\AND3.vhd
 i<>.\src\Var6.vhd
 i<>.\src\Var7.vhd
+i<>.\src\behavior\Var6.vhd
+i<>.\src\TestBeanch.vhd

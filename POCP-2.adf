@@ -8,7 +8,7 @@ Current Config=compile
 compile=ieee
 
 [Library]
-ieee=.\..\..\..\aldec\active-hdl 9.1\vlib\ieee\ieee.lib
+ieee=c:\aldec\active-hdl 9.1\vlib\ieee\ieee.lib
 
 [Settings]
 AccessRead=0
@@ -32,6 +32,7 @@ IMPL_TOOL=<none>
 SYNTH_TOOL=<none>
 CSYNTH_TOOL=<none>
 PHYSSYNTH_TOOL=<none>
+fileopenfolder=E:\Code\POCP-2\src\behavior
 
 [LocalVerilogSets]
 EnableSLP=1
@@ -77,11 +78,15 @@ Extension7=
 .\src\structure\prim\OR2.vhd=VHDL Source Code
 .\src\structure\prim\NOT.vhd=VHDL Source Code
 .\src\behavior\Var5.vhd=VHDL Source Code
+.\src\behavior\Var6.vhd=VHDL Source Code
+.\src\behavior\Var7.vhd=VHDL Source Code
+.\src\testBeanch\TestBeanch.vhd=VHDL Source Code
 
 [Groups]
 structure=1
 structure\prim=1
 behavior=1
+testBeanch=1
 
 [Files]
 /MUX2.vhd=-1
@@ -96,4 +101,7 @@ structure\prim/AND2.vhd=-1
 structure\prim/OR2.vhd=-1
 structure\prim/NOT.vhd=-1
 behavior/Var5.vhd=-1
+behavior/Var6.vhd=-1
+behavior/Var7.vhd=-1
+testBeanch/TestBeanch.vhd=-1
 

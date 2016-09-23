@@ -1,0 +1,9 @@
+442
+~E 1 "c:/My_Designs/POCP/POCP-1/src/source.vhd" 3 mux
+~A 1 "c:/My_Designs/POCP/POCP-1/src/source/MUX.vhd" 9 beh
+~E 1 "c:/My_Designs/POCP/POCP-1/src/source/MUX4BY2.vhd" 3 MUX4BY2
+~A 1 "c:/My_Designs/POCP/POCP-1/src/source/MUX4BY2.vhd" 10 MUX4BY2
+~E 1 "c:/My_Designs/POCP/POCP-1/src/source/MUX_2.vhd" 4 mux_2
+~A 1 "c:/My_Designs/POCP/POCP-1/src/source/MUX_2.vhd" 10 mux_2
+~E 1 "c:/My_Designs/POCP/POCP-1/src/OR4.vhd" 28 OR4
+~A 1 "c:/My_Designs/POCP/POCP-1/src/source/OR4.vhd" 10 OR4

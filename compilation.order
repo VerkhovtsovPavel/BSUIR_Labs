@@ -10,3 +10,6 @@
 .\src\structure\prim\OR2.vhd
 .\src\structure\prim\NOT.vhd
 .\src\behavior\Var5.vhd
+.\src\behavior\Var6.vhd
+.\src\behavior\Var7.vhd
+.\src\testBeanch\TestBeanch.vhd
