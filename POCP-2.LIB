@@ -1,0 +1,12 @@
+timestamp=1474562182596
+
+[mux2]
+A/mux2=A/MUX2 24|.\src\MUX2.bde|10000|
+
+[~A]
+ModifyID=2
+Version=73
+
+[~U]
+mux2=MUX2 11||
+
