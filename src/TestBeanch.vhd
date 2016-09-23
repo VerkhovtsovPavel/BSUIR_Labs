@@ -3,14 +3,12 @@ end;
 library ieee;
 use	ieee.std_logic_1164.all;
 architecture
-	OP_TB_ARCH of ODD_PARITY_TB 
-	is
-	component 
-		Parity_Generator1 
-		port 
-			(input_stream : in	input;
+	OP_TB_ARCH of ODD_PARITY_TB  is
+	component Parity_Generator1 
+		port(
+			input_stream : in	input;
 			clk : in  std_logic;
-			parity : out  bit );
+			parity : out  bit);
 	end component;
 	
 	signal 	input_stream : input;
