@@ -1646,4 +1646,93 @@ comp -include "$dsn\src\structure\Var6.vhd"
 # Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
 comp -include "$dsn\src\TestBench\var6_TB.vhd" 
 # Compile...
-# Warning: DAGGEN_0523: The source is compiled wi
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\TestBench\var6_TB.vhd
+# Compile Entity "var6_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+asim +access +r TESTBENCH_FOR_var6 
+#  Simulation has been stopped
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.0 [s].
+# asim: Stack memory: 32MB
+# asim: Retval memory: 32MB
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Elaboration final pass...
+# ELAB2: Create instances ...
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Elaboration phase ...
+# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
+# SLP: Finished : 0.0 [s]
+# ELAB2: Elaboration final pass complete - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 6012 kB (elbread=1023 elab2=4897 kernel=91 sdf=0)
+# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
+#  14:16, 26 сент€бр€ 2016 г.
+#  Simulation has been initialized
+#  Selected Top-Level: testbench_for_var6
+wave 
+wave -noreg W
+wave -noreg X
+wave -noreg Y
+wave -noreg Z
+wave -noreg F 
+wave -noreg F1 
+wave -noreg error
+run  800.00 ns
+# 7 signal(s) traced.
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# # The following lines can be used for timing simulation
+# # acom <backannotated_vhdl_file_name>
+# # comp -include "$dsn\src\TestBench\var6_TB_tim_cfg.vhd" 
+# # asim +access +r TIMING_FOR_var6 
+acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd $dsn/src/MUX4-2.vhd $dsn/src/structure/Var5.vhd $dsn/src/structure/Var6.vhd $dsn/src/structure/Var7.vhd $dsn/src/structure/prim/AND3.vhd $dsn/src/structure/prim/NAND3.vhd $dsn/src/structure/prim/OR3.vhd $dsn/src/structure/prim/AND2.vhd $dsn/src/structure/prim/OR2.vhd $dsn/src/structure/prim/NOT.vhd $dsn/src/TestBench/var5_TB.vhd $dsn/src/TestBench/var5_TB_tim_cfg.vhd $dsn/src/TestBench/var6_TB.vhd $dsn/src/TestBench/var6_TB_tim_cfg.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\MUX2.vhd
+# Compile Entity "mux2"
+# Compile Architecture "mux2" of Entity "mux2"
+# File: E:\Code\POCP-2\src\MUX4-2.vhd
+# Compile Entity "MUX4_2"
+# Compile Architecture "MUX4_2" of Entity "MUX4_2"
+# File: E:\Code\POCP-2\src\structure\Var5.vhd
+# Compile Entity "Var5"
+# Compile Architecture "structual" of Entity "Var5"
+# Compile Architecture "behavior" of Entity "Var5"
+# File: E:\Code\POCP-2\src\structure\Var6.vhd
+# Compile Entity "Var6"
+# Compile Architecture "structual" of Entity "Var6"
+# Compile Architecture "behavior" of Entity "Var6"
+# File: E:\Code\POCP-2\src\structure\Var7.vhd
+# Compile Entity "Var7"
+# Compile Architecture "structual" of Entity "Var7"
+# Compile Architecture "behavior" of Entity "Var7"
+# File: E:\Code\POCP-2\src\structure\prim\AND3.vhd
+# Compile Entity "AND3"
+# Compile Architecture "AND3" of Entity "AND3"
+# File: E:\Code\POCP-2\src\structure\prim\NAND3.vhd
+# Compile Entity "NAND3"
+# Compile Architecture "NAND3" of Entity "NAND3"
+# File: E:\Code\POCP-2\src\structure\prim\OR3.vhd
+# Compile Entity "OR3"
+# Compile Architecture "OR3" of Entity "OR3"
+# File: E:\Code\POCP-2\src\structure\prim\AND2.vhd
+# Compile Entity "AND2"
+# Compile Architecture "AND2" of Entity "AND2"
+# File: E:\Code\POCP-2\src\structure\prim\OR2.vhd
+# Compile Entity "OR2"
+# Compile Architecture "OR2" of Entity "OR2"
+# File: E:\Code\POCP-2\src\structure\prim\NOT.vhd
+# Compile Entity "NOT1"
+# Compile Architecture "NOT1" of Entity "NOT1"
+# File: E:\Code\POCP-2\src\TestBench\var5_TB.vhd
+# Compile Entity "var5_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
+# File: E:\Code\POCP-2\src\TestBench\var5_TB_tim_cfg.vhd
+# Compile Configuration "TESTBENCH_FOR_var5"
+# File: E:\Code\POCP-2\src\TestBench\var6_TB.vhd
+# Compile Entity "var6_tb"
+# Compile Archite
