@@ -10,5 +10,8 @@ i<>.\src\NAND3.vhd
 i<>.\src\AND3.vhd
 i<>.\src\Var6.vhd
 i<>.\src\Var7.vhd
-i<>.\src\behavior\Var6.vhd
 i<>.\src\TestBeanch.vhd
+i<>.\src\TestBench\var5_TB.vhd
+i<>.\src\TestBench\var5_TB_tim_cfg.vhd
+i<>.\src\TestBench\var6_TB.vhd
+i<>.\src\TestBench\var6_TB_tim_cfg.vhd

@@ -7,7 +7,7 @@ entity Var5 is port(
 		);
 end Var5;
 --
-architecture Var5 of Var5 is	
+architecture structual of Var5 is	
 	signal nW : std_logic; 	 
 	signal nY : std_logic; 
 	signal nWX : std_logic;
@@ -17,6 +17,7 @@ architecture Var5 of Var5 is
 	signal nT : std_logic;
 	signal WZ : std_logic;
 	signal nWZ : std_logic;
+	
 	component AND2 is port(
 			a,b: in std_logic;
 			z: out std_logic);
@@ -47,4 +48,17 @@ begin
 	M7: OR2   port map (W, Z, WZ);
 	M8: NOT1  port map (WZ, nWZ);
 	M9: NAND3 port map (nWZ, T, WXY, F); 
-end Var5;  
+end structual;  
+
+architecture behavior of Var5 is	
+	signal WX : std_logic; 	 
+	signal WXY : std_logic; 
+	signal WXY2 : std_logic;
+	signal WZ : std_logic;
+begin
+	WX <= (not W) or X; 
+	WXY <= not(WX and Y);
+	WXY2 <= not((not W) or X or (not Y)); 
+	WZ <= not(W or Z);
+	F <= not(WZ) and not(WXY) and not(WXY2);
+end behavior;  

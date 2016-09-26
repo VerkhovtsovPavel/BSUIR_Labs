@@ -7,7 +7,7 @@ entity Var7 is port(
 );
 end Var7;
 --
-architecture Var7 of Var7 is	
+architecture structual of Var7 is	
 signal WXY : std_logic;
 signal YZ : std_logic;
 component AND2 is port(
@@ -26,4 +26,13 @@ begin
 	M1: AND3  port map (W, X, Y, WXY); 
 	M2: AND2  port map (Y, Z, YZ);
 	M3: OR2   port map (WXY, YZ, G);
-end Var7;  
+end structual;  	
+
+architecture behavior of Var7 is	
+signal WXY : std_logic;
+signal YZ : std_logic;
+begin
+	WXY <= W and X and Y;
+	YZ <= Y and Z;
+	G <= WXY or YZ;
+end behavior;  

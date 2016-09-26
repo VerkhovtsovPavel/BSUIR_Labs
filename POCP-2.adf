@@ -65,28 +65,10 @@ Name7=HTML
 Directory7=c:\My_Designs\POCP\POCP-2\
 Extension7=
 
-[Files.Data]
-.\src\MUX2.vhd=VHDL Source Code
-.\src\MUX4-2.vhd=VHDL Source Code
-.\src\structure\Var5.vhd=VHDL Source Code
-.\src\structure\Var6.vhd=VHDL Source Code
-.\src\structure\Var7.vhd=VHDL Source Code
-.\src\structure\prim\AND3.vhd=VHDL Source Code
-.\src\structure\prim\NAND3.vhd=VHDL Source Code
-.\src\structure\prim\OR3.vhd=VHDL Source Code
-.\src\structure\prim\AND2.vhd=VHDL Source Code
-.\src\structure\prim\OR2.vhd=VHDL Source Code
-.\src\structure\prim\NOT.vhd=VHDL Source Code
-.\src\behavior\Var5.vhd=VHDL Source Code
-.\src\behavior\Var6.vhd=VHDL Source Code
-.\src\behavior\Var7.vhd=VHDL Source Code
-.\src\testBeanch\TestBeanch.vhd=VHDL Source Code
-
 [Groups]
 structure=1
 structure\prim=1
-behavior=1
-testBeanch=1
+TestBench=1
 
 [Files]
 /MUX2.vhd=-1
@@ -100,8 +82,29 @@ structure\prim/OR3.vhd=-1
 structure\prim/AND2.vhd=-1
 structure\prim/OR2.vhd=-1
 structure\prim/NOT.vhd=-1
-behavior/Var5.vhd=-1
-behavior/Var6.vhd=-1
-behavior/Var7.vhd=-1
-testBeanch/TestBeanch.vhd=-1
+TestBench/var5_TB.vhd=-1
+TestBench/var5_TB_tim_cfg.vhd=-1
+TestBench/var5_TB_runtest.do=-1
+TestBench/var6_TB.vhd=-1
+TestBench/var6_TB_tim_cfg.vhd=-1
+TestBench/var6_TB_runtest.do=-1
+
+[Files.Data]
+.\src\MUX2.vhd=VHDL Source Code
+.\src\MUX4-2.vhd=VHDL Source Code
+.\src\structure\Var5.vhd=VHDL Source Code
+.\src\structure\Var6.vhd=VHDL Source Code
+.\src\structure\Var7.vhd=VHDL Source Code
+.\src\structure\prim\AND3.vhd=VHDL Source Code
+.\src\structure\prim\NAND3.vhd=VHDL Source Code
+.\src\structure\prim\OR3.vhd=VHDL Source Code
+.\src\structure\prim\AND2.vhd=VHDL Source Code
+.\src\structure\prim\OR2.vhd=VHDL Source Code
+.\src\structure\prim\NOT.vhd=VHDL Source Code
+.\src\TestBench\var5_TB.vhd=VHDL Test Bench
+.\src\TestBench\var5_TB_tim_cfg.vhd=VHDL Test Bench
+.\src\TestBench\var5_TB_runtest.do=Macro
+.\src\TestBench\var6_TB.vhd=VHDL Test Bench
+.\src\TestBench\var6_TB_tim_cfg.vhd=VHDL Test Bench
+.\src\TestBench\var6_TB_runtest.do=Macro
 
