@@ -69,6 +69,9 @@ Extension7=
 structure=1
 structure\prim=1
 TestBench=1
+TestBench\var5=1
+TestBench\var6=1
+TestBench\var7=1
 
 [Files]
 /MUX2.vhd=-1
@@ -82,12 +85,15 @@ structure\prim/OR3.vhd=-1
 structure\prim/AND2.vhd=-1
 structure\prim/OR2.vhd=-1
 structure\prim/NOT.vhd=-1
-TestBench/var5_TB.vhd=-1
-TestBench/var5_TB_tim_cfg.vhd=-1
-TestBench/var5_TB_runtest.do=-1
-TestBench/var6_TB.vhd=-1
-TestBench/var6_TB_tim_cfg.vhd=-1
-TestBench/var6_TB_runtest.do=-1
+TestBench\var5/var5_TB.vhd=-1
+TestBench\var5/var5_TB_tim_cfg.vhd=-1
+TestBench\var5/var5_TB_runtest.do=-1
+TestBench\var6/var6_TB.vhd=-1
+TestBench\var6/var6_TB_tim_cfg.vhd=-1
+TestBench\var6/var6_TB_runtest.do=-1
+TestBench\var7/var7_TB.vhd=-1
+TestBench\var7/var7_TB_tim_cfg.vhd=-1
+TestBench\var7/var7_TB_runtest.do=-1
 
 [Files.Data]
 .\src\MUX2.vhd=VHDL Source Code
@@ -101,10 +107,13 @@ TestBench/var6_TB_runtest.do=-1
 .\src\structure\prim\AND2.vhd=VHDL Source Code
 .\src\structure\prim\OR2.vhd=VHDL Source Code
 .\src\structure\prim\NOT.vhd=VHDL Source Code
-.\src\TestBench\var5_TB.vhd=VHDL Test Bench
-.\src\TestBench\var5_TB_tim_cfg.vhd=VHDL Test Bench
-.\src\TestBench\var5_TB_runtest.do=Macro
-.\src\TestBench\var6_TB.vhd=VHDL Test Bench
-.\src\TestBench\var6_TB_tim_cfg.vhd=VHDL Test Bench
-.\src\TestBench\var6_TB_runtest.do=Macro
+.\src\TestBench\var5\var5_TB.vhd=VHDL Test Bench
+.\src\TestBench\var5\var5_TB_tim_cfg.vhd=VHDL Test Bench
+.\src\TestBench\var5\var5_TB_runtest.do=Macro
+.\src\TestBench\var6\var6_TB.vhd=VHDL Test Bench
+.\src\TestBench\var6\var6_TB_tim_cfg.vhd=VHDL Test Bench
+.\src\TestBench\var6\var6_TB_runtest.do=Macro
+.\src\TestBench\var7\var7_TB.vhd=VHDL Test Bench
+.\src\TestBench\var7\var7_TB_tim_cfg.vhd=VHDL Test Bench
+.\src\TestBench\var7\var7_TB_runtest.do=Macro
 

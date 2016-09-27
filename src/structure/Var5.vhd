@@ -40,14 +40,15 @@ architecture structual of Var5 is
 	end component;	
 begin
 	M1: NOT1  port map (W, nW);
-	M2: OR2   port map (nW, Y, nWXY);
-	M3: NOT1  port map (nWXY, WXY);
-	M4: NOT1  port map (Y, nY);
-	M5: OR3   port map (nW, X, nY, T);
-	M6: NOT1  port map (T, nT);
-	M7: OR2   port map (W, Z, WZ);
-	M8: NOT1  port map (WZ, nWZ);
-	M9: NAND3 port map (nWZ, T, WXY, F); 
+	M2: OR2   port map (nW, X, nWX);
+	M3: AND2  port map (nWX, Y, nWXY);
+	M4: NOT1  port map (nWXY, WXY);
+	M5: NOT1  port map (Y, nY);
+	M6: OR3   port map (nW, X, nY, T);
+	M7: NOT1  port map (T, nT);
+	M8: OR2   port map (W, Z, WZ);
+	M9: NOT1  port map (WZ, nWZ);
+	M10: NAND3 port map (nWZ, nT, WXY, F); 
 end structual;  
 
 architecture behavior of Var5 is	

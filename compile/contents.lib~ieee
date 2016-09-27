@@ -1,4 +1,4 @@
-1588
+2613
 ~E 1 "E:/Code/POCP-2/src/structure/prim/AND2.vhd" 4 AND2
 ~A 1 "E:/Code/POCP-2/src/structure/prim/AND2.vhd" 10 AND2
 ~E 1 "E:/Code/POCP-2/src/structure/prim/AND3.vhd" 4 AND3
@@ -25,20 +25,25 @@
 ~A 1 "c:/My_Designs/POCP/POCP-1/src/source/OR4.vhd" 10 OR4
 ~E 1 "E:/Code/POCP-2/src/testBeanch/TestBeanch.vhd" 6 task311_tb
 ~A 1 "E:/Code/POCP-2/src/testBeanch/TestBeanch.vhd" 9 TB_ARCHITECTURE
-~C 1 "E:/Code/POCP-2/src/TestBench/var5_TB_tim_cfg.vhd" 1 testbench_for_var5
-~C 1 "E:/Code/POCP-2/src/TestBench/var6_TB_tim_cfg.vhd" 1 testbench_for_var6
+~C 1 "E:/Code/POCP-2/src/TestBench/var5/var5_TB_tim_cfg.vhd" 1 testbench_for_var5
+~C 1 "E:/Code/POCP-2/src/TestBench/var6/var6_TB.vhd" 116 testbench_for_var6
+~C 1 "E:/Code/POCP-2/src/TestBench/var7_TB.vhd" 117 testbench_for_var7
 ~C 1 "E:/Code/POCP-2/src/TestBench/var5_TB_tim_cfg.vhd" 1 timing_for_var5
+~C 1 "E:/Code/POCP-2/src/TestBench/var6/var6_TB_tim_cfg.vhd" 1 timing_for_var6
+~C 1 "E:/Code/POCP-2/src/TestBench/var7/var7_TB_tim_cfg.vhd" 1 timing_for_var7
 ~E 1 "E:/Code/POCP-2/src/behavior/Var6.vhd" 4 Var5
-~A 1 "E:/Code/POCP-2/src/structure/Var5.vhd" 53 behavior
+~A 1 "E:/Code/POCP-2/src/structure/Var5.vhd" 54 behavior
 ~A 1 "E:/Code/POCP-2/src/structure/Var5.vhd" 10 structual
 ~E 1 "E:/Code/POCP-2/src/testBeanch/TestBeanch.vhd" 6 var5_tb
-~A 1 "E:/Code/POCP-2/src/TestBench/var5_TB.vhd" 9 TB_ARCHITECTURE
+~A 1 "E:/Code/POCP-2/src/TestBench/var5/var5_TB.vhd" 9 TB_ARCHITECTURE
 ~E 1 "E:/Code/POCP-2/src/behavior/Var5.vhd" 4 Var6
-~A 1 "E:/Code/POCP-2/src/structure/Var6.vhd" 52 behavior
+~A 1 "E:/Code/POCP-2/src/structure/Var6.vhd" 53 behavior
 ~A 1 "E:/Code/POCP-2/src/structure/Var6.vhd" 10 structual
 ~A 1 "E:/Code/POCP-2/src/behavior/Var5.vhd" 10 Var6
 ~E 1 "E:/Code/POCP-2/src/TestBench/var6_TB.vhd" 6 var6_tb
-~A 1 "E:/Code/POCP-2/src/TestBench/var6_TB.vhd" 9 TB_ARCHITECTURE
+~A 1 "E:/Code/POCP-2/src/TestBench/var6/var6_TB.vhd" 7 TB_ARCHITECTURE
 ~E 1 "E:/Code/POCP-2/src/behavior/Var7.vhd" 4 Var7
 ~A 1 "E:/Code/POCP-2/src/structure/Var7.vhd" 31 behavior
 ~A 1 "E:/Code/POCP-2/src/structure/Var7.vhd" 10 structual
+~E 1 "E:/Code/POCP-2/src/TestBench/var7_TB.vhd" 6 var7_tb
+~A 1 "E:/Code/POCP-2/src/TestBench/var7/var7_TB.vhd" 9 TB_ARCHITECTURE

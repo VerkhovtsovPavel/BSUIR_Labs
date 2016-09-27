@@ -15,3 +15,5 @@ i<>.\src\TestBench\var5_TB.vhd
 i<>.\src\TestBench\var5_TB_tim_cfg.vhd
 i<>.\src\TestBench\var6_TB.vhd
 i<>.\src\TestBench\var6_TB_tim_cfg.vhd
+i<>.\src\TestBench\var7_TB.vhd
+i<>.\src\TestBench\var7_TB_tim_cfg.vhd

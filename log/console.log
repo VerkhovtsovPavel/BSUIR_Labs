@@ -1,1538 +1,4 @@
-acom -reorder -O3 -work ieee -2002  $dsn/src/behavior/Var5.vhd
-# Compile with File Reorder...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\behavior\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "Var5" of Entity "Var5"
-# Incorrect order of units detected.
-# Automatic reorder and incremental recompilation of required units in progress.
-# File: E:\Code\POCP-2\src\behavior\Var5.vhd
-# Compile Entity "Var5"
-# Error: COMP96_0055: Var5.vhd : (2, 9): Cannot find referenced context element.
-# Error: COMP96_0078: Var5.vhd : (5, 15): Unknown identifier "std_logic".
-# Error: COMP96_0064: Var5.vhd : (5, 15): Unknown type.
-# Error: COMP96_0078: Var5.vhd : (6, 10): Unknown identifier "std_logic".
-# Error: COMP96_0064: Var5.vhd : (6, 10): Unknown type.
-# Compile Architecture "Var5" of Entity "Var5"
-# Error: COMP96_0019: Var5.vhd : (22, 2): Keyword 'when' expected.
-# Error: COMP96_0015: Var5.vhd : (22, 2): ';' expected.
-# Error: COMP96_0019: Var5.vhd : (23, 2): Keyword 'when' expected.
-# Error: COMP96_0015: Var5.vhd : (23, 2): ';' expected.
-# Error: COMP96_0019: Var5.vhd : (24, 2): Keyword 'when' expected.
-# Error: COMP96_0015: Var5.vhd : (24, 2): ';' expected.
-# Error: COMP96_0019: Var5.vhd : (25, 2): Keyword 'when' expected.
-# Error: COMP96_0015: Var5.vhd : (25, 2): ';' expected.
-# Error: COMP96_0019: Var5.vhd : (26, 1): Keyword 'when' expected.
-# Error: COMP96_0015: Var5.vhd : (26, 1): ';' expected.
-# Compile failure 15 Errors 0 Warnings  Analysis time :  47.0 [ms]
-acom -reorder -O3 -work ieee -2002  $dsn/src/behavior/Var5.vhd
-# Compile with File Reorder...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\behavior\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "Var5" of Entity "Var5"
-# Incorrect order of units detected.
-# Automatic reorder and incremental recompilation of required units in progress.
-# File: E:\Code\POCP-2\src\behavior\Var5.vhd
-# Compile Entity "Var5"
-# Error: COMP96_0055: Var5.vhd : (2, 9): Cannot find referenced context element.
-# Error: COMP96_0078: Var5.vhd : (5, 15): Unknown identifier "std_logic".
-# Error: COMP96_0064: Var5.vhd : (5, 15): Unknown type.
-# Error: COMP96_0078: Var5.vhd : (6, 10): Unknown identifier "std_logic".
-# Error: COMP96_0064: Var5.vhd : (6, 10): Unknown type.
-# Compile Architecture "Var5" of Entity "Var5"
-# Error: COMP96_0019: Var5.vhd : (17, 2): Keyword 'when' expected.
-# Error: COMP96_0015: Var5.vhd : (17, 2): ';' expected.
-# Error: COMP96_0019: Var5.vhd : (18, 2): Keyword 'when' expected.
-# Error: COMP96_0015: Var5.vhd : (18, 2): ';' expected.
-# Error: COMP96_0019: Var5.vhd : (19, 2): Keyword 'when' expected.
-# Error: COMP96_0015: Var5.vhd : (19, 2): ';' expected.
-# Error: COMP96_0019: Var5.vhd : (20, 2): Keyword 'when' expected.
-# Error: COMP96_0015: Var5.vhd : (20, 2): ';' expected.
-# Error: COMP96_0019: Var5.vhd : (21, 1): Keyword 'when' expected.
-# Error: COMP96_0015: Var5.vhd : (21, 1): ';' expected.
-# Compile failure 15 Errors 0 Warnings  Analysis time :  32.0 [ms]
-acom -reorder -O3 -work ieee -2002  $dsn/src/behavior/Var5.vhd
-# Compile with File Reorder...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\behavior\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "Var5" of Entity "Var5"
-# Incorrect order of units detected.
-# Automatic reorder and incremental recompilation of required units in progress.
-# File: E:\Code\POCP-2\src\behavior\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "Var5" of Entity "Var5"
-# File: E:\Code\POCP-2\src\behavior\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "Var5" of Entity "Var5"
-# File: E:\Code\POCP-2\src\behavior\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "Var5" of Entity "Var5"
-# Error: COMP96_0055: Var5.vhd : (2, 9): Cannot find referenced context element.
-# Error: COMP96_0078: Var5.vhd : (5, 15): Unknown identifier "std_logic".
-# Error: COMP96_0064: Var5.vhd : (5, 15): Unknown type.
-# Error: COMP96_0078: Var5.vhd : (6, 10): Unknown identifier "std_logic".
-# Error: COMP96_0064: Var5.vhd : (6, 10): Unknown type.
-# Error: COMP96_0056: Var5.vhd : (10, 1): Cannot find referenced entity declaration "Var5".
-# Compile failure 6 Errors 0 Warnings  Analysis time :  63.0 [ms]
-# Library Manager: Library "ieee" contents cleared.
-acom -reorder -O3 -work ieee -2002  $dsn/src/behavior/Var7.vhd
-# Compile with File Reorder...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\behavior\Var7.vhd
-# Compile Entity "Var7"
-# Compile Architecture "Var7" of Entity "Var7"
-# Incorrect order of units detected.
-# Automatic reorder and incremental recompilation of required units in progress.
-# File: E:\Code\POCP-2\src\behavior\Var7.vhd
-# Compile Entity "Var7"
-# Error: COMP96_0055: Var7.vhd : (2, 9): Cannot find referenced context element.
-# Error: COMP96_0078: Var7.vhd : (5, 14): Unknown identifier "std_logic".
-# Error: COMP96_0064: Var7.vhd : (5, 14): Unknown type.
-# Error: COMP96_0078: Var7.vhd : (6, 9): Unknown identifier "std_logic".
-# Error: COMP96_0064: Var7.vhd : (6, 9): Unknown type.
-# Compile Architecture "Var7" of Entity "Var7"
-# Error: COMP96_0019: Var7.vhd : (15, 2): Keyword 'when' expected.
-# Error: COMP96_0015: Var7.vhd : (15, 2): ';' expected.
-# Compile failure 7 Errors 0 Warnings  Analysis time :  32.0 [ms]
-# Library Manager: Library "ieee1" attached.
-# AMAP: Adding mapping library O.K.
-# Remove mapping ieee E:\Code\POCP-2\ieee.LIB
-# Warning: Library Manager: Library "ieee" detached.
-# AMAP: Delete mapping library O.K.
-# Library "ieee1" renamed to "ieee".
-acom -O3 -work ieee -2002  $dsn/src/behavior/Var7.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\behavior\Var7.vhd
-# Compile Entity "Var7"
-# Compile Architecture "Var7" of Entity "Var7"
-# Error: COMP96_0019: Var7.vhd : (15, 2): Keyword 'when' expected.
-# Error: COMP96_0015: Var7.vhd : (15, 2): ';' expected.
-# Compile failure 2 Errors 0 Warnings  Analysis time :  15.0 [ms]
-acom -O3 -work ieee -2002  $dsn/src/behavior/Var7.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\behavior\Var7.vhd
-# Compile Entity "Var7"
-# Compile Architecture "Var7" of Entity "Var7"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
-acom -O3 -work ieee -2002  $dsn/src/behavior/Var6.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\behavior\Var6.vhd
-# Compile Entity "Var5"
-# Compile Architecture "Var5" of Entity "Var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
-acom -O3 -work ieee -2002  $dsn/src/behavior/Var5.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\behavior\Var5.vhd
-# Compile Entity "Var6"
-# Compile Architecture "Var6" of Entity "Var6"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
-acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd $dsn/src/MUX4-2.vhd $dsn/src/structure/Var5.vhd $dsn/src/structure/Var6.vhd $dsn/src/structure/Var7.vhd $dsn/src/structure/prim/AND3.vhd $dsn/src/structure/prim/NAND3.vhd $dsn/src/structure/prim/OR3.vhd $dsn/src/structure/prim/AND2.vhd $dsn/src/structure/prim/OR2.vhd $dsn/src/structure/prim/NOT.vhd $dsn/src/behavior/Var5.vhd $dsn/src/behavior/Var6.vhd $dsn/src/behavior/Var7.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\MUX2.vhd
-# Compile Entity "mux2"
-# Compile Architecture "mux2" of Entity "mux2"
-# Warning: ELAB1_0026: MUX2.vhd : (27, 0): There is no default binding for component "NOT1". (No entity named "NOT1" was found).
-# Warning: ELAB1_0026: MUX2.vhd : (28, 0): There is no default binding for component "AND2". (No entity named "AND2" was found).
-# Warning: ELAB1_0026: MUX2.vhd : (30, 0): There is no default binding for component "OR2". (No entity named "OR2" was found).
-# File: E:\Code\POCP-2\src\MUX4-2.vhd
-# Compile Entity "MUX4_2"
-# Compile Architecture "MUX4_2" of Entity "MUX4_2"
-# File: E:\Code\POCP-2\src\structure\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "Var5" of Entity "Var5"
-# Warning: ELAB1_0026: Var5.vhd : (41, 0): There is no default binding for component "NOT1". (No entity named "NOT1" was found).
-# Warning: ELAB1_0026: Var5.vhd : (42, 0): There is no default binding for component "OR2". (No entity named "OR2" was found).
-# Warning: ELAB1_0026: Var5.vhd : (45, 0): There is no default binding for component "OR3". (No entity named "OR3" was found).
-# Warning: ELAB1_0026: Var5.vhd : (49, 0): There is no default binding for component "NAND3". (No entity named "NAND3" was found).
-# File: E:\Code\POCP-2\src\structure\Var6.vhd
-# Compile Entity "Var6"
-# Compile Architecture "Var6" of Entity "Var6"
-# Warning: ELAB1_0026: Var6.vhd : (41, 0): There is no default binding for component "NOT1". (No entity named "NOT1" was found).
-# Warning: ELAB1_0026: Var6.vhd : (42, 0): There is no default binding for component "OR2". (No entity named "OR2" was found).
-# Warning: ELAB1_0026: Var6.vhd : (45, 0): There is no default binding for component "OR3". (No entity named "OR3" was found).
-# Warning: ELAB1_0026: Var6.vhd : (49, 0): There is no default binding for component "AND3". (No entity named "AND3" was found).
-# File: E:\Code\POCP-2\src\structure\Var7.vhd
-# Compile Entity "Var7"
-# Compile Architecture "Var7" of Entity "Var7"
-# Warning: ELAB1_0026: Var7.vhd : (26, 0): There is no default binding for component "AND3". (No entity named "AND3" was found).
-# Warning: ELAB1_0026: Var7.vhd : (27, 0): There is no default binding for component "AND2". (No entity named "AND2" was found).
-# Warning: ELAB1_0026: Var7.vhd : (28, 0): There is no default binding for component "OR2". (No entity named "OR2" was found).
-# File: E:\Code\POCP-2\src\structure\prim\AND3.vhd
-# Compile Entity "AND3"
-# Compile Architecture "AND3" of Entity "AND3"
-# File: E:\Code\POCP-2\src\structure\prim\NAND3.vhd
-# Compile Entity "NAND3"
-# Compile Architecture "NAND3" of Entity "NAND3"
-# File: E:\Code\POCP-2\src\structure\prim\OR3.vhd
-# Compile Entity "OR3"
-# Compile Architecture "OR3" of Entity "OR3"
-# File: E:\Code\POCP-2\src\structure\prim\AND2.vhd
-# Compile Entity "AND2"
-# Compile Architecture "AND2" of Entity "AND2"
-# File: E:\Code\POCP-2\src\structure\prim\OR2.vhd
-# Compile Entity "OR2"
-# Compile Architecture "OR2" of Entity "OR2"
-# File: E:\Code\POCP-2\src\structure\prim\NOT.vhd
-# Compile Entity "NOT1"
-# Compile Architecture "NOT1" of Entity "NOT1"
-# File: E:\Code\POCP-2\src\behavior\Var5.vhd
-# Compile Entity "Var6"
-# Compile Architecture "Var6" of Entity "Var6"
-# File: E:\Code\POCP-2\src\behavior\Var6.vhd
-# Compile Entity "Var5"
-# Compile Architecture "Var5" of Entity "Var5"
-# File: E:\Code\POCP-2\src\behavior\Var7.vhd
-# Compile Entity "Var7"
-# Compile Architecture "Var7" of Entity "Var7"
-# Compile success 0 Errors 14 Warnings  Analysis time :  1.0 [s]
-acom -O3 -work ieee -2002  $dsn/src/structure/Var5.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\structure\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "Var5" of Entity "Var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  16.0 [ms]
-acom -O3 -work ieee -2002  $dsn/src/structure/Var6.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\structure\Var6.vhd
-# Compile Entity "Var6"
-# Compile Architecture "Var6" of Entity "Var6"
-# Compile success 0 Errors 0 Warnings  Analysis time :  16.0 [ms]
-acom -O3 -work ieee -2002  $dsn/src/structure/Var7.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\structure\Var7.vhd
-# Compile Entity "Var7"
-# Compile Architecture "Var7" of Entity "Var7"
-# Compile success 0 Errors 0 Warnings  Analysis time :  16.0 [ms]
-acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\MUX2.vhd
-# Compile Entity "mux2"
-# Compile Architecture "mux2" of Entity "mux2"
-# Compile success 0 Errors 0 Warnings  Analysis time :  15.0 [ms]
-acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd $dsn/src/MUX4-2.vhd $dsn/src/structure/Var5.vhd $dsn/src/structure/Var6.vhd $dsn/src/structure/Var7.vhd $dsn/src/structure/prim/AND3.vhd $dsn/src/structure/prim/NAND3.vhd $dsn/src/structure/prim/OR3.vhd $dsn/src/structure/prim/AND2.vhd $dsn/src/structure/prim/OR2.vhd $dsn/src/structure/prim/NOT.vhd $dsn/src/behavior/Var5.vhd $dsn/src/behavior/Var6.vhd $dsn/src/behavior/Var7.vhd $dsn/src/testBeanch/TestBeanch.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\MUX2.vhd
-# Compile Entity "mux2"
-# Compile Architecture "mux2" of Entity "mux2"
-# File: E:\Code\POCP-2\src\MUX4-2.vhd
-# Compile Entity "MUX4_2"
-# Compile Architecture "MUX4_2" of Entity "MUX4_2"
-# File: E:\Code\POCP-2\src\structure\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "Var5" of Entity "Var5"
-# File: E:\Code\POCP-2\src\structure\Var6.vhd
-# Compile Entity "Var6"
-# Compile Architecture "Var6" of Entity "Var6"
-# File: E:\Code\POCP-2\src\structure\Var7.vhd
-# Compile Entity "Var7"
-# Compile Architecture "Var7" of Entity "Var7"
-# File: E:\Code\POCP-2\src\structure\prim\AND3.vhd
-# Compile Entity "AND3"
-# Compile Architecture "AND3" of Entity "AND3"
-# File: E:\Code\POCP-2\src\structure\prim\NAND3.vhd
-# Compile Entity "NAND3"
-# Compile Architecture "NAND3" of Entity "NAND3"
-# File: E:\Code\POCP-2\src\structure\prim\OR3.vhd
-# Compile Entity "OR3"
-# Compile Architecture "OR3" of Entity "OR3"
-# File: E:\Code\POCP-2\src\structure\prim\AND2.vhd
-# Compile Entity "AND2"
-# Compile Architecture "AND2" of Entity "AND2"
-# File: E:\Code\POCP-2\src\structure\prim\OR2.vhd
-# Compile Entity "OR2"
-# Compile Architecture "OR2" of Entity "OR2"
-# File: E:\Code\POCP-2\src\structure\prim\NOT.vhd
-# Compile Entity "NOT1"
-# Compile Architecture "NOT1" of Entity "NOT1"
-# File: E:\Code\POCP-2\src\behavior\Var5.vhd
-# Compile Entity "Var6"
-# Compile Architecture "Var6" of Entity "Var6"
-# File: E:\Code\POCP-2\src\behavior\Var6.vhd
-# Compile Entity "Var5"
-# Compile Architecture "Var5" of Entity "Var5"
-# File: E:\Code\POCP-2\src\behavior\Var7.vhd
-# Compile Entity "Var7"
-# Compile Architecture "Var7" of Entity "Var7"
-# File: E:\Code\POCP-2\src\testBeanch\TestBeanch.vhd
-# Warning: COMP96_0003: Source file "E:\Code\POCP-2\src\testBeanch\TestBeanch.vhd" is empty.
-# Compile success 0 Errors 1 Warnings  Analysis time :  1.0 [s]
-acom -O3 -work ieee -2002  $dsn/src/testBeanch/TestBeanch.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\testBeanch\TestBeanch.vhd
-# Compile Entity "task311_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "task311_tb"
-# Warning: ELAB1_0026: TestBeanch.vhd : (33, 0): There is no default binding for component "task311". (No entity named "task311" was found).
-# Compile Configuration "TESTBENCH_FOR_task311"
-# Error: COMP96_0078: TestBeanch.vhd : (140, 20): Unknown identifier "task311".
-# Error: COMP96_0078: TestBeanch.vhd : (143, 20): Unknown identifier "task311".
-# Compile failure 2 Errors 1 Warnings  Analysis time :  0.5 [s]
-acom -O3 -work ieee -2002  $dsn/src/testBeanch/TestBeanch.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\testBeanch\TestBeanch.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Warning: ELAB1_0026: TestBeanch.vhd : (33, 0): There is no default binding for component "Var5". (Port "G" is not on the entity).
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Error: COMP96_0015: TestBeanch.vhd : (141, 3): ';' expected.
-# Error: COMP96_0111: TestBeanch.vhd : (146, 5): Labels do not match.
-# Compile failure 2 Errors 1 Warnings  Analysis time :  0.1 [s]
-acom -O3 -work ieee -2002  $dsn/src/testBeanch/TestBeanch.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\testBeanch\TestBeanch.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Warning: ELAB1_0026: TestBeanch.vhd : (33, 0): There is no default binding for component "Var5". (Port "G" is not on the entity).
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Error: COMP96_0015: TestBeanch.vhd : (141, 3): ';' expected.
-# Error: COMP96_0111: TestBeanch.vhd : (146, 5): Labels do not match.
-# Compile failure 2 Errors 1 Warnings  Analysis time :  0.1 [s]
-acom -O3 -work ieee -2002  $dsn/src/testBeanch/TestBeanch.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\testBeanch\TestBeanch.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Error: COMP96_0207: TestBeanch.vhd : (33, 0): No actual specified for local port "X".
-# Error: COMP96_0207: TestBeanch.vhd : (40, 0): No actual specified for local port "X".
-# Error: COMP96_0288: TestBeanch.vhd : (131, 2): Target of signal assignment is not a signal.
-# Error: COMP96_0071: TestBeanch.vhd : (131, 19): Operator "xor" is not defined for such operands.
-# Error: COMP96_0077: TestBeanch.vhd : (131, 11): Undefined type of expression. Expected type 'SEVERITY_LEVEL'.
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Error: COMP96_0015: TestBeanch.vhd : (140, 3): ';' expected.
-# Error: COMP96_0111: TestBeanch.vhd : (145, 5): Labels do not match.
-# Compile failure 7 Errors 0 Warnings  Analysis time :  0.3 [s]
-acom -O3 -work ieee -2002  $dsn/src/testBeanch/TestBeanch.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\testBeanch\TestBeanch.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Error: COMP96_0207: TestBeanch.vhd : (33, 0): No actual specified for local port "X".
-# Error: COMP96_0207: TestBeanch.vhd : (40, 0): No actual specified for local port "X".
-# Error: COMP96_0288: TestBeanch.vhd : (131, 2): Target of signal assignment is not a signal.
-# Error: COMP96_0071: TestBeanch.vhd : (131, 18): Operator "xor" is not defined for such operands.
-# Error: COMP96_0077: TestBeanch.vhd : (131, 11): Undefined type of expression. Expected type 'SEVERITY_LEVEL'.
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Error: COMP96_0015: TestBeanch.vhd : (140, 3): ';' expected.
-# Error: COMP96_0111: TestBeanch.vhd : (145, 5): Labels do not match.
-# Compile failure 7 Errors 0 Warnings  Analysis time :  16.0 [ms]
-acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd $dsn/src/MUX4-2.vhd $dsn/src/structure/Var5.vhd $dsn/src/structure/Var6.vhd $dsn/src/structure/Var7.vhd $dsn/src/structure/prim/AND3.vhd $dsn/src/structure/prim/NAND3.vhd $dsn/src/structure/prim/OR3.vhd $dsn/src/structure/prim/AND2.vhd $dsn/src/structure/prim/OR2.vhd $dsn/src/structure/prim/NOT.vhd $dsn/src/behavior/Var5.vhd $dsn/src/behavior/Var6.vhd $dsn/src/behavior/Var7.vhd $dsn/src/testBeanch/TestBeanch.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\MUX2.vhd
-# Compile Entity "mux2"
-# Compile Architecture "mux2" of Entity "mux2"
-# File: E:\Code\POCP-2\src\MUX4-2.vhd
-# Compile Entity "MUX4_2"
-# Compile Architecture "MUX4_2" of Entity "MUX4_2"
-# File: E:\Code\POCP-2\src\structure\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "Var5" of Entity "Var5"
-# File: E:\Code\POCP-2\src\structure\Var6.vhd
-# Compile Entity "Var6"
-# Compile Architecture "Var6" of Entity "Var6"
-# File: E:\Code\POCP-2\src\structure\Var7.vhd
-# Compile Entity "Var7"
-# Compile Architecture "Var7" of Entity "Var7"
-# File: E:\Code\POCP-2\src\structure\prim\AND3.vhd
-# Compile Entity "AND3"
-# Compile Architecture "AND3" of Entity "AND3"
-# File: E:\Code\POCP-2\src\structure\prim\NAND3.vhd
-# Compile Entity "NAND3"
-# Compile Architecture "NAND3" of Entity "NAND3"
-# File: E:\Code\POCP-2\src\structure\prim\OR3.vhd
-# Compile Entity "OR3"
-# Compile Architecture "OR3" of Entity "OR3"
-# File: E:\Code\POCP-2\src\structure\prim\AND2.vhd
-# Compile Entity "AND2"
-# Compile Architecture "AND2" of Entity "AND2"
-# File: E:\Code\POCP-2\src\structure\prim\OR2.vhd
-# Compile Entity "OR2"
-# Compile Architecture "OR2" of Entity "OR2"
-# File: E:\Code\POCP-2\src\structure\prim\NOT.vhd
-# Compile Entity "NOT1"
-# Compile Architecture "NOT1" of Entity "NOT1"
-# File: E:\Code\POCP-2\src\behavior\Var5.vhd
-# Compile Entity "Var6"
-# Compile Architecture "Var6" of Entity "Var6"
-# File: E:\Code\POCP-2\src\behavior\Var6.vhd
-# Compile Entity "Var5"
-# Compile Architecture "Var5" of Entity "Var5"
-# File: E:\Code\POCP-2\src\behavior\Var7.vhd
-# Compile Entity "Var7"
-# Compile Architecture "Var7" of Entity "Var7"
-# File: E:\Code\POCP-2\src\testBeanch\TestBeanch.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Error: COMP96_0288: TestBeanch.vhd : (133, 2): Target of signal assignment is not a signal.
-# Error: COMP96_0071: TestBeanch.vhd : (133, 18): Operator "xor" is not defined for such operands.
-# Error: COMP96_0077: TestBeanch.vhd : (133, 11): Undefined type of expression. Expected type 'SEVERITY_LEVEL'.
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Error: COMP96_0015: TestBeanch.vhd : (142, 3): ';' expected.
-# Compile failure 4 Errors 0 Warnings  Analysis time :  1.0 [s]
-acom -O3 -work ieee -2002  $dsn/src/testBeanch/TestBeanch.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\testBeanch\TestBeanch.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Error: COMP96_0015: TestBeanch.vhd : (140, 3): ';' expected.
-# Compile failure 1 Errors 0 Warnings  Analysis time :  0.1 [s]
-acom -O3 -work ieee -2002  $dsn/src/testBeanch/TestBeanch.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\testBeanch\TestBeanch.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
-# ELBREAD: Elaboration process.
-# ELBREAD: Warning: Component /task311_tb/UUT : task311 not bound.
-# ELBREAD: Warning: Component /task311_tb/UUT2 : task311 not bound.
-# ELBREAD: Elaboration time 0.3 [s].
-asim -O5 +access +r +m+task311_tb task311_tb TB_ARCHITECTURE
-# ELBREAD: Elaboration process.
-# ELBREAD: Warning: Component /task311_tb/UUT : task311 not bound.
-# ELBREAD: Warning: Component /task311_tb/UUT2 : task311 not bound.
-# ELBREAD: Elaboration time 0.3 [s].
-# asim: Stack memory: 32MB
-# asim: Retval memory: 32MB
-# KERNEL: Main thread initiated.
-# KERNEL: Kernel process initialization phase.
-# KERNEL: Time resolution set to 1ps.
-# ELAB2: Elaboration final pass...
-# ELAB2: Create instances ...
-# ELAB2: Create instances complete.
-# SLP: Started
-# SLP: Elaboration phase ...
-# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
-# SLP: Finished : 0.0 [s]
-# ELAB2: Elaboration final pass complete - time: 0.2 [s].
-# KERNEL: Kernel process initialization done.
-# Allocation: Simulator allocated 5754 kB (elbread=1023 elab2=4640 kernel=90 sdf=0)
-# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
-#  13:18, 26 сент€бр€ 2016 г.
-#  Simulation has been initialized
-#  Selected Top-Level: task311_tb (TB_ARCHITECTURE)
-run
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-#  Simulation has been stopped
-# ELBREAD: Elaboration process.
-# ELBREAD: Warning: Design unit behavior:Var5 instantiated in ieee.var5_tb(tb_architecture) not found in searched libraries: ieee.
-# ELBREAD: Warning: Component /var5_tb/UUT : Var5 not bound.
-# ELBREAD: Warning: Design unit structural:Var5 instantiated in ieee.var5_tb(tb_architecture) not found in searched libraries: ieee.
-# ELBREAD: Warning: Component /var5_tb/UUT2 : Var5 not bound.
-# ELBREAD: Elaboration time 0.0 [s].
-# ELBREAD: Elaboration process.
-# ELBREAD: Warning: Component /task311_tb/UUT : task311 not bound.
-# ELBREAD: Warning: Component /task311_tb/UUT2 : task311 not bound.
-# ELBREAD: Elaboration time 0.2 [s].
-# ELBREAD: Elaboration process.
-# ELBREAD: Warning: Design unit behavior:Var5 instantiated in ieee.var5_tb(tb_architecture) not found in searched libraries: ieee.
-# ELBREAD: Warning: Component /var5_tb/UUT : Var5 not bound.
-# ELBREAD: Warning: Design unit structural:Var5 instantiated in ieee.var5_tb(tb_architecture) not found in searched libraries: ieee.
-# ELBREAD: Warning: Component /var5_tb/UUT2 : Var5 not bound.
-# ELBREAD: Elaboration time 0.0 [s].
-asim -O5 +access +r +m+testbench_for_var5 testbench_for_var5
-# ELBREAD: Elaboration process.
-# ELBREAD: Warning: Design unit behavior:Var5 instantiated in ieee.var5_tb(tb_architecture) not found in searched libraries: ieee.
-# ELBREAD: Warning: Component /var5_tb/UUT : Var5 not bound.
-# ELBREAD: Warning: Design unit structural:Var5 instantiated in ieee.var5_tb(tb_architecture) not found in searched libraries: ieee.
-# ELBREAD: Warning: Component /var5_tb/UUT2 : Var5 not bound.
-# ELBREAD: Elaboration time 0.0 [s].
-# asim: Stack memory: 32MB
-# asim: Retval memory: 32MB
-# KERNEL: Main thread initiated.
-# KERNEL: Kernel process initialization phase.
-# KERNEL: Time resolution set to 1ps.
-# ELAB2: Elaboration final pass...
-# ELAB2: Create instances ...
-# ELAB2: Create instances complete.
-# SLP: Started
-# SLP: Elaboration phase ...
-# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
-# SLP: Finished : 0.0 [s]
-# ELAB2: Elaboration final pass complete - time: 0.0 [s].
-# KERNEL: Kernel process initialization done.
-# Allocation: Simulator allocated 5754 kB (elbread=1023 elab2=4640 kernel=90 sdf=0)
-# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
-#  13:19, 26 сент€бр€ 2016 г.
-#  Simulation has been initialized
-#  Selected Top-Level: testbench_for_var5
-run
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-run
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-run
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-run 100 ns
-# KERNEL: stopped at time: 1300 ns
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-endsim
-#  Simulation has been stopped
-asim -O5 +access +r +m+testbench_for_var5 testbench_for_var5
-# ELBREAD: Elaboration process.
-# ELBREAD: Warning: Design unit behavior:Var5 instantiated in ieee.var5_tb(tb_architecture) not found in searched libraries: ieee.
-# ELBREAD: Warning: Component /var5_tb/UUT : Var5 not bound.
-# ELBREAD: Warning: Design unit structural:Var5 instantiated in ieee.var5_tb(tb_architecture) not found in searched libraries: ieee.
-# ELBREAD: Warning: Component /var5_tb/UUT2 : Var5 not bound.
-# ELBREAD: Elaboration time 0.1 [s].
-# asim: Stack memory: 32MB
-# asim: Retval memory: 32MB
-# KERNEL: Main thread initiated.
-# KERNEL: Kernel process initialization phase.
-# KERNEL: Time resolution set to 1ps.
-# ELAB2: Elaboration final pass...
-# ELAB2: Create instances ...
-# ELAB2: Create instances complete.
-# SLP: Started
-# SLP: Elaboration phase ...
-# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
-# SLP: Finished : 0.0 [s]
-# ELAB2: Elaboration final pass complete - time: 0.1 [s].
-# KERNEL: Kernel process initialization done.
-# Allocation: Simulator allocated 5754 kB (elbread=1023 elab2=4640 kernel=90 sdf=0)
-# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
-#  13:19, 26 сент€бр€ 2016 г.
-#  Simulation has been initialized
-#  Selected Top-Level: testbench_for_var5
-run
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-run 90 ns
-# KERNEL: stopped at time: 1290 ns
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-run 90 ns
-# KERNEL: stopped at time: 1380 ns
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-run 90 ns
-# KERNEL: stopped at time: 1470 ns
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-run 90 ns
-# KERNEL: stopped at time: 1560 ns
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-# add wave -noreg {/var5_tb/W}
-# add wave -noreg {/var5_tb/X}
-# add wave -noreg {/var5_tb/Y}
-# add wave -noreg {/var5_tb/Z}
-# add wave -noreg {/var5_tb/F}
-# add wave -noreg {/var5_tb/F1}
-# add wave -noreg {/var5_tb/error}
-# 7 signal(s) traced.
-run @1.65us
-# KERNEL: stopped at time: 1650 ns
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-run 90 ns
-# KERNEL: stopped at time: 1740 ns
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-run 90 ns
-# KERNEL: stopped at time: 1830 ns
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-run 90 ns
-# KERNEL: stopped at time: 1920 ns
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-endsim
-#  Simulation has been stopped
-asim -O5 +access +r +m+testbench_for_var5 testbench_for_var5
-# ELBREAD: Elaboration process.
-# ELBREAD: Warning: Design unit behavior:Var5 instantiated in ieee.var5_tb(tb_architecture) not found in searched libraries: ieee.
-# ELBREAD: Warning: Component /var5_tb/UUT : Var5 not bound.
-# ELBREAD: Warning: Design unit structural:Var5 instantiated in ieee.var5_tb(tb_architecture) not found in searched libraries: ieee.
-# ELBREAD: Warning: Component /var5_tb/UUT2 : Var5 not bound.
-# ELBREAD: Elaboration time 0.1 [s].
-# asim: Stack memory: 32MB
-# asim: Retval memory: 32MB
-# KERNEL: Main thread initiated.
-# KERNEL: Kernel process initialization phase.
-# KERNEL: Time resolution set to 1ps.
-# ELAB2: Elaboration final pass...
-# ELAB2: Create instances ...
-# ELAB2: Create instances complete.
-# SLP: Started
-# SLP: Elaboration phase ...
-# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
-# SLP: Finished : 0.0 [s]
-# ELAB2: Elaboration final pass complete - time: 0.0 [s].
-# KERNEL: Kernel process initialization done.
-# Allocation: Simulator allocated 5754 kB (elbread=1023 elab2=4640 kernel=90 sdf=0)
-# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
-#  13:23, 26 сент€бр€ 2016 г.
-#  Simulation has been initialized
-#  Selected Top-Level: testbench_for_var5
-run
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-restart
-# ELBREAD: Elaboration process.
-# ELBREAD: Warning: Design unit behavior:Var5 instantiated in ieee.var5_tb(tb_architecture) not found in searched libraries: ieee.
-# ELBREAD: Warning: Component /var5_tb/UUT : Var5 not bound.
-# ELBREAD: Warning: Design unit structural:Var5 instantiated in ieee.var5_tb(tb_architecture) not found in searched libraries: ieee.
-# ELBREAD: Warning: Component /var5_tb/UUT2 : Var5 not bound.
-# ELBREAD: Elaboration time 0.0 [s].
-# KERNEL: Main thread initiated.
-# KERNEL: Kernel process initialization phase.
-# KERNEL: Time resolution set to 1ps.
-# ELAB2: Elaboration final pass...
-# ELAB2: Create instances ...
-# ELAB2: Create instances complete.
-# SLP: Started
-# SLP: Elaboration phase ...
-# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
-# SLP: Finished : 0.0 [s]
-# ELAB2: Elaboration final pass complete - time: 0.0 [s].
-# KERNEL: Kernel process initialization done.
-# Allocation: Simulator allocated 5754 kB (elbread=1023 elab2=4640 kernel=90 sdf=0)
-# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
-#  13:23, 26 сент€бр€ 2016 г.
-#  Simulation has been initialized
-#  Selected Top-Level: testbench_for_var5
-run
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-restart
-# ELBREAD: Elaboration process.
-# ELBREAD: Warning: Design unit behavior:Var5 instantiated in ieee.var5_tb(tb_architecture) not found in searched libraries: ieee.
-# ELBREAD: Warning: Component /var5_tb/UUT : Var5 not bound.
-# ELBREAD: Warning: Design unit structural:Var5 instantiated in ieee.var5_tb(tb_architecture) not found in searched libraries: ieee.
-# ELBREAD: Warning: Component /var5_tb/UUT2 : Var5 not bound.
-# ELBREAD: Elaboration time 0.0 [s].
-# KERNEL: Main thread initiated.
-# KERNEL: Kernel process initialization phase.
-# KERNEL: Time resolution set to 1ps.
-# ELAB2: Elaboration final pass...
-# ELAB2: Create instances ...
-# ELAB2: Create instances complete.
-# SLP: Started
-# SLP: Elaboration phase ...
-# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
-# SLP: Finished : 0.0 [s]
-# ELAB2: Elaboration final pass complete - time: 0.0 [s].
-# KERNEL: Kernel process initialization done.
-# Allocation: Simulator allocated 5754 kB (elbread=1023 elab2=4640 kernel=90 sdf=0)
-# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
-#  13:23, 26 сент€бр€ 2016 г.
-#  Simulation has been initialized
-#  Selected Top-Level: testbench_for_var5
-acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd $dsn/src/MUX4-2.vhd $dsn/src/structure/Var5.vhd $dsn/src/structure/Var6.vhd $dsn/src/structure/Var7.vhd $dsn/src/structure/prim/AND3.vhd $dsn/src/structure/prim/NAND3.vhd $dsn/src/structure/prim/OR3.vhd $dsn/src/structure/prim/AND2.vhd $dsn/src/structure/prim/OR2.vhd $dsn/src/structure/prim/NOT.vhd $dsn/src/behavior/Var5.vhd $dsn/src/behavior/Var6.vhd $dsn/src/behavior/Var7.vhd $dsn/src/testBeanch/TestBeanch.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\MUX2.vhd
-# Compile Entity "mux2"
-# Compile Architecture "mux2" of Entity "mux2"
-# File: E:\Code\POCP-2\src\MUX4-2.vhd
-# Compile Entity "MUX4_2"
-# Compile Architecture "MUX4_2" of Entity "MUX4_2"
-# File: E:\Code\POCP-2\src\structure\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "Var5" of Entity "Var5"
-# File: E:\Code\POCP-2\src\structure\Var6.vhd
-# Compile Entity "Var6"
-# Compile Architecture "Var6" of Entity "Var6"
-# File: E:\Code\POCP-2\src\structure\Var7.vhd
-# Compile Entity "Var7"
-# Compile Architecture "Var7" of Entity "Var7"
-# File: E:\Code\POCP-2\src\structure\prim\AND3.vhd
-# Compile Entity "AND3"
-# Compile Architecture "AND3" of Entity "AND3"
-# File: E:\Code\POCP-2\src\structure\prim\NAND3.vhd
-# Compile Entity "NAND3"
-# Compile Architecture "NAND3" of Entity "NAND3"
-# File: E:\Code\POCP-2\src\structure\prim\OR3.vhd
-# Compile Entity "OR3"
-# Compile Architecture "OR3" of Entity "OR3"
-# File: E:\Code\POCP-2\src\structure\prim\AND2.vhd
-# Compile Entity "AND2"
-# Compile Architecture "AND2" of Entity "AND2"
-# File: E:\Code\POCP-2\src\structure\prim\OR2.vhd
-# Compile Entity "OR2"
-# Compile Architecture "OR2" of Entity "OR2"
-# File: E:\Code\POCP-2\src\structure\prim\NOT.vhd
-# Compile Entity "NOT1"
-# Compile Architecture "NOT1" of Entity "NOT1"
-# File: E:\Code\POCP-2\src\behavior\Var5.vhd
-# Compile Entity "Var6"
-# Compile Architecture "Var6" of Entity "Var6"
-# File: E:\Code\POCP-2\src\behavior\Var6.vhd
-# Compile Entity "Var5"
-# Compile Architecture "Var5" of Entity "Var5"
-# File: E:\Code\POCP-2\src\behavior\Var7.vhd
-# Compile Entity "Var7"
-# Compile Architecture "Var7" of Entity "Var7"
-# File: E:\Code\POCP-2\src\testBeanch\TestBeanch.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Error: COMP96_0015: TestBeanch.vhd : (81, 2): ';' expected.
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Compile failure 1 Errors 0 Warnings  Analysis time :  1.0 [s]
-acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd $dsn/src/MUX4-2.vhd $dsn/src/structure/Var5.vhd $dsn/src/structure/Var6.vhd $dsn/src/structure/Var7.vhd $dsn/src/structure/prim/AND3.vhd $dsn/src/structure/prim/NAND3.vhd $dsn/src/structure/prim/OR3.vhd $dsn/src/structure/prim/AND2.vhd $dsn/src/structure/prim/OR2.vhd $dsn/src/structure/prim/NOT.vhd $dsn/src/behavior/Var5.vhd $dsn/src/behavior/Var6.vhd $dsn/src/behavior/Var7.vhd $dsn/src/testBeanch/TestBeanch.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\MUX2.vhd
-# Compile Entity "mux2"
-# Compile Architecture "mux2" of Entity "mux2"
-# File: E:\Code\POCP-2\src\MUX4-2.vhd
-# Compile Entity "MUX4_2"
-# Compile Architecture "MUX4_2" of Entity "MUX4_2"
-# File: E:\Code\POCP-2\src\structure\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "Var5" of Entity "Var5"
-# File: E:\Code\POCP-2\src\structure\Var6.vhd
-# Compile Entity "Var6"
-# Compile Architecture "Var6" of Entity "Var6"
-# File: E:\Code\POCP-2\src\structure\Var7.vhd
-# Compile Entity "Var7"
-# Compile Architecture "Var7" of Entity "Var7"
-# File: E:\Code\POCP-2\src\structure\prim\AND3.vhd
-# Compile Entity "AND3"
-# Compile Architecture "AND3" of Entity "AND3"
-# File: E:\Code\POCP-2\src\structure\prim\NAND3.vhd
-# Compile Entity "NAND3"
-# Compile Architecture "NAND3" of Entity "NAND3"
-# File: E:\Code\POCP-2\src\structure\prim\OR3.vhd
-# Compile Entity "OR3"
-# Compile Architecture "OR3" of Entity "OR3"
-# File: E:\Code\POCP-2\src\structure\prim\AND2.vhd
-# Compile Entity "AND2"
-# Compile Architecture "AND2" of Entity "AND2"
-# File: E:\Code\POCP-2\src\structure\prim\OR2.vhd
-# Compile Entity "OR2"
-# Compile Architecture "OR2" of Entity "OR2"
-# File: E:\Code\POCP-2\src\structure\prim\NOT.vhd
-# Compile Entity "NOT1"
-# Compile Architecture "NOT1" of Entity "NOT1"
-# File: E:\Code\POCP-2\src\behavior\Var5.vhd
-# Compile Entity "Var6"
-# Compile Architecture "Var6" of Entity "Var6"
-# File: E:\Code\POCP-2\src\behavior\Var6.vhd
-# Compile Entity "Var5"
-# Compile Architecture "Var5" of Entity "Var5"
-# File: E:\Code\POCP-2\src\behavior\Var7.vhd
-# Compile Entity "Var7"
-# Compile Architecture "Var7" of Entity "Var7"
-# File: E:\Code\POCP-2\src\testBeanch\TestBeanch.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  1.0 [s]
-acom -O3 -work ieee -2002  $dsn/src/structure/Var5.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\structure\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "structual" of Entity "Var5"
-# Compile Architecture "behavior" of Entity "Var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
-acom -O3 -work ieee -2002  $dsn/src/structure/Var5.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\structure\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "structual" of Entity "Var5"
-# Compile Architecture "behavior" of Entity "Var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
-acom -O3 -work ieee -2002  $dsn/src/structure/Var6.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\structure\Var6.vhd
-# Compile Entity "Var6"
-# Compile Architecture "structual" of Entity "Var6"
-# Compile Architecture "behavior" of Entity "Var6"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
-acom -O3 -work ieee -2002  $dsn/src/structure/Var7.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\structure\Var7.vhd
-# Compile Entity "Var7"
-# Compile Architecture "structual" of Entity "Var7"
-# Compile Architecture "behavior" of Entity "Var7"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
-acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd $dsn/src/MUX4-2.vhd $dsn/src/structure/Var5.vhd $dsn/src/structure/Var6.vhd $dsn/src/structure/Var7.vhd $dsn/src/structure/prim/AND3.vhd $dsn/src/structure/prim/NAND3.vhd $dsn/src/structure/prim/OR3.vhd $dsn/src/structure/prim/AND2.vhd $dsn/src/structure/prim/OR2.vhd $dsn/src/structure/prim/NOT.vhd $dsn/src/testBeanch/TestBeanch.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\MUX2.vhd
-# Compile Entity "mux2"
-# Compile Architecture "mux2" of Entity "mux2"
-# File: E:\Code\POCP-2\src\MUX4-2.vhd
-# Compile Entity "MUX4_2"
-# Compile Architecture "MUX4_2" of Entity "MUX4_2"
-# File: E:\Code\POCP-2\src\structure\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "structual" of Entity "Var5"
-# Compile Architecture "behavior" of Entity "Var5"
-# File: E:\Code\POCP-2\src\structure\Var6.vhd
-# Compile Entity "Var6"
-# Compile Architecture "structual" of Entity "Var6"
-# Compile Architecture "behavior" of Entity "Var6"
-# File: E:\Code\POCP-2\src\structure\Var7.vhd
-# Compile Entity "Var7"
-# Compile Architecture "structual" of Entity "Var7"
-# Compile Architecture "behavior" of Entity "Var7"
-# File: E:\Code\POCP-2\src\structure\prim\AND3.vhd
-# Compile Entity "AND3"
-# Compile Architecture "AND3" of Entity "AND3"
-# File: E:\Code\POCP-2\src\structure\prim\NAND3.vhd
-# Compile Entity "NAND3"
-# Compile Architecture "NAND3" of Entity "NAND3"
-# File: E:\Code\POCP-2\src\structure\prim\OR3.vhd
-# Compile Entity "OR3"
-# Compile Architecture "OR3" of Entity "OR3"
-# File: E:\Code\POCP-2\src\structure\prim\AND2.vhd
-# Compile Entity "AND2"
-# Compile Architecture "AND2" of Entity "AND2"
-# File: E:\Code\POCP-2\src\structure\prim\OR2.vhd
-# Compile Entity "OR2"
-# Compile Architecture "OR2" of Entity "OR2"
-# File: E:\Code\POCP-2\src\structure\prim\NOT.vhd
-# Compile Entity "NOT1"
-# Compile Architecture "NOT1" of Entity "NOT1"
-# File: E:\Code\POCP-2\src\testBeanch\TestBeanch.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  2.0 [s]
-SetActiveLib -work
-comp -include "$dsn\src\behavior\Var6.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\behavior\Var6.vhd
-# Error: COMP96_0001: Cannot find source file "E:\Code\POCP-2\src\behavior\Var6.vhd".
-# Compile failure 1 Errors 0 Warnings  Analysis time :  0.0 [ms]
-# Error: DO_001 in file E:\Code\POCP-2\src\TestBench\var5_TB_runtest.do line 2
-# Error: Cannot run E:\Code\POCP-2\src\TestBench\var5_TB_runtest.do
-SetActiveLib -work
-comp -include "$dsn\src\structure\Var5.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\structure\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "structual" of Entity "Var5"
-# Compile Architecture "behavior" of Entity "Var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
-comp -include "$dsn\src\TestBench\var5_TB.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\TestBench\var5_TB.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  31.0 [ms]
-asim +access +r TESTBENCH_FOR_var5 
-#  Simulation has been stopped
-# ELBREAD: Elaboration process.
-# ELBREAD: Elaboration time 0.1 [s].
-# asim: Stack memory: 32MB
-# asim: Retval memory: 32MB
-acom -O3 -work ieee -2002  $dsn/src/testBeanch/TestBeanch.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\testBeanch\TestBeanch.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
-# ELBREAD: Elaboration process.
-# ELBREAD: Warning: Design unit structural:Var5 instantiated in ieee.var5_tb(tb_architecture) not found in searched libraries: ieee.
-# ELBREAD: Warning: Component /var5_tb/UUT2 : Var5 not bound.
-# ELBREAD: Elaboration time 0.0 [s].
-# KERNEL: Main thread initiated.
-# KERNEL: Kernel process initialization phase.
-# KERNEL: Time resolution set to 1ps.
-# ELAB2: Elaboration final pass...
-# ELAB2: Create instances ...
-# ELAB2: Create instances complete.
-# SLP: Started
-# SLP: Elaboration phase ...
-# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
-# SLP: Finished : 0.0 [s]
-# ELAB2: Elaboration final pass complete - time: 0.0 [s].
-# KERNEL: Kernel process initialization done.
-# Allocation: Simulator allocated 5754 kB (elbread=1023 elab2=4639 kernel=90 sdf=0)
-# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
-#  13:41, 26 сент€бр€ 2016 г.
-#  Simulation has been initialized
-#  Selected Top-Level: testbench_for_var5
-wave 
-wave -noreg W
-wave -noreg X
-wave -noreg Y
-wave -noreg Z
-wave -noreg F
-# # The following lines can be used for timing simulation
-# # acom <backannotated_vhdl_file_name>
-# # comp -include "$dsn\src\TestBench\var5_TB_tim_cfg.vhd" 
-# # asim +access +r TIMING_FOR_var5 
-# 5 signal(s) traced.
-acom -O3 -work ieee -2002  $dsn/src/TestBench/var5_TB.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\TestBench\var5_TB.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.4 [s]
-SetActiveLib -work
-comp -include "$dsn\src\structure\Var5.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\structure\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "structual" of Entity "Var5"
-# Compile Architecture "behavior" of Entity "Var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
-comp -include "$dsn\src\TestBench\var5_TB.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\TestBench\var5_TB.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
-asim +access +r TESTBENCH_FOR_var5 
-#  Simulation has been stopped
-# ELBREAD: Elaboration process.
-# ELBREAD: Warning: Design unit structural:Var5 instantiated in ieee.var5_tb(tb_architecture) not found in searched libraries: ieee.
-# ELBREAD: Warning: Component /var5_tb/UUT2 : Var5 not bound.
-# ELBREAD: Elaboration time 0.1 [s].
-# asim: Stack memory: 32MB
-# asim: Retval memory: 32MB
-# KERNEL: Main thread initiated.
-# KERNEL: Kernel process initialization phase.
-# KERNEL: Time resolution set to 1ps.
-# ELAB2: Elaboration final pass...
-# ELAB2: Create instances ...
-# ELAB2: Create instances complete.
-# SLP: Started
-# SLP: Elaboration phase ...
-# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
-# SLP: Finished : 0.0 [s]
-# ELAB2: Elaboration final pass complete - time: 0.0 [s].
-# KERNEL: Kernel process initialization done.
-# Allocation: Simulator allocated 5754 kB (elbread=1023 elab2=4639 kernel=90 sdf=0)
-# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
-#  13:42, 26 сент€бр€ 2016 г.
-#  Simulation has been initialized
-#  Selected Top-Level: testbench_for_var5
-wave 
-wave -noreg W
-wave -noreg X
-wave -noreg Y
-wave -noreg Z
-wave -noreg F
-# # The following lines can be used for timing simulation
-# # acom <backannotated_vhdl_file_name>
-# # comp -include "$dsn\src\TestBench\var5_TB_tim_cfg.vhd" 
-# # asim +access +r TIMING_FOR_var5 
-# 5 signal(s) traced.
-acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd $dsn/src/MUX4-2.vhd $dsn/src/structure/Var5.vhd $dsn/src/structure/Var6.vhd $dsn/src/structure/Var7.vhd $dsn/src/structure/prim/AND3.vhd $dsn/src/structure/prim/NAND3.vhd $dsn/src/structure/prim/OR3.vhd $dsn/src/structure/prim/AND2.vhd $dsn/src/structure/prim/OR2.vhd $dsn/src/structure/prim/NOT.vhd $dsn/src/testBeanch/TestBeanch.vhd $dsn/src/TestBench/var5_TB.vhd $dsn/src/TestBench/var5_TB_tim_cfg.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\MUX2.vhd
-# Compile Entity "mux2"
-# Compile Architecture "mux2" of Entity "mux2"
-# File: E:\Code\POCP-2\src\MUX4-2.vhd
-# Compile Entity "MUX4_2"
-# Compile Architecture "MUX4_2" of Entity "MUX4_2"
-# File: E:\Code\POCP-2\src\structure\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "structual" of Entity "Var5"
-# Compile Architecture "behavior" of Entity "Var5"
-# File: E:\Code\POCP-2\src\structure\Var6.vhd
-# Compile Entity "Var6"
-# Compile Architecture "structual" of Entity "Var6"
-# Compile Architecture "behavior" of Entity "Var6"
-# File: E:\Code\POCP-2\src\structure\Var7.vhd
-# Compile Entity "Var7"
-# Compile Architecture "structual" of Entity "Var7"
-# Compile Architecture "behavior" of Entity "Var7"
-# File: E:\Code\POCP-2\src\structure\prim\AND3.vhd
-# Compile Entity "AND3"
-# Compile Architecture "AND3" of Entity "AND3"
-# File: E:\Code\POCP-2\src\structure\prim\NAND3.vhd
-# Compile Entity "NAND3"
-# Compile Architecture "NAND3" of Entity "NAND3"
-# File: E:\Code\POCP-2\src\structure\prim\OR3.vhd
-# Compile Entity "OR3"
-# Compile Architecture "OR3" of Entity "OR3"
-# File: E:\Code\POCP-2\src\structure\prim\AND2.vhd
-# Compile Entity "AND2"
-# Compile Architecture "AND2" of Entity "AND2"
-# File: E:\Code\POCP-2\src\structure\prim\OR2.vhd
-# Compile Entity "OR2"
-# Compile Architecture "OR2" of Entity "OR2"
-# File: E:\Code\POCP-2\src\structure\prim\NOT.vhd
-# Compile Entity "NOT1"
-# Compile Architecture "NOT1" of Entity "NOT1"
-# File: E:\Code\POCP-2\src\testBeanch\TestBeanch.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Compile Configuration "TESTBENCH_FOR_var5"
-# File: E:\Code\POCP-2\src\TestBench\var5_TB.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Compile Configuration "TESTBENCH_FOR_var5"
-# File: E:\Code\POCP-2\src\TestBench\var5_TB_tim_cfg.vhd
-# Compile Configuration "TIMING_FOR_var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  1.0 [s]
-SetActiveLib -work
-comp -include "$dsn\src\structure\Var5.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\structure\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "structual" of Entity "Var5"
-# Compile Architecture "behavior" of Entity "Var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
-comp -include "$dsn\src\TestBench\var5_TB.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\TestBench\var5_TB.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
-asim +access +r TESTBENCH_FOR_var5 
-#  Simulation has been stopped
-# ELBREAD: Elaboration process.
-# ELBREAD: Warning: Design unit structural:Var5 instantiated in ieee.var5_tb(tb_architecture) not found in searched libraries: ieee.
-# ELBREAD: Warning: Component /var5_tb/UUT2 : Var5 not bound.
-# ELBREAD: Elaboration time 0.1 [s].
-# asim: Stack memory: 32MB
-# asim: Retval memory: 32MB
-# KERNEL: Main thread initiated.
-# KERNEL: Kernel process initialization phase.
-# KERNEL: Time resolution set to 1ps.
-# ELAB2: Elaboration final pass...
-# ELAB2: Create instances ...
-# ELAB2: Create instances complete.
-# SLP: Started
-# SLP: Elaboration phase ...
-# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
-# SLP: Finished : 0.0 [s]
-# ELAB2: Elaboration final pass complete - time: 0.0 [s].
-# KERNEL: Kernel process initialization done.
-# Allocation: Simulator allocated 5754 kB (elbread=1023 elab2=4639 kernel=90 sdf=0)
-# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
-#  13:45, 26 сент€бр€ 2016 г.
-#  Simulation has been initialized
-#  Selected Top-Level: testbench_for_var5
-wave 
-wave -noreg W
-wave -noreg X
-wave -noreg Y
-wave -noreg Z
-wave -noreg F
-# # The following lines can be used for timing simulation
-# # acom <backannotated_vhdl_file_name>
-# # comp -include "$dsn\src\TestBench\var5_TB_tim_cfg.vhd" 
-# # asim +access +r TIMING_FOR_var5 
-# 5 signal(s) traced.
-SetActiveLib -work
-comp -include "$dsn\src\structure\Var5.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\structure\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "structual" of Entity "Var5"
-# Compile Architecture "behavior" of Entity "Var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
-comp -include "$dsn\src\TestBench\var5_TB.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\TestBench\var5_TB.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
-asim +access +r TESTBENCH_FOR_var5 
-#  Simulation has been stopped
-# ELBREAD: Elaboration process.
-# ELBREAD: Warning: Design unit structural:Var5 instantiated in ieee.var5_tb(tb_architecture) not found in searched libraries: ieee.
-# ELBREAD: Warning: Component /var5_tb/UUT2 : Var5 not bound.
-# ELBREAD: Elaboration time 0.2 [s].
-# asim: Stack memory: 32MB
-# asim: Retval memory: 32MB
-# KERNEL: Main thread initiated.
-# KERNEL: Kernel process initialization phase.
-# KERNEL: Time resolution set to 1ps.
-# ELAB2: Elaboration final pass...
-# ELAB2: Create instances ...
-# ELAB2: Create instances complete.
-# SLP: Started
-# SLP: Elaboration phase ...
-# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
-# SLP: Finished : 0.0 [s]
-# ELAB2: Elaboration final pass complete - time: 0.0 [s].
-# KERNEL: Kernel process initialization done.
-# Allocation: Simulator allocated 5754 kB (elbread=1023 elab2=4639 kernel=90 sdf=0)
-# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
-#  13:46, 26 сент€бр€ 2016 г.
-#  Simulation has been initialized
-#  Selected Top-Level: testbench_for_var5
-wave 
-wave -noreg W
-wave -noreg X
-wave -noreg Y
-wave -noreg Z
-wave -noreg F 
-run 1200.00 ns
-# 5 signal(s) traced.
-# KERNEL: stopped at time: 1200 ns
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-# # The following lines can be used for timing simulation
-# # acom <backannotated_vhdl_file_name>
-# # comp -include "$dsn\src\TestBench\var5_TB_tim_cfg.vhd" 
-# # asim +access +r TIMING_FOR_var5 
-acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd $dsn/src/MUX4-2.vhd $dsn/src/structure/Var5.vhd $dsn/src/structure/Var6.vhd $dsn/src/structure/Var7.vhd $dsn/src/structure/prim/AND3.vhd $dsn/src/structure/prim/NAND3.vhd $dsn/src/structure/prim/OR3.vhd $dsn/src/structure/prim/AND2.vhd $dsn/src/structure/prim/OR2.vhd $dsn/src/structure/prim/NOT.vhd $dsn/src/testBeanch/TestBeanch.vhd $dsn/src/TestBench/var5_TB.vhd $dsn/src/TestBench/var5_TB_tim_cfg.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\MUX2.vhd
-# Compile Entity "mux2"
-# Compile Architecture "mux2" of Entity "mux2"
-# File: E:\Code\POCP-2\src\MUX4-2.vhd
-# Compile Entity "MUX4_2"
-# Compile Architecture "MUX4_2" of Entity "MUX4_2"
-# File: E:\Code\POCP-2\src\structure\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "structual" of Entity "Var5"
-# Compile Architecture "behavior" of Entity "Var5"
-# File: E:\Code\POCP-2\src\structure\Var6.vhd
-# Compile Entity "Var6"
-# Compile Architecture "structual" of Entity "Var6"
-# Compile Architecture "behavior" of Entity "Var6"
-# File: E:\Code\POCP-2\src\structure\Var7.vhd
-# Compile Entity "Var7"
-# Compile Architecture "structual" of Entity "Var7"
-# Compile Architecture "behavior" of Entity "Var7"
-# File: E:\Code\POCP-2\src\structure\prim\AND3.vhd
-# Compile Entity "AND3"
-# Compile Architecture "AND3" of Entity "AND3"
-# File: E:\Code\POCP-2\src\structure\prim\NAND3.vhd
-# Compile Entity "NAND3"
-# Compile Architecture "NAND3" of Entity "NAND3"
-# File: E:\Code\POCP-2\src\structure\prim\OR3.vhd
-# Compile Entity "OR3"
-# Compile Architecture "OR3" of Entity "OR3"
-# File: E:\Code\POCP-2\src\structure\prim\AND2.vhd
-# Compile Entity "AND2"
-# Compile Architecture "AND2" of Entity "AND2"
-# File: E:\Code\POCP-2\src\structure\prim\OR2.vhd
-# Compile Entity "OR2"
-# Compile Architecture "OR2" of Entity "OR2"
-# File: E:\Code\POCP-2\src\structure\prim\NOT.vhd
-# Compile Entity "NOT1"
-# Compile Architecture "NOT1" of Entity "NOT1"
-# File: E:\Code\POCP-2\src\testBeanch\TestBeanch.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Compile Configuration "TESTBENCH_FOR_var5"
-# File: E:\Code\POCP-2\src\TestBench\var5_TB.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Compile Configuration "TESTBENCH_FOR_var5"
-# File: E:\Code\POCP-2\src\TestBench\var5_TB_tim_cfg.vhd
-# Compile Configuration "TIMING_FOR_var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  3.0 [s]
-SetActiveLib -work
-comp -include "$dsn\src\structure\Var5.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\structure\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "structual" of Entity "Var5"
-# Compile Architecture "behavior" of Entity "Var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
-comp -include "$dsn\src\TestBench\var5_TB.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\TestBench\var5_TB.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
-asim +access +r TESTBENCH_FOR_var5 
-#  Simulation has been stopped
-# ELBREAD: Elaboration process.
-# ELBREAD: Elaboration time 0.1 [s].
-# asim: Stack memory: 32MB
-# asim: Retval memory: 32MB
-# KERNEL: Main thread initiated.
-# KERNEL: Kernel process initialization phase.
-# KERNEL: Time resolution set to 1ps.
-# ELAB2: Elaboration final pass...
-# ELAB2: Create instances ...
-# ELAB2: Create instances complete.
-# SLP: Started
-# SLP: Elaboration phase ...
-# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
-# SLP: Finished : 0.0 [s]
-# ELAB2: Elaboration final pass complete - time: 0.0 [s].
-# KERNEL: Kernel process initialization done.
-# Allocation: Simulator allocated 6012 kB (elbread=1023 elab2=4897 kernel=91 sdf=0)
-# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
-#  13:50, 26 сент€бр€ 2016 г.
-#  Simulation has been initialized
-#  Selected Top-Level: testbench_for_var5
-wave 
-wave -noreg W
-wave -noreg X
-wave -noreg Y
-wave -noreg Z
-wave -noreg F 
-run 1200.00 ns
-# 5 signal(s) traced.
-# KERNEL: stopped at time: 1200 ns
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-# # The following lines can be used for timing simulation
-# # acom <backannotated_vhdl_file_name>
-# # comp -include "$dsn\src\TestBench\var5_TB_tim_cfg.vhd" 
-# # asim +access +r TIMING_FOR_var5 
-SetActiveLib -work
-comp -include "$dsn\src\structure\Var5.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\structure\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "structual" of Entity "Var5"
-# Compile Architecture "behavior" of Entity "Var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.3 [s]
-comp -include "$dsn\src\TestBench\var5_TB.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\TestBench\var5_TB.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
-asim +access +r TESTBENCH_FOR_var5 
-#  Simulation has been stopped
-# ELBREAD: Elaboration process.
-# ELBREAD: Elaboration time 0.1 [s].
-# asim: Stack memory: 32MB
-# asim: Retval memory: 32MB
-# KERNEL: Main thread initiated.
-# KERNEL: Kernel process initialization phase.
-# KERNEL: Time resolution set to 1ps.
-# ELAB2: Elaboration final pass...
-# ELAB2: Create instances ...
-# ELAB2: Create instances complete.
-# SLP: Started
-# SLP: Elaboration phase ...
-# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
-# SLP: Finished : 0.0 [s]
-# ELAB2: Elaboration final pass complete - time: 0.0 [s].
-# KERNEL: Kernel process initialization done.
-# Allocation: Simulator allocated 6012 kB (elbread=1023 elab2=4897 kernel=91 sdf=0)
-# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
-#  13:55, 26 сент€бр€ 2016 г.
-#  Simulation has been initialized
-#  Selected Top-Level: testbench_for_var5
-wave 
-wave -noreg W
-wave -noreg X
-wave -noreg Y
-wave -noreg Z
-wave -noreg F 
-wave -noreg F1 
-run  800.00 ns
-# 6 signal(s) traced.
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-# # The following lines can be used for timing simulation
-# # acom <backannotated_vhdl_file_name>
-# # comp -include "$dsn\src\TestBench\var5_TB_tim_cfg.vhd" 
-# # asim +access +r TIMING_FOR_var5 
-SetActiveLib -work
-comp -include "$dsn\src\structure\Var5.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\structure\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "structual" of Entity "Var5"
-# Compile Architecture "behavior" of Entity "Var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
-comp -include "$dsn\src\TestBench\var5_TB.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\TestBench\var5_TB.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
-asim +access +r TESTBENCH_FOR_var5 
-#  Simulation has been stopped
-# ELBREAD: Elaboration process.
-# ELBREAD: Elaboration time 0.1 [s].
-# asim: Stack memory: 32MB
-# asim: Retval memory: 32MB
-# KERNEL: Main thread initiated.
-# KERNEL: Kernel process initialization phase.
-# KERNEL: Time resolution set to 1ps.
-# ELAB2: Elaboration final pass...
-# ELAB2: Create instances ...
-# ELAB2: Create instances complete.
-# SLP: Started
-# SLP: Elaboration phase ...
-# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
-# SLP: Finished : 0.0 [s]
-# ELAB2: Elaboration final pass complete - time: 0.0 [s].
-# KERNEL: Kernel process initialization done.
-# Allocation: Simulator allocated 6012 kB (elbread=1023 elab2=4897 kernel=91 sdf=0)
-# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
-#  13:56, 26 сент€бр€ 2016 г.
-#  Simulation has been initialized
-#  Selected Top-Level: testbench_for_var5
-wave 
-wave -noreg W
-wave -noreg X
-wave -noreg Y
-wave -noreg Z
-wave -noreg F 
-wave -noreg F1 
-wave -noreg error
-run  800.00 ns
-# 7 signal(s) traced.
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-# # The following lines can be used for timing simulation
-# # acom <backannotated_vhdl_file_name>
-# # comp -include "$dsn\src\TestBench\var5_TB_tim_cfg.vhd" 
-# # asim +access +r TIMING_FOR_var5 
-acom -O3 -work ieee -2002  $dsn/src/TestBench/var5_TB_tim_cfg.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\TestBench\var5_TB_tim_cfg.vhd
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  16.0 [ms]
-acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd $dsn/src/MUX4-2.vhd $dsn/src/structure/Var5.vhd $dsn/src/structure/Var6.vhd $dsn/src/structure/Var7.vhd $dsn/src/structure/prim/AND3.vhd $dsn/src/structure/prim/NAND3.vhd $dsn/src/structure/prim/OR3.vhd $dsn/src/structure/prim/AND2.vhd $dsn/src/structure/prim/OR2.vhd $dsn/src/structure/prim/NOT.vhd $dsn/src/TestBench/var5_TB.vhd $dsn/src/TestBench/var5_TB_tim_cfg.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\MUX2.vhd
-# Compile Entity "mux2"
-# Compile Architecture "mux2" of Entity "mux2"
-# File: E:\Code\POCP-2\src\MUX4-2.vhd
-# Compile Entity "MUX4_2"
-# Compile Architecture "MUX4_2" of Entity "MUX4_2"
-# File: E:\Code\POCP-2\src\structure\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "structual" of Entity "Var5"
-# Compile Architecture "behavior" of Entity "Var5"
-# File: E:\Code\POCP-2\src\structure\Var6.vhd
-# Compile Entity "Var6"
-# Compile Architecture "structual" of Entity "Var6"
-# Compile Architecture "behavior" of Entity "Var6"
-# File: E:\Code\POCP-2\src\structure\Var7.vhd
-# Compile Entity "Var7"
-# Compile Architecture "structual" of Entity "Var7"
-# Compile Architecture "behavior" of Entity "Var7"
-# File: E:\Code\POCP-2\src\structure\prim\AND3.vhd
-# Compile Entity "AND3"
-# Compile Architecture "AND3" of Entity "AND3"
-# File: E:\Code\POCP-2\src\structure\prim\NAND3.vhd
-# Compile Entity "NAND3"
-# Compile Architecture "NAND3" of Entity "NAND3"
-# File: E:\Code\POCP-2\src\structure\prim\OR3.vhd
-# Compile Entity "OR3"
-# Compile Architecture "OR3" of Entity "OR3"
-# File: E:\Code\POCP-2\src\structure\prim\AND2.vhd
-# Compile Entity "AND2"
-# Compile Architecture "AND2" of Entity "AND2"
-# File: E:\Code\POCP-2\src\structure\prim\OR2.vhd
-# Compile Entity "OR2"
-# Compile Architecture "OR2" of Entity "OR2"
-# File: E:\Code\POCP-2\src\structure\prim\NOT.vhd
-# Compile Entity "NOT1"
-# Compile Architecture "NOT1" of Entity "NOT1"
-# File: E:\Code\POCP-2\src\TestBench\var5_TB.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# File: E:\Code\POCP-2\src\TestBench\var5_TB_tim_cfg.vhd
-# Compile Configuration "TESTBENCH_FOR_var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  1.0 [s]
-#  Simulation has been stopped
-# ELBREAD: Elaboration process.
-# ELBREAD: Elaboration time 0.0 [s].
-# ELBREAD: Elaboration process.
-# ELBREAD: Elaboration time 0.0 [s].
-SetActiveLib -work
-comp -include "$dsn\src\behavior\Var5.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\behavior\Var5.vhd
-# Error: COMP96_0001: Cannot find source file "E:\Code\POCP-2\src\behavior\Var5.vhd".
-# Compile failure 1 Errors 0 Warnings  Analysis time :  16.0 [ms]
-# Error: DO_001 in file E:\Code\POCP-2\src\TestBench\var6_TB_runtest.do line 2
-# Error: Cannot run E:\Code\POCP-2\src\TestBench\var6_TB_runtest.do
-SetActiveLib -work
-comp -include "$dsn\src\Var6.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\Var6.vhd
-# Error: COMP96_0001: Cannot find source file "E:\Code\POCP-2\src\Var6.vhd".
-# Compile failure 1 Errors 0 Warnings  Analysis time :  15.0 [ms]
-# Error: DO_001 in file E:\Code\POCP-2\src\TestBench\var6_TB_runtest.do line 2
-# Error: Cannot run E:\Code\POCP-2\src\TestBench\var6_TB_runtest.do
-SetActiveLib -work
-comp -include "$dsn\src\structure\Var6.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\structure\Var6.vhd
-# Compile Entity "Var6"
-# Compile Architecture "structual" of Entity "Var6"
-# Compile Architecture "behavior" of Entity "Var6"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
-comp -include "$dsn\src\TestBench\var6_TB.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\TestBench\var6_TB.vhd
-# Compile Entity "var6_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
-# Error: COMP96_0134: var6_TB.vhd : (33, 8): Cannot find component declaration.
-# Error: COMP96_0134: var6_TB.vhd : (41, 9): Cannot find component declaration.
-# Compile failure 2 Errors 0 Warnings  Analysis time :  31.0 [ms]
-# Error: DO_001 in file E:\Code\POCP-2\src\TestBench\var6_TB_runtest.do line 3
-# Error: Cannot run E:\Code\POCP-2\src\TestBench\var6_TB_runtest.do
-acom -O3 -work ieee -2002  $dsn/src/TestBench/var6_TB.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\TestBench\var6_TB.vhd
-# Compile Entity "var6_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
-# Error: COMP96_0134: var6_TB.vhd : (33, 8): Cannot find component declaration.
-# Error: COMP96_0134: var6_TB.vhd : (41, 9): Cannot find component declaration.
-# Compile failure 2 Errors 0 Warnings  Analysis time :  16.0 [ms]
-acom -O3 -work ieee -2002  $dsn/src/TestBench/var6_TB.vhd
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\TestBench\var6_TB.vhd
-# Compile Entity "var6_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
-SetActiveLib -work
-comp -include "$dsn\src\structure\Var6.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\structure\Var6.vhd
-# Compile Entity "Var6"
-# Compile Architecture "structual" of Entity "Var6"
-# Compile Architecture "behavior" of Entity "Var6"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
-comp -include "$dsn\src\TestBench\var6_TB.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\TestBench\var6_TB.vhd
-# Compile Entity "var6_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
-asim +access +r TESTBENCH_FOR_var6 
-# Error: asim: cannot select specified top-level
-# Error: DO_001 in file E:\Code\POCP-2\src\TestBench\var6_TB_runtest.do line 4
-# Error: Cannot run E:\Code\POCP-2\src\TestBench\var6_TB_runtest.do
-SetActiveLib -work
-comp -include "$dsn\src\structure\Var6.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\structure\Var6.vhd
-# Compile Entity "Var6"
-# Compile Architecture "structual" of Entity "Var6"
-# Compile Architecture "behavior" of Entity "Var6"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
-comp -include "$dsn\src\TestBench\var6_TB.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\TestBench\var6_TB.vhd
-# Compile Entity "var6_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
-asim +access +r TESTBENCH_FOR_var6 
-# Error: asim: cannot select specified top-level
-# Error: DO_001 in file E:\Code\POCP-2\src\TestBench\var6_TB_runtest.do line 4
-# Error: Cannot run E:\Code\POCP-2\src\TestBench\var6_TB_runtest.do
-SetActiveLib -work
-comp -include "$dsn\src\structure\Var5.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\structure\Var5.vhd
-# Compile Entity "Var5"
-# Compile Architecture "structual" of Entity "Var5"
-# Compile Architecture "behavior" of Entity "Var5"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
-comp -include "$dsn\src\TestBench\var5_TB.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\TestBench\var5_TB.vhd
-# Compile Entity "var5_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
-asim +access +r TESTBENCH_FOR_var5 
-# ELBREAD: Elaboration process.
-# ELBREAD: Elaboration time 0.1 [s].
-# asim: Stack memory: 32MB
-# asim: Retval memory: 32MB
-# KERNEL: Main thread initiated.
-# KERNEL: Kernel process initialization phase.
-# KERNEL: Time resolution set to 1ps.
-# ELAB2: Elaboration final pass...
-# ELAB2: Create instances ...
-# ELAB2: Create instances complete.
-# SLP: Started
-# SLP: Elaboration phase ...
-# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
-# SLP: Finished : 0.0 [s]
-# ELAB2: Elaboration final pass complete - time: 0.0 [s].
-# KERNEL: Kernel process initialization done.
-# Allocation: Simulator allocated 6012 kB (elbread=1023 elab2=4897 kernel=91 sdf=0)
-# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
-#  14:14, 26 сент€бр€ 2016 г.
-#  Simulation has been initialized
-#  Selected Top-Level: testbench_for_var5
-wave 
-wave -noreg W
-wave -noreg X
-wave -noreg Y
-wave -noreg Z
-wave -noreg F 
-wave -noreg F1 
-wave -noreg error
-run  800.00 ns
-# 7 signal(s) traced.
-# KERNEL: Simulation has finished. There are no more test vectors to simulate.
-# # The following lines can be used for timing simulation
-# # acom <backannotated_vhdl_file_name>
-# # comp -include "$dsn\src\TestBench\var5_TB_tim_cfg.vhd" 
-# # asim +access +r TIMING_FOR_var5 
-SetActiveLib -work
-comp -include "$dsn\src\structure\Var6.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\structure\Var6.vhd
-# Compile Entity "Var6"
-# Compile Architecture "structual" of Entity "Var6"
-# Compile Architecture "behavior" of Entity "Var6"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
-comp -include "$dsn\src\TestBench\var6_TB.vhd" 
-# Compile...
-# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\TestBench\var6_TB.vhd
-# Compile Entity "var6_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
-asim +access +r TESTBENCH_FOR_var6 
-#  Simulation has been stopped
-# Error: asim: cannot select specified top-level
-# Error: DO_001 in file E:\Code\POCP-2\src\TestBench\var6_TB_runtest.do line 4
-# Error: Cannot run E:\Code\POCP-2\src\TestBench\var6_TB_runtest.do
-acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd $dsn/src/MUX4-2.vhd $dsn/src/structure/Var5.vhd $dsn/src/structure/Var6.vhd $dsn/src/structure/Var7.vhd $dsn/src/structure/prim/AND3.vhd $dsn/src/structure/prim/NAND3.vhd $dsn/src/structure/prim/OR3.vhd $dsn/src/structure/prim/AND2.vhd $dsn/src/structure/prim/OR2.vhd $dsn/src/structure/prim/NOT.vhd $dsn/src/TestBench/var5_TB.vhd $dsn/src/TestBench/var5_TB_tim_cfg.vhd $dsn/src/TestBench/var6_TB.vhd $dsn/src/TestBench/var6_TB_tim_cfg.vhd
+acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd $dsn/src/MUX4-2.vhd $dsn/src/structure/Var5.vhd $dsn/src/structure/Var6.vhd $dsn/src/structure/Var7.vhd $dsn/src/structure/prim/AND3.vhd $dsn/src/structure/prim/NAND3.vhd $dsn/src/structure/prim/OR3.vhd $dsn/src/structure/prim/AND2.vhd $dsn/src/structure/prim/OR2.vhd $dsn/src/structure/prim/NOT.vhd $dsn/src/TestBench/var5_TB.vhd $dsn/src/TestBench/var5_TB_tim_cfg.vhd $dsn/src/TestBench/var6_TB.vhd $dsn/src/TestBench/var6_TB_tim_cfg.vhd $dsn/src/TestBench/var7_TB.vhd $dsn/src/TestBench/var7_TB_tim_cfg.vhd
 # Compile...
 # Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
 # File: E:\Code\POCP-2\src\MUX2.vhd
@@ -1581,24 +47,32 @@ acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd $dsn/src/MUX4-2.vhd $dsn/src/struct
 # Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
 # File: E:\Code\POCP-2\src\TestBench\var6_TB_tim_cfg.vhd
 # Compile Configuration "TESTBENCH_FOR_var6"
-# Compile success 0 Errors 0 Warnings  Analysis time :  1.0 [s]
+# File: E:\Code\POCP-2\src\TestBench\var7_TB.vhd
+# Compile Entity "var7_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var7_tb"
+# Compile Configuration "TESTBENCH_FOR_var7"
+# File: E:\Code\POCP-2\src\TestBench\var7_TB_tim_cfg.vhd
+# Compile Configuration "TIMING_FOR_var7"
+# Compile success 0 Errors 0 Warnings  Analysis time :  2.0 [s]
 SetActiveLib -work
-comp -include "$dsn\src\structure\Var6.vhd" 
+comp -include "$dsn\src\structure\Var7.vhd" 
 # Compile...
 # Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\structure\Var6.vhd
-# Compile Entity "Var6"
-# Compile Architecture "structual" of Entity "Var6"
-# Compile Architecture "behavior" of Entity "Var6"
+# File: E:\Code\POCP-2\src\structure\Var7.vhd
+# Compile Entity "Var7"
+# Compile Architecture "structual" of Entity "Var7"
+# Compile Architecture "behavior" of Entity "Var7"
 # Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
-comp -include "$dsn\src\TestBench\var6_TB.vhd" 
+comp -include "$dsn\src\TestBench\var7_TB.vhd" 
 # Compile...
 # Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
-# File: E:\Code\POCP-2\src\TestBench\var6_TB.vhd
-# Compile Entity "var6_tb"
-# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
-asim +access +r TESTBENCH_FOR_var6 
+# File: E:\Code\POCP-2\src\TestBench\var7_TB.vhd
+# Compile Entity "var7_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var7_tb"
+# Compile Configuration "TESTBENCH_FOR_var7"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
+asim +access +r TESTBENCH_FOR_var7 
+#  Simulation has been stopped
 # ELBREAD: Elaboration process.
 # ELBREAD: Elaboration time 0.1 [s].
 # asim: Stack memory: 32MB
@@ -1615,26 +89,26 @@ asim +access +r TESTBENCH_FOR_var6
 # SLP: Finished : 0.0 [s]
 # ELAB2: Elaboration final pass complete - time: 0.0 [s].
 # KERNEL: Kernel process initialization done.
-# Allocation: Simulator allocated 6012 kB (elbread=1023 elab2=4897 kernel=91 sdf=0)
+# Allocation: Simulator allocated 6011 kB (elbread=1023 elab2=4896 kernel=91 sdf=0)
 # KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
-#  14:15, 26 сент€бр€ 2016 г.
+#  12:33, 27 сент€бр€ 2016 г.
 #  Simulation has been initialized
-#  Selected Top-Level: testbench_for_var6
+#  Selected Top-Level: testbench_for_var7
 wave 
 wave -noreg W
 wave -noreg X
 wave -noreg Y
 wave -noreg Z
-wave -noreg F 
-wave -noreg F1 
+wave -noreg G 
+wave -noreg G1
 wave -noreg error
 run  800.00 ns
 # 7 signal(s) traced.
 # KERNEL: Simulation has finished. There are no more test vectors to simulate.
 # # The following lines can be used for timing simulation
 # # acom <backannotated_vhdl_file_name>
-# # comp -include "$dsn\src\TestBench\var6_TB_tim_cfg.vhd" 
-# # asim +access +r TIMING_FOR_var6 
+# # comp -include "$dsn\src\TestBench\var7_TB_tim_cfg.vhd" 
+# # asim +access +r TIMING_FOR_var7 
 SetActiveLib -work
 comp -include "$dsn\src\structure\Var6.vhd" 
 # Compile...
@@ -1643,18 +117,19 @@ comp -include "$dsn\src\structure\Var6.vhd"
 # Compile Entity "Var6"
 # Compile Architecture "structual" of Entity "Var6"
 # Compile Architecture "behavior" of Entity "Var6"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
 comp -include "$dsn\src\TestBench\var6_TB.vhd" 
 # Compile...
 # Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
 # File: E:\Code\POCP-2\src\TestBench\var6_TB.vhd
 # Compile Entity "var6_tb"
 # Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
-# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+# Compile Configuration "TESTBENCH_FOR_var6"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
 asim +access +r TESTBENCH_FOR_var6 
 #  Simulation has been stopped
 # ELBREAD: Elaboration process.
-# ELBREAD: Elaboration time 0.0 [s].
+# ELBREAD: Elaboration time 0.2 [s].
 # asim: Stack memory: 32MB
 # asim: Retval memory: 32MB
 # KERNEL: Main thread initiated.
@@ -1671,7 +146,7 @@ asim +access +r TESTBENCH_FOR_var6
 # KERNEL: Kernel process initialization done.
 # Allocation: Simulator allocated 6012 kB (elbread=1023 elab2=4897 kernel=91 sdf=0)
 # KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
-#  14:16, 26 сент€бр€ 2016 г.
+#  12:50, 27 сент€бр€ 2016 г.
 #  Simulation has been initialized
 #  Selected Top-Level: testbench_for_var6
 wave 
@@ -1689,7 +164,7 @@ run  800.00 ns
 # # acom <backannotated_vhdl_file_name>
 # # comp -include "$dsn\src\TestBench\var6_TB_tim_cfg.vhd" 
 # # asim +access +r TIMING_FOR_var6 
-acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd $dsn/src/MUX4-2.vhd $dsn/src/structure/Var5.vhd $dsn/src/structure/Var6.vhd $dsn/src/structure/Var7.vhd $dsn/src/structure/prim/AND3.vhd $dsn/src/structure/prim/NAND3.vhd $dsn/src/structure/prim/OR3.vhd $dsn/src/structure/prim/AND2.vhd $dsn/src/structure/prim/OR2.vhd $dsn/src/structure/prim/NOT.vhd $dsn/src/TestBench/var5_TB.vhd $dsn/src/TestBench/var5_TB_tim_cfg.vhd $dsn/src/TestBench/var6_TB.vhd $dsn/src/TestBench/var6_TB_tim_cfg.vhd
+acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd $dsn/src/MUX4-2.vhd $dsn/src/structure/Var5.vhd $dsn/src/structure/Var6.vhd $dsn/src/structure/Var7.vhd $dsn/src/structure/prim/AND3.vhd $dsn/src/structure/prim/NAND3.vhd $dsn/src/structure/prim/OR3.vhd $dsn/src/structure/prim/AND2.vhd $dsn/src/structure/prim/OR2.vhd $dsn/src/structure/prim/NOT.vhd $dsn/src/TestBench/var5_TB.vhd $dsn/src/TestBench/var5_TB_tim_cfg.vhd $dsn/src/TestBench/var6_TB.vhd $dsn/src/TestBench/var6_TB_tim_cfg.vhd $dsn/src/TestBench/var7_TB.vhd $dsn/src/TestBench/var7_TB_tim_cfg.vhd
 # Compile...
 # Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
 # File: E:\Code\POCP-2\src\MUX2.vhd
@@ -1735,4 +210,964 @@ acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd $dsn/src/MUX4-2.vhd $dsn/src/struct
 # Compile Configuration "TESTBENCH_FOR_var5"
 # File: E:\Code\POCP-2\src\TestBench\var6_TB.vhd
 # Compile Entity "var6_tb"
-# Compile Archite
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
+# Compile Configuration "TESTBENCH_FOR_var6"
+# File: E:\Code\POCP-2\src\TestBench\var6_TB_tim_cfg.vhd
+# Compile Configuration "TESTBENCH_FOR_var6"
+# File: E:\Code\POCP-2\src\TestBench\var7_TB.vhd
+# Compile Entity "var7_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var7_tb"
+# Compile Configuration "TESTBENCH_FOR_var7"
+# File: E:\Code\POCP-2\src\TestBench\var7_TB_tim_cfg.vhd
+# Compile Configuration "TIMING_FOR_var7"
+# Compile success 0 Errors 0 Warnings  Analysis time :  1.0 [s]
+SetActiveLib -work
+comp -include "$dsn\src\structure\Var6.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\structure\Var6.vhd
+# Compile Entity "Var6"
+# Compile Architecture "structual" of Entity "Var6"
+# Compile Architecture "behavior" of Entity "Var6"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+comp -include "$dsn\src\TestBench\var6_TB.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\TestBench\var6_TB.vhd
+# Compile Entity "var6_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
+# Compile Configuration "TESTBENCH_FOR_var6"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
+asim +access +r TESTBENCH_FOR_var6 
+#  Simulation has been stopped
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.1 [s].
+# asim: Stack memory: 32MB
+# asim: Retval memory: 32MB
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Elaboration final pass...
+# ELAB2: Create instances ...
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Elaboration phase ...
+# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
+# SLP: Finished : 0.0 [s]
+# ELAB2: Elaboration final pass complete - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 6012 kB (elbread=1023 elab2=4897 kernel=91 sdf=0)
+# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
+#  12:53, 27 сент€бр€ 2016 г.
+#  Simulation has been initialized
+#  Selected Top-Level: testbench_for_var6
+wave 
+wave -noreg W
+wave -noreg X
+wave -noreg Y
+wave -noreg Z
+wave -noreg F 
+wave -noreg F1 
+wave -noreg error
+run  800.00 ns
+# 7 signal(s) traced.
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# # The following lines can be used for timing simulation
+# # acom <backannotated_vhdl_file_name>
+# # comp -include "$dsn\src\TestBench\var6_TB_tim_cfg.vhd" 
+# # asim +access +r TIMING_FOR_var6 
+acom -O3 -work ieee -2002  $dsn/src/TestBench/var6_TB.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\TestBench\var6_TB.vhd
+# Compile Entity "var6_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
+# Compile Configuration "TESTBENCH_FOR_var6"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
+SetActiveLib -work
+comp -include "$dsn\src\structure\Var6.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\structure\Var6.vhd
+# Compile Entity "Var6"
+# Compile Architecture "structual" of Entity "Var6"
+# Compile Architecture "behavior" of Entity "Var6"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+comp -include "$dsn\src\TestBench\var6_TB.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\TestBench\var6_TB.vhd
+# Compile Entity "var6_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
+# Compile Configuration "TESTBENCH_FOR_var6"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+asim +access +r TESTBENCH_FOR_var6 
+#  Simulation has been stopped
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.1 [s].
+# asim: Stack memory: 32MB
+# asim: Retval memory: 32MB
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Elaboration final pass...
+# ELAB2: Create instances ...
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Elaboration phase ...
+# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
+# SLP: Finished : 0.0 [s]
+# ELAB2: Elaboration final pass complete - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 6012 kB (elbread=1023 elab2=4897 kernel=91 sdf=0)
+# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
+#  12:56, 27 сент€бр€ 2016 г.
+#  Simulation has been initialized
+#  Selected Top-Level: testbench_for_var6
+wave 
+wave -noreg W
+wave -noreg X
+wave -noreg Y
+wave -noreg Z
+wave -noreg F 
+wave -noreg F1 
+wave -noreg error
+run  800.00 ns
+# 7 signal(s) traced.
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# # The following lines can be used for timing simulation
+# # acom <backannotated_vhdl_file_name>
+# # comp -include "$dsn\src\TestBench\var6_TB_tim_cfg.vhd" 
+# # asim +access +r TIMING_FOR_var6 
+SetActiveLib -work
+comp -include "$dsn\src\structure\Var6.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\structure\Var6.vhd
+# Compile Entity "Var6"
+# Compile Architecture "structual" of Entity "Var6"
+# Compile Architecture "behavior" of Entity "Var6"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
+comp -include "$dsn\src\TestBench\var6_TB.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\TestBench\var6_TB.vhd
+# Compile Entity "var6_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
+# Compile Configuration "TESTBENCH_FOR_var6"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
+asim +access +r TESTBENCH_FOR_var6 
+#  Simulation has been stopped
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.2 [s].
+# asim: Stack memory: 32MB
+# asim: Retval memory: 32MB
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Elaboration final pass...
+# ELAB2: Create instances ...
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Elaboration phase ...
+# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
+# SLP: Finished : 0.0 [s]
+# ELAB2: Elaboration final pass complete - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 6012 kB (elbread=1023 elab2=4897 kernel=91 sdf=0)
+# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
+#  13:03, 27 сент€бр€ 2016 г.
+#  Simulation has been initialized
+#  Selected Top-Level: testbench_for_var6
+wave 
+wave -noreg W
+wave -noreg X
+wave -noreg Y
+wave -noreg Z
+wave -noreg F 
+wave -noreg F1 
+wave -noreg error
+run  800.00 ns
+# 7 signal(s) traced.
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# # The following lines can be used for timing simulation
+# # acom <backannotated_vhdl_file_name>
+# # comp -include "$dsn\src\TestBench\var6_TB_tim_cfg.vhd" 
+# # asim +access +r TIMING_FOR_var6 
+acom -O3 -work ieee -2002  $dsn/src/TestBench/var5_TB_tim_cfg.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\TestBench\var5_TB_tim_cfg.vhd
+# Compile Configuration "TESTBENCH_FOR_var5"
+# Compile success 0 Errors 0 Warnings  Analysis time :  16.0 [ms]
+SetActiveLib -work
+comp -include "$dsn\src\structure\Var6.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\structure\Var6.vhd
+# Compile Entity "Var6"
+# Compile Architecture "structual" of Entity "Var6"
+# Compile Architecture "behavior" of Entity "Var6"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+comp -include "$dsn\src\TestBench\var6_TB.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\TestBench\var6_TB.vhd
+# Compile Entity "var6_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
+# Compile Configuration "TESTBENCH_FOR_var6"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
+asim +access +r TESTBENCH_FOR_var6 
+#  Simulation has been stopped
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.1 [s].
+# asim: Stack memory: 32MB
+# asim: Retval memory: 32MB
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Elaboration final pass...
+# ELAB2: Create instances ...
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Elaboration phase ...
+# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
+# SLP: Finished : 0.0 [s]
+# ELAB2: Elaboration final pass complete - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 6012 kB (elbread=1023 elab2=4897 kernel=91 sdf=0)
+# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
+#  13:22, 27 сент€бр€ 2016 г.
+#  Simulation has been initialized
+#  Selected Top-Level: testbench_for_var6
+wave 
+wave -noreg W
+wave -noreg X
+wave -noreg Y
+wave -noreg Z
+wave -noreg F 
+wave -noreg F1 
+wave -noreg error
+run  800.00 ns
+# 7 signal(s) traced.
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# # The following lines can be used for timing simulation
+# # acom <backannotated_vhdl_file_name>
+# # comp -include "$dsn\src\TestBench\var6_TB_tim_cfg.vhd" 
+# # asim +access +r TIMING_FOR_var6 
+SetActiveLib -work
+comp -include "$dsn\src\structure\Var5.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\structure\Var5.vhd
+# Compile Entity "Var5"
+# Compile Architecture "structual" of Entity "Var5"
+# Compile Architecture "behavior" of Entity "Var5"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+comp -include "$dsn\src\TestBench\var5_TB.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\TestBench\var5_TB.vhd
+# Error: COMP96_0001: Cannot find source file "E:\Code\POCP-2\src\TestBench\var5_TB.vhd".
+# Compile failure 1 Errors 0 Warnings  Analysis time :  0.0 [ms]
+# Error: DO_001 in file E:\Code\POCP-2\src\TestBench\var5\var5_TB_runtest.do line 3
+# Error: Cannot run E:\Code\POCP-2\src\TestBench\var5\var5_TB_runtest.do
+acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd $dsn/src/MUX4-2.vhd $dsn/src/structure/Var5.vhd $dsn/src/structure/Var6.vhd $dsn/src/structure/Var7.vhd $dsn/src/structure/prim/AND3.vhd $dsn/src/structure/prim/NAND3.vhd $dsn/src/structure/prim/OR3.vhd $dsn/src/structure/prim/AND2.vhd $dsn/src/structure/prim/OR2.vhd $dsn/src/structure/prim/NOT.vhd $dsn/src/TestBench/var6_TB.vhd $dsn/src/TestBench/var6_TB_tim_cfg.vhd $dsn/src/TestBench/var7_TB.vhd $dsn/src/TestBench/var7_TB_tim_cfg.vhd $dsn/src/TestBench/var5/var5_TB.vhd $dsn/src/TestBench/var5/var5_TB_tim_cfg.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\MUX2.vhd
+# Compile Entity "mux2"
+# Compile Architecture "mux2" of Entity "mux2"
+# File: E:\Code\POCP-2\src\MUX4-2.vhd
+# Compile Entity "MUX4_2"
+# Compile Architecture "MUX4_2" of Entity "MUX4_2"
+# File: E:\Code\POCP-2\src\structure\Var5.vhd
+# Compile Entity "Var5"
+# Compile Architecture "structual" of Entity "Var5"
+# Compile Architecture "behavior" of Entity "Var5"
+# File: E:\Code\POCP-2\src\structure\Var6.vhd
+# Compile Entity "Var6"
+# Compile Architecture "structual" of Entity "Var6"
+# Compile Architecture "behavior" of Entity "Var6"
+# File: E:\Code\POCP-2\src\structure\Var7.vhd
+# Compile Entity "Var7"
+# Compile Architecture "structual" of Entity "Var7"
+# Compile Architecture "behavior" of Entity "Var7"
+# File: E:\Code\POCP-2\src\structure\prim\AND3.vhd
+# Compile Entity "AND3"
+# Compile Architecture "AND3" of Entity "AND3"
+# File: E:\Code\POCP-2\src\structure\prim\NAND3.vhd
+# Compile Entity "NAND3"
+# Compile Architecture "NAND3" of Entity "NAND3"
+# File: E:\Code\POCP-2\src\structure\prim\OR3.vhd
+# Compile Entity "OR3"
+# Compile Architecture "OR3" of Entity "OR3"
+# File: E:\Code\POCP-2\src\structure\prim\AND2.vhd
+# Compile Entity "AND2"
+# Compile Architecture "AND2" of Entity "AND2"
+# File: E:\Code\POCP-2\src\structure\prim\OR2.vhd
+# Compile Entity "OR2"
+# Compile Architecture "OR2" of Entity "OR2"
+# File: E:\Code\POCP-2\src\structure\prim\NOT.vhd
+# Compile Entity "NOT1"
+# Compile Architecture "NOT1" of Entity "NOT1"
+# File: E:\Code\POCP-2\src\TestBench\var6_TB.vhd
+# Compile Entity "var6_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
+# Compile Configuration "TESTBENCH_FOR_var6"
+# File: E:\Code\POCP-2\src\TestBench\var6_TB_tim_cfg.vhd
+# Compile Configuration "TESTBENCH_FOR_var6"
+# File: E:\Code\POCP-2\src\TestBench\var7_TB.vhd
+# Compile Entity "var7_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var7_tb"
+# Compile Configuration "TESTBENCH_FOR_var7"
+# File: E:\Code\POCP-2\src\TestBench\var7_TB_tim_cfg.vhd
+# Compile Configuration "TIMING_FOR_var7"
+# File: E:\Code\POCP-2\src\TestBench\var5\var5_TB.vhd
+# Compile Entity "var5_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
+# File: E:\Code\POCP-2\src\TestBench\var5\var5_TB_tim_cfg.vhd
+# Compile Configuration "TESTBENCH_FOR_var5"
+# Compile success 0 Errors 0 Warnings  Analysis time :  1.0 [s]
+SetActiveLib -work
+comp -include "$dsn\src\structure\Var5.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\structure\Var5.vhd
+# Compile Entity "Var5"
+# Compile Architecture "structual" of Entity "Var5"
+# Compile Architecture "behavior" of Entity "Var5"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+comp -include "$dsn\src\TestBench\var5\var5_TB.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\TestBench\var5\var5_TB.vhd
+# Compile Entity "var5_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
+asim +access +r TESTBENCH_FOR_var5 
+#  Simulation has been stopped
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.1 [s].
+# asim: Stack memory: 32MB
+# asim: Retval memory: 32MB
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Elaboration final pass...
+# ELAB2: Create instances ...
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Elaboration phase ...
+# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
+# SLP: Finished : 0.0 [s]
+# ELAB2: Elaboration final pass complete - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 6012 kB (elbread=1023 elab2=4897 kernel=91 sdf=0)
+# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
+#  13:24, 27 сент€бр€ 2016 г.
+#  Simulation has been initialized
+#  Selected Top-Level: testbench_for_var5
+wave 
+wave -noreg W
+wave -noreg X
+wave -noreg Y
+wave -noreg Z
+wave -noreg F 
+wave -noreg F1 
+wave -noreg error
+run  800.00 ns
+# 7 signal(s) traced.
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# # The following lines can be used for timing simulation
+# # acom <backannotated_vhdl_file_name>
+# # comp -include "$dsn\src\TestBench\var5_TB_tim_cfg.vhd" 
+# # asim +access +r TIMING_FOR_var5 
+acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd $dsn/src/MUX4-2.vhd $dsn/src/structure/Var5.vhd $dsn/src/structure/Var6.vhd $dsn/src/structure/Var7.vhd $dsn/src/structure/prim/AND3.vhd $dsn/src/structure/prim/NAND3.vhd $dsn/src/structure/prim/OR3.vhd $dsn/src/structure/prim/AND2.vhd $dsn/src/structure/prim/OR2.vhd $dsn/src/structure/prim/NOT.vhd $dsn/src/TestBench/var6_TB.vhd $dsn/src/TestBench/var6_TB_tim_cfg.vhd $dsn/src/TestBench/var5/var5_TB.vhd $dsn/src/TestBench/var5/var5_TB_tim_cfg.vhd $dsn/src/TestBench/var7/var7_TB.vhd $dsn/src/TestBench/var7/var7_TB_tim_cfg.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\MUX2.vhd
+# Compile Entity "mux2"
+# Compile Architecture "mux2" of Entity "mux2"
+# File: E:\Code\POCP-2\src\MUX4-2.vhd
+# Compile Entity "MUX4_2"
+# Compile Architecture "MUX4_2" of Entity "MUX4_2"
+# File: E:\Code\POCP-2\src\structure\Var5.vhd
+# Compile Entity "Var5"
+# Compile Architecture "structual" of Entity "Var5"
+# Compile Architecture "behavior" of Entity "Var5"
+# File: E:\Code\POCP-2\src\structure\Var6.vhd
+# Compile Entity "Var6"
+# Compile Architecture "structual" of Entity "Var6"
+# Compile Architecture "behavior" of Entity "Var6"
+# File: E:\Code\POCP-2\src\structure\Var7.vhd
+# Compile Entity "Var7"
+# Compile Architecture "structual" of Entity "Var7"
+# Compile Architecture "behavior" of Entity "Var7"
+# File: E:\Code\POCP-2\src\structure\prim\AND3.vhd
+# Compile Entity "AND3"
+# Compile Architecture "AND3" of Entity "AND3"
+# File: E:\Code\POCP-2\src\structure\prim\NAND3.vhd
+# Compile Entity "NAND3"
+# Compile Architecture "NAND3" of Entity "NAND3"
+# File: E:\Code\POCP-2\src\structure\prim\OR3.vhd
+# Compile Entity "OR3"
+# Compile Architecture "OR3" of Entity "OR3"
+# File: E:\Code\POCP-2\src\structure\prim\AND2.vhd
+# Compile Entity "AND2"
+# Compile Architecture "AND2" of Entity "AND2"
+# File: E:\Code\POCP-2\src\structure\prim\OR2.vhd
+# Compile Entity "OR2"
+# Compile Architecture "OR2" of Entity "OR2"
+# File: E:\Code\POCP-2\src\structure\prim\NOT.vhd
+# Compile Entity "NOT1"
+# Compile Architecture "NOT1" of Entity "NOT1"
+# File: E:\Code\POCP-2\src\TestBench\var6_TB.vhd
+# Compile Entity "var6_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
+# Compile Configuration "TESTBENCH_FOR_var6"
+# File: E:\Code\POCP-2\src\TestBench\var6_TB_tim_cfg.vhd
+# Compile Configuration "TESTBENCH_FOR_var6"
+# File: E:\Code\POCP-2\src\TestBench\var5\var5_TB.vhd
+# Compile Entity "var5_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
+# File: E:\Code\POCP-2\src\TestBench\var5\var5_TB_tim_cfg.vhd
+# Compile Configuration "TESTBENCH_FOR_var5"
+# File: E:\Code\POCP-2\src\TestBench\var7\var7_TB.vhd
+# Compile Entity "var7_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var7_tb"
+# File: E:\Code\POCP-2\src\TestBench\var7\var7_TB_tim_cfg.vhd
+# Compile Configuration "TIMING_FOR_var7"
+# Compile success 0 Errors 0 Warnings  Analysis time :  1.0 [s]
+SetActiveLib -work
+comp -include "$dsn\src\structure\Var6.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\structure\Var6.vhd
+# Compile Entity "Var6"
+# Compile Architecture "structual" of Entity "Var6"
+# Compile Architecture "behavior" of Entity "Var6"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+comp -include "$dsn\src\TestBench\var6\var6_TB.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\TestBench\var6\var6_TB.vhd
+# Compile Entity "var6_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
+# Compile Configuration "TESTBENCH_FOR_var6"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
+asim +access +r TESTBENCH_FOR_var6 
+#  Simulation has been stopped
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.1 [s].
+# asim: Stack memory: 32MB
+# asim: Retval memory: 32MB
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Elaboration final pass...
+# ELAB2: Create instances ...
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Elaboration phase ...
+# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
+# SLP: Finished : 0.0 [s]
+# ELAB2: Elaboration final pass complete - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 6012 kB (elbread=1023 elab2=4897 kernel=91 sdf=0)
+# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
+#  13:28, 27 сент€бр€ 2016 г.
+#  Simulation has been initialized
+#  Selected Top-Level: testbench_for_var6
+wave 
+wave -noreg W
+wave -noreg X
+wave -noreg Y
+wave -noreg Z
+wave -noreg F 
+wave -noreg F1 
+wave -noreg error
+run  800.00 ns
+# 7 signal(s) traced.
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# # The following lines can be used for timing simulation
+# # acom <backannotated_vhdl_file_name>
+# # comp -include "$dsn\src\TestBench\var6_TB_tim_cfg.vhd" 
+# # asim +access +r TIMING_FOR_var6 
+SetActiveLib -work
+comp -include "$dsn\src\structure\Var7.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\structure\Var7.vhd
+# Compile Entity "Var7"
+# Compile Architecture "structual" of Entity "Var7"
+# Compile Architecture "behavior" of Entity "Var7"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
+comp -include "$dsn\src\TestBench\var7\var7_TB.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\TestBench\var7\var7_TB.vhd
+# Compile Entity "var7_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var7_tb"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+asim +access +r TESTBENCH_FOR_var7 
+#  Simulation has been stopped
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.1 [s].
+# asim: Stack memory: 32MB
+# asim: Retval memory: 32MB
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Elaboration final pass...
+# ELAB2: Create instances ...
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Elaboration phase ...
+# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
+# SLP: Finished : 0.0 [s]
+# ELAB2: Elaboration final pass complete - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 6011 kB (elbread=1023 elab2=4896 kernel=91 sdf=0)
+# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
+#  13:29, 27 сент€бр€ 2016 г.
+#  Simulation has been initialized
+#  Selected Top-Level: testbench_for_var7
+wave 
+wave -noreg W
+wave -noreg X
+wave -noreg Y
+wave -noreg Z
+wave -noreg G 
+wave -noreg G1
+wave -noreg error
+run  800.00 ns
+# 7 signal(s) traced.
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# # The following lines can be used for timing simulation
+# # acom <backannotated_vhdl_file_name>
+# # comp -include "$dsn\src\TestBench\var7_TB_tim_cfg.vhd" 
+# # asim +access +r TIMING_FOR_var7 
+acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd $dsn/src/MUX4-2.vhd $dsn/src/structure/Var5.vhd $dsn/src/structure/Var6.vhd $dsn/src/structure/Var7.vhd $dsn/src/structure/prim/AND3.vhd $dsn/src/structure/prim/NAND3.vhd $dsn/src/structure/prim/OR3.vhd $dsn/src/structure/prim/AND2.vhd $dsn/src/structure/prim/OR2.vhd $dsn/src/structure/prim/NOT.vhd $dsn/src/TestBench/var5/var5_TB.vhd $dsn/src/TestBench/var5/var5_TB_tim_cfg.vhd $dsn/src/TestBench/var6/var6_TB.vhd $dsn/src/TestBench/var6/var6_TB_tim_cfg.vhd $dsn/src/TestBench/var7/var7_TB.vhd $dsn/src/TestBench/var7/var7_TB_tim_cfg.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\MUX2.vhd
+# Compile Entity "mux2"
+# Compile Architecture "mux2" of Entity "mux2"
+# File: E:\Code\POCP-2\src\MUX4-2.vhd
+# Compile Entity "MUX4_2"
+# Compile Architecture "MUX4_2" of Entity "MUX4_2"
+# File: E:\Code\POCP-2\src\structure\Var5.vhd
+# Compile Entity "Var5"
+# Compile Architecture "structual" of Entity "Var5"
+# Compile Architecture "behavior" of Entity "Var5"
+# File: E:\Code\POCP-2\src\structure\Var6.vhd
+# Compile Entity "Var6"
+# Compile Architecture "structual" of Entity "Var6"
+# Compile Architecture "behavior" of Entity "Var6"
+# File: E:\Code\POCP-2\src\structure\Var7.vhd
+# Compile Entity "Var7"
+# Compile Architecture "structual" of Entity "Var7"
+# Compile Architecture "behavior" of Entity "Var7"
+# File: E:\Code\POCP-2\src\structure\prim\AND3.vhd
+# Compile Entity "AND3"
+# Compile Architecture "AND3" of Entity "AND3"
+# File: E:\Code\POCP-2\src\structure\prim\NAND3.vhd
+# Compile Entity "NAND3"
+# Compile Architecture "NAND3" of Entity "NAND3"
+# File: E:\Code\POCP-2\src\structure\prim\OR3.vhd
+# Compile Entity "OR3"
+# Compile Architecture "OR3" of Entity "OR3"
+# File: E:\Code\POCP-2\src\structure\prim\AND2.vhd
+# Compile Entity "AND2"
+# Compile Architecture "AND2" of Entity "AND2"
+# File: E:\Code\POCP-2\src\structure\prim\OR2.vhd
+# Compile Entity "OR2"
+# Compile Architecture "OR2" of Entity "OR2"
+# File: E:\Code\POCP-2\src\structure\prim\NOT.vhd
+# Compile Entity "NOT1"
+# Compile Architecture "NOT1" of Entity "NOT1"
+# File: E:\Code\POCP-2\src\TestBench\var5\var5_TB.vhd
+# Compile Entity "var5_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
+# File: E:\Code\POCP-2\src\TestBench\var5\var5_TB_tim_cfg.vhd
+# Compile Configuration "TESTBENCH_FOR_var5"
+# File: E:\Code\POCP-2\src\TestBench\var6\var6_TB.vhd
+# Compile Entity "var6_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
+# Compile Configuration "TESTBENCH_FOR_var6"
+# File: E:\Code\POCP-2\src\TestBench\var6\var6_TB_tim_cfg.vhd
+# Compile Configuration "TIMING_FOR_var6"
+# File: E:\Code\POCP-2\src\TestBench\var7\var7_TB.vhd
+# Compile Entity "var7_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var7_tb"
+# File: E:\Code\POCP-2\src\TestBench\var7\var7_TB_tim_cfg.vhd
+# Compile Configuration "TIMING_FOR_var7"
+# Compile success 0 Errors 0 Warnings  Analysis time :  2.0 [s]
+acom -O3 -work ieee -2002  $dsn/src/MUX2.vhd $dsn/src/MUX4-2.vhd $dsn/src/structure/Var5.vhd $dsn/src/structure/Var6.vhd $dsn/src/structure/Var7.vhd $dsn/src/structure/prim/AND3.vhd $dsn/src/structure/prim/NAND3.vhd $dsn/src/structure/prim/OR3.vhd $dsn/src/structure/prim/AND2.vhd $dsn/src/structure/prim/OR2.vhd $dsn/src/structure/prim/NOT.vhd $dsn/src/TestBench/var5/var5_TB.vhd $dsn/src/TestBench/var5/var5_TB_tim_cfg.vhd $dsn/src/TestBench/var6/var6_TB.vhd $dsn/src/TestBench/var6/var6_TB_tim_cfg.vhd $dsn/src/TestBench/var7/var7_TB.vhd $dsn/src/TestBench/var7/var7_TB_tim_cfg.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\MUX2.vhd
+# Compile Entity "mux2"
+# Compile Architecture "mux2" of Entity "mux2"
+# File: E:\Code\POCP-2\src\MUX4-2.vhd
+# Compile Entity "MUX4_2"
+# Compile Architecture "MUX4_2" of Entity "MUX4_2"
+# File: E:\Code\POCP-2\src\structure\Var5.vhd
+# Compile Entity "Var5"
+# Compile Architecture "structual" of Entity "Var5"
+# Compile Architecture "behavior" of Entity "Var5"
+# File: E:\Code\POCP-2\src\structure\Var6.vhd
+# Compile Entity "Var6"
+# Compile Architecture "structual" of Entity "Var6"
+# Compile Architecture "behavior" of Entity "Var6"
+# File: E:\Code\POCP-2\src\structure\Var7.vhd
+# Compile Entity "Var7"
+# Compile Architecture "structual" of Entity "Var7"
+# Compile Architecture "behavior" of Entity "Var7"
+# File: E:\Code\POCP-2\src\structure\prim\AND3.vhd
+# Compile Entity "AND3"
+# Compile Architecture "AND3" of Entity "AND3"
+# File: E:\Code\POCP-2\src\structure\prim\NAND3.vhd
+# Compile Entity "NAND3"
+# Compile Architecture "NAND3" of Entity "NAND3"
+# File: E:\Code\POCP-2\src\structure\prim\OR3.vhd
+# Compile Entity "OR3"
+# Compile Architecture "OR3" of Entity "OR3"
+# File: E:\Code\POCP-2\src\structure\prim\AND2.vhd
+# Compile Entity "AND2"
+# Compile Architecture "AND2" of Entity "AND2"
+# File: E:\Code\POCP-2\src\structure\prim\OR2.vhd
+# Compile Entity "OR2"
+# Compile Architecture "OR2" of Entity "OR2"
+# File: E:\Code\POCP-2\src\structure\prim\NOT.vhd
+# Compile Entity "NOT1"
+# Compile Architecture "NOT1" of Entity "NOT1"
+# File: E:\Code\POCP-2\src\TestBench\var5\var5_TB.vhd
+# Compile Entity "var5_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
+# File: E:\Code\POCP-2\src\TestBench\var5\var5_TB_tim_cfg.vhd
+# Compile Configuration "TESTBENCH_FOR_var5"
+# File: E:\Code\POCP-2\src\TestBench\var6\var6_TB.vhd
+# Compile Entity "var6_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
+# File: E:\Code\POCP-2\src\TestBench\var6\var6_TB_tim_cfg.vhd
+# Compile Configuration "TIMING_FOR_var6"
+# File: E:\Code\POCP-2\src\TestBench\var7\var7_TB.vhd
+# Compile Entity "var7_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var7_tb"
+# File: E:\Code\POCP-2\src\TestBench\var7\var7_TB_tim_cfg.vhd
+# Compile Configuration "TIMING_FOR_var7"
+# Compile success 0 Errors 0 Warnings  Analysis time :  2.0 [s]
+acom -O3 -work ieee -2002  $dsn/src/TestBench/var6/var6_TB.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\TestBench\var6\var6_TB.vhd
+# Compile Entity "var6_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+SetActiveLib -work
+comp -include "$dsn\src\structure\Var6.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\structure\Var6.vhd
+# Compile Entity "Var6"
+# Compile Architecture "structual" of Entity "Var6"
+# Compile Architecture "behavior" of Entity "Var6"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+comp -include "$dsn\src\TestBench\var6\var6_TB.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\TestBench\var6\var6_TB.vhd
+# Compile Entity "var6_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+asim +access +r TESTBENCH_FOR_var6 
+#  Simulation has been stopped
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.1 [s].
+# asim: Stack memory: 32MB
+# asim: Retval memory: 32MB
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Elaboration final pass...
+# ELAB2: Create instances ...
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Elaboration phase ...
+# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
+# SLP: Finished : 0.0 [s]
+# ELAB2: Elaboration final pass complete - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 6012 kB (elbread=1023 elab2=4897 kernel=91 sdf=0)
+# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
+#  13:32, 27 сент€бр€ 2016 г.
+#  Simulation has been initialized
+#  Selected Top-Level: testbench_for_var6
+wave 
+wave -noreg W
+wave -noreg X
+wave -noreg Y
+wave -noreg Z
+wave -noreg F 
+wave -noreg F1 
+wave -noreg error
+run  800.00 ns
+# 7 signal(s) traced.
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# # The following lines can be used for timing simulation
+# # acom <backannotated_vhdl_file_name>
+# # comp -include "$dsn\src\TestBench\var6_TB_tim_cfg.vhd" 
+# # asim +access +r TIMING_FOR_var6 
+SetActiveLib -work
+comp -include "$dsn\src\structure\Var6.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\structure\Var6.vhd
+# Compile Entity "Var6"
+# Compile Architecture "structual" of Entity "Var6"
+# Compile Architecture "behavior" of Entity "Var6"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.4 [s]
+comp -include "$dsn\src\TestBench\var6\var6_TB.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\TestBench\var6\var6_TB.vhd
+# Compile Entity "var6_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var6_tb"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+asim +access +r TESTBENCH_FOR_var6 
+#  Simulation has been stopped
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.1 [s].
+# asim: Stack memory: 32MB
+# asim: Retval memory: 32MB
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Elaboration final pass...
+# ELAB2: Create instances ...
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Elaboration phase ...
+# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
+# SLP: Finished : 0.0 [s]
+# ELAB2: Elaboration final pass complete - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 6012 kB (elbread=1023 elab2=4897 kernel=91 sdf=0)
+# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
+#  13:33, 27 сент€бр€ 2016 г.
+#  Simulation has been initialized
+#  Selected Top-Level: testbench_for_var6
+wave 
+wave -noreg W
+wave -noreg X
+wave -noreg Y
+wave -noreg Z
+wave -noreg F 
+wave -noreg F1 
+wave -noreg error
+run  800.00 ns
+# 7 signal(s) traced.
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# # The following lines can be used for timing simulation
+# # acom <backannotated_vhdl_file_name>
+# # comp -include "$dsn\src\TestBench\var6_TB_tim_cfg.vhd" 
+# # asim +access +r TIMING_FOR_var6 
+endsim
+#  Simulation has been stopped
+asim -O5 +access +r +m+testbench_for_var6 testbench_for_var6
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.1 [s].
+# asim: Stack memory: 32MB
+# asim: Retval memory: 32MB
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Elaboration final pass...
+# ELAB2: Create instances ...
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Elaboration phase ...
+# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
+# SLP: Finished : 0.0 [s]
+# ELAB2: Elaboration final pass complete - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 6012 kB (elbread=1023 elab2=4897 kernel=91 sdf=0)
+# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
+#  13:34, 27 сент€бр€ 2016 г.
+#  Simulation has been initialized
+#  Selected Top-Level: testbench_for_var6
+#  Simulation has been stopped
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.0 [s].
+asim -O5 +access +r +m+Var6 Var6 behavior
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.0 [s].
+# asim: Stack memory: 32MB
+# asim: Retval memory: 32MB
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Elaboration final pass...
+# ELAB2: Create instances ...
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Elaboration phase ...
+# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
+# SLP: Finished : 0.0 [s]
+# ELAB2: Elaboration final pass complete - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 5748 kB (elbread=1023 elab2=4634 kernel=90 sdf=0)
+# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
+#  13:34, 27 сент€бр€ 2016 г.
+#  Simulation has been initialized
+#  Selected Top-Level: Var6 (behavior)
+# add wave -noreg {/Var6/W}
+# add wave -noreg {/Var6/X}
+# add wave -noreg {/Var6/Y}
+# add wave -noreg {/Var6/Z}
+# 4 signal(s) traced.
+run 90 ns
+# KERNEL: stopped at time: 90 ns
+# add wave -noreg {/Var6/F}
+# 1 signal(s) traced.
+run 90 ns
+# KERNEL: stopped at time: 180 ns
+run 90 ns
+# KERNEL: stopped at time: 270 ns
+restart
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.0 [s].
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Elaboration final pass...
+# ELAB2: Create instances ...
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Elaboration phase ...
+# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
+# SLP: Finished : 0.0 [s]
+# ELAB2: Elaboration final pass complete - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 5748 kB (elbread=1023 elab2=4634 kernel=90 sdf=0)
+# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
+#  13:35, 27 сент€бр€ 2016 г.
+#  Simulation has been initialized
+#  Selected Top-Level: Var6 (behavior)
+# KERNEL: Signal '/Var6/W' has already been traced
+# KERNEL: Signal '/Var6/X' has already been traced
+# KERNEL: Signal '/Var6/Y' has already been traced
+# KERNEL: Signal '/Var6/Z' has already been traced
+# KERNEL: Signal '/Var6/F' has already been traced
+run 90 ns
+# KERNEL: stopped at time: 90 ns
+run 90 ns
+# KERNEL: stopped at time: 180 ns
+run 90 ns
+# KERNEL: stopped at time: 270 ns
+#  Simulation has been stopped
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.0 [s].
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.0 [s].
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.0 [s].
+SetActiveLib -work
+comp -include "$dsn\src\structure\Var5.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\structure\Var5.vhd
+# Compile Entity "Var5"
+# Compile Architecture "structual" of Entity "Var5"
+# Error: COMP96_0122: Var5.vhd : (45, 2): Symbol "M3" has already been declared in this scope.
+# Compile Architecture "behavior" of Entity "Var5"
+# Compile failure 1 Errors 0 Warnings  Analysis time :  0.3 [s]
+# Error: DO_001 in file E:\Code\POCP-2\src\TestBench\var5\var5_TB_runtest.do line 2
+# Error: Cannot run E:\Code\POCP-2\src\TestBench\var5\var5_TB_runtest.do
+acom -O3 -work ieee -2002  $dsn/src/structure/Var5.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\structure\Var5.vhd
+# Compile Entity "Var5"
+# Compile Architecture "structual" of Entity "Var5"
+# Compile Architecture "behavior" of Entity "Var5"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.2 [s]
+SetActiveLib -work
+comp -include "$dsn\src\structure\Var5.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\structure\Var5.vhd
+# Compile Entity "Var5"
+# Compile Architecture "structual" of Entity "Var5"
+# Compile Architecture "behavior" of Entity "Var5"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+comp -include "$dsn\src\TestBench\var5\var5_TB.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\TestBench\var5\var5_TB.vhd
+# Compile Entity "var5_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+asim +access +r TESTBENCH_FOR_var5 
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.1 [s].
+# asim: Stack memory: 32MB
+# asim: Retval memory: 32MB
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Elaboration final pass...
+# ELAB2: Create instances ...
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Elaboration phase ...
+# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
+# SLP: Finished : 0.0 [s]
+# ELAB2: Elaboration final pass complete - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 6013 kB (elbread=1023 elab2=4898 kernel=91 sdf=0)
+# KERNEL: ASDB file was created in location E:\Code\POCP-2\src\wave.asdb
+#  14:46, 27 сент€бр€ 2016 г.
+#  Simulation has been initialized
+#  Selected Top-Level: testbench_for_var5
+wave 
+wave -noreg W
+wave -noreg X
+wave -noreg Y
+wave -noreg Z
+wave -noreg F 
+wave -noreg F1 
+wave -noreg error
+run  800.00 ns
+# 7 signal(s) traced.
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# # The following lines can be used for timing simulation
+# # acom <backannotated_vhdl_file_name>
+# # comp -include "$dsn\src\TestBench\var5_TB_tim_cfg.vhd" 
+# # asim +access +r TIMING_FOR_var5 
+SetActiveLib -work
+comp -include "$dsn\src\structure\Var5.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\structure\Var5.vhd
+# Compile Entity "Var5"
+# Compile Architecture "structual" of Entity "Var5"
+# Compile Architecture "behavior" of Entity "Var5"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+comp -include "$dsn\src\TestBench\var5\var5_TB.vhd" 
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: E:\Code\POCP-2\src\TestBench\var5\var5_TB.vhd
+# Compile Entity "var5_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "var5_tb"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+asim +access +r TESTBENCH_FOR_var5 
+#  Simulation has been stopped
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.3 [s].
+# asim: Stack memory: 32MB
+# asim: Retval memory: 32MB
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.

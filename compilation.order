@@ -9,7 +9,9 @@
 .\src\structure\prim\AND2.vhd
 .\src\structure\prim\OR2.vhd
 .\src\structure\prim\NOT.vhd
-.\src\TestBench\var5_TB.vhd
-.\src\TestBench\var5_TB_tim_cfg.vhd
-.\src\TestBench\var6_TB.vhd
-.\src\TestBench\var6_TB_tim_cfg.vhd
+.\src\TestBench\var5\var5_TB.vhd
+.\src\TestBench\var5\var5_TB_tim_cfg.vhd
+.\src\TestBench\var6\var6_TB.vhd
+.\src\TestBench\var6\var6_TB_tim_cfg.vhd
+.\src\TestBench\var7\var7_TB.vhd
+.\src\TestBench\var7\var7_TB_tim_cfg.vhd

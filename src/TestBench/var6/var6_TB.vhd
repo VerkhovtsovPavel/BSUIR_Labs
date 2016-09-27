@@ -1,13 +1,10 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
--- Add your library and packages declaration here ...
-
 entity var6_tb is
 end var6_tb;
 
 architecture TB_ARCHITECTURE of var6_tb is
-	-- Component declaration of the tested unit
 	component var6
 		port(
 			W : in STD_LOGIC;
@@ -25,7 +22,6 @@ architecture TB_ARCHITECTURE of var6_tb is
 	-- Observed signals - signals mapped to the output ports of tested entity
 	signal F, F1 : STD_LOGIC;
 	signal error : std_logic;
-	-- Add your code here ...
 	
 begin
 	
@@ -111,5 +107,4 @@ begin
 	error <= F1 xor F;
 	-- Add your stimulus here ...
 	
-end TB_ARCHITECTURE;
-
+end TB_ARCHITECTURE; 
