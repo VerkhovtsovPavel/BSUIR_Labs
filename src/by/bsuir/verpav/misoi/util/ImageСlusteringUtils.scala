@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage
 import javax.swing.{JFrame, JOptionPane}
 
 import scala.collection.mutable
+import scala.collection.mutable.ArrayBuffer
 
 
 object ImageСlusteringUtils {
@@ -27,7 +28,7 @@ object ImageСlusteringUtils {
 
     override def requestParameters(frame: JFrame): Unit = {
       val threshold = JOptionPane.showInputDialog(frame, "Please input threshold for 0 to 255: ")
-      params+(("Threshold", threshold.toInt))
+      params.put("Threshold", threshold.toInt)
     }
   }
 
@@ -61,7 +62,7 @@ object ImageСlusteringUtils {
 
     override def requestParameters(frame: JFrame): Unit = {
       val isUseCorrection = JOptionPane.showInputDialog(frame, "Use correction 0 or 1: ")
-      params+(("isUseCorrection", isUseCorrection.toInt))
+      params.put("isUseCorrection", isUseCorrection.toInt)
     }
   }
 
@@ -77,15 +78,60 @@ object ImageСlusteringUtils {
 
     override def requestParameters(frame: JFrame): Unit = {
       val coreSize = JOptionPane.showInputDialog(frame, "Please input core size for 3 to 17: ")
-      params+(("coreSize", coreSize.toInt))
+      params.put("coreSize", coreSize.toInt)
     }
   }
 
-  //  def highlightConnectedDomains(baseImage : BufferedImage, params : Map[String, Int]) : BufferedImage = {}
+  object HighlightConnectedDomains extends ClusteringStep{
+   override def perform(baseImage : BufferedImage) : BufferedImage = {
+     val regions = mutable.Map[Int, ArrayBuffer[(Int, Int)]]()
+     val cm = baseImage.getColorModel
+     val isAlphaPremultiplied = cm.isAlphaPremultiplied
+     val raster = baseImage.copyData(null)
+     for(x <- 0 until baseImage.getWidth; y <- 0 until baseImage.getHeight) {
+       val rgb = raster.getPixel(x, y, null.asInstanceOf[Array[Int]])
+       if(rgb(0)==255){
+         val firstRegion = regions.find((e : (Int, ArrayBuffer[(Int, Int)])) => e._2.contains((x-1, y)))
+         val secondRegion = regions.find((e : (Int, ArrayBuffer[(Int, Int)])) => e._2.contains((x, y-1)))
+
+         if(firstRegion.isEmpty && secondRegion.isEmpty){
+           regions.put(if (regions.keys.isEmpty) 0 else regions.keys.max+1, ArrayBuffer[(Int, Int)]((x,y)))
+         }
+         else if(firstRegion.isDefined && secondRegion.isEmpty){
+           firstRegion.get._2.append((x,y))
+         }
+         else if(firstRegion.isEmpty && secondRegion.isDefined){
+           secondRegion.get._2.append((x,y))
+         }
+         else if(firstRegion.isDefined && secondRegion.isDefined){
+           if(firstRegion!=secondRegion) {
+             firstRegion.get._2.appendAll(secondRegion.get._2)
+             regions.remove(secondRegion.get._1)
+           }else{
+             firstRegion.get._2.append((x,y))
+           }
+         }
+       }
+     }
+
+     val regionsCount = regions.keys.size
+     var currentRegion = 0
+     for(v <- regions.values if v.size > 10){
+       currentRegion+=1
+       val regionColor = (255.0 / regionsCount * currentRegion).toInt
+       for((x,y) <- v){
+         raster.setPixel(x,y, Array[Int](regionColor, 255-regionColor, 0))
+       }
+     }
+     new BufferedImage(cm, raster, isAlphaPremultiplied, null)
+   }
+
+    override def requestParameters(frame: JFrame): Unit = {}
+  }
   //  def determineObjectsProperties(baseImage : BufferedImage, params : Map[String, Int]) : BufferedImage = {}
   //  def clusteringObjects(baseImage : BufferedImage, params : Map[String, Int]) : BufferedImage = {}
-  val stepsMap = Array[ClusteringStep](BrightnessCorrection, ImageBinarization, FilterNoise)
-  //                                                HighlightConnectedDomains, DetermineObjectsProperties, ClusteringObjects)
+  val stepsMap = Array[ClusteringStep](BrightnessCorrection, ImageBinarization, FilterNoise, HighlightConnectedDomains)
+  //                                                DetermineObjectsProperties, ClusteringObjects)
   var possition = 0
   var currentStep: ClusteringStep = stepsMap.head
 

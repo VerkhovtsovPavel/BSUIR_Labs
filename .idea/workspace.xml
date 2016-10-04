@@ -1,31 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="99c483c0-47e0-42ca-827d-8ce20839b716" name="Default" comment="Fix bugs / increase performance">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/easy/P0001460.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/easy/P0001461.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/easy/P0001468.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/easy/P0001469.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/easy/P0001471.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/hard/P0001464.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/hard/P0001465.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/hard/P0001467.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/hard/P0001470.JPG" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/hard/P0001472.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scala_compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MISOI-2.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/ui/MainForm.scala" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/util/ImageUtils.scala" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/util/ImageСlusteringUtils.scala" />
+    <list default="true" id="99c483c0-47e0-42ca-827d-8ce20839b716" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/ui/MainForm.scala" afterPath="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/ui/MainForm.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/util/ImageСlusteringUtils.scala" afterPath="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/util/ImageСlusteringUtils.scala" />
     </list>
     <ignored path="MISOI-1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,18 +29,28 @@
       <file leaf-file-name="ImageUtils.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/by/bsuir/verpav/misoi/util/ImageUtils.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="60" column="6" selection-start-line="60" selection-start-column="6" selection-end-line="60" selection-end-column="6" />
+            <state relative-caret-position="423">
+              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ImageСlusteringUtils.scala" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BufferedImage.java" pinned="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/src.zip!/java/awt/image/BufferedImage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="236">
+              <caret line="1480" column="26" selection-start-line="1480" selection-start-column="26" selection-end-line="1480" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImageСlusteringUtils.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/by/bsuir/verpav/misoi/util/ImageСlusteringUtils.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="990">
-              <caret line="101" column="48" selection-start-line="101" selection-start-column="48" selection-end-line="101" selection-end-column="48" />
+            <state relative-caret-position="181">
+              <caret line="92" column="21" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="21" />
               <folding>
                 <element signature="e#36#71#0" expanded="true" />
               </folding>
@@ -69,11 +58,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainForm.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IterableLike.scala" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.1-sources.jar!/scala/collection/IterableLike.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="256">
+              <caret line="78" column="15" selection-start-line="78" selection-start-column="15" selection-end-line="78" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Iterator.scala" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.1-sources.jar!/scala/collection/Iterator.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="256">
+              <caret line="792" column="29" selection-start-line="792" selection-start-column="29" selection-end-line="792" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BufferLike.scala" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.1-sources.jar!/scala/collection/mutable/BufferLike.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="241">
+              <caret line="147" column="53" selection-start-line="147" selection-start-column="53" selection-end-line="147" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainForm.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/by/bsuir/verpav/misoi/ui/MainForm.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="536">
-              <caret line="145" column="22" selection-start-line="145" selection-start-column="22" selection-end-line="145" selection-end-column="22" />
+            <state relative-caret-position="633">
+              <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
               <folding>
                 <element signature="e#34#85#0" expanded="true" />
               </folding>
@@ -106,8 +125,8 @@
         <option value="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/main/Main.scala" />
         <option value="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/histogram/SimpleHistogram.scala" />
         <option value="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/util/ImageUtils.scala" />
-        <option value="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/util/ImageСlusteringUtils.scala" />
         <option value="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/ui/MainForm.scala" />
+        <option value="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/util/ImageСlusteringUtils.scala" />
       </list>
     </option>
   </component>
@@ -174,6 +193,50 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="MISOI-2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MISOI-2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MISOI-2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="misoi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MISOI-2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MISOI-2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="misoi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -570,7 +633,14 @@
       <option name="project" value="LOCAL" />
       <updated>1474312612372</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Initial commit">
+      <created>1475592822669</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1475592822669</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -622,7 +692,8 @@
     <MESSAGE value="Add by elements filters" />
     <MESSAGE value="Start implement spatial filters" />
     <MESSAGE value="Fix bugs / increase performance" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix bugs / increase performance" />
+    <MESSAGE value="Initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -635,18 +706,24 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/by/bsuir/verpav/misoi/ui/MainForm.scala</url>
-          <line>170</line>
+          <line>169</line>
           <properties />
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/by/bsuir/verpav/misoi/ui/MainForm.scala</url>
-          <line>95</line>
+          <line>94</line>
           <properties />
           <option name="timeStamp" value="19" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/by/bsuir/verpav/misoi/util/ImageСlusteringUtils.scala</url>
+          <line>116</line>
+          <properties />
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="20" />
+      <option name="time" value="35" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -786,13 +863,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
           <caret line="197" column="18" selection-start-line="197" selection-start-column="18" selection-end-line="197" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/src.zip!/java/awt/image/BufferedImage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="916" column="49" selection-start-line="916" selection-start-column="49" selection-end-line="916" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -954,30 +1024,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/by/bsuir/verpav/misoi/util/ImageСlusteringUtils.scala">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/src.zip!/java/awt/image/BufferedImage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="101" column="48" selection-start-line="101" selection-start-column="48" selection-end-line="101" selection-end-column="48" />
-          <folding>
-            <element signature="e#36#71#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="236">
+          <caret line="1480" column="26" selection-start-line="1480" selection-start-column="26" selection-end-line="1480" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/by/bsuir/verpav/misoi/util/ImageUtils.scala">
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.1-sources.jar!/scala/collection/mutable/BufferLike.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="60" column="6" selection-start-line="60" selection-start-column="6" selection-end-line="60" selection-end-column="6" />
+        <state relative-caret-position="241">
+          <caret line="147" column="53" selection-start-line="147" selection-start-column="53" selection-end-line="147" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.1-sources.jar!/scala/collection/Iterator.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="792" column="29" selection-start-line="792" selection-start-column="29" selection-end-line="792" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.1-sources.jar!/scala/collection/IterableLike.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="78" column="15" selection-start-line="78" selection-start-column="15" selection-end-line="78" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/by/bsuir/verpav/misoi/ui/MainForm.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="536">
-          <caret line="145" column="22" selection-start-line="145" selection-start-column="22" selection-end-line="145" selection-end-column="22" />
+        <state relative-caret-position="633">
+          <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
           <folding>
             <element signature="e#34#85#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/by/bsuir/verpav/misoi/util/ImageUtils.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/by/bsuir/verpav/misoi/util/ImageСlusteringUtils.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="92" column="21" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="21" />
+          <folding>
+            <element signature="e#36#71#0" expanded="true" />
           </folding>
         </state>
       </provider>

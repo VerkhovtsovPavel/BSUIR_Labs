@@ -78,7 +78,6 @@ object MainForm extends JFrame with App{
       JOptionPane.showConfirmDialog(this,"Clustering finish", "Clustering finish", JOptionPane.CLOSED_OPTION)
     }
     setImageToLabel()
-
   }
 
   def performAllClustering(): Unit = {
