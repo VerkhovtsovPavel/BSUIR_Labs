@@ -7,8 +7,8 @@ import java.io.File
 import javax.imageio.ImageIO
 import javax.swing._
 
+import by.bsuir.verpav.misoi.clustering.ImageСlusteringEngine
 import by.bsuir.verpav.misoi.util.ImageUtils
-import by.bsuir.verpav.misoi.util.ImageСlusteringUtils
 
 import scala.collection.mutable
 
@@ -40,6 +40,7 @@ object MainForm extends JFrame with App{
     val filename = chooser.getDirectory + chooser.getFile
     baseImage = ImageIO.read(new File(filename))
     editingHistory.clear()
+    ImageСlusteringEngine.init()
     editingHistory push baseImage
     setImageToLabel()
   }
@@ -71,20 +72,20 @@ object MainForm extends JFrame with App{
 
   def performClusteringStep(useCustomParams : Boolean, e : ActionEvent): Unit = {
     if(useCustomParams)
-      ImageСlusteringUtils.currentStep.requestParameters(this)
-    baseImage = ImageСlusteringUtils.currentStep(baseImage)
+      ImageСlusteringEngine.currentStep.requestParameters(this)
+    baseImage = ImageСlusteringEngine.currentStep(baseImage)
     editingHistory push baseImage
-    if(!ImageСlusteringUtils.nextStep()){
+    if(!ImageСlusteringEngine.nextStep()){
       JOptionPane.showConfirmDialog(this,"Clustering finish", "Clustering finish", JOptionPane.CLOSED_OPTION)
     }
     setImageToLabel()
   }
 
   def performAllClustering(): Unit = {
-    baseImage = ImageСlusteringUtils.currentStep(baseImage)
-    while(ImageСlusteringUtils.nextStep()){
+    baseImage = ImageСlusteringEngine.currentStep(baseImage)
+    while(ImageСlusteringEngine.nextStep()){
       editingHistory push baseImage
-      baseImage = ImageСlusteringUtils.currentStep(baseImage)
+      baseImage = ImageСlusteringEngine.currentStep(baseImage)
     }
     editingHistory push baseImage
     JOptionPane.showConfirmDialog(this,"Clustering finish", "Clustering finish", JOptionPane.CLOSED_OPTION)
@@ -92,7 +93,7 @@ object MainForm extends JFrame with App{
   }
 
   def undo(): Unit ={
-    ImageСlusteringUtils.previousStep()
+    ImageСlusteringEngine.previousStep()
     editingHistory.pop()
     baseImage = editingHistory.top
     setImageToLabel()
