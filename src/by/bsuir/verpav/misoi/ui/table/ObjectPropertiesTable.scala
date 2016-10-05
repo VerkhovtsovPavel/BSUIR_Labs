@@ -22,7 +22,7 @@ class ObjectPropertiesTable(data: Array[Array[Any]]) extends JFrame("Objects pro
   object TableModel extends AbstractTableModel {
     var data: Array[Array[Any]] = _
 
-    val columnNames = Array[String]("Color", "Square", "Perimeter", "Density", "Central moment", "Elongation")
+    val columnNames = Array[String]("Color", "Square", "Perimeter", "Density", "Central moment 2nd order", "Elongation")
 
     def getColumnCount = { columnNames.length }
 

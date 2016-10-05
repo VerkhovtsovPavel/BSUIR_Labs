@@ -30,10 +30,11 @@ object DetermineObjectsProperties extends ClusteringStep {
       val m02 = domain.map((x) => Math.pow(x._2 - centerOfMass._2, 2)).sum
       val m11 = domain.map((x) => (x._1 - centerOfMass._1) * (x._2 - centerOfMass._2)).sum
 
+      val m22 = domain.map((x) => Math.pow(x._1 - centerOfMass._1, 2) * Math.pow(x._2 - centerOfMass._2, 2)).sum
       val elongation =  (m20 + m02 + Math.sqrt(Math.pow(m20 - m02, 2) + 4 * Math.pow(m11, 2))) /
                         (m20 + m02 - Math.sqrt(Math.pow(m20 - m02, 2) + 4 * Math.pow(m11, 2)))
 
-      objectsProperties(currentRegion-1) = Array(color, square, perimeter, density, m11, elongation)
+      objectsProperties(currentRegion-1) = Array(color, square, perimeter, density, m22, elongation)
     }
     new ObjectPropertiesTable(objectsProperties)
     baseImage
