@@ -15,13 +15,13 @@ object ClusteringObjects extends  ClusteringStep{
     val connectedDomains = stepContext.get("connectedDomains").get.asInstanceOf[mutable.Map[Color,ArrayBuffer[(Int, Int)]]]
     val objectsProperties = stepContext.get("objectsProperties").get.asInstanceOf[Array[List[Any]]]
     normalizeProperties(objectsProperties)
-    val classCount = params.getOrElse("classCount", 2)
+    val classCount = if (params.getOrElse("classCount", 2) < objectsProperties.length) params.getOrElse("classCount", 2) else objectsProperties.length-1
     val classBound = mutable.Map[List[Any], Int]()
     val classCores = new Array[List[Any]](classCount)
 
-    var newCoreFound = false
+    val shuffledProperties = Random.shuffle(objectsProperties.toList)
     for(i <- 0 until classCount){
-      classCores(i) = objectsProperties(i)
+      classCores(i) = shuffledProperties(i)
     }
 
     clusterazeObjects(objectsProperties, classCount, classBound, classCores)
