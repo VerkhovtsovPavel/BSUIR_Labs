@@ -4,7 +4,7 @@ import java.awt.{BorderLayout, Color, Component, Dimension}
 import javax.swing.{JFrame, JLabel, JScrollPane, JTable}
 import javax.swing.table.{AbstractTableModel, TableCellRenderer}
 
-class ObjectPropertiesTable(data: Array[Array[Any]]) extends JFrame("Objects properties") {
+class ObjectPropertiesTable(data: Array[List[Any]]) extends JFrame("Objects properties") {
 
   setLayout(new BorderLayout())
   val table = new JTable(TableModel(data))
@@ -20,7 +20,7 @@ class ObjectPropertiesTable(data: Array[Array[Any]]) extends JFrame("Objects pro
 
 
   object TableModel extends AbstractTableModel {
-    var data: Array[Array[Any]] = _
+    var data: Array[List[Any]] = _
 
     val columnNames = Array[String]("Color", "Square", "Perimeter", "Density", "Central moment 2nd order", "Elongation")
 
@@ -38,9 +38,9 @@ class ObjectPropertiesTable(data: Array[Array[Any]]) extends JFrame("Objects pro
 
     override def setValueAt(value: AnyRef, row: Int, col: Int) = {}
 
-    private def setData(data: Array[Array[Any]]) = {this.data = data; this}
+    private def setData(data: Array[List[Any]]) = {this.data = data; this}
 
-    def apply(data: Array[Array[Any]]) = TableModel.setData(data)
+    def apply(data: Array[List[Any]]) = TableModel.setData(data)
   }
 
   object ColorRenderer extends JLabel with TableCellRenderer {

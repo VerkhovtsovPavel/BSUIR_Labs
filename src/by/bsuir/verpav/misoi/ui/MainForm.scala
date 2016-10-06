@@ -8,7 +8,7 @@ import javax.imageio.ImageIO
 import javax.swing._
 
 import by.bsuir.verpav.misoi.clustering.ImageСlusteringEngine
-import by.bsuir.verpav.misoi.util.ImageUtils
+import by.bsuir.verpav.misoi.clustering.ImageСlusteringEngine.globalState
 
 import scala.collection.mutable
 
@@ -127,13 +127,13 @@ object MainForm extends JFrame with App{
     val performClusteringStepItem = new JMenuItem("Perform step")
     performClusteringStepItem.setFont(font)
     performClusteringStepItem.addActionListener(performClusteringStep(false, _ : ActionEvent))
-    performClusteringStepItem.setAccelerator(KeyStroke.getKeyStroke('Q', Toolkit.getDefaultToolkit.getMenuShortcutKeyMask))
+    performClusteringStepItem.setAccelerator(KeyStroke.getKeyStroke('A', Toolkit.getDefaultToolkit.getMenuShortcutKeyMask))
     clustering.add(performClusteringStepItem)
 
     val performClusteringStepItemWithCustomParameters = new JMenuItem("Perform step with custom paramaters")
     performClusteringStepItemWithCustomParameters.setFont(font)
     performClusteringStepItemWithCustomParameters.addActionListener(performClusteringStep(true, _ : ActionEvent))
-    performClusteringStepItemWithCustomParameters.setAccelerator(KeyStroke.getKeyStroke('W', Toolkit.getDefaultToolkit.getMenuShortcutKeyMask))
+    performClusteringStepItemWithCustomParameters.setAccelerator(KeyStroke.getKeyStroke('S', Toolkit.getDefaultToolkit.getMenuShortcutKeyMask))
     clustering.add(performClusteringStepItemWithCustomParameters)
 
     val performAllClusteringItem = new JMenuItem("Perform all proccess")

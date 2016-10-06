@@ -13,8 +13,8 @@ import scala.collection.mutable.ArrayBuffer
 
 
 object ImageСlusteringEngine {
-  private val _globalState  = mutable.Map[Int, Any]()
-  val steps = Array[ClusteringStep](BrightnessCorrection, ImageBinarization, FilterNoise, HighlightConnectedDomains.setContext(_globalState), DetermineObjectsProperties.setContext(_globalState)/*, ClusteringObjects*/)
+  implicit val globalState  = mutable.Map[String, Any]()
+  val steps = Array[ClusteringStep](BrightnessCorrection, ImageBinarization, FilterNoise, HighlightConnectedDomains, DetermineObjectsProperties, ClusteringObjects)
   //                                                )
   private var possition = 0
   var currentStep: ClusteringStep = steps.head
@@ -45,6 +45,6 @@ object ImageСlusteringEngine {
   def init(): Unit ={
     possition = 0
     currentStep = steps.head
-    _globalState.clear()
+    globalState.clear()
   }
 }

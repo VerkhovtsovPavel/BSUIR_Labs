@@ -1,5 +1,6 @@
 package by.bsuir.verpav.misoi.clustering.steps
 
+import java.awt.Color
 import java.awt.image.BufferedImage
 import javax.swing.{JFrame, JOptionPane}
 
@@ -45,10 +46,11 @@ object HighlightConnectedDomains extends ClusteringStep {
 
     val regionsCount = validRegions.keys.size
     var currentRegion = 0
-
+    val coloredRegions = mutable.Map[Color, ArrayBuffer[(Int, Int)]]()
     for (v <- validRegions.values) {
       currentRegion += 1
       val regionColor = (255.0 / regionsCount * currentRegion).toInt
+      coloredRegions.put(new Color(regionColor, 255 - regionColor, Math.abs(regionColor - 126)), v)
       for ((x, y) <- v) {
         raster.setPixel(x, y, Array[Int](regionColor, 255 - regionColor, Math.abs(regionColor - 126)))
       }
@@ -59,7 +61,7 @@ object HighlightConnectedDomains extends ClusteringStep {
       raster.setPixel(x, y, Array[Int](0, 0, 0))
     }
 
-    stepContext.asInstanceOf[mutable.Map[String, Any]].put("connectedDomains", validRegions)
+    stepContext.put("connectedDomains", coloredRegions)
     new BufferedImage(cm, raster, isAlphaPremultiplied, null)
   }
 
