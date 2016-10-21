@@ -7,10 +7,7 @@ import java.io.File
 import javax.imageio.ImageIO
 import javax.swing._
 
-import by.bsuir.verpav.misoi.clustering.ImageСlusteringEngine
-import by.bsuir.verpav.misoi.clustering.ImageСlusteringEngine.globalState
 import by.bsuir.verpav.misoi.harris.HarrisCornersDetector
-
 import scala.collection.mutable
 
 /**
@@ -41,7 +38,7 @@ object MainForm extends JFrame with App{
     val filename = chooser.getDirectory + chooser.getFile
     baseImage = ImageIO.read(new File(filename))
     editingHistory.clear()
-    ImageСlusteringEngine.init()
+    HarrisCornersDetector.clear()
     editingHistory push baseImage
     setImageToLabel()
   }
@@ -72,6 +69,7 @@ object MainForm extends JFrame with App{
   }
 
   def performClusteringStep(useCustomParams : Boolean, e : ActionEvent): Unit = {
+    import by.bsuir.verpav.misoi.pipeline.PipelineEngine.globalState
     if(useCustomParams)
       HarrisCornersDetector.currentStep.requestParameters(this)
     baseImage = HarrisCornersDetector.currentStep(baseImage)
@@ -83,10 +81,11 @@ object MainForm extends JFrame with App{
   }
 
   def performAllClustering(): Unit = {
-    baseImage = ImageСlusteringEngine.currentStep(baseImage)
-    while(ImageСlusteringEngine.nextStep()){
+    import by.bsuir.verpav.misoi.pipeline.PipelineEngine.globalState
+    baseImage = HarrisCornersDetector.currentStep(baseImage)
+    while(HarrisCornersDetector.nextStep()){
       editingHistory push baseImage
-      baseImage = ImageСlusteringEngine.currentStep(baseImage)
+      baseImage = HarrisCornersDetector.currentStep(baseImage)
     }
     editingHistory push baseImage
     JOptionPane.showConfirmDialog(this,"Clustering finish", "Clustering finish", JOptionPane.CLOSED_OPTION)
@@ -94,7 +93,7 @@ object MainForm extends JFrame with App{
   }
 
   def undo(): Unit ={
-    ImageСlusteringEngine.previousStep()
+    HarrisCornersDetector.previousStep()
     editingHistory.pop()
     baseImage = editingHistory.top
     setImageToLabel()
@@ -137,7 +136,7 @@ object MainForm extends JFrame with App{
     performClusteringStepItemWithCustomParameters.setAccelerator(KeyStroke.getKeyStroke('S', Toolkit.getDefaultToolkit.getMenuShortcutKeyMask))
     clustering.add(performClusteringStepItemWithCustomParameters)
 
-    val performAllClusteringItem = new JMenuItem("Perform all proccess")
+    val performAllClusteringItem = new JMenuItem("Perform all process")
     performAllClusteringItem.setFont(font)
     performAllClusteringItem.addActionListener(performAllClustering _)
     performAllClusteringItem.setAccelerator(KeyStroke.getKeyStroke('E', Toolkit.getDefaultToolkit.getMenuShortcutKeyMask))

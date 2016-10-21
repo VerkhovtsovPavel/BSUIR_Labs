@@ -8,7 +8,7 @@ import by.bsuir.verpav.misoi.pipeline.PipelineStep
 /**
   * Created by Pavel_Verkhovtsov on 10/19/16.
   */
-object Gauss extends PipelineStep{
+object GaussFilter extends PipelineStep{
   override def perform(baseImage: BufferedImage): BufferedImage = {baseImage } //TODO Maybe add
 
   override def requestParameters(frame: JFrame): Unit = ???

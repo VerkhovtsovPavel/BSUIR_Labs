@@ -14,7 +14,6 @@ trait PipelineStep {
   def perform(baseImage: BufferedImage): BufferedImage
 
   def requestParameters(frame: JFrame): Unit
-  def setContext(context : Any) = {this}
   def apply(baseImage: BufferedImage)(implicit context : mutable.Map[String, Any]): BufferedImage ={
     stepContext = context
     val result =  perform(baseImage)

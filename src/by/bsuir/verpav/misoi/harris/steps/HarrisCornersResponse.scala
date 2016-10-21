@@ -14,12 +14,15 @@ object HarrisCornersResponse extends PipelineStep {
   val baseK = 0.04
 
   override def perform(baseImage: BufferedImage): BufferedImage = {
-
+    val threshold = params.getOrElse("Threshold", baseThreshold)
+    val k = params.getOrElse("K", baseK).asInstanceOf[Double]
     val raster = baseImage.copyData(null)
     val width = raster.getWidth
     val height = raster.getHeight
 
     val differences = stepContext.get("difference").get.asInstanceOf[Array[Array[(Int, Int, Int)]]]
+
+    val hcr = Array.ofDim[Double](width, height)
 
     for (x <- 0 to width;
          y <- 0 to height) {
@@ -33,6 +36,8 @@ object HarrisCornersResponse extends PipelineStep {
         hcr(x)(y) = 0
     }
 
+    stepContext.put("harrisResponse", hcr)
+    baseImage
   }
 
   override def requestParameters(frame: JFrame): Unit = ???
