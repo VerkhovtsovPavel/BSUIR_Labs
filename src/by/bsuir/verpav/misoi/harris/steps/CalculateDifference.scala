@@ -30,7 +30,7 @@ object CalculateDifference extends PipelineStep{
         val diffX = neib(0) + neib(1) + neib(2) - (neib(5) + neib(6) + neib(7))
         val diffY = neib(0) + neib(3) + neib(5) - (neib(2) + neib(4) + neib(7))
 
-        diff(x - offset)(y - offset) = (diffX * diffX, diffY * diffY, diffY * diffY)
+        diff(x - offset)(y - offset) = (diffX * diffX, diffY * diffY, diffY * diffX)
       }
     stepContext.put("difference", diff)
     baseImage

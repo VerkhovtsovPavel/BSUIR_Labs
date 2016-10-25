@@ -12,7 +12,7 @@ import scala.collection.mutable.ArrayBuffer
   */
 object NonMaxFilter extends PipelineStep{
 
-  val baseCoreSize = 1
+  val baseCoreSize = 5
 
   override def perform(baseImage: BufferedImage): BufferedImage = {
 
@@ -29,26 +29,23 @@ object NonMaxFilter extends PipelineStep{
         var isMax = true
         val currentValue = harrisResponse(x)(y)
 
-        for (i <- -coreSize to coreSize;
-             j <- -coreSize to coreSize)
-        {
-           if (harrisResponse(x + i)(y + j) > currentValue)
-           {
-             isMax = false
-           }
-        }
-
-        if (isMax)
-        {
-          cornersList.append((x, y))
+        if(currentValue!=0) {
+          for (i <- -coreSize to coreSize;
+               j <- -coreSize to coreSize) {
+            if (harrisResponse(x + i)(y + j) > currentValue) {
+              isMax = false
+            }
+          }
+          if (isMax) {
+            cornersList.append((x, y))
+          }
         }
       }
 
     stepContext.put("corners", cornersList)
-
     baseImage
   }
 
 
-  override def requestParameters(frame: JFrame): Unit = ???
+  override def requestParameters(frame: JFrame) = ???
 }

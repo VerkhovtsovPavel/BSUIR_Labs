@@ -14,7 +14,9 @@ object ImageUtils {
   def binaryImageTransformation(baseImage: BufferedImage, predicate: (Int, Int, Int) => Boolean,
                                 trueTransformation : (Int, Int, Int) => Array[Int],
                                 falseTransformation : (Int, Int, Int) => Array[Int]) = {
-    val raster = baseImage.getRaster
+    val cm = baseImage.getColorModel
+    val isAlphaPremultiplied = cm.isAlphaPremultiplied
+    val raster = baseImage.copyData(null)
     for(x <- 0 until baseImage.getWidth; y <- 0 until baseImage.getHeight()) {
       val rgb = raster.getPixel(x, y, null.asInstanceOf[Array[Int]])
       if(predicate(rgb(0), rgb(1), rgb(2)))
@@ -23,7 +25,7 @@ object ImageUtils {
         raster.setPixel(x, y, falseTransformation(rgb(0), rgb(1), rgb(2)))
       }
     }
-    baseImage
+    new BufferedImage(cm, raster, isAlphaPremultiplied, null)
   }
 
   def getNeighborhood(raster: WritableRaster, x: Int, y: Int, coreSize: Int, includePoint: Boolean) : Array[(Int, Int, Int)] = {

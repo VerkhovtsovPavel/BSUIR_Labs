@@ -21,7 +21,7 @@ object HighlightCorners  extends PipelineStep {
 
     val raster = baseImage.copyData(null)
     val width = raster.getWidth
-    val height= raster.getHeight
+    val height = raster.getHeight
 
     for(x <- 0 to height;
         y <- 0 to width)
@@ -37,7 +37,7 @@ object HighlightCorners  extends PipelineStep {
         raster.setPixel(x, y-1, Array[Int](255, 0, 0))
       }
     }
-    new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+    new BufferedImage(cm, raster, isAlphaPremultiplied, null)
   }
 
   override def requestParameters(frame: JFrame): Unit = {

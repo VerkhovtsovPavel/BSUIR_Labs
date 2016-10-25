@@ -10,8 +10,8 @@ import by.bsuir.verpav.misoi.pipeline.PipelineStep
   */
 object HarrisCornersResponse extends PipelineStep {
 
-  val baseThreshold = 20000
-  val baseK = 0.04
+  val baseThreshold = 10000
+  val baseK = 0.12
 
   override def perform(baseImage: BufferedImage): BufferedImage = {
     val threshold = params.getOrElse("Threshold", baseThreshold)
