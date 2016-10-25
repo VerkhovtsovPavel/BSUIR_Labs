@@ -1,12 +1,18 @@
 (ns chat.handler
   (:require [compojure.core :refer :all]
+            [compojure.handler :as handler]
             [compojure.route :as route]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
+            [org.httpkit.server :as kit]
+            [ring.util.response :as resp]
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+            [chat.model.websocket :as ws]))
 
 (defroutes app-routes
-  (GET "/" [] "Hello World")
+  (GET "/" [] (resp/resource-response "index.html" {:root "public"}))
   (GET "/ws" [] ws/handler)
+ ; (GET "/room/:id" [id] )
+ ; (PUT "/room/style/" [] )
   (route/not-found "Not Found"))
 
-(def app
-  (wrap-defaults app-routes site-defaults))
+(defn -main [& args]
+  (kit/run-server (handler/site #'app-routes) {:port 8080}))

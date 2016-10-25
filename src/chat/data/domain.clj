@@ -28,7 +28,8 @@
 
 (defn getAccessibleRoomsByUser
   [user]
-   (mc/find-map db "chats" {:patr []} or {contains(:patr user)}) //TODO Fix find "contains" and "or" functions
+   (mc/find-map db "chats" {$or [{:patr []}
+                                 {:patr {$in [user]}}]})
 )
 
 (defn addMessage
@@ -36,6 +37,11 @@
     (mcoll/insert db chat message)
 )
 
+(defn getMessagesByRoom
+  [room page]
+  (mcoll/find db room)(paginate :page page :per-page 20)
+)
 
 
-"Add and extend protocol"
+
+;"Add and extend protocol"
