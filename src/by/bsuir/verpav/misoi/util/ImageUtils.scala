@@ -30,9 +30,10 @@ object ImageUtils {
     val delta = (coreSize-1)/2
     val buffer = ArrayBuffer[(Int, Int, Int)]()
 
-    for(xx <- (x - delta) to (x + delta); yy <- (y - delta) to (y + delta)){
+    for(xx <- (x - delta) to (x + delta);
+        yy <- (y - delta) to (y + delta)){
       try {
-        if(xx!=x && yy!=y) {
+        if(xx!=x || yy!=y) {
           val rgb = raster.getPixel(xx, yy, null.asInstanceOf[Array[Int]])
           buffer += ((rgb(0), rgb(1), rgb(2)))
         }

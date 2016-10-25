@@ -1,8 +1,10 @@
 package by.bsuir.verpav.misoi.harris.steps
 
-import java.awt.image.{WritableRaster, Raster, BufferedImage}
+import java.awt.image.{BufferedImage, Raster, WritableRaster}
 import javax.swing.JFrame
+
 import by.bsuir.verpav.misoi.pipeline.PipelineStep
+
 import scala.collection.mutable.ArrayBuffer
 
 /**
@@ -15,25 +17,22 @@ object NonMaxFilter extends PipelineStep{
   override def perform(baseImage: BufferedImage): BufferedImage = {
 
     val cornersList = new ArrayBuffer[(Int, Int)]()
+    val harrisResponse = stepContext.get("harrisResponse").get.asInstanceOf[Array[Array[Double]]]
+    val coreSize = params.getOrElse("coreSize", baseCoreSize)
 
-    val harrisResponse = stepContext.get("harrisResponse").asInstanceOf[Array[Array[Double]]]
+    val width = harrisResponse.length
+    val height= harrisResponse(0).length
 
-    val coreSize = params.getOrElse("coreSize", baseCoreSize).asInstanceOf[Int]
-
-    val raster = baseImage.copyData(null)
-    val width = raster.getWidth
-    val height= raster.getHeight
-
-    for (y <- coreSize to height - coreSize;
-         x <- coreSize to width - coreSize)
+    for (x <- coreSize until width - coreSize;
+         y <- coreSize until height - coreSize)
       {
         var isMax = true
-        val currentValue = harrisResponse(y)(x)
+        val currentValue = harrisResponse(x)(y)
 
         for (i <- -coreSize to coreSize;
              j <- -coreSize to coreSize)
         {
-           if (harrisResponse(y + i)(x + j) > currentValue)
+           if (harrisResponse(x + i)(y + j) > currentValue)
            {
              isMax = false
            }
@@ -45,19 +44,7 @@ object NonMaxFilter extends PipelineStep{
         }
       }
 
-    cornersList
-
-    val cm = baseImage.getColorModel
-    val isAlphaPremultiplied = cm.isAlphaPremultiplied
-   // val raster : WritableRaster = baseImage.copyData(null)
-
-    for(x <- 0 to height;
-        y <- 0 to width)
-    {
-      if(cornersList.contains((x,y))){
-       // raster
-      }
-    }
+    stepContext.put("corners", cornersList)
 
     baseImage
   }
