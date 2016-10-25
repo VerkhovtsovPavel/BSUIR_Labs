@@ -3,7 +3,7 @@ package by.bsuir.verpav.misoi.pipeline
 import scala.collection.mutable
 
 abstract class PipelineEngine {
-  val steps : Array[PipelineStep]
+  def steps : Array[PipelineStep]
 
   private var possition = 0
   var currentStep: PipelineStep = steps.head
@@ -39,5 +39,5 @@ abstract class PipelineEngine {
 }
 
 object PipelineEngine{
-  implicit val globalState  = mutable.Map[String, Any]()
+  implicit val globalState = mutable.Map[String, Any]()
 }

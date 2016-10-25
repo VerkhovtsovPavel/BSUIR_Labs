@@ -49,13 +49,13 @@ object NonMaxFilter extends PipelineStep{
 
     val cm = baseImage.getColorModel
     val isAlphaPremultiplied = cm.isAlphaPremultiplied
-    val raster : WritableRaster = baseImage.copyData(null)
+   // val raster : WritableRaster = baseImage.copyData(null)
 
     for(x <- 0 to height;
         y <- 0 to width)
     {
       if(cornersList.contains((x,y))){
-        raster
+       // raster
       }
     }
 
