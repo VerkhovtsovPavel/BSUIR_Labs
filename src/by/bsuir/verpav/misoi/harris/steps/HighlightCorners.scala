@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage
 import javax.swing.JFrame
 
 import by.bsuir.verpav.misoi.pipeline.PipelineStep
-import by.bsuir.verpav.misoi.util.ImageUtils
 
 import scala.collection.mutable.ArrayBuffer
 

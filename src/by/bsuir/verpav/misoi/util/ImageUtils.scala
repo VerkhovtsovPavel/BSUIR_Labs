@@ -18,11 +18,11 @@ object ImageUtils {
     val isAlphaPremultiplied = cm.isAlphaPremultiplied
     val raster = baseImage.copyData(null)
     for(x <- 0 until baseImage.getWidth; y <- 0 until baseImage.getHeight()) {
-      val rgb = raster.getPixel(x, y, null.asInstanceOf[Array[Int]])
-      if(predicate(rgb(0), rgb(1), rgb(2)))
-        raster.setPixel(x, y, trueTransformation(rgb(0), rgb(1), rgb(2)))
+      val rgb: (Int, Int, Int) = getPixel(raster, x, y)
+      if(predicate(rgb._1, rgb._2, rgb._3))
+        raster.setPixel(x, y, trueTransformation(rgb._1, rgb._2, rgb._3))
       else{
-        raster.setPixel(x, y, falseTransformation(rgb(0), rgb(1), rgb(2)))
+        raster.setPixel(x, y, falseTransformation(rgb._1, rgb._2, rgb._3))
       }
     }
     new BufferedImage(cm, raster, isAlphaPremultiplied, null)
@@ -36,14 +36,12 @@ object ImageUtils {
         yy <- (y - delta) to (y + delta)){
       try {
         if(xx!=x || yy!=y) {
-          val rgb = raster.getPixel(xx, yy, null.asInstanceOf[Array[Int]])
-          buffer += ((rgb(0), rgb(1), rgb(2)))
+          buffer += getPixel(raster, xx, yy)
         }
       } catch { case iob : ArrayIndexOutOfBoundsException => }
     }
     if(includePoint){
-      val rgb = raster.getPixel(x, y, null.asInstanceOf[Array[Int]])
-      buffer += ((rgb(0), rgb(1), rgb(2)))
+      buffer += getPixel(raster, x, y)
     }
     buffer.toArray
   }
@@ -64,8 +62,7 @@ object ImageUtils {
   def extractColors (image : BufferedImage): Seq[(Int, Int, Int)] = {
     val raster = image.getRaster
     for(x <- 0 until image.getWidth; y <- 0 until image.getHeight()) yield {
-      val rgb = raster.getPixel(x, y, null.asInstanceOf[Array[Int]])
-      (rgb(0), rgb(1), rgb(2))
+      getPixel(raster, x, y)
     }
   }
 
@@ -75,4 +72,13 @@ object ImageUtils {
   }
 
   def pointBrightness(red : Int, green : Int, blue : Int) = (0.3 * red + 0.59 * green + 0.11 * blue).toInt
+
+
+  private def getPixel(raster : WritableRaster, x : Int, y : Int) = {
+    val rgb = raster.getPixel(x, y, null.asInstanceOf[Array[Int]])
+    if(rgb.length==1)
+      (rgb(0), rgb(0), rgb(0))
+    else
+      (rgb(0), rgb(1), rgb(2))
+  }
 }

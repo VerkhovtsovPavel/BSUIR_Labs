@@ -31,7 +31,6 @@ object MainForm extends JFrame with App{
     JOptionPane.showConfirmDialog(this,"Image updated", "Image updated", JOptionPane.CLOSED_OPTION)
   }
 
-
    private def loadImage(): Unit = {
     val chooser = new FileDialog(this, "Use a .png or .jpg extension", FileDialog.LOAD)
     chooser.setVisible(true)

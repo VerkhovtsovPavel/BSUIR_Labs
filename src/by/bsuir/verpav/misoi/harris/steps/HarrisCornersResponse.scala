@@ -11,13 +11,11 @@ import by.bsuir.verpav.misoi.pipeline.PipelineStep
 object HarrisCornersResponse extends PipelineStep {
 
   val baseThreshold = 10000
-  val baseK = 0.12
 
   override def perform(baseImage: BufferedImage): BufferedImage = {
     val threshold = params.getOrElse("Threshold", baseThreshold)
-    val k = params.getOrElse("K", baseK).asInstanceOf[Double]
 
-    val differences = stepContext.get("difference").get.asInstanceOf[Array[Array[(Int, Int, Int)]]]
+    val differences = stepContext.get("gaussDifference").get.asInstanceOf[Array[Array[(Double, Double, Double)]]]
 
     val width = differences.length
     val height = differences(0).length
@@ -29,7 +27,7 @@ object HarrisCornersResponse extends PipelineStep {
       val A = differences(x)(y)._1
       val B = differences(x)(y)._2
       val C = differences(x)(y)._3
-      val M = (A * B - (C * C)) - (k * ((A + B) * (A + B)))
+      val M = (A * B - C * C) / (A + B + 1.4e-45)
       if (M > threshold)
         hcr(x)(y) = M
       else

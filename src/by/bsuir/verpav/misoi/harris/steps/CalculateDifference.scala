@@ -21,14 +21,14 @@ object CalculateDifference extends PipelineStep{
 
     val offset : Int = coreSize / 2
 
-    val diff: Array[Array[(Int,Int,Int)]] = Array.ofDim[(Int,Int,Int)](width - (offset * 2), height - (offset * 2))
+    val diff: Array[Array[(Double,Double,Double)]] = Array.ofDim[(Double,Double,Double)](width - (offset * 2), height - (offset * 2))
 
     for (x <- offset until width  - offset;
          y <- offset until height - offset)
       {
         val neib = ImageUtils.getNeighborhood(raster, x, y, coreSize, false).map(_._1)
-        val diffX = neib(0) + neib(1) + neib(2) - (neib(5) + neib(6) + neib(7))
-        val diffY = neib(0) + neib(3) + neib(5) - (neib(2) + neib(4) + neib(7))
+        val diffY = (neib(0) + neib(1) + neib(2) - (neib(5) + neib(6) + neib(7))) * 0.166666667
+        val diffX = (neib(0) + neib(3) + neib(5) - (neib(2) + neib(4) + neib(7))) * 0.166666667
 
         diff(x - offset)(y - offset) = (diffX * diffX, diffY * diffY, diffY * diffX)
       }
