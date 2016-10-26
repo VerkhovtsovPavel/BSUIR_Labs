@@ -74,7 +74,7 @@ object MainForm extends JFrame with App{
     baseImage = HarrisCornersDetector.currentStep(baseImage)
     editingHistory push baseImage
     if(!HarrisCornersDetector.nextStep()){
-      JOptionPane.showConfirmDialog(this,"Clustering finish", "Clustering finish", JOptionPane.CLOSED_OPTION)
+      JOptionPane.showConfirmDialog(this,"Detecting finish", "Detecting finish", JOptionPane.CLOSED_OPTION)
     }
     setImageToLabel()
   }
@@ -87,7 +87,7 @@ object MainForm extends JFrame with App{
       baseImage = HarrisCornersDetector.currentStep(baseImage)
     }
     editingHistory push baseImage
-    JOptionPane.showConfirmDialog(this,"Clustering finish", "Clustering finish", JOptionPane.CLOSED_OPTION)
+    JOptionPane.showConfirmDialog(this,"Detecting finish", "Detecting finish", JOptionPane.CLOSED_OPTION)
     setImageToLabel()
   }
 
@@ -120,7 +120,7 @@ object MainForm extends JFrame with App{
     exitItem.addActionListener(() => { frame.dispose(); System.exit(0)})
     fileMenu.add(exitItem)
 
-    val clustering = new JMenu("Clustering")
+    val clustering = new JMenu("Detecting")
     clustering.setFont(font)
 
     val performClusteringStepItem = new JMenuItem("Perform step")

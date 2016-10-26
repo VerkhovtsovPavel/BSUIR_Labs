@@ -1,7 +1,7 @@
 package by.bsuir.verpav.misoi.harris.steps
 
 import java.awt.image.{BufferedImage, Raster, WritableRaster}
-import javax.swing.JFrame
+import javax.swing.{JFrame, JOptionPane}
 
 import by.bsuir.verpav.misoi.pipeline.PipelineStep
 
@@ -18,7 +18,7 @@ object NonMaxFilter extends PipelineStep{
 
     val cornersList = new ArrayBuffer[(Int, Int)]()
     val harrisResponse = stepContext.get("harrisResponse").get.asInstanceOf[Array[Array[Double]]]
-    val coreSize = params.getOrElse("coreSize", baseCoreSize)
+    val coreSize = params.getOrElse("nonMaxCoreSize", baseCoreSize)
 
     val width = harrisResponse.length
     val height= harrisResponse(0).length
@@ -47,5 +47,8 @@ object NonMaxFilter extends PipelineStep{
   }
 
 
-  override def requestParameters(frame: JFrame) = ???
+  override def requestParameters(frame: JFrame) = {
+    val coreSize = JOptionPane.showInputDialog(frame, "Please input non max core size for 3 to 17: ")
+    params.put("nonMaxCoreSize", coreSize.toInt)
+  }
 }

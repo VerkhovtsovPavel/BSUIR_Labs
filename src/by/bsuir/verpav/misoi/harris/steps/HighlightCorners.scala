@@ -10,7 +10,7 @@ import scala.collection.mutable.ArrayBuffer
 /**
   * Created by Pavel_Verkhovtsov on 10/25/16.
   */
-object HighlightCorners  extends PipelineStep {
+object HighlightCorners extends PipelineStep {
 
   override def perform(baseImage: BufferedImage): BufferedImage = {
     val cm = baseImage.getColorModel
@@ -22,8 +22,8 @@ object HighlightCorners  extends PipelineStep {
     val width = raster.getWidth
     val height = raster.getHeight
 
-    for(x <- 0 to height;
-        y <- 0 to width)
+    for(x <- 0 to width;
+        y <- 0 to height)
     {
       if(cornersList.contains((x,y))){
         raster.setPixel(x-1, y-1, Array[Int](255, 0, 0))

@@ -11,15 +11,15 @@ import by.bsuir.verpav.misoi.util.ImageUtils
   */
 object CalculateDifference extends PipelineStep{
 
-  val coreSize = 3
-
   override def perform(baseImage: BufferedImage): BufferedImage = {
 
-    val raster = baseImage.copyData(null)
-    val width = raster.getWidth
-    val height= raster.getHeight
+    val width = baseImage.getWidth
+    val height = baseImage.getHeight
 
-    val offset : Int = coreSize / 2
+    val raster = baseImage.getRaster
+
+    val offset = 1
+    val coreSize = 3
 
     val diff: Array[Array[(Double,Double,Double)]] = Array.ofDim[(Double,Double,Double)](width - (offset * 2), height - (offset * 2))
 
@@ -36,5 +36,5 @@ object CalculateDifference extends PipelineStep{
     baseImage
   }
 
-  override def requestParameters(frame: JFrame): Unit = ???
+  override def requestParameters(frame: JFrame): Unit = {}
 }
