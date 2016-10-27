@@ -28,7 +28,7 @@
 
 (defn getAccessibleRoomsByUser
   [user]
-   (mc/find-map db "chats" {$or [{:patr []}
+    (mc/find-map db "chats" {$or [{:patr []}
                                  {:patr {$in [user]}}]})
 )
 
@@ -39,7 +39,7 @@
 
 (defn getMessagesByRoom
   [room page]
-  (mcoll/find db room)(paginate :page page :per-page 20)
+    (mcoll/find db room)(paginate :page page :per-page 20)
 )
 
 

@@ -15,12 +15,14 @@
     websocket.onclose = function() {display("Connection closed...")};
 
     websocket.onmessage = function(message) {
-      display(message.data);
+      var msg = JSON.parse(message.data);
+      if(msg.result == undefined)
+        display(msg.text);
       text.value='';
     };
 
     function send(){
-      websocket.send(text.value);
+      websocket.send(JSON.stringify({method:"message", text:text.value}));
     }
 
     function display(message){
