@@ -1,9 +1,11 @@
 (ns chat.model.websocket
-  (:use org.httpkit.server)
-  (:require [cheshire.core :as jsonprs]))
+  (:use [org.httpkit.server])
+  (:require [cheshire.core :as jsonprs]
+            [chat.data.domain]))
 
 
 (def bindpoints (atom {"global" (atom nil)}))
+(def authUsers (atom {}))
 
 (defn- extractServerWSPort [channel]
   (.substring (str channel) (+ (.lastIndexOf (str channel) ":") 1)))
@@ -19,7 +21,7 @@
 (defn- beatify-message [message channel]
   (let [datetime (java.util.Date.)
         ctime (.format (java.text.SimpleDateFormat. "HH/mm/ss") datetime)]
-          (update message "text" (fn [old](str (extractServerWSPort channel) ": " (message "text") " /\\ " ctime )))))
+          (update message "text" (fn [old](str (authUsers channel) ": " (message "text") " /\\ " ctime )))))
 
 (defmulti perform-ws-action (fn [message channel] (message "method")))
 
@@ -30,6 +32,46 @@
        (println (str "Pushinsh to " room " message " jsmessage)) 
        (reset! bus jsmessage))
   (message "text"))
+
+(defmethod perform-ws-action "roomEnter" [message channel]
+  (let [room (message "room")
+        room_bindpoint (@bindpoints room)]
+        (if room_bindpoint
+          (add-subscriper room_bindpoint channel)
+          (do
+            (create_room_bindpoint room)
+            (add-subscriper (@bindpoints room) channel))
+         )
+        (domain/getMessagesByRoom room 1)))
+
+(defmethod perform-ws-action "roomLeave" [message channel] 
+  (let [room (message "room")
+        room_bindpoint (@bindpoints room)]
+          (remove-watch room_bindpoint channel)))
+
+(defmethod perform-ws-action "login" [message channel] 
+  (let [login (message "login")
+        password (message "password")]
+          (if (domain/isUserExist login password)
+            (do
+              (reset! authUsers (fn[current_state] (assoc current_state {login channel})))
+              (str "Success"))
+            (str "Failed")
+
+
+(defmethod perform-ws-action "registration" [message channel] 
+  (let [login (message "login")
+        password (message "password")]
+          (if (domain/isUserExist login)
+            (str "Failed. User name duplication") 
+            (do
+              (domain/addUser login password)
+              (reset! authUsers (fn[current_state] (assoc current_state {login channel})))
+              (str "Success")))))
+                       
+
+(defmethod perform-ws-action "roomList" [message channel]
+  (map (domain/getAccessibleRoomsByUser (@authUsers channel) #(% :name))))
 
 (defn getResponse
   [message channel]

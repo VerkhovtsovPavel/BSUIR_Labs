@@ -1,19 +1,33 @@
 <html>
   <body>
+  <div id="dialog">
     <input id="text">
-    <button onclick="send()">Send</button>
+    <button onclick="sendNewMessage()">Send</button>
     <div id="output">
 
-    </div>
+    </div>  
+  </div>
+
+
+    <div id="roomList">
+      <ul id="rlist">
+      </ul>
+    </div>  
+
   </body>
   <script>
     var text = document.getElementById('text');
     var output = document.getElementById('output');
     var websocket = new WebSocket("ws://localhost:8080/ws");
 
-    websocket.onopen = function() {display("Connection opened...");
-                                    websocket.send(JSON.stringify({method:"roomEnter", room:"global"}));
-                                  };
+    var room = "global"
+
+    websocket.onopen = function() {
+      display("Connection opened...");
+      websocket.send(JSON.stringify({method:"roomEnter", room:room}));
+
+    };
+
     websocket.onclose = function() {display("Connection closed...")};
 
     websocket.onmessage = function(message) {
@@ -23,8 +37,20 @@
       text.value='';
     };
 
-    function send(){
-      websocket.send(JSON.stringify({method:"message", text:text.value, room:"global"}));
+    function sendNewMessage(){
+      websocket.send(JSON.stringify({method:"message", text:text.value, room:room}));
+    }
+
+    function builtRoomList(room_list){
+      var list = document.getElementById('rlist')
+      for(room : room_list){
+        var listItem = document.createElement("li")
+        listItem.id = room
+        listItem.onclick = function(e) {
+          websocket.send(JSON.stringify({method:"roomEnter", room:e.targer.id}))
+        }
+        var room_name = document.createTextNode(room);
+      }
     }
 
     function display(message){
@@ -37,8 +63,6 @@
       else
         output.appendChild(p)
     }
-
-    
   </script>
 </html>
 
