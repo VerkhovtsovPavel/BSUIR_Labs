@@ -11,7 +11,9 @@
     var output = document.getElementById('output');
     var websocket = new WebSocket("ws://localhost:8080/ws");
 
-    websocket.onopen = function() {display("Connection opened...")};
+    websocket.onopen = function() {display("Connection opened...");
+                                    websocket.send(JSON.stringify({method:"connect", room:"global"}));
+                                  };
     websocket.onclose = function() {display("Connection closed...")};
 
     websocket.onmessage = function(message) {
@@ -22,7 +24,7 @@
     };
 
     function send(){
-      websocket.send(JSON.stringify({method:"message", text:text.value}));
+      websocket.send(JSON.stringify({method:"message", text:text.value, room:"global"}));
     }
 
     function display(message){
@@ -35,6 +37,8 @@
       else
         output.appendChild(p)
     }
+
+    
   </script>
 </html>
 
