@@ -12,6 +12,7 @@
   (GET "/ws" [] ws/handler)
  ; (GET "/room/:id" [id] )
  ; (PUT "/room/style/" [] )
+  (route/resources "/")
   (route/not-found "Not Found"))
 
 (defn -main [& args]

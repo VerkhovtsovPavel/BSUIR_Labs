@@ -1,13 +1,14 @@
-(ns chatics.data
+(ns chat.data.domain
   (:require [monger.core :as mcore]
             [monger.collection :as mcoll]
-            [monger.operators :refer :all]))
+            [monger.operators :refer :all]
+            [monger.query :refer :all]))
 
 (def conn (mcore/connect {:host "localhost" :post 27017}))
 (def db (mcore/get-db conn "chactics"))
 
-(mcoll/insert db "chats" {:roomName "Secret Chat" :patr ["Pavel" "Axelandra"]})
-(mcoll/find-maps db "chats")
+;(mcoll/insert db "chats" {:roomName "Secret Chat" :patr ["Pavel" "Axelandra"]})
+;(mcoll/find-maps db "chats")
 
 (defn addUser
   [name password]
@@ -19,16 +20,16 @@
     (mcoll/find db "users" {:name name :password password})
   [name]
     (mcoll/find db "users" {:name name})
-)
+) ; Use some check to return bool or empty collection
 
 (defn addUserToRoom
   [user room]
-    (mc/update db "users" {:name user} {$push {:rooms room}})
+    (mcoll/update db "users" {:name user} {$push {:rooms room}})
 )
 
 (defn getAccessibleRoomsByUser
   [user]
-    (mc/find-map db "chats" {$or [{:patr []}
+    (mcoll/find-maps db "chats" {$or [{:patr []}
                                  {:patr {$in [user]}}]})
 )
 
@@ -39,7 +40,9 @@
 
 (defn getMessagesByRoom
   [room page]
-    (mcoll/find db room)(paginate :page page :per-page 20)
+  (with-collection db room
+    (mcoll/find-maps)
+    (paginate :page page :per-page 20))
 )
 
 

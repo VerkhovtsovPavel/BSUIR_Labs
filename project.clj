@@ -6,7 +6,8 @@
                  [compojure "1.5.1"]
                  [http-kit "2.2.0"]
                  [ring/ring-defaults "0.2.1"]
-                 [cheshire "5.6.3"]]
+                 [cheshire "5.6.3"]
+                 [com.novemberain/monger "3.1.0"]]
   :plugins [[lein-ring "0.9.7"]]
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]

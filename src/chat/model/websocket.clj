@@ -1,7 +1,7 @@
 (ns chat.model.websocket
   (:use [org.httpkit.server])
   (:require [cheshire.core :as jsonprs]
-            [chat.data.domain]))
+            [chat.data.domain :as domain]))
 
 
 (def bindpoints (atom {"global" (atom nil)}))
@@ -56,7 +56,7 @@
             (do
               (reset! authUsers (fn[current_state] (assoc current_state {login channel})))
               (str "Success"))
-            (str "Failed")
+            (str "Failed"))))
 
 
 (defmethod perform-ws-action "registration" [message channel] 
@@ -71,7 +71,7 @@
                        
 
 (defmethod perform-ws-action "roomList" [message channel]
-  (map (domain/getAccessibleRoomsByUser (@authUsers channel) #(% :name))))
+  (map (domain/getAccessibleRoomsByUser (@authUsers channel)) #(% :name)))
 
 (defn getResponse
   [message channel]
@@ -90,4 +90,3 @@
                           (let [responce (getResponse message channel)]
                               (println (str "Responce for " (extractServerWSPort channel) " with " responce))
                               (send! channel responce))))))
-

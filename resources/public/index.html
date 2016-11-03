@@ -1,68 +1,48 @@
+<!DOCTYPE html>
 <html>
-  <body>
-  <div id="dialog">
-    <input id="text">
-    <button onclick="sendNewMessage()">Send</button>
-    <div id="output">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link href="style.css" rel="stylesheet">
+</head>
 
-    </div>  
+<body>
+
+<div class="wrapper">
+
+  <header class="header">
+    <strong>Chatik</strong> Improve your user experinse
+  </header>
+
+  <div class="middle">
+
+    <div class="container">
+      <main class="content">
+          <div id="dialog">
+            <input id="text">
+              <button onclick="sendNewMessage()">Send</button>
+                <div id="output">
+
+                </div>  
+              </div>
+      </main>
+    </div>
+
+    <aside class="left-sidebar">
+      <strong>Left Sidebar:</strong> Integer velit. Vestibulum nisi nunc, accumsan ut, vehicula sit amet, porta a, mi. Nam nisl tellus, placerat eget, posuere eget, egestas eget, dui. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In elementum urna a eros. Integer iaculis. Maecenas vel elit.
+    </aside><!-- .left-sidebar -->
+
+    <aside class="right-sidebar">
+      <strong>Right Sidebar:</strong> Integer velit. Vestibulum nisi nunc, accumsan ut, vehicula sit amet, porta a, mi. Nam nisl tellus, placerat eget, posuere eget, egestas eget, dui. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In elementum urna a eros. Integer iaculis. Maecenas vel elit.
+    </aside><!-- .right-sidebar -->
+
   </div>
 
+</div>
 
-    <div id="roomList">
-      <ul id="rlist">
-      </ul>
-    </div>  
-
-  </body>
-  <script>
-    var text = document.getElementById('text');
-    var output = document.getElementById('output');
-    var websocket = new WebSocket("ws://localhost:8080/ws");
-
-    var room = "global"
-
-    websocket.onopen = function() {
-      display("Connection opened...");
-      websocket.send(JSON.stringify({method:"roomEnter", room:room}));
-
-    };
-
-    websocket.onclose = function() {display("Connection closed...")};
-
-    websocket.onmessage = function(message) {
-      var msg = JSON.parse(message.data);
-      if(msg.result == undefined)
-        display(msg.text);
-      text.value='';
-    };
-
-    function sendNewMessage(){
-      websocket.send(JSON.stringify({method:"message", text:text.value, room:room}));
-    }
-
-    function builtRoomList(room_list){
-      var list = document.getElementById('rlist')
-      for(room : room_list){
-        var listItem = document.createElement("li")
-        listItem.id = room
-        listItem.onclick = function(e) {
-          websocket.send(JSON.stringify({method:"roomEnter", room:e.targer.id}))
-        }
-        var room_name = document.createTextNode(room);
-      }
-    }
-
-    function display(message){
-      var p = document.createElement("p");
-      var new_text = document.createTextNode(message);
-      p.appendChild(new_text);
-
-      if(output.firstChild)
-        output.insertBefore(p, output.firstChild);
-      else
-        output.appendChild(p)
-    }
-  </script>
+<footer class="footer">
+  <strong>Chatik®</strong> All rights reserved. BSUIR 2016.
+</footer>
+<script src="main.js"></script>
+</body>
 </html>
-
