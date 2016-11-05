@@ -7,6 +7,7 @@
     websocket.onopen = function() {
       display("Connection opened...");
       websocket.send(JSON.stringify({method:"roomList", text:text.value, room:room}));
+      websocket.send(JSON.stringify({method:"roomEnter", room:room}));
     };
 
     websocket.onclose = function() {display("Connection closed...")};

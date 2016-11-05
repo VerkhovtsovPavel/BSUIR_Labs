@@ -11,7 +11,7 @@
   (.substring (str channel) (+ (.lastIndexOf (str channel) ":") 1)))
 
 (defn- create_room_bindpoint [room]
-  (swap! bindpoints (fn [current_state] (assoc current_state {room (atom nil)}))))
+  (swap! bindpoints (fn [current_state] (assoc current_state room (atom nil)))))
 
 (defn- add-subscriper [bindpoint channel]
   (add-watch bindpoint channel
@@ -21,7 +21,7 @@
 (defn- beatify-message [message channel]
   (let [datetime (java.util.Date.)
         ctime (.format (java.text.SimpleDateFormat. "HH/mm/ss") datetime)]
-          (update message "text" (fn [old](str (authUsers channel) ": " (message "text") " /\\ " ctime )))))
+          (update message "text" (fn [old](str (@authUsers channel) ": " (message "text") " /\\ " ctime )))))
 
 (defmulti perform-ws-action (fn [message channel] (message "method")))
 
@@ -29,7 +29,7 @@
   (let [room (message "room")
         bus  (@bindpoints room)
        jsmessage (jsonprs/generate-string (beatify-message message channel))]
-       (println (str "Pushinsh to " room " message " jsmessage)) 
+       (println (str "Publinsh to " room " message " jsmessage))
        (reset! bus jsmessage))
   (message "text"))
 
@@ -54,7 +54,7 @@
         password (message "password")]
           (if (domain/isUserExist login password)
             (do
-              (reset! authUsers (fn[current_state] (assoc current_state {login channel})))
+              (reset! authUsers (fn[current_state] (assoc current_state login channel)))
               (str "Success"))
             (str "Failed"))))
 
@@ -66,7 +66,7 @@
             (str "Failed. User name duplication") 
             (do
               (domain/addUser login password)
-              (reset! authUsers (fn[current_state] (assoc current_state {login channel})))
+              (reset! authUsers (fn[current_state] (assoc current_state login channel)))
               (str "Success")))))
                        
 

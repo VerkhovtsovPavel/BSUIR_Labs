@@ -1,8 +1,9 @@
 (ns chat.data.domain
+  (:refer-clojure :exclude [find])
   (:require [monger.core :as mcore]
             [monger.collection :as mcoll]
             [monger.operators :refer :all]
-            [monger.query :refer :all]))
+            [monger.query :refer [paginate with-collection find]]))
 
 (def conn (mcore/connect {:host "localhost" :post 27017}))
 (def db (mcore/get-db conn "chactics"))
@@ -16,11 +17,10 @@
 )
 
 (defn isUserExist
-  [name password]
-    (mcoll/find db "users" {:name name :password password})
-  [name]
-    (mcoll/find db "users" {:name name})
-) ; Use some check to return bool or empty collection
+   ([name]
+    (mcoll/find db "users" {:name name}))
+  ([name password]
+    (mcoll/find db "users" {:name name :password password}))) ; Use some check to return bool or empty collection
 
 (defn addUserToRoom
   [user room]
@@ -40,9 +40,10 @@
 
 (defn getMessagesByRoom
   [room page]
+  (monger.conversion/from-db-object
   (with-collection db room
-    (mcoll/find-maps)
-    (paginate :page page :per-page 20))
+    (find {})
+    (paginate :page page :per-page 20)) true)
 )
 
 
