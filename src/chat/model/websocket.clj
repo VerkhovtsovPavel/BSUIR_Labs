@@ -18,60 +18,81 @@
                (fn [_channel _atom _old_json json]
                  (send! channel json))))
 
-(defn- beatify-message [message channel]
-  (let [datetime (java.util.Date.)
-        ctime (.format (java.text.SimpleDateFormat. "HH/mm/ss") datetime)]
-          (update message "text" (fn [old](str (@authUsers channel) ": " (message "text") " /\\ " ctime )))))
+(defn- beatify-message [message datetime author]
+  (let [ctime (.format (java.text.SimpleDateFormat. "HH/mm/ss") datetime)]
+          (update message "text" (fn [old] author ": " old " ~ " ctime ))))
 
 (defmulti perform-ws-action (fn [message channel] (message "method")))
 
 (defmethod perform-ws-action "message" [message channel] 
   (let [room (message "room")
         bus  (@bindpoints room)
-       jsmessage (jsonprs/generate-string (beatify-message message channel))]
+        datetime  (java.util.Date.)
+        author (@authUsers channel)
+        text (message "text")
+        jsmessage (jsonprs/generate-string (beatify-message message datetime author))]
        (println (str "Publinsh to " room " message " jsmessage))
+       (domain/addMessage room {:author author :time datetime :text text})
        (reset! bus jsmessage))
   (message "text"))
 
 (defmethod perform-ws-action "roomEnter" [message channel]
   (let [room (message "room")
-        room_bindpoint (@bindpoints room)]
+        room_bindpoint (@bindpoints room)
+        user (@authUsers channel)]
         (if room_bindpoint
           (add-subscriper room_bindpoint channel)
           (do
             (create_room_bindpoint room)
             (add-subscriper (@bindpoints room) channel))
-         )
-        (domain/getMessagesByRoom room 1)))
+        )
+        (domain/addUserToRoom user room)
+        (map #(:text %)(domain/getMessagesByRoom room 1))))
 
-(defmethod perform-ws-action "roomLeave" [message channel] 
+(defmethod perform-ws-action "addRoom" [message chanel]
+  (let [author (@authUsers chanel)
+        participants (message "participants")
+        roomName (message "roomName")]
+    (domain/addNewRoom roomName (conj participants author))
+    )
+  (str "Ok"))
+
+(defmethod perform-ws-action "saveStyle" [message chanel]
+  (let [user (@authUsers chanel)
+        style (message "roomStyle")
+        room (message "room")]
+    (domain/saveCustomStyle room user style))
+  (str "Ok"))
+
+(defmethod perform-ws-action "roomLeave" [message channel]
   (let [room (message "room")
         room_bindpoint (@bindpoints room)]
-          (remove-watch room_bindpoint channel)))
+          (remove-watch room_bindpoint channel))
+  (str "Ok"))
 
 (defmethod perform-ws-action "login" [message channel] 
-  (let [login (message "login")
+  (let [login (message "userName")
         password (message "password")]
           (if (domain/isUserExist login password)
             (do
-              (reset! authUsers (fn[current_state] (assoc current_state login channel)))
+              (swap! authUsers (fn[current_state] (assoc current_state channel login)))
               (str "Success"))
-            (str "Failed"))))
+            (str "Failed! Incorrect user name or password"))))
 
 
 (defmethod perform-ws-action "registration" [message channel] 
-  (let [login (message "login")
+  (let [login (message "userName")
         password (message "password")]
           (if (domain/isUserExist login)
             (str "Failed. User name duplication") 
             (do
               (domain/addUser login password)
-              (reset! authUsers (fn[current_state] (assoc current_state login channel)))
+              (swap! authUsers (fn[current_state] (assoc current_state channel login)))
               (str "Success")))))
                        
 
 (defmethod perform-ws-action "roomList" [message channel]
-  (map (domain/getAccessibleRoomsByUser (@authUsers channel)) #(% :name)))
+  (map #(:roomName %) (domain/getAccessibleRoomsByUser (@authUsers channel))))
 
 (defn getResponse
   [message channel]

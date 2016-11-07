@@ -1,39 +1,83 @@
     var text = document.getElementById('text');
     var output = document.getElementById('output');
-    var websocket = new WebSocket("ws://localhost:8080/ws");
+    var dialog = document.getElementById('dialog');
+    var loginReg  = document.getElementById('loginReg');
+    var currentRoomTitle = document.getElementById('CurrentRoomName');
+    var currentURL = document.URL;
+    var webSocket = new WebSocket("ws://"+currentURL.substring(currentURL.indexOf('//'))+"ws");
 
     var room = "global"
 
-    websocket.onopen = function() {
+    webSocket.onopen = function() {
       display("Connection opened...");
-      websocket.send(JSON.stringify({method:"roomList", text:text.value, room:room}));
-      websocket.send(JSON.stringify({method:"roomEnter", room:room}));
+      currentRoomTitle.innerHTML=room;
     };
 
-    websocket.onclose = function() {display("Connection closed...")};
+    webSocket.onclose = function() {display("Connection closed...")};
 
-    websocket.onmessage = function(message) {
+    webSocket.onmessage = function(message) {
       var msg = JSON.parse(message.data);
       if(msg.result == undefined)
         display(msg.text);
+      //TODO Change multi if on case
       else if (msg.method == "roomList")
         builtRoomList(msg.result)
+      else if(msg.method == "login" || msg.method == "registration"){
+         if(msg.result=="Success"){
+            loginReg.style.visibility='hidden'
+            dialog.style.visibility='visible'
+            document.getElementsByClassName('left-sidebar')[0].style.visibility='visible';
+            document.getElementsByClassName('right-sidebar')[0].style.visibility='visible';
+            webSocket.send(JSON.stringify({method:"roomList"}));
+            webSocket.send(JSON.stringify({method:"roomEnter", room:room}));
+         }else{
+            alert(msg.result)
+         }
+      }
+      else if (msg.method == "roomStyle")
+        addStyle(msg.result);
+      else if(msg.method == "roomEnter"){
+        var messages = msg.result
+        for (var i = 0; i < messages.length; i++) {
+             display(messages[i]);
+        }
+      }
+
       text.value='';
     };
 
     function sendNewMessage(){
-      websocket.send(JSON.stringify({method:"message", text:text.value, room:room}));
+      webSocket.send(JSON.stringify({method:"message", text:text.value, room:room}));
+    }
+
+    function registerOrLogin(){
+      var userName = document.getElementById('userName')
+      var password = document.getElementById('password')
+      var userChoice = Array.prototype.slice.call(document.getElementsByName('logRegRadio')).filter(function (i) { return i.checked;})[0];
+        if(userChoice.value=="reg"){
+           webSocket.send(JSON.stringify({method:"registration", userName:userName.value, password:password.value}));
+        }
+        else{
+           webSocket.send(JSON.stringify({method:"login", userName:userName.value, password:password.value}));
+        }
     }
 
     function builtRoomList(room_list){
       var list = document.getElementById('rlist');
       for (var i = 0; i < room_list.length; i++) {
         var listItem = document.createElement("li")
-        listItem.id = room[i]
+        listItem.id = room_list[i]
         listItem.onclick = function(e) {
-          websocket.send(JSON.stringify({method:"roomEnter", room:e.targer.id}))
+          webSocket.send(JSON.stringify({method:"roomLeave", room:room}));
+          webSocket.send(JSON.stringify({method:"roomEnter", room:e.target.id}));
+          room = e.target.id;
+          currentRoomTitle.innerHTML = room;
+          while (output.firstChild) {
+              output.removeChild(output.firstChild);
+          }
         }
-        var room_name = document.createTextNode(room[i]);
+        listItem.appendChild(document.createTextNode(room_list[i]));
+        list.appendChild(listItem);
       }
     }
 
@@ -46,4 +90,11 @@
         output.insertBefore(p, output.firstChild);
       else
         output.appendChild(p)
+    }
+
+    function addStyle(styleSheet) {
+        var style = document.createElement('style');
+        style.type = 'text/css';
+        style.innerHTML = styleSheet;
+        document.getElementsByTagName('head')[0].appendChild(style);
     }

@@ -50,6 +50,9 @@ body {
 .content {
 	padding: 0 270px 0 270px;
 }
+#dialog {
+    visibility: hidden;
+}
 
 
 /* Left Sidebar
@@ -60,6 +63,7 @@ body {
 	margin-left: -100%;
 	position: relative;
 	background: #B5E3FF;
+	visibility : hidden;
 }
 
 
@@ -71,6 +75,22 @@ body {
 	margin-left: -250px;
 	position: relative;
 	background: #FFACAA;
+	visibility : hidden;
+}
+
+#addRoom{
+    background: #B5E3FF;
+    visibility : hidden;
+}
+
+#search{
+    background: #B5E3FF;
+    visibility : hidden;
+}
+
+#setStyle{
+    background: #B5E3FF;
+    visibility : hidden;
 }
 
 
