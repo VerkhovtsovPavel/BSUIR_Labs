@@ -3,6 +3,9 @@
     var dialog = document.getElementById('dialog');
     var loginReg  = document.getElementById('loginReg');
     var currentRoomTitle = document.getElementById('CurrentRoomName');
+    var addRoomDiv = document.getElementById('addRoom');
+    var searchDiv = document.getElementById('search');
+    var setStyleDiv = document.getElementById('setStyle');
     var currentURL = document.URL;
     var webSocket = new WebSocket("ws://"+currentURL.substring(currentURL.indexOf('//'))+"ws");
 
@@ -19,10 +22,14 @@
       var msg = JSON.parse(message.data);
       if(msg.result == undefined)
         display(msg.text);
+
+      switch(msg.method) {
       //TODO Change multi if on case
-      else if (msg.method == "roomList")
+      case "roomList":
         builtRoomList(msg.result)
-      else if(msg.method == "login" || msg.method == "registration"){
+        break
+      case "login":
+      case "registration":
          if(msg.result=="Success"){
             loginReg.style.visibility='hidden'
             dialog.style.visibility='visible'
@@ -33,14 +40,31 @@
          }else{
             alert(msg.result)
          }
-      }
-      else if (msg.method == "roomStyle")
+         break
+      case "roomStyle":
         addStyle(msg.result);
-      else if(msg.method == "roomEnter"){
+        break
+      case "roomEnter":
         var messages = msg.result
         for (var i = 0; i < messages.length; i++) {
              display(messages[i]);
         }
+        break
+      case "newRoom":
+        var list = document.getElementById('rlist');
+        var listItem = document.createElement("li")
+        listItem.id = msg.result
+        listItem.onclick = function(e) {
+             webSocket.send(JSON.stringify({method:"roomLeave", room:room}));
+             webSocket.send(JSON.stringify({method:"roomEnter", room:e.target.id}));
+             room = e.target.id;
+             currentRoomTitle.innerHTML = room;
+             while (output.firstChild) {
+                  output.removeChild(output.firstChild);
+             }
+        }
+        listItem.appendChild(document.createTextNode(msg.result));
+        list.appendChild(listItem);
       }
 
       text.value='';
@@ -50,20 +74,11 @@
       webSocket.send(JSON.stringify({method:"message", text:text.value, room:room}));
     }
 
-    function registerOrLogin(){
-      var userName = document.getElementById('userName')
-      var password = document.getElementById('password')
-      var userChoice = Array.prototype.slice.call(document.getElementsByName('logRegRadio')).filter(function (i) { return i.checked;})[0];
-        if(userChoice.value=="reg"){
-           webSocket.send(JSON.stringify({method:"registration", userName:userName.value, password:password.value}));
-        }
-        else{
-           webSocket.send(JSON.stringify({method:"login", userName:userName.value, password:password.value}));
-        }
-    }
-
     function builtRoomList(room_list){
       var list = document.getElementById('rlist');
+      while (list.firstChild) {
+          list.removeChild(list.firstChild);
+      }
       for (var i = 0; i < room_list.length; i++) {
         var listItem = document.createElement("li")
         listItem.id = room_list[i]
@@ -98,3 +113,43 @@
         style.innerHTML = styleSheet;
         document.getElementsByTagName('head')[0].appendChild(style);
     }
+
+    function createRoom(){
+        var roomNameField = document.getElementById('roomName');
+        var roomName = roomNameField.value;
+        var roomParticipantsField = document.getElementById('roomPart');
+        var roomPart = roomParticipantsField.value;
+        webSocket.send(JSON.stringify({method:"newRoom", roomName:roomName, part:roomPart.split(';')}));
+    }
+
+
+// --- handlers
+    function showAddRoom(){
+        searchDiv.style.visibility='hidden';
+        setStyleDiv.style.visibility='hidden';
+        addRoomDiv.style.visibility='visible';
+    }
+
+    function showSearch(){
+         searchDiv.style.visibility='visible';
+         setStyleDiv.style.visibility='hidden';
+         addRoomDiv.style.visibility='hidden';
+    }
+
+    function showCustomizeRoom(){
+         searchDiv.style.visibility='hidden';
+         setStyleDiv.style.visibility='visible';
+         addRoomDiv.style.visibility='hidden';
+    }
+
+    function registerOrLogin(){
+          var userName = document.getElementById('userName')
+          var password = document.getElementById('password')
+          var userChoice = Array.prototype.slice.call(document.getElementsByName('logRegRadio')).filter(function (i) { return i.checked;})[0];
+            if(userChoice.value=="reg"){
+               webSocket.send(JSON.stringify({method:"registration", userName:userName.value, password:password.value}));
+            }
+            else{
+               webSocket.send(JSON.stringify({method:"login", userName:userName.value, password:password.value}));
+            }
+        }

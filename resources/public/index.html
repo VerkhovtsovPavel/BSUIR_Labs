@@ -32,7 +32,7 @@
                     <p>Password :</p>
                     <input id="password" type="password">
                     <p>Registration <input type="radio" name="logRegRadio" value="reg">
-                    Login <input type="radio" name="logRegRadio" value="log" checked="true"> </p>
+                        Login <input type="radio" name="logRegRadio" value="log" checked="true"></p>
                     <button onclick="registerOrLogin()">Login</button>
                 </div>
             </main>
@@ -48,9 +48,11 @@
 
         <aside class="right-sidebar">
             <strong>Extra features:</strong>
-            <p onclick="addRoom">Add room</p>
-            <p onclick="search">Search</p>
-            <p onclick="customizeRoom">Customize room</p>
+            <div id="extraOptions">
+                <button onclick="showAddRoom()">Add room</button>
+                <button onclick="showSearch()">Search</button>
+                <button onclick="showCustomizeRoom()">Customize room</button>
+            </div>
 
             <div id="addRoom">
                 <p>Room name :</p>
@@ -76,9 +78,7 @@
                 <button onclick="saveStyle()">Create</button>
             </div>
         </aside><!-- .right-sidebar -->
-
     </div>
-
 </div>
 
 <footer class="footer">

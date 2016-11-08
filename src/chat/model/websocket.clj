@@ -18,9 +18,19 @@
                (fn [_channel _atom _old_json json]
                  (send! channel json))))
 
-(defn- beatify-message [message datetime author]
+(defn- sendMapToChannel [channel message]
+  (send! channel (jsonprs/generate-string message)))
+
+(defn- beatify-message
+  ([message datetime author]
   (let [ctime (.format (java.text.SimpleDateFormat. "HH/mm/ss") datetime)]
-          (update message "text" (fn [old] author ": " old " ~ " ctime ))))
+          (update message "text" (fn [old] (str author ": " old " ~ " ctime )))))
+  ([message]
+   (let [datetime (:time message)
+        author    (:author message)
+        text      (:text message)
+        ctime     (.format (java.text.SimpleDateFormat. "HH/mm/ss") datetime)]
+   (str author ": " text " ~ " ctime))))
 
 (defmulti perform-ws-action (fn [message channel] (message "method")))
 
@@ -47,22 +57,28 @@
             (add-subscriper (@bindpoints room) channel))
         )
         (domain/addUserToRoom user room)
-        (map #(:text %)(domain/getMessagesByRoom room 1))))
+        (sendMapToChannel channel {:method "customStyle" :result (domain/getStyle room user)})
+        (map beatify-message (domain/getMessagesByRoom room 1))))
 
-(defmethod perform-ws-action "addRoom" [message chanel]
+(defmethod perform-ws-action "newRoom" [message chanel]
   (let [author (@authUsers chanel)
-        participants (message "participants")
+        participants (message "part")
         roomName (message "roomName")]
     (domain/addNewRoom roomName (conj participants author))
-    )
-  (str "Ok"))
+    (str roomName)))
 
-(defmethod perform-ws-action "saveStyle" [message chanel]
-  (let [user (@authUsers chanel)
+(defmethod perform-ws-action "saveStyle" [message channel]
+  (let [user (@authUsers channel)
         style (message "roomStyle")
         room (message "room")]
     (domain/saveCustomStyle room user style))
   (str "Ok"))
+
+
+(defmethod perform-ws-action "nextPage" [message channel]
+  (let [page (message "page")
+        room (message "room")]
+    (map beatify-message (domain/getMessagesByRoom room page))))
 
 (defmethod perform-ws-action "roomLeave" [message channel]
   (let [room (message "room")
@@ -90,7 +106,6 @@
               (swap! authUsers (fn[current_state] (assoc current_state channel login)))
               (str "Success")))))
                        
-
 (defmethod perform-ws-action "roomList" [message channel]
   (map #(:roomName %) (domain/getAccessibleRoomsByUser (@authUsers channel))))
 

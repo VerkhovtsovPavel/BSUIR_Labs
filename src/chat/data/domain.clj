@@ -29,13 +29,13 @@
 
 (defn getAccessibleRoomsByUser
   [user]
-    (mcoll/find-maps db "chats" {ops/$or [{:patr []}
-                                 {:patr {ops/$in [user]}}]})
+    (mcoll/find-maps db "chats" {ops/$or [{:part []}
+                                 {:part {ops/$in [user]}}]})
 )
 
 (defn addMessage
   [chat message]
-    (mcoll/insert db chat {:text message})
+    (mcoll/insert db chat message)
   ;TODO Save in DB text, time and authors
 )
 
@@ -45,6 +45,7 @@
   (with-collection db room
     (find {})
     (paginate :page page :per-page 20)) true)
+  ;TODO Add back order
 )
 
 (defn addNewRoom
