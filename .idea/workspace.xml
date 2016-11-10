@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="71452ca5-d4e0-4f71-b24d-afea410e31d0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/lwr_letter-a_72157594159047168_1.zip" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/lwr_letter-a_72157594159047168_2.zip" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/lwr_letter-a_72157594159047168_3.zip" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/lwr_letter-p_72157594159064582_1.zip" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/lwr_letter-p_72157594159064582_2.zip" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/lwr_letter-v_72157594159068534.zip" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitattributes" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/MISOI-4.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/neuronNetwork/NeuronNetwork.scala" afterPath="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/neuronNetwork/NeuronNetwork.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/neuronNetwork/neurons/HiddenNeuron.scala" afterPath="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/neuronNetwork/neurons/HiddenNeuron.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/neuronNetwork/neurons/InputNeuron.scala" afterPath="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/neuronNetwork/neurons/InputNeuron.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/neuronNetwork/neurons/OutputNeuron.scala" afterPath="$PROJECT_DIR$/src/by/bsuir/verpav/misoi/neuronNetwork/neurons/OutputNeuron.scala" />
-    </list>
+    <list default="true" id="71452ca5-d4e0-4f71-b24d-afea410e31d0" name="Default" comment="" />
     <ignored path="MISOI-4.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -618,7 +597,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
