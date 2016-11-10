@@ -5,7 +5,7 @@ package by.bsuir.verpav.misoi.neuronNetwork.neurons
   */
 class OutputNeuron(){
 
-  var result = 0
+  var result = 0.0
   var signalCounter = 0
 
   def pulse(x : Double): Unit =
