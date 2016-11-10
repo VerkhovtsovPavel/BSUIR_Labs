@@ -1,9 +1,9 @@
 (ns chat.data.domain
-  (:refer-clojure :exclude [find])
+  (:refer-clojure :exclude [find sort])
   (:require [monger.core :as mcore]
             [monger.collection :as mcoll]
             [monger.operators :as ops]
-            [monger.query :refer [paginate with-collection find]]))
+            [monger.query :refer [paginate with-collection find fields sort]]))
 
 (def conn (mcore/connect {:host "localhost" :post 27017}))
 (def db (mcore/get-db conn "chactics"))
@@ -36,21 +36,22 @@
 (defn addMessage
   [chat message]
     (mcoll/insert db chat message)
-  ;TODO Save in DB text, time and authors
 )
 
 (defn getMessagesByRoom
   [room page]
   (monger.conversion/from-db-object
-  (with-collection db room
-    (find {})
-    (paginate :page page :per-page 20)) true)
+    (with-collection db room
+      (find {})
+      (sort {:time -1})
+      (paginate :page page :per-page 20)) true)
   ;TODO Add back order
 )
 
 (defn addNewRoom
     [roomName participants]
-  (mcoll/insert db "chats" {:name roomName :part participants}))
+  (mcoll/insert db "chats" {:roomName roomName :part participants})) ;TODO Add validation registered participants
+                                                                     ;TODO Resend room list to authorozated users
 
 (defn saveCustomStyle
   [room user styleDesc]

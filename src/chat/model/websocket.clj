@@ -58,7 +58,10 @@
         )
         (domain/addUserToRoom user room)
         (sendMapToChannel channel {:method "customStyle" :result (domain/getStyle room user)})
-        (map beatify-message (domain/getMessagesByRoom room 1))))
+        (reverse (map beatify-message (domain/getMessagesByRoom room 1)))))
+
+
+(defmethod perform-ws-action "search" [message channel]) ;;use DSL
 
 (defmethod perform-ws-action "newRoom" [message chanel]
   (let [author (@authUsers chanel)
@@ -78,7 +81,7 @@
 (defmethod perform-ws-action "nextPage" [message channel]
   (let [page (message "page")
         room (message "room")]
-    (map beatify-message (domain/getMessagesByRoom room page))))
+    (reverse (map beatify-message (domain/getMessagesByRoom room page)))))
 
 (defmethod perform-ws-action "roomLeave" [message channel]
   (let [room (message "room")

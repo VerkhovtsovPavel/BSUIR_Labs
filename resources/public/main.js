@@ -11,6 +11,8 @@
 
     var room = "global"
 
+    var fonts = ['Times New Roman', 'Tahoma', 'Arial'] //TODO Increase count of fonts
+
     webSocket.onopen = function() {
       display("Connection opened...");
       currentRoomTitle.innerHTML=room;
@@ -24,7 +26,6 @@
         display(msg.text);
 
       switch(msg.method) {
-      //TODO Change multi if on case
       case "roomList":
         builtRoomList(msg.result)
         break
@@ -120,6 +121,15 @@
         var roomParticipantsField = document.getElementById('roomPart');
         var roomPart = roomParticipantsField.value;
         webSocket.send(JSON.stringify({method:"newRoom", roomName:roomName, part:roomPart.split(';')}));
+    }
+
+    function saveStyle(){
+         var bgrColor = document.getElementById('bgrColor');
+         var bgrImage = document.getElementById('bgrImage');
+         var msgFont  = document.getElementById('msgFont');
+
+         var
+
     }
 
 
