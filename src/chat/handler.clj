@@ -10,8 +10,6 @@
 (defroutes app-routes
   (GET "/" [] (resp/resource-response "index.html" {:root "public"}))
   (GET "/ws" [] ws/handler)
- ; (GET "/room/:id" [id] )
- ; (PUT "/room/style/" [] )
   (route/resources "/")
   (route/not-found "Not Found"))
 

@@ -128,8 +128,6 @@
          var bgrImage = document.getElementById('bgrImage');
          var msgFont  = document.getElementById('msgFont');
 
-         var
-
     }
 
 

@@ -9,7 +9,14 @@
                  [ring/ring-defaults "0.2.1"]
                  [cheshire "5.6.3"]
                  [com.novemberain/monger "3.1.0"]]
-  :plugins [[lein-ring "0.9.7"]]
+  :plugins [[lein-ring "0.9.7"]
+            [lein-cljsbuild "1.1.4"]]
+
+  :cljsbuild {
+              :builds [{:source-paths ["src/cljs"]
+                        :compiler {:output-to "resources/public/core.js"
+                                   :output-dir "resources/public"}}]}
+
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
                         [ring/ring-mock "0.3.0"]]}}
