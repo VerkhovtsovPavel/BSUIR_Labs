@@ -1,6 +1,11 @@
-(ns cljs.chat.client.core)
+(ns cljs.chat.client.core
+  (:require [clojure.string :refer [split]]))
 
 (extend-type js/NodeList
+  ISeqable
+  (-seq [array] (array-seq array 0)))
+
+(extend-type js/HTMLCollection
   ISeqable
   (-seq [array] (array-seq array 0)))
 
@@ -11,12 +16,12 @@
 (def currentRoomTitle (.getElementById js/document "CurrentRoomName"))
 (def addRoomDiv (.getElementById js/document "addRoom"))
 (def searchDiv (.getElementById js/document "search"))
-(def setStyleDiv (.getElementById js/document "setStyle"))                                                ;
-(def currentURL (.-URL js/document))                                                                      ; Move by max to let blocks
-(def webSocket (js/WebSocket. (str "ws://" (.substring currentURL (.indexOf currentURL "//")) "ws")))     ;
+(def setStyleDiv (.getElementById js/document "setStyle"))  ;
+(def currentURL (.-URL js/document))                        ;TODO Move by max to let blocks
+(def webSocket (js/WebSocket. (str "ws://" (.substring currentURL (.indexOf currentURL "//")) "ws"))) ;
 
 (def room "global")
-(def fonts ["Times New Roman", "Tahoma", "Arial"])   ; TODO Increase count of fonts
+(def fonts ["Times New Roman", "Tahoma", "Arial"])          ; TODO Increase count of fonts. MAybe move html
 
 (defn send [clj-map]
   (.send webSocket (.stringify js/JSON (clj->js clj-map))))
@@ -34,95 +39,100 @@
   (let [style (.createElement js/document "style")]
     (set! (.-type style) "text/css")
     (set! (.-innerHTML style) styleSheet)
-    (.appendChild (get (.getElementsByTagName js/document "head") 0) style)))
+    (.appendChild (first (.getElementsByTagName js/document "head")) style)))
 
 (defn builtRoomList [room_list]
   (let [list (.getElementById js/document "rlist")]
 
     (while (.-firstChild list)
-      (.removeChild list (.-firstChild list)))        ; TODO Move to separate method
+      (.removeChild list (.-firstChild list)))              ; TODO Move to separate method
 
-    (doseq [l_room room_list] (fn []
-                                (let [listItem (.createElement js/document "li")]
-                                  (set! (.-id listItem) l_room)
-                                  (set! (.-onclick listItem) (fn [e]
-                                                               (let [newRoom (.-id (.-target e))]
-                                                                 (send {:method "roomLeave" :room room})
-                                                                 (send {:method "roomEnter" :room newRoom})
-                                                                 (set! room newRoom)
-                                                                 (set! (.-innerHTML currentRoomTitle) room)
-                                                                 (while (.-firstChild output)
-                                                                   (.removeChild output (.-firstChild output))))))
+    (doseq [l_room room_list]
+      (fn []
+        (let [listItem (.createElement js/document "li")]
+          (set! (.-id listItem) l_room)
+          (set! (.-onclick listItem)
+                (fn [e]
+                  (let [newRoom (.-id (.-target e))]
+                    (send {:method "roomLeave" :room room})
+                    (send {:method "roomEnter" :room newRoom})
+                    (set! room newRoom)
+                    (set! (.-innerHTML currentRoomTitle) room)
+                    (while (.-firstChild output)
+                      (.removeChild output (.-firstChild output))))))  ;TODO Create separate private method
 
-
-                                  (.appendChild listItem (.createTextNode js/document l_room))
-                                  (.appendChild list listItem))))
+          (.appendChild listItem (.createTextNode js/document l_room))
+          (.appendChild list listItem))))
     ))
 
 (set! (.-onopen webSocket) (fn []
                              (display "Connection opened...")
-                             (set!(.-innerHTML currentRoomTitle) room)))
+                             (set! (.-innerHTML currentRoomTitle) room)))
 
 (set! (.-onclose webSocket) (fn [] (display "Connection closed...")))
 
-(set! (.-onmessage webSocket) (fn [message]
-                               (let [msg (js->clj (.parse js/JSON (.-data message)))]
-                                 (if (= (msg "result") js/undefined)
-                                   (display (msg "text"))
+(set! (.-onmessage webSocket)
+      (fn [message]
+        (let [msg (js->clj (.parse js/JSON (.-data message)))]
+          (if (= (msg "result") js/undefined)
+            (display (msg "text"))
 
-                                   (case (msg "methods")
-                                     "roomList" (builtRoomList (msg "result"))
+            (case (msg "method")
+              "roomList"
+              (builtRoomList (msg "result"))
+              "login"
+              (if (= (msg "result") "Success")
+                (do
+                  (set! (.-visibility (.-style loginReg)) "hidden") ; TODO Create separate method
+                  (set! (.-visibility (.-style dialog)) "visible")
+                  (set! (.-visibility (.-style (first (.getElementsByClassName js/document "left-sidebar")))) "visible")
+                  (set! (.-visibility (.-style (first (.getElementsByClassName js/document "right-sidebar")))) "visible")
 
-                                     "login"
-                                     (if (= (msg "result") "Success")
-                                       (do
-                                         (set! (.-visibility (.-style loginReg)) "hidden") ; TODO Create separate method
-                                         (set! (.-visibility (.-style dialog)) "visible")
-                                         (set! (.-visibility (.-style (get (.getElementsByClassName js/document "left-sidebar") 0))) "visible")
-                                         (set! (.-visibility (.-style (get (.getElementsByClassName js/document "right-sidebar") 0))) "visible")
+                  (send {:method "roomList"})
+                  (send {:method "roomEnter" :room room})
+                  )
+                (js/alert (msg "result")))                  ;TODO Remove duplication
 
-                                         (send {:method "roomList"})
-                                         (send {:method "roomEnter" :room room})
-                                         )
-                                       (js/alert (msg "result"))) ;TODO Remove duplication
+              "registration"
+              (if (= (msg "result") "Success")
+                (do
+                  (set! (.-visibility (.-style loginReg)) "hidden") ; TODO Create separate method
+                  (set! (.-visibility (.-style dialog)) "visible")
+                  (set! (.-visibility (.-style (get (.getElementsByClassName js/document "left-sidebar") 0))) "visible") ;
+                  (set! (.-visibility (.-style (get (.getElementsByClassName js/document "right-sidebar") 0))) "visible") ; TODO Move to let
 
-                                     "registration"
-                                     (if (= (msg "result") "Success")
-                                       (do
-                                         (set! (.-visibility (.-style loginReg)) "hidden") ; TODO Create separate method
-                                         (set! (.-visibility (.-style dialog)) "visible")
-                                         (set! (.-visibility (.-style (get (.getElementsByClassName js/document "left-sidebar") 0))) "visible")
-                                         (set! (.-visibility (.-style (get (.getElementsByClassName js/document "right-sidebar") 0))) "visible")
+                  (send {:method "roomList"})
+                  (send {:method "roomEnter" :room room})
+                  )
+                (js/alert (msg "result")))
 
-                                         (send {:method "roomList"})
-                                         (send {:method "roomEnter" :room room})
-                                         )
-                                       (js/alert (msg "result")))
+              "roomStyle" (addStyle (msg "result"))
 
-                                     "roomStyle" (addStyle (msg "result"))
+              "roomEnter"
+              (let [messages (msg "result")]
+                (doseq [m messages] (display m)))
 
-                                     "roomEnter"
-                                     (let [messages (msg "result")]
-                                       (doseq [m messages] (display m)))
+              "newRoom"
+              (let [list (.getElementById js/document "rlist")
+                    listItem (.createElement js/document "li")]
+                (set! (.-id listItem) (msg "result"))
+                (set! (.-onclick listItem)
+                      (fn [e]
+                        (let [newRoom (.-id (.-target e))]
+                          (send {:method "roomLeave" :room room})
+                          (send {:method "roomEnter" :room newRoom})
+                          (set! room newRoom)
+                          (set! (.-innerHTML currentRoomTitle) room)
+                          (while (.-firstChild output)
+                            (.removeChild output (.-firstChild output))))))
 
-                                     "newRoom"
-                                     (let [list (.getElementById js/document "rlist")
-                                           listItem (.createElement js/document "li")]
-                                       (set! (.-id listItem) (msg "result"))
-                                       (set! (.-onclick listItem) (fn [e]
-                                                                    (let [newRoom (.-id (.-target e))]
-                                                                      (send {:method "roomLeave" :room room})
-                                                                      (send {:method "roomEnter" :room newRoom})
-                                                                      (set! room newRoom)
-                                                                      (set! (.-innerHTML currentRoomTitle) room)
-                                                                      (while (.-firstChild output)
-                                                                        (.removeChild output (.-firstChild output))))))
+                (.appendChild listItem (.createTextNode js/document (msg "result")))
+                (.appendChild list listItem))
 
-
-                                       (.appendChild listItem (.createTextNode js/document (msg "result")))
-                                       (.appendChild list listItem))))
-                                 (set! (.-value text) "")
-                                 )))
+              (msg "result"))
+            )
+          (set! (.-value text) "")
+          )))
 
 (defn sendNewMessage [] (send {:method "message", :text (.-value text), :room room}))
 
@@ -138,7 +148,7 @@
 (defn saveStyle []
   (let [bgrColor (.getElementById js/document "bgrColor")
         bgrImage (.getElementById js/document "bgrImage")
-        msgFont (.getElementById js/document "msgFont")]))
+        msgFont (.getElementById js/document "msgFont")]))  ;TODO Create css text and send
 
 
 ; handlers

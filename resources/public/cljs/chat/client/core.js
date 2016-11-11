@@ -1,9 +1,16 @@
 // Compiled by ClojureScript 1.9.293 {}
 goog.provide('cljs.chat.client.core');
 goog.require('cljs.core');
+goog.require('clojure.string');
 NodeList.prototype.cljs$core$ISeqable$ = cljs.core.PROTOCOL_SENTINEL;
 
 NodeList.prototype.cljs$core$ISeqable$_seq$arity$1 = (function (array){
+var array__$1 = this;
+return cljs.core.array_seq.call(null,array__$1,(0));
+});
+HTMLCollection.prototype.cljs$core$ISeqable$ = cljs.core.PROTOCOL_SENTINEL;
+
+HTMLCollection.prototype.cljs$core$ISeqable$_seq$arity$1 = (function (array){
 var array__$1 = this;
 return cljs.core.array_seq.call(null,array__$1,(0));
 });
@@ -39,7 +46,7 @@ style.type = "text/css";
 
 style.innerHTML = styleSheet;
 
-return cljs.core.get.call(null,document.getElementsByTagName("head"),(0)).appendChild(style);
+return cljs.core.first.call(null,document.getElementsByTagName("head")).appendChild(style);
 });
 cljs.chat.client.core.builtRoomList = (function cljs$chat$client$core$builtRoomList(room_list){
 var list = document.getElementById("rlist");
@@ -53,49 +60,49 @@ continue;
 break;
 }
 
-var seq__8188 = cljs.core.seq.call(null,room_list);
-var chunk__8189 = null;
-var count__8190 = (0);
-var i__8191 = (0);
+var seq__9779 = cljs.core.seq.call(null,room_list);
+var chunk__9780 = null;
+var count__9781 = (0);
+var i__9782 = (0);
 while(true){
-if((i__8191 < count__8190)){
-var l_room = cljs.core._nth.call(null,chunk__8189,i__8191);
+if((i__9782 < count__9781)){
+var l_room = cljs.core._nth.call(null,chunk__9780,i__9782);
 
-var G__8192 = seq__8188;
-var G__8193 = chunk__8189;
-var G__8194 = count__8190;
-var G__8195 = (i__8191 + (1));
-seq__8188 = G__8192;
-chunk__8189 = G__8193;
-count__8190 = G__8194;
-i__8191 = G__8195;
+var G__9783 = seq__9779;
+var G__9784 = chunk__9780;
+var G__9785 = count__9781;
+var G__9786 = (i__9782 + (1));
+seq__9779 = G__9783;
+chunk__9780 = G__9784;
+count__9781 = G__9785;
+i__9782 = G__9786;
 continue;
 } else {
-var temp__4657__auto__ = cljs.core.seq.call(null,seq__8188);
+var temp__4657__auto__ = cljs.core.seq.call(null,seq__9779);
 if(temp__4657__auto__){
-var seq__8188__$1 = temp__4657__auto__;
-if(cljs.core.chunked_seq_QMARK_.call(null,seq__8188__$1)){
-var c__7357__auto__ = cljs.core.chunk_first.call(null,seq__8188__$1);
-var G__8196 = cljs.core.chunk_rest.call(null,seq__8188__$1);
-var G__8197 = c__7357__auto__;
-var G__8198 = cljs.core.count.call(null,c__7357__auto__);
-var G__8199 = (0);
-seq__8188 = G__8196;
-chunk__8189 = G__8197;
-count__8190 = G__8198;
-i__8191 = G__8199;
+var seq__9779__$1 = temp__4657__auto__;
+if(cljs.core.chunked_seq_QMARK_.call(null,seq__9779__$1)){
+var c__7357__auto__ = cljs.core.chunk_first.call(null,seq__9779__$1);
+var G__9787 = cljs.core.chunk_rest.call(null,seq__9779__$1);
+var G__9788 = c__7357__auto__;
+var G__9789 = cljs.core.count.call(null,c__7357__auto__);
+var G__9790 = (0);
+seq__9779 = G__9787;
+chunk__9780 = G__9788;
+count__9781 = G__9789;
+i__9782 = G__9790;
 continue;
 } else {
-var l_room = cljs.core.first.call(null,seq__8188__$1);
+var l_room = cljs.core.first.call(null,seq__9779__$1);
 
-var G__8200 = cljs.core.next.call(null,seq__8188__$1);
-var G__8201 = null;
-var G__8202 = (0);
-var G__8203 = (0);
-seq__8188 = G__8200;
-chunk__8189 = G__8201;
-count__8190 = G__8202;
-i__8191 = G__8203;
+var G__9791 = cljs.core.next.call(null,seq__9779__$1);
+var G__9792 = null;
+var G__9793 = (0);
+var G__9794 = (0);
+seq__9779 = G__9791;
+chunk__9780 = G__9792;
+count__9781 = G__9793;
+i__9782 = G__9794;
 continue;
 }
 } else {
@@ -118,8 +125,8 @@ var msg = cljs.core.js__GT_clj.call(null,JSON.parse(message.data));
 if(cljs.core._EQ_.call(null,msg.call(null,"result"),undefined)){
 cljs.chat.client.core.display.call(null,msg.call(null,"text"));
 } else {
-var G__8204_8209 = msg.call(null,"methods");
-switch (G__8204_8209) {
+var G__9795_9800 = msg.call(null,"method");
+switch (G__9795_9800) {
 case "roomList":
 cljs.chat.client.core.builtRoomList.call(null,msg.call(null,"result"));
 
@@ -130,9 +137,9 @@ cljs.chat.client.core.loginReg.style.visibility = "hidden";
 
 cljs.chat.client.core.dialog.style.visibility = "visible";
 
-cljs.core.get.call(null,document.getElementsByClassName("left-sidebar"),(0)).style.visibility = "visible";
+cljs.core.first.call(null,document.getElementsByClassName("left-sidebar")).style.visibility = "visible";
 
-cljs.core.get.call(null,document.getElementsByClassName("right-sidebar"),(0)).style.visibility = "visible";
+cljs.core.first.call(null,document.getElementsByClassName("right-sidebar")).style.visibility = "visible";
 
 cljs.chat.client.core.send.call(null,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"method","method",55703592),"roomList"], null));
 
@@ -165,52 +172,52 @@ cljs.chat.client.core.addStyle.call(null,msg.call(null,"result"));
 
 break;
 case "roomEnter":
-var messages_8211 = msg.call(null,"result");
-var seq__8205_8212 = cljs.core.seq.call(null,messages_8211);
-var chunk__8206_8213 = null;
-var count__8207_8214 = (0);
-var i__8208_8215 = (0);
+var messages_9802 = msg.call(null,"result");
+var seq__9796_9803 = cljs.core.seq.call(null,messages_9802);
+var chunk__9797_9804 = null;
+var count__9798_9805 = (0);
+var i__9799_9806 = (0);
 while(true){
-if((i__8208_8215 < count__8207_8214)){
-var m_8216 = cljs.core._nth.call(null,chunk__8206_8213,i__8208_8215);
-cljs.chat.client.core.display.call(null,m_8216);
+if((i__9799_9806 < count__9798_9805)){
+var m_9807 = cljs.core._nth.call(null,chunk__9797_9804,i__9799_9806);
+cljs.chat.client.core.display.call(null,m_9807);
 
-var G__8217 = seq__8205_8212;
-var G__8218 = chunk__8206_8213;
-var G__8219 = count__8207_8214;
-var G__8220 = (i__8208_8215 + (1));
-seq__8205_8212 = G__8217;
-chunk__8206_8213 = G__8218;
-count__8207_8214 = G__8219;
-i__8208_8215 = G__8220;
+var G__9808 = seq__9796_9803;
+var G__9809 = chunk__9797_9804;
+var G__9810 = count__9798_9805;
+var G__9811 = (i__9799_9806 + (1));
+seq__9796_9803 = G__9808;
+chunk__9797_9804 = G__9809;
+count__9798_9805 = G__9810;
+i__9799_9806 = G__9811;
 continue;
 } else {
-var temp__4657__auto___8221 = cljs.core.seq.call(null,seq__8205_8212);
-if(temp__4657__auto___8221){
-var seq__8205_8222__$1 = temp__4657__auto___8221;
-if(cljs.core.chunked_seq_QMARK_.call(null,seq__8205_8222__$1)){
-var c__7357__auto___8223 = cljs.core.chunk_first.call(null,seq__8205_8222__$1);
-var G__8224 = cljs.core.chunk_rest.call(null,seq__8205_8222__$1);
-var G__8225 = c__7357__auto___8223;
-var G__8226 = cljs.core.count.call(null,c__7357__auto___8223);
-var G__8227 = (0);
-seq__8205_8212 = G__8224;
-chunk__8206_8213 = G__8225;
-count__8207_8214 = G__8226;
-i__8208_8215 = G__8227;
+var temp__4657__auto___9812 = cljs.core.seq.call(null,seq__9796_9803);
+if(temp__4657__auto___9812){
+var seq__9796_9813__$1 = temp__4657__auto___9812;
+if(cljs.core.chunked_seq_QMARK_.call(null,seq__9796_9813__$1)){
+var c__7357__auto___9814 = cljs.core.chunk_first.call(null,seq__9796_9813__$1);
+var G__9815 = cljs.core.chunk_rest.call(null,seq__9796_9813__$1);
+var G__9816 = c__7357__auto___9814;
+var G__9817 = cljs.core.count.call(null,c__7357__auto___9814);
+var G__9818 = (0);
+seq__9796_9803 = G__9815;
+chunk__9797_9804 = G__9816;
+count__9798_9805 = G__9817;
+i__9799_9806 = G__9818;
 continue;
 } else {
-var m_8228 = cljs.core.first.call(null,seq__8205_8222__$1);
-cljs.chat.client.core.display.call(null,m_8228);
+var m_9819 = cljs.core.first.call(null,seq__9796_9813__$1);
+cljs.chat.client.core.display.call(null,m_9819);
 
-var G__8229 = cljs.core.next.call(null,seq__8205_8222__$1);
-var G__8230 = null;
-var G__8231 = (0);
-var G__8232 = (0);
-seq__8205_8212 = G__8229;
-chunk__8206_8213 = G__8230;
-count__8207_8214 = G__8231;
-i__8208_8215 = G__8232;
+var G__9820 = cljs.core.next.call(null,seq__9796_9813__$1);
+var G__9821 = null;
+var G__9822 = (0);
+var G__9823 = (0);
+seq__9796_9803 = G__9820;
+chunk__9797_9804 = G__9821;
+count__9798_9805 = G__9822;
+i__9799_9806 = G__9823;
 continue;
 }
 } else {
@@ -221,11 +228,11 @@ break;
 
 break;
 case "newRoom":
-var list_8233 = document.getElementById("rlist");
-var listItem_8234 = document.createElement("li");
-listItem_8234.id = msg.call(null,"result");
+var list_9824 = document.getElementById("rlist");
+var listItem_9825 = document.createElement("li");
+listItem_9825.id = msg.call(null,"result");
 
-listItem_8234.onclick = ((function (list_8233,listItem_8234,G__8204_8209,msg){
+listItem_9825.onclick = ((function (list_9824,listItem_9825,G__9795_9800,msg){
 return (function (e){
 var newRoom = e.target.id;
 cljs.chat.client.core.send.call(null,new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null,"method","method",55703592),"roomLeave",new cljs.core.Keyword(null,"room","room",536484922),cljs.chat.client.core.room], null));
@@ -246,16 +253,16 @@ return null;
 }
 break;
 }
-});})(list_8233,listItem_8234,G__8204_8209,msg))
+});})(list_9824,listItem_9825,G__9795_9800,msg))
 ;
 
-listItem_8234.appendChild(document.createTextNode(msg.call(null,"result")));
+listItem_9825.appendChild(document.createTextNode(msg.call(null,"result")));
 
-list_8233.appendChild(listItem_8234);
+list_9824.appendChild(listItem_9825);
 
 break;
 default:
-throw (new Error([cljs.core.str("No matching clause: "),cljs.core.str(msg.call(null,"methods"))].join('')));
+msg.call(null,"result");
 
 }
 }
