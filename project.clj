@@ -15,7 +15,7 @@
   :cljsbuild {
               :builds [{:source-paths ["src/cljs"]
                         :compiler {:output-to "resources/public/core.js"
-                                   :output-dir "resources/public"}}]}
+                                   :output-dir "resources/public/out"}}]}
 
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]

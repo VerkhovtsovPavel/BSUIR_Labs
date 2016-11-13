@@ -2,7 +2,7 @@
   (:use [org.httpkit.server])
   (:require [cheshire.core :as jsonprs]
             [chat.data.domain :as domain])
-  (:import (java.io BufferedWriter FileWriter)))
+  (:import (java.io FileWriter)))
 
 
 (def bindpoints (atom {"global" (atom nil)}))
@@ -71,24 +71,33 @@
   (let [room (message "room")
         room_bindpoint (@bindpoints room)
         user (@authUsers channel)]
-    (if room_bindpoint
-      (add-subscriper room_bindpoint channel)
+    (if (contains? (domain/getAccessibleRoomsByUser user) room)
       (do
-        (create_room_bindpoint room)
-        (add-subscriper (@bindpoints room) channel))
-      )
-    (domain/addUserToRoom user room)
-    (sendMapToChannel channel {:method "roomStyle" :result (domain/getStyle room user)})
-    (reverse (map beatify-message (domain/getMessagesByRoom room 1)))))
+        (if room_bindpoint
+          (add-subscriper room_bindpoint channel)
+          (do
+            (create_room_bindpoint room)
+            (add-subscriper (@bindpoints room) channel))
+          )
+        (domain/addUserToRoom user room)
+        (sendMapToChannel channel {:method "roomStyle" :result (domain/getStyle room user)})
+        (reverse (map beatify-message (domain/getMessagesByRoom room 1))))
+      (str "Illegal access"))))
 
 
 (defmethod perform-ws-action "search" [message channel])    ;;use DSL
 
-(defmethod perform-ws-action "newRoom" [message chanel]
-  (let [author (@authUsers chanel)
+(defmethod perform-ws-action "newRoom" [message channel]
+  (let [author (@authUsers channel)
         participants (message "part")
         roomName (message "roomName")]
-    (domain/addNewRoom roomName (conj participants author))
+    (domain/addNewRoom roomName (conj participants author)) ;TODO Add validation registered participants
+    (doseq [authUser @authUsers]
+      (fn []
+        (if (contains? (seq participants) authUser)
+          (sendMapToChannel channel {:method "newRoom" :result roomName}))
+        )
+      )
     (str roomName)))
 
 (defmethod perform-ws-action "saveStyle" [message channel]
@@ -136,7 +145,7 @@
 (defn getResponse
   [message channel]
   (log "Request from" channel message)
-  (let [json (jsonprs/parse-string message)] ; TODO Maybe keywordise
+  (let [json (jsonprs/parse-string message)]                ; TODO Maybe keywordise
     {:method (json "method")
      :result (perform-ws-action json channel)}))
 

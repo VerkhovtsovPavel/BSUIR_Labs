@@ -45,13 +45,11 @@
       (find {})
       (sort {:time -1})
       (paginate :page page :per-page 20)) true)
-  ;TODO Add back order
 )
 
 (defn addNewRoom
     [roomName participants]
-  (mcoll/insert db "chats" {:roomName roomName :part participants})) ;TODO Add validation registered participants
-                                                                     ;TODO Resend room list to authorozated users
+  (mcoll/insert db "chats" {:roomName roomName :part participants}))
 
 (defn saveCustomStyle
   [room user styleDesc]

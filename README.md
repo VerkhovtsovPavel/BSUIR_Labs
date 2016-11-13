@@ -1,6 +1,6 @@
 # chat
 
-FIXME
+New word in chatting
 
 ## Prerequisites
 
@@ -12,8 +12,8 @@ You will need [Leiningen][] 2.0.0 or above installed.
 
 To start a web server for the application, run:
 
-    lein ring server
+    lein run
 
 ## License
 
-Copyright © 2016 FIXME
+Copyright © 2016

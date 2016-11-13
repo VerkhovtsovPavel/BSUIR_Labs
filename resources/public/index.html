@@ -21,7 +21,7 @@
                 <div id="dialog">
                     <h3 id="CurrentRoomName"></h3>
                     <input id="text">
-                    <button onclick="cljs.chat.client.core.sendNewMessage()">Send</button>
+                    <button onclick="cljs.chat.client.uiHandlers.sendNewMessage()">Send</button>
                     <div id="output">
 
                     </div>
@@ -33,12 +33,12 @@
                     <input id="password" type="password">
                     <p>Registration <input type="radio" name="logRegRadio" value="reg">
                         Login <input type="radio" name="logRegRadio" value="log" checked="true"></p>
-                    <button onclick="cljs.chat.client.core.registerOrLogin()">Login</button>
+                    <button onclick="cljs.chat.client.uiHandlers.registerOrLogin()">Login</button>
                 </div>
             </main>
         </div>
 
-        <aside class="left-sidebar">
+        <aside class="left-sidebar" id="left-sidebar">
             <strong>Room list:</strong>
             <div id="roomList">
                 <ul id="rlist">
@@ -46,12 +46,12 @@
             </div>
         </aside>
 
-        <aside class="right-sidebar">
+        <aside class="right-sidebar" id="right-sidebar">
             <strong>Extra features:</strong>
             <div id="extraOptions">
-                <button onclick="cljs.chat.client.core.showAddRoom()">Add room</button>
-                <button onclick="cljs.chat.client.core.showSearch()">Search</button>
-                <button onclick="cljs.chat.client.core.showCustomizeRoom()">Customize room</button>
+                <button onclick="cljs.chat.client.uiHandlers.showAddRoom()">Add room</button>
+                <button onclick="cljs.chat.client.uiHandlers.showSearch()">Search</button>
+                <button onclick="cljs.chat.client.uiHandlers.showCustomizeRoom()">Customize room</button>
             </div>
 
             <div id="addRoom">
@@ -59,13 +59,13 @@
                 <input id="roomName">
                 <p>Participants (use ';' for separating):</p>
                 <input id="roomPart">
-                <button onclick="cljs.chat.client.core.createRoom()">Create</button>
+                <button onclick="cljs.chat.client.uiHandlers.createRoom()">Create</button>
             </div>
 
             <div id="search">
                 <p>Search query :</p>
                 <input id="searchQuery">
-                <button onclick="cljs.chat.client.core.searchQuery()">Search</button>
+                <button onclick="cljs.chat.client.uiHandlers.searchQuery()">Search</button>
             </div>
 
             <div id="setStyle">
@@ -75,7 +75,7 @@
                 <input id="bgrImage">
                 <p>Message font :</p>
                 <input id="msgFont">
-                <button onclick="cljs.chat.client.core.saveStyle()">Create</button>
+                <button onclick="cljs.chat.client.uiHandlers.saveStyle()">Create</button>
             </div>
         </aside><!-- .right-sidebar -->
     </div>
@@ -84,8 +84,8 @@
 <footer class="footer">
     <strong>Chatik®</strong> All rights reserved. BSUIR 2016.
 </footer>
-<script type="text/javascript" src="goog/base.js"></script>
+<script type="text/javascript" src="out/goog/base.js"></script>
 <script type="text/javascript" src="core.js"></script>
-<script type="text/javascript">goog.require("cljs.chat.client.core");</script>
+<script type="text/javascript">goog.require("cljs.chat.client.uiHandlers");</script>
 </body>
 </html>
