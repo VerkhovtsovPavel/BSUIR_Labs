@@ -14,12 +14,13 @@ class NeuronNetwork(sampleHeigth : Int, sampleWidth : Int) {
 
   var inputNeurons: Array[InputNeuron[BufferedImage]] = new Array[InputNeuron[BufferedImage]](sampleHeigth*sampleWidth)
 
-  var hiddenNeurons: List[HiddenNeuron] = _
+  var outputNeurons: Array[OutputNeuron] = _
 
   var classes: List[String] = _
 
   def learn(className: String, sampleSet: List[BufferedImage]) = {
     val outputNeuron = new OutputNeuron()
+    outputNeurons
     for (x  <- 0 until sampleWidth; y <- 0 until sampleHeigth) {
       val (r, c) = calculateParametersGaussian(sampleSet, extractPixel(_: BufferedImage, x, y))
       val hiddenNeuron = new HiddenNeuron(NeuronNetworkUtils.gaussFunction(_ : Double, r, c))
@@ -33,6 +34,7 @@ class NeuronNetwork(sampleHeigth : Int, sampleWidth : Int) {
   }
 
   def learn(sampleSets: mutable.Map[String, List[File]]) = {
+    outputNeurons = new Array[OutputNeuron](sampleSets.size)
     for (x  <- 0 until sampleWidth; y <- 0 until sampleHeigth) {
       inputNeurons(x*sampleWidth+y) = new InputNeuron[BufferedImage](extractPixel(_: BufferedImage, x, y))
     }
@@ -46,6 +48,7 @@ class NeuronNetwork(sampleHeigth : Int, sampleWidth : Int) {
   def classify(image : BufferedImage) = {
     val preparedImage = image.getScaledInstance(sampleWidth, sampleHeigth, Image.SCALE_SMOOTH).asInstanceOf[BufferedImage]
     inputNeurons.foreach(_.pulse(preparedImage))
+    outputNeurons.zipWithIndex.maxBy(_._1)._2
   }
 
   private def calculateParametersGaussian(sampleSet: List[BufferedImage], paramCalculator: BufferedImage => Double): (Double, Double) = {
