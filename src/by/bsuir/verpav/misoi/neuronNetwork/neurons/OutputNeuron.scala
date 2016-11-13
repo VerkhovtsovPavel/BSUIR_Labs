@@ -15,7 +15,7 @@ class OutputNeuron(){
   }
 
   def getResult: Double ={
-    val res = result.toDouble / signalCounter
+    val res = result / signalCounter
     result = 0
     signalCounter = 0
     res

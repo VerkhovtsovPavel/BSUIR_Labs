@@ -8,6 +8,7 @@ import javax.imageio.ImageIO
 import javax.swing._
 
 import by.bsuir.verpav.misoi.harris.HarrisCornersDetector
+import by.bsuir.verpav.misoi.neuronNetwork.NeuronNetwork
 import scala.collection.mutable
 
 /**
@@ -17,6 +18,8 @@ object MainForm extends JFrame with App{
 
   var baseImage: BufferedImage = _
   val imageLabel : JLabel = new JLabel()
+
+  val neuronNetwork = new NeuronNetwork(20, 20)
 
   val sampleSets = mutable.Map[String, List[File]]()
 
@@ -63,15 +66,12 @@ object MainForm extends JFrame with App{
     setLocation(x1, y1)
   }
 
-  def performClusteringStep(useCustomParams : Boolean, e : ActionEvent): Unit = {
-    import by.bsuir.verpav.misoi.pipeline.PipelineEngine.globalState
-    if(useCustomParams)
-      HarrisCornersDetector.currentStep.requestParameters(this)
-    baseImage = HarrisCornersDetector.currentStep(baseImage)
-    if(!HarrisCornersDetector.nextStep()){
-      JOptionPane.showConfirmDialog(this,"Detecting finish", "Detecting finish", JOptionPane.CLOSED_OPTION)
-    }
-    setImageToLabel()
+  def learn() : Unit = {
+    neuronNetwork.learn(sampleSets)
+  }
+
+  def classify() : Unit = {
+    neuronNetwork.classify(baseImage)
   }
 
   def createMenu(frame: JFrame): Unit = {
@@ -96,13 +96,13 @@ object MainForm extends JFrame with App{
 
     val performClusteringStepItem = new JMenuItem("Learn")
     performClusteringStepItem.setFont(font)
-    performClusteringStepItem.addActionListener(performClusteringStep(false, _ : ActionEvent))
+    performClusteringStepItem.addActionListener(learn _)
     performClusteringStepItem.setAccelerator(KeyStroke.getKeyStroke('L', Toolkit.getDefaultToolkit.getMenuShortcutKeyMask))
     clustering.add(performClusteringStepItem)
 
     val performClusteringStepItemWithCustomParameters = new JMenuItem("Classify")
     performClusteringStepItemWithCustomParameters.setFont(font)
-    performClusteringStepItemWithCustomParameters.addActionListener(performClusteringStep(true, _ : ActionEvent))
+    performClusteringStepItemWithCustomParameters.addActionListener(classify _)
     performClusteringStepItemWithCustomParameters.setAccelerator(KeyStroke.getKeyStroke('S', Toolkit.getDefaultToolkit.getMenuShortcutKeyMask))
     clustering.add(performClusteringStepItemWithCustomParameters)
 
