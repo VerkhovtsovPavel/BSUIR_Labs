@@ -43,10 +43,14 @@ object MainForm extends JFrame with App{
   }
 
   private def loadSampleSetFolder(): Unit = {
-    val chooser = new FileDialog(this, "Use a .png or .jpg extension", FileDialog.LOAD)
-    chooser.setVisible(true)
-    val folderName = chooser.getDirectory + chooser.getFile
-    sampleSets.put(chooser.getFile, new File(folderName).listFiles().toList)
+    val chooser = new JFileChooser()
+    chooser.setCurrentDirectory(new java.io.File("."))
+    chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY)
+    chooser.setAcceptAllFileFilterUsed(false)
+    if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+      val folderName = chooser.getSelectedFile.getAbsolutePath
+      sampleSets.put(chooser.getSelectedFile.getName, new File(folderName).listFiles().toList)
+    }
   }
 
   private def createUIElements(frame: JFrame): Unit = {
@@ -68,10 +72,12 @@ object MainForm extends JFrame with App{
 
   def learn() : Unit = {
     neuronNetwork.learn(sampleSets)
+    JOptionPane.showConfirmDialog(this,"Learning finished", "Learning finished", JOptionPane.CLOSED_OPTION)
   }
 
   def classify() : Unit = {
-    neuronNetwork.classify(baseImage)
+    val result = neuronNetwork.classify(baseImage)
+    JOptionPane.showConfirmDialog(this, "Prognoses class : "+result, "Classification results", JOptionPane.CLOSED_OPTION)
   }
 
   def createMenu(frame: JFrame): Unit = {
@@ -81,9 +87,14 @@ object MainForm extends JFrame with App{
     val fileMenu = new JMenu("File")
     fileMenu.setFont(font)
 
-    val loadItem = new JMenuItem("Add class")
+    val loadClass = new JMenuItem("Add class")
+    loadClass.setFont(font)
+    loadClass.addActionListener(loadSampleSetFolder _)
+    fileMenu.add(loadClass)
+
+    val loadItem = new JMenuItem("Load Image")
     loadItem.setFont(font)
-    loadItem.addActionListener(loadSampleSetFolder _)
+    loadItem.addActionListener(loadImage _)
     fileMenu.add(loadItem)
 
     val exitItem = new JMenuItem("Exit")
@@ -105,7 +116,6 @@ object MainForm extends JFrame with App{
     performClusteringStepItemWithCustomParameters.addActionListener(classify _)
     performClusteringStepItemWithCustomParameters.setAccelerator(KeyStroke.getKeyStroke('S', Toolkit.getDefaultToolkit.getMenuShortcutKeyMask))
     clustering.add(performClusteringStepItemWithCustomParameters)
-
 
     menuBar.add(fileMenu)
     menuBar.add(clustering)

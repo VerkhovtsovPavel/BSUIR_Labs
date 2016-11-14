@@ -9,57 +9,71 @@ import by.bsuir.verpav.misoi.neuronNetwork.neurons.{HiddenNeuron, InputNeuron, O
 import by.bsuir.verpav.misoi.util.ImageUtils
 
 import scala.collection.mutable
+import scala.collection.mutable.ArrayBuffer
 
-class NeuronNetwork(sampleHeigth : Int, sampleWidth : Int) {
+class NeuronNetwork(sampleHeigth: Int, sampleWidth: Int) {
 
-  var inputNeurons: Array[InputNeuron[BufferedImage]] = new Array[InputNeuron[BufferedImage]](sampleHeigth*sampleWidth)
+  var inputNeurons: Array[InputNeuron[BufferedImage]] = new Array[InputNeuron[BufferedImage]](sampleHeigth * sampleWidth)
 
-  var outputNeurons: Array[OutputNeuron] = _
+  val outputNeurons: ArrayBuffer[OutputNeuron] = ArrayBuffer[OutputNeuron]()
 
-  var classes: List[String] = _
+  var classes: ArrayBuffer[String] = ArrayBuffer[String]()
 
-  def learn(className: String, sampleSet: List[BufferedImage]) = {
-    val outputNeuron = new OutputNeuron()
-    outputNeurons
-    for (x  <- 0 until sampleWidth; y <- 0 until sampleHeigth) {
-      val (r, c) = calculateParametersGaussian(sampleSet, extractPixel(_: BufferedImage, x, y))
-      val hiddenNeuron = new HiddenNeuron(NeuronNetworkUtils.gaussFunction(_ : Double, r, c))
+  def learn(className: String, sampleSet: List[Image]): Unit = {
+    val outputNeuron = new OutputNeuron(sampleSet.length)
+    outputNeurons.append(outputNeuron)
+    classes.append(className)
+    for (x <- 0 until sampleWidth; y <- 0 until sampleHeigth) {
+      val (r, c) = calculateParametersGaussian(sampleSet, extractPixel(_: Image, x, y))
+      val hiddenNeuron = new HiddenNeuron(NeuronNetworkUtils.gaussFunction(_: Double, r, c))
       hiddenNeuron.addNeuronToNextLayer(outputNeuron)
-      inputNeurons(x*sampleWidth+y).addNeuronToNextLayer(hiddenNeuron)
+      inputNeurons(x * sampleWidth + y).addNeuronToNextLayer(hiddenNeuron)
     }
-
-    //inputNeurons = countOfParameters
-    //hiddenNeurons += countOfParameters
-    //outputNeurons += 1
   }
 
-  def learn(sampleSets: mutable.Map[String, List[File]]) = {
-    outputNeurons = new Array[OutputNeuron](sampleSets.size)
-    for (x  <- 0 until sampleWidth; y <- 0 until sampleHeigth) {
-      inputNeurons(x*sampleWidth+y) = new InputNeuron[BufferedImage](extractPixel(_: BufferedImage, x, y))
+  def learn(sampleSets: mutable.Map[String, List[File]]): Unit = {
+    for (x <- 0 until sampleWidth; y <- 0 until sampleHeigth) {
+      inputNeurons(x * sampleWidth + y) = new InputNeuron[BufferedImage](extractPixel(_: BufferedImage, x, y))
     }
 
-    val transformedSampleSet = sampleSets.map(ent => (ent._1, ent._2.map(ImageIO.read(_).getScaledInstance(sampleWidth, sampleHeigth, Image.SCALE_SMOOTH).asInstanceOf[BufferedImage])))
-    for(sampleSet <- transformedSampleSet){
+    val transformedSampleSet = sampleSets.map(ent => (ent._1, ent._2.map(ImageIO.read(_).getScaledInstance(sampleWidth, sampleHeigth, Image.SCALE_SMOOTH))))
+    for (sampleSet <- transformedSampleSet) {
       learn(sampleSet._1, sampleSet._2)
     }
   }
 
-  def classify(image : BufferedImage) = {
-    val preparedImage = image.getScaledInstance(sampleWidth, sampleHeigth, Image.SCALE_SMOOTH).asInstanceOf[BufferedImage]
+  def classify(image: BufferedImage) : String = {
+    val preparedImage = convertToBufferedImage(image.getScaledInstance(sampleWidth, sampleHeigth, Image.SCALE_SMOOTH))
     inputNeurons.foreach(_.pulse(preparedImage))
-    outputNeurons.zipWithIndex.maxBy(_._1)._2
+    val results = outputNeurons.map(_.getResult)
+    val className = classes(results.zipWithIndex.maxBy(_._1)._2)
+    className
   }
 
-  private def calculateParametersGaussian(sampleSet: List[BufferedImage], paramCalculator: BufferedImage => Double): (Double, Double) = {
+  private def calculateParametersGaussian(sampleSet: List[Image], paramCalculator: Image => Double): (Double, Double) = {
     val params = sampleSet.map(paramCalculator)
     val r = params.max - params.min
     val c = params.sum / params.length
     (r, c)
   }
 
-  private def extractPixel(image: BufferedImage, x: Int, y: Int) = {
+  private def extractPixel(image: BufferedImage, x: Int, y: Int): Int = {
     val pixel = ImageUtils.getPixel(image.getRaster, x, y)
     ImageUtils.pointBrightness(pixel._1, pixel._2, pixel._3)
+  }
+
+  private def extractPixel(image: Image, x: Int, y: Int): Int = {
+    extractPixel(convertToBufferedImage(image), x, y)
+  }
+
+
+  private def convertToBufferedImage(image: Image): BufferedImage = {
+    val newImage = new BufferedImage(
+      image.getWidth(null), image.getHeight(null),
+      BufferedImage.TYPE_INT_ARGB)
+    val g = newImage.createGraphics()
+    g.drawImage(image, 0, 0, null)
+    g.dispose()
+    newImage
   }
 }
