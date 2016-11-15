@@ -39,18 +39,18 @@ class NeuronNetwork(sampleHeigth: Int, sampleWidth: Int) {
       inputNeurons(x * sampleWidth + y) = new InputNeuron[BufferedImage](getPixelBrightness(_: BufferedImage, x, y))
     }
 
-    val transformedSampleSet = sampleSets.map(ent => (ent._1, ent._2.map((i) => ImageUtils.imageBinarization(convertToBufferedImage(ImageIO.read(i).getScaledInstance(sampleWidth, sampleHeigth, Image.SCALE_SMOOTH))))))
+    val transformedSampleSet = sampleSets.map(ent => (ent._1, ent._2.map((i) => convertToBufferedImage(ImageIO.read(i).getScaledInstance(sampleWidth, sampleHeigth, Image.SCALE_SMOOTH)))))
     for (sampleSet <- transformedSampleSet) {
       learn(sampleSet._1, sampleSet._2)
     }
 
     val zippedSet = new Random().shuffle(for (key <- transformedSampleSet.keys; value <- transformedSampleSet(key)) yield (key, value))
 
-    //colibrateWeightVectors(zippedSet, 0)
+    colibrateWeightVectors(zippedSet, 0)
   }
 
   def classify(image: BufferedImage) : String = {
-    val preparedImage = ImageUtils.imageBinarization(convertToBufferedImage(image.getScaledInstance(sampleWidth, sampleHeigth, Image.SCALE_SMOOTH)))
+    val preparedImage = convertToBufferedImage(image.getScaledInstance(sampleWidth, sampleHeigth, Image.SCALE_SMOOTH))
     inputNeurons.foreach(_.pulse(preparedImage))
     val results = outputNeurons.map(_.getResult)
     val className = outputNeurons.zip(results).maxBy(_._2)._1.className
@@ -66,7 +66,7 @@ class NeuronNetwork(sampleHeigth: Int, sampleWidth: Int) {
         isFailed = true
         val correctClass = outputNeurons.filter(_.className==sample._1)
         val incorrectClasses = outputNeurons.filter(_.className==prognosesClass)
-        correctClass.foreach(_.modifyWeights((x,y) => x+y, incorrectClasses.head.weights))
+        correctClass.foreach(    _.modifyWeights((x,y) => x+y, incorrectClasses.head.weights))
         incorrectClasses.foreach(_.modifyWeights((x,y) => x-y, correctClass.head.weights))
       }
     }
