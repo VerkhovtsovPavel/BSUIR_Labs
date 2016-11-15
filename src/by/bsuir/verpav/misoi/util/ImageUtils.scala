@@ -85,12 +85,4 @@ object ImageUtils {
     val pixel = getPixel(image.getRaster, x, y)
     pointBrightness(pixel._1, pixel._2, pixel._3)
   }
-
-  def imageBinarization(baseImage: BufferedImage): BufferedImage = {
-    val threshold = 200
-    ImageUtils.binaryImageTransformation(baseImage,
-      (r: Int, g: Int, b: Int) => ImageUtils.pointBrightness(r, g, b) > threshold,
-      (r: Int, g: Int, b: Int) => Array(255, 255, 255, 255),
-      (r: Int, g: Int, b: Int) => Array(0, 0, 0, 255))
-  }
 }
