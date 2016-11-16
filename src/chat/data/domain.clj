@@ -8,7 +8,7 @@
 (def conn (mcore/connect {:host "localhost" :post 27017}))
 (def db (mcore/get-db conn "chactics"))
 
-;(mcoll/insert db "chats" {:roomName "Secret Chat" :patr ["Pavel" "Axelandra"]})
+;(mcoll/insert db "chats" {:roomName "global" :patr []})
 ;(mcoll/find-maps db "chats")
 
 (defn addUser

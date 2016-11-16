@@ -40,6 +40,7 @@
                (send! channel json))))
 
 (defn- sendMapToChannel [channel message]
+  (log "Send to" channel message)
   (send! channel (jsonprs/generate-string message)))
 
 (defn- beatify-message
@@ -70,8 +71,9 @@
 (defmethod perform-ws-action "roomEnter" [message channel]
   (let [room (message "room")
         room_bindpoint (@bindpoints room)
-        user (@authUsers channel)]
-    (if (contains? (domain/getAccessibleRoomsByUser user) room)
+        user (@authUsers channel)
+        room_list (map #(:roomName %) (domain/getAccessibleRoomsByUser user))]
+    (if (some #{room} room_list)
       (do
         (if room_bindpoint
           (add-subscriper room_bindpoint channel)
@@ -86,17 +88,19 @@
 
 
 (defmethod perform-ws-action "search" [message channel])    ;;use DSL
+  ;;(all (with-text "")(with-sender "")(for-period 2))
+  ;;(current (with-text "")(with-sender "")(for-period 2))
 
 (defmethod perform-ws-action "newRoom" [message channel]
   (let [author (@authUsers channel)
         participants (message "part")
         roomName (message "roomName")]
-    (domain/addNewRoom roomName (conj participants author)) ;TODO Add validation registered participants
-    (doseq [authUser @authUsers]
-      (fn []
-        (if (contains? (seq participants) authUser)
-          (sendMapToChannel channel {:method "newRoom" :result roomName}))
-        )
+    (domain/addNewRoom roomName (conj participants author))
+    (doseq [[userChannel authUser] @authUsers]
+      ((fn [user]
+         (if (some #{user} participants)
+           (sendMapToChannel userChannel {:method "newRoom" :result roomName}))
+         ) authUser)
       )
     (str roomName)))
 
@@ -145,7 +149,7 @@
 (defn getResponse
   [message channel]
   (log "Request from" channel message)
-  (let [json (jsonprs/parse-string message)]                ; TODO Maybe keywordise
+  (let [json (jsonprs/parse-string message)]    ;TODO Maybe keywordise
     {:method (json "method")
      :result (perform-ws-action json channel)}))
 
@@ -158,5 +162,5 @@
                 (on-receive channel
                             (fn [message]
                               (let [responce (getResponse message channel)]
-                                (log "Responce for" channel responce)
+                                ;(log "Responce for" channel responce)
                                 (sendMapToChannel channel responce))))))

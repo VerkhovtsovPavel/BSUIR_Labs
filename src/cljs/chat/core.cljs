@@ -6,7 +6,7 @@
 (def webSocket (let [currentURL (.-URL js/document)]
                  (js/WebSocket. (str "ws://" (.substring currentURL (.indexOf currentURL "//")) "ws")))) ;
 (def room "global")
-(def fonts ["Times New Roman", "Tahoma", "Arial"])          ; TODO Increase count of fonts. Ma45ybe move html
+(def fonts ["Times New Roman", "Tahoma", "Arial"])              ; TODO Increase count of fonts. Ma45ybe move html
 
 (defn send [clj-map]
   (.send webSocket (.stringify js/JSON (clj->js clj-map))))
@@ -94,7 +94,7 @@
 
               "roomEnter"
               (let [messages (msg "result")]
-                (if (= message "Illigal access")
+                (if (= messages "Illegal access")
                   (js/alert (msg "result"))
                   (doseq [m messages] (display m))))
 
