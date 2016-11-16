@@ -59,5 +59,8 @@
   [room user]
   (mcoll/find-maps db "styles" {:room room :user user}))
 
+(defn getUserRooms [user]
+  (first (map #(:rooms %)(mcoll/find-maps db "users" {:name user}))))
+
 
 ;"Add and extend protocol"

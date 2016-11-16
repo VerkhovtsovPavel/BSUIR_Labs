@@ -6,19 +6,22 @@
 (def webSocket (let [currentURL (.-URL js/document)]
                  (js/WebSocket. (str "ws://" (.substring currentURL (.indexOf currentURL "//")) "ws")))) ;
 (def room "global")
-(def fonts ["Times New Roman", "Tahoma", "Arial"])              ; TODO Increase count of fonts. Ma45ybe move html
 
 (defn send [clj-map]
   (.send webSocket (.stringify js/JSON (clj->js clj-map))))
 
-(defn display [message]
-  (let [p (.createElement js/document "p")
-        new_text (.createTextNode js/document message)
-        output (hutil/getById "output")]
-    (.appendChild p new_text)
-    (if (.-firstChild output)
-      (.insertBefore output p (.-firstChild output))
-      (.appendChild output p))))
+(defn display
+  ([message back_order]
+   (let [p (.createElement js/document "p")
+         new_text (.createTextNode js/document message)
+         output (hutil/getById "output")]
+     (.appendChild p new_text)
+     (if (and (.-firstChild output) back_order)
+       (.insertBefore output p (.-firstChild output)))
+     (.appendChild output p)))
+  ([message]
+   (display message true)))
+
 
 (defn- addRoom [list roomId]
   (let [listItem (.createElement js/document "li")]
@@ -51,10 +54,9 @@
 
 
 (defn addStyle [styleSheet]
-  (let [style (.createElement js/document "style")]
+  (let [style (first (.getElementsByTagName js/document "style"))]
     (aset style "type" "text/css")
-    (aset style "innerHTML" styleSheet)
-    (.appendChild (first (.getElementsByTagName js/document "head")) style))) ;TODO Implement some way to remove :)
+    (aset style "innerHTML" styleSheet)))
 
 (defn builtRoomList [room_list]
   (let [list (hutil/getById "rlist")]
@@ -89,8 +91,16 @@
                 (successLogin)
                 (js/alert (msg "result")))
 
+              "nextPage"
+              (let [messages (msg "result")]
+                (doseq [m messages] (display m false)))
+
               "roomStyle"
               (addStyle (msg "result"))
+
+              "search"
+              (let [results (msg "result")]
+                (js/alert results))
 
               "roomEnter"
               (let [messages (msg "result")]

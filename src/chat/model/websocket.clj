@@ -1,5 +1,6 @@
 (ns chat.model.websocket
-  (:use [org.httpkit.server])
+  (:use [org.httpkit.server]
+        [chat.data.search-macro])
   (:require [cheshire.core :as jsonprs]
             [chat.data.domain :as domain])
   (:import (java.io FileWriter)))
@@ -82,12 +83,18 @@
             (add-subscriper (@bindpoints room) channel))
           )
         (domain/addUserToRoom user room)
-        (sendMapToChannel channel {:method "roomStyle" :result (domain/getStyle room user)})
+        (sendMapToChannel channel {:method "roomStyle" :result (:style (first (domain/getStyle room user)) "")})
         (reverse (map beatify-message (domain/getMessagesByRoom room 1))))
       (str "Illegal access"))))
 
 
-(defmethod perform-ws-action "search" [message channel])    ;;use DSL
+(defmethod perform-ws-action "search" [message channel] ;;use DSL
+  (let [room (message "room")
+        user (@authUsers channel)
+        room_list (distinct (domain/getUserRooms user))
+        query (message "query")]
+
+    (chat.data.search-macro/performQuery query room room_list)))
   ;;(all (with-text "")(with-sender "")(for-period 2))
   ;;(current (with-text "")(with-sender "")(for-period 2))
 
@@ -115,7 +122,7 @@
 (defmethod perform-ws-action "nextPage" [message channel]
   (let [page (message "page")
         room (message "room")]
-    (reverse (map beatify-message (domain/getMessagesByRoom room page)))))
+    (map beatify-message (domain/getMessagesByRoom room page))))
 
 (defmethod perform-ws-action "roomLeave" [message channel]
   (let [room (message "room")

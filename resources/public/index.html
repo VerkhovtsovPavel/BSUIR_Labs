@@ -4,6 +4,7 @@
     <meta charset="utf-8"/>
     <title></title>
     <link href="style.css" rel="stylesheet">
+    <style>""</style>
 </head>
 
 <body>
@@ -25,6 +26,7 @@
                     <div id="output">
 
                     </div>
+                    <button onclick="cljs.chat.client.uiHandlers.nextPage()">Next page</button>
                 </div>
                 <div id="loginReg">
                     <p>User name :</p>
@@ -74,7 +76,11 @@
                 <p>Background image :</p>
                 <input id="bgrImage">
                 <p>Message font :</p>
-                <input id="msgFont">
+                <select id="msgFont">
+                    <option>Times New Roman</option>
+                    <option>Tahoma</option>
+                    <option>Arial</option>
+                </select>
                 <button onclick="cljs.chat.client.uiHandlers.saveStyle()">Create</button>
             </div>
         </aside><!-- .right-sidebar -->

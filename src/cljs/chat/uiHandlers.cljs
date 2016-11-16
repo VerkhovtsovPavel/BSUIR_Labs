@@ -2,6 +2,8 @@
   (:require [cljs.chat.client.html-utils :as hutil]
             [cljs.chat.client.core :refer [send]]))
 
+(def page (atom 1))
+
 (defn showAddRoom []
   (let [addRoomDiv (hutil/getById "addRoom")
         searchDiv (hutil/getById "search")
@@ -34,10 +36,18 @@
         room (.-innerHTML (hutil/getById "CurrentRoomName"))]
     (send {:method "message", :text (.-value text), :room room})))
 
+(defn nextPage []
+  (let [room (.-innerHTML (hutil/getById "CurrentRoomName"))]
+    (send {:method "nextPage", :page (+ 1 @page), :room room}))
+  (swap! page (fn [current_state] (+ current_state 1))))
+
 (defn saveStyle []
   (let [bgrColor (hutil/getById "bgrColor")
         bgrImage (hutil/getById "bgrImage")
-        msgFont (hutil/getById "msgFont")]))                ;TODO Create css text and send
+        msgFont (hutil/getById "msgFont")
+        room (.-innerHTML (hutil/getById "CurrentRoomName"))
+        roomStyle (str "#output { background-color: " (.-value bgrColor) "; background-image: url(" (.-value bgrImage) ");} p { font-family : " (hutil/getSelectedValue msgFont) ";}")]
+    (send {:method "saveStyle", :roomStyle roomStyle, :room room})))
 
 (defn createRoom []
   (let [roomNameField (hutil/getById "roomName")
@@ -45,3 +55,9 @@
         roomParticipantsField (hutil/getById "roomPart")
         roomPart (.-value roomParticipantsField)]
     (send {:method "newRoom", :roomName roomName, :part (clojure.string/split roomPart ";")})))
+
+(defn searchQuery []
+  (let [queryFileld (hutil/getById "searchQuery")
+        query (.-value queryFileld)
+        room (.-innerHTML (hutil/getById "CurrentRoomName"))]
+    (send {:method "search", :query query, :room room})))
