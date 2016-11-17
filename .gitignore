@@ -3,10 +3,12 @@
 /classes
 /checkouts
 /.idea
+/resources/public/out
 pom.xml
 pom.xml.asc
 *.jar
 *.iml
+*.log
 *.class
 /.lein-*
 /.nrepl-port
