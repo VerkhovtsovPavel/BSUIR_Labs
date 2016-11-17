@@ -5,39 +5,47 @@
             [monger.operators :as ops]
             [monger.query :refer [paginate with-collection find fields sort]]))
 
-(defn- minusDays[date days]
-  (let[cal (.setTime (.getInstance java.util.Calendar) date)
-       calMinusDays (.add cal java.util.Calendar/DATE (- 0 days))]
+(def ^:dynamic *room* "")
+(def ^:dynamic *room_list* "")
+
+(defn- minusDays [date days]
+  (let [cal (java.util.Calendar/getInstance)
+        calMinusDays (.add cal java.util.Calendar/DATE (- 0 days))]
     (.getTime calMinusDays)))
 
-(defn with-text[text]
-  {:text text})
+(defn with-text [text]
+  {:text {ops/$regex (str ".*" text ".*")}})
 
-(defn for-period[days]
+(defn for-period [days]
   (let [currentDate (java.util.Date.)
         lowDate (minusDays currentDate days)]
-
-  {:time {ops/$gte lowDate}}))
+    {:time {ops/$gte lowDate}}))
 
 (defn with-sender [user]
   {:author user})
 
-(defmacro all[filters]
-  `(let[conn# (mcore/connect {:host "localhost" :post 27017})
-       db# (mcore/get-db conn# "chactics")
-       final_filter# (reduce assoc ~filters {})]
-    (reduce assoc (map #(mcoll/find-maps db# % final_filter#) room_list)) {}))
+(defmacro all [& filters]
+  `(let [conn# (mcore/connect {:host "localhost" :post 27017})
+         db# (mcore/get-db conn# "chactics")
+         final_filter# (merge ~@filters)]
+     (reduce merge (map (fn
+                          [current_room]
+                          (map #(assoc % :room current_room) (mcoll/find-maps db# current_room final_filter#))) *room_list*))))
 
 
-(defmacro current[filters]
-  (let [conn (mcore/connect {:host "localhost" :post 27017})
-        db (mcore/get-db conn "chactics")]
-  `(mcoll/find-maps db room (reduce assoc ~filters {}))))
+(defmacro current [& filters]
+  `(let [conn# (mcore/connect {:host "localhost" :post 27017})
+         db# (mcore/get-db conn# "chactics")
+         final_filter# (merge ~@filters)]
+     (mcoll/find-maps db# *room* final_filter#)))
 
 
 (defmacro performQuery [query room room_list]
-  `~(read-string ~query))
-
+  `(binding [*room* ~room
+             *room_list* ~room_list]
+     ;(try
+       (load-string ~query)))
+     ;  (catch Exception e# (str "Invalid search query")))))
 
 
 

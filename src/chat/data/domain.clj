@@ -24,7 +24,7 @@
 
 (defn addUserToRoom
   [user room]
-    (mcoll/update db "users" {:name user} {ops/$push {:rooms room}})
+    (mcoll/update db "users" {:name user} {ops/$addToSet {:rooms room}})
 )
 
 (defn getAccessibleRoomsByUser

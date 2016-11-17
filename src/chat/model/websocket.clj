@@ -1,8 +1,8 @@
 (ns chat.model.websocket
-  (:use [org.httpkit.server]
-        [chat.data.search-macro])
+  (:use [org.httpkit.server])
   (:require [cheshire.core :as jsonprs]
-            [chat.data.domain :as domain])
+            [chat.data.domain :as domain]
+            [chat.data.search-macro :as sema])
   (:import (java.io FileWriter)))
 
 
@@ -94,9 +94,8 @@
         room_list (distinct (domain/getUserRooms user))
         query (message "query")]
 
-    (chat.data.search-macro/performQuery query room room_list)))
-  ;;(all (with-text "")(with-sender "")(for-period 2))
-  ;;(current (with-text "")(with-sender "")(for-period 2))
+    (sema/performQuery query room room_list)))
+
 
 (defmethod perform-ws-action "newRoom" [message channel]
   (let [author (@authUsers channel)
