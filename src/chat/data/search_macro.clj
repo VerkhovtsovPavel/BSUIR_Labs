@@ -8,17 +8,16 @@
 (def ^:dynamic *room* "")
 (def ^:dynamic *room_list* "")
 
-(defn- minusDays [date days]
-  (let [cal (java.util.Calendar/getInstance)
-        calMinusDays (.add cal java.util.Calendar/DATE (- 0 days))]
-    (.getTime calMinusDays)))
+(defn- minusDays [days]
+  (let [cal (java.util.Calendar/getInstance)]
+    (.add cal java.util.Calendar/DATE (- 0 days))
+    (.getTime cal)))
 
 (defn with-text [text]
   {:text {ops/$regex (str ".*" text ".*")}})
 
 (defn for-period [days]
-  (let [currentDate (java.util.Date.)
-        lowDate (minusDays currentDate days)]
+  (let [lowDate (minusDays days)]
     {:time {ops/$gte lowDate}}))
 
 (defn with-sender [user]
@@ -29,8 +28,8 @@
          db# (mcore/get-db conn# "chactics")
          final_filter# (merge ~@filters)]
      (reduce merge (map (fn
-                          [current_room]
-                          (map #(assoc % :room current_room) (mcoll/find-maps db# current_room final_filter#))) *room_list*))))
+                          [current_room#]
+                          (map #(assoc % :room current_room#) (mcoll/find-maps db# current_room# final_filter#))) *room_list*))))
 
 
 (defmacro current [& filters]
@@ -40,11 +39,11 @@
      (mcoll/find-maps db# *room* final_filter#)))
 
 
-(defmacro performQuery [query room room_list]
-  `(binding [*room* ~room
-             *room_list* ~room_list]
+(defn performQuery [query room room_list]
+  (binding [*room*      room
+            *room_list* room_list]
      ;(try
-       (load-string ~query)))
+     (load-string query)))
      ;  (catch Exception e# (str "Invalid search query")))))
 
 

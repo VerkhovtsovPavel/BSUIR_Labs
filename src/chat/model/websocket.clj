@@ -1,8 +1,7 @@
 (ns chat.model.websocket
   (:use [org.httpkit.server])
   (:require [cheshire.core :as jsonprs]
-            [chat.data.domain :as domain]
-            [chat.data.search-macro :as sema])
+            [chat.data.domain :as domain])
   (:import (java.io FileWriter)))
 
 
@@ -88,13 +87,13 @@
       (str "Illegal access"))))
 
 
-(defmethod perform-ws-action "search" [message channel] ;;use DSL
+(defmethod perform-ws-action "search" [message channel]     ;;use DSL
   (let [room (message "room")
         user (@authUsers channel)
         room_list (distinct (domain/getUserRooms user))
         query (message "query")]
-
-    (sema/performQuery query room room_list)))
+    (binding [*ns* "chat.data.search-macro"]
+      (chat.data.search-macro/performQuery query room room_list))))
 
 
 (defmethod perform-ws-action "newRoom" [message channel]
@@ -155,7 +154,7 @@
 (defn getResponse
   [message channel]
   (log "Request from" channel message)
-  (let [json (jsonprs/parse-string message)]    ;TODO Maybe keywordise
+  (let [json (jsonprs/parse-string message)]                ;TODO Maybe keywordise
     {:method (json "method")
      :result (perform-ws-action json channel)}))
 
