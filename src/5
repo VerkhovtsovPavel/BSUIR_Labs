@@ -11,4 +11,3 @@
        (reduce merge (map (fn
                             [current_room#]
                             (map #(assoc % :room current_room#) (monger.collection/find-maps db# current_room# final_filter#))) ~source)))))
-                            (map #(assoc % :room current_room#) (monger.collection/find-maps db# current_room# final_filter#))) ~source)))))

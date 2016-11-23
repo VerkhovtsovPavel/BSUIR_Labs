@@ -1,7 +1,8 @@
 (ns chat.model.websocket
   (:use [org.httpkit.server])
   (:require [cheshire.core :as jsonprs]
-            [chat.data.domain :as domain])
+            [chat.data.persistance :as domain]
+            [chat.data.searchDSL :as sDSL])
   (:import (java.io FileWriter)))
 
 
@@ -92,8 +93,7 @@
         user (@authUsers channel)
         room_list (distinct (domain/getUserRooms user))
         query (message "query")]
-    (binding [*ns* "chat.data.search-macro"]
-      (chat.data.search-macro/performQuery query room room_list))))
+    (sDSL/performQuery query room room_list)))
 
 
 (defmethod perform-ws-action "newRoom" [message channel]

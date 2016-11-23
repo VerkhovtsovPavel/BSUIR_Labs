@@ -1,4 +1,4 @@
-(ns chat.data.domain
+(ns chat.data.persistance
   (:refer-clojure :exclude [find sort])
   (:require [monger.core :as mcore]
             [monger.collection :as mcoll]
