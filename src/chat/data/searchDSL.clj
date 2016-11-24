@@ -17,11 +17,11 @@
 (defmacro defextractor [name source]
   `(defmacro ~name [& filters#]
      `(let [conn# (mcore/connect {:host "localhost" :post 27017})
-           db# (mcore/get-db conn# "chactics")
-           final_filter# (merge @filters#)]
-       (reduce merge (map (fn
-                            [current_room#]
-                            (map #(assoc % :room current_room#) (mcoll/find-maps db# current_room# final_filter#))) ~~source)))))
+            db# (mcore/get-db conn# "chactics")
+            final_filter# (merge ~@filters#)]
+        (reduce merge (map (fn
+                             [current_room#]
+                             (map #(assoc % :room current_room#) (mcoll/find-maps db# current_room# final_filter#))) ~source)))))
 
 
 (defilter with-text {:text {ops/$regex (str ".*" text ".*")}})

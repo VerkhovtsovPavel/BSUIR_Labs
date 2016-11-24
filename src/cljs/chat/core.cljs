@@ -1,11 +1,12 @@
 (ns cljs.chat.client.core
   (:require [clojure.string :refer [split]]
-            [cljs.chat.client.html-utils :as hutil]))
+            [cljs.chat.client.html-utils :as hutil])
+  (:use [cljs.chat.client.model]))
 
 (def currentRoomTitle (hutil/getById "CurrentRoomName"))
 (def webSocket (let [currentURL (.-URL js/document)]
                  (js/WebSocket. (str "ws://" (.substring currentURL (.indexOf currentURL "//")) "ws")))) ;
-(def room "global")
+(def room (currentRoom) "global")                           ;TODO Remove
 
 (defn send [clj-map]
   (.send webSocket (.stringify js/JSON (clj->js clj-map))))
@@ -39,6 +40,12 @@
     (.appendChild listItem (.createTextNode js/document roomId))
     (.appendChild list listItem)))
 
+
+(defn addStyle [styleSheet]
+  (let [style (first (.getElementsByTagName js/document "style"))]
+    (aset style "type" "text/css")
+    (aset style "innerHTML" styleSheet)))
+
 (defn successLogin []
   (let [dialog (hutil/getById "dialog")
         loginReg (hutil/getById "loginReg")
@@ -50,13 +57,11 @@
     (hutil/setVisibility right-sidebar "visible"))
 
   (send {:method "roomList"})
-  (send {:method "roomEnter" :room room}))
+  (send {:method "roomEnter" :room room})
+  (if-let [style (getStyle)]
+    (addStyle style)
+    (send {:method "roomStyle" :room room})))
 
-
-(defn addStyle [styleSheet]
-  (let [style (first (.getElementsByTagName js/document "style"))]
-    (aset style "type" "text/css")
-    (aset style "innerHTML" styleSheet)))
 
 (defn builtRoomList [room_list]
   (let [list (hutil/getById "rlist")]
@@ -96,7 +101,9 @@
                 (doseq [m messages] (display m false)))
 
               "roomStyle"
-              (addStyle (msg "result"))
+              (let [style (msg "result")]
+                (addStyle style)
+                (cacheStyle style))
 
               "search"
               (let [results (msg "result")]

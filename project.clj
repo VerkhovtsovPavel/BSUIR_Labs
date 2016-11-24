@@ -8,7 +8,8 @@
                  [http-kit "2.2.0"]
                  [ring/ring-defaults "0.2.1"]
                  [cheshire "5.6.3"]
-                 [com.novemberain/monger "3.1.0"]]
+                 [com.novemberain/monger "3.1.0"]
+                 [alandipert/storage-atom "1.2.4"]]
   :plugins [[lein-ring "0.9.7"]
             [lein-cljsbuild "1.1.4"]]
 

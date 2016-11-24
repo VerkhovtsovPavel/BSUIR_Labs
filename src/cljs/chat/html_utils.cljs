@@ -19,8 +19,7 @@
   (let [options (.-options select)
         index (.-selectedIndex select)]
     (.-value (nth (array-seq options 0) index))
-    )
-  )
+    ))
 
 (extend-type js/NodeList
   ISeqable
