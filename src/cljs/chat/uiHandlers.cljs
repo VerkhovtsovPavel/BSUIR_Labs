@@ -1,8 +1,8 @@
 (ns cljs.chat.client.uiHandlers
-  (:require [cljs.chat.client.html-utils :as hutil]
-            [cljs.chat.client.core :refer [send]]))
+  (:require [cljs.chat.client.utils.htmlUtils :as hutil])
+  (:use [cljs.chat.client.websocket]))
 
-(def page (atom 1))
+ ;TODO Move to state, clear after change room
 
 (defn showAddRoom []
   (let [addRoomDiv (hutil/getById "addRoom")

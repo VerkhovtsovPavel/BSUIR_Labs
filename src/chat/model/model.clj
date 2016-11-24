@@ -1,18 +1,16 @@
 (ns chat.model.model
   (:use [org.httpkit.server]
         [chat.model.ws-actions]
-        [chat.model.logger]
         [chat.model.rooms]
+        [chat.model.logger]
         [chat.model.websocket]
         [chat.model.users])
-  (:require [cheshire.core :as jsonprs]
-            [chat.data.persistance :as domain]
-            [chat.data.searchDSL :as sDSL]))
+  (:require [cheshire.core :as jsonprs]))
 
 (defn getResponse
   [message channel]
   (log "Request from" channel message)
-  (let [json (jsonprs/parse-string message)]                ;TODO Maybe keywordise
+  (let [json (jsonprs/parse-string message)]
     {:method (json "method")
      :result (perform-ws-action json channel)}))
 
@@ -24,5 +22,4 @@
                 (on-receive channel
                             (fn [message]
                               (let [responce (getResponse message channel)]
-                                ;(log "Responce for" channel responce)
                                 (sendMapToChannel channel responce))))))

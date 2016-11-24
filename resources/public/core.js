@@ -4,3 +4,4 @@ goog.addDependency("../cljs/chat/client/html_utils.js", ['cljs.chat.client.html_
 goog.addDependency("../clojure/string.js", ['clojure.string'], ['goog.string', 'cljs.core', 'goog.string.StringBuffer']);
 goog.addDependency("../cljs/chat/client/core.js", ['cljs.chat.client.core'], ['cljs.chat.client.html_utils', 'cljs.core', 'clojure.string']);
 goog.addDependency("../cljs/chat/client/uiHandlers.js", ['cljs.chat.client.uiHandlers'], ['cljs.chat.client.html_utils', 'cljs.core', 'cljs.chat.client.core']);
+goog.addDependency("../cljs/chat/client/model.js", ['cljs.chat.client.model'], ['cljs.core', 'clojure.string']);

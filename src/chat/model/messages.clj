@@ -3,7 +3,8 @@
             [chat.data.persistance :as domain])
   (:use [chat.model.rooms]
         [chat.model.users]
-        [caht.model.logger]))
+        [chat.model.logger]
+        [chat.model.ws-actions]))
 
 (defn- beatify-message
   ([message datetime author]
@@ -15,8 +16,6 @@
          text (:text message)
          ctime (.format (java.text.SimpleDateFormat. "HH/mm/ss") datetime)]
      (str author ": " text " ~ " ctime))))
-
-(defmulti perform-ws-action (fn [message channel] (message "method")))
 
 (defmethod perform-ws-action "message" [message channel]
   (let [room (message "room")

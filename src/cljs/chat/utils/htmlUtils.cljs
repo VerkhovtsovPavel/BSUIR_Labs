@@ -1,4 +1,4 @@
-(ns cljs.chat.client.html-utils)
+(ns cljs.chat.client.utils.htmlUtils)
 
 (defn setVisibility
   ([element new-value]

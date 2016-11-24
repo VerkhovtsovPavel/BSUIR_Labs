@@ -1,13 +1,19 @@
 (ns chat.model.rooms
   (:use [chat.model.websocket]
         [chat.model.users]
-        [chat.model.ws-actions])
+        [chat.model.ws-actions]
+        [org.httpkit.server])
   (:require [chat.data.persistance :as domain]))
 
 (def bindpoints (atom {"global" (atom nil)}))
 
 (defn create_room_bindpoint [room]
   (swap! bindpoints (fn [current_state] (assoc current_state room (atom nil)))))
+
+(defn- add-subscriper [bindpoint channel]
+  (add-watch bindpoint channel
+             (fn [_channel _atom _old_json json]
+               (send! channel json))))
 
 (defmethod perform-ws-action "roomEnter" [message channel]
   (let [room (message "room")

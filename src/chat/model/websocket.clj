@@ -1,10 +1,8 @@
-(ns chat.model.websocket)
+(ns chat.model.websocket
+  (:require [cheshire.core :as jsonprs])
+  (:use [chat.model.logger]
+        [org.httpkit.server]))
 
-(defn- add-subscriper [bindpoint channel]
-  (add-watch bindpoint channel
-             (fn [_channel _atom _old_json json]
-               (send! channel json))))
-
-(defn- sendMapToChannel [channel message]
+(defn sendMapToChannel [channel message]
   (log "Send to" channel message)
   (send! channel (jsonprs/generate-string message)))
