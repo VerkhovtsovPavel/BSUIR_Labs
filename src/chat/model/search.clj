@@ -10,4 +10,4 @@
         user (@authUsers channel)
         room_list (distinct (domain/getUserRooms user))
         query (message "query")]
-    (sDSL/performQuery query room room_list)))
+    (sDSL/performQuery query user message)))
