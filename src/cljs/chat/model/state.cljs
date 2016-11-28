@@ -6,18 +6,20 @@
 
 (def page (atom 1))
 
-(defn getStyle
-  (let [room (:room @state)
-        styles (:styles @state)]
-  (room styles)))
+(defn currentRoom (:room @state "global"))
 
-(defn currentRoom (:room @state "global")) ;TODO Save value if to exist
+(defn getStyle
+  (let [room (currentRoom)
+        styles (:styles @state)]
+    (styles room)))
+
 (defn getCachedMessages (:messages @state))
 
 (defn cacheMessage [message])
+
 (defn cacheStyle [style]
-  (let [room (:room @state)]
-   ; (swap! state assoc :styles )
-  ))
-(defn changeRoom [newRoom])
+  (swap! state update-in [:styles (currentRoom)] style))
+
+(defn changeRoom [newRoom]
+  (swap! state update :room newRoom))
 

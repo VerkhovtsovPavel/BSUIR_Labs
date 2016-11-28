@@ -1,5 +1,7 @@
 (ns cljs.chat.client.uiHandlers
-  (:require [cljs.chat.client.utils.htmlUtils :as hutil])
+  (:require [cljs.chat.client.utils.htmlUtils :as hutil]
+            [cljs.chat.client.utils.cssUtils :as cutil]
+            [cljs.chat.client.model.state :as state])
   (:use [cljs.chat.client.websocket]))
 
 (defn showAddRoom []
@@ -20,46 +22,54 @@
         setStyleDiv (hutil/getById "setStyle")]
     (hutil/setVisibility {searchDiv "hidden" setStyleDiv "visible" addRoomDiv "hidden"})))
 
+(defn showSubscription []
+  ;TODO Show/hide
+  ;TODO Get and show room list
+  )
+
 
 (defn registerOrLogin []
-  (let [userName (hutil/getById "userName")
-        password (hutil/getById "password")
+  (let [userName (hutil/getValueById "userName")
+        password (hutil/getValueById "password")
         userChoice (first (filter (fn [i] (.-checked i)) (.getElementsByName js/document "logRegRadio")))]
     (if (= (.-value userChoice) "reg")
-      (send {:method "registration" :userName (.-value userName) :password (.-value password)})
-      (send {:method "login" :userName (.-value userName) :password (.-value password)}))))
+      (send {:method "registration" :userName userName :password password})
+      (send {:method "login" :userName userName :password password}))))
 
 (defn sendNewMessage []
-  (let [text (hutil/getById "text")
-        room (.-innerHTML (hutil/getById "CurrentRoomName"))]
+  (let [text (hutil/getValueById "text")
+        room (state/currentRoom)]
     (if (= text "")
-      (js/alert "Please feel all fields")
-      (send {:method "message", :text (.-value text), :room room}))))
+      (js/alert "Message is empty")
+      (send {:method "message", :text text, :room room}))))
 
 (defn nextPage []
-  (let [room (.-innerHTML (hutil/getById "CurrentRoomName"))]
-    (send {:method "nextPage", :page (+ 1 @page), :room room}))
-  (swap! page (fn [current_state] (+ current_state 1))))
+  (let [room (state/currentRoom)]
+    (send {:method "nextPage", :page (+ 1 @state/page), :room room}))
+  (swap! state/page (fn [current_state] (+ current_state 1))))
 
 (defn saveStyle []
-  (let [bgrColor (hutil/getById "bgrColor")
-        bgrImage (hutil/getById "bgrImage")
-        msgFont (hutil/getById "msgFont")
-        room (.-innerHTML (hutil/getById "CurrentRoomName"))
-        roomStyle (str "#output { background-color: " (.-value bgrColor) "; background-image: url(" (.-value bgrImage) ");} p { font-family : " (hutil/getSelectedValue msgFont) ";}")]
+  (let [bgrColor (hutil/getValueById "bgrColor")
+        bgrImage (hutil/getValueById "bgrImage")
+        msgFont (hutil/getValueById "msgFont")
+        ;TODO Add font size
+        ;TODO Add font color
+        ;TODO Add control elements color
+        room (state/currentRoom)
+        roomStyle (cutil/build-css bgrColor bgrImage msgFont)]
     (send {:method "saveStyle", :roomStyle roomStyle, :room room})))
 
 (defn createRoom []
-  (let [roomNameField (hutil/getById "roomName")
-        roomName (.-value roomNameField)
-        roomParticipantsField (hutil/getById "roomPart")
-        roomPart (.-value roomParticipantsField)]
+  (let [roomName (hutil/getValueById "roomName")
+        roomPart (hutil/getValueById "roomPart")]
     (if (or (= roomName "") (= roomPart ""))
       (js/alert "Please feel all fields")
       (send {:method "newRoom", :roomName roomName, :part (clojure.string/split roomPart ";")}))))
 
 (defn searchQuery []
-  (let [queryFileld (hutil/getById "searchQuery")
-        query (.-value queryFileld)
-        room (.-innerHTML (hutil/getById "CurrentRoomName"))]
+  (let [query (hutil/getValueById "searchQuery")
+        room (state/currentRoom)]
     (send {:method "search", :query query, :room room})))
+
+(defn subscribe []) ;TODO Implement
+(defn unsubscribe []) ;TODO Implement

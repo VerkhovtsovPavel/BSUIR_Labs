@@ -93,6 +93,11 @@ body {
     visibility : hidden;
 }
 
+#subscription{
+    background: #B5E3FF;
+    visibility : hidden;
+}
+
 
 /* Footer
 -----------------------------------------------------------------------------*/

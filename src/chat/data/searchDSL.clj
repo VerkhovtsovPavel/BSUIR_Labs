@@ -24,11 +24,11 @@
                              [current_room#]
                              (map #(assoc % :room current_room#) (mcoll/find-maps ~db# current_room# final_filter#))) ~source))))))
 
-(defilter with-text {:text {ops/$regex (str ".*" text ".*")}})
+(defilter with-text ({:text {ops/$regex (str ".*" text ".*")}}))
 
 (defilter for-period ((let [lowDate (dateUtils/minusDays period)] {:time {ops/$gte lowDate}})))
 
-(defilter with-sender {:author sender})
+(defilter with-sender ({:author sender}))
 
 
 ;(defextractor current 'room)

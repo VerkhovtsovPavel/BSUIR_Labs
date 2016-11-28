@@ -1,8 +1,7 @@
 (ns cljs.chat.client.rooms
-  (:require [cljs.chat.client.utils.htmlUtils :as hutil])
+  (:require [cljs.chat.client.utils.htmlUtils :as hutil]
+            [cljs.chat.client.model.state :as state])
   (:use [cljs.chat.client.websocket]))
-
-(def room (currentRoom) "global")                           ;TODO Remove
 
 (defn addRoom [list roomId]
   (let [listItem (.createElement js/document "li")]
@@ -12,10 +11,10 @@
             (let [newRoom (.-id (.-target e))
                   output (hutil/getById "output")
                   currentRoomTitle (hutil/getById "CurrentRoomName")]
-              (send {:method "roomLeave" :room room})
+              (send {:method "roomLeave" :room (state/currentRoom)})
               (send {:method "roomEnter" :room newRoom})
-              (set! room newRoom)
-              (aset currentRoomTitle "innerHTML" room)
+              (state/changeRoom newRoom)
+              (aset currentRoomTitle "innerHTML" newRoom)
               (hutil/removeChilds output))))
 
     (.appendChild listItem (.createTextNode js/document roomId))

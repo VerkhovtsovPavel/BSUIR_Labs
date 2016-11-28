@@ -14,12 +14,15 @@
   [id]
   (.getElementById js/document id))
 
+(defn getValueById
+  [id]
+  (.-value (getById id)))
+
 (defn getSelectedValue
   [select]
   (let [options (.-options select)
         index (.-selectedIndex select)]
-    (.-value (nth (array-seq options 0) index))
-    ))
+    (.-value (nth (array-seq options 0) index))))
 
 (extend-type js/NodeList
   ISeqable

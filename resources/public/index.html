@@ -27,6 +27,7 @@
 
                     </div>
                     <button onclick="cljs.chat.client.uiHandlers.nextPage()">Next page</button>
+                    <button onclick="cljs.chat.client.uiHandlers.unsubscribe()">Unsubscribe</button>
                 </div>
                 <div id="loginReg">
                     <p>User name :</p>
@@ -54,6 +55,7 @@
                 <button onclick="cljs.chat.client.uiHandlers.showAddRoom()">Add room</button>
                 <button onclick="cljs.chat.client.uiHandlers.showSearch()">Search</button>
                 <button onclick="cljs.chat.client.uiHandlers.showCustomizeRoom()">Customize room</button>
+                <button onclick="cljs.chat.client.uiHandlers.showSubscription()">Add subscription</button>
             </div>
 
             <div id="addRoom">
@@ -82,6 +84,13 @@
                     <option>Arial</option>
                 </select>
                 <button onclick="cljs.chat.client.uiHandlers.saveStyle()">Create</button>
+            </div>
+
+            <div id="subscription">
+                <p>Choice room :</p>
+                <select id="roomToSubscribe">
+                </select>
+                <button onclick="cljs.chat.client.uiHandlers.subscribe()">Subscribe</button>
             </div>
         </aside><!-- .right-sidebar -->
     </div>
