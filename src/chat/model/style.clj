@@ -1,6 +1,6 @@
 (ns chat.model.style
   (:require [chat.data.persistance :as domain])
-  (:use [ws-actions]
+  (:use [chat.model.ws-actions]
         [chat.model.users]
         [chat.model.websocket]))
 

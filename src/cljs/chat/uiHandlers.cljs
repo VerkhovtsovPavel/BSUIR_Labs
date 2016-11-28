@@ -2,8 +2,6 @@
   (:require [cljs.chat.client.utils.htmlUtils :as hutil])
   (:use [cljs.chat.client.websocket]))
 
- ;TODO Move to state, clear after change room
-
 (defn showAddRoom []
   (let [addRoomDiv (hutil/getById "addRoom")
         searchDiv (hutil/getById "search")
@@ -34,7 +32,9 @@
 (defn sendNewMessage []
   (let [text (hutil/getById "text")
         room (.-innerHTML (hutil/getById "CurrentRoomName"))]
-    (send {:method "message", :text (.-value text), :room room})))
+    (if (= text "")
+      (js/alert "Please feel all fields")
+      (send {:method "message", :text (.-value text), :room room}))))
 
 (defn nextPage []
   (let [room (.-innerHTML (hutil/getById "CurrentRoomName"))]
@@ -54,7 +54,9 @@
         roomName (.-value roomNameField)
         roomParticipantsField (hutil/getById "roomPart")
         roomPart (.-value roomParticipantsField)]
-    (send {:method "newRoom", :roomName roomName, :part (clojure.string/split roomPart ";")})))
+    (if (or (= roomName "") (= roomPart ""))
+      (js/alert "Please feel all fields")
+      (send {:method "newRoom", :roomName roomName, :part (clojure.string/split roomPart ";")}))))
 
 (defn searchQuery []
   (let [queryFileld (hutil/getById "searchQuery")

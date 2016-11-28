@@ -12,24 +12,26 @@
 (defmacro defilter [name body]
   (let [paramName (last (clojure.string/split (str name) #"-"))
         param (symbol paramName)]
-    `(defn ~name [~param] (~@body))))
+    `(defn ~name [~param] ~@body)))
 
 (defmacro defextractor [name source]
-  `(defmacro ~name [& filters#]
-     `(let [conn# (mcore/connect {:host "localhost" :post 27017})
-            db# (mcore/get-db conn# "chactics")
-            final_filter# (merge ~@filters#)]
+  (let [conn# (mcore/connect {:host "localhost" :post 27017})
+        db# (mcore/get-db conn# "chactics")]
+  `(defn ~name [& filters#]
+     (let [final_filter# (merge @filters#)]
+       (println final_filter#)
         (reduce merge (map (fn
                              [current_room#]
-                             (map #(assoc % :room current_room#) (mcoll/find-maps db# current_room# final_filter#))) ~source)))))
-
+                             (map #(assoc % :room current_room#) (mcoll/find-maps ~db# current_room# final_filter#))) ~source))))))
 
 (defilter with-text {:text {ops/$regex (str ".*" text ".*")}})
 
-(defilter for-period (let [lowDate (dateUtils/minusDays period)] {:time {ops/$gte lowDate}}))
+(defilter for-period ((let [lowDate (dateUtils/minusDays period)] {:time {ops/$gte lowDate}})))
 
 (defilter with-sender {:author sender})
 
+
+;(defextractor current 'room)
 
 ;(defextractor all (distinct (chat.data.persistance/getUserRooms user)))
 ;(defextractor current room)
@@ -44,10 +46,10 @@
 
 
 (defmacro current [& filters]
-  `(let [conn# (mcore/connect {:host "localhost" :post 27017})
-         db# (mcore/get-db conn# "chactics")
-         final_filter# (merge ~@filters)]
-     (mcoll/find-maps db# *room* final_filter#)))
+  (let [conn (mcore/connect {:host "localhost" :post 27017})
+         db (mcore/get-db conn "chactics")
+         final_filter (apply merge filters)]
+     (mcoll/find-maps db *room* final_filter)))
 
 
 (defn performQuery [query room room_list]

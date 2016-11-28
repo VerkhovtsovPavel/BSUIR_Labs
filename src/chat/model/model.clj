@@ -4,7 +4,10 @@
         [chat.model.rooms]
         [chat.model.logger]
         [chat.model.websocket]
-        [chat.model.users])
+        [chat.model.messages]
+        [chat.model.users]
+        [chat.model.search]
+        [chat.model.style])
   (:require [cheshire.core :as jsonprs]))
 
 (defn getResponse
