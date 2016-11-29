@@ -7,24 +7,31 @@
 (defn showAddRoom []
   (let [addRoomDiv (hutil/getById "addRoom")
         searchDiv (hutil/getById "search")
+        subscription (hutil/getById "subscription")
         setStyleDiv (hutil/getById "setStyle")]
-    (hutil/setVisibility {searchDiv "hidden" setStyleDiv "hidden" addRoomDiv "visible"})))
+    (hutil/setVisibility {searchDiv "hidden" setStyleDiv "hidden" addRoomDiv "visible" subscription "hidden"})))
 
 (defn showSearch []
   (let [addRoomDiv (hutil/getById "addRoom")
         searchDiv (hutil/getById "search")
+        subscription (hutil/getById "subscription")
         setStyleDiv (hutil/getById "setStyle")]
-    (hutil/setVisibility {searchDiv "visible" setStyleDiv "hidden" addRoomDiv "hidden"})))
+    (hutil/setVisibility {searchDiv "visible" setStyleDiv "hidden" addRoomDiv "hidden" subscription "hidden"})))
 
 (defn showCustomizeRoom []
   (let [addRoomDiv (hutil/getById "addRoom")
         searchDiv (hutil/getById "search")
+        subscription (hutil/getById "subscription")
         setStyleDiv (hutil/getById "setStyle")]
-    (hutil/setVisibility {searchDiv "hidden" setStyleDiv "visible" addRoomDiv "hidden"})))
+    (hutil/setVisibility {searchDiv "hidden" setStyleDiv "visible" addRoomDiv "hidden" subscription "hidden"})))
 
 (defn showSubscription []
-  ;TODO Show/hide
-  ;TODO Get and show room list
+  (let [addRoomDiv (hutil/getById "addRoom")
+        searchDiv (hutil/getById "search")
+        subscription (hutil/getById "subscription")
+        setStyleDiv (hutil/getById "setStyle")]
+    (hutil/setVisibility {searchDiv "hidden" setStyleDiv "hidden" addRoomDiv "hidden" subscription "visible"}))
+  (send {:method "getRoomsToSubscribe"}) ;TODO Get and show room list
   )
 
 
@@ -52,11 +59,11 @@
   (let [bgrColor (hutil/getValueById "bgrColor")
         bgrImage (hutil/getValueById "bgrImage")
         msgFont (hutil/getValueById "msgFont")
-        ;TODO Add font size
-        ;TODO Add font color
-        ;TODO Add control elements color
+        msgFontSize (hutil/getValueById "msgFontSize")
+        msgFontColor (hutil/getValueById "msgFontColor")
+        controlsColor (hutil/getValueById "controlsColor")
         room (state/currentRoom)
-        roomStyle (cutil/build-css bgrColor bgrImage msgFont)]
+        roomStyle (cutil/build-css bgrColor bgrImage msgFont msgFontSize msgFontColor controlsColor)]
     (send {:method "saveStyle", :roomStyle roomStyle, :room room})))
 
 (defn createRoom []
@@ -71,5 +78,9 @@
         room (state/currentRoom)]
     (send {:method "search", :query query, :room room})))
 
-(defn subscribe []) ;TODO Implement
-(defn unsubscribe []) ;TODO Implement
+(defn subscribe []
+  ) ;TODO Implement
+
+(defn unsubscribe []
+  (let [room (state/currentRoom)]
+    (send {:method "unsubsribe", :room room})))
