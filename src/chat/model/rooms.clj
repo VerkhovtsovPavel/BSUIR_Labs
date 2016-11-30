@@ -65,3 +65,6 @@
 
 (defmethod perform-ws-action "roomList" [message channel]
   (map #(:roomName %) (domain/getAccessibleRoomsByUser (@authUsers channel))))
+
+(defmethod perform-ws-action "roomListToSubscibe" [message channel]
+  (map #(:roomName %) (domain/getRoomToSubscribe (@authUsers channel))))

@@ -3,8 +3,8 @@
 /classes
 /checkouts
 /.idea
-/resources/public/out/
-/resources/public/clojure/
+/resources/public/out
+/resources/public/clojure
 /resources/public/core.js
 pom.xml
 pom.xml.asc

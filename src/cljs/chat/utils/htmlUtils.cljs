@@ -24,6 +24,14 @@
         index (.-selectedIndex select)]
     (.-value (nth (array-seq options 0) index))))
 
+
+(defn fillSelect [values]
+  (let [sel (getById "roomToSubscribe")]
+    (doseq values #(let [opt (.createElement js/document "option")]
+                    (aset opt "innerHTML" %)
+                    (aset opt "value" %)
+                    (.appendChild sel opt)))))
+
 (extend-type js/NodeList
   ISeqable
   (-seq [array] (array-seq array 0)))

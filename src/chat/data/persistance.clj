@@ -8,9 +8,6 @@
 (def conn (mcore/connect {:host "localhost" :post 27017}))
 (def db (mcore/get-db conn "chactics"))
 
-;(mcoll/insert db "chats" {:roomName "global" :patr []})
-;(mcoll/find-maps db "chats")
-
 (defn addUser
   [name password]
     (mcoll/insert db "users" {:_id name :password password :rooms []}))
@@ -60,7 +57,7 @@
   (mcoll/find-maps db "styles" {:room room :user user}))
 
 (defn getUserRooms [user]
-  (first (map #(:rooms %)(mcoll/find-maps db "users" {:name user}))))
+  (:rooms (mcoll/find-map-by-id db "users" user)))
 
 (defn subscribe [room user]
   (mcoll/update db "chats" {:roomName room} {ops/$addToSet {:part user}}))

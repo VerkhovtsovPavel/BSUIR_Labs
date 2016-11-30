@@ -31,7 +31,7 @@
         subscription (hutil/getById "subscription")
         setStyleDiv (hutil/getById "setStyle")]
     (hutil/setVisibility {searchDiv "hidden" setStyleDiv "hidden" addRoomDiv "hidden" subscription "visible"}))
-  (send {:method "getRoomsToSubscribe"}) ;TODO Get and show room list
+  (send {:method "roomListToSubscibe"}) ;TODO Get and show room list
   )
 
 
@@ -58,9 +58,9 @@
 (defn saveStyle []
   (let [bgrColor (hutil/getValueById "bgrColor")
         bgrImage (hutil/getValueById "bgrImage")
-        msgFont (hutil/getValueById "msgFont")
+        msgFont (hutil/getSelectedValue "msgFont")
         msgFontSize (hutil/getValueById "msgFontSize")
-        msgFontColor (hutil/getValueById "msgFontColor")
+        msgFontColor (hutil/getValueById "msgFontColor") ;TODO Maybe use prepared list
         controlsColor (hutil/getValueById "controlsColor")
         room (state/currentRoom)
         roomStyle (cutil/build-css bgrColor bgrImage msgFont msgFontSize msgFontColor controlsColor)]
@@ -79,7 +79,8 @@
     (send {:method "search", :query query, :room room})))
 
 (defn subscribe []
-  ) ;TODO Implement
+  (let [room (hutil/getSelectedValue "roomToSubscribe")]
+     (send {:method "subsribe" :room room}))) ;TODO Implement
 
 (defn unsubscribe []
   (let [room (state/currentRoom)]

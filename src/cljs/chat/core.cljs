@@ -48,6 +48,12 @@
               (let [results (msg "result")]
                 (js/alert results))
 
+              "roomListToSubscibe"
+              (let [result (msg "result")]
+                (hutil/fillSelect result))
+
+              ;TODO Subs and Unsubs (Add, remove item)
+
               "roomEnter"
               (let [messages (msg "result")]
                 (if (= messages "Illegal access")
