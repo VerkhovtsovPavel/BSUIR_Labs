@@ -5,7 +5,7 @@
             [org.httpkit.server :as kit]
             [ring.util.response :as resp]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
-            [chat.model.model :as ws]))
+            [chat.model.dispatcher :as ws]))
 
 (defroutes app-routes
   (GET "/" [] (resp/resource-response "index.html" {:root "public"}))

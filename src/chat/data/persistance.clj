@@ -50,6 +50,7 @@
 
 (defn saveCustomStyle
   [room user styleDesc]
+  (mcoll/remove db "styles" {:room room :user user})
   (mcoll/insert db "styles" {:room room :user user :style styleDesc}))
 
 (defn getStyle

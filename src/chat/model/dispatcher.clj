@@ -1,4 +1,4 @@
-(ns chat.model.model
+(ns chat.model.dispatcher
   (:use [org.httpkit.server]
         [chat.model.ws-actions]
         [chat.model.rooms]

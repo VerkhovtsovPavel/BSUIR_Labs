@@ -35,7 +35,6 @@
   (send {:method "roomListToSubscibe"})
   )
 
-
 (defn registerOrLogin []
   (let [userName (hutil/getValueById "userName")
         password (hutil/getValueById "password")
