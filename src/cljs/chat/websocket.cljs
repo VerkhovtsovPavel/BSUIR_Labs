@@ -8,3 +8,7 @@
 
 (defn parse [json]
   (js->clj (.parse js/JSON json)))
+
+
+(defn setOnMesage [func]
+  (set! (.-onmessage webSocket) func))

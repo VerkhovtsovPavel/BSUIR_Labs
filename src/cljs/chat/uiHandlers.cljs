@@ -1,8 +1,9 @@
 (ns cljs.chat.client.uiHandlers
   (:require [cljs.chat.client.utils.htmlUtils :as hutil]
             [cljs.chat.client.utils.cssUtils :as cutil]
-            [cljs.chat.client.model.state :as state])
-  (:use [cljs.chat.client.websocket]))
+            [cljs.chat.client.model.state :as state]
+            [cljs.chat.client.core])
+  (:use [cljs.chat.client.websocket :only [send]]))
 
 (defn showAddRoom []
   (let [addRoomDiv (hutil/getById "addRoom")
@@ -31,7 +32,7 @@
         subscription (hutil/getById "subscription")
         setStyleDiv (hutil/getById "setStyle")]
     (hutil/setVisibility {searchDiv "hidden" setStyleDiv "hidden" addRoomDiv "hidden" subscription "visible"}))
-  (send {:method "roomListToSubscibe"}) ;TODO Get and show room list
+  (send {:method "roomListToSubscibe"})
   )
 
 
@@ -58,7 +59,7 @@
 (defn saveStyle []
   (let [bgrColor (hutil/getValueById "bgrColor")
         bgrImage (hutil/getValueById "bgrImage")
-        msgFont (hutil/getSelectedValue "msgFont")
+        msgFont (hutil/getSelectedValue (hutil/getById "msgFont"))
         msgFontSize (hutil/getValueById "msgFontSize")
         msgFontColor (hutil/getValueById "msgFontColor") ;TODO Maybe use prepared list
         controlsColor (hutil/getValueById "controlsColor")
@@ -68,10 +69,11 @@
 
 (defn createRoom []
   (let [roomName (hutil/getValueById "roomName")
-        roomPart (hutil/getValueById "roomPart")]
+        roomPart (hutil/getValueById "roomPart")
+        type (.-checked (hutil/getById "roomType"))]
     (if (or (= roomName "") (= roomPart ""))
       (js/alert "Please feel all fields")
-      (send {:method "newRoom", :roomName roomName, :part (clojure.string/split roomPart ";")}))))
+      (send {:method "newRoom", :roomName roomName, :part (clojure.string/split roomPart ";") :isOpened type}))))
 
 (defn searchQuery []
   (let [query (hutil/getValueById "searchQuery")
@@ -79,9 +81,9 @@
     (send {:method "search", :query query, :room room})))
 
 (defn subscribe []
-  (let [room (hutil/getSelectedValue "roomToSubscribe")]
-     (send {:method "subsribe" :room room}))) ;TODO Implement
+  (let [room (hutil/getSelectedValue (hutil/getById "roomToSubscribe"))]
+     (send {:method "subscribe" :room room})))
 
 (defn unsubscribe []
   (let [room (state/currentRoom)]
-    (send {:method "unsubsribe", :room room})))
+    (send {:method "unsubscribe", :room room})))

@@ -29,19 +29,21 @@
             (add-subscriper (@bindpoints room) channel))
           )
         (domain/addUserToRoom user room)
+        (str "Ok")
         )
       (str "Illegal access"))))
 
 (defmethod perform-ws-action "unsubscribe" [message channel]
   (let [room (message "room")
         user (@authUsers channel)]
-    (domain/unsubscribe room user))
-  (str "Ok"))
+    (domain/unsubscribe room user)
+  (str room)))
 
 (defmethod perform-ws-action "subscribe" [message channel]
   (let [room (message "room")
         user (@authUsers channel)]
-    (domain/subscribe room user))
+    (domain/subscribe room user)
+    (sendMapToChannel channel {:method "newRoom" :result room}))
   (str "Ok"))
 
 (defmethod perform-ws-action "newRoom" [message channel]

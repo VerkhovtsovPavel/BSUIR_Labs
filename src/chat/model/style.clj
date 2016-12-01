@@ -7,7 +7,7 @@
 (defmethod perform-ws-action "roomStyle" [message channel]
   (let [room (message "room")
         user (@authUsers channel)]
-    (sendMapToChannel channel {:method "roomStyle" :result (:style (first (domain/getStyle room user)) "")})))
+    (:style (first (domain/getStyle room user)) "")))
 
 (defmethod perform-ws-action "saveStyle" [message channel]
   (let [user (@authUsers channel)

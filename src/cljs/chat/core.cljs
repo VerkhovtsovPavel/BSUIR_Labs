@@ -1,23 +1,23 @@
 (ns cljs.chat.client.core
-  (:require [cljs.chat.client.utils.htmlUtils :as hutil])
-  (:use [cljs.chat.client.websocket]
-        [cljs.chat.client.messages]
-        [cljs.chat.client.rooms]
-        [cljs.chat.client.loginRegistaration]
-        [cljs.chat.client.extraFeatures]
-        [cljs.chat.client.model.state]))
+  (:require [cljs.chat.client.utils.htmlUtils :as hutil]
+            [cljs.chat.client.model.state :as state]
+            [cljs.chat.client.websocket :as ws])
+  (:use [cljs.chat.client.messages :only [display]]
+        [cljs.chat.client.rooms :only [addRoom removeRoom builtRoomList]]
+        [cljs.chat.client.loginRegistaration :only [successLogin]]
+        [cljs.chat.client.extraFeatures :only [addStyle]]))
 
-(set! (.-onopen webSocket)
+(set! (.-onopen ws/webSocket)
       (fn []
         (display "Connection opened...")
-        (aset (hutil/getById "CurrentRoomName") "innerHTML" (currentRoom))))
+        (aset (hutil/getById "CurrentRoomName") "innerHTML" (state/currentRoom))))
 
-(set! (.-onclose webSocket)
+(set! (.-onclose ws/webSocket)
       (fn [] (display "Connection closed...")))
 
-(set! (.-onmessage webSocket)
+(set! (.-onmessage ws/webSocket)
       (fn [message]
-        (let [msg (parse (aget message "data"))]
+        (let [msg (ws/parse (aget message "data"))]
           (if (= (msg "result") js/undefined)
             (display (msg "text"))
 
@@ -42,7 +42,7 @@
               "roomStyle"
               (let [style (msg "result")]
                 (addStyle style)
-                (cacheStyle style))
+                (state/cacheStyle style))
 
               "search"
               (let [results (msg "result")]
@@ -52,21 +52,24 @@
               (let [result (msg "result")]
                 (hutil/fillSelect result))
 
-              ;TODO Subs and Unsubs (Add, remove item)
-
               "roomEnter"
               (let [messages (msg "result")]
                 (if (= messages "Illegal access")
-                  (js/alert (msg "result"))
+                  (js/alert messages)
                   (do
-                    (send {:method "nextPage", :page 0, :room (currentRoom)})
-                    (swap! page 1)
+                    (ws/send {:method "nextPage", :page 0, :room (state/currentRoom)})
+                    (ws/send {:method "roomStyle" :room (state/currentRoom)})
                   )))
 
               "newRoom"
               (let [list (hutil/getById "rlist")
                     roomId (msg "result")]
                 (addRoom list roomId))
+
+              "unsubscribe"
+              (let [list (hutil/getById "rlist")
+                    roomId (msg "result")]
+                (removeRoom list roomId))
 
               (msg "result"))
             )

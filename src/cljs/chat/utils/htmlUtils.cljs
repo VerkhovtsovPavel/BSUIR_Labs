@@ -27,10 +27,10 @@
 
 (defn fillSelect [values]
   (let [sel (getById "roomToSubscribe")]
-    (doseq values #(let [opt (.createElement js/document "option")]
-                    (aset opt "innerHTML" %)
-                    (aset opt "value" %)
-                    (.appendChild sel opt)))))
+    (doseq [value values] ((fn [v](let [opt (.createElement js/document "option")]
+                    (aset opt "innerHTML" v)
+                    (aset opt "value" v)
+                    (.appendChild sel opt)))value))))
 
 (extend-type js/NodeList
   ISeqable
