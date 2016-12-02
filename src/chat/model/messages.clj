@@ -3,7 +3,7 @@
             [chat.data.persistance :as domain])
   (:use [chat.model.rooms]
         [chat.model.users]
-        [chat.model.logger]
+        [chat.util.logger]
         [chat.model.ws-actions]))
 
 (defn- beatify-message

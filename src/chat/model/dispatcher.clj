@@ -2,7 +2,7 @@
   (:use [org.httpkit.server]
         [chat.model.ws-actions]
         [chat.model.rooms]
-        [chat.model.logger]
+        [chat.util.logger]
         [chat.model.websocket]
         [chat.model.messages]
         [chat.model.users]

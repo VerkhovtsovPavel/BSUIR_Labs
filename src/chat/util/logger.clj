@@ -1,4 +1,4 @@
-(ns chat.model.logger
+(ns chat.util.logger
   (:import (java.io FileWriter))
   (:use [chat.model.users]))
 

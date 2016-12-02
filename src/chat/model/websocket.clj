@@ -1,6 +1,6 @@
 (ns chat.model.websocket
   (:require [cheshire.core :as jsonprs])
-  (:use [chat.model.logger]
+  (:use [chat.util.logger]
         [org.httpkit.server]))
 
 (defn sendMapToChannel [channel message]

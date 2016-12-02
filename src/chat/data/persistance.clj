@@ -6,7 +6,7 @@
             [monger.query :refer [paginate with-collection find fields sort]]))
 
 (def conn (mcore/connect {:host "localhost" :post 27017}))
-(def db (mcore/get-db conn "chactics"))
+(def ^:dynamic db (mcore/get-db conn "chactics"))
 
 (defn addUser
   [name password]
