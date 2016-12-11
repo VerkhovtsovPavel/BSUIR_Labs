@@ -24,7 +24,7 @@
 (defilter with-sender ({:author sender}))
 
 (defextractor current [(*message* "room")])
-(defextractor all (distinct (chat.data.persistance/getUserRooms *user*)))
+(defextractor all (chat.data.persistance/getAccessibleRoomsByUser *user*))
 
 
 (defn performQuery [query user message]
@@ -34,6 +34,3 @@
     (try
       (map #(dissoc % :_id) (load-string query))
       (catch Exception e# (str "Invalid search query")))))
-
-
-

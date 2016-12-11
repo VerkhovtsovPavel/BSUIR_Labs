@@ -71,6 +71,11 @@
                     roomId (msg "result")]
                 (removeRoom list roomId))
 
+              "saveStyle"
+              (let [style (msg "result")]
+                (addStyle style)
+                (state/cacheStyle style))
+
               (msg "result"))
             )
           (let [text (hutil/getById "text")]

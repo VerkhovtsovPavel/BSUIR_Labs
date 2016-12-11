@@ -13,5 +13,5 @@
   (let [user (@authUsers channel)
         style (message "roomStyle")
         room (message "room")]
-    (domain/saveCustomStyle room user style))
-  (str "Ok"))
+    (domain/saveCustomStyle room user style)
+    style))

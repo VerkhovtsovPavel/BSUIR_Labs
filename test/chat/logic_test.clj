@@ -42,13 +42,12 @@
     (testing "Leave room"
       (is (= (:result (getResponse (str "{\"method\" : \"roomLeave\", \"room\" : \"" roomName "\"}") 1)) "Ok"))))
 
-
   (testing "Send message"
     (is (= (:result (getResponse "{\"method\":\"message\",\"text\":\"4\",\"room\":\"TestRoom\"}" 1)) "4")))
 
-
   (testing "Search message (empty)"
     (is (= (:result (getResponse "{\"method\":\"search\",\"query\":\"(current (with-text \\\"5\\\"))\",\"room\":\"TestRoom\"}" 1)) ())))
+
   (testing "Search message"
     (is (= (:text (first (:result (getResponse "{\"method\":\"search\",\"query\":\"(current (with-text \\\"4\\\"))\",\"room\":\"TestRoom\"}" 1)))) "4"))))
 

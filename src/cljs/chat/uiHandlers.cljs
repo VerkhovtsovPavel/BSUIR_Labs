@@ -56,12 +56,12 @@
   (swap! state/page (fn [current_state] (+ current_state 1))))
 
 (defn saveStyle []
-  (let [bgrColor (hutil/getValueById "bgrColor")
+  (let [bgrColor (hutil/getSelectedValue (hutil/getById "bgrColor"))
         bgrImage (hutil/getValueById "bgrImage")
         msgFont (hutil/getSelectedValue (hutil/getById "msgFont"))
         msgFontSize (hutil/getValueById "msgFontSize")
-        msgFontColor (hutil/getValueById "msgFontColor") ;TODO Maybe use prepared list
-        controlsColor (hutil/getValueById "controlsColor")
+        msgFontColor (hutil/getSelectedValue (hutil/getById "msgFontColor"))
+        controlsColor (hutil/getSelectedValue (hutil/getById "controlsColor"))
         room (state/currentRoom)
         roomStyle (cutil/build-css bgrColor bgrImage msgFont msgFontSize msgFontColor controlsColor)]
     (send {:method "saveStyle", :roomStyle roomStyle, :room room})))

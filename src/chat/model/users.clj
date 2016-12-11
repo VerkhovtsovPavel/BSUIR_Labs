@@ -21,5 +21,6 @@
       (str "Failed. User name duplication")
       (do
         (domain/addUser login password)
+        (domain/subscribe "global" login)
         (swap! authUsers (fn [current_state] (assoc current_state channel login)))
         (str "Success")))))

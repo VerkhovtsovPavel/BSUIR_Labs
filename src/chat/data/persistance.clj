@@ -10,7 +10,7 @@
 
 (defn addUser
   [name password]
-    (mcoll/insert db "users" {:_id name :password password :rooms []}))
+    (mcoll/insert db "users" {:_id name :password password}))
 
 (defn isUserExist
    ([name]
@@ -18,14 +18,9 @@
   ([name password]
    (seq(mcoll/find db "users" {:_id name :password password}))))
 
-(defn addUserToRoom
-  [user room]
-    (mcoll/update db "users" {:_id user} {ops/$addToSet {:rooms room}})
-)
-
 (defn getAccessibleRoomsByUser
   [user]
-    (mcoll/find-maps db "chats" {:part {ops/$in [user]}}))
+   (map #(:roomName %) (mcoll/find-maps db "chats" {:part {ops/$in [user]}})))
 
 (defn getRoomToSubscribe [user]
   (mcoll/find-maps db "chats" {:isOpened true :part {ops/$nin [user]}}))
@@ -57,13 +52,8 @@
   [room user]
   (mcoll/find-maps db "styles" {:room room :user user}))
 
-(defn getUserRooms [user]
-  (:rooms (mcoll/find-map-by-id db "users" user)))
-
 (defn subscribe [room user]
   (mcoll/update db "chats" {:roomName room} {ops/$addToSet {:part user}}))
 
 (defn unsubscribe [room user]
   (mcoll/update db "chats" {:roomName room} {ops/$pull {:part user}}))
-
-;"Add and extend protocol"

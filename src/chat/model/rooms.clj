@@ -12,14 +12,14 @@
 
 (defn- add-subscriper [bindpoint channel]
   (add-watch bindpoint channel
-             (fn [_channel _atom _old_json json]
-               (send! channel json))))
+             (fn [_channel _atom _old_val val]
+               (send! channel val))))
 
 (defmethod perform-ws-action "roomEnter" [message channel]
   (let [room (message "room")
         room_bindpoint (@bindpoints room)
         user (@authUsers channel)
-        room_list (map #(:roomName %) (domain/getAccessibleRoomsByUser user))]
+        room_list (domain/getAccessibleRoomsByUser user)]
     (if (some #{room} room_list)
       (do
         (if room_bindpoint
@@ -28,7 +28,6 @@
             (create_room_bindpoint room)
             (add-subscriper (@bindpoints room) channel))
           )
-        (domain/addUserToRoom user room)
         (str "Ok")
         )
       (str "Illegal access"))))
@@ -66,7 +65,7 @@
   (str "Ok"))
 
 (defmethod perform-ws-action "roomList" [message channel]
-  (map #(:roomName %) (domain/getAccessibleRoomsByUser (@authUsers channel))))
+  (domain/getAccessibleRoomsByUser (@authUsers channel)))
 
 (defmethod perform-ws-action "roomListToSubscibe" [message channel]
   (map #(:roomName %) (domain/getRoomToSubscribe (@authUsers channel))))

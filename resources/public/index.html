@@ -76,7 +76,14 @@
 
             <div id="setStyle">
                 <p>Background color :</p>
-                <input id="bgrColor">
+                <select id="bgrColor">
+                    <option value="#FFFFFF">White</option>
+                    <option value="#000000">Black</option>
+                    <option value="#0000FF">Blue</option>
+                    <option value="#FF000">Red</option>
+                    <option value="#FFC0CB">Pink</option>
+                    <option value="#00FF00">Green</option>
+                </select>
                 <p>Background image :</p>
                 <input id="bgrImage">
                 <p>Message font :</p>
@@ -86,11 +93,25 @@
                     <option>Arial</option>
                 </select>
                 <p>Message font color :</p>
-                <input id="msgFontColor">
+                <select id="msgFontColor">
+                    <option value="#FFFFFF">White</option>
+                    <option value="#000000">Black</option>
+                    <option value="#0000FF">Blue</option>
+                    <option value="#FF000">Red</option>
+                    <option value="#FFC0CB">Pink</option>
+                    <option value="#00FF00">Green</option>
+                </select>
                 <p>Message font size :</p>
                 <input id="msgFontSize">
                 <p>Color control elements :</p>
-                <input id="controlsColor">
+                <select id="controlsColor">
+                    <option value="#FFFFFF">White</option>
+                    <option value="#000000">Black</option>
+                    <option value="#0000FF">Blue</option>
+                    <option value="#FF000">Red</option>
+                    <option value="#FFC0CB">Pink</option>
+                    <option value="#00FF00">Green</option>
+                </select>
                 <button onclick="cljs.chat.client.uiHandlers.saveStyle()">Create</button>
             </div>
 
