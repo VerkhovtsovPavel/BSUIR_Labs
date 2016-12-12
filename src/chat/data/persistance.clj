@@ -3,7 +3,7 @@
   (:require [monger.core :as mcore]
             [monger.collection :as mcoll]
             [monger.operators :as ops]
-            [monger.query :refer [paginate with-collection find fields sort]]))
+            [monger.query :refer [paginate with-collection find fields sort limit skip]]))
 
 (def conn (mcore/connect {:host "localhost" :post 27017}))
 (def ^:dynamic db (mcore/get-db conn "chactics"))
@@ -31,12 +31,13 @@
 )
 
 (defn getMessagesByRoom
-  [room page]
+  [room page newMessages]
   (monger.conversion/from-db-object
     (with-collection db room
       (find {})
       (sort {:time -1})
-      (paginate :page page :per-page 20)) true)
+      (skip (+ (* page 20) newMessages))
+      (limit 20)) true)
 )
 
 (defn addNewRoom

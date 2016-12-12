@@ -5,6 +5,7 @@
 (reset! alandipert.storage-atom/storage-delay 100)
 
 (def page (atom 1))
+(def newMessages (atom 0))
 
 (defn currentRoom [] (@state :room))
 

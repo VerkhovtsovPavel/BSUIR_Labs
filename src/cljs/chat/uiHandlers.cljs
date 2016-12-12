@@ -52,7 +52,7 @@
 
 (defn nextPage []
   (let [room (state/currentRoom)]
-    (send {:method "nextPage", :page (+ 1 @state/page), :room room}))
+    (send {:method "nextPage", :page @state/page, :messages @state/newMessages :room room}))
   (swap! state/page (fn [current_state] (+ current_state 1))))
 
 (defn saveStyle []

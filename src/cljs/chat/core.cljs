@@ -9,7 +9,6 @@
 
 (set! (.-onopen ws/webSocket)
       (fn []
-        (display "Connection opened...")
         (aset (hutil/getById "CurrentRoomName") "innerHTML" (state/currentRoom))))
 
 (set! (.-onclose ws/webSocket)
@@ -19,7 +18,10 @@
       (fn [message]
         (let [msg (ws/parse (aget message "data"))]
           (if (= (msg "result") js/undefined)
-            (display (msg "text"))
+            (do
+              (display (msg "text"))
+              (swap! state/newMessages #(+ 1 %))
+              )
 
             (case (msg "method")
               "roomList"
@@ -57,9 +59,11 @@
                 (if (= messages "Illegal access")
                   (js/alert messages)
                   (do
-                    (ws/send {:method "nextPage", :page 0, :room (state/currentRoom)})
+                    (reset! state/newMessages 0)
+                    (reset! state/page 1)
+                    (ws/send {:method "nextPage", :page 0, :room (state/currentRoom) :messages 0})
                     (ws/send {:method "roomStyle" :room (state/currentRoom)})
-                  )))
+                    )))
 
               "newRoom"
               (let [list (hutil/getById "rlist")

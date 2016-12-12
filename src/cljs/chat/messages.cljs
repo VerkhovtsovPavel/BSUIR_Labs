@@ -8,7 +8,7 @@
          output (hutil/getById "output")]
      (.appendChild p new_text)
      (if (and (.-firstChild output) back_order)
-       (.insertBefore output p (.-firstChild output)))
-     (.appendChild output p)))
+       (.insertBefore output p (.-firstChild output))
+       (.appendChild output p))))
   ([message]
    (display message true)))

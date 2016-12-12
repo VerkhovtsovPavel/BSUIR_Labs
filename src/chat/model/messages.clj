@@ -31,5 +31,6 @@
 
 (defmethod perform-ws-action "nextPage" [message channel]
   (let [page (message "page")
-        room (message "room")]
-    (map beatify-message (domain/getMessagesByRoom room page))))
+        room (message "room")
+        messages (message "messages")]
+    (map beatify-message (domain/getMessagesByRoom room page messages))))
