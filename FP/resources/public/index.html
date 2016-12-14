@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link href="style.css" rel="stylesheet">
+    <style>""</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <header class="header">
+        <strong>Chatik</strong> Improve your user experience
+    </header>
+
+    <div class="middle">
+
+        <div class="container">
+            <main class="content">
+                <div id="dialog">
+                    <h3 id="CurrentRoomName"></h3>
+                    <input id="text">
+                    <button onclick="cljs.chat.client.uiHandlers.sendNewMessage()">Send</button>
+                    <div id="output">
+
+                    </div>
+                    <button onclick="cljs.chat.client.uiHandlers.nextPage()">Next page</button>
+                    <button onclick="cljs.chat.client.uiHandlers.unsubscribe()">Unsubscribe</button>
+                </div>
+                <div id="loginReg">
+                    <p>User name :</p>
+                    <input id="userName">
+                    <p>Password :</p>
+                    <input id="password" type="password">
+                    <p>Registration <input type="radio" name="logRegRadio" value="reg">
+                        Login <input type="radio" name="logRegRadio" value="log" checked="true"></p>
+                    <button onclick="cljs.chat.client.uiHandlers.registerOrLogin()">Login</button>
+                </div>
+            </main>
+        </div>
+
+        <aside class="left-sidebar" id="left-sidebar">
+            <strong>Room list:</strong>
+            <div id="roomList">
+                <ul id="rlist">
+                </ul>
+            </div>
+        </aside>
+
+        <aside class="right-sidebar" id="right-sidebar">
+            <strong>Extra features:</strong>
+            <div id="extraOptions">
+                <button onclick="cljs.chat.client.uiHandlers.showAddRoom()">Add room</button>
+                <button onclick="cljs.chat.client.uiHandlers.showSearch()">Search</button>
+                <button onclick="cljs.chat.client.uiHandlers.showCustomizeRoom()">Customize room</button>
+                <button onclick="cljs.chat.client.uiHandlers.showSubscription()">Add subscription</button>
+            </div>
+
+            <div id="addRoom">
+                <p>Room type (is secret): </p>
+                <input id="roomType" type="checkbox">
+                <p>Room name :</p>
+                <input id="roomName">
+                <p>Participants (use ';' for separating):</p>
+                <input id="roomPart">
+                <button onclick="cljs.chat.client.uiHandlers.createRoom()">Create</button>
+            </div>
+
+            <div id="search">
+                <p>Search query :</p>
+                <input id="searchQuery">
+                <button onclick="cljs.chat.client.uiHandlers.searchQuery()">Search</button>
+            </div>
+
+            <div id="setStyle">
+                <p>Background color :</p>
+                <select id="bgrColor">
+                    <option value="#FFFFFF">White</option>
+                    <option value="#000000">Black</option>
+                    <option value="#0000FF">Blue</option>
+                    <option value="#FF000">Red</option>
+                    <option value="#FFC0CB">Pink</option>
+                    <option value="#00FF00">Green</option>
+                </select>
+                <p>Background image :</p>
+                <input id="bgrImage">
+                <p>Message font :</p>
+                <select id="msgFont">
+                    <option>Times New Roman</option>
+                    <option>Tahoma</option>
+                    <option>Arial</option>
+                </select>
+                <p>Message font color :</p>
+                <select id="msgFontColor">
+                    <option value="#FFFFFF">White</option>
+                    <option value="#000000">Black</option>
+                    <option value="#0000FF">Blue</option>
+                    <option value="#FF000">Red</option>
+                    <option value="#FFC0CB">Pink</option>
+                    <option value="#00FF00">Green</option>
+                </select>
+                <p>Message font size :</p>
+                <input id="msgFontSize">
+                <p>Color control elements :</p>
+                <select id="controlsColor">
+                    <option value="#FFFFFF">White</option>
+                    <option value="#000000">Black</option>
+                    <option value="#0000FF">Blue</option>
+                    <option value="#FF000">Red</option>
+                    <option value="#FFC0CB">Pink</option>
+                    <option value="#00FF00">Green</option>
+                </select>
+                <button onclick="cljs.chat.client.uiHandlers.saveStyle()">Create</button>
+            </div>
+
+            <div id="subscription">
+                <p>Choice room :</p>
+                <select id="roomToSubscribe">
+                </select>
+                <button onclick="cljs.chat.client.uiHandlers.subscribe()">Subscribe</button>
+            </div>
+        </aside><!-- .right-sidebar -->
+    </div>
+</div>
+
+<footer class="footer">
+    <strong>Chatik®</strong> All rights reserved. BSUIR 2016.
+</footer>
+<script type="text/javascript" src="out/goog/base.js"></script>
+<script type="text/javascript" src="core.js"></script>
+<script type="text/javascript">goog.require("cljs.chat.client.uiHandlers");</script>
+</body>
+</html>

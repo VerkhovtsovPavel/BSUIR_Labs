@@ -1,0 +1,16 @@
+goog.addDependency("base.js", ['goog'], []);
+goog.addDependency("../cljs/core.js", ['cljs.core'], ['goog.string', 'goog.object', 'goog.math.Integer', 'goog.string.StringBuffer', 'goog.array', 'goog.math.Long']);
+goog.addDependency("../cljs/chat/client/utils/htmlUtils.js", ['cljs.chat.client.utils.htmlUtils'], ['cljs.core']);
+goog.addDependency("../clojure/string.js", ['clojure.string'], ['goog.string', 'cljs.core', 'goog.string.StringBuffer']);
+goog.addDependency("../cljs/reader.js", ['cljs.reader'], ['goog.string', 'cljs.core', 'goog.string.StringBuffer']);
+goog.addDependency("../tailrecursion/cljson.js", ['tailrecursion.cljson'], ['cljs.core', 'goog.date.DateTime', 'clojure.string', 'cljs.reader']);
+goog.addDependency("../alandipert/storage_atom.js", ['alandipert.storage_atom'], ['goog.Timer', 'tailrecursion.cljson', 'cljs.core']);
+goog.addDependency("../cljs/chat/client/model/state.js", ['cljs.chat.client.model.state'], ['cljs.core', 'alandipert.storage_atom']);
+goog.addDependency("../cljs/chat/client/websocket.js", ['cljs.chat.client.websocket'], ['cljs.core']);
+goog.addDependency("../cljs/chat/client/rooms.js", ['cljs.chat.client.rooms'], ['cljs.chat.client.utils.htmlUtils', 'cljs.core', 'cljs.chat.client.model.state', 'cljs.chat.client.websocket']);
+goog.addDependency("../cljs/chat/client/extraFeatures.js", ['cljs.chat.client.extraFeatures'], ['cljs.core']);
+goog.addDependency("../cljs/chat/client/loginRegistaration.js", ['cljs.chat.client.loginRegistaration'], ['cljs.chat.client.utils.htmlUtils', 'cljs.core', 'cljs.chat.client.model.state', 'cljs.chat.client.websocket', 'cljs.chat.client.extraFeatures']);
+goog.addDependency("../cljs/chat/client/messages.js", ['cljs.chat.client.messages'], ['cljs.chat.client.utils.htmlUtils', 'cljs.core']);
+goog.addDependency("../cljs/chat/client/core.js", ['cljs.chat.client.core'], ['cljs.chat.client.utils.htmlUtils', 'cljs.chat.client.rooms', 'cljs.core', 'cljs.chat.client.model.state', 'cljs.chat.client.loginRegistaration', 'cljs.chat.client.websocket', 'cljs.chat.client.messages', 'cljs.chat.client.extraFeatures']);
+goog.addDependency("../cljs/chat/client/utils/cssUtils.js", ['cljs.chat.client.utils.cssUtils'], ['cljs.core']);
+goog.addDependency("../cljs/chat/client/uiHandlers.js", ['cljs.chat.client.uiHandlers'], ['cljs.chat.client.utils.htmlUtils', 'cljs.core', 'cljs.chat.client.core', 'cljs.chat.client.utils.cssUtils', 'cljs.chat.client.model.state', 'cljs.chat.client.websocket']);
