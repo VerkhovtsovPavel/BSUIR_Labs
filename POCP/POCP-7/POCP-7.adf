@@ -1,0 +1,107 @@
+[Project]
+Current Flow=Multivendor
+VCS=0
+version=3
+Current Config=compile
+
+[Configurations]
+compile=ieee
+
+[Library]
+ieee=.\..\..\..\aldec\active-hdl 9.1\vlib\ieee\ieee.lib
+
+[Settings]
+AccessRead=0
+AccessReadWrite=0
+AccessACCB=0
+AccessACCR=0
+AccessReadWriteSLP=0
+AccessReadTopLevel=1
+DisableC=1
+ENABLE_ADV_DATAFLOW=0
+SYNTH_TOOL=<none>
+IMPL_TOOL=<none>
+CSYNTH_TOOL=<none>
+PHYSSYNTH_TOOL=<none>
+FLOW_TYPE=HDL
+LANGUAGE=VHDL
+FLOWTOOLS=ONLY_IMPL
+ON_SERVERFARM_SYNTH=0
+ON_SERVERFARM_IMPL=0
+ON_SERVERFARM_SIM=0
+DVM_DISPLAY=NO
+REFRESH_FLOW=1
+FAMILY=
+fileopenfolder=C:\My_Designs\POCP\POCP-7\src\Testbenches
+
+[LocalVerilogSets]
+EnableSLP=1
+EnableDebug=0
+
+[LocalVhdlSets]
+CompileWithDebug=0
+
+[$LibMap$]
+Active_lib=
+ieee=.
+
+[IMPLEMENTATION]
+UCF=
+
+[Folders]
+Name3=Makefiles
+Directory3=C:\My_Designs\POCP\POCP-7\
+Extension3=mak
+Name4=Memory
+Directory4=C:\My_Designs\POCP\POCP-7\src
+Extension4=mem;mif;hex
+Name5=Dll Libraries
+Directory5=C:\My_Designs\POCP\POCP-7\
+Extension5=dll
+Name6=PDF
+Directory6=C:\My_Designs\POCP\POCP-7\
+Extension6=pdf
+Name7=HTML
+Directory7=C:\My_Designs\POCP\POCP-7\
+Extension7=
+
+[Groups]
+Max=1
+Zeroes=1
+Testbenches=1
+
+[Files]
+/CTRL1.vhd=-1
+/DPATH.vhd=-1
+/MRAM.vhd=-1
+/MROM.vhd=-1
+/TrafficLights.vhd=-1
+Max/MaxFinder.vhd=-1
+Zeroes/ZeroCounter.vhd=-1
+Testbenches/traffic_T.do=-1
+Testbenches/max_finder_t.vhd=-1
+Testbenches/traffic_lights_t.vhd=-1
+Testbenches/zero_counter_t.vhd=-1
+Testbenches/max_finder_t.do=-1
+Testbenches/zero_counter_t.do=-1
+
+[Files.Data]
+.\src\CTRL1.vhd=VHDL Source Code
+.\src\DPATH.vhd=VHDL Source Code
+.\src\MRAM.vhd=VHDL Source Code
+.\src\MROM.vhd=VHDL Source Code
+.\src\TrafficLights.vhd=VHDL Source Code
+.\src\Max\MaxFinder.vhd=VHDL Source Code
+.\src\Zeroes\ZeroCounter.vhd=VHDL Source Code
+.\src\Testbenches\traffic_T.do=Macro
+.\src\Testbenches\max_finder_t.vhd=VHDL Source Code
+.\src\Testbenches\traffic_lights_t.vhd=VHDL Source Code
+.\src\Testbenches\zero_counter_t.vhd=VHDL Source Code
+.\src\Testbenches\max_finder_t.do=Macro
+.\src\Testbenches\zero_counter_t.do=Macro
+
+[HierarchyViewer]
+SortInfo=u
+HierarchyInformation=fifo_t|config_l|1 max_finder_t|config|1 ram_t|config|1 traffic_lights_t|config|1 zero_counter_t|config|1 
+ShowHide=ShowTopLevel
+Selected=

@@ -1,0 +1,120 @@
+[Project]
+Current Flow=Multivendor
+VCS=0
+version=3
+Current Config=compile
+
+[Configurations]
+compile=ieee
+
+[Library]
+ieee=.\..\..\..\aldec\active-hdl 9.1\vlib\ieee\ieee.lib
+
+[Settings]
+AccessRead=0
+AccessReadWrite=0
+AccessACCB=0
+AccessACCR=0
+AccessReadWriteSLP=0
+AccessReadTopLevel=1
+DisableC=1
+ENABLE_ADV_DATAFLOW=0
+SYNTH_TOOL=<none>
+IMPL_TOOL=<none>
+CSYNTH_TOOL=<none>
+PHYSSYNTH_TOOL=<none>
+FLOW_TYPE=HDL
+LANGUAGE=VHDL
+FLOWTOOLS=ONLY_IMPL
+ON_SERVERFARM_SYNTH=0
+ON_SERVERFARM_IMPL=0
+ON_SERVERFARM_SIM=0
+DVM_DISPLAY=NO
+REFRESH_FLOW=1
+FAMILY=<none>
+fileopenfolder=C:\My_Designs\POCP\POCP-4\src\TestBench
+
+[LocalVerilogSets]
+EnableSLP=1
+EnableDebug=0
+
+[LocalVhdlSets]
+CompileWithDebug=0
+
+[$LibMap$]
+Active_lib=
+ieee=.
+
+[IMPLEMENTATION]
+UCF=
+
+[HierarchyViewer]
+SortInfo=u
+HierarchyInformation=
+ShowHide=ShowTopLevel
+Selected=
+
+[Groups]
+TestBench=1
+
+[Folders]
+Name3=Makefiles
+Directory3=c:\My_Designs\POCP\POCP-4\
+Extension3=mak
+Name4=Memory
+Directory4=c:\My_Designs\POCP\POCP-4\src
+Extension4=mem;mif;hex
+Name5=Dll Libraries
+Directory5=c:\My_Designs\POCP\POCP-4\
+Extension5=dll
+Name6=PDF
+Directory6=c:\My_Designs\POCP\POCP-4\
+Extension6=pdf
+Name7=HTML
+Directory7=c:\My_Designs\POCP\POCP-4\
+Extension7=
+
+[Files]
+/REGn.vhd=-1
+/DEL.vhd=-1
+/SyncREGn.vhd=-1
+/DET.vhd=-1
+/SREGn.vhd=-1
+/DETAR.vhd=-1
+/JC.vhd=-1
+/LFSR_In.vhd=-1
+/LFSR_Out.vhd=-1
+/Signature.vhd=-1
+TestBench/syncregn_TB.vhd=-1
+TestBench/JS_test.vhd=-1
+TestBench/LFSR_In_t.vhd=-1
+TestBench/LFSR_out_t.vhd=-1
+TestBench/signature_t.vhd=-1
+TestBench/syncregn_TB_runtest.do=-1
+TestBench/JS_test_runtest.do=-1
+TestBench/lfsr_in_TB_runtest.do=-1
+TestBench/lfsr_out_TB_runtest.do=-1
+TestBench/signature_TB_runtest.do=-1
+
+[Files.Data]
+.\src\REGn.vhd=VHDL Source Code
+.\src\DEL.vhd=VHDL Source Code
+.\src\SyncREGn.vhd=VHDL Source Code
+.\src\DET.vhd=VHDL Source Code
+.\src\SREGn.vhd=VHDL Source Code
+.\src\DETAR.vhd=VHDL Source Code
+.\src\JC.vhd=VHDL Source Code
+.\src\LFSR_In.vhd=VHDL Source Code
+.\src\LFSR_Out.vhd=VHDL Source Code
+.\src\Signature.vhd=VHDL Source Code
+.\src\TestBench\syncregn_TB.vhd=VHDL Test Bench
+.\src\TestBench\JS_test.vhd=VHDL Source Code
+.\src\TestBench\LFSR_In_t.vhd=VHDL Source Code
+.\src\TestBench\LFSR_out_t.vhd=VHDL Source Code
+.\src\TestBench\signature_t.vhd=VHDL Source Code
+.\src\TestBench\syncregn_TB_runtest.do=Macro
+.\src\TestBench\JS_test_runtest.do=Macro
+.\src\TestBench\lfsr_in_TB_runtest.do=Macro
+.\src\TestBench\lfsr_out_TB_runtest.do=Macro
+.\src\TestBench\signature_TB_runtest.do=Macro
+

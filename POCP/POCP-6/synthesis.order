@@ -1,0 +1,9 @@
+i<>.\src\LIFO.vhd
+i<>.\src\RAM.vhd
+i<>.\src\RAM_Ham.vhd
+i<>.\src\RegFile.vhd
+i<>.\src\RegN.vhd
+i<>.\src\TB\LIFO_T.vhd
+i<>.\src\TB\RAM_Ham_T.vhd
+i<>.\src\TB\RAM_T.vhd
+i<>.\src\TB\RegFile_T.vhd

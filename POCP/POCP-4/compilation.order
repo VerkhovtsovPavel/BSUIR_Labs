@@ -1,0 +1,15 @@
+.\src\REGn.vhd
+.\src\DEL.vhd
+.\src\SyncREGn.vhd
+.\src\DET.vhd
+.\src\SREGn.vhd
+.\src\DETAR.vhd
+.\src\JC.vhd
+.\src\LFSR_In.vhd
+.\src\LFSR_Out.vhd
+.\src\Signature.vhd
+.\src\TestBench\syncregn_TB.vhd
+.\src\TestBench\JS_test.vhd
+.\src\TestBench\LFSR_In_t.vhd
+.\src\TestBench\LFSR_out_t.vhd
+.\src\TestBench\signature_t.vhd

@@ -1,0 +1,6 @@
+WARNING DAGGEN_0523: "The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available." 
+MESSAGE "File: C:\My_Designs\POCP\POCP-7\src\TestBenches\max_finder_T.vhd" 
+MESSAGE "Compile Entity "max_finder_t"" 
+MESSAGE "Compile Architecture "Beh" of Entity "max_finder_t"" 
+MESSAGE "Compile Configuration "config"" 
+SUCCESS "Compile success 0 Errors 0 Warnings  Analysis time :  62.0 [ms]" 

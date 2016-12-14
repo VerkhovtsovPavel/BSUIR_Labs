@@ -1,0 +1,106 @@
+[Project]
+Current Flow=Multivendor
+VCS=0
+version=3
+Current Config=compile
+
+[Configurations]
+compile=ieee
+
+[Library]
+ieee=.\..\..\..\aldec\active-hdl 9.1\vlib\ieee\ieee.lib
+
+[Settings]
+AccessRead=0
+AccessReadWrite=0
+AccessACCB=0
+AccessACCR=0
+AccessReadWriteSLP=0
+AccessReadTopLevel=1
+DisableC=1
+ENABLE_ADV_DATAFLOW=0
+SYNTH_TOOL=<none>
+IMPL_TOOL=<none>
+CSYNTH_TOOL=<none>
+PHYSSYNTH_TOOL=<none>
+FLOW_TYPE=HDL
+LANGUAGE=VHDL
+FLOWTOOLS=ONLY_IMPL
+ON_SERVERFARM_SYNTH=0
+ON_SERVERFARM_IMPL=0
+ON_SERVERFARM_SIM=0
+DVM_DISPLAY=NO
+REFRESH_FLOW=1
+FAMILY=
+fileopenfolder=C:\My_Designs\POCP\POCP-6\src\TB
+
+[LocalVerilogSets]
+EnableSLP=1
+EnableDebug=0
+
+[LocalVhdlSets]
+CompileWithDebug=0
+
+[$LibMap$]
+Active_lib=
+ieee=.
+
+[IMPLEMENTATION]
+UCF=
+
+[Groups]
+TB=1
+
+[HierarchyViewer]
+SortInfo=u
+HierarchyInformation=fifo_t|config_l|1 lifo_t|config_l|1 ram_ham_t|config|1 ram_t|config|1 regfile_t|config|1
+ShowHide=ShowTopLevel
+Selected=
+
+[Folders]
+Name3=Makefiles
+Directory3=C:\My_Designs\POCP\POCP-6\
+Extension3=mak
+Name4=Memory
+Directory4=C:\My_Designs\POCP\POCP-6\src
+Extension4=mem;mif;hex
+Name5=Dll Libraries
+Directory5=C:\My_Designs\POCP\POCP-6\
+Extension5=dll
+Name6=PDF
+Directory6=C:\My_Designs\POCP\POCP-6\
+Extension6=pdf
+Name7=HTML
+Directory7=C:\My_Designs\POCP\POCP-6\
+Extension7=
+
+[Files]
+/FIFO.vhd=-1
+/RAM.vhd=-1
+/RAM_Ham.vhd=-1
+/RegFile.vhd=-1
+/RegN.vhd=-1
+TB/RegFile_T.vhd=-1
+TB/RegFile_T.do=-1
+TB/FIFO_T.vhd=-1
+TB/FIFO_T.do=-1
+TB/RAM_Ham_T.vhd=-1
+TB/RAM_Ham_T.do=-1
+TB/RAM_T.vhd=-1
+TB/RAM_T.do=-1
+
+[Files.Data]
+.\src\FIFO.vhd=VHDL Source Code
+.\src\RAM.vhd=VHDL Source Code
+.\src\RAM_Ham.vhd=VHDL Source Code
+.\src\RegFile.vhd=VHDL Source Code
+.\src\RegN.vhd=VHDL Source Code
+.\src\TB\RegFile_T.vhd=VHDL Source Code
+.\src\TB\RegFile_T.do=Macro
+.\src\TB\FIFO_T.vhd=VHDL Source Code
+.\src\TB\FIFO_T.do=Macro
+.\src\TB\RAM_Ham_T.vhd=VHDL Source Code
+.\src\TB\RAM_Ham_T.do=Macro
+.\src\TB\RAM_T.vhd=VHDL Source Code
+.\src\TB\RAM_T.do=Macro
+

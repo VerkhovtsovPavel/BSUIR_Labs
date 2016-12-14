@@ -1,0 +1,15 @@
+i<>.\src\REGn.vhd
+i<>.\src\DEL.vhd
+i<>.\src\SREGn.vhd
+i<>.\src\DET.vhd
+i<>.\src\SREG.vhd
+i<>.\src\DETAR.vhd
+i<>.\src\JC.vhd
+i<>.\src\LFSR_In.vhd
+i<>.\src\LFSR_Out.vhd
+i<>.\src\Signature.vhd
+i<>.\src\TestBench\syncregn_TB.vhd
+i<>.\src\TestBench\JS_test.vhd
+i<>.\src\TestBench\LFSR_In_t.vhd
+i<>.\src\TestBench\LFSR_out_t.vhd
+i<>.\src\TestBench\signature_t.vhd

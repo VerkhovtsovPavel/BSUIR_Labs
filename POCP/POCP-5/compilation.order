@@ -1,0 +1,16 @@
+.\src\FinSM1.vhd
+.\src\FinSM2.vhd
+.\src\FinSM3.vhd
+.\src\FinSM4.vhd
+.\src\TB\Task1_tb1.vhd
+.\src\TB\Task1_tb2.vhd
+.\src\TB\Task1_tb3.vhd
+.\src\TB\Task2_tb1.vhd
+.\src\TB\Task2_tb2.vhd
+.\src\TB\Task2_tb3.vhd
+.\src\TB\Task3_tb1.vhd
+.\src\TB\Task3_tb2.vhd
+.\src\TB\Task3_tb3.vhd
+.\src\TB\Task4_tb1.vhd
+.\src\TB\Task4_tb2.vhd
+.\src\TB\Task4_tb3.vhd

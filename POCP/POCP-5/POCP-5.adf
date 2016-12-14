@@ -1,0 +1,136 @@
+[Project]
+Current Flow=Multivendor
+VCS=0
+version=3
+Current Config=compile
+
+[Configurations]
+compile=ieee
+
+[Library]
+ieee=.\..\..\..\aldec\active-hdl 9.1\vlib\ieee\ieee.lib
+
+[Settings]
+AccessRead=0
+AccessReadWrite=0
+AccessACCB=0
+AccessACCR=0
+AccessReadWriteSLP=0
+AccessReadTopLevel=1
+DisableC=1
+ENABLE_ADV_DATAFLOW=0
+SYNTH_TOOL=<none>
+IMPL_TOOL=<none>
+CSYNTH_TOOL=<none>
+PHYSSYNTH_TOOL=<none>
+FLOW_TYPE=HDL
+LANGUAGE=VHDL
+FLOWTOOLS=ONLY_IMPL
+ON_SERVERFARM_SYNTH=0
+ON_SERVERFARM_IMPL=0
+ON_SERVERFARM_SIM=0
+DVM_DISPLAY=NO
+REFRESH_FLOW=1
+FAMILY=
+fileopenfolder=C:\My_Designs\POCP\POCP-5\src\Task4_TB
+
+[LocalVerilogSets]
+EnableSLP=1
+EnableDebug=0
+
+[LocalVhdlSets]
+CompileWithDebug=0
+
+[$LibMap$]
+Active_lib=
+ieee=.
+
+[IMPLEMENTATION]
+UCF=
+
+[Folders]
+Name3=Makefiles
+Directory3=c:\My_Designs\POCP\POCP-5\
+Extension3=mak
+Name4=Memory
+Directory4=c:\My_Designs\POCP\POCP-5\src
+Extension4=mem;mif;hex
+Name5=Dll Libraries
+Directory5=c:\My_Designs\POCP\POCP-5\
+Extension5=dll
+Name6=PDF
+Directory6=c:\My_Designs\POCP\POCP-5\
+Extension6=pdf
+Name7=HTML
+Directory7=c:\My_Designs\POCP\POCP-5\
+Extension7=
+
+[Groups]
+TB=1
+
+[HierarchyViewer]
+SortInfo=u
+HierarchyInformation=task1_ent_tb1|task1_cfg_tb1|1
+ShowHide=ShowTopLevel
+Selected=
+
+[Files]
+/FinSM1.vhd=-1
+/FinSM2.vhd=-1
+/FinSM3.vhd=-1
+/FinSM4.vhd=-1
+TB/Task1_tb1.do=-1
+TB/Task1_tb1.vhd=-1
+TB/Task1_tb2.do=-1
+TB/Task1_tb2.vhd=-1
+TB/Task1_tb3.do=-1
+TB/Task1_tb3.vhd=-1
+TB/Task2_tb1.do=-1
+TB/Task2_tb1.vhd=-1
+TB/Task2_tb2.do=-1
+TB/Task2_tb2.vhd=-1
+TB/Task2_tb3.do=-1
+TB/Task2_tb3.vhd=-1
+TB/Task3_tb1.do=-1
+TB/Task3_tb1.vhd=-1
+TB/Task3_tb2.do=-1
+TB/Task3_tb2.vhd=-1
+TB/Task3_tb3.do=-1
+TB/Task3_tb3.vhd=-1
+TB/Task4_tb1.do=-1
+TB/Task4_tb1.vhd=-1
+TB/Task4_tb2.do=-1
+TB/Task4_tb2.vhd=-1
+TB/Task4_tb3.do=-1
+TB/Task4_tb3.vhd=-1
+
+[Files.Data]
+.\src\FinSM1.vhd=VHDL Source Code
+.\src\FinSM2.vhd=VHDL Source Code
+.\src\FinSM3.vhd=VHDL Source Code
+.\src\FinSM4.vhd=VHDL Source Code
+.\src\TB\Task1_tb1.do=Macro
+.\src\TB\Task1_tb1.vhd=VHDL Source Code
+.\src\TB\Task1_tb2.do=Macro
+.\src\TB\Task1_tb2.vhd=VHDL Source Code
+.\src\TB\Task1_tb3.do=Macro
+.\src\TB\Task1_tb3.vhd=VHDL Source Code
+.\src\TB\Task2_tb1.do=Macro
+.\src\TB\Task2_tb1.vhd=VHDL Source Code
+.\src\TB\Task2_tb2.do=Macro
+.\src\TB\Task2_tb2.vhd=VHDL Source Code
+.\src\TB\Task2_tb3.do=Macro
+.\src\TB\Task2_tb3.vhd=VHDL Source Code
+.\src\TB\Task3_tb1.do=Macro
+.\src\TB\Task3_tb1.vhd=VHDL Source Code
+.\src\TB\Task3_tb2.do=Macro
+.\src\TB\Task3_tb2.vhd=VHDL Source Code
+.\src\TB\Task3_tb3.do=Macro
+.\src\TB\Task3_tb3.vhd=VHDL Source Code
+.\src\TB\Task4_tb1.do=Macro
+.\src\TB\Task4_tb1.vhd=VHDL Source Code
+.\src\TB\Task4_tb2.do=Macro
+.\src\TB\Task4_tb2.vhd=VHDL Source Code
+.\src\TB\Task4_tb3.do=Macro
+.\src\TB\Task4_tb3.vhd=VHDL Source Code
+

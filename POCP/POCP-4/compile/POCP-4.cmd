@@ -1,0 +1,1 @@
+-w -s "c:\My_Designs\POCP\library.cfg"  -j "c:\My_Designs\POCP\POCP-4\projlib.cfg"  -d "c:\My_Designs\POCP\POCP-4\compile"   -work ieee  -O3 -e 100 -2002 "c:\My_Designs\POCP\POCP-4\src\TestBench\signature_t.vhd"

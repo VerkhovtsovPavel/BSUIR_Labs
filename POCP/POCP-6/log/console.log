@@ -1,0 +1,36 @@
+acom -O3 -work ieee -2002  $dsn/src/FIFO.vhd $dsn/src/RAM.vhd $dsn/src/RAM_Ham.vhd $dsn/src/RegFile.vhd $dsn/src/RegN.vhd $dsn/src/TB/RegFile_T.vhd $dsn/src/TB/FIFO_T.vhd $dsn/src/TB/RAM_Ham_T.vhd $dsn/src/TB/RAM_T.vhd
+# Compile...
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available.
+# File: C:\My_Designs\POCP\POCP-6\src\FIFO.vhd
+# Compile Entity "FIFO"
+# Compile Architecture "Beh" of Entity "FIFO"
+# File: C:\My_Designs\POCP\POCP-6\src\RAM.vhd
+# Compile Entity "RAM"
+# Compile Architecture "Beh" of Entity "RAM"
+# File: C:\My_Designs\POCP\POCP-6\src\RAM_Ham.vhd
+# Compile Entity "RAM_Ham"
+# Compile Architecture "Beh" of Entity "RAM_Ham"
+# File: C:\My_Designs\POCP\POCP-6\src\RegFile.vhd
+# Compile Entity "RegFile"
+# Compile Architecture "Beh" of Entity "RegFile"
+# File: C:\My_Designs\POCP\POCP-6\src\RegN.vhd
+# Compile Entity "RegN"
+# Compile Architecture "Beh" of Entity "RegN"
+# File: C:\My_Designs\POCP\POCP-6\src\TB\RegFile_T.vhd
+# Compile Entity "RegFile_T"
+# Compile Architecture "Beh" of Entity "RegFile_T"
+# Compile Configuration "config"
+# File: C:\My_Designs\POCP\POCP-6\src\TB\FIFO_T.vhd
+# Compile Entity "FIFO_T"
+# Compile Architecture "Beh" of Entity "FIFO_T"
+# Compile Configuration "config_L"
+# File: C:\My_Designs\POCP\POCP-6\src\TB\RAM_Ham_T.vhd
+# Compile Entity "RAM_HAM_T"
+# Compile Architecture "Beh" of Entity "RAM_HAM_T"
+# Compile Configuration "config"
+# File: C:\My_Designs\POCP\POCP-6\src\TB\RAM_T.vhd
+# Compile Entity "RAM_T"
+# Compile Architecture "Beh" of Entity "RAM_T"
+# Compile Configuration "config"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.5 [s]
+# Design: Design "POCP-7" has been set as active.
