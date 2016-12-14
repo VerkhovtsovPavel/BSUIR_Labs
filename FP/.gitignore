@@ -1,0 +1,16 @@
+/target
+/lib
+/classes
+/checkouts
+/.idea
+/resources/public/out
+/resources/public/clojure
+/resources/public/core.js
+pom.xml
+pom.xml.asc
+*.jar
+*.iml
+*.log
+*.class
+/.lein-*
+/.nrepl-port
