@@ -1,0 +1,119 @@
+[Project]
+Current Flow=Multivendor
+VCS=0
+version=3
+Current Config=compile
+
+[Configurations]
+compile=ieee
+
+[Library]
+ieee=c:\aldec\active-hdl 9.1\vlib\ieee\ieee.lib
+
+[Settings]
+AccessRead=0
+AccessReadWrite=0
+AccessACCB=0
+AccessACCR=0
+AccessReadWriteSLP=0
+AccessReadTopLevel=1
+DisableC=1
+ENABLE_ADV_DATAFLOW=0
+FLOW_TYPE=HDL
+LANGUAGE=VHDL
+FLOWTOOLS=ONLY_IMPL
+ON_SERVERFARM_SYNTH=0
+ON_SERVERFARM_IMPL=0
+ON_SERVERFARM_SIM=0
+DVM_DISPLAY=NO
+REFRESH_FLOW=1
+FAMILY=<none>
+IMPL_TOOL=<none>
+SYNTH_TOOL=<none>
+CSYNTH_TOOL=<none>
+PHYSSYNTH_TOOL=<none>
+fileopenfolder=E:\Code\POCP-2\src\behavior
+
+[LocalVerilogSets]
+EnableSLP=1
+EnableDebug=0
+
+[LocalVhdlSets]
+CompileWithDebug=0
+
+[$LibMap$]
+Active_lib=
+ieee=.
+
+[IMPLEMENTATION]
+UCF=
+
+[Folders]
+Name3=Makefiles
+Directory3=c:\My_Designs\POCP\POCP-2\
+Extension3=mak
+Name4=Memory
+Directory4=c:\My_Designs\POCP\POCP-2\src
+Extension4=mem;mif;hex
+Name5=Dll Libraries
+Directory5=c:\My_Designs\POCP\POCP-2\
+Extension5=dll
+Name6=PDF
+Directory6=c:\My_Designs\POCP\POCP-2\
+Extension6=pdf
+Name7=HTML
+Directory7=c:\My_Designs\POCP\POCP-2\
+Extension7=
+
+[Groups]
+structure=1
+structure\prim=1
+TestBench=1
+TestBench\var5=1
+TestBench\var6=1
+TestBench\var7=1
+
+[Files]
+/MUX2.vhd=-1
+/MUX4-2.vhd=-1
+structure/Var5.vhd=-1
+structure/Var6.vhd=-1
+structure/Var7.vhd=-1
+structure\prim/AND3.vhd=-1
+structure\prim/NAND3.vhd=-1
+structure\prim/OR3.vhd=-1
+structure\prim/AND2.vhd=-1
+structure\prim/OR2.vhd=-1
+structure\prim/NOT.vhd=-1
+TestBench\var5/var5_TB.vhd=-1
+TestBench\var5/var5_TB_tim_cfg.vhd=-1
+TestBench\var5/var5_TB_runtest.do=-1
+TestBench\var6/var6_TB.vhd=-1
+TestBench\var6/var6_TB_tim_cfg.vhd=-1
+TestBench\var6/var6_TB_runtest.do=-1
+TestBench\var7/var7_TB.vhd=-1
+TestBench\var7/var7_TB_tim_cfg.vhd=-1
+TestBench\var7/var7_TB_runtest.do=-1
+
+[Files.Data]
+.\src\MUX2.vhd=VHDL Source Code
+.\src\MUX4-2.vhd=VHDL Source Code
+.\src\structure\Var5.vhd=VHDL Source Code
+.\src\structure\Var6.vhd=VHDL Source Code
+.\src\structure\Var7.vhd=VHDL Source Code
+.\src\structure\prim\AND3.vhd=VHDL Source Code
+.\src\structure\prim\NAND3.vhd=VHDL Source Code
+.\src\structure\prim\OR3.vhd=VHDL Source Code
+.\src\structure\prim\AND2.vhd=VHDL Source Code
+.\src\structure\prim\OR2.vhd=VHDL Source Code
+.\src\structure\prim\NOT.vhd=VHDL Source Code
+.\src\TestBench\var5\var5_TB.vhd=VHDL Test Bench
+.\src\TestBench\var5\var5_TB_tim_cfg.vhd=VHDL Test Bench
+.\src\TestBench\var5\var5_TB_runtest.do=Macro
+.\src\TestBench\var6\var6_TB.vhd=VHDL Test Bench
+.\src\TestBench\var6\var6_TB_tim_cfg.vhd=VHDL Test Bench
+.\src\TestBench\var6\var6_TB_runtest.do=Macro
+.\src\TestBench\var7\var7_TB.vhd=VHDL Test Bench
+.\src\TestBench\var7\var7_TB_tim_cfg.vhd=VHDL Test Bench
+.\src\TestBench\var7\var7_TB_runtest.do=Macro
+
