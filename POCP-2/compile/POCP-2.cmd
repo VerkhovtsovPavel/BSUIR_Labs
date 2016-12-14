@@ -1,0 +1,1 @@
+-w -s "c:\My_Designs\POCP\library.cfg"  -j "E:\Code\POCP-2\projlib.cfg"  -d "E:\Code\POCP-2\compile"   -work ieee  -O3 -e 100 -2002 "E:\Code\POCP-2\src\TestBench\var6\var6_TB.vhd"

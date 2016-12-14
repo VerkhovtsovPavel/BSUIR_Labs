@@ -1,0 +1,17 @@
+.\src\MUX2.vhd
+.\src\MUX4-2.vhd
+.\src\structure\Var5.vhd
+.\src\structure\Var6.vhd
+.\src\structure\Var7.vhd
+.\src\structure\prim\AND3.vhd
+.\src\structure\prim\NAND3.vhd
+.\src\structure\prim\OR3.vhd
+.\src\structure\prim\AND2.vhd
+.\src\structure\prim\OR2.vhd
+.\src\structure\prim\NOT.vhd
+.\src\TestBench\var5\var5_TB.vhd
+.\src\TestBench\var5\var5_TB_tim_cfg.vhd
+.\src\TestBench\var6\var6_TB.vhd
+.\src\TestBench\var6\var6_TB_tim_cfg.vhd
+.\src\TestBench\var7\var7_TB.vhd
+.\src\TestBench\var7\var7_TB_tim_cfg.vhd
