@@ -1,0 +1,24 @@
+timestamp=1479398435353
+
+[task1]
+A/beh=A/Beh 23|.\src\Task1.asf|10000|
+
+[task2]
+A/beh=A/Beh 23|.\src\Task2.asf|10000|
+
+[task3]
+A/beh=A/Beh 23|.\src\Task3.asf|10000|
+
+[task4]
+A/beh=A/Beh 23|.\src\Task4.asf|10000|
+
+[~A]
+ModifyID=8
+Version=73
+
+[~U]
+task1=Task1 11||
+task2=Task2 11||
+task3=Task3 11||
+task4=Task4 11||
+

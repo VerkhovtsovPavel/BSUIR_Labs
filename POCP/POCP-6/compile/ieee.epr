@@ -1,0 +1,10 @@
+"C:\My_Designs\POCP\POCP-6\src\FIFO.vhd" VHDL ieee 1 0 0 -02
+"C:\My_Designs\POCP\POCP-6\src\RAM.vhd" VHDL ieee 1 0 0 -02
+"C:\My_Designs\POCP\POCP-6\src\RAM_Ham.vhd" VHDL ieee 1 0 0 -02
+"C:\My_Designs\POCP\POCP-6\src\RegFile.vhd" VHDL ieee 1 0 0 -02
+"C:\My_Designs\POCP\POCP-6\src\RegN.vhd" VHDL ieee 1 0 0 -02
+"C:\My_Designs\POCP\POCP-6\src\TB\RegFile_T.vhd" VHDL ieee 1 0 0 -02
+"C:\My_Designs\POCP\POCP-6\src\TB\FIFO_T.vhd" VHDL ieee 1 0 0 -02
+"C:\My_Designs\POCP\POCP-6\src\TB\RAM_Ham_T.vhd" VHDL ieee 1 0 0 -02
+"C:\My_Designs\POCP\POCP-6\src\TB\RAM_T.vhd" VHDL ieee 1 0 0 -02
+. . 0 0 0

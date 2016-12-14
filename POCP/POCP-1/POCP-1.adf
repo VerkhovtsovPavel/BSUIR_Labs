@@ -1,0 +1,83 @@
+[Project]
+Current Flow=Generic
+VCS=0
+version=3
+Current Config=compile
+
+[Configurations]
+compile=ieee
+
+[Library]
+ieee=c:\aldec\active-hdl 9.1\vlib\ieee\ieee.lib
+
+[Settings]
+AccessRead=0
+AccessReadWrite=0
+AccessACCB=0
+AccessACCR=0
+AccessReadWriteSLP=0
+AccessReadTopLevel=1
+DisableC=1
+ENABLE_ADV_DATAFLOW=0
+FLOW_TYPE=HDL
+LANGUAGE=VHDL
+REFRESH_FLOW=1
+FLOWTOOLS=NONE
+FAMILY=
+IMPL_TOOL=
+SYNTH_TOOL=
+CDebugWatchList=
+
+[LocalVerilogSets]
+EnableSLP=1
+EnableDebug=0
+
+[LocalVhdlSets]
+CompileWithDebug=0
+
+[$LibMap$]
+Active_lib=
+ieee=.
+
+[Folders]
+Name3=Makefiles
+Directory3=E:\Project\VHDL\POCP\POCP-1\
+Extension3=mak
+Name4=Memory
+Directory4=E:\Project\VHDL\POCP\POCP-1\src
+Extension4=mem;mif;hex
+Name5=Dll Libraries
+Directory5=E:\Project\VHDL\POCP\POCP-1\
+Extension5=dll
+Name6=PDF
+Directory6=E:\Project\VHDL\POCP\POCP-1\
+Extension6=pdf
+Name7=HTML
+Directory7=E:\Project\VHDL\POCP\POCP-1\
+Extension7=
+
+[HierarchyViewer]
+SortInfo=u
+HierarchyInformation=mux|beh|0 or4|OR4|0
+ShowHide=ShowTopLevel
+Selected=
+
+[Groups]
+source=1
+
+[Files]
+/2.asdb=-1
+/2.awc=-1
+source/MUX4BY2.vhd=-1
+source/MUX_2.vhd=-1
+source/OR4.vhd=-1
+source/MUX.vhd=-1
+
+[Files.Data]
+.\src\2.asdb=Accelerated Waveform File
+.\src\2.awc=Accelerated Waveform Configuration
+.\src\source\MUX4BY2.vhd=VHDL Source Code
+.\src\source\MUX_2.vhd=VHDL Source Code
+.\src\source\OR4.vhd=VHDL Source Code
+.\src\source\MUX.vhd=VHDL Source Code
+
