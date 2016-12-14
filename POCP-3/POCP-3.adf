@@ -1,0 +1,107 @@
+[Project]
+Current Flow=Multivendor
+VCS=0
+version=3
+Current Config=compile
+
+[Configurations]
+compile=ieee
+
+[Library]
+ieee=.\..\..\..\aldec\active-hdl 9.1\vlib\ieee\ieee.lib
+
+[Settings]
+AccessRead=0
+AccessReadWrite=0
+AccessACCB=0
+AccessACCR=0
+AccessReadWriteSLP=0
+AccessReadTopLevel=1
+DisableC=1
+ENABLE_ADV_DATAFLOW=0
+SYNTH_TOOL=<none>
+IMPL_TOOL=<none>
+CSYNTH_TOOL=<none>
+PHYSSYNTH_TOOL=<none>
+FLOW_TYPE=HDL
+LANGUAGE=VHDL
+FLOWTOOLS=ONLY_IMPL
+ON_SERVERFARM_SYNTH=0
+ON_SERVERFARM_IMPL=0
+ON_SERVERFARM_SIM=0
+DVM_DISPLAY=NO
+REFRESH_FLOW=1
+FAMILY=<none>
+
+[LocalVerilogSets]
+EnableSLP=1
+EnableDebug=0
+
+[LocalVhdlSets]
+CompileWithDebug=0
+
+[$LibMap$]
+Active_lib=
+ieee=.
+
+[IMPLEMENTATION]
+UCF=
+
+[Folders]
+Name3=Makefiles
+Directory3=c:\My_Designs\POCP\POCP-3\
+Extension3=mak
+Name4=Memory
+Directory4=c:\My_Designs\POCP\POCP-3\src
+Extension4=mem;mif;hex
+Name5=Dll Libraries
+Directory5=c:\My_Designs\POCP\POCP-3\
+Extension5=dll
+Name6=PDF
+Directory6=c:\My_Designs\POCP\POCP-3\
+Extension6=pdf
+Name7=HTML
+Directory7=c:\My_Designs\POCP\POCP-3\
+Extension7=
+
+[Groups]
+prim=1
+
+[Files]
+/BiStableLatch.vhd=-1
+/RSL.vhd=-1
+/DL.vhd=-1
+/DEL.vhd=-1
+/DELAS.vhd=-1
+/DELAR.vhd=-1
+/DT.vhd=-1
+/DTAS.vhd=-1
+/DTAR.vhd=-1
+/TT.vhd=-1
+prim/REP.vhd=-1
+prim/AND2.vhd=-1
+prim/AND3.vhd=-1
+prim/NAND3.vhd=-1
+prim/NOT.vhd=-1
+prim/NOR2.vhd=-1
+prim/OR3.vhd=-1
+
+[Files.Data]
+.\src\BiStableLatch.vhd=VHDL Source Code
+.\src\RSL.vhd=VHDL Source Code
+.\src\DL.vhd=VHDL Source Code
+.\src\DEL.vhd=VHDL Source Code
+.\src\DELAS.vhd=VHDL Source Code
+.\src\DELAR.vhd=VHDL Source Code
+.\src\DT.vhd=VHDL Source Code
+.\src\DTAS.vhd=VHDL Source Code
+.\src\DTAR.vhd=VHDL Source Code
+.\src\TT.vhd=VHDL Source Code
+.\src\prim\REP.vhd=VHDL Source Code
+.\src\prim\AND2.vhd=VHDL Source Code
+.\src\prim\AND3.vhd=VHDL Source Code
+.\src\prim\NAND3.vhd=VHDL Source Code
+.\src\prim\NOT.vhd=VHDL Source Code
+.\src\prim\NOR2.vhd=VHDL Source Code
+.\src\prim\OR3.vhd=VHDL Source Code
+
