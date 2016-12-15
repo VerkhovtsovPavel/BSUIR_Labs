@@ -1,42 +1,28 @@
 package by.verkpavel.grafolnet.service
 
-import by.verkpavel.grafolnet.model.{ Item, ItemSummary }
-import spray.json.{ DefaultJsonProtocol, JsString, JsValue, JsonFormat }
-
-sealed trait StockLevel
-object StockLevel {
-  def apply(level: Int) =
-    if (level > 3) InStock
-    else if (level > 0) LowStock
-    else SoldOut
-}
-case object InStock extends StockLevel
-case object LowStock extends StockLevel
-case object SoldOut extends StockLevel
-
-case class PublicItem(id: Int, stockLevel: StockLevel, title: String, desc: String)
-object PublicItem {
-  def apply(i: Item): PublicItem = PublicItem(i.id, StockLevel(i.stock), i.title, i.desc)
-}
-
-case class PublicItemSummary(id: Int, stockLevel: StockLevel, title: String)
-object PublicItemSummary {
-  def apply(i: ItemSummary): PublicItemSummary = PublicItemSummary(i.id, StockLevel(i.stock), i.title)
-}
+import by.verkpavel.grafolnet.model.{ ImageRequest, ImageResponse }
+import spray.json.{ DefaultJsonProtocol, JsFalse, JsNumber, JsString, JsTrue, JsValue, JsonFormat }
 
 trait ServiceJsonProtocol extends DefaultJsonProtocol {
 
-  implicit object StockLevelFmt extends JsonFormat[StockLevel] {
-    def write(obj: StockLevel) = JsString(obj.toString)
-    def read(json: JsValue): StockLevel = json match {
-      case JsString("InStock") => InStock
-      case JsString("LowStock") => LowStock
-      case JsString("SoldOut") => SoldOut
-      case _ => throw new Exception("Unsupported StockLevel")
+  implicit object AnyJsonFormat extends JsonFormat[Any] {
+    def write(x: Any) = x match {
+      case n: Int => JsNumber(n)
+      case s: String => JsString(s)
+      case b: Boolean if b == true => JsTrue
+      case b: Boolean if b == false => JsFalse
+      case _ => JsString("Parse error")
+    }
+
+    def read(value: JsValue) = value match {
+      case JsNumber(n) => n.intValue()
+      case JsString(s) => s
+      case JsTrue => true
+      case JsFalse => false
     }
   }
 
-  implicit val publicItemFmt = jsonFormat4(PublicItem.apply)
-  implicit val publicItemSummaryFmt = jsonFormat3(PublicItemSummary.apply)
+  implicit val publicItemFmt = jsonFormat2(ImageResponse)
+  implicit val publicItemSummaryFmt = jsonFormat3(ImageRequest)
 
 }

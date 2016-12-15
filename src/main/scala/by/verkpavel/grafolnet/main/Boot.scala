@@ -1,4 +1,4 @@
-package by.verkpavel.grafolnet
+package by.verkpavel.grafolnet.main
 
 import akka.actor.ActorSystem
 

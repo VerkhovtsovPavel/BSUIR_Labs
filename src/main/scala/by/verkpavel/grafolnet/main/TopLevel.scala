@@ -1,7 +1,7 @@
-package by.verkpavel.grafolnet
+package by.verkpavel.grafolnet.main
 
-import akka.actor.SupervisorStrategy.{ Restart, Stop }
-import akka.actor.{ Terminated, _ }
+import akka.actor.SupervisorStrategy.{Restart, Stop}
+import akka.actor.{Terminated, _}
 import akka.io.IO
 import akka.util.Timeout
 import by.verkpavel.grafolnet.model.ModelActor
@@ -15,9 +15,9 @@ object TopLevel {
 
 class ProductionTopLevel extends TopLevel with TopLevelConfig {
   private def c = context.system.settings.config
-  def interface = c.getString("example-app.service.interface")
-  def port = c.getInt("example-app.service.port")
-  implicit def askTimeout = Timeout(c.getMilliseconds("example-app.service.ask-timeout"))
+  def host = c.getString("grafolParser.host")
+  def port = c.getInt("grafolParser.port")
+  implicit def askTimeout = Timeout(c.getMilliseconds("grafolParser.ask-timeout"))
 
   def createModel = context.actorOf(ModelActor.props, ModelActor.name)
   def createService(model: ActorRef) = context.actorOf(ServiceActor.props(model), ServiceActor.name)
@@ -26,7 +26,7 @@ class ProductionTopLevel extends TopLevel with TopLevelConfig {
 trait TopLevelConfig {
   def createModel: ActorRef
   def createService(model: ActorRef): ActorRef
-  def interface: String
+  def host: String
   def port: Int
 }
 
@@ -40,7 +40,7 @@ class TopLevel extends Actor with ActorLogging {
   context watch service
 
   import context._
-  IO(Http) ! Http.Bind(service, interface, port)
+  IO(Http) ! Http.Bind(service, host, port)
 
   override def supervisorStrategy: SupervisorStrategy = OneForOneStrategy() {
     case _ if model == sender => Stop

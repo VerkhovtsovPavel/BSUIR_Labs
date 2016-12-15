@@ -1,19 +1,15 @@
 package by.verkpavel.grafolnet.model
 
 trait Model {
-  private val items = Item(1, 2, "foo", "More information about Foo") ::
-    Item(2, 3, "bar", "More information about Bar") ::
-    Item(3, 5, "qux", "More information about Qux") ::
-    Item(4, 7, "quux", "More information about Quux") ::
-    Item(5, 7, "quuux", "More information about Quuux") ::
+  private val items = ImageResponse(1, Map("foo" -> "More information about Foo")) ::
+    ImageResponse(2, Map("bar" -> "More information about Bar")) ::
+    ImageResponse(3, Map("qux" -> "More information about Qux")) ::
+    ImageResponse(4, Map("quux" -> "More information about Quux")) ::
+    ImageResponse(5, Map("quuux" -> "More information about Quuux")) ::
     Nil
-
-  val summary = (i: Item) => ItemSummary(i.id, i.stock, i.title)
 
   def get(id: Int) = items find (_.id == id)
 
-  def list = items map { summary }
-
-  def query(s: String) = items filter (_.desc.contains(s)) map summary
+  def list = items
 
 }

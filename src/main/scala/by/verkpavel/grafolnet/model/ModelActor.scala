@@ -1,14 +1,13 @@
 package by.verkpavel.grafolnet.model
 
 import akka.actor.{ Actor, Props }
-import by.verkpavel.grafolnet.model.ModelActor.{ ItemNotFound, ItemSummaries }
+import by.verkpavel.grafolnet.model.ModelActor.ItemNotFound
 
 object ModelActor {
   def props: Props = Props[ModelActor]
   def name = "model"
 
   case object ItemNotFound
-  case class ItemSummaries(items: Seq[ItemSummary])
 }
 
 class ModelActor extends Actor with Model {
@@ -18,10 +17,11 @@ class ModelActor extends Actor with Model {
       sender ! get(id).getOrElse(ItemNotFound)
 
     case 'list =>
-      sender ! ItemSummaries(list)
+      sender ! list
 
-    case ('query, term: String) =>
-      sender ! ItemSummaries(query(term))
+    case image : ImageRequest =>
+
+
   }
 
 }
