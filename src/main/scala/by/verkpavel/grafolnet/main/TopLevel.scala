@@ -1,7 +1,7 @@
 package by.verkpavel.grafolnet.main
 
-import akka.actor.SupervisorStrategy.{Restart, Stop}
-import akka.actor.{Terminated, _}
+import akka.actor.SupervisorStrategy.{ Restart, Stop }
+import akka.actor.{ Terminated, _ }
 import akka.io.IO
 import akka.util.Timeout
 import by.verkpavel.grafolnet.model.ModelActor
@@ -15,9 +15,9 @@ object TopLevel {
 
 class ProductionTopLevel extends TopLevel with TopLevelConfig {
   private def c = context.system.settings.config
-  def host = c.getString("grafolParser.host")
-  def port = c.getInt("grafolParser.port")
-  implicit def askTimeout = Timeout(c.getMilliseconds("grafolParser.ask-timeout"))
+  def host = c.getString("grafolParser.service.host")
+  def port = c.getInt("grafolParser.service.port")
+  implicit def askTimeout = Timeout(c.getMilliseconds("grafolParser.service.ask-timeout"))
 
   def createModel = context.actorOf(ModelActor.props, ModelActor.name)
   def createService(model: ActorRef) = context.actorOf(ServiceActor.props(model), ServiceActor.name)

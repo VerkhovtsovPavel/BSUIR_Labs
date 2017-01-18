@@ -10,6 +10,8 @@ resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/release
 
 resolvers += "spray repo" at "http://repo.spray.io"
 
+enablePlugins(JavaAppPackaging)
+
 val akka = "2.2.3"
 val spray = "1.2.0"
 
@@ -29,3 +31,5 @@ libraryDependencies ++=
 scalariformSettings
 
 seq(Revolver.settings: _*)
+
+
