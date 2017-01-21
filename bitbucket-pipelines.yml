@@ -1,3 +1,5 @@
+image: hindsightsoftware-docker-docker.bintray.io/bitbucket-pipeline:0.3
+
 pipelines:
   default:
     - step:
