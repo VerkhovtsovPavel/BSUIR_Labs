@@ -1,8 +1,5 @@
-image: hindsightsoftware-docker-docker.bintray.io/bitbucket-pipeline:0.3
-
 pipelines:
   default:
     - step:
         script:
-          - sbt scalastyle # Static code analysis
           - ./heroku-deploy.sh
