@@ -1,22 +1,14 @@
 #!/bin/bash
 
-HEROKU_API_KEY=9adb99a0-174c-4cdf-ac32-531c5ad0ad88
-HEROKU_APP_NAME=grapfol-net
-
 git archive --format=tar.gz -o deploy.tgz $BITBUCKET_COMMIT
 
 HEROKU_VERSION=$BITBUCKET_COMMIT
-APP_NAME=$HEROKU_APP_NAME # Your app's name in heroku goes here
 
 echo "Deploying Heroku Version $HEROKU_VERSION"
 
-API_URL="https://api.heroku.com/apps/$APP_NAME/sources -H 'Accept: application/vnd.heroku+json; version=3' -H 'Authorization: Bearer $HEROKU_API_KEY'"
-
-echo "Send POST $API_URL"
-
-URL_BLOB=`curl -s -n -X POST $API_URL`
-
-echo "URL BLOB $URL_BLOB"
+URL_BLOB=`curl -s -n -X POST https://api.heroku.com/apps/grapfol-net/sources \
+-H 'Accept: application/vnd.heroku+json; version=3' \
+-H 'Authorization: Bearer 9adb99a0-174c-4cdf-ac32-531c5ad0ad88'`
 
 PUT_URL=`echo $URL_BLOB | python -c 'import sys, json; print(json.load(sys.stdin)["source_blob"]["put_url"])'`
 GET_URL=`echo $URL_BLOB | python -c 'import sys, json; print(json.load(sys.stdin)["source_blob"]["get_url"])'`
@@ -30,8 +22,6 @@ BUILD_OUTPUT=`curl -s -n -X POST https://api.heroku.com/apps/$APP_NAME/builds \
 -H 'Accept: application/vnd.heroku+json; version=3' \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $HEROKU_API_KEY"`
-
-echo "Build output $BUILD_OUTPUT"
 
 STREAM_URL=`echo $BUILD_OUTPUT | python -c 'import sys, json; print(json.load(sys.stdin)["output_stream_url"])'`
 
