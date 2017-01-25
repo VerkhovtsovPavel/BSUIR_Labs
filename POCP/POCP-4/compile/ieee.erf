@@ -1,6 +1,0 @@
-WARNING DAGGEN_0523: "The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available." 
-MESSAGE "File: c:\My_Designs\POCP\POCP-4\src\TestBench\signature_t.vhd" 
-MESSAGE "Compile Entity "signature_T"" 
-MESSAGE "Compile Architecture "Beh" of Entity "signature_T"" 
-MESSAGE "Compile Configuration "TESTBENCH_FOR_signature"" 
-SUCCESS "Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]" 

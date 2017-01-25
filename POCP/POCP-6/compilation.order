@@ -1,9 +1,0 @@
-.\src\FIFO.vhd
-.\src\RAM.vhd
-.\src\RAM_Ham.vhd
-.\src\RegFile.vhd
-.\src\RegN.vhd
-.\src\TB\RegFile_T.vhd
-.\src\TB\FIFO_T.vhd
-.\src\TB\RAM_Ham_T.vhd
-.\src\TB\RAM_T.vhd

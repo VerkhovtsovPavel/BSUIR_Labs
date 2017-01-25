@@ -1,1 +1,0 @@
--w -s "C:\My_Designs\POCP\library.cfg"  -j "C:\My_Designs\POCP\POCP-7\projlib.cfg"  -d "C:\My_Designs\POCP\POCP-7\compile"   -work ieee  -O3 -e 100 -2002 "C:\My_Designs\POCP\POCP-7\src\TestBenches\max_finder_T.vhd"
