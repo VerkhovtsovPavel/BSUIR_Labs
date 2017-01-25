@@ -1,9 +1,0 @@
-Warning[205] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-3.X\FIB.ASM 1 : Found directive in column 1. (LIST)
-Warning[205] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-3.X\FIB.ASM 4 : Found directive in column 1. (cblock)
-Warning[205] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-3.X\FIB.ASM 10 : Found directive in column 1. (ENDC)
-Warning[205] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-3.X\FIB.ASM 12 : Found directive in column 1. (org)
-Message[305] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-3.X\FIB.ASM 20 : Using default destination of 1 (file).
-Message[302] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-3.X\FIB.ASM 43 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-3.X\FIB.ASM 44 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[305] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-3.X\FIB.ASM 50 : Using default destination of 1 (file).
-Warning[205] C:\USERS\PAVEL\MPLABXPROJECTS\POVS-3.X\FIB.ASM 52 : Found directive in column 1. (end)

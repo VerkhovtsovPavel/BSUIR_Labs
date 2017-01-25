@@ -1,5 +1,0 @@
-WARNING DAGGEN_0523: "The source is compiled without the -dbg switch. Line breakpoints, code coverage, and assertion debug will not be available." 
-MESSAGE "File: c:\My_Designs\POCP\POCP-3\src\TT.vhd" 
-MESSAGE "Compile Entity "TT"" 
-MESSAGE "Compile Architecture "behavior" of Entity "TT"" 
-SUCCESS "Compile success 0 Errors 0 Warnings  Analysis time :  62.0 [ms]" 
