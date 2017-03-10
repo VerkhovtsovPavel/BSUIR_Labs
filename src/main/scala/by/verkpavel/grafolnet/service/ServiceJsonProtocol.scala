@@ -1,7 +1,7 @@
 package by.verkpavel.grafolnet.service
 
-import by.verkpavel.grafolnet.model.{ ImageRequest, ImageResponse }
-import spray.json.{ DefaultJsonProtocol, JsFalse, JsNumber, JsString, JsTrue, JsValue, JsonFormat }
+import by.verkpavel.grafolnet.model.{ImageRequest, ImageResponse}
+import spray.json.{DefaultJsonProtocol, JsFalse, JsNumber, JsString, JsTrue, JsValue, JsonFormat}
 
 trait ServiceJsonProtocol extends DefaultJsonProtocol {
 

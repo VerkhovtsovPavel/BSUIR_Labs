@@ -1,6 +1,6 @@
 package by.verkpavel.grafolnet.model
 
-import akka.actor.{ Actor, Props }
+import akka.actor.{Actor, Props}
 import by.verkpavel.grafolnet.model.ModelActor.ItemNotFound
 
 object ModelActor {

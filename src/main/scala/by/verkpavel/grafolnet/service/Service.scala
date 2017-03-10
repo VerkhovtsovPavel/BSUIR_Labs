@@ -1,10 +1,10 @@
 package by.verkpavel.grafolnet.service
 
-import akka.actor.{ Actor, ActorRef, Props }
+import akka.actor.{Actor, ActorRef, Props}
 import akka.pattern.ask
 import akka.util.Timeout
 import by.verkpavel.grafolnet.model.ModelActor.ItemNotFound
-import by.verkpavel.grafolnet.model.{ ImageRequest, ImageResponse }
+import by.verkpavel.grafolnet.model.{ImageRequest, ImageResponse}
 import spray.http.StatusCodes._
 import spray.routing.HttpService
 import spray.httpx.SprayJsonSupport._

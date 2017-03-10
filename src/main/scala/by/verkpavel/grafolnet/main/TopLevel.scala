@@ -1,7 +1,7 @@
 package by.verkpavel.grafolnet.main
 
-import akka.actor.SupervisorStrategy.{ Restart, Stop }
-import akka.actor.{ Terminated, _ }
+import akka.actor.SupervisorStrategy.{Restart, Stop}
+import akka.actor.{Terminated, _}
 import akka.io.IO
 import akka.util.Timeout
 import by.verkpavel.grafolnet.model.ModelActor

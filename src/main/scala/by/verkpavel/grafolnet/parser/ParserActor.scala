@@ -2,7 +2,7 @@ package by.verkpavel.grafolnet.parser
 
 import java.awt.Image
 
-import akka.actor.{ Actor, Props }
+import akka.actor.{Actor, Props}
 
 object ParserActor {
   def props: Props = Props[ParserActor]
@@ -14,6 +14,7 @@ class ParserActor extends Actor {
   def receive = {
     case ParseRequest("angel", image) => 15.6
     case ParseRequest("density", image) => 0.3
+    case ParseRequest("density", image) => 0.7
   }
 
 }
