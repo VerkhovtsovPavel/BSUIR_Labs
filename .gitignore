@@ -1,3 +1,5 @@
+.vagrant/
+
 *.sublime-workspace
 
 *.aux
@@ -31,5 +33,3 @@
 *.synctex.gz
 *.synctex.gz(busy)
 *.pdfsync
-
-.vagrant/
