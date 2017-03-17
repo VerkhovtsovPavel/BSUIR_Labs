@@ -1,5 +1,5 @@
 LATEXMK=latexmk
-DIPLOMA_SRC=diploma.tex
+DIPLOMA_SRC=practica.tex
 
 all: diploma
 
