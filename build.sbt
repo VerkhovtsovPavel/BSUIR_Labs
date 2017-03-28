@@ -25,6 +25,7 @@ libraryDependencies ++=
     "io.spray" % "spray-routing" % spray ::
     "io.spray" % "spray-testkit" % spray % "test" ::
     "io.spray" %% "spray-json" % "1.2.5" ::
+    "org.bytedeco" % "javacv-platform" % "1.3.2" ::
     "org.scalatest" %% "scalatest" % "2.0" % "test" ::
     Nil
 
