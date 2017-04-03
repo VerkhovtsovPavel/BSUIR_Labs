@@ -10,7 +10,13 @@ resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/release
 
 resolvers += "spray repo" at "http://repo.spray.io"
 
+resolvers += "dev.davidsoergel.com releases" at "http://dev.davidsoergel.com/nexus/content/repositories/releases"
+
+resolvers += "dev.davidsoergel.com snapshots" at "http://dev.davidsoergel.com/nexus/content/repositories/snapshots"
+
 enablePlugins(JavaAppPackaging)
+
+unmanagedJars in Compile += file("lib/jnisvmlight.jar")
 
 val akka = "2.2.3"
 val spray = "1.2.0"
@@ -27,6 +33,8 @@ libraryDependencies ++=
     "io.spray" %% "spray-json" % "1.2.5" ::
     "org.bytedeco" % "javacv-platform" % "1.3.2" ::
     "org.scalatest" %% "scalatest" % "2.0" % "test" ::
+    "net.sourceforge.tess4j" % "tess4j" % "3.1.0" ::
+    "tw.edu.ntu.csie" % "libsvm" % "3.17" ::
     Nil
 
 scalariformSettings
