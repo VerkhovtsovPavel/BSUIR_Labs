@@ -37,7 +37,7 @@
         }
     ],
     "settings": {
-        "TEXroot": "practica.tex",
+        "TEXroot": "diploma.tex",
         "tex_file_exts": [".tex"],
     }
 }
