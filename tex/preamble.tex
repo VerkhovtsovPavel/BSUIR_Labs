@@ -90,7 +90,7 @@
 
 % Зачем: Пункты (в терминологии требований) в терминологии TeX subsubsection должны нумероваться
 % Почему: Пункт 2.2.3 Требований по оформлению пояснительной записки.
-\setcounter{secnumdepth}{3}
+\setcounter{secnumdepth}{4}
 
 % Содержание из двух уровней
 \setcounter{tocdepth}{2}
@@ -187,6 +187,17 @@
   {\textbf{\thesubsubsection}}
   {1em \@plus 1ex \@minus .2ex}{}
 \titlespacing{\subsubsection}
+  {\parindent}{1em \@plus 1ex \@minus .2ex}{\z@}
+\makeatother
+
+% Зачем: Задает стиль заголовков подпунктов
+% Почему: Пункты 2.1.1.1, 2.2.5.1 Требований по оформлению пояснительной записки.
+\makeatletter
+\titleformat{\paragraph}
+  {\filright\hyphenpenalty=10000\normalfont\normalsize}
+  {\textbf{\theparagraph}}
+  {1em \@plus 1ex \@minus .2ex}{}
+\titlespacing{\paragraph}
   {\parindent}{1em \@plus 1ex \@minus .2ex}{\z@}
 \makeatother
 
