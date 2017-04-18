@@ -9,9 +9,10 @@
 \def \noveltyGroup{Б}
 
 % ---
-Целью данного проекта является разработка и анализ алгоритмов определения психологических характеристик по образцам почерка. Автоматизация 
+Целью данного проекта является разработка и анализ алгоритмов определения психологических характеристик по образцам почерка. Автоматизация графологических методов и удешевление экспертизы.
 
-В данном разделе рассмотрим экономическую эффективность программного средства. Программный комплекс относится к \complexityGroup-й группе сложности. Категория новизны продукта – <<\noveltyGroup>>. Для оценки экономической эффективности ПС необходимо рассчитать смету затрат на разработку, цену и прибыль продажи одной программной системы.
+Программное средство относится к \complexityGroup-й группе сложности. Категория новизны – <<\noveltyGroup>>. 
+При оценке экономической эффективности ПС будет рассчитана смета затрат на разработку, цена и прибыль.
 
 Расчеты выполнены на основе методического пособия~\cite{palicyn_2006}.
 
@@ -22,15 +23,15 @@
 \FPeval{complexityFactor}{clip(1 + \additionalComplexityFactor)}
 
 % Степень использования при разработке стандартных модулей, ед.
-\def \stdModuleUsageFactor{0.6}
+\def \stdModuleUsageFactor{0.5}
 
 % Коэффициент новизны, Кн
 \def \noveltyFactor{0.9}
 
 % Годовой эффективный фонд времени, дн.
-\def \daysInYear{366}
-\def \holidaysInYear{6}
-\def \weekendDaysInYear{105}
+\def \daysInYear{365}
+\def \holidaysInYear{9}
+\def \weekendDaysInYear{79}
 \def \vacationDaysInYear{24}
 \FPeval{workingDaysInYear}{
     clip(\daysInYear -
@@ -47,7 +48,7 @@
 
 % Месячная тарифная ставка первого разряда, Br
 % \def \tariffRate{298000} % Гос. предприятия
-\def \tariffRate{115}
+\def \tariffRate{31}
 
 % Коэффициент премирования, ед
 \def \bonusRate{1.5}
@@ -101,16 +102,20 @@
 Согласно классификации типов программного обеспечения~\cite[с.~59,~приложение 1]{palicyn_2006}, разрабатываемое ПО можно классифицировать как ПО методo"=ориентированных расчетов.
 
 Исходные данные разрабатываемого проекта указаны в таблице~\ref{table:economics:initial_data}.
-\afterpage{
+
 \begin{longtable}[l]{| >{\raggedright}m{0.62\textwidth}
                      | >{\centering}m{0.17\textwidth}
                      | >{\centering\arraybackslash}m{0.13\textwidth}|}
+  \caption{Исходные данные}
+  \label{table:economics:initial_data} \\
+  \endfirsthead
+  \caption*{Продолжение таблицы \ref{table:economics:initial_data}}\\
+   \hline
+    {\begin{center} Наименование \end{center} } & Условное обозначение & Значение
+    \\ \hline
+  \endhead
 
-    \caption{Исходные данные}
-    \label{table:economics:initial_data}
-    \\
-
-    \hline
+   \hline
     {\begin{center} Наименование \end{center} } & Условное обозначение & Значение
     \\ \hline
 
@@ -198,7 +203,7 @@
     & $ \text{Н}_\text{рса} $ & \num{\supportAndAdaptationRate}
     \\ \hline
 \end{longtable}
-}
+
 
 Общий объём программного продукта определяется исходя из количества и объёма функций, реализованных в программе:
 \begin{equation}
@@ -213,8 +218,8 @@
 На стадии технико-экономического обоснования проекта рассчитать точный объём функций невозможно.
 Вместо вычисления точного объёма функций применяются приблизительные оценки на основе данных по аналогичным проектам или по нормативам~\cite[с.~61,~приложение 2]{palicyn_2006}, которые приняты в организации.
 
-\def \totalLOC{9710} % TODO
-\def \totalLOCCorrected{6390} % TODO
+\def \totalLOC{13940} % TODO
+\def \totalLOCCorrected{6300} % TODO
 
 \afterpage{
 \begin{longtable}{| >{\centering}m{0.12\textwidth}
@@ -237,40 +242,40 @@
        & { уточненный ($ V_{i}^{\text{у}} $) } \tabularnewline
   \hline
 
-  101 & Организация системы подключаемых модулей
-  & \num{720} & \num{520}
+  101 & Организация ввода информации
+  & \num{100} & \num{100}
   \\ \hline
 
   102 & Контроль, предварительная обработка и ввод информации
-  & \num{650} & \num{370}
+  & \num{520} & \num{370}
   \\ \hline
 
-  111 & Обработка исходных данных и тренировка математической модели
-  & \num{3100} & \num{1900}
+  111 & Управление вводом/выводом
+  & \num{2700} & \num{1900}
   \\ \hline
 
-  301 & Интерфейс к базе данных моделей устройств
-  & \num{890} & \num{770}
+  301 & Формирование последовательного файла
+  & \num{340} & \num{170}
   \\ \hline
 
-  501 & Монитор ПО (управление работой компонентов)
-  & \num{1240} & \num{910}
+  305 & Обработка файлов
+  & \num{750} & \num{570}
   \\ \hline
 
-  506 & Обработка исключительных ситуаций
-  & \num{620} & \num{400}
+  506 & Обработка ошибочных и сбойных ситуаций
+    & \num{430} & \num{400}
   \\ \hline
 
   507 & Обеспечение интерфейса между компонентами
-  & \num{970} & \num{680}
+  & \num{730} & \num{680}
   \\ \hline
 
-  612 & Аутентификация на основе сравнения реальных данных и математической модели
-  & \num{1100} & \num{840}
+  701 & Математическая статистика и прогнозирование
+  & \num{8370} & \num{2210}
   \\ \hline
 
   Итог & &
-  {\num{\totalLOC}} & {\num{\totalLOCCorrected}}
+ {\num{\totalLOC}} & {\num{\totalLOCCorrected}}
   \\ \hline
 
 \end{longtable}
@@ -278,10 +283,7 @@
 
 Перечень и объём функций программного модуля перечислен в таблице~\ref{table:econ:function_sizes}.
 По приведенным данным уточненный объём некоторых функций изменился, и общий уточненный объём ПО
-$ V_{\text{у}} = \SI{\totalLOCCorrected}{\text{LoC}} $
-.
-
-
+$ V_{\text{у}} = \SI{\totalLOCCorrected}{\text{LoC}} $.
 
 \subsection{Расчёт трудоемкости}
 
@@ -425,10 +427,10 @@ $ \text{Т}_\text{р} = \SI{\developmentMonths}{\text{мес.}} = \SI{\developme
 \def \tariffFactorLead{3.48}   % == 15 разряд
 
 % Часовая тарифная ставка исполнителей, Тч
-\FPeval{hourlySalarySenior}{round( \tariffRate * \tariffFactorSenior / \workingHoursInMonth, 0 )}
-\FPeval{hourlySalaryLead}{round( \tariffRate * \tariffFactorLead / \workingHoursInMonth, 0 )}
+\FPeval{hourlySalarySenior}{round( \tariffRate * \tariffFactorSenior / \workingHoursInMonth, 2 )}
+\FPeval{hourlySalaryLead}{round( \tariffRate * \tariffFactorLead / \workingHoursInMonth, 2 )}
 
-% Основная арплата, Зо
+% Основная зарплата, Зо
 \FPeval{baseSalary}{
      round(\workingHoursInDay *
            \bonusRate *
@@ -544,9 +546,6 @@ $ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
          {100\%} \approx \SI{\additionalSalary}{\text{\byr}} \text{\,.}
 \end{equation}
 
-
-\clearpage % Hack
-
 \subsection{Расчёт расходов и прогнозируемой цены ПО}
 
 \FPeval{totalSalary}{\baseSalary + \additionalSalary}
@@ -611,10 +610,10 @@ $ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
 
 % ---
 
-Расчеты общей суммы расходов и прогнозируемой цены ПО, а также его себестоимости производятся в соответствии с установлеными законодательством и регламентом предприятия нормативами. Результаты расчётов сведены в таблицу~\ref{table:economics:expenses_and_cost}.
+Расчеты общей суммы расходов и прогнозируемой цены ПО, а также его себестоимости производятся в соответствии с установленными законодательством и регламентом предприятия нормативами. Результаты расчётов сведены в таблицу~\ref{table:economics:expenses_and_cost}.
 
 
-\begin{longtable}[ht]{| >{\raggedright}m{0.27\textwidth}
+\begin{longtable}[ht]{| >{\raggedright}m{0.24\textwidth}
                       | >{\centering}m{0.16\textwidth}
                       | >{\raggedright}m{0.35\textwidth}
                       | >{\raggedleft\arraybackslash}m{0.15\textwidth}|}
@@ -706,7 +705,7 @@ $ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
     &
     & $ \text{Ц}_{\text{п}} = \text{С}_{\text{п}} + \text{П}_{\text{с}}$
     & \num{\estimatedPrice}
-    \\
+    \\ \hline
 
     Отчисления и налоги в местный и республиканский бюджеты
     & $ \text{Н}_{\text{мр}} = \num{\localRepubTaxRate} $
@@ -726,8 +725,6 @@ $ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
     & \num{\sellingPrice}
     \\ \hline
 \end{longtable}
-
-
 
 \subsection{Расчёт экономической эффективности у разработчика}
 
@@ -757,7 +754,6 @@ $ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
 Программное обеспечение разрабатывалось для одного заказчика в связи с этим экономическим эффектом разработчика будет являться чистая прибыль от реализации~$ \text{П}_\text{ч} $.
 Рассчитанные данные приведены в таблице~\ref{table:economics:calculated_data}.
 
-\clearpage
 \begin{longtable}{| >{\raggedright}m{0.60\textwidth}
                   | >{\centering}m{0.17\textwidth}
                   | >{\centering\arraybackslash}m{0.15\textwidth}|}
@@ -874,13 +870,10 @@ $ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
     \\ \hline
 \end{longtable}
 
-
-
 \subsection{Выводы по технико-экономическому обоснованию}
 
-Программное средство распознавания уникальных неклонируемых идентификаторов цифровых устройств является экономически выгодным программным продуктом.
-Программное средство разрабатывалось для одного заказчика и в связи с этим чистая прибыль от реализации ПС ($ \text{П}_\text{ч} $ = \num{\netProfit} рублей) представляет собой экономический эффект от создания нового программного средства.
-
+Программное средство определение психологических параметров человека по анализу образцов почерка является экономически выгодным.
+Чистая прибыль от реализации ПС ($ \text{П}_\text{ч} $ = \num{\netProfit} рублей) показывает экономический эффект от создания программного средства.
 
 \hfill
 \clearpage
