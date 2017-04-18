@@ -9,7 +9,7 @@
 \def \noveltyGroup{Б}
 
 % ---
-Целью данного проекта является разработка и анализ алгоритмов определения психологических характеристик по образцам почерка. Автоматизация графологических методов и удешевление экспертизы.
+Целью данного проекта является разработка и анализ алгоритмов определения психологических характеристик по образцам почерка, автоматизация графологических методов и удешевление экспертизы.
 
 Программное средство относится к \complexityGroup-й группе сложности. Категория новизны – <<\noveltyGroup>>. 
 При оценке экономической эффективности ПС будет рассчитана смета затрат на разработку, цена и прибыль.
@@ -282,8 +282,7 @@
 }
 
 Перечень и объём функций программного модуля перечислен в таблице~\ref{table:econ:function_sizes}.
-По приведенным данным уточненный объём некоторых функций изменился, и общий уточненный объём ПО
-$ V_{\text{у}} = \SI{\totalLOCCorrected}{\text{LoC}} $.
+Общий уточненный объём ПО $ V_{\text{у}} = \SI{\totalLOCCorrected}{\text{LoC}} $.
 
 \subsection{Расчёт трудоемкости}
 
@@ -303,7 +302,7 @@ $ V_{\text{у}} = \SI{\totalLOCCorrected}{\text{LoC}} $.
 \FPeval{developmentYears}{round(\developmentMonths / 12, 2)}
 
 % Численность исполнителей, Чр
-\FPeval{requiredProgrammers}{trunc(\totalWorkload / (\developmentYears * \workingDaysInYear) + 0.5, 0) }
+\FPeval{requiredProgrammers}{trunc(\totalWorkload / (\developmentYears * \workingDaysInYear) + 1, 0) }
 
 % Считаем, что работы каждому достаётся поровну.
 \FPeval{workloadSenior}{trunc( \totalWorkload / \requiredProgrammers, 0 )}
@@ -413,12 +412,10 @@ $ \text{Т}_\text{р} = \SI{\developmentMonths}{\text{мес.}} = \SI{\developme
   \text{Ч}_\text{р} = \frac{\num{\totalWorkload}}
                            {\num{\developmentYears}
                       \cdot \num{\workingDaysInYear}}
-                    \approx \SI{\requiredProgrammers}{\text{рабочих}}.
+                    \approx \SI{\requiredProgrammers}{\text{работника}}.
 \end{equation}
 
-Вычисленные оценки показывают, что для выполнения запланированного проекта в указанные сроки необходимо \requiredProgrammers ~рабочих.
-
-
+Вычисленные оценки показывают, что для выполнения запланированного проекта в указанные сроки необходимо \requiredProgrammers ~работника.
 
 \subsection{Расчёт заработной платы исполнителей}
 
@@ -427,33 +424,25 @@ $ \text{Т}_\text{р} = \SI{\developmentMonths}{\text{мес.}} = \SI{\developme
 \def \tariffFactorLead{3.48}   % == 15 разряд
 
 % Часовая тарифная ставка исполнителей, Тч
-\FPeval{hourlySalarySenior}{round( \tariffRate * \tariffFactorSenior / \workingHoursInMonth, 2 )}
-\FPeval{hourlySalaryLead}{round( \tariffRate * \tariffFactorLead / \workingHoursInMonth, 2 )}
+\FPeval{hourlySalarySenior}{round(\tariffRate * \tariffFactorSenior / \workingHoursInMonth, 2)}
+\FPeval{hourlySalaryLead}{round(\tariffRate * \tariffFactorLead / \workingHoursInMonth, 2)}
 
 % Основная зарплата, Зо
-\FPeval{baseSalary}{
-     round(\workingHoursInDay *
-           \bonusRate *
-           (\hourlySalarySenior * \workloadSenior +
-            \hourlySalaryLead * \workloadLead), 0)
-}
+\FPeval{baseSalary}{round(\workingHoursInDay * \bonusRate * (\hourlySalarySenior * \workloadSenior + \hourlySalaryLead * \workloadLead), 0)}
 
 % Дополнительная зарплата, Зд
-\FPeval{additionalSalary}{ round( \baseSalary * \additionalSalaryRate / 100, 0 ) }
-
-
-% ---
+\FPeval{additionalSalary}{round(\baseSalary * \additionalSalaryRate / 100, 0)}
 
 Информация о работниках перечислена в таблице~\ref{table:economics:programmers}.
 \begin{table}[ht]
   \caption{Работники, занятые в проекте}
   \label{table:economics:programmers}
-  \begin{tabular}{| >{\centering}m{0.4\textwidth}
+  \begin{tabular}{| >{\raggedright}m{0.4\textwidth}
                   | >{\centering}m{0.15\textwidth}
                   | >{\centering}m{0.18\textwidth}
                   | >{\centering\arraybackslash}m{0.15\textwidth}|}
    \hline
-   Исполнители & Разряд & Тарифный коэффициент & \mbox{Чел./дн.} занятости
+   \centering{Исполнители} & Разряд & Тарифный коэффициент & \mbox{Чел./дн.} занятости
    \\ \hline
 
    Программист \Rmnum{1}-категории & $ \num{14} $ & $ \num{\tariffFactorSenior} $ & $ \num{\workloadSenior} $
@@ -525,7 +514,7 @@ $ \text{К} = \num{\bonusRate} $
                       = \SI{\baseSalary}{\text{\byr}} \text{\,.}
 \end{equation}
 
-Дополнительная заработная плата включает выплаты предусмотренные законодательством от труде и определяется по нормативу в процентах от основной заработной платы
+Дополнительная заработная плата включает выплаты предусмотренные законодательством о труде и определяется по нормативу в процентах от основной заработной платы
 \begin{equation}
   \label{eq:economics:additional_salary}
   \text{З}_{\text{д}} =
@@ -613,22 +602,21 @@ $ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
 Расчеты общей суммы расходов и прогнозируемой цены ПО, а также его себестоимости производятся в соответствии с установленными законодательством и регламентом предприятия нормативами. Результаты расчётов сведены в таблицу~\ref{table:economics:expenses_and_cost}.
 
 
-\begin{longtable}[ht]{| >{\raggedright}m{0.24\textwidth}
-                      | >{\centering}m{0.16\textwidth}
-                      | >{\raggedright}m{0.35\textwidth}
-                      | >{\raggedleft\arraybackslash}m{0.15\textwidth}|}
-    \caption{Расчет себестоимости и отпускной цены ПО}
-    \label{table:economics:expenses_and_cost}\\
-    \hline
-    \centering{Наименование статей} & \centering{\mbox{Норматив,} \%} & \centering{\mbox{Методика расчета}} & \mbox{Значение,} руб.
-    \\ \hline
-    \endfirsthead
-    \caption*{Продолжение таблицы \ref{table:economics:expenses_and_cost}}\\
-    \hline
-    \centering{Наименование статей} & \centering{\mbox{Норматив,} \%} & \centering{\mbox{Методика расчета}} & \mbox{Значение,} руб.
-    \\ \hline
-    \endhead
-    \endlastfoot
+\begin{longtable}{| >{\raggedright}m{0.24\textwidth}
+                  | >{\centering}m{0.16\textwidth}
+                  | >{\centering}m{0.35\textwidth}
+                  | >{\centering\arraybackslash}m{0.15\textwidth}|}
+  \caption{Расчет себестоимости и отпускной цены ПО}
+  \label{table:economics:expenses_and_cost} \\
+  \endfirsthead
+  \caption*{Продолжение таблицы \ref{table:economics:expenses_and_cost}}\\
+  \hline
+  \centering{Наименование статей} & Норматив,\% & Методика расчета & Значение, руб. \\ 
+  \hline
+  \endhead
+  \hline
+  \centering{Наименование статей} & Норматив,\% & Методика расчета & Значение, руб. \\ 
+  \hline
 
 
     Отчисления в фонд социальной защиты и обязательного страхования
@@ -872,8 +860,7 @@ $ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
 
 \subsection{Выводы по технико-экономическому обоснованию}
 
-Программное средство определение психологических параметров человека по анализу образцов почерка является экономически выгодным.
-Чистая прибыль от реализации ПС ($ \text{П}_\text{ч} $ = \num{\netProfit} рублей) показывает экономический эффект от создания программного средства.
+В данном разделе было произведено технико-экономическое обоснование разрабатываемого программного средства, составлена смета затрат и рассчитана прогнозируемая прибыль. Рассчитанные данные приведены в таблице~\ref{table:economics:calculated_data}.
+Чистая прибыль от реализации ПС ($ \text{П}_\text{ч} $ = \num{\netProfit} рублей) показывает экономическую целесообразность разработки программного средства.
 
-\hfill
 \clearpage
