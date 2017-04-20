@@ -37,7 +37,7 @@
         }
     ],
     "settings": {
-        "TEXroot": "economy_only.tex",
+        "TEXroot": "diagrams.tex",
         "tex_file_exts": [".tex"],
     }
 }
