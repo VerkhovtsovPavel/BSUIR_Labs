@@ -1,0 +1,14 @@
+{
+  "id": "5721a646fca0fd7cf0f231f1",
+  "user_id": "1",
+  "imageFormat": "png",
+  "handwriteFeatures": {
+    "characterTilt": 15,
+    "lineTilt": 3,
+    "characterSpacing": 1.54,
+    "wordSpacing": 0.27,
+    "frequencyOfText": 0.45,
+    "pressingForce": 94
+  },
+  "natureDecsciption": null
+}

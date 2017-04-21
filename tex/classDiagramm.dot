@@ -1,0 +1,56 @@
+digraph diagram {
+
+node [shape = "record"]
+
+"Boot" 
+  "Boot" -> "App";
+
+"ProductionTopLevel" 
+  "ProductionTopLevel" -> "TopLevel";
+  "ProductionTopLevel" -> "TopLevelConfig";
+
+"TopLevelConfig" 
+
+"TopLevel" 
+  "TopLevel" -> "Actor";
+  "TopLevel" -> "ActorLogging";
+
+"Model" 
+
+"ModelActor" 
+
+"ItemNotFound" 
+  "ItemNotFound" -> "Response"
+
+"ModelActor" 
+  "ModelActor" -> "Actor";
+  "ModelActor" -> "Model";
+
+"Request"
+  "Request" -> "HTTPElement";
+
+"Response" 
+  "Response" -> "HTTPElement";
+
+"HTTPElement"
+  
+"ParserActor" 
+  "ParserActor" -> "Actor";
+
+"ServiceActor" 
+  "ServiceActor" -> "ActorRef";
+  "ServiceActor" -> "Timeout";
+  "ServiceActor" -> "Actor";
+  "ServiceActor" -> "Service";
+
+"Service" 
+  "Service" -> "HttpService";
+  "Service" -> "ServiceJsonProtocol";
+
+"ServiceJsonProtocol" 
+  "ServiceJsonProtocol" -> "DefaultJsonProtocol";
+
+"AnyJsonFormat" 
+  "AnyJsonFormat" -> "JsonFormat";
+
+}
