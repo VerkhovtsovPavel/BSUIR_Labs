@@ -14,7 +14,7 @@
 Программное средство относится к \complexityGroup-й группе сложности. Категория новизны – <<\noveltyGroup>>. 
 При оценке экономической эффективности ПС будет рассчитана смета затрат на разработку, цена и прибыль.
 
-Расчеты выполнены на основе методического пособия~\cite{palicyn_2006}.
+Расчеты выполнены на основе методического пособия~\cite{gorovoi_2014}.
 
 \subsection{Расчёт сметы затрат и цены программного продукта}
 
@@ -509,8 +509,37 @@ $ \text{К} = \num{\bonusRate} $
                          \hourlySalaryLead \cdot \num{\workloadLead})
                         \cdot \num{\workingHoursInDay}
                         \cdot \num{\bonusRate}
-                      = \SI{\baseSalary}{\text{\byr}} \text{\,.}
+                      \approx \SI{\baseSalary}{\text{\byr}} \text{\,.}
 \end{equation}
+
+\FPeval{mountSalarySenior}{round(\workingHoursInMonth * \bonusRate * \hourlySalarySenior, 2)}
+\FPeval{mountSalaryLead}{round(\workingHoursInMonth * \bonusRate * \hourlySalaryLead, 2)}
+\FPeval{baseSalarySenior}{round(\workingHoursInDay * \bonusRate * \hourlySalarySenior * \workloadSenior, 2)}
+\FPeval{baseSalaryLead}{round(\workingHoursInDay * \bonusRate * \hourlySalaryLead * \workloadLead, 2)}
+\FPeval{hourlyWorkloadSenior}{round(\workloadSenior * 8, 0)}
+\FPeval{hourlyWorkloadLead}{round(\workloadLead * 8, 0)}
+
+Информация об основной заработной плате работников приведена в таблице~\ref{table:economics:base_salary}.
+
+\begin{table}[ht]
+  \caption{Сводная таблица основной заработной платы}
+  \label{table:economics:base_salary}
+  \begin{tabular}{| >{\centering}m{0.03\textwidth}
+                  | >{\raggedright}m{0.17\textwidth}
+                  | >{\centering}m{0.18\textwidth}
+                  | >{\centering}m{0.09\textwidth}
+                  | >{\centering}m{0.09\textwidth}
+                  | >{\centering}m{0.14\textwidth}
+                  | >{\centering\arraybackslash}m{0.12\textwidth}|}
+   \hline
+   № & \centering{Участник команды} & Выполняемые работы & $ \text{З}_{\text{о}} $ за месяц, \byr & $ \text{З}_{\text{о}} $ за час, \byr & Трудоемко- сть работ, часов & Основная заработная плата, \byr
+   \\ \hline
+   1 & Программист \Rmnum{1}-категории & Разработка ПС, тестирование & $ \num{\mountSalarySenior} $ & $ \num{\hourlySalarySenior} $ & $ \num{\hourlyWorkloadSenior} $ & \num{\baseSalarySenior}
+   \\ \hline
+   2 & Ведущий программист & Разработка архитектуры, разработка ПС & $ \num{\mountSalaryLead} $ & $ \num{\hourlySalaryLead} $ & $ \num{\hourlyWorkloadLead} $ & \num{\baseSalaryLead}
+   \\ \hline
+  \end{tabular}
+\end{table}
 
 Дополнительная заработная плата включает выплаты предусмотренные законодательством о труде и определяется по нормативу в процентах от основной заработной платы
 \begin{equation}
@@ -538,13 +567,13 @@ $ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
 \FPeval{totalSalary}{\baseSalary + \additionalSalary}
 
 % Отчисления в фонд социальной защиты
-\FPeval{socialProtectionMoney}{ round( \totalSalary * \socialProtectionRate / 100, 0 ) }
+\FPeval{socialProtectionMoney}{round( \totalSalary * \socialProtectionRate / 100, 0)}
 
 % Отчисления в белгосстрах
-\FPeval{bgsMoney}{ round( \totalSalary * \bgsRate / 100, 0 ) }
+\FPeval{bgsMoney}{round(\totalSalary * \bgsRate / 100, 0)}
 
 % Материалы и комплектующие
-\FPeval{materialsMoney}{ round( \baseSalary * \materialsRate / 100, 0 ) }
+\FPeval{materialsMoney}{round(\baseSalary * \materialsRate / 100, 0)}
 
 % Машинное время
 \FPeval{machineTimeMoney}{
@@ -584,13 +613,16 @@ $ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
 \FPeval{profitMoney}{ round( \totalSoftwareCost * \profitability / 100, 0) }
 
 % Прогнозируемая цена без налогов
-\FPeval{estimatedPrice}{clip( \profitMoney + \totalSoftwareCost )}
+\FPeval{estimatedPrice}{clip(\profitMoney + \totalSoftwareCost)}
 
 % Отчисления и налоги в местный и республиканский бюджеты
 \FPeval{localRepubTaxMoney}{ round( \estimatedPrice * \localRepubTaxRate / (100 - \localRepubTaxRate), 0 ) }
 
 % Налог на добавленную стоимость
 \FPeval{vatMoney}{ round( (\estimatedPrice + \localRepubTaxMoney) * (\vatRate / 100), 0 ) }
+
+%Налог на прибыль
+\FPeval{profitTax}{round(\profitMoney * \profitTaxRate / 100, 0)}
 
 % Прогнозируемая отпускная цена
 \FPeval{sellingPrice}{ round( \estimatedPrice + \localRepubTaxMoney + \vatMoney, 0 ) }
@@ -664,7 +696,7 @@ $ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
 
     Общая сумма расходов по смете
     &
-    & $  \text{С}_{\text{р}} = \text{З}_{\text{о}} + \text{З}_{\text{д}} + \text{З}_{\text{сз}} + \text{М} + \text{Р}_{\text{м}} + \text{Р}_{\text{к}} + \text{П}_{\text{з}} + \text{Р}_{\text{н}} $
+    & $ \text{С}_{\text{р}} = \text{З}_{\text{о}} + \text{З}_{\text{д}} + \text{З}_{\text{сз}} + \text{М} + \text{Р}_{\text{м}} + \text{Р}_{\text{к}} + \text{П}_{\text{з}} + \text{Р}_{\text{н}} $
     & \num{\totalSoftwareCost}\\
     \hline
 
@@ -713,8 +745,7 @@ $ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
 \end{longtable}
 
 \subsection{Расчёт экономической эффективности у разработчика}
-
-\FPeval{netProfit}{round(\profitMoney * (1 - \profitTaxRate / 100), 0) }
+\FPeval{netProfit}{round(\profitMoney - \profitTax, 0)}
 
 Важная задача при выборе проекта для финансирования это расчет экономической эффективности проектов и выбор наиболее выгодного проекта.
 Разрабатываемое ПО является заказным, т.е. разрабатывается для одного заказчика на заказ. На основании анализа рыночных условий и договоренности с заказчиком об отпускной цене прогнозируемая рентабельность проекта составит $ \text{У}_{\text{рп}} = \num{\profitability\%} $.
@@ -730,7 +761,7 @@ $ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
   где & $ \text{Н}_{\text{п}} $ & величина налога на прибыль,~$\%$.
 \end{explanation}
 
-Приняв значение налога на прибыль $ \text{Н}_{\text{н}} = \num{\profitTaxRate\%} $ и подставив известные данные в формулу~(\ref{eq:economics:profit}) получаем чистую прибыль
+Приняв значение налога на прибыль $ \text{Н}_{\text{п}} = \num{\profitTaxRate\%} $ и подставив известные данные в формулу~(\ref{eq:economics:profit}) получаем чистую прибыль
 \begin{equation}
   \label{eq:economics:net_profit}
   \text{П}_\text{ч} =
@@ -747,8 +778,11 @@ $ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
     \label{table:economics:calculated_data}\\
     \endfirsthead
     \caption*{Продолжение таблицы \ref{table:economics:calculated_data}}\\
-    \endhead
-
+    \hline
+    \centering{Наименование}
+    & Условное обозначение
+    & Значение
+     \endhead
     \hline
     \centering{Наименование}
     & Условное обозначение
@@ -850,16 +884,110 @@ $ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
     & \num{\sellingPrice}
     \\ \hline
 
+    Налог на прибыль, \byr{}
+    & $ \text{Н}_\text{приб} $
+    & \num{\profitTax}
+    \\ \hline
+
     Чистая прибыль, \byr{}
     & $ \text{П}_\text{ч} $
     & \num{\netProfit}
     \\ \hline
 \end{longtable}
 
-% \def \tariffFactorJuniorGraphologyAnalytic{2.48} 
-Эффект от применения программного продукта закащиков заключается в сокращении расходов на оплату труда экспертов-граффологов, так же с помощью разработанное программное средство можно производить предварительную обработку образцов почерка для ускорения графологического анализа. 
+\def \tariffFactorJuniorGraphologyAnalytic{2.48}
+
+\subsection{Расчёт экономической эффективности у заказчика}
+Эффект от применения программного продукта заказчиком заключается в сокращении расходов на оплату труда экспертов"=графологов, так же с помощью разработанного программного средства можно сократить время на выполнение работ засчет уменьшение времени на выполнение рутинных процедур, например, предварительную обработку образцов почерка, что приведет к ускорению графологического анализа. Так как оценить экономический эффект от сокращения времени на проведения анализа технически сложно, далее будет рассматриваться и рассчитываться только эффект от сокращения расходов на оплату труда.
+
+% Часовая тарифная ставка исполнителей, Тч
+\FPeval{hourlySalaryAnalytic}{round(\tariffRate * \tariffFactorJuniorGraphologyAnalytic / \workingHoursInMonth, 2)}
+
+% Основная зарплата, Зо за год
+\FPeval{baseSalaryAnalytic}{round(\workingHoursInDay * \bonusRate * (\hourlySalaryAnalytic * \workingDaysInYear), 0)}
+
+% Дополнительная зарплата, Зд
+\FPeval{additionalSalaryAnalytic}{round(\baseSalaryAnalytic * \additionalSalaryRate / 100, 0)}
+
+\begin{table}[ht]
+  \caption{Работники, занятые на стороне заказчика}
+  \label{table:economics:graph_analytic}
+  \begin{tabular}{| >{\raggedright}m{0.4\textwidth}
+                  | >{\centering}m{0.15\textwidth}
+                  | >{\centering}m{0.18\textwidth}
+                  | >{\centering\arraybackslash}m{0.15\textwidth}|}
+   \hline
+   \centering{Исполнители} & Разряд & Тарифный коэффициент & \mbox{Чел./дн.} занятости
+   \\ \hline
+
+   Младший эксперт"=графолог & $ \num{12} $ & $ \num{\tariffFactorJuniorGraphologyAnalytic} $ & $ \num{\workingDaysInYear} $
+   \\ \hline
+  \end{tabular}
+\end{table}
+
+Подставив данные из таблицы~\ref{table:economics:graph_analytic} в формулу~(\ref{eq:economics:monthly_salary}), приняв значение тарифной ставки 1-го разряда
+$ \text{Т}_{\text{м}_{1}} = \SI{\tariffRate}{\text{\byr}} $
+и среднемесячную норму рабочего времени
+$ \text{Ф}_{\text{р}} = \SI{\workingHoursInMonth}{\text{часов}} $
+получаем
+\begin{equation}
+  \label{eq:economics:monthly_salary_analytic}
+  \text{Т}_{\text{ч}}^{\text{мл. эксп.-граф.}} =
+      \frac{ \num{\tariffRate} \cdot \num{\tariffFactorJuniorGraphologyAnalytic} }
+           { \num{\workingHoursInMonth} }
+    = \SI{\hourlySalaryAnalytic}{\text{\byr}/\text{час;}}
+\end{equation}
+
+Подставив ранее вычисленные значения и данные из таблицы~\ref{table:economics:graph_analytic} в формулу~(\ref{eq:economics:base_salary}) и приняв коэффициент премирования
+$ \text{К} = \num{\bonusRate} $
+получим
+\begin{equation}
+  \label{eq:economics:base_analytic_salary_calc}
+  \text{З}_{\text{о}} = \hourlySalaryAnalytic \cdot \num{\workingDaysInYear} \cdot
+                        \num{\workingHoursInDay}
+                        \cdot \num{\bonusRate}
+                      = \SI{\baseSalaryAnalytic}{\text{\byr}} \text{\,.}
+\end{equation}
+
+Приняв норматив дополнительной заработной платы
+$ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
+и подставив известные данные в формулу~(\ref{eq:economics:additional_salary}) получим
+\begin{equation}
+  \label{eq:econ:additional_salary_analytic_calc}
+  \text{З}_{\text{д}} =
+    \frac{\num{\baseSalaryAnalytic} \cdot 20\%}
+         {100\%} \approx \SI{\additionalSalaryAnalytic}{\text{\byr}} \text{\,.}
+\end{equation}
+
+\FPeval{totalSalaryAnalytic}{\baseSalaryAnalytic + \additionalSalary}
+
+% Отчисления в фонд социальной защиты
+\FPeval{socialProtectionMoneyAnalytic}{round(\totalSalary * \socialProtectionRate / 100, 0)}
+
+% Отчисления в белгосстрах
+\FPeval{bgsMoneyAnalytic}{round(\totalSalary * \bgsRate / 100, 0)}
+
+% Расходы на научные командировки
+\FPeval{businessTripAnalyticMoney}{ round( \baseSalaryAnalytic * \businessTripRate / 100, 0 ) }
+
+% Общая сумма
+\FPeval{\totalAnalyticExpense}{round(\totalSalaryAnalytic + \socialProtectionMoney + \bgsMoneyAnalytic + \businessTripAnalyticMoney, 0)}
+
+Учитывая отчисления в фонд социального страхования и Белгосстрах, а так же расходы на командировки получаем итоговые расходы на оплату труда.
+\begin{equation}
+  \label{eq:econ:total_salary_analytic_calc}
+    \text{Р}_{\text{от}}=\num{\baseSalaryAnalytic} + \num{\additionalSalaryAnalytic} + \num{\socialProtectionMoney} + \num{\bgsMoneyAnalytic} + \num{\businessTripAnalyticMoney} = \num{\totalAnalyticExpense}{\text{\byr}} \text{\,.}
+\end{equation}
+
+Учитывая что планируется освободить две позиции младшего эксперта-графолога и отпускную цену разработанного программного средства рассчитаем период окупаемости.
+\FPeval{benefitPeriod}{ round(\sellingPrice / (\totalAnalyticExpense * 2), 2 ) }
+\begin{equation}
+  \label{eq:econ:benefit_period}
+    \text{Т}_{\text{ок}}=\frac{\num{\sellingPrice}}
+         {2 \cdot \num{\totalAnalyticExpense}} \approx \SI{\benefitPeriod}{\text{года}} \text{\,.}
+\end{equation}
 
 \subsection{Выводы по технико-экономическому обоснованию}
-В данном разделе было произведено технико-экономическое обоснование разрабатываемого программного средства, составлена смета затрат и рассчитана прогнозируемая прибыль. Рассчитанные данные приведены в таблице~\ref{table:economics:calculated_data}.
-Чистая прибыль от реализации ПС ($ \text{П}_\text{ч} $ = \num{\netProfit} рублей) показывает экономическую целесообразность разработки программного средства.
+В данном разделе было произведено технико-экономическое обоснование разрабатываемого программного средства, составлена смета затрат, рассчитана прогнозируемая прибыль и экономический эффект для заказчика. Рассчитанные данные приведены в таблице~\ref{table:economics:calculated_data} и выражении~\ref{eq:econ:benefit_period}.
+Чистая прибыль от реализации ПС ($ \text{П}_\text{ч} $ = \num{\netProfit} рублей) показывает экономическую целесообразность разработки программного средства, а период окупаемости в \num{\benefitPeriod} года целесообразность покупки и внедрения данного средства заказчиком.
 \clearpage

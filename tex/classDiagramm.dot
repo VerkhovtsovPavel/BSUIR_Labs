@@ -22,6 +22,12 @@ node [shape = "record"]
 "ItemNotFound" 
   "ItemNotFound" -> "Response"
 
+"Forbidden"  
+  "Forbidden" -> "Response"
+
+"Unauthorized"  
+  "Unauthorized" -> "Response"  
+
 "ModelActor" 
   "ModelActor" -> "Actor";
   "ModelActor" -> "Model";
@@ -52,5 +58,4 @@ node [shape = "record"]
 
 "AnyJsonFormat" 
   "AnyJsonFormat" -> "JsonFormat";
-
 }
