@@ -11,9 +11,9 @@ label=lst:development:db_rout
 
 \begin{figure}[ht]
     \centering
-    \label{fig:develoipment:svm_flow}
     \includegraphics[width=1\textwidth]{figures/SVM_flow.png}
     \caption{Алгоритм обучение}
+    \label{fig:develoipment:svm_flow}
 \end{figure}
 
 После обучения классификатора можно переходить к классификации образов, листинг~\ref{lst:development:classification}. Всего в программном средстве различается 16 типов личности определяющих характеристики.
@@ -41,9 +41,9 @@ label=lst:development:db_rout
 Общая иерархия классов представлена на рисунке~\ref{fig:develoipment:class_fdp}.
 \begin{figure}[ht]
     \centering
-    \label{fig:develoipment:class_fdp}
     \includegraphics[width=1\textwidth]{figures/classes-fdp.png}
     \caption{Иерархия классов}
+    \label{fig:develoipment:class_fdp}
 \end{figure}
 
 Все классы отвечающие за обработку запросов и данных, в частности \emph{ModelActor}, \emph{ParserActor}, \emph{ServiceActor} являются наследниками класса \emph{Actor} библиотека Akka. Это свидетельствует о том что обработка информации на всех уровнях приложения происходит асинхронно.
