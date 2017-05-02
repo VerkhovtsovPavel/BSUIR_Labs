@@ -23,29 +23,7 @@
         <cmp x="796" y="764" width="26" height="43"/>
         <cmp x="826" y="780" width="40" height="34"/>
       </word>
-      <word id="a01-000u-00-03" tag="VB" text="stop">
-        <cmp x="919" y="783" width="36" height="28"/>
-        <cmp x="958" y="757" width="77" height="57"/>
-        <cmp x="1041" y="789" width="44" height="46"/>
-      </word>
-      <word id="a01-000u-00-04" tag="NPT" text="Mr.">
-        <cmp x="1185" y="754" width="111" height="61"/>
-        <cmp x="1303" y="807" width="8" height="8"/>
-      </word>
-      <word id="a01-000u-00-05" tag="NP" text="Gaitskell">
-        <cmp x="1438" y="750" width="135" height="62"/>
-        <cmp x="1561" y="746" width="9" height="10"/>
-        <cmp x="1582" y="756" width="55" height="57"/>
-        <cmp x="1654" y="750" width="166" height="69"/>
-      </word>
-      <word id="a01-000u-00-06" tag="IN" text="from">
-        <cmp x="1896" y="757" width="55" height="72"/>
-        <cmp x="1955" y="781" width="114" height="33"/>
-      </word>
-      <lower-contour>
-        <point x="406" y="835"/>
-        <point x="2070" y="835"/>
-      </lower-contour>
+      ...
     </line>
     ...
   </handwritten-part>
