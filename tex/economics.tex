@@ -741,4 +741,47 @@ $ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
   \label{eq:econ:total_salary_analytic_calc}
     \text{Р}_{\text{от}}=\num{\baseSalaryAnalytic} + \num{\additionalSalaryAnalytic} + \num{\socialProtectionMoneyAnalytic} = \num{\totalAnalyticExpense} {\text{\byr}} \text{\,.}
 \end{equation}
-\clearpage
+
+\def \depositRate{6.3}
+\FPeval{discontOnSecondYear}{round(1 - \depositRate / 100, 3)}
+\FPeval{discontOnThirdYear}{round(1 - (\depositRate * 2 / 100), 3)}
+\FPeval{discontOnFourthYear}{round(1 - \depositRate * 3 / 100, 3)}
+\FPeval{discontOnFivethYear}{round(1 - \depositRate * 4 / 100, 3)}
+
+\FPeval{firstYearProfit}{round(\totalAnalyticExpense - \sellingPrice, 2)}
+\FPeval{secondYearProfit}{round(\firstYearProfit + \totalAnalyticExpense * \discontOnSecondYear, 2)}
+\FPeval{thirdYearProfit}{round(\secondYearProfit + \totalAnalyticExpense * \discontOnThirdYear, 2)}
+\FPeval{fourthYearProfit}{round(\thirdYearProfit + \totalAnalyticExpense * \discontOnFourthYear, 2)}
+\FPeval{fivethYearProfit}{round(\fourthYearProfit + \totalAnalyticExpense * \discontOnFivethYear, 2)}
+
+\begin{longtable}{| >{\centering}m{0.25\textwidth}
+                  | >{\centering}m{0.12\textwidth}
+                  | >{\centering}m{0.12\textwidth}
+                  | >{\centering}m{0.12\textwidth}
+                  | >{\centering}m{0.12\textwidth}
+                  | >{\centering\arraybackslash}m{0.12\textwidth}|}
+  \caption{Перечень и объём функций программного модуля}
+  \label{table:econ:function_sizes}
+  \endfirsthead
+  \caption*{Продолжение таблицы \ref{table:econ:function_sizes}}\\
+  \endhead
+
+  \hline
+    \multirow{2}{0.20\textwidth}{Показатель}
+    & \multicolumn{5}{c|}{\centering Расчетный период} \tabularnewline
+
+  \cline{2-6}
+       & { 1 }
+       & { 2 }
+       & { 3 } 
+       & { 4 }
+       & { 5 }\tabularnewline
+  \hline
+
+  Экономический эффект & \num{\totalAnalyticExpense} & \num{\totalAnalyticExpense} & \num{\totalAnalyticExpense} & \num{\totalAnalyticExpense} & \num{\totalAnalyticExpense} \\ \hline
+  Дисконтированные инвестиции & \num{\sellingPrice} & & & & \\ \hline
+  Чистый дисконтированный доход нарастающим итогом & \num{\firstYearProfit} & \num{\secondYearProfit} & \num{\thirdYearProfit} & \num{\fourthYearProfit} & \num{\fivethYearProfit} \\ \hline
+  Коэффициент дисконтирования & \num{1} & \num{\discontOnSecondYear} & \num{\discontOnThirdYear} & \num{\discontOnFourthYear} & \num{\discontOnFivethYear} \\ \hline
+\end{longtable}
+
+Начиная с третьего года использования разработанного программное средство окупит себя и за 5 лет использования принесет прибыли в $ \fivethYearProfit \text{ \byr} $.
