@@ -18,9 +18,6 @@ class ModelActor extends Actor with Model {
 
     case 'list =>
       sender ! list
-
-    case image: ImageRequest =>
-
   }
 
 }

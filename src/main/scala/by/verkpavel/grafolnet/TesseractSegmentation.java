@@ -27,7 +27,7 @@ public class TesseractSegmentation {
     }
 
     public static void main(String[] arg) throws IOException {
-        verifyTextOnImage(new File("./3.jpeg"));
+        verifyTextOnImage(new File("./2.png"));
     }
 }
 

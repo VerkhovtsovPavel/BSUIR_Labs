@@ -2,7 +2,7 @@ package by.verkpavel.grafolnet.model
 
 trait Model {
   private val items =
-    ImageResponse(1, Map("foo" -> "More information about Foo")) ::
+      ImageResponse(1, Map("foo" -> "More information about Foo")) ::
       ImageResponse(2, Map("bar" -> "More information about Bar")) ::
       ImageResponse(3, Map("qux" -> "More information about Qux")) ::
       ImageResponse(4, Map("quux" -> "More information about Quux")) ::

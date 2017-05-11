@@ -15,9 +15,9 @@ object ServiceActor {
   def name = "service"
 }
 
-class ServiceActor(model: ActorRef, implicit val askTimeout: Timeout) extends Actor with Service {
+class ServiceActor(model: ActorRef, parser: ActorRef, personal : ActorRef, implicit val askTimeout: Timeout) extends Actor with Service {
   def actorRefFactory = context
-  def receive = runRoute(route(model))
+  def receive = runRoute(route(model, parser, personal))
 }
 
 trait Service extends HttpService with ServiceJsonProtocol {
@@ -29,8 +29,9 @@ trait Service extends HttpService with ServiceJsonProtocol {
   case class ImageUploaded(size: Long)
   implicit val imageUploadedFormat = jsonFormat1(ImageUploaded)
 
-  def route(model: ActorRef)(implicit askTimeout: Timeout) =
+  def route(model: ActorRef, parser: ActorRef, personal : ActorRef)(implicit askTimeout: Timeout) =
     get {
+      //--------------------------------------------------
       path("index.html") {
         getFromFile("src/main/angular/root/index.html")
       } ~
@@ -46,14 +47,33 @@ trait Service extends HttpService with ServiceJsonProtocol {
         path("console-sham.js") {
           getFromFile("src/main/angular/root/console-sham.js")
         } ~
-        path("imageParams") {
+        path("images") {
           onSuccess(model ? 'list) {
             case item: List[ImageResponse] =>
               complete(OK, item)
           }
         } ~
-        path("imageParams" / IntNumber) { id =>
+      //----------------------------------------------------
+        path("images" / IntNumber) { id =>
           onSuccess(model ? id) {
+            case item: ImageResponse =>
+              complete(OK, item)
+
+            case ItemNotFound =>
+              complete(NotFound, "Not Found")
+          }
+        } ~
+        path("imageParams" / IntNumber) { id =>
+          onSuccess(parser ? id) {
+            case item: ImageResponse =>
+              complete(OK, item)
+
+            case ItemNotFound =>
+              complete(NotFound, "Not Found")
+          }
+        } ~
+        path("personalParams" / IntNumber) { id =>
+          onSuccess(personal ? id) {
             case item: ImageResponse =>
               complete(OK, item)
 
@@ -63,16 +83,23 @@ trait Service extends HttpService with ServiceJsonProtocol {
         }
     } ~
       post {
-        handleWith { data: MultipartFormData =>
-          data.fields.headOption match {
-            case Some(imageEntity) =>
-              val size = imageEntity.entity.data.length
-              println(s"Uploaded $size")
-              ImageUploaded(0)
-            case None =>
-              println("No files")
-              ImageUploaded(500)
+        path("newImage") {
+          handleWith { data: MultipartFormData =>
+            data.fields.headOption match {
+              case Some(imageEntity) =>
+                val size = imageEntity.entity.data.length
+                println(s"Uploaded $size")
+                ImageUploaded(0)
+              case None =>
+                println("No files")
+                ImageUploaded(500)
+            }
           }
-        }
+        } ~
+          path("registration") {
+            handleWith { user: Any => //TODO Change to User
+
+            }
+          }
       }
 }
