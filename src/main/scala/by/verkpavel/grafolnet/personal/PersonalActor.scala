@@ -13,11 +13,9 @@ class PersonalActor extends Actor {
   val t123: LibSVM = new LibSVM
   val model2: svm_model = t123.svmTrain("sonar_scale_train.txt", 208, 60)
   def receive = {
-    case id: Int =>
+    case id: String =>
       val image = DB.getImageParamsByID(id)
-
-    sender ! t123.evaluate_single_instance((1 to 6).toArray, image.values.toArray, model2)
+      sender ! t123.evaluate_single_instance((1 to 6).toArray, image.values.toArray, model2)
   }
-
 }
 

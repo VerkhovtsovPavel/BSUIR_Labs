@@ -28,7 +28,7 @@ public class LibSVM {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Dataset Size " + Dataset.size());
+        //System.out.println("Dataset Size " + Dataset.size());
         double node_values[][] = new double[record_size][]; //jagged array used to store values
         int node_indexes[][] = new int[record_size][];//jagged array used to store node indexes
         double node_class_labels[] = new double[record_size];//store class lavels
@@ -44,7 +44,7 @@ public class LibSVM {
                     if (tmp_data.length == 2) {
                         list_indx.add(Integer.parseInt(tmp_data[0].trim()));
                         list_val.add(Double.parseDouble(tmp_data[1].trim()));
-                        //System.out.println("Index  "+tmp_data[0]+" Value "+tmp_data[1]);
+                        ////System.out.println("Index  "+tmp_data[0]+" Value "+tmp_data[1]);
                     }
                 }
                 if (list_val.size() > 0) {
@@ -54,7 +54,7 @@ public class LibSVM {
                 for (int m = 0; m < list_val.size(); m++) {
                     node_indexes[i][m] = list_indx.get(m);
                     node_values[i][m] = list_val.get(m);
-                    System.out.println("List Index value " + list_indx.get(m) + "  <=> List values " + list_val.get(m) + "  list size " + list_indx.size());
+                    //System.out.println("List Index value " + list_indx.get(m) + "  <=> List values " + list_val.get(m) + "  list size " + list_indx.size());
                 }
             } catch (Exception e){
                 e.printStackTrace();
@@ -109,8 +109,5 @@ public class LibSVM {
         double v = svm.svm_predict_probability(model1, nodes, prob_estimates);
 
         return v;
-    }
-    public static void main(String[] args) {
-
     }
 }

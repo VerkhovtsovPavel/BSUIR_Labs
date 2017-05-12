@@ -22,7 +22,7 @@ val akka = "2.2.3"
 val spray = "1.2.0"
 
 libraryDependencies ++=
-    "ch.qos.logback" % "logback-classic" % "1.0.0" % "runtime" ::
+  "ch.qos.logback" % "logback-classic" % "1.0.0" % "runtime" ::
     "com.typesafe.akka" %% "akka-actor" % akka ::
     "com.typesafe.akka" %% "akka-slf4j" % akka ::
     "com.typesafe.akka" %% "akka-testkit" % akka % "test" ::
@@ -35,6 +35,8 @@ libraryDependencies ++=
     "org.scalatest" %% "scalatest" % "2.0" % "test" ::
     "net.sourceforge.tess4j" % "tess4j" % "3.1.0" ::
     "tw.edu.ntu.csie" % "libsvm" % "3.17" ::
+    "org.mongodb" %% "casbah" % "2.7.4" ::
+    "com.novus" %% "salat" % "1.9.9" ::
     Nil
 
 scalariformSettings

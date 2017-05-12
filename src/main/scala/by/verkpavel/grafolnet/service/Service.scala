@@ -1,23 +1,25 @@
 package by.verkpavel.grafolnet.service
 
+import java.awt.image.BufferedImage
+
 import akka.actor.{Actor, ActorRef, Props}
 import akka.pattern.ask
 import akka.util.Timeout
+import by.verkpavel.grafolnet.database.domain.User
 import by.verkpavel.grafolnet.model.ModelActor.ItemNotFound
-import by.verkpavel.grafolnet.model.{ImageRequest, ImageResponse}
-import spray.http.{MultipartFormData, StatusCodes}
+import spray.http.MultipartFormData
 import spray.http.StatusCodes._
 import spray.routing.HttpService
 import spray.httpx.SprayJsonSupport._
 
 object ServiceActor {
-  def props(model: ActorRef)(implicit askTimeout: Timeout): Props = Props(classOf[ServiceActor], model, askTimeout)
+  def props(model: ActorRef, parser: ActorRef, personal: ActorRef, authorisation: ActorRef)(implicit askTimeout: Timeout): Props = Props(classOf[ServiceActor], model, parser, personal, authorisation, askTimeout)
   def name = "service"
 }
 
-class ServiceActor(model: ActorRef, parser: ActorRef, personal : ActorRef, implicit val askTimeout: Timeout) extends Actor with Service {
+class ServiceActor(model: ActorRef, parser: ActorRef, personal: ActorRef, authorisation: ActorRef, implicit val askTimeout: Timeout) extends Actor with Service {
   def actorRefFactory = context
-  def receive = runRoute(route(model, parser, personal))
+  def receive = runRoute(route(model, parser, personal, authorisation))
 }
 
 trait Service extends HttpService with ServiceJsonProtocol {
@@ -29,7 +31,7 @@ trait Service extends HttpService with ServiceJsonProtocol {
   case class ImageUploaded(size: Long)
   implicit val imageUploadedFormat = jsonFormat1(ImageUploaded)
 
-  def route(model: ActorRef, parser: ActorRef, personal : ActorRef)(implicit askTimeout: Timeout) =
+  def route(model: ActorRef, parser: ActorRef, personal: ActorRef, authorisation: ActorRef)(implicit askTimeout: Timeout) =
     get {
       //--------------------------------------------------
       path("index.html") {
@@ -47,16 +49,19 @@ trait Service extends HttpService with ServiceJsonProtocol {
         path("console-sham.js") {
           getFromFile("src/main/angular/root/console-sham.js")
         } ~
+        path("grapholog_avatar.png") {
+          getFromFile("src/main/angular/root/grapholog_avatar.png")
+        } ~
         path("images") {
           onSuccess(model ? 'list) {
-            case item: List[ImageResponse] =>
+            case item: List[Any] => //Uncorrect new Sample
               complete(OK, item)
           }
         } ~
-      //----------------------------------------------------
+        //----------------------------------------------------
         path("images" / IntNumber) { id =>
           onSuccess(model ? id) {
-            case item: ImageResponse =>
+            case item: String =>
               complete(OK, item)
 
             case ItemNotFound =>
@@ -65,7 +70,7 @@ trait Service extends HttpService with ServiceJsonProtocol {
         } ~
         path("imageParams" / IntNumber) { id =>
           onSuccess(parser ? id) {
-            case item: ImageResponse =>
+            case item: Map[String, Double] =>
               complete(OK, item)
 
             case ItemNotFound =>
@@ -74,11 +79,17 @@ trait Service extends HttpService with ServiceJsonProtocol {
         } ~
         path("personalParams" / IntNumber) { id =>
           onSuccess(personal ? id) {
-            case item: ImageResponse =>
+            case item: String =>
               complete(OK, item)
 
             case ItemNotFound =>
               complete(NotFound, "Not Found")
+          }
+        } ~
+        path("login") {
+          parameters('login, 'password) { (login, password) =>
+            onSuccess(authorisation ? (login, password))
+            complete(s"The color is '$login' and the background is '$password'")
           }
         }
     } ~
@@ -89,17 +100,19 @@ trait Service extends HttpService with ServiceJsonProtocol {
               case Some(imageEntity) =>
                 val size = imageEntity.entity.data.length
                 println(s"Uploaded $size")
+                ImageIO.read(new ByteArrayInputStream(imageEntity.entity.data.toByteArray))
                 ImageUploaded(0)
               case None =>
                 println("No files")
                 ImageUploaded(500)
             }
           }
-        } ~
-          path("registration") {
-            handleWith { user: Any => //TODO Change to User
-
-            }
-          }
+        } //  ~
+        //  path("registration") {
+        //    handleWith { user: MultipartFormData =>
+        //      onSuccess(authorisation ? user)
+        //       complete(OK, "The color is")
+        //     }
+        //   }
       }
 }

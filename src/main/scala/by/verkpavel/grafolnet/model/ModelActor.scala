@@ -1,7 +1,7 @@
 package by.verkpavel.grafolnet.model
 
 import akka.actor.{Actor, Props}
-import by.verkpavel.grafolnet.model.ModelActor.ItemNotFound
+import by.verkpavel.grafolnet.database.DB
 
 object ModelActor {
   def props: Props = Props[ModelActor]
@@ -10,14 +10,14 @@ object ModelActor {
   case object ItemNotFound
 }
 
-class ModelActor extends Actor with Model {
+class ModelActor extends Actor {
 
   def receive = {
     case id: Int =>
-      sender ! get(id).getOrElse(ItemNotFound)
+      sender ! DB.getImageByID(id)
 
     case 'list =>
-      sender ! list
+      sender ! DB.getImages("userID") //TODO Change on real userID
   }
 
 }
