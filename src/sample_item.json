@@ -2,6 +2,7 @@
   "id": "5721a646fca0fd7cf0f231f1",
   "user_id": "1",
   "imageFormat": "png",
+  "imagePath": "images/7864573yuhdfijsk3489",
   "handwriteFeatures": {
     "characterTilt": 15,
     "lineTilt": 3,
@@ -10,5 +11,5 @@
     "frequencyOfText": 0.45,
     "pressingForce": 94
   },
-  "natureDecsciption": null
+  "natureDescription": null
 }
