@@ -1,6 +1,6 @@
 \def \byr{Br}
 
-\section{Технико-экономическое обоснование разработки и использования ПС}
+\section{Технико-экономическое обоснование разработки и использования ПС определения психологические характеристик личности по образцам почерка}
 
 % Категория сложности
 \def \complexityGroup{3}
@@ -267,7 +267,7 @@
 Перечень и объём функций программного модуля перечислен в таблице~\ref{table:econ:function_sizes}.
 Общий уточненный объём ПО $ V_{\text{у}} = \SI{\totalLOCCorrected}{\text{LoC}} $.
 
-\subsection{Расчёт трудоемкости}
+\subsection{Расчёт трудоемкости разработки программного средства}
 
 % Нормативная трудоёмкость, Тн
 \def \normativeWorkload{144}
@@ -293,7 +293,7 @@
 
 % ---
 
-На основании общего объема ПО определяется нормативная трудоемкость (
+На основании общего объема ПО, составляющего $ V_{\text{у}} = \SI{\totalLOCCorrected}{\text{LoC}} $, определяется нормативная трудоемкость (
 $ \text{Т}_\text{н}$
 ) с учетом сложности ПО. Для ПО \complexityGroup-ой группы сложности, к которой относится разрабатываемый программный продукт, нормативная трудоемкость составит~
 $ \text{Т}_\text{н} = \SI{\normativeWorkload}{\text{чел.} / \text{дн.}} $
@@ -372,7 +372,7 @@ $ \text{Т}_\text{р} = \SI{\developmentMonths}{\text{мес.}} = \SI{\developme
                     \approx \SI{\requiredProgrammers}{\text{чел}}.
 \end{equation}
 
-Вычисленные оценки показывают, что для выполнения запланированного проекта в указанные сроки необходимо \requiredProgrammers ~специалиста: инжннер-программист 1 категории и ведущий программист.
+Для выполнения запланированного проекта в указанные сроки необходимо привлечь \requiredProgrammers ~специалистов: инженер-программиста 1 категории и ведущего программист.
 
 \subsection{Расчёт заработной платы исполнителей}
 
@@ -582,6 +582,7 @@ $ \text{К} = \num{\bonusRate} $
     & $ \text{Р}_{\text{м}} = \text{Ц}_{\text{м}} \cdot \text{V}_{\text{о}} / \num{100} \cdot \text{Н}_{\text{мв}} $
     $ \text{Н}_{\text{мв}} = \num{\debugRate}{\text{ машино-часов}} $
     $ \text{Ц}_{\text{м}} = \SI{\machineHourCost}{\text{\byr}} $
+    $ V_{\text{у}} = \SI{\totalLOCCorrected}{\text{LoC}} $
     & \num{\machineTimeMoney}
     \\ \hline
 
@@ -649,7 +650,7 @@ $ \text{К} = \num{\bonusRate} $
     \left(1 - \frac{ \text{Н}_\text{п} }{ \num{100\%} } \right) \text{\,,}
 \end{equation}
 \begin{explanation}
-  где & $ \text{Н}_{\text{п}} $ & величина налога на прибыль,~$\%$.
+  где & $ \text{Н}_{\text{п}} $ & ставка налога на прибыль,~$\%$.
 \end{explanation}
 
 \FPeval{netProfit}{round(\profitMoney - \profitTax, 0)}
@@ -742,32 +743,39 @@ $ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
     \text{Р}_{\text{от}}=\num{\baseSalaryAnalytic} + \num{\additionalSalaryAnalytic} + \num{\socialProtectionMoneyAnalytic} = \num{\totalAnalyticExpense} {\text{\byr}} \text{\,.}
 \end{equation}
 
-\def \depositRate{6.3}
-\FPeval{discontOnSecondYear}{round(1 - \depositRate / 100, 3)}
-\FPeval{discontOnThirdYear}{round(1 - (\depositRate * 2 / 100), 3)}
-\FPeval{discontOnFourthYear}{round(1 - \depositRate * 3 / 100, 3)}
-\FPeval{discontOnFivethYear}{round(1 - \depositRate * 4 / 100, 3)}
+Экономические расходы на оплату труда составят $ \text{Р}_{\text{от}}=\num{\totalAnalyticExpense} {\text{\byr}} $, что для пользователя будет выступать в качестве экономического эффекта.
+
+\def \depositRate{0.063}
+\FPeval{discontOnSecondYear}  {round(1 / pow(2, 1 + \depositRate), 3)}
+\FPeval{discontOnThirdYear}   {round(1 / pow(3, 1 + \depositRate), 3)}
+\FPeval{discontOnFourthYear}  {round(1 / pow(4, 1 + \depositRate), 3)}
+\FPeval{discontOnFivethYear}  {round(1 / pow(5, 1 + \depositRate), 3)}
+
+\FPeval{secondYearProfit}{round(\totalAnalyticExpense * \discontOnSecondYear, 2)}
+\FPeval{thirdYearProfit}{round(\totalAnalyticExpense * \discontOnThirdYear, 2)}
+\FPeval{fourthYearProfit}{round(\totalAnalyticExpense * \discontOnFourthYear, 2)}
+\FPeval{fivethYearProfit}{round(\totalAnalyticExpense * \discontOnFivethYear, 2)}
 
 \FPeval{firstYearProfit}{round(\totalAnalyticExpense - \sellingPrice, 2)}
-\FPeval{secondYearProfit}{round(\firstYearProfit + \totalAnalyticExpense * \discontOnSecondYear, 2)}
-\FPeval{thirdYearProfit}{round(\secondYearProfit + \totalAnalyticExpense * \discontOnThirdYear, 2)}
-\FPeval{fourthYearProfit}{round(\thirdYearProfit + \totalAnalyticExpense * \discontOnFourthYear, 2)}
-\FPeval{fivethYearProfit}{round(\fourthYearProfit + \totalAnalyticExpense * \discontOnFivethYear, 2)}
+\FPeval{secondYearTotalProfit}{round(\firstYearProfit + \totalAnalyticExpense * \discontOnSecondYear, 2)}
+\FPeval{thirdYearTotalProfit}{round(\secondYearTotalProfit + \totalAnalyticExpense * \discontOnThirdYear, 2)}
+\FPeval{fourthYearTotalProfit}{round(\thirdYearTotalProfit + \totalAnalyticExpense * \discontOnFourthYear, 2)}
+\FPeval{fivethYearTotalProfit}{round(\fourthYearTotalProfit + \totalAnalyticExpense * \discontOnFivethYear, 2)}
 
-\begin{longtable}{| >{\centering}m{0.25\textwidth}
+\begin{longtable}{| >{\raggedright}m{0.25\textwidth}
                   | >{\centering}m{0.12\textwidth}
                   | >{\centering}m{0.12\textwidth}
                   | >{\centering}m{0.12\textwidth}
                   | >{\centering}m{0.12\textwidth}
                   | >{\centering\arraybackslash}m{0.12\textwidth}|}
   \caption{Экономический эффект у покупателя}
-  \label{table:econ:function_sizes}
+  \label{table:econ:customer_profit}
   \endfirsthead
-  \caption*{Продолжение таблицы \ref{table:econ:function_sizes}}\\
+  \caption*{Продолжение таблицы \ref{table:econ:customer_profit}}\\
   \endhead
 
   \hline
-    \multirow{2}{0.20\textwidth}{Показатель}
+    \multirow{2}{0.20\textwidth}{\centering{Показатель}}
     & \multicolumn{5}{c|}{\centering Расчетный период} \tabularnewline
 
   \cline{2-6}
@@ -777,11 +785,12 @@ $ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
        & { 4 }
        & { 5 }\tabularnewline
   \hline
-
-  Экономический эффект & \num{\totalAnalyticExpense} & \num{\totalAnalyticExpense} & \num{\totalAnalyticExpense} & \num{\totalAnalyticExpense} & \num{\totalAnalyticExpense} \\ \hline
-  Дисконтированные инвестиции & \num{\sellingPrice} & & & & \\ \hline
-  Чистый дисконтированный доход нарастающим итогом & \num{\firstYearProfit} & \num{\secondYearProfit} & \num{\thirdYearProfit} & \num{\fourthYearProfit} & \num{\fivethYearProfit} \\ \hline
+  РЕЗУЛЬТАТ & & & & & \\ \hline
+  1. Экономический эффект & \num{\totalAnalyticExpense} & \num{\secondYearProfit} & \num{\thirdYearProfit} & \num{\fourthYearProfit} & \num{\fivethYearProfit} \\ \hline
+  ЗАТРАТЫ & & & & & \\ \hline
+  4. Дисконтированные инвестиции & \num{\sellingPrice} & & & & \\ \hline
+  6. Чистый дисконтированный доход нарастающим итогом & \num{\firstYearProfit} & \num{\secondYearTotalProfit} & \num{\thirdYearTotalProfit} & \num{\fourthYearTotalProfit} & \num{\fivethYearTotalProfit} \\ \hline
   Коэффициент дисконтирования & \num{1} & \num{\discontOnSecondYear} & \num{\discontOnThirdYear} & \num{\discontOnFourthYear} & \num{\discontOnFivethYear} \\ \hline
 \end{longtable}
 
-Начиная с третьего года использования разработанного программное средство окупит себя и за 5 лет использования принесет прибыли в $ \fivethYearProfit \text{ \byr} $.
+Начиная с третьего года использования разработанного программное средство окупит себя и за 5 лет использования принесет прибыли в $ \fivethYearTotalProfit \text{ \byr} $.
