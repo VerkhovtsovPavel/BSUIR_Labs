@@ -68,8 +68,33 @@ function switchMode(){
 }
 
 function changeLang(){
+    var inject = document.getElementById('inject_button')
+    var personal = document.getElementById('personal_button')
+    var query_progress = document.getElementById('query_progress')
+    var queue_info = document.getElementById('queue_info')
+    var baseDropZone = document.getElementById('baseDropZone')
+    var queueLength = document.getElementById('queueLength')
+    var theQueue = document.getElementById('theQueue')
+    var selectFiles = document.getElementById('selectFiles')
+    var registration_signUp = document.getElementById('registration_signUp')
+    var registration_repassword = document.getElementById('registration_repassword')
+    var registration_password = document.getElementById('registration_password')
+    var registration_login = document.getElementById('registration_login')
+    var username = document.getElementById('username')
+    var signUp = document.getElementById('signUp')
+    var login_password = document.getElementById('login_password')
+    var login_login = document.getElementById('login_login')
+    var login_title = document.getElementById('login_title')
+    var table_name = document.getElementById('table_name')
+    var table_size = document.getElementById('table_size')
+    var table_progress = document.getElementById('table_progress')
+    var table_status = document.getElementById('table_status')
+    var table_actions = document.getElementById('table_actions')
     if(english){
-
+        queueLength.innerHTML = "Queue length: {{ uploader.queue.length }}"
+    }
+    else{
+        queueLength.innerHTML = "Длина очереди: {{ uploader.queue.length }}"
     }
 }
 

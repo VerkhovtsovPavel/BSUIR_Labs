@@ -1,26 +1,26 @@
 ﻿<!DOCTYPE html>
 <body id="ng-app" ng-app="app"> <!-- id="ng-app" IE<8 -->
 
-    <head>
-        <title>Login</title>
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
 
-        <!-- Fix for old browsers -->
-        <script src="http://nervgh.github.io/js/es5-shim.min.js"></script>
-        <script src="http://nervgh.github.io/js/es5-sham.min.js"></script>
-        <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-        <script src="../console-sham.js"></script>
+    <!-- Fix for old browsers -->
+    <script src="http://nervgh.github.io/js/es5-shim.min.js"></script>
+    <script src="http://nervgh.github.io/js/es5-sham.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="../console-sham.js"></script>
 
-        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
-        <!--<script src="../bower_components/angular/angular.js"></script>-->
-        <script src="http://code.angularjs.org/1.2.0/angular.min.js"></script>
-        <script src="../angular-file-upload.min.js"></script>
-        <script src="controllers.js"></script>
+    <!--<script src="../bower_components/angular/angular.js"></script>-->
+    <script src="http://code.angularjs.org/1.2.0/angular.min.js"></script>
+    <script src="../angular-file-upload.min.js"></script>
+    <script src="controllers.js"></script>
 
-        <script src="application.js"></script>
+    <script src="application.js"></script>
 
-        <style>
+    <style>
             .my-drop-zone { border: dotted 3px lightgray; }
             .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
             .another-file-over-class { border: dotted 3px green; }
@@ -46,9 +46,10 @@
                 height: 100px;
                 margin: 6px 0 0 6px;
             }
-        </style>
 
-    </head>
+    </style>
+
+</head>
 
 <!-- Login -->
 
@@ -95,153 +96,149 @@ img.avatar {
 .container {
     padding: 16px;
 }
+
 </style>
 <div id="login">
-<h2>Login</h2>
+    <h2 id="login_title">Login</h2id>
 
-<div>
-    <div class="imgcontainer">
-        <img src="grapholog_avatar.png" alt="Avatar" class="avatar">
+    <div>
+        <div class="imgcontainer">
+            <img src="grapholog_avatar.png" alt="Avatar" class="avatar">
+        </div>
+
+        <div class="container">
+            <label><b id="username">Username</b></label>
+            <input type="text" placeholder="Enter Username" id="login_login" name="login" required>
+
+            <label><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" id="login_password" name="password" required>
+
+            <button onclick="login()" class="login_button">Login</button>
+        </div>
     </div>
-
-    <div class="container">
-        <label><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" id="login_login" name="login" required>
-
-        <label><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" id="login_password" name="password" required>
-
-        <button onclick="login()" class="login_button">Login</button>
-    </div>
-</div>
 </div>
 <!-- Registration -->
 
 <div id="registartion">
-<h2>Sign Up</h2>
+    <h2 id="signUp">Sign Up</h2>
+    <div>
+        <div class="container">
+            <label><b id="registaration_login">Login</b></label>
+            <input type="text" placeholder="Enter login" name="email" id="registration_login" required>
 
-<div>
-    <div class="container">
-        <label><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" id="registration_login" required>
+            <label><b id="registaration_password">Password</b></label>
+            <input type="password" placeholder="Enter Password" id="registration_password" name="psw" required>
 
-        <label><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" id="registration_password" name="psw" required>
+            <label><b id="registaration_repassword">Repeat Password</b></label>
+            <input type="password" placeholder="Repeat Password" id="registration_repassword" name="psw-repeat"
+                   required>
 
-        <label><b>Repeat Password</b></label>
-        <input type="password" placeholder="Repeat Password" id="registration_repassword" name="psw-repeat" required>
-
-        <button onclick="registration()" class="signupbtn">Sign Up</button>
+            <button onclick="registration()" class="signupbtn" id="registration_signUp">Sign Up</button>
+        </div>
     </div>
-</div>
 
 </div>
 <!-- Upload -->
-    <!-- Example: nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}" -->
-    <div ng-controller="AppController" nv-file-drop="" uploader="uploader" class="upload_block">
+<div ng-controller="AppController" nv-file-drop="" uploader="uploader" class="upload_block">
 
-        <div class="container">
+    <div class="container">
 
-            <div class="row">
+        <div class="row">
 
-                <div class="col-md-3">
+            <div class="col-md-3">
 
-                    <h3>Select files</h3>
+                <h3 id="selectFiles">Select files</h3>
 
-                    <div ng-show="uploader.isHTML5">
-                        <!-- 3. nv-file-over uploader="link" over-class="className" -->
-                        <div class="well my-drop-zone" nv-file-over="" uploader="uploader">
-                            Base drop zone
-                        </div>
-
-                    </div>
-
-                    <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
-                    <input type="file" nv-file-select="" uploader="uploader" multiple  /><br/>
-
-                </div>
-
-                <div class="col-md-9" style="margin-bottom: 40px">
-                    <h2>Uploads only handwrite sample</h2>
-                    <div id="queue_info">
-                        <h3>The queue</h3>
-                        <p>Queue length: {{ uploader.queue.length }}</p>
-                    </div>
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th width="50%">Name</th>
-                                <th ng-show="uploader.isHTML5">Size</th>
-                                <th ng-show="uploader.isHTML5">Progress</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="item in uploader.queue">
-                                <td>
-                                    <strong>{{ item.file.name }}</strong>
-                                    <!-- Image preview -->
-                                    <!--auto height-->
-                                    <!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->
-                                    <!--auto width-->
-                                    <!--fixed width and height -->
-                                    <!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
-                                </td>
-                                <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
-                                <td ng-show="uploader.isHTML5">
-                                    <div class="progress" style="margin-bottom: 0;">
-                                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
-                                    <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
-                                    <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
-                                </td>
-                                <td nowrap>
-                                    <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
-                                        <span class="glyphicon glyphicon-upload"></span> Upload
-                                    </button>
-                                    <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
-                                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
-                                    </button>
-                                    <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-                                        <span class="glyphicon glyphicon-trash"></span> Remove
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div id="query_progress">
-                        <div>
-                            Queue progress:
-                            <div class="progress" style="">
-                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
-                            <span class="glyphicon glyphicon-upload"></span> Upload all
-                        </button>
-                        <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
-                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
-                        </button>
-                        <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
-                            <span class="glyphicon glyphicon-trash"></span> Remove all
-                        </button>
+                <div ng-show="uploader.isHTML5">
+                    <div class="well my-drop-zone" nv-file-over="" uploader="uploader" id="baseDropZone">
+                        Base drop zone
                     </div>
 
                 </div>
+
+                <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
+                <input type="file" nv-file-select="" uploader="uploader" multiple/><br/>
 
             </div>
 
-        </div>
+            <div class="col-md-9" style="margin-bottom: 40px">
+                <h2 id="uploadsOnlyHandwriteSample">Uploads only handwrite sample</h2>
+                <div id="queue_info">
+                    <h3 id="theQueue">The queue</h3>
+                    <p id="queueLength">Queue length: {{ uploader.queue.length }}</p>
+                </div>
 
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th width="50%" id="table_name">Name</th>
+                        <th ng-show="uploader.isHTML5" id="table_size">Size</th>
+                        <th ng-show="uploader.isHTML5" id="table_progress">Progress</th>
+                        <th id="table_status">Status</th>
+                        <th id="table_actions">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in uploader.queue">
+                        <td>
+                            <strong>{{ item.file.name }}</strong>
+                        </td>
+                        <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                        <td ng-show="uploader.isHTML5">
+                            <div class="progress" style="margin-bottom: 0;">
+                                <div class="progress-bar" role="progressbar"
+                                     ng-style="{ 'width': item.progress + '%' }"></div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                            <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                            <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                        </td>
+                        <td nowrap>
+                            <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()"
+                                    ng-disabled="item.isReady || item.isUploading || item.isSuccess" id="upload">
+                                <span class="glyphicon glyphicon-upload"></span> Upload
+                            </button>
+                            <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()"
+                                    ng-disabled="!item.isUploading" id="cancel">
+                                <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                            </button>
+                            <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()" id="remove">
+                                <span class="glyphicon glyphicon-trash"></span> Remove
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div id="query_progress">
+                    <div>
+                        Queue progress:
+                        <div class="progress" style="">
+                            <div class="progress-bar" role="progressbar"
+                                 ng-style="{ 'width': uploader.progress + '%' }"></div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()"
+                            ng-disabled="!uploader.getNotUploadedItems().length" id="uploadAll">
+                        <span class="glyphicon glyphicon-upload"></span> Upload all
+                    </button>
+                    <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()"
+                            ng-disabled="!uploader.isUploading" id="cancelAll">
+                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                    </button>
+                    <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()"
+                            ng-disabled="!uploader.queue.length" id="removeAll">
+                        <span class="glyphicon glyphicon-trash"></span> Remove all
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 <div id="imagesView">
-    <img id="ItemPreview" src="" />
+    <img id="ItemPreview" src=""/>
     <button type="button" class="btn btn-warning btn-s" onclick="injectParams()" id="inject_button">
         <span class="glyphicon glyphicon-text-width"></span> Inject features
     </button>
@@ -254,11 +251,11 @@ img.avatar {
 </div>
 
 <div class="container">
-   <button type="button" class="btn btn-warning btn-s" id="switchButton" onclick="switchMode()">
-       <span class="glyphicon glyphicon-refresh"> Switch mode</span>
-   </button>
+    <button type="button" class="btn btn-warning btn-s" id="switchButton" onclick="switchMode()">
+        <span class="glyphicon glyphicon-refresh"> Switch mode</span>
+    </button>
     <button type="button" class="btn btn-warning btn-s" id="changeLang" onclick="changeLang()">
-        <span class="glyphicon glyphicon-text-color"> Change language</span>
+        <span class="glyphicon glyphicon-text-color"/> Change language
     </button>
 </div>
 

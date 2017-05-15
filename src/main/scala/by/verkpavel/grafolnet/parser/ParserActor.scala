@@ -49,7 +49,6 @@ class ParserActor extends Actor {
       sender ! parameters
   }
 
-  //TODO Remove ImageAction class and inline code
   def power(image: BufferedImage) = ImageActions.middleBrihtness(image)
 
   def frequense(image: BufferedImage) = ImageActions.frequence(image)

@@ -140,6 +140,5 @@ trait Service extends HttpService with ServiceJsonProtocol {
       }
 }
 
-//TODO Send only filenames and ID in list request
 //TODO Localization
 

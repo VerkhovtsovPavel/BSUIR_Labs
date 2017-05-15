@@ -19,7 +19,7 @@ class PersonalActor extends Actor {
   }
 
   def personalDescription(id: Int) = {
-    id match  {
+    id match {
       case 1 => "Sanguine. Leader. Low performer."
       case 2 => "Choleric. Leader. Low performer."
       case 3 => "Phlegmatic. Leader. Low performer."
