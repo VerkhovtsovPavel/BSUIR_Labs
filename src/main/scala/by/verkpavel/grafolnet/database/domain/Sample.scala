@@ -6,9 +6,9 @@ case class Sample(
   _id: ObjectId = new ObjectId,
   user_id: ObjectId,
   imageFormat: String,
-  imagePath: String,
-  handwriteFeatures: Map[String, Double],
-  natureDescription: String
+  imageSource: Array[Byte],
+  var handwriteFeatures: Map[String, Double] = Map[String, Double](),
+  var natureDescription: String = ""
 )
 
 case class SampleQueryParams(
@@ -16,6 +16,6 @@ case class SampleQueryParams(
   user_id: Option[ObjectId] = None,
   imageFormat: Option[String] = None,
   imagePath: Option[String] = None,
-  handwriteFeatures: Option[Map[String, Double]] = None,
-  natureDescription: Option[String] = None
+  var handwriteFeatures: Option[Map[String, Double]] = None,
+  var natureDescription: Option[String] = None
 )

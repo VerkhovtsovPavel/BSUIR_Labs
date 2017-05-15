@@ -1,8 +1,8 @@
 ﻿<!DOCTYPE html>
-<html id="ng-app" ng-app="app"> <!-- id="ng-app" IE<8 -->
+<body id="ng-app" ng-app="app"> <!-- id="ng-app" IE<8 -->
 
     <head>
-        <title>Uploads only images (with canvas preview)</title>
+        <title>Login</title>
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
 
         <!-- Fix for old browsers -->
@@ -18,8 +18,7 @@
         <script src="../angular-file-upload.min.js"></script>
         <script src="controllers.js"></script>
 
-        <!--thumbnails for images-->
-        <script src="directives.js"></script>
+        <script src="application.js"></script>
 
         <style>
             .my-drop-zone { border: dotted 3px lightgray; }
@@ -27,6 +26,16 @@
             .another-file-over-class { border: dotted 3px green; }
 
             html, body { height: 100%; }
+
+            .upload_block {
+                visibility: hidden;
+                display: none;
+            }
+
+            #imagesView{
+                visibility: hidden;
+                display: none;
+            }
 
             canvas {
                 background-color: #f3f3f3;
@@ -53,7 +62,7 @@ h2{
 }
 
 input[type=text], input[type=password] {
-    width: 100%;
+    width:  100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -61,18 +70,15 @@ input[type=text], input[type=password] {
     box-sizing: border-box;
 }
 
-.login_button {
+.login_button, .signupbtn {
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
+    display: inline-block;
     cursor: pointer;
     width: 100%;
-}
-
-.login_button:hover {
-    opacity: 0.8;
 }
 
 .imgcontainer {
@@ -85,110 +91,54 @@ img.avatar {
     border-radius: 50%;
 }
 
-.login_container {
-    padding: 16px;
-}
-
-</style>
-
-<h2>Login</h2>
-
-<form action="/login">
-    <div class="imgcontainer">
-        <img src="grapholog_avatar.png" alt="Avatar" class="avatar">
-    </div>
-
-    <div class="login_container">
-        <label><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="login" required>
-
-        <label><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
-
-        <button type="submit" class="login_button">Login</button>
-    </div>
-</form>
-
-<!-- Registration -->
-
-<style>
-/* Full-width input fields */
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-/* Set a style for all buttons */
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
-
-/* Extra styles for the cancel button */
-.cancelbtn {
-    padding: 14px 20px;
-    background-color: #f44336;
-}
-
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn,.signupbtn {
-    float: left;
-    width: 50%;
-}
-
 /* Add padding to container elements */
 .container {
     padding: 16px;
 }
-
-/* Clear floats */
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-/* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
-    .cancelbtn, .signupbtn {
-       width: 100%;
-    }
-}
 </style>
-<body>
+<div id="login">
+<h2>Login</h2>
 
-<h2>Signup Form</h2>
+<div>
+    <div class="imgcontainer">
+        <img src="grapholog_avatar.png" alt="Avatar" class="avatar">
+    </div>
 
-<form action="registration" style="border:1px solid #ccc">
     <div class="container">
-        <label><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" required>
+        <label><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" id="login_login" name="login" required>
 
         <label><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <input type="password" placeholder="Enter Password" id="login_password" name="password" required>
+
+        <button onclick="login()" class="login_button">Login</button>
+    </div>
+</div>
+</div>
+<!-- Registration -->
+
+<div id="registartion">
+<h2>Sign Up</h2>
+
+<div>
+    <div class="container">
+        <label><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" id="registration_login" required>
+
+        <label><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" id="registration_password" name="psw" required>
 
         <label><b>Repeat Password</b></label>
-        <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+        <input type="password" placeholder="Repeat Password" id="registration_repassword" name="psw-repeat" required>
 
-        <div class="clearfix">
-            <button type="button" class="cancelbtn">Cancel</button>
-            <button type="submit" class="signupbtn">Sign Up</button>
-        </div>
+        <button onclick="registration()" class="signupbtn">Sign Up</button>
     </div>
-</form>
+</div>
 
+</div>
 <!-- Upload -->
     <!-- Example: nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}" -->
-    <body ng-controller="AppController" nv-file-drop="" uploader="uploader">
+    <div ng-controller="AppController" nv-file-drop="" uploader="uploader" class="upload_block">
 
         <div class="container">
 
@@ -204,12 +154,6 @@ button {
                             Base drop zone
                         </div>
 
-                        <!-- Example: nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}" -->
-                        <div nv-file-drop="" uploader="uploader" options="{ url: '/foo' }">
-                            <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone">
-                                Another drop zone with its own settings
-                            </div>
-                        </div>
                     </div>
 
                     <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
@@ -218,9 +162,11 @@ button {
                 </div>
 
                 <div class="col-md-9" style="margin-bottom: 40px">
-                    <h2>Uploads only images (with canvas preview)</h2>
-                    <h3>The queue</h3>
-                    <p>Queue length: {{ uploader.queue.length }}</p>
+                    <h2>Uploads only handwrite sample</h2>
+                    <div id="queue_info">
+                        <h3>The queue</h3>
+                        <p>Queue length: {{ uploader.queue.length }}</p>
+                    </div>
 
                     <table class="table">
                         <thead>
@@ -240,7 +186,6 @@ button {
                                     <!--auto height-->
                                     <!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->
                                     <!--auto width-->
-                                    <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
                                     <!--fixed width and height -->
                                     <!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
                                 </td>
@@ -270,7 +215,7 @@ button {
                         </tbody>
                     </table>
 
-                    <div>
+                    <div id="query_progress">
                         <div>
                             Queue progress:
                             <div class="progress" style="">
@@ -294,5 +239,29 @@ button {
 
         </div>
 
-    </body>
+    </div>
+<div id="imagesView">
+    <img id="ItemPreview" src="" />
+    <button type="button" class="btn btn-warning btn-s" onclick="injectParams()" id="inject_button">
+        <span class="glyphicon glyphicon-text-width"></span> Inject features
+    </button>
+    <button type="button" class="btn btn-danger btn-s" onclick="personal()" id="personal_button">
+        <span class="glyphicon glyphicon-eye-open"></span> Personal determination
+    </button>
+    <div id="rlist">
+
+    </div>
+</div>
+
+<div class="container">
+   <button type="button" class="btn btn-warning btn-s" id="switchButton" onclick="switchMode()">
+       <span class="glyphicon glyphicon-refresh"> Switch mode</span>
+   </button>
+    <button type="button" class="btn btn-warning btn-s" id="changeLang" onclick="changeLang()">
+        <span class="glyphicon glyphicon-text-color"> Change language</span>
+    </button>
+</div>
+
+
+</body>
 </html>

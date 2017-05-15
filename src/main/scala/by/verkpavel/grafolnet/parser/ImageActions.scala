@@ -28,16 +28,16 @@ object ImageActions {
 
   def frequence(baseImage: BufferedImage): Double = {
     val pixelsBrihtness = ImageUtils.extractColors(baseImage).map((ImageUtils.pointBrightness _).tupled).partition(_ == 0)
-    pixelsBrihtness._1.size / pixelsBrihtness._2.size
+    pixelsBrihtness._1.size.toDouble / pixelsBrihtness._2.size
   }
 
   def symbolsAngel(symbols: mutable.Buffer[BufferedImage]): Double = {
     val angels = symbols.map(baseImage => {
       val pixelsBrihtness: Seq[Int] = ImageUtils.extractColors(baseImage).map((ImageUtils.pointBrightness _).tupled)
-      val rigthTop: Int = pixelsBrihtness.takeWhile(_ != 0).size
-      val leftBottom = pixelsBrihtness.reverse.takeWhile(_ != 0).size
-      val (rigthTop_x, rigthTop_y) = (rigthTop / baseImage.getWidth, rigthTop % baseImage.getWidth)
-      val (leftBottom_x, leftBottom_y) = (leftBottom / baseImage.getWidth, leftBottom % baseImage.getWidth)
+      val rigthTop: Int = pixelsBrihtness.takeWhile(_ == 0).size
+      val leftBottom = pixelsBrihtness.size - pixelsBrihtness.reverse.takeWhile(_ == 0).size
+      val (rigthTop_x, rigthTop_y) = (rigthTop / baseImage.getWidth, rigthTop % (baseImage.getWidth + 1))
+      val (leftBottom_x, leftBottom_y) = (leftBottom / baseImage.getWidth, leftBottom % (baseImage.getWidth + 1))
       Math.atan((leftBottom_y - rigthTop_y) / (leftBottom_x - rigthTop_x))
     })
     angels.sum / angels.size

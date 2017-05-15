@@ -17,9 +17,7 @@ class AuthorisationActor extends Actor {
     case (userName: String, password: String) =>
       sender ! DB.isUserExist(userName, password)
 
-    case user: User =>
-      sender ! DB.addUser(user)
+    case user: AuthorisationData =>
+      sender ! DB.addUser(User(name = user.userName, passwordHash = user.password, isAdmin = false))
   }
-
 }
-

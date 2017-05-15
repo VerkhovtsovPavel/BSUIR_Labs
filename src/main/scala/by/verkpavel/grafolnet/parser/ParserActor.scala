@@ -1,6 +1,8 @@
 package by.verkpavel.grafolnet.parser
 
 import java.awt.image.BufferedImage
+import java.io.ByteArrayInputStream
+import javax.imageio.ImageIO
 
 import akka.actor.{Actor, Props}
 import by.verkpavel.grafolnet.database.DB
@@ -18,8 +20,9 @@ class ParserActor extends Actor {
   import scala.collection.JavaConversions._
 
   def receive = {
-    case id: Int =>
-      var image = DB.getImageByID(id)
+    case id: String =>
+      val sample = DB.getSampleByID(id)
+      var image = ImageIO.read(new ByteArrayInputStream(sample.imageSource))
       val lines = tes.getWords(image, 2)
       val linesImage = lines.map(x => image.getSubimage(x.getBoundingBox.getX.toInt, x.getBoundingBox.getY.toInt, x.getBoundingBox.width, x.getBoundingBox.height))
       val words = tes.getWords(image, 3)
@@ -28,9 +31,22 @@ class ParserActor extends Actor {
 
       val handwritePower = power(image)
 
-      image = ImageActions.imageBinarization(image, 100)
+      image = ImageActions.imageBinarization(image, (handwritePower * 0.7).toInt)
 
-      sender ! (handwritePower, frequense(image), linesInterval(lines), linesAngle(linesImage), wordInterval(words), symbolsInterval(symbols), symbolsAngle(symbolsImage)) //TODO Maybe use Map[String, Double]
+      val parameters = Map[String, Double](
+        "characterTilt" -> symbolsAngle(symbolsImage),
+        "lineTilt" -> linesAngle(linesImage),
+        "characterSpacing" -> symbolsInterval(symbols) / image.getWidth * 1000,
+        "wordSpacing" -> wordInterval(words) / image.getWidth * 1000,
+        "lineSpacing" -> linesInterval(lines) / image.getHeight * 1000,
+        "frequencyOfText" -> frequense(image),
+        "pressingForce" -> handwritePower
+      )
+
+      sample.handwriteFeatures = parameters
+      DB.updateSample(sample)
+
+      sender ! parameters
   }
 
   //TODO Remove ImageAction class and inline code
@@ -41,23 +57,23 @@ class ParserActor extends Actor {
   def linesInterval(lines: mutable.Buffer[Word]): Double = {
     var count = 0
     var sum = 0
-    for (i <- lines.indices) {
-      val lower = lines(i).getBoundingBox.getY.toInt + lines(i).getBoundingBox.height
+    for (i <- 0 to lines.size - 2) {
+      val lower = lines(i).getBoundingBox.getY.toInt
       val upper = lines(i + 1).getBoundingBox.getY.toInt
       if (upper > lower) {
         sum += upper - lower
         count += 1
       }
     }
-    sum / count
+    sum.toDouble / count
   }
 
-  def linesAngle(lines: mutable.Buffer[BufferedImage]) = ImageActions.symbolsAngel(lines) //TODO Uncorrect
+  def linesAngle(lines: mutable.Buffer[BufferedImage]) = ImageActions.symbolsAngel(lines) - 1.5708
 
   def wordInterval(words: mutable.Buffer[Word]) = {
     var count = 0
     var sum = 0
-    for (i <- words.indices) {
+    for (i <- 0 to words.size - 2) {
       val left = words(i).getBoundingBox.getX.toInt + words(i).getBoundingBox.width
       val right = words(i + 1).getBoundingBox.getX.toInt
       if (right > left) {
@@ -65,13 +81,13 @@ class ParserActor extends Actor {
         count += 1
       }
     }
-    sum / count
+    sum.toDouble / count
   }
 
   def symbolsInterval(symbols: mutable.Buffer[Word]) = {
     var count = 0
     var sum = 0
-    for (i <- symbols.indices) {
+    for (i <- 0 to symbols.size - 2) {
       val left = symbols(i).getBoundingBox.getX.toInt + symbols(i).getBoundingBox.width
       val right = symbols(i + 1).getBoundingBox.getX.toInt
       if (right > left) {
@@ -79,7 +95,7 @@ class ParserActor extends Actor {
         count += 1
       }
     }
-    sum / count
+    sum.toDouble / count
   }
 
   def symbolsAngle(symbols: mutable.Buffer[BufferedImage]) = ImageActions.symbolsAngel(symbols)

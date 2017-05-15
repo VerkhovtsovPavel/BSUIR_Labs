@@ -61,8 +61,7 @@ object ImageUtils {
   def extractColors(image: BufferedImage): Seq[(Int, Int, Int)] = {
     val raster = image.getRaster
     for (x <- 0 until image.getWidth; y <- 0 until image.getHeight()) yield {
-      val rgb = raster.getPixel(x, y, null.asInstanceOf[Array[Int]])
-      (rgb(0), rgb(1), rgb(2))
+      getPixel(raster, x, y)
     }
   }
 
@@ -72,4 +71,17 @@ object ImageUtils {
   }
 
   def pointBrightness(red: Int, green: Int, blue: Int) = (0.3 * red + 0.59 * green + 0.11 * blue).toInt
+
+  def getPixel(raster: WritableRaster, x: Int, y: Int) = {
+    val rgb = raster.getPixel(x, y, null.asInstanceOf[Array[Int]])
+    if (rgb.length == 1)
+      (rgb(0), rgb(0), rgb(0))
+    else
+      (rgb(0), rgb(1), rgb(2))
+  }
+
+  def getPixelBrightness(image: BufferedImage, x: Int, y: Int): Int = {
+    val pixel = getPixel(image.getRaster, x, y)
+    pointBrightness(pixel._1, pixel._2, pixel._3)
+  }
 }

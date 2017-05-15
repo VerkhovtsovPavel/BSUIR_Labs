@@ -1,5 +1,6 @@
 package by.verkpavel.grafolnet.service
 
+import by.verkpavel.grafolnet.authorisation.AuthorisationData
 import by.verkpavel.grafolnet.database.domain.{Sample, User}
 import spray.json.{DefaultJsonProtocol, JsFalse, JsNumber, JsString, JsTrue, JsValue, JsonFormat}
 import com.mongodb.casbah.Imports.ObjectId
@@ -26,14 +27,15 @@ trait ServiceJsonProtocol extends DefaultJsonProtocol {
   }
 
   implicit object ObjectIDJsonFormat extends JsonFormat[ObjectId] {
-    def write(x: ObjectId) = JsString("oid" + x.toHexString)
+    def write(x: ObjectId) = JsString(x.toHexString)
 
     def read(value: JsValue) = value match {
-      case JsString(s) if s.startsWith("oid") => new ObjectId(s.drop(3))
+      case JsString(s) => new ObjectId(s)
     }
   }
 
   implicit val publicItemFmt = jsonFormat6(Sample)
-  implicit val publicItemSummaryFmt = jsonFormat5(User)
+  implicit val publicItemSummaryFmt = jsonFormat4(User)
+  implicit val autDataFmt = jsonFormat2(AuthorisationData)
 
 }

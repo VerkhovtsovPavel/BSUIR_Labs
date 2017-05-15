@@ -1,16 +1,20 @@
 package by.verkpavel.grafolnet.service
 
 import java.awt.image.BufferedImage
+import java.io.ByteArrayInputStream
+import javax.imageio.ImageIO
 
 import akka.actor.{Actor, ActorRef, Props}
 import akka.pattern.ask
 import akka.util.Timeout
-import by.verkpavel.grafolnet.database.domain.User
+import by.verkpavel.grafolnet.authorisation.AuthorisationData
+import by.verkpavel.grafolnet.database.domain.{Sample, User}
 import by.verkpavel.grafolnet.model.ModelActor.ItemNotFound
 import spray.http.MultipartFormData
 import spray.http.StatusCodes._
-import spray.routing.HttpService
+import spray.routing.{Directive, HttpService}
 import spray.httpx.SprayJsonSupport._
+import spray.routing.directives.OnSuccessFutureMagnet
 
 object ServiceActor {
   def props(model: ActorRef, parser: ActorRef, personal: ActorRef, authorisation: ActorRef)(implicit askTimeout: Timeout): Props = Props(classOf[ServiceActor], model, parser, personal, authorisation, askTimeout)
@@ -30,6 +34,8 @@ trait Service extends HttpService with ServiceJsonProtocol {
 
   case class ImageUploaded(size: Long)
   implicit val imageUploadedFormat = jsonFormat1(ImageUploaded)
+
+  var currentUser: User = _
 
   def route(model: ActorRef, parser: ActorRef, personal: ActorRef, authorisation: ActorRef)(implicit askTimeout: Timeout) =
     get {
@@ -52,14 +58,17 @@ trait Service extends HttpService with ServiceJsonProtocol {
         path("grapholog_avatar.png") {
           getFromFile("src/main/angular/root/grapholog_avatar.png")
         } ~
+        path("application.js") {
+          getFromFile("src/main/angular/root/application.js")
+        } ~
+        //----------------------------------------------------
         path("images") {
-          onSuccess(model ? 'list) {
-            case item: List[Any] => //Uncorrect new Sample
+          onSuccess(model ? currentUser._id) {
+            case item: List[Sample] =>
               complete(OK, item)
           }
         } ~
-        //----------------------------------------------------
-        path("images" / IntNumber) { id =>
+        path("images" / """[\w\d]+""".r) { id =>
           onSuccess(model ? id) {
             case item: String =>
               complete(OK, item)
@@ -68,7 +77,7 @@ trait Service extends HttpService with ServiceJsonProtocol {
               complete(NotFound, "Not Found")
           }
         } ~
-        path("imageParams" / IntNumber) { id =>
+        path("imageParams" / """[\w\d]+""".r) { id =>
           onSuccess(parser ? id) {
             case item: Map[String, Double] =>
               complete(OK, item)
@@ -77,8 +86,11 @@ trait Service extends HttpService with ServiceJsonProtocol {
               complete(NotFound, "Not Found")
           }
         } ~
-        path("personalParams" / IntNumber) { id =>
+        path("personalParams" / """[\w\d]+""".r) { id =>
           onSuccess(personal ? id) {
+            case item: Int =>
+              complete(OK, item.toString)
+
             case item: String =>
               complete(OK, item)
 
@@ -88,8 +100,16 @@ trait Service extends HttpService with ServiceJsonProtocol {
         } ~
         path("login") {
           parameters('login, 'password) { (login, password) =>
-            onSuccess(authorisation ? (login, password))
-            complete(s"The color is '$login' and the background is '$password'")
+            onSuccess(authorisation ? (login, password)) {
+              case result: Some[User] =>
+                currentUser = result.get
+                if (currentUser.isAdmin)
+                  complete("Access granted")
+                else
+                  complete("Login successful")
+              case None =>
+                complete("Please check username and password")
+            }
           }
         }
     } ~
@@ -100,19 +120,26 @@ trait Service extends HttpService with ServiceJsonProtocol {
               case Some(imageEntity) =>
                 val size = imageEntity.entity.data.length
                 println(s"Uploaded $size")
-                ImageIO.read(new ByteArrayInputStream(imageEntity.entity.data.toByteArray))
+                model ? ((imageEntity.entity.data.toByteArray, imageEntity.headers(1).value.split(";")(2).split("=")(1), currentUser._id))
                 ImageUploaded(0)
               case None =>
                 println("No files")
                 ImageUploaded(500)
             }
           }
-        } //  ~
-        //  path("registration") {
-        //    handleWith { user: MultipartFormData =>
-        //      onSuccess(authorisation ? user)
-        //       complete(OK, "The color is")
-        //     }
-        //   }
+        } ~
+          path("registration") {
+            respondWithStatus(Created) {
+              entity(as[AuthorisationData]) { user =>
+                onSuccess(authorisation ? user) { id =>
+                  complete(OK, "Your id is " + id)
+                }
+              }
+            }
+          }
       }
 }
+
+//TODO Send only filenames and ID in list request
+//TODO Localization
+

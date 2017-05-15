@@ -61,10 +61,11 @@ class TopLevel extends Actor with ActorLogging {
   IO(Http) ! Http.Bind(service, host, port)
 
   override def supervisorStrategy: SupervisorStrategy = OneForOneStrategy() {
-    case _ if model == sender => Stop
-    case _ if parser == sender => Stop
-    case _ if personal == sender => Stop
+    case _ if model == sender => Restart
+    case _ if parser == sender => Restart
+    case _ if personal == sender => Restart
     case _ if service == sender => Restart
+    case _ if authorisation == sender => Restart
   }
 
   def receive = {
@@ -72,6 +73,7 @@ class TopLevel extends Actor with ActorLogging {
     case Terminated(`model`) => context stop self
     case Terminated(`parser`) => context stop self
     case Terminated(`personal`) => context stop self
+    case Terminated(`authorisation`) => context stop self
     case _ =>
   }
 
