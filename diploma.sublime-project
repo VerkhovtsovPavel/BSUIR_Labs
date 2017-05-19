@@ -32,12 +32,13 @@
                 "*-blx.aux",
                 "*-blx.bib",
                 "*.brf",
-                "*.run.xml"
+                "*.run.xml",
+                "*.ldb"
             ]
         }
     ],
     "settings": {
-        "TEXroot": "economy_only.tex",
+        "TEXroot": "diploma.tex",
         "tex_file_exts": [".tex"],
     }
 }

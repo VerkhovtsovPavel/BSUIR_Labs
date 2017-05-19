@@ -23,7 +23,7 @@
 \FPeval{complexityFactor}{clip(1 + \additionalComplexityFactor)}
 
 % Степень использования при разработке стандартных модулей, ед.
-\def \stdModuleUsageFactor{0.5}
+\def \stdModuleUsageFactor{0.5} 
 
 % Коэффициент новизны, Кн
 \def \noveltyFactor{0.9}
@@ -92,8 +92,18 @@
 Расчет объёма программного продукта предполагает определение типа программного обеспечения, всестороннее техническое обоснование функций ПО и определение объёма каждой функций.
 Согласно классификации типов программного обеспечения~\cite[с.~59,~приложение 1]{palicyn_2006}, разрабатываемое ПО можно классифицировать как ПО методo"=ориентированных расчетов.
 
-Исходные данные разрабатываемого проекта указаны в таблице~\ref{table:economics:initial_data}.
+Общий объём программного продукта определяется исходя из количества и объёма функций, реализованных в программе:
+\begin{equation}
+  \label{eq:economics:total_loc}
+  V_{o} = \sum_{i = 1}^{n} V_{i} \text{\,,}
+\end{equation}
+\begin{explanation}
+где & $ V_{i} $ & объём отдельной функции ПО, LoC; \\
+    & $ n $ & общее число функций.
+\end{explanation}
 
+Исходные данные разрабатываемого проекта указаны в таблице~\ref{table:economics:initial_data}.
+\clearpage
 \begin{longtable}[l]{| >{\raggedright}m{0.62\textwidth}
                      | >{\centering}m{0.17\textwidth}
                      | >{\centering\arraybackslash}m{0.13\textwidth}|}
@@ -187,16 +197,6 @@
     \\ \hline
 \end{longtable}
 
-
-Общий объём программного продукта определяется исходя из количества и объёма функций, реализованных в программе:
-\begin{equation}
-  \label{eq:economics:total_loc}
-  V_{o} = \sum_{i = 1}^{n} V_{i} \text{\,,}
-\end{equation}
-\begin{explanation}
-где & $ V_{i} $ & объём отдельной функции ПО, LoC; \\
-    & $ n $ & общее число функций.
-\end{explanation}
 
 На стадии технико-экономического обоснования проекта рассчитать точный объём функций невозможно.
 Вместо вычисления точного объёма функций применяются приблизительные оценки на основе данных по аналогичным проектам или по нормативам~\cite[с.~61,~приложение 2]{palicyn_2006}, которые приняты в организации.
@@ -374,7 +374,7 @@ $ \text{Т}_\text{р} = \SI{\developmentMonths}{\text{мес.}} = \SI{\developme
 
 Для выполнения запланированного проекта в указанные сроки необходимо привлечь \requiredProgrammers ~специалистов: инженер-программиста 1 категории и ведущего программист.
 
-\subsection{Расчёт заработной платы исполнителей}
+\subsection{Расчёт расходов и прогнозируемой цены ПО}
 
 % Тариффные коэффициенты, Тк
 \def \tariffFactorSenior{3.25} % == 14 разряд
@@ -488,8 +488,6 @@ $ \text{К} = \num{\bonusRate} $
          {100\%} = \SI{\additionalSalary}{\text{\byr}} \text{\,.}
 \end{equation}
 
-\subsection{Расчёт расходов и прогнозируемой цены ПО}
-
 \FPeval{totalSalary}{\baseSalary + \additionalSalary}
 
 % Отчисления в фонд социальной защиты
@@ -575,7 +573,7 @@ $ \text{К} = \num{\bonusRate} $
     & $ \text{Н}_{\text{мз}} = \num{\materialsRate} $
     & $\text{М} = { \text{З}_{\text{о}} \cdot \text{Н}_{\text{мз}} } / { \num{100} } $
     & \num{\materialsMoney}
-    \\ \hline
+    \\ 
 
     Машинное время
     &
@@ -659,7 +657,7 @@ $ \text{К} = \num{\bonusRate} $
 
 \FPeval{netProfit}{round(\profitMoney - \profitTax, 0)}
 
-Подставив известные данные в формулу~(\ref{eq:economics:profit}) получаем чистую прибыль
+Подставив данные в формулу~(\ref{eq:economics:profit}) получаем чистую прибыль
 \begin{equation}
   \label{eq:economics:net_profit}
   \text{П}_\text{ч} =
@@ -756,15 +754,19 @@ $ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
 \FPeval{socialProtectionMoneyAnalytic}{round(\totalSalaryAnalytic * \socialProtectionRate / 100, 2)}
 
 % Общая сумма
-\FPeval{totalAnalyticExpense}{round(\totalSalaryAnalytic + \socialProtectionMoneyAnalytic, 2)}
+\FPeval{totalDirtyAnalyticExpense}{round(\totalSalaryAnalytic + \socialProtectionMoneyAnalytic, 2)}
+
+\FPeval{totalAnalyticExpense}{round(\totalDirtyAnalyticExpense * (1 - 18/100), 2)}
 
 Учитывая отчисления в фонд социального страхования населения и обязательного страхования получаем итоговые расходы на оплату труда.
 \begin{equation}
   \label{eq:econ:total_salary_analytic_calc}
-    \text{Р}_{\text{от}}=\num{\baseSalaryAnalytic} + \num{\additionalSalaryAnalytic} + \num{\socialProtectionMoneyAnalytic} = \num{\totalAnalyticExpense} {\text{\byr}} \text{\,.}
+    \text{Р}_{\text{от}}=\num{\baseSalaryAnalytic} + \num{\additionalSalaryAnalytic} + \num{\socialProtectionMoneyAnalytic} = \num{\totalDirtyAnalyticExpense} {\text{\byr}} \text{\,.}
 \end{equation}
 
-Экономические расходы на оплату труда составят $ \text{Р}_{\text{от}}=\num{\totalAnalyticExpense} {\text{\byr}} $, что для пользователя будет выступать в качестве экономического эффекта.
+Экономическия на оплату труда составит $ \text{Р}_{\text{от}}=\num{\totalDirtyAnalyticExpense} {\text{\byr}} $.
+
+Подставив данные в формулу~(\ref{eq:economics:profit}) получим чистую прибыль равную $ \totalAnalyticExpense~\text{\byr} $, что для пользователя будет выступать в качестве экономического эффекта.
 
 \def \depositRate{0.063}
 \FPeval{discontOnSecondYear}  {round(1 / pow(2, 1 + \depositRate), 3)}
@@ -811,8 +813,9 @@ $ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
   2. Дисконтированный результат & \num{\totalAnalyticExpense} & \num{\secondYearProfit} & \num{\thirdYearProfit} & \num{\fourthYearProfit} & \num{\fivethYearProfit} \\ \hline
   ЗАТРАТЫ & & & & & \\ \hline
   4. Дисконтированные инвестиции & \num{\sellingPrice} & & & & \\ \hline
+  5. Чистый дисконтированный доход & \num{\firstYearProfit} & \num{\secondYearProfit} & \num{\thirdYearProfit} & \num{\fourthYearProfit} & \num{\fivethYearProfit} \\ \hline
   6. Чистый дисконтированный доход нарастающим итогом & \num{\firstYearProfit} & \num{\secondYearTotalProfit} & \num{\thirdYearTotalProfit} & \num{\fourthYearTotalProfit} & \num{\fivethYearTotalProfit} \\ \hline
   Коэффициент дисконтирования & \num{1} & \num{\discontOnSecondYear} & \num{\discontOnThirdYear} & \num{\discontOnFourthYear} & \num{\discontOnFivethYear} \\ \hline
 \end{longtable}
 
-Начиная с третьего года использования разработанного программное средство окупит себя и за 5 лет использования принесет прибыли в $ \fivethYearTotalProfit \text{ \byr} $.
+На четвертый года использования разработанное программное средство окупит себя и за 5 лет использования принесет прибыли в $ \fivethYearTotalProfit \text{ \byr} $.

@@ -1,7 +1,9 @@
 package by.verkpavel.grafolnet.model
 
 import akka.actor.{Actor, Props}
-import by.verkpavel.grafolnet.model.ModelActor.ItemNotFound
+import by.verkpavel.grafolnet.database.DB
+import by.verkpavel.grafolnet.database.domain.Sample
+import com.mongodb.casbah.Imports.ObjectId
 
 object ModelActor {
   def props: Props = Props[ModelActor]
@@ -10,18 +12,17 @@ object ModelActor {
   case object ItemNotFound
 }
 
-class ModelActor extends Actor with Model {
+class ModelActor extends Actor {
 
   def receive = {
-    case id: Int =>
-      sender ! get(id).getOrElse(ItemNotFound)
+    case id: String =>
+      sender ! DB.getImageByID(id)
 
-    case 'list =>
-      sender ! list
+    case (image: Array[Byte], format: String, owner: ObjectId) =>
+      sender ! DB.addSample(Sample(user_id = owner, imageFormat = format, imageSource = image))
 
-    case image: ImageRequest =>
-
+    case id: ObjectId =>
+      sender ! DB.getImages(id)
   }
-
 }
 

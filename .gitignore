@@ -24,6 +24,7 @@
 *.brf
 *.run.xml
 
+
 *.dvi
 *-converted-to.*
 *.ps

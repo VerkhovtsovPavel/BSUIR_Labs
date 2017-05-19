@@ -35,7 +35,6 @@
 % Почему: Пункт 2.1.1 Требований по оформлению пояснительной записки.
 \usepackage{extsizes}
 
-
 % Зачем: Длинна, пимерно соответвующая 5 символам
 % Почему: Требования содержат странное требование про отсупы в 5 символов (для немоноширинного шрифта :| )
 \newlength{\fivecharsapprox}
@@ -363,7 +362,6 @@
 \newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
 \makeatother
 
-
 % Зачем: Управление выводом чисел.
 \usepackage{sistyle}
 \SIdecimalsign{,}
@@ -371,13 +369,10 @@
 % Зачем: inline-коментирование содержимого.
 \newcommand{\ignore}[2]{\hspace{0in}#2}
 
-
 % Зачем: Возможность комментировать большие участки документа
 \usepackage{verbatim}
 
-
 \usepackage{xcolor}
-
 
 % Зачем: Оформление листингов кода
 % Примечание: final нужен для переопределения режима draft, в котором листинги не выводятся в документ.
@@ -454,6 +449,9 @@
 % Тире в словае заменяем на \hyph: аппаратно\hyphпрограммный.
 % https://stackoverflow.com/questions/2193307/how-to-get-latex-to-hyphenate-a-word-that-contains-a-dash#
 \def\hyph{-\penalty0\hskip0pt\relax}
+
+% Зачем: Запрет переноса в последней строке обзаца
+\finalhyphendemerits=1000000
 
 % Добавляем абзацный отступ для библиографии
 % https://github.com/mstyura/bsuir-diploma-latex/issues/19
