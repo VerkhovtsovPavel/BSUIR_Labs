@@ -1,5 +1,5 @@
 LATEXMK=latexmk
-DIPLOMA_SRC=conference.tex
+DIPLOMA_SRC=diploma.tex
 
 all: diploma
 
