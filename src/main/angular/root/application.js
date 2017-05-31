@@ -1,6 +1,7 @@
 var item = null
 var message = null
 var upload = false
+var english = false
 function login(){
  var x = new XMLHttpRequest();
     var userName = document.getElementById('login_login').value
@@ -14,6 +15,8 @@ function login(){
             document.getElementById('registartion').hidden=true
             document.getElementsByClassName('upload_block')[0].style.visibility="visible"
             document.getElementsByClassName('upload_block')[0].style.display="block"
+            document.getElementById('additionalOptions').style.visibility="visible"
+            document.getElementById('additionalOptions').style.display="block"
             if(message=="Login successful"){
                 document.getElementById('query_progress').hidden=true
                 document.getElementById('queue_info').hidden=true
@@ -67,11 +70,12 @@ function switchMode(){
     }
 }
 
+
+
 function changeLang(){
     var inject = document.getElementById('inject_button')
     var personal = document.getElementById('personal_button')
-    var query_progress = document.getElementById('query_progress')
-    var queue_info = document.getElementById('queue_info')
+    var query_progress = document.getElementById('queueProgress')
     var baseDropZone = document.getElementById('baseDropZone')
     var queueLength = document.getElementById('queueLength')
     var theQueue = document.getElementById('theQueue')
@@ -90,11 +94,75 @@ function changeLang(){
     var table_progress = document.getElementById('table_progress')
     var table_status = document.getElementById('table_status')
     var table_actions = document.getElementById('table_actions')
+    var uploadsOnlyHandwriteSample = document.getElementById('uploadsOnlyHandwriteSample')
+    var upload = document.getElementById('upload')
+    var cancel = document.getElementById('cancel')
+    var remove = document.getElementById('remove')
+    var uploadAll = document.getElementById('uploadAll')
+    var cancelAll = document.getElementById('cancelAll')
+    var removeAll = document.getElementById('removeAll')
+
     if(english){
-        queueLength.innerHTML = "Queue length: {{ uploader.queue.length }}"
+        inject.innerHTML = "Extract features"
+        personal.innerHTML = "Personal determination"
+        query_progress.innerHTML = "Query progress"
+        baseDropZone.innerHTML = "Base drop zone"
+        theQueue.innerHTML = "The queue"
+        selectFiles.innerHTML = "Select files"
+        //registration_signUp.innerHTML = "Sign up"
+//        registration_repassword.innerHTML = "Re-password"
+//        registration_password.innerHTML = "Password"
+//        registration_login.innerHTML = "Login"
+//        username.innerHTML = "User name"
+//        signUp.innerHTML = "Sign up"
+//        login_password.innerHTML = "Password"
+//        login_login.innerHTML = "User name"
+//        login_title.innerHTML = "Title"
+        table_name.innerHTML = "Name"
+        table_size.innerHTML = "Size"
+        table_progress.innerHTML = "Progress"
+        table_status.innerHTML = "Status"
+        table_actions.innerHTML = "Actions"
+        queueLength.innerHTML = "Queue length: "
+        uploadsOnlyHandwriteSample.innerHTML = "Uploads Only Handwrite Sample"
+        upload.innerHTML = "Upload"
+        cancel.innerHTML = "Cancel"
+        remove.innerHTML = "Remove"
+        uploadAll.innerHTML = "UploadAll"
+        cancelAll.innerHTML = "CancelAll"
+        removeAll.innerHTML = "RemoveAll"
+        english=!english
     }
     else{
-        queueLength.innerHTML = "Длина очереди: {{ uploader.queue.length }}"
+        queueLength.innerHTML = "Длина очереди: "
+        inject.innerHTML = "Выделить признаки"
+        personal.innerHTML = "Определение личности"
+        query_progress.innerHTML = "Прогресс очереди"
+        baseDropZone.innerHTML = "Зона загрузки"
+        theQueue.innerHTML = "Очередь"
+        selectFiles.innerHTML = "Выберите файлы"
+//        registration_signUp.innerHTML = "Регистрация"
+//        registration_repassword.innerHTML = ""
+//        registration_password.innerHTML = "Пароль"
+//        registration_login.innerHTML = "Имя пользователя"
+//        username.innerHTML = "Имя пользователя"
+//        signUp.innerHTML = "Регистрация"
+//        login_password.innerHTML = "Пароль"
+//        login_login.innerHTML = "Имя пользователя"
+//        login_title.innerHTML = "Авторизация"
+        table_name.innerHTML = "Название"
+        table_size.innerHTML = "Размер"
+        table_progress.innerHTML = "Прогресс"
+        table_status.innerHTML = "Статус"
+        table_actions.innerHTML = "Действия"
+        uploadsOnlyHandwriteSample.innerHTML = "Загружайте только образцы почерка"
+        upload.innerHTML = "Загрузить"
+        cancel.innerHTML = "Отменить"
+        remove.innerHTML = "Удалить"
+        uploadAll.innerHTML = "Загрузить все"
+        cancelAll.innerHTML = "Отменить все"
+        removeAll.innerHTML = "Удалить все"
+        english=!english
     }
 }
 
@@ -162,8 +230,8 @@ function personal(){
     var y = new XMLHttpRequest();
     y.open("GET", "/personalParams/"+item._id, true);
     y.onload = function (){
-    var m = JSON.parse(y.responseText)
-    document.getElementById("rlist").appendChild(document.createTextNode("\nPerson: "+m))
+        var m = y.responseText
+        document.getElementById("rlist").appendChild(document.createTextNode("\nPerson: "+m))
     }
     y.send(null)
 }

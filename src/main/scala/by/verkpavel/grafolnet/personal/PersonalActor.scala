@@ -15,7 +15,7 @@ class PersonalActor extends Actor {
   def receive = {
     case id: String =>
       val image = DB.getImageParamsByID(id)
-      sender ! personalDescription((image.values.sum * 1000).toInt % 17) //svm.evaluate_single_instance((1 to 7).toArray, image.values.toArray, model)
+      sender !  svm.evaluate_single_instance((1 to 7).toArray, image.values.toArray, model) 
   }
 
   def personalDescription(id: Int) = {

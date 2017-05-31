@@ -37,6 +37,11 @@
                 display: none;
             }
 
+            #additionalOptions{
+                visibility: hidden;
+                display: none;
+            }
+
             canvas {
                 background-color: #f3f3f3;
                 -webkit-box-shadow: 3px 3px 3px 0 #e3e3e3;
@@ -165,7 +170,7 @@ img.avatar {
                 <h2 id="uploadsOnlyHandwriteSample">Uploads only handwrite sample</h2>
                 <div id="queue_info">
                     <h3 id="theQueue">The queue</h3>
-                    <p id="queueLength">Queue length: {{ uploader.queue.length }}</p>
+                    <p id="queueLength">Queue length:</p><p>{{ uploader.queue.length }}</p>
                 </div>
 
                 <table class="table">
@@ -214,8 +219,8 @@ img.avatar {
 
                 <div id="query_progress">
                     <div>
-                        Queue progress:
-                        <div class="progress" style="">
+                        <p id="queueProgress">Queue progress:</p>
+                        <div class="progress" style"">
                             <div class="progress-bar" role="progressbar"
                                  ng-style="{ 'width': uploader.progress + '%' }"></div>
                         </div>
@@ -250,15 +255,13 @@ img.avatar {
     </div>
 </div>
 
-<div class="container">
-    <button type="button" class="btn btn-warning btn-s" id="switchButton" onclick="switchMode()">
-        <span class="glyphicon glyphicon-refresh"> Switch mode</span>
-    </button>
+<div class="container" id="additionalOptions">
+   <button type="button" class="btn btn-warning btn-s" id="switchButton" onclick="switchMode()">
+       <span class="glyphicon glyphicon-refresh"> Switch mode</span>
+   </button>
     <button type="button" class="btn btn-warning btn-s" id="changeLang" onclick="changeLang()">
         <span class="glyphicon glyphicon-text-color"/> Change language
     </button>
 </div>
-
-
 </body>
 </html>

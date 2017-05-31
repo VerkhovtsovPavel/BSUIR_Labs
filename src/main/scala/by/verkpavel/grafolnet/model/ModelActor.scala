@@ -18,6 +18,9 @@ class ModelActor extends Actor {
     case id: String =>
       sender ! DB.getImageByID(id)
 
+    case ('delete, id: String) =>
+      sender ! DB.deleteSampleByID(id)
+
     case (image: Array[Byte], format: String, owner: ObjectId) =>
       sender ! DB.addSample(Sample(user_id = owner, imageFormat = format, imageSource = image))
 

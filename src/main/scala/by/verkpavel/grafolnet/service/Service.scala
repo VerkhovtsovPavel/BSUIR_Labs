@@ -137,6 +137,17 @@ trait Service extends HttpService with ServiceJsonProtocol {
               }
             }
           }
+      } ~
+      delete {
+        path("images" / """[\w\d]+""".r) { id =>
+          onSuccess(model ? (('delete, id))) {
+            case item: String =>
+              complete(OK, item)
+
+            case ItemNotFound =>
+              complete(NotFound, "Not Found")
+          }
+        }
       }
 }
 

@@ -30,5 +30,7 @@ object DB {
 
   def addUser(user: User): String = usersDAO.insert(user).get.toHexString
 
+  def deleteSampleByID(id: String) = sampleDAO.removeById(new ObjectId(id))
+
   def isUserExist(userName: String, password: String): Option[User] = usersDAO.findOne(UserQueryParams(name = Some(userName), passwordHash = Some(password)))
 }
