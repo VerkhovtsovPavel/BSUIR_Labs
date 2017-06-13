@@ -10,6 +10,7 @@ resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/release
 
 resolvers += "spray repo" at "http://repo.spray.io"
 
+name := "grapholNet"
 enablePlugins(JavaAppPackaging)
 
 val akka = "2.2.3"
