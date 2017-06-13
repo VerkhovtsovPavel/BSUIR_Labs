@@ -14,8 +14,12 @@ class PersonalActor extends Actor {
   val model: svm_model = svm.svmTrain("sampleSet.txt", 1539, 7)
   def receive = {
     case id: String =>
-      val image = DB.getImageParamsByID(id)
-      sender !  svm.evaluate_single_instance((1 to 7).toArray, image.values.toArray, model) 
+      val sample = DB.getSampleByID(id)
+      val image = sample.handwriteFeatures
+      val description = personalDescription((image.values.sum * 1000).toInt % 17) //personalDescription(svm.evaluate_single_instance((1 to 7).toArray, image.values.toArray, model))
+      sample.natureDescription = description
+      DB.updateSample(sample)
+      sender ! description
   }
 
   def personalDescription(id: Int) = {

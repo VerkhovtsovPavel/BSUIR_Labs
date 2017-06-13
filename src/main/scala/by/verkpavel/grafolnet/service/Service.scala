@@ -131,8 +131,11 @@ trait Service extends HttpService with ServiceJsonProtocol {
           path("registration") {
             respondWithStatus(Created) {
               entity(as[AuthorisationData]) { user =>
-                onSuccess(authorisation ? user) { id =>
-                  complete(OK, "Your id is " + id)
+                onSuccess(authorisation ? user) {
+                  case s: String if s.length == 0 =>
+                    complete(OK, "User name already used")
+                  case id =>
+                    complete(OK, "Your id is " + id)
                 }
               }
             }

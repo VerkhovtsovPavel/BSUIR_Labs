@@ -28,9 +28,14 @@ object DB {
 
   def updateSample(sample: Sample) = sampleDAO.save(sample)
 
-  def addUser(user: User): String = usersDAO.insert(user).get.toHexString
+  def addUser(user: User): String = {
+    if (usersDAO.find(UserQueryParams(name = Some(user.name))).isEmpty)
+      usersDAO.insert(user).get.toHexString
+    else
+      ""
+  }
 
-  def deleteSampleByID(id: String) = sampleDAO.removeById(new ObjectId(id))
+  def deleteSampleByID(id: String) = { sampleDAO.removeById(new ObjectId(id)); id }
 
   def isUserExist(userName: String, password: String): Option[User] = usersDAO.findOne(UserQueryParams(name = Some(userName), passwordHash = Some(password)))
 }

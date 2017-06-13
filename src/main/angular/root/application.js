@@ -31,14 +31,21 @@ function registration(){
     var userName = document.getElementById('registration_login').value
     var password = document.getElementById('registration_password').value
     var repassword = document.getElementById('registration_repassword').value
+    var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
     if(password!=repassword){
         alert("Please enter password twice");
+    }
+    else if(password.length<8){
+        alert("Please enter password 8 symbols and longer");
+    }
+    else if(!re.test(password)){
+        alert("Please enter password with symbols in upper and lower cases and numbers");
     }
     else
     {
         x.open("POST", "/registration", true);
         x.onload = function (){
-            alert( x.responseText);
+            alert(x.responseText);
         }
         x.setRequestHeader("Content-type","application/json");
         x.send("{\"userName\": \"" + userName + "\", \"password\": \""+password+"\"}");
@@ -54,6 +61,13 @@ function switchMode(){
         upload = !upload
         }
     else{
+        removeChilds(document.getElementById("info"));
+        document.getElementById("ItemPreview").src="";
+        document.getElementById('inject_button').style.display="none"
+        document.getElementById('personal_button').style.display="none"
+        document.getElementById('delete_button').style.display="none"
+        document.getElementById('loader').style.display="none"
+
         document.getElementById('imagesView').style.visibility="visible"
         document.getElementById('imagesView').style.display="block"
         document.getElementsByClassName('upload_block')[0].style.visibility="hidden"
@@ -70,11 +84,10 @@ function switchMode(){
     }
 }
 
-
-
 function changeLang(){
     var inject = document.getElementById('inject_button')
     var personal = document.getElementById('personal_button')
+    var delete_sample = document.getElementById('delete_button')
     var query_progress = document.getElementById('queueProgress')
     var baseDropZone = document.getElementById('baseDropZone')
     var queueLength = document.getElementById('queueLength')
@@ -105,6 +118,7 @@ function changeLang(){
     if(english){
         inject.innerHTML = "Extract features"
         personal.innerHTML = "Personal determination"
+        delete_sample.innerHTML = "Delete sample"
         query_progress.innerHTML = "Query progress"
         baseDropZone.innerHTML = "Base drop zone"
         theQueue.innerHTML = "The queue"
@@ -137,6 +151,7 @@ function changeLang(){
         queueLength.innerHTML = "Длина очереди: "
         inject.innerHTML = "Выделить признаки"
         personal.innerHTML = "Определение личности"
+        delete_sample.innerHTML = "Удалить образец"
         query_progress.innerHTML = "Прогресс очереди"
         baseDropZone.innerHTML = "Зона загрузки"
         theQueue.innerHTML = "Очередь"
@@ -171,18 +186,27 @@ function addRoom (list, roomId) {
   var listItem = document.createElement("li")
   listItem.id = roomId
   listItem.onclick = function(e){
+        removeChilds(document.getElementById("info"));
         var inject = document.getElementById('inject_button')
         var personal = document.getElementById('personal_button')
-        inject.hidden = true
-        personal.hidden = true
+        var delete_button = document.getElementById('delete_button')
+        inject.style.display = 'block'
+        personal.style.display = 'block'
+        delete_button.style.display = 'block'
         var newRoom = e.target.id
         item = message.filter(function (i){return i.imageFormat==newRoom})[0]
         document.getElementById("ItemPreview").src = "data:image/png;base64,"+_arrayBufferToBase64(item.imageSource)
-        if(item.handwriteFeatures){
-            inject.hidden = false
+        if(item.handwriteFeatures.frequencyOfText){
+            inject.style.display="none"
+            var listItem = document.createElement("li")
+            listItem.appendChild(document.createTextNode("Handwrite features: "+JSON.stringify(item.handwriteFeatures)))
+            document.getElementById("info").appendChild(listItem)
          }
-        if(item.natureDescription.length==0){
-            personal.hidden = false
+        if(item.natureDescription.length!=0){
+            personal.style.display="none"
+            var listItem = document.createElement("li")
+            listItem.appendChild(document.createTextNode("Person: "+item.natureDescription))
+            document.getElementById("info").appendChild(listItem)
         }
   }
   listItem.appendChild(document.createTextNode(roomId))
@@ -217,21 +241,60 @@ function _arrayBufferToBase64( buffer ) {
 }
 
 function injectParams(){
+    var inject = document.getElementById('inject_button').style.display="none"
     var y = new XMLHttpRequest();
     y.open("GET", "/imageParams/"+item._id, true);
     y.onload = function (){
-    var m = JSON.parse(y.responseText)
-    document.getElementById("rlist").appendChild(document.createTextNode(JSON.stringify(m)))
+        var m = JSON.parse(y.responseText)
+        item.handwriteFeatures=m
+        var listItem = document.createElement("li")
+        listItem.appendChild(document.createTextNode("Handwrite features: "+JSON.stringify(item.handwriteFeatures)))
+        document.getElementById("info").appendChild(listItem)
+        document.getElementById('loader').style.display="none"
     }
     y.send(null)
+    document.getElementById('loader').style.display="block"
 }
 
 function personal(){
+    document.getElementById('personal_button').style.display = "none"
     var y = new XMLHttpRequest();
     y.open("GET", "/personalParams/"+item._id, true);
     y.onload = function (){
         var m = y.responseText
-        document.getElementById("rlist").appendChild(document.createTextNode("\nPerson: "+m))
+        item.natureDescription=m
+        var listItem = document.createElement("li")
+        listItem.appendChild(document.createTextNode("Person: "+item.natureDescription))
+        document.getElementById("info").appendChild(listItem)
+        document.getElementById('loader').style.display="none"
     }
     y.send(null)
+     document.getElementById('loader').style.display="block"
+}
+
+function delete_sample(){
+    if (confirm('Are you sure you want to delete this sample?')) {
+        var z = new XMLHttpRequest();
+        z.open("DELETE", "/images/"+item._id, true);
+        z.onload = function (){
+               var y = new XMLHttpRequest();
+               y.open("GET", "/images", true);
+               y.onload = function (){
+                    message = JSON.parse(y.responseText)
+                    fileList = message.map(function(item) {return item.imageFormat});
+                    builtRoomList(fileList);
+                    document.getElementById("ItemPreview").src="";
+                    removeChilds(document.getElementById("info"));
+                    document.getElementById("ItemPreview").src="";
+                    document.getElementById('inject_button').style.display="none"
+                    document.getElementById('personal_button').style.display="none"
+                    document.getElementById('delete_button').style.display="none"
+               }
+               y.send(null)
+            }
+        z.send(null);
+    } else {
+        // Do nothing!
+    }
+
 }
