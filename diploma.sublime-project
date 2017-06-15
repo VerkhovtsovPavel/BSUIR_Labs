@@ -38,7 +38,7 @@
         }
     ],
     "settings": {
-        "TEXroot": "diploma.tex",
+        "TEXroot": "defendingSpeech.tex",
         "tex_file_exts": [".tex"],
     }
 }
