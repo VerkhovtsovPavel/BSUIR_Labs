@@ -34,11 +34,23 @@ window.chartColors = {
     purple: 'rgb(153, 102, 255)',
     grey: 'rgb(201, 203, 207)'
 };
+
+var TimeIntervals = function(){
+    this.lastTime = new Date().getTime();
+
+    this.currentInterval = function() {
+        var newTime = new Date().getTime();
+        var interval = newTime - this.lastTime;
+        this.lastTime = newTime;
+        return interval;
+    }
+}
+
 var canvas = document.getElementById('canvasInAPerfectWorld');
 var context = canvas.getContext("2d");
 var cleanButton = document.getElementById('cleanCanvas');
 var replayButton = document.getElementById('replayCanvas');
-var initialTime = 0;
+var timeIntervals;
 
 cleanButton.addEventListener("click", function(e) {
     context.clearRect(0, 0, context.canvas.width, context.canvas.height);
@@ -46,9 +58,6 @@ cleanButton.addEventListener("click", function(e) {
     clickY = new Array();
     clickDrag = new Array();
     times = new Array();
-    initialTime = 0;
-    lines = 0;
-    timer = 0;
     statictic();
 })
 
@@ -60,20 +69,18 @@ replayButton.addEventListener("click", function(e) {
 canvas.addEventListener("mousedown", function(e) {
     var mouseX = e.pageX - this.offsetLeft;
     var mouseY = e.pageY - this.offsetTop;
-    if (initialTime == 0) {
-        initialTime = new Date().getTime();
+    if (times.length == 0) {
+        timeIntervals = new TimeIntervals();
     }
-    var time = new Date().getTime() - initialTime;
+    var time = timeIntervals.currentInterval();
     paint = true;
-    lines++;
     addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, false, time);
     redraw();
 });
 
 canvas.addEventListener("mousemove", function(e) {
     if (paint) {
-        var time = new Date().getTime() - initialTime;
-        timer++;
+        var time = timeIntervals.currentInterval();
         addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true, time);
         redraw();
     }
@@ -92,8 +99,7 @@ var clickY = new Array();
 var clickDrag = new Array();
 var times = new Array();
 var paint;
-var lines = 0;
-var timer = 0;
+var length = 0;
 
 function addClick(x, y, dragging, time) {
     clickX.push(x);
@@ -135,20 +141,63 @@ Array.prototype.max = function() {
     return Math.max.apply(null, this);
 };
 
+Array.prototype.last = function() {
+    return this[this.length-1];
+};
+
 Array.prototype.min = function() {
     return Math.min.apply(null, this);
 };
 
 function statictic() {
-    linesLabel.innerHTML = lines;
-    speedLabel.innerHTML = timer;
+    var timer = times.reduce(function(a, b) {return a + b;}, 0);
+    var lines = clickDrag.filter(function(a){return a==false;}).length
     var min_x = clickX.min();
     var min_y = clickY.min();
     var max_x = clickX.max();
     var max_y = clickY.max();
-    var density = clickX.length / ((max_y - min_y) * (max_x - min_x));
-    densityLabel.innerHTML = density;
-    updateChart(timer, lines, density);
+    var horizontalLength = max_y - min_y;
+    var verticalLength = max_x - min_x;
+    var square = horizontalLength * verticalLength;
+    var dists = distances(clickX, clickY, clickDrag);
+    var totalLength = dists.reduce(function(a, b) {return a + b;}, 0);
+    var velocities = dists.map(function(currentValue, index){ return currentValue / times[index];}).filter(function(x){return x != 0 && !isNaN(x);});
+    var maxVelocity = velocities.max();
+    var minVelocity = velocities.min();
+    var durationX = getDuration(clickX, times);
+    var durationY = getDuration(clickY, times);
+    console.log(timer , lines, horizontalLength, verticalLength, square, totalLength, maxVelocity, minVelocity, durationX, durationY);
+ //   var density = clickX.length / square;
+ //   densityLabel.innerHTML = density;
+    linesLabel.innerHTML = lines;
+    speedLabel.innerHTML = timer;
+    updateChart(timer, lines, square, horizontalLength, verticalLength);
+}
+
+function distances(clickX, clickY, clickDrag){
+    var dist = new Array();
+    for (var i = 0; i < clickX.length; i++) {
+        if (clickDrag[i]) {
+            var deltaX = clickX[i-1] - clickX[i];
+            var deltaY = clickY[i-1] - clickY[i];
+            var distance = Math.sqrt((deltaX * deltaX) + (deltaY * deltaY));
+            dist.push(distance);
+        }
+        else{
+           dist.push(0)     
+        }
+    }
+    return dist;
+}
+
+function getDuration(coordinates, times){
+    var total = 0;
+    for (var i = 1; i < coordinates.length - 1; i++) {
+        if (coordinates[i-1] - coordinates[i] != 0) {
+            total+=times[i];
+        }
+    }
+    return total;
 }
 
 var chartColors = window.chartColors;
@@ -159,19 +208,25 @@ var config = {
             data: [
                 0,
                 0,
+                0,
+                0,
                 0
             ],
             backgroundColor: [
                 color(chartColors.red).alpha(0.5).rgbString(),
                 color(chartColors.green).alpha(0.5).rgbString(),
                 color(chartColors.blue).alpha(0.5).rgbString(),
+                color(chartColors.orange).alpha(0.5).rgbString(),
+                color(chartColors.yellow).alpha(0.5).rgbString(),
             ],
             label: 'My dataset'
         }],
         labels: [
             "Time",
             "Lines",
-            "Density"
+            "Square",
+            "Horizontal Length",
+            "Vertical Length"
         ]
     },
     options: {
@@ -201,10 +256,12 @@ window.onload = function() {
     window.myPolarArea = Chart.PolarArea(ctx, config);
 };
 
-function updateChart(time, lines, density) {
+function updateChart(time, lines, square, horizontalLength, verticalLength) {
     config.data.datasets[0].data[0] = time / 100;
     config.data.datasets[0].data[1] = lines;
-    config.data.datasets[0].data[2] = density * 1000;
+    config.data.datasets[0].data[2] = square;
+    config.data.datasets[0].data[3] = horizontalLength;
+    config.data.datasets[0].data[4] = verticalLength;
     window.myPolarArea.update();
 }
 </script>
