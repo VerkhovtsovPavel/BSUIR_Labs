@@ -1,6 +1,6 @@
 package by.bsuir.mastering.pavelverk.simpleANN.neurons
 
-class OutputNeuron(threshold: Double) {
+class OutputNeuron() extends Serializable{
 
   var sum = 0.0
   var result = 0.0
@@ -13,6 +13,4 @@ class OutputNeuron(threshold: Double) {
   }
 
   def getResult: Double = result
-
-  def getSolution : Boolean = result >= threshold
 }

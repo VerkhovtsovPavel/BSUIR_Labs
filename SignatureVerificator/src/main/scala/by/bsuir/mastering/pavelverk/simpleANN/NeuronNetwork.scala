@@ -2,10 +2,10 @@ package by.bsuir.mastering.pavelverk.simpleANN
 
 import by.bsuir.mastering.pavelverk.simpleANN.neurons.{HiddenNeuron, InputNeuron, OutputNeuron}
 
-class NeuronNetwork[T](featureCount : Int, threshold: Double) {
+class NeuronNetwork(featureCount : Int, threshold: Double) extends Serializable {
 
   var inputNeurons = new Array[InputNeuron](featureCount)
-  val outputNeuron: OutputNeuron = new OutputNeuron(threshold)
+  val outputNeuron: OutputNeuron = new OutputNeuron()
 
   def learn(sampleSet: List[List[Double]]) {
     val features = sampleSet.transpose
@@ -19,8 +19,9 @@ class NeuronNetwork[T](featureCount : Int, threshold: Double) {
   }
 
   def classify(sample: List[Double]) : Boolean = {
-    assert(sample.size!=featureCount, "Sample size not equal network size")
+    assert(sample.size==featureCount, "Sample size not equal network size")
     inputNeurons.foreach(_.pulse(sample))
-    outputNeuron.getSolution
+    val result = outputNeuron.getResult
+    result > threshold
   }
 }

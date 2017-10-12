@@ -1,6 +1,6 @@
 package by.bsuir.mastering.pavelverk.simpleANN.neurons
 
-class HiddenNeuron(RBFunction : Double => Double) {
+class HiddenNeuron(RBFunction : Double => Double) extends Serializable{
 
   var nextLayer : List[OutputNeuron] = List[OutputNeuron]()
 
