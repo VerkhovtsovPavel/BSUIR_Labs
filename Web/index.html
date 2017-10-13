@@ -1,30 +1,14 @@
 <script src="./Chart.bundle.js"></script>
 <div id="canvas-holder" style="width:50%">
-    <canvas id="canvasInAPerfectWorld" width="800" height="600" style="border-style: solid"></canvas>
+    <canvas id="canvas" width="800" height="600" style="border-style: solid"></canvas>
     <button id="cleanCanvas">Clean</button>
-    <button id="replayCanvas">Replay</button>
+    <button id="done">Done</button>
 </div>
 <div>
     <canvas id="chart-area"></canvas>
-    <table border="1">
-        <caption>Params</caption>
-        <tr>
-            <th>Time</th>
-            <th>Lines</th>
-            <th>Density</th>
-        </tr>
-        <td>
-            <p id="speedCount"></p>
-        </td>
-        <td>
-            <p id="linesCount"></p>
-        </td>
-        <td>
-            <p id="densityCount"></p>
-        </td>
-    </table>
 </div>
 <script type="text/javascript">
+
 window.chartColors = {
     red: 'rgb(255, 99, 132)',
     orange: 'rgb(255, 159, 64)',
@@ -32,7 +16,10 @@ window.chartColors = {
     green: 'rgb(75, 192, 192)',
     blue: 'rgb(54, 162, 235)',
     purple: 'rgb(153, 102, 255)',
-    grey: 'rgb(201, 203, 207)'
+    grey: 'rgb(201, 203, 207)',
+    lime: 'rgb(128, 128, 0)',
+    brown: 'rgb(170, 110, 40)',
+    mint: 'rgb(170, 255, 195)'
 };
 
 var TimeIntervals = function(){
@@ -46,24 +33,19 @@ var TimeIntervals = function(){
     }
 }
 
-var canvas = document.getElementById('canvasInAPerfectWorld');
+var canvas = document.getElementById('canvas');
 var context = canvas.getContext("2d");
 var cleanButton = document.getElementById('cleanCanvas');
-var replayButton = document.getElementById('replayCanvas');
+var doneButton = document.getElementById('done');
 var timeIntervals;
 
 cleanButton.addEventListener("click", function(e) {
-    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-    clickX = new Array();
-    clickY = new Array();
-    clickDrag = new Array();
-    times = new Array();
-    statictic();
+    clean();
 })
 
-replayButton.addEventListener("click", function(e) {
-    replay();
-    statictic();
+doneButton.addEventListener("click", function(e) {
+    statictic(true);
+    clean();
 })
 
 canvas.addEventListener("mousedown", function(e) {
@@ -129,13 +111,14 @@ function redraw() {
     }
 }
 
-function replay() {
-
+function clean(){
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+    clickX = new Array();
+    clickY = new Array();
+    clickDrag = new Array();
+    times = new Array();
+    statictic();
 }
-
-var linesLabel = document.getElementById('linesCount');
-var speedLabel = document.getElementById('speedCount');
-var densityLabel = document.getElementById('densityCount');
 
 Array.prototype.max = function() {
     return Math.max.apply(null, this);
@@ -149,8 +132,12 @@ Array.prototype.min = function() {
     return Math.min.apply(null, this);
 };
 
-function statictic() {
-    var timer = times.reduce(function(a, b) {return a + b;}, 0);
+Array.prototype.sum = function() {
+    return this.reduce(function(a, b) {return a + b;}, 0);
+};
+
+function statictic(verbose) {
+    var timer = times.sum();
     var lines = clickDrag.filter(function(a){return a==false;}).length
     var min_x = clickX.min();
     var min_y = clickY.min();
@@ -160,18 +147,16 @@ function statictic() {
     var verticalLength = max_x - min_x;
     var square = horizontalLength * verticalLength;
     var dists = distances(clickX, clickY, clickDrag);
-    var totalLength = dists.reduce(function(a, b) {return a + b;}, 0);
+    var totalLength = dists.sum();
     var velocities = dists.map(function(currentValue, index){ return currentValue / times[index];}).filter(function(x){return x != 0 && !isNaN(x);});
     var maxVelocity = velocities.max();
     var minVelocity = velocities.min();
     var durationX = getDuration(clickX, times);
     var durationY = getDuration(clickY, times);
-    console.log(timer , lines, horizontalLength, verticalLength, square, totalLength, maxVelocity, minVelocity, durationX, durationY);
- //   var density = clickX.length / square;
- //   densityLabel.innerHTML = density;
-    linesLabel.innerHTML = lines;
-    speedLabel.innerHTML = timer;
-    updateChart(timer, lines, square, horizontalLength, verticalLength);
+    if(verbose){
+        console.log(timer , lines,  square, horizontalLength, verticalLength, totalLength, maxVelocity, minVelocity, durationX, durationY);
+    }
+    updateChart(timer , lines, square, horizontalLength, verticalLength, totalLength, maxVelocity, minVelocity, durationX, durationY);
 }
 
 function distances(clickX, clickY, clickDrag){
@@ -210,14 +195,23 @@ var config = {
                 0,
                 0,
                 0,
+                0,
+                0,
+                0,
+                0,
+                0,
                 0
             ],
             backgroundColor: [
                 color(chartColors.red).alpha(0.5).rgbString(),
-                color(chartColors.green).alpha(0.5).rgbString(),
-                color(chartColors.blue).alpha(0.5).rgbString(),
                 color(chartColors.orange).alpha(0.5).rgbString(),
                 color(chartColors.yellow).alpha(0.5).rgbString(),
+                color(chartColors.green).alpha(0.5).rgbString(),
+                color(chartColors.blue).alpha(0.5).rgbString(),
+                color(chartColors.purple).alpha(0.5).rgbString(),
+                color(chartColors.grey).alpha(0.5).rgbString(),
+                color(chartColors.brown).alpha(0.5).rgbString(),
+                color(chartColors.mint).alpha(0.5).rgbString(),
             ],
             label: 'My dataset'
         }],
@@ -226,7 +220,12 @@ var config = {
             "Lines",
             "Square",
             "Horizontal Length",
-            "Vertical Length"
+            "Vertical Length",
+            "Total Length",
+            "Max Velocity",
+            "Min Velocity",
+            "Duration by X",
+            "Duration by Y"
         ]
     },
     options: {
@@ -256,12 +255,17 @@ window.onload = function() {
     window.myPolarArea = Chart.PolarArea(ctx, config);
 };
 
-function updateChart(time, lines, square, horizontalLength, verticalLength) {
-    config.data.datasets[0].data[0] = time / 100;
+function updateChart(timer , lines, square, horizontalLength, verticalLength, totalLength, maxVelocity, minVelocity, durationX, durationY) {
+    config.data.datasets[0].data[0] = timer / 1000;
     config.data.datasets[0].data[1] = lines;
-    config.data.datasets[0].data[2] = square;
-    config.data.datasets[0].data[3] = horizontalLength;
-    config.data.datasets[0].data[4] = verticalLength;
+    config.data.datasets[0].data[2] = square / 10000;
+    config.data.datasets[0].data[3] = horizontalLength / 100;
+    config.data.datasets[0].data[4] = verticalLength / 100;
+    config.data.datasets[0].data[5] = totalLength / 1000;
+    config.data.datasets[0].data[6] = maxVelocity;
+    config.data.datasets[0].data[7] = minVelocity * 1000;
+    config.data.datasets[0].data[8] = durationX / 1000;
+    config.data.datasets[0].data[9] = durationY / 1000;
     window.myPolarArea.update();
 }
 </script>
