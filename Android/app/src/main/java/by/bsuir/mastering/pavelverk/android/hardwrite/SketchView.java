@@ -8,8 +8,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+
+import java.util.ArrayList;
+
+import static android.R.attr.x;
+import static java.lang.Float.isNaN;
 
 public class SketchView extends View {
     private Bitmap mBitmap;
@@ -22,6 +28,13 @@ public class SketchView extends View {
 
     private float mX, mY;
     private static final float TOUCH_TOLERANCE = 4;
+
+    private int lines;
+    private ArrayList<Float> clickX = new ArrayList<Float>();
+    private ArrayList<Float> clickY = new ArrayList<Float>();
+    private ArrayList<Long> times = new ArrayList<Long>();
+
+    private TimeIntervals timeIntervaler;
 
     public SketchView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -69,6 +82,7 @@ public class SketchView extends View {
         mPath.moveTo(x, y);
         mX = x;
         mY = y;
+        lines++;
     }
 
     private void touchMove(float x, float y) {
@@ -91,7 +105,6 @@ public class SketchView extends View {
     public boolean onTouchEvent(MotionEvent event) {
         float x = event.getX();
         float y = event.getY();
-
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 touchDown(x, y);
@@ -100,6 +113,12 @@ public class SketchView extends View {
             case MotionEvent.ACTION_MOVE:
                 touchMove(x, y);
                 invalidate();
+                clickX.add(x);
+                clickY.add(y);
+                if (timeIntervaler == null) {
+                    timeIntervaler = new TimeIntervals();
+                }
+                times.add(timeIntervaler.currentInterval());
                 break;
             case MotionEvent.ACTION_UP:
                 touchUp(x, y);
@@ -110,6 +129,12 @@ public class SketchView extends View {
     }
 
     public void clear() {
+        timeIntervaler = null;
+        clickX.clear();
+        clickY.clear();
+        times.clear();
+        lines = 0;
+
         mPaint.setColor(mBackgroundColor);
         mCanvas.drawPaint(mPaint);
         invalidate();
@@ -117,6 +142,91 @@ public class SketchView extends View {
     }
 
     public String getFeatures() {
-        return "";
+        long timer = sum(times, 0);
+        float min_x = (float) min(clickX);
+        float min_y = (float) min(clickY);
+        float max_x = (float) max(clickX);
+        float max_y = (float) max(clickY);
+        float horizontalLength = max_y - min_y;
+        float verticalLength = max_x - min_x;
+        float square = horizontalLength * verticalLength;
+        ArrayList<Float> dists = distances(clickX, clickY);
+        float totalLength = sum(dists);
+        ArrayList<Float> velocities = getVelocities(dists, times);
+        float maxVelocity = (float) max(velocities);
+        float minVelocity = (float) min(velocities);
+        long durationX = getDuration(clickX, times);
+        long durationY = getDuration(clickY, times);
+        String message = String.format("%s %s %s %s %s %s %s %s %s %s", timer, lines, square, horizontalLength, verticalLength, totalLength, maxVelocity, minVelocity, durationX, durationY);
+        Log.d("FEAT", message);
+        return message;
+    }
+
+    private long getDuration(ArrayList<Float> coordinates, ArrayList<Long> times) {
+        long total = 0;
+        for (int i = 1; i < coordinates.size() - 1; i++) {
+            if (coordinates.get(i - 1) - coordinates.get(i) != 0) {
+                total += times.get(i);
+            }
+        }
+        return total;
+    }
+
+    private ArrayList<Float> distances(ArrayList<Float> clickX, ArrayList<Float> clickY) {
+        ArrayList<Float> dist = new ArrayList<Float>();
+        for (int i = 1; i < clickX.size(); i++) {
+            float deltaX = clickX.get(i - 1) - clickX.get(i);
+            float deltaY = clickY.get(i - 1) - clickY.get(i);
+            float distance = (float) Math.sqrt((deltaX * deltaX) + (deltaY * deltaY));
+            dist.add(distance);
+        }
+        return dist;
+    }
+
+    private ArrayList<Float> getVelocities(ArrayList<Float> dists, ArrayList<Long> times) {
+        ArrayList<Float> result = new ArrayList<>();
+        for (int i = 0; i < dists.size(); i++) {
+            float distance = dists.get(i);
+            float time = times.get(i);
+            if (distance != 0 && time != 0)
+                result.add(distance / time);
+        }
+        return result;
+    }
+
+    private float max(ArrayList<Float> list) {
+        float max = 0;
+        for (int i = 0; i < list.size(); i++) {
+            float number = list.get(i);
+            if (number > max) max = number;
+        }
+        return max;
+    }
+
+    private float min(ArrayList<Float> list) {
+        float min = Float.MAX_VALUE;
+        for (int i = 0; i < list.size(); i++) {
+            float number = list.get(i);
+            if (number < min) min = number;
+        }
+        return min;
+    }
+
+    private Long sum(ArrayList<Long> list, int marker) {
+        Long acc = 0L;
+        for (int i = 0; i < list.size(); i++) {
+            Long number = list.get(i);
+            acc += number;
+        }
+        return acc;
+    }
+
+    private Float sum(ArrayList<Float> list) {
+        Float acc = 0.0f;
+        for (int i = 0; i < list.size(); i++) {
+            Float number = list.get(i);
+            acc += number;
+        }
+        return acc;
     }
 }
