@@ -18,10 +18,10 @@ class NeuronNetwork(featureCount : Int, threshold: Double) extends Serializable 
     }
   }
 
-  def classify(sample: List[Double]) : Boolean = {
+  def classify(sample: List[Double]) : (Double, Boolean) = {
     assert(sample.size==featureCount, "Sample size not equal network size")
     inputNeurons.foreach(_.pulse(sample))
     val result = outputNeuron.getResult
-    result > threshold
+    (result, result > threshold)
   }
 }
