@@ -1,0 +1,15 @@
+group 'by.bsuir.verkpav'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.jfree:jcommon:1.0.23'
+    compile 'org.jfree:jfreechart:1.0.19'
+}
