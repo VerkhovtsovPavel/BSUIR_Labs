@@ -1,18 +1,19 @@
 package ui;
 
+import ui.menu.ActionMenuCreator;
 import ui.menu.BaseMenuCreator;
-import ui.menu.ClientMenuCreator;
-import ui.menu.PersonalMenuCreator;
+import ui.menu.FileMenuCreator;
+import ui.menu.InfoMenuCreator;
+import ui.menu.SettingMenuCreator;
 
 import javax.swing.JMenuBar;
 
-
 public class MenuCreator {
 
-    public static JMenuBar createPermissibleMenu() {
+    public static JMenuBar createMenu(MainView frame) {
         JMenuBar menuBar = new JMenuBar();
-        BaseMenuCreator menuCreator = new PersonalMenuCreator(null);
-        menuCreator.setNext(new ClientMenuCreator(null));
+        BaseMenuCreator menuCreator = new FileMenuCreator(new ActionMenuCreator(new SettingMenuCreator(new InfoMenuCreator(null))));
+        menuCreator.setTargetFrame(frame);
         menuCreator.process(menuBar);
         return menuBar;
     }

@@ -1,32 +1,29 @@
 package ui;
 
+import graph.LineChart;
+import signals.Signal;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.*;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
-
 public class MainView extends JFrame {
     private static final long serialVersionUID = 2883993883146596569L;
-    private JPanel mainPanel;
-
-    private static JFrame self;
-
-    private JMenuBar menuBar;
+    private Signal currentSignal;
 
     public void showView() {
-        self = this;
         this.setSize(650, 220);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
         this.setLocation(x, y);
         this.setVisible(true);
-
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent windowEvent) {
@@ -35,32 +32,41 @@ public class MainView extends JFrame {
         });
     }
 
-    public MainView() {
+    public MainView(Signal currentSignal) {
+        this.currentSignal = currentSignal;
         setBackground(Color.WHITE);
-        setResizable(false);
         configureDefaultLayot();
-        menuBar = MenuCreator.createPermissibleMenu();
-        setJMenuBar(menuBar);
+        if(currentSignal!=null) {
+            setContentPane(currentSignal.buildGraph(""));
+        }
+        setJMenuBar(MenuCreator.createMenu(this));
     }
 
     private void configureDefaultLayot() {
-        setTitle("Главная форма");
+        setTitle("Main form");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        mainPanel = new JPanel();
+        JPanel mainPanel = new JPanel();
         mainPanel.setBackground(Color.WHITE);
         setContentPane(mainPanel);
         mainPanel.setLayout(null);
     }
 
-    public static void closeForm() {
-        if (self != null) {
-            self.dispose();
+    public void closeForm() {
+            this.dispose();
+    }
+
+    public void addSignal(List<Double> values, int n, float f) {
+        if(currentSignal==null) {
+            currentSignal = new Signal(values, n, f);
+            setContentPane(currentSignal.buildGraph(""));
+            setVisible(true);
+        }
+        else {
+            new MainView(new Signal(values, n, f)).showView();
         }
     }
 
-    public String selectFile() {
-        FileDialog chooser = new FileDialog(this, "Use a .png or .jpg extension", FileDialog.LOAD);
-        chooser.setVisible(true);
-        return chooser.getDirectory() + chooser.getFile();
+    public Signal currentSignal() {
+        return currentSignal;
     }
 }

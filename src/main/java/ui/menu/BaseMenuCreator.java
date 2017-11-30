@@ -1,12 +1,16 @@
 package ui.menu;
 
+import ui.MainView;
+
 import javax.swing.*;
 
 public abstract class BaseMenuCreator {
 
+    protected MainView targetFrame;
+
     private BaseMenuCreator next;
 
-    protected BaseMenuCreator(BaseMenuCreator next) {
+    BaseMenuCreator(BaseMenuCreator next) {
         this.next = next;
     }
 
@@ -27,4 +31,11 @@ public abstract class BaseMenuCreator {
     }
 
     public abstract JMenu createMenuTab();
+
+    public void setTargetFrame(MainView frame) {
+        targetFrame = frame;
+        if (next != null) {
+            next.setTargetFrame(frame);
+        }
+    }
 }

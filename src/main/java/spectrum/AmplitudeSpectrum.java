@@ -1,28 +1,37 @@
 package spectrum;
 
-import signals.Drawable;
-
 import java.util.ArrayList;
+import java.util.List;
 
 public class AmplitudeSpectrum extends Spectrum {
 
-    private ArrayList<Double> amplitudeSpectrum = new ArrayList<>();
+    private List<Double> amplitudeSpectrum = new ArrayList<>();
 
-    public AmplitudeSpectrum(Drawable drawable) {
-        super(drawable.getValues());
+    private List<Double> as;
+    private List<Double> ac;
+
+    public AmplitudeSpectrum(List<Double> as, List<Double> ac, int n) {
+        super(n);
+        this.as = as;
+        this.ac = ac;
     }
 
-    @Override
-    protected ArrayList<Double> calculateData() {
-        for (int i = 0; i < Ac.size(); i++) {
-            amplitudeSpectrum.add(Math.sqrt(Math.pow(Ac.get(i), 2) + Math.pow(As.get(i), 2)));
+    public AmplitudeSpectrum(List<Double> value, int n) {
+        super(n);
+        this.amplitudeSpectrum = value;
+    }
+
+    private void calculateData() {
+        for (int i = 0; i < ac.size(); i++) {
+            amplitudeSpectrum.add(Math.sqrt(Math.pow(ac.get(i), 2) + Math.pow(as.get(i), 2)));
         }
-
-        return amplitudeSpectrum;
     }
 
     @Override
-    public ArrayList<Double> getValues() {
+    public List<Double> getValues() {
+        if (amplitudeSpectrum.isEmpty()) {
+            calculateData();
+        }
         return this.amplitudeSpectrum;
     }
 

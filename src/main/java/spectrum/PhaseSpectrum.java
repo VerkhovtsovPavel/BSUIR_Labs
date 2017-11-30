@@ -1,31 +1,37 @@
 package spectrum;
 
-import signals.Drawable;
-
 import java.util.ArrayList;
-
+import java.util.List;
 
 public class PhaseSpectrum extends Spectrum {
 	
-	private ArrayList<Double> phaseSpectrum = new ArrayList<>();
-	
-	public PhaseSpectrum(Drawable drawable) {
-		super(drawable.getValues());
+	private List<Double> phaseSpectrum = new ArrayList<>();
+	private List<Double> as;
+	private List<Double> ac;
+
+	public PhaseSpectrum(List<Double> as, List<Double> ac, int n) {
+		super(n);
+		this.as = as;
+		this.ac = ac;
 	}
 
-	@Override
-	protected ArrayList<Double> calculateData() {
-		for(int i=0; i<Ac.size(); i++){
-			phaseSpectrum.add(Math.atan(As.get(i)/Ac.get(i)));
+	public PhaseSpectrum(List<Double>value, int n) {
+		super(n);
+		this.phaseSpectrum = value;
+	}
+
+	private void calculateData() {
+		for(int i = 0; i< ac.size(); i++){
+			phaseSpectrum.add(Math.atan(as.get(i)/ ac.get(i)));
 		}
-		
-		return phaseSpectrum;
 	}
 
 	@Override
-	public ArrayList<Double> getValues() {
+	public List<Double> getValues() {
+		if(phaseSpectrum.isEmpty()){
+			calculateData();
+		}
 		return this.phaseSpectrum;
 	}
-
 }
 

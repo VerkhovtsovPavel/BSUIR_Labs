@@ -8,14 +8,13 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
+import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.List;
 
-public class LineChart extends ApplicationFrame {
-	private static final long serialVersionUID = 1359626195414020994L;
+public class LineChart extends JFrame{
 	private XYSeriesCollection dataset;
 
 	public LineChart(final String title) {
@@ -23,24 +22,30 @@ public class LineChart extends ApplicationFrame {
 		dataset = new XYSeriesCollection();
 	}
 
-	public void addDataset(ArrayList<Double> values, int number, double step) {
+	public void addDataset(List<Double> values, int number, double step) {
 
 		XYSeries series = new XYSeries(number);
 		for (int i = 0; i < values.size(); i++) {
 			series.add((double) i * step, values.get(i));
 		}
-
 		dataset.addSeries(series);
-
 	}
 
-	public void draw(String type) {
+	public void draw(DrawType type){
+		ChartPanel cp = build(type);
+		setContentPane(cp);
+		this.pack();
+		RefineryUtilities.centerFrameOnScreen(this);
+		this.setVisible(true);
+	}
+
+	public ChartPanel build(DrawType type) {
 		JFreeChart chart = null;
 
-		if (type.equals("line")) {
+		if (type == DrawType.LINE) {
 			chart = ChartFactory.createXYLineChart(this.getTitle(), "X", "Y",
 					dataset, PlotOrientation.VERTICAL, true, true, false);
-		} else if (type.equals("bar")) {
+		} else if (type == DrawType.BAR) {
 			chart = ChartFactory.createXYBarChart(this.getTitle(), "X", false,
 					"Y", dataset, PlotOrientation.VERTICAL, true, true, false);
 		}
@@ -56,13 +61,8 @@ public class LineChart extends ApplicationFrame {
 		rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
 
 		final ChartPanel chartPanel = new ChartPanel(chart);
-		chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
-		setContentPane(chartPanel);
-
-		this.pack();
-		RefineryUtilities.centerFrameOnScreen(this);
-		this.setVisible(true);
-
+		chartPanel.setPreferredSize(new Dimension(500, 270));
+		return chartPanel;
 	}
 
 }
