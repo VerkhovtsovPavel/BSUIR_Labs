@@ -6,3 +6,4 @@ out
 /build/
 gradlew.bat
 gradlew
+.DS_Store
