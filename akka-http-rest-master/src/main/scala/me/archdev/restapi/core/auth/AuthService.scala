@@ -19,7 +19,7 @@ class AuthService(
   def signIn(login: String, password: String): Future[Option[AuthToken]] =
     authDataStorage
       .findAuthData(login)
-      .filterT(_.password == password)
+      .filterT(_.password == password.sha256.hex)
       .mapT(authData => encodeToken(authData.id))
 
   def signUp(login: String, email: String, password: String): Future[AuthToken] =

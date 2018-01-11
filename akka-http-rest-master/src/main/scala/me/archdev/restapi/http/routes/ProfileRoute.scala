@@ -1,11 +1,13 @@
 package me.archdev.restapi.http.routes
 
+import java.util.UUID
+
 import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.Directives._
 import de.heikoseeberger.akkahttpcirce.FailFastCirceSupport
 import io.circe.generic.auto._
 import io.circe.syntax._
-import me.archdev.restapi.core.UserProfileUpdate
+import me.archdev.restapi.core.{UserProfile, UserProfileUpdate}
 import me.archdev.restapi.core.profiles.UserProfileService
 import me.archdev.restapi.utils.SecurityDirectives
 
@@ -33,6 +35,11 @@ class ProfileRoute(
               complete(getProfile(userId))
             } ~
               post {
+                entity(as[UserProfile]) { userUpdate =>
+                  complete(createProfile(UserProfile(UUID.randomUUID().toString, userUpdate.firstName, userUpdate.lastName)).map(_.asJson))
+                }
+              } ~
+              put {
                 entity(as[UserProfileUpdate]) { userUpdate =>
                   complete(updateProfile(userId, userUpdate).map(_.asJson))
                 }
