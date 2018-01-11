@@ -2,6 +2,7 @@
 import { Http, Headers, Response,  RequestOptions} from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
 
 @Injectable()
 export class AuthenticationService {
@@ -34,6 +35,18 @@ export class AuthenticationService {
                     return false;
                 }
             });
+    }
+
+    signUp(username: string, email:string, password: string, firstName: string, lastName: string): Observable<boolean> {
+        let headers = new Headers({ 'content-type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post('http://localhost:5467/v1/auth/signUp', JSON.stringify({ username: username, email: email, password: password }), options)
+            .map((response: Response) => response.json())
+            .mergeMap(token => {
+                headers.append('Token', token);
+                let options = new RequestOptions({headers: headers});
+                return this.http.post('http://localhost:5467/v1/profiles/me', JSON.stringify({id: :"0", firstName: firstName, lastName: lastName }), options)})
+            .map((response: Response) => response.json() ? true : false);
     }
 
     logout(): void {

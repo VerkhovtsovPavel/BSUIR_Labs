@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from '../services/authentication.service';
@@ -6,39 +6,34 @@ import { AlertService } from '../services/alert.service';
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'login.component.html'
+    templateUrl: 'register.component.html'
 })
 
-export class LoginComponent implements OnInit {
+export class RegisterComponent {
     model: any = {};
     loading = false;
 
-    constructor(
+ constructor(
         private router: Router,
         private authenticationService: AuthenticationService,
         private alertService: AlertService) { }
 
-    ngOnInit() {
-        // reset login status
-        this.authenticationService.logout();
-    }
-
-    login() {
+    signUp() {
         this.loading = true;
-        this.authenticationService.login(this.model.username, this.model.password)
+        this.authenticationService.signUp(this.model.username, this.model.email, this.model.password, this.model.firstName, this.model.lastName)
             .subscribe(
                 (result) => {
                     if (result === true) {
-                        this.router.navigate(['/']);
+                        this.alertService.success('Registered successfuly', true);
+                        this.router.navigate(['/login']);
                     } else {
-                        this.alertService.error('Username or password is incorrect');
+                        this.alertService.error('Registarion error');
                         this.loading = false;
                     }
                 },
                 (error) => {
-                        this.alertService.error('Username or password is incorrect');
+                        this.alertService.error('Registarion error');
                         this.loading = false;
                 });
     }
-
 }
