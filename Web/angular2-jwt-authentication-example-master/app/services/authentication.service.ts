@@ -45,7 +45,7 @@ export class AuthenticationService {
             .mergeMap(token => {
                 headers.append('Token', token);
                 let options = new RequestOptions({headers: headers});
-                return this.http.post('http://localhost:5467/v1/profiles/me', JSON.stringify({id: :"0", firstName: firstName, lastName: lastName }), options)})
+                return this.http.post('http://localhost:5467/v1/profiles/me', JSON.stringify({id: "0", firstName: firstName, lastName: lastName }), options)})
             .map((response: Response) => response.json() ? true : false);
     }
 

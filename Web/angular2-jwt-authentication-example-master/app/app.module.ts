@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
 import { AlertService } from './services/alert.service';
 import { HomeComponent } from './home/home.component';
+import { CanvasComponent } from './sample/newSample';
 import { AlertComponent } from './alert/alert.component';
 
 
@@ -32,7 +33,8 @@ import { AlertComponent } from './alert/alert.component';
         AlertComponent,
         LoginComponent,
         HomeComponent,
-        RegisterComponent
+        RegisterComponent,
+        CanvasComponent
     ],
     providers: [
         AuthGuard,
