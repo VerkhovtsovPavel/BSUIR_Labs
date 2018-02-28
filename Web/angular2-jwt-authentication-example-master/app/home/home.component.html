@@ -5,8 +5,8 @@
         Users from secure api end point:
         <ul>
             <li *ngIf="user">{{user.firstName}} {{user.lastName}}</li>
-            <a [routerLink]="['/newSample']" class="btn btn-link">Add sample</a>
         </ul>
+        <a [routerLink]="['/sample/new']" class="btn btn-link">Add sample</a>
     </div>
     <p><a [routerLink]="['/login']">Logout</a></p>
 </div>

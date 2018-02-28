@@ -9,9 +9,8 @@ import 'rxjs/add/operator/pairwise';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
-  selector: 'app-canvas',
-  template: '<canvas #canvas></canvas>',
-  styles: ['canvas { border: 1px solid #000; }']
+    templateUrl: 'app/sample/new_sample.component.html',
+    styleUrls: ['app/sample/new_sample.component.css']
 })
 export class CanvasComponent implements AfterViewInit {
 
@@ -35,6 +34,10 @@ export class CanvasComponent implements AfterViewInit {
 
     this.captureEvents(canvasEl);
   }
+
+  clear() {
+       this.cx.clearRect(0, 0, this.cx.canvas.width, this.cx.canvas.height); 
+   }
   
   private captureEvents(canvasEl: HTMLCanvasElement) {
     Observable
@@ -73,5 +76,4 @@ export class CanvasComponent implements AfterViewInit {
       this.cx.stroke();
     }
   }
-
 }

@@ -7,32 +7,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "app/services/authentication.service.ts",
-			"settings":
-			{
-				"buffer_size": 2661,
-				"encoding": "UTF-8 with BOM",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/services/alert.service.ts",
-			"settings":
-			{
-				"buffer_size": 1314,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "auth.sublime-project",
-			"settings":
-			{
-				"buffer_size": 232,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -79,11 +53,18 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/pavel_verkhovtsov/Master/front/Web/angular2-jwt-authentication-example-master",
-		"/Users/pavel_verkhovtsov/Master/front/Web/angular2-jwt-authentication-example-master/app"
+		"/Users/pavel_verkhovtsov/Code/Master/front/Web/angular2-jwt-authentication-example-master",
+		"/Users/pavel_verkhovtsov/Code/Master/front/Web/angular2-jwt-authentication-example-master/app",
+		"/Users/pavel_verkhovtsov/Code/Master/front/Web/angular2-jwt-authentication-example-master/app/home",
+		"/Users/pavel_verkhovtsov/Code/Master/front/Web/angular2-jwt-authentication-example-master/app/login",
+		"/Users/pavel_verkhovtsov/Code/Master/front/Web/angular2-jwt-authentication-example-master/app/sample"
 	],
 	"file_history":
 	[
+		"/Users/pavel_verkhovtsov/Code/Master/front/Web/angular2-jwt-authentication-example-master/app/sample/newSample.component.html",
+		"/Users/pavel_verkhovtsov/Code/Master/front/Web/angular2-jwt-authentication-example-master/app/home/home.component.html",
+		"/Users/pavel_verkhovtsov/Code/Master/front/Web/angular2-jwt-authentication-example-master/app/sample/newSample.component.ts",
+		"/Users/pavel_verkhovtsov/Code/Master/front/Web/angular2-jwt-authentication-example-master/auth.sublime-project",
 		"/Users/pavel_verkhovtsov/Documents/pric_odc/.gitlab-ci.yml",
 		"/Users/pavel_verkhovtsov/Documents/PRIC_ODC Notes",
 		"/Users/pavel_verkhovtsov/Documents/Contact persons",
@@ -113,6 +94,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			">'"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -130,99 +112,8 @@
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/services/authentication.service.ts",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2661,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2480,
-								2480
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true,
-							"use_tab_stops": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 385.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/services/alert.service.ts",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1314,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								610,
-								610
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true,
-							"use_tab_stops": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "auth.sublime-project",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 232,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								232,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -232,7 +123,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 37.0
 	},
 	"layout":
 	{
@@ -307,7 +198,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_width": 393.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
