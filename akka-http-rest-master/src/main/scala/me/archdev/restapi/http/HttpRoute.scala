@@ -3,7 +3,7 @@ package me.archdev.restapi.http
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import me.archdev.restapi.core.profiles.UserProfileService
-import me.archdev.restapi.http.routes.{AuthRoute, ProfileRoute}
+import me.archdev.restapi.http.routes.{AuthRoute, ProfileRoute, SampleRoute}
 import ch.megard.akka.http.cors.scaladsl.CorsDirectives._
 import me.archdev.restapi.core.auth.AuthService
 
@@ -16,12 +16,14 @@ class HttpRoute(
 )(implicit executionContext: ExecutionContext) {
 
   private val usersRouter = new ProfileRoute(secretKey, userProfileService)
+  private val sampleRouter = new SampleRoute(secretKey, userProfileService)
   private val authRouter = new AuthRoute(authService)
 
   val route: Route =
     cors() {
       pathPrefix("v1") {
         usersRouter.route ~
+        sampleRouter.route ~
           authRouter.route
       } ~
         pathPrefix("healthcheck") {

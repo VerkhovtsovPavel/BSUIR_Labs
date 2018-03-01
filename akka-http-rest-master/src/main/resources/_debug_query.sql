@@ -1,1 +1,1 @@
-select * from auth;
+select * from profiles;

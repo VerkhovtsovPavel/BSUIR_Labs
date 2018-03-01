@@ -49,7 +49,7 @@ libraryDependencies ++= {
     // Validation library
     "com.wix" %% "accord-core" % "0.7.1",
 
-    "org.slf4j" % "slf4j-nop" % "1.6.2" from "file:///Users/Pavel_Verkhovtsov/Downloads/slf4j-nop-1.6.2.jar",
+    "org.slf4j" % "slf4j-nop" % "1.6.2" from "file:///Users/pavel_verkhovtsov/Downloads/slf4j-nop-1.6.2.jar",
 
     // Http client, used currently only for IT test
     "com.softwaremill.sttp" %% "core" % sttpV % Test,
