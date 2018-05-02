@@ -4,7 +4,7 @@ import java.util.UUID
 
 import me.archdev.BaseServiceTest
 import me.archdev.restapi.core.{UserProfile, UserProfileUpdate}
-import me.archdev.restapi.core.profiles.{InMemoryUserProfileStorage, UserProfileService}
+import me.archdev.restapi.core.profile.{InMemoryUserProfileStorage, UserProfileService}
 
 import scala.util.Random
 

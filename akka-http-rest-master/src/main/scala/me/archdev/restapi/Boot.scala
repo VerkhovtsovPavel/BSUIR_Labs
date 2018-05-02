@@ -4,7 +4,7 @@ import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
 import me.archdev.restapi.core.auth.{AuthService, JdbcAuthDataStorage}
-import me.archdev.restapi.core.profiles.{JdbcUserProfileStorage, UserProfileService}
+import me.archdev.restapi.core.profile.{JdbcUserProfileStorage, UserProfileService}
 import me.archdev.restapi.http.HttpRoute
 import me.archdev.restapi.utils.Config
 import me.archdev.restapi.utils.db.{DatabaseConnector, DatabaseMigrationManager}

@@ -1,8 +1,8 @@
 package me.archdev.restapi.core.auth
 
-import me.archdev.restapi.core.AuthData
+import me.archdev.restapi.core.{AuthData, InMemoryStorage}
 import me.archdev.restapi.utils.db.DatabaseConnector
-import me.archdev.restapi.core.profiles.UserProfileStorage
+import me.archdev.restapi.core.profile.UserProfileStorage
 
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -29,17 +29,8 @@ class JdbcAuthDataStorage(
 
 }
 
-class InMemoryAuthDataStorage extends AuthDataStorage {
+class InMemoryAuthDataStorage extends InMemoryStorage[String, AuthData] with AuthDataStorage {
+  override def findAuthData(login: String): Future[Option[AuthData]] = find(d => d.username == login || d.email == login)
 
-  private var state: Seq[AuthData] = Nil
-
-  override def findAuthData(login: String): Future[Option[AuthData]] =
-    Future.successful(state.find(d => d.username == login || d.email == login))
-
-  override def saveAuthData(authData: AuthData): Future[AuthData] =
-    Future.successful {
-      state = state :+ authData
-      authData
-    }
-
+  override def saveAuthData(authData: AuthData): Future[AuthData] = save(authData)
 }

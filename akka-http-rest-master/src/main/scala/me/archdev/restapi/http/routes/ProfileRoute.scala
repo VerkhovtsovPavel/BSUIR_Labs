@@ -8,7 +8,7 @@ import de.heikoseeberger.akkahttpcirce.FailFastCirceSupport
 import io.circe.generic.auto._
 import io.circe.syntax._
 import me.archdev.restapi.core.{UserProfile, UserProfileUpdate}
-import me.archdev.restapi.core.profiles.UserProfileService
+import me.archdev.restapi.core.profile.UserProfileService
 import me.archdev.restapi.utils.SecurityDirectives
 
 import scala.concurrent.ExecutionContext

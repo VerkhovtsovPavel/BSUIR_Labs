@@ -1,6 +1,6 @@
-package me.archdev.restapi.core.profiles
+package me.archdev.restapi.core.profile
 
-import me.archdev.restapi.core.UserProfile
+import me.archdev.restapi.core.{InMemoryStorage, UserProfile}
 import me.archdev.restapi.utils.db.DatabaseConnector
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -31,21 +31,11 @@ class JdbcUserProfileStorage(
 
 }
 
-class InMemoryUserProfileStorage extends UserProfileStorage {
+class InMemoryUserProfileStorage extends InMemoryStorage[String, UserProfile] with UserProfileStorage {
 
-  private var state: Seq[UserProfile] = Nil
+  override def getProfiles(): Future[Seq[UserProfile]] = getAll()
 
-  override def getProfiles(): Future[Seq[UserProfile]] =
-    Future.successful(state)
+  override def getProfile(id: String): Future[Option[UserProfile]] = get(id)
 
-  override def getProfile(id: String): Future[Option[UserProfile]] =
-    Future.successful(state.find(_.id == id))
-
-  override def saveProfile(profile: UserProfile): Future[UserProfile] =
-    Future.successful {
-      state = state.filterNot(_.id == profile.id)
-      state = state :+ profile
-      profile
-    }
-
+  override def saveProfile(profile: UserProfile): Future[UserProfile] = save(profile)
 }

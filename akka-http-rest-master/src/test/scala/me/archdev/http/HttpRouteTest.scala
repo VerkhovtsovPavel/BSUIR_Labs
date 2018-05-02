@@ -3,7 +3,7 @@ package me.archdev.http
 import akka.http.scaladsl.server.Route
 import me.archdev.BaseServiceTest
 import me.archdev.restapi.core.auth.AuthService
-import me.archdev.restapi.core.profiles.UserProfileService
+import me.archdev.restapi.core.profile.UserProfileService
 import me.archdev.restapi.http.HttpRoute
 
 class HttpRouteTest extends BaseServiceTest {

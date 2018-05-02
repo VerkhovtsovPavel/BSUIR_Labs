@@ -1,4 +1,4 @@
-package me.archdev.restapi.core.profiles
+package me.archdev.restapi.core.profile
 
 import me.archdev.restapi.core.{UserProfile, UserProfileUpdate}
 import me.archdev.restapi.utils.MonadTransformers._

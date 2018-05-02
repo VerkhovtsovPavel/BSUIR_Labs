@@ -2,7 +2,7 @@ package me.archdev.restapi.http
 
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
-import me.archdev.restapi.core.profiles.UserProfileService
+import me.archdev.restapi.core.profile.UserProfileService
 import me.archdev.restapi.http.routes.{AuthRoute, ProfileRoute, SampleRoute}
 import ch.megard.akka.http.cors.scaladsl.CorsDirectives._
 import me.archdev.restapi.core.auth.AuthService

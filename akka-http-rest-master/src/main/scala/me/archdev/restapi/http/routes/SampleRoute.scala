@@ -5,7 +5,7 @@ import akka.http.scaladsl.server.Directives._
 import de.heikoseeberger.akkahttpcirce.FailFastCirceSupport
 import io.circe.generic.auto._
 import io.circe.syntax._
-import me.archdev.restapi.core.profiles.UserProfileService
+import me.archdev.restapi.core.profile.UserProfileService
 import me.archdev.restapi.core.{UserProfile, UserProfileUpdate}
 import me.archdev.restapi.utils.SecurityDirectives
 
@@ -21,26 +21,35 @@ class SampleRoute(
   import usersService._
 
   val route = pathPrefix("samples") {
-    pathEndOrSingleSlash {
-      get {
-        complete(getProfiles().map(_.asJson))
-      }
-    } ~
-      pathPrefix("me") {
-        pathEndOrSingleSlash {
-          authenticate(secretKey) { userId =>
-            get {
-              complete(getProfile(userId))
+    pathPrefix("new") {
+      pathEndOrSingleSlash {
+        authenticate(secretKey) { userId =>
+          post {
+            entity(as[UserProfileUpdate]) { userUpdate =>
+              complete(updateProfile(userId, userUpdate).map {
+                case Some(profile) =>
+                  OK -> profile.asJson
+                case None =>
+                  BadRequest -> None.asJson
+              })
             }
           }
         }
-      } ~
-      pathPrefix("new") {
+      }
+    } ~
+      pathPrefix(Segment) { id =>
         pathEndOrSingleSlash {
-          authenticate(secretKey) { userId =>
+          get {
+            complete(getProfile(id).map {
+              case Some(profile) =>
+                OK -> profile.asJson
+              case None =>
+                BadRequest -> None.asJson
+            })
+          } ~
             delete {
               entity(as[UserProfileUpdate]) { userUpdate =>
-                complete(updateProfile(userId, userUpdate).map {
+                complete(updateProfile(id, userUpdate).map {
                   case Some(profile) =>
                     OK -> profile.asJson
                   case None =>
@@ -48,30 +57,19 @@ class SampleRoute(
                 })
               }
             }
+        }
+      } ~
+      pathPrefix(Segment / "params") { id =>
+        pathEndOrSingleSlash {
+          get {
+            complete(getProfile(id).map {
+              case Some(profile) =>
+                OK -> profile.asJson
+              case None =>
+                BadRequest -> None.asJson
+            })
           }
-        } ~
-          pathPrefix(Segment) { id =>
-            pathEndOrSingleSlash {
-              get {
-                complete(getProfile(id).map {
-                  case Some(profile) =>
-                    OK -> profile.asJson
-                  case None =>
-                    BadRequest -> None.asJson
-                })
-              } ~
-                delete {
-                  entity(as[UserProfileUpdate]) { userUpdate =>
-                    complete(updateProfile(id, userUpdate).map {
-                      case Some(profile) =>
-                        OK -> profile.asJson
-                      case None =>
-                        BadRequest -> None.asJson
-                    })
-                  }
-                }
-            }
-          }
+        }
       }
   }
 }

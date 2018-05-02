@@ -9,7 +9,7 @@ import io.circe.generic.auto._
 import io.circe.syntax._
 import me.archdev.BaseServiceTest
 import me.archdev.restapi.core.{AuthTokenContent, UserProfile, UserProfileUpdate}
-import me.archdev.restapi.core.profiles.UserProfileService
+import me.archdev.restapi.core.profile.UserProfileService
 import me.archdev.restapi.http.routes.ProfileRoute
 import org.mockito.Mockito.when
 import pdi.jwt.{Jwt, JwtAlgorithm}

@@ -4,7 +4,7 @@ import java.util.UUID
 
 import me.archdev.BaseServiceTest
 import me.archdev.restapi.core.UserProfile
-import me.archdev.restapi.core.profiles.{InMemoryUserProfileStorage, JdbcUserProfileStorage, UserProfileStorage}
+import me.archdev.restapi.core.profile.{InMemoryUserProfileStorage, JdbcUserProfileStorage, UserProfileStorage}
 import me.archdev.utils.InMemoryPostgresStorage
 
 import scala.util.Random

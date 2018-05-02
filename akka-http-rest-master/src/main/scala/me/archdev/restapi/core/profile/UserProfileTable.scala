@@ -1,9 +1,9 @@
-package me.archdev.restapi.core.profiles
+package me.archdev.restapi.core.profile
 
 import me.archdev.restapi.core.UserProfile
 import me.archdev.restapi.utils.db.DatabaseConnector
 
-private[profiles] trait UserProfileTable {
+private[profile] trait UserProfileTable {
 
   protected val databaseConnector: DatabaseConnector
   import databaseConnector.profile.api._

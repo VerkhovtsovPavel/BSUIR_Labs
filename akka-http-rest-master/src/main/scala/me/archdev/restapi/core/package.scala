@@ -15,7 +15,7 @@ package object core {
   }
 
   final case class UserProfile(id: UserId, firstName: String, lastName: String) {
-    require(id.nonEmpty, "firstName.empty")
+    require(id.nonEmpty, "id.empty")
     require(firstName.nonEmpty, "firstName.empty")
     require(lastName.nonEmpty, "lastName.empty")
   }
@@ -24,6 +24,10 @@ package object core {
     def merge(profile: UserProfile): UserProfile = {
       UserProfile(profile.id, firstName.getOrElse(profile.firstName), lastName.getOrElse(profile.lastName))
     }
+  }
+
+  final case class Sample(id: UserId, times: List[Double], x: List[Double], y: List[Double], e: List[Double]) {
+    require(id.nonEmpty, "id.empty")
   }
 
 }
