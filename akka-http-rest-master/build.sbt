@@ -1,5 +1,5 @@
 name := "akka-http-rest"
-organization := "me.archdev"
+organization := "by.pavelverk"
 version := "1.0.0"
 scalaVersion := "2.12.4"
 
