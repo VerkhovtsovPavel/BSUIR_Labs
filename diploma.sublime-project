@@ -12,6 +12,7 @@
                 "*.fls",
                 "*.out",
                 "*.toc",
+                "*.tdo",
                 "*.fmt",
                 "*.fot",
                 "*.cb",
@@ -38,7 +39,7 @@
         }
     ],
     "settings": {
-        "TEXroot": "defendingSpeech.tex",
+        "TEXroot": "diploma.tex",
         "tex_file_exts": [".tex"],
     }
 }
