@@ -5,9 +5,10 @@ import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
 import by.pavelverk.hardwrite.core.auth.{AuthService, JdbcAuthDataStorage}
 import by.pavelverk.hardwrite.core.profile.{JdbcUserProfileStorage, UserProfileService}
+import by.pavelverk.hardwrite.core.sample.{JdbcSampleStorage, SampleService}
 import by.pavelverk.hardwrite.http.HttpRoute
 import by.pavelverk.hardwrite.utils.Config
-import by.pavelverk.hardwrite.utils.db.{DatabaseConnector}
+import by.pavelverk.hardwrite.utils.db.DatabaseConnector
 import by.pavelverk.hardwrite.utils.db.DatabaseMigrationManager
 
 import scala.concurrent.ExecutionContext
@@ -35,10 +36,12 @@ object Boot extends App {
 
     val userProfileStorage = new JdbcUserProfileStorage(databaseConnector)
     val authDataStorage = new JdbcAuthDataStorage(databaseConnector)
+    val sampleStorage = new JdbcSampleStorage(databaseConnector)
 
     val usersService = new UserProfileService(userProfileStorage)
     val authService = new AuthService(authDataStorage, config.secretKey)
-    val httpRoute = new HttpRoute(usersService, authService, config.secretKey)
+    val sampleService = new SampleService(sampleStorage)
+    val httpRoute = new HttpRoute(usersService, sampleService, authService, config.secretKey)
 
     Http().bindAndHandle(httpRoute.route, config.http.host, config.http.port)
   }

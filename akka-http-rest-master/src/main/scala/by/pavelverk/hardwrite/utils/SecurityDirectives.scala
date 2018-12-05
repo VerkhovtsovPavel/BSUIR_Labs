@@ -5,6 +5,7 @@ import akka.http.scaladsl.server.directives.{BasicDirectives, HeaderDirectives, 
 import by.pavelverk.hardwrite.core.{AuthTokenContent, UserId}
 import pdi.jwt._
 import io.circe.parser._
+import io.circe.generic.auto._
 
 object SecurityDirectives {
 
