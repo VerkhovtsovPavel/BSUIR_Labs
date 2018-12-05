@@ -16,6 +16,7 @@ import { UserService } from './services/user.service';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
 import { AlertService } from './services/alert.service';
+import { SampleService } from './services/sample.service';
 import { HomeComponent } from './home/home.component';
 import { CanvasComponent } from './sample/new_sample.component';
 import { AlertComponent } from './alert/alert.component';
@@ -40,6 +41,7 @@ import { AlertComponent } from './alert/alert.component';
         AuthGuard,
         AlertService,
         AuthenticationService,
+        SampleService,
         UserService
     ],
     bootstrap: [AppComponent]

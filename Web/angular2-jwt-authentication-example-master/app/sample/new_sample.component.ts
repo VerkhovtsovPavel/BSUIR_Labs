@@ -2,6 +2,11 @@ import {
   Component, Input, ElementRef, AfterViewInit, ViewChild
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
+
+import { SampleService } from '../services/sample.service';
+import { Sample } from '../models/sample';
+import { AlertService } from '../services/alert.service';
 
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/takeUntil';
@@ -14,12 +19,21 @@ import 'rxjs/add/operator/switchMap';
 })
 export class CanvasComponent implements AfterViewInit {
 
+  loading = false;
+
+   constructor(
+     private router: Router,
+     private sampleService: SampleService,
+     private alertService: AlertService) { }
+
   @ViewChild('canvas') public canvas: ElementRef;
 
-  @Input() public width = 400;
-  @Input() public height = 400;
+  @Input() public width = 800;
+  @Input() public height = 800;
 
   private cx: CanvasRenderingContext2D;
+
+  private sample: Sample = new Sample();
 
   public ngAfterViewInit() {
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
@@ -36,8 +50,28 @@ export class CanvasComponent implements AfterViewInit {
   }
 
   clear() {
-       this.cx.clearRect(0, 0, this.cx.canvas.width, this.cx.canvas.height); 
-   }
+       this.cx.clearRect(0, 0, this.cx.canvas.width, this.cx.canvas.height);
+       this.sample = new Sample();
+  }
+
+   save() {
+     this.loading = true;
+     this.sampleService.addSample(this.sample)
+            .subscribe(
+                (result) => {
+                    if (result === true) {
+                        this.router.navigate(['/home']);
+                        this.alertService.success('Sample saved successfuly');
+                    } else {
+                        this.alertService.error('Saving failed');
+                        this.loading = false;
+                    }
+                },
+                (error) => {
+                        this.alertService.error('Saving failed');
+                        this.loading = false;
+                });
+    }
   
   private captureEvents(canvasEl: HTMLCanvasElement) {
     Observable
@@ -48,21 +82,28 @@ export class CanvasComponent implements AfterViewInit {
           .takeUntil(Observable.fromEvent(canvasEl, 'mouseup'))
           .pairwise()
       })
-      .subscribe((res: [MouseEvent, MouseEvent]) => {
-        const rect = canvasEl.getBoundingClientRect();
-  
-        const prevPos = {
-          x: res[0].clientX - rect.left,
-          y: res[0].clientY - rect.top
-        };
-  
-        const currentPos = {
-          x: res[1].clientX - rect.left,
-          y: res[1].clientY - rect.top
-        };
-  
-        this.drawOnCanvas(prevPos, currentPos);
-      });
+      .subscribe(
+        (res: [MouseEvent, MouseEvent]) => {
+          const rect = canvasEl.getBoundingClientRect();
+    
+          const prevPos = {
+            x: res[0].clientX - rect.left,
+            y: res[0].clientY - rect.top
+          };
+    
+          const currentPos = {
+            x: res[1].clientX - rect.left,
+            y: res[1].clientY - rect.top
+          };
+
+          this.sample.xs.push(currentPos.x)
+          this.sample.ys.push(currentPos.y)
+          this.sample.es.push(0)
+    
+          this.drawOnCanvas(prevPos, currentPos);
+      },
+      (error) => {},
+      () => {this.sample.es.push(1)});
   }
 
   private drawOnCanvas(prevPos: { x: number, y: number }, currentPos: { x: number, y: number }) {
