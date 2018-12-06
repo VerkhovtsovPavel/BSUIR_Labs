@@ -29,4 +29,8 @@ package object core {
   final case class Sample(id: UserId, times: List[Double], x: List[Double], y: List[Double], e: List[Double]) {
     require(id.nonEmpty, "id.empty")
   }
+
+  final case class Features(id: UserId, times: List[Double], x: List[Double], y: List[Double], e: List[Double]) {
+    require(id.nonEmpty, "id.empty")
+  }
 }

@@ -12,13 +12,13 @@ import io.circe.syntax._
 import scala.concurrent.ExecutionContext
 
 class SampleRoute(
-  secretKey: String,
-  usersService: SampleService
-)(implicit executionContext: ExecutionContext) extends FailFastCirceSupport {
+                   secretKey: String,
+                   sampleService: SampleService
+                 )(implicit executionContext: ExecutionContext) extends FailFastCirceSupport {
 
   import by.pavelverk.hardwrite.utils.SecurityDirectives._
   import StatusCodes._
-  import usersService._
+  import sampleService._
 
   val route: Route = pathPrefix("samples") {
     pathPrefix("new") {
