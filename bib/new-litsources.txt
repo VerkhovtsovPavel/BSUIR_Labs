@@ -1,0 +1,5 @@
+Hahgai S., Yamanaka S., Hamamoto T. Writer Verification using Altitude and Direction of Pen Movement // International Conference on Pattern Recognition, 2000, vol. 3, pp. 479482
+
+Hao F., Chan C. W. Online Signature Verification Using a New Extreme Points Warping Technique // Pattern Recognition Letters, 2003, vol. 24, no. 16, pp. 2943-2951
+
+Hastie Т., Kishon E. A Model for Signature Verification // IEEE International Conference on Decision Aiding for Complex Systems, 1991, pp. 191-196
