@@ -6,8 +6,7 @@
 //payload
 {
   "exp": 1300819380,
-  "uid": "1234567890",
-  "admin": true
+  "uid": "1234567890"
 }
 //signature
 {

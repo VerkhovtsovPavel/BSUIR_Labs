@@ -1,0 +1,17 @@
+digraph hierarchy {
+	size="5,5"
+	node[shape=record,fillcolor=gray95]
+
+	1[label = "{Authorisation|id: INT PK|username: VARCHAR(255)\n email: VARCHAR(255)\n password: VARCHAR(64)}"]
+	2[label = "{User|id: INT PK|firstName: VARCHAR(255)\n lastName: VARCHAR(255)}"]
+	3[label = "{Sample|id: INT PK\n user_id: INT FK| times: REAL []\n xs: REAL []\n ys: REAL []\n lineBreaks: REAL []}"]
+	4[label = "{Features|id: INT PR\n|timer: REAL\n lines: INT\n square: REAL\n horizontalLength:INT\n verticalLength: INT\n totalLength: INT\n maxVelocity:REAL\n minVelocity:REAL\n durationX:REAL\n durationY:REAL\n characterTilt: INT\n lineTilt: INT\n characterSpacing: REAL\n wordSpacing: REAL\n lineSpacing: REAL\n frequencyOfText: REAL}"]
+	5[label = "{Result|id: INT PK\n sample_id: INT FK| neuro_results: REAL\n psicho_result: INT}"]
+
+	1->2[label="1-1",arrowhead=none]
+	3->2[label="1-*"]
+	5->3[label="1-*"]
+	4->3[label="1-1",arrowhead=none]
+}
+
+# dot -T png -o data.png dataDiagramm.dot

@@ -1,15 +1,22 @@
 {
   "id": "5721a646fca0fd7cf0f231f1",
   "user_id": "1",
-  "imageFormat": "png",
-  "imagePath": "images/7864573yuhdfijsk3489",
   "handwriteFeatures": {
+    "timer": 3808,
+    "lines": 4,
+    "square": 323122.0,
+    "horizontalLength": 843.7308,
+    "verticalLength": 382.96814,
+    "totalLength": 6572.63,
+    "maxVelocity":30.0738,
+    "minVelocity":0.078,
+    "durationX": 3799,
+    "durationY": 3493,
     "characterTilt": 15,
     "lineTilt": 3,
-    "characterSpacing": 1.54,
-    "wordSpacing": 0.27,
-    "frequencyOfText": 0.45,
-    "pressingForce": 94
-  },
-  "natureDescription": null
+    "characterSpacing": 0.54,
+    "wordSpacing": 1.27,
+    "lineSpacing": 3.23,
+    "frequencyOfText": 0.45
+  }
 }

@@ -2,60 +2,63 @@ digraph diagram {
 
 node [shape = "record"]
 
-"Boot" 
-  "Boot" -> "App";
+"Boot" -> "App";
 
-"ProductionTopLevel" 
-  "ProductionTopLevel" -> "TopLevel";
-  "ProductionTopLevel" -> "TopLevelConfig";
+# Database
+"DatabaseConnector"
+"DatabaseMigrationManager"
 
-"TopLevelConfig" 
+# Utility
+"Config"
+"MonadTransformers"
+"SecurityDirectives"
 
-"TopLevel" 
-  "TopLevel" -> "Actor";
-  "TopLevel" -> "ActorLogging";
+# Route
+"HttpRoute"
+  "HttpRoute" -> "AuthRoute"[arrowhead=diamond];
+  "HttpRoute" -> "ProfileRoute"[arrowhead=diamond];
+  "HttpRoute" -> "SampleRoute"[arrowhead=diamond];
+  "HttpRoute" -> "ActionsRoute"[arrowhead=diamond];
 
-"Model" 
+"AuthRoute" -> "FailFastCirceSupport";
+"ProfileRoute" -> "FailFastCirceSupport";
+"SampleRoute" -> "FailFastCirceSupport";
+"ActionsRoute" -> "FailFastCirceSupport";
 
-"ModelActor" 
+# Core
+"JdbcUserProfileStorage" -> "ProfileDataStorage"
+"JdbcUserProfileStorage" -> "ProfileDataTable"
+"ProfileService" -> "JdbcUserProfileStorage"
 
-"ItemNotFound" 
-  "ItemNotFound" -> "Response"
+"JdbcAuthStorage" ->"AuthDataStorage"
+"JdbcAuthStorage" -> "AuthDataTable"
+"AuthService" -> "JdbcAuthStorage"
 
-"Forbidden"  
-  "Forbidden" -> "Response"
+"JdbcSampleStorage" -> "SampleDataStorage"
+"JdbcSampleStorage" -> "SampleDataTable"
+"SampleService" -> "JdbcSampleStorage"
 
-"Unauthorized"  
-  "Unauthorized" -> "Response"  
+"JdbcFeatureStorage" -> "FeatureDataStorage"
+"JdbcFeatureStorage" -> "FeatureDataTable"
+"FeatureService" -> "JdbcFeatureStorage"
 
-"ModelActor" 
-  "ModelActor" -> "Actor";
-  "ModelActor" -> "Model";
+"JdbcResultStorage" -> "ResultDataStorage"
+"JdbcResultStorage" -> "ResultDataTable"
+"ResultService" -> "JdbcResultStorage"
 
-"Request"
-  "Request" -> "HTTPElement";
+#Data
+"AuthTokenContent"
+"AuthData"
+"UserProfile"
+"UserProfileUpdate"
+"Sample"
+"Features"
+"Result"
 
-"Response" 
-  "Response" -> "HTTPElement";
-
-"HTTPElement"
-  
-"ParserActor" 
-  "ParserActor" -> "Actor";
-
-"ServiceActor" 
-  "ServiceActor" -> "ActorRef";
-  "ServiceActor" -> "Timeout";
-  "ServiceActor" -> "Actor";
-  "ServiceActor" -> "Service";
-
-"Service" 
-  "Service" -> "HttpService";
-  "Service" -> "ServiceJsonProtocol";
-
-"ServiceJsonProtocol" 
-  "ServiceJsonProtocol" -> "DefaultJsonProtocol";
-
-"AnyJsonFormat" 
-  "AnyJsonFormat" -> "JsonFormat";
+#Response
+"ItemNotFound" -> "Response"
+"Forbidden" -> "Response"
+"Unauthorized" -> "Response"
 }
+# https://dreampuf.github.io/GraphvizOnline/
+# circo -T png -o class.png classDiagramm.dot
