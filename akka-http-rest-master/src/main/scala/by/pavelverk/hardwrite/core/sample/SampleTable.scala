@@ -1,6 +1,6 @@
 package by.pavelverk.hardwrite.core.sample
 
-import by.pavelverk.hardwrite.core.Sample
+import by.pavelverk.hardwrite.core.{Sample, SampleId, UserId}
 import by.pavelverk.hardwrite.utils.db.DatabaseConnector
 import slick.ast.BaseTypedType
 import slick.jdbc.JdbcType
@@ -17,13 +17,14 @@ private[sample] trait SampleTable {
 
   class Samples(tag: Tag) extends Table[Sample](tag, "sample") {
 
-    def id = column[String]("id", O.PrimaryKey)
+    def id = column[SampleId]("id", O.PrimaryKey)
+    def user_id = column[UserId]("user_id")
     def times = column[List[Double]]("times")
     def x = column[List[Double]]("x")
     def y = column[List[Double]]("y")
     def e = column[List[Double]]("e")
 
-    override def * = (id, times, x, y, e) <> ((Sample.apply _).tupled, Sample.unapply)
+    override def * = (id, user_id, times, x, y, e) <> ((Sample.apply _).tupled, Sample.unapply)
   }
 
   protected val samples = TableQuery[Samples]

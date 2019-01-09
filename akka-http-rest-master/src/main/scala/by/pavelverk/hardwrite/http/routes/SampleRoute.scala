@@ -37,6 +37,20 @@ class SampleRoute(
         }
       }
     } ~
+      pathPrefix("all") {
+        pathEndOrSingleSlash {
+          authenticate(secretKey) { userId =>
+            get {
+              complete(getAllSamples(id).map {
+                case Some(sample) =>
+                  OK -> sample.asJson
+                case None =>
+                  BadRequest -> None.asJson
+              })
+            }
+          }
+        }
+      } ~
       pathPrefix(Segment) { id =>
         pathEndOrSingleSlash {
           get {

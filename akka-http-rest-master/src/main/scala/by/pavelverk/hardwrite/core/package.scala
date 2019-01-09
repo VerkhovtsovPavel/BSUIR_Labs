@@ -3,6 +3,8 @@ package by.pavelverk.hardwrite
 package object core {
 
   type UserId = String
+  type SampleId = String
+  type FeaturesId = String
   type AuthToken = String
 
   final case class AuthTokenContent(userId: UserId)
@@ -26,11 +28,16 @@ package object core {
     }
   }
 
-  final case class Sample(id: UserId, times: List[Double], x: List[Double], y: List[Double], e: List[Double]) {
+  final case class Sample(id: SampleId, user_id: UserId, times: List[Double], x: List[Double], y: List[Double], e: List[Double]) {
     require(id.nonEmpty, "id.empty")
   }
 
-  final case class Features(id: UserId, times: List[Double], x: List[Double], y: List[Double], e: List[Double]) {
+  final case class Features(id: FeaturesId, sample_id: SampleId, timer: Double, lines: Int, square: Double, horizontalLength: Int, verticalLength: Int, totalLength: Int, maxVelocity: Double, minVelocity: Double, durationX: Double, durationY: Double, characterTilt: Int, lineTilt: Int, characterSpacing: Double, wordSpacing: Double, lineSpacing: Double, frequencyOfText: Double) {
+    require(id.nonEmpty, "id.empty")
+  }
+
+  final case class Result(id: SampleId, neuro_results: Double, psicho_result: Int){
     require(id.nonEmpty, "id.empty")
   }
 }
+
