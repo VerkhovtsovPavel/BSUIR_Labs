@@ -17,18 +17,20 @@
 
 \subsubsection{Определение характеристик личности}
 В листинге~\ref{listing:development:classification} представлен метод классификации нового образца почерка на основе обученной модели. Всего в программном средстве различается 16 типов личности определяющих характеристики.
-\lstinputlisting[
-    style=commonstyle,
-    caption=Метод классификации личности по признакам почерка,
-    label=listing:development:classification
-]{src/evaluate_single_instance.scala}
+\begin{figure}[h]
+    \centering
+    \lstinputlisting[style=commonstyle]{src/evaluate_single_instance.scala}
+    \caption{Метод классификации личности по признакам почерка}
+    \label{listing:development:classification}
+\end{figure}
 
 Для обучения классификатора будет использоваться обучающая выборка <<IAM Handwriting Database>>~\cite{IAM_handwriting_database} состоящая из 1539 образцов текста, написанных 500 авторами, с заранее выделенными признаками почерка либо на основании выделенных параметров можно рассчитать параметры используемые в данной работе. Образцы почерка представлены изображениями в формате png, а параметры XML документом, пример параметров представлен в листинге~\ref{listing:development:sample_set}.
-\lstinputlisting[
-    style=commonstyle,
-    caption=Пример XML-документа описывающего признаки почерка,
-    label=listing:development:sample_set
-]{src/sample_set.xml}
+\begin{figure}[h]
+    \centering
+    \lstinputlisting[style=commonstyle]{src/sample_set.xml}
+    \caption{Пример XML-документа описывающего признаки почерка}
+    \label{listing:development:sample_set}
+\end{figure}
 
 Образцы представлены в выборке в виде png-изображений и для их конвертации в наборы координат используются алгоритмы линейной бинаризации изображений с последующей фильтрацией для удаления шумов и скелетизацией для сокращения объема обрабатываемых данных. Так как ряд динамических параметров, например скорость, не могут быть восстановлены или рассчитаны на основании других параметров они заменяются параметрами по умолчанию. 
 
@@ -54,11 +56,13 @@
 
 \subsection{Маршрутизация запросов}
 Библиотека Akka-Http, описанная в пункте~\ref{sec:techs:akka_http}, имеет очень выразительный внутренний язык описания разбора, обработки и маршрутизации запросов к модулю. Модуль доступа к данным является связующий звеном между модулями приложения и базой данных. Поскольку одной из задач программного средства является предотвращение не авторизированного доступа к данным. Каждый обработчик запросов содержит секцию отвечающую за проверку прав доступа.
-\lstinputlisting[
-    style=commonstyle, 
-    caption=Маршрутизация запросов к серверу в модуле доступа к данным,
-    label=listing:development:db_rout
-]{src/routing.scala}
+\begin{figure}[h]
+    \centering
+    \lstinputlisting[style=commonstyle]{src/routing.scala}
+    \caption{Маршрутизация запросов к серверу в модуле доступа к данным}
+    \label{listing:development:db_rout}
+\end{figure}
+
 Конструкция \emph{authenticate} описанная в классе \emph{SecurityDirectives} отвечает за проверку прав доступа, подробнее будет рассмотрена в разделе~\ref{sec:development:access_control}, а различные функции с префиксом \emph{path} отвечает за маршрутизацию и разбор параметров запросов. 
 
 Использование высоко-интегрированных компонентов, таких как \emph{jwt-scala} позволяет снизить риски некорректной работы при обновлении версий одного из компонентов и ускорить разработку и сопровождения благодаря использованию схожих концепций и стиля разработки.
@@ -67,12 +71,12 @@
 Для хранения учетных и пользовательских данных используется СУБД PostgreSQL, схема данных представлена на рисунке~\ref{fig:develoipment:data_base}.
 
 Условно все данные передаваемые между компонентами можно разделить на образцы почерка, листинг~\ref{listing:development:json:sample}, результаты анализа~\ref{listing:development:json:result} и описание пользовательских данных, листинг~\ref{listing:development:json:user}. Для передачи данных между компонентами используется формат JSON с целью, по возможность, исключения или упрощает преобразование информации при общения модулей между собой и с клиентом. 
-
-\lstinputlisting[
-    style=commonstyle,
-    caption=Пример JSON-документа результат анализа на неврологические отклонения,
-    label=listing:development:json:result
-]{src/sample_result.json}
+\begin{figure}[h]
+    \centering
+    \lstinputlisting[style=commonstyle]{src/sample_result.json}
+    \caption{Пример JSON-документа результат анализа на неврологические отклонения}
+    \label{listing:development:json:result}
+\end{figure}
 
 \begin{figure}[!ht]
     \centering

@@ -1,9 +1,9 @@
 LATEXMK=latexmk
-DIPLOMA_SRC=diploma.tex
+DIPLOMA_SRC=dissertation.tex
 
-all: diploma
+all: dissertation
 
-diploma:
+dissertation:
 	$(LATEXMK) -pdf $(DIPLOMA_SRC)
 
 .PHONY: clean

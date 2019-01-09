@@ -49,7 +49,7 @@
 
 % Зачем: Настраивает отступы от границ страницы.
 % Почему: Пункт 2.1.2 Требований по оформлению пояснительной записки.
-\usepackage[left=3cm,top=2.0cm,right=1.5cm,bottom=2.7cm]{geometry}
+\usepackage[left=3cm,top=2.0cm,right=1cm,bottom=2cm]{geometry}
 
 
 % Зачем: Настраивает межстрочный интервал, для размещения 40 +/- 3 строки текста на странице.
@@ -110,7 +110,6 @@
 \renewcommand{\l@subsubsection}{\@dottedtocline{3}{3.7em}{2.8em}}
 \makeatother
 
-
 % Зачем: Работа с колонтитулами
 \usepackage{fancyhdr} % пакет для установки колонтитулов
 \pagestyle{fancy} % смена стиля оформления страниц
@@ -119,18 +118,16 @@
 % Зачем: Нумерация страниц располагается справа снизу страницы
 % Почему: Пункт 2.2.8 Требований по оформлению пояснительной записки.
 \fancyhf{} % очистка текущих значений
-\fancyfoot[R]{\thepage} % установка верхнего колонтитула
+\fancyfoot[C]{\thepage} % установка верхнего колонтитула
 \renewcommand{\footrulewidth}{0pt} % убрать разделительную линию внизу страницы
 \renewcommand{\headrulewidth}{0pt} % убрать разделительную линию вверху страницы
 \fancypagestyle{plain}{
     \fancyhf{}
-    \rfoot{\thepage}}
-
+    \cfoot{\thepage}}
 
 
 % Зачем: Переопределяем стандартную нумерацию, т.к. в отчете будут только section и т.д. в терминологии TeX
 \renewcommand{\thesection}{\arabic{section}}
-
 
 % Зачем: Для определения разных стилей (под)разделов в содержании и в тексте.
 \usepackage{titlesec}
@@ -143,14 +140,13 @@
 % Почему: Пункты 2.1.1, 2.2.5, 2.2.6 и ПРИЛОЖЕНИЕ Л Требований по оформлению пояснительной записки.
 \makeatletter
 \titleformat{\section}
-  {\filright\hyphenpenalty=10000\normalfont\large\bfseries}
+  {\centering\hyphenpenalty=10000\normalfont\large\bfseries}
   {\thesection}
   {1em \@plus 1ex \@minus .2ex}{\MakeUppercase}
 
 \titlespacing{\section}
-  {\parindent}{\z@}{1em \@plus .2ex}
+  {\parindent}{\z@}{\z@}
 \makeatother
-
 
 % Зачем: для оформления введения и заключения, они должны быть выровнены по центру.
 % Почему: Пункты 1.1.15 и 1.1.11 Требований по оформлению пояснительной записки.
@@ -182,11 +178,12 @@
 % Почему: Пункты 2.1.1, 2.2.5 и ПРИЛОЖЕНИЕ Л Требований по оформлению пояснительной записки.
 \makeatletter
 \titleformat{\subsubsection}
-  {\filright\hyphenpenalty=10000\normalfont\normalsize}
+  {\filright\hyphenpenalty=10000\normalfont\normalsize\bfseries}
   {\textbf{\thesubsubsection}}
   {1em \@plus 1ex \@minus .2ex}{}
+
 \titlespacing{\subsubsection}
-  {\parindent}{1em \@plus 1ex \@minus .2ex}{\z@}
+  {\parindent}{1em \@plus 1ex \@minus .2ex}{1em \@plus .2ex}
 \makeatother
 
 % Зачем: Задает стиль заголовков подпунктов
@@ -247,7 +244,7 @@
 \DeclareCaptionLabelFormat{stbtable}{Таблица #2}
 \DeclareCaptionLabelSeparator{stb}{~--~}
 \captionsetup{labelsep=stb}
-\captionsetup[figure]{skip=20pt,labelformat=stbfigure,justification=centering}
+\captionsetup[figure]{skip=20pt,labelformat=stbfigure,justification=centering,font=small,labelfont=bf,textfont=bf}
 \captionsetup[table]{format=hang,skip=0pt,labelformat=stbtable,justification=raggedright}
 \renewcommand{\thesubfigure}{\asbuk{subfigure}}
 
