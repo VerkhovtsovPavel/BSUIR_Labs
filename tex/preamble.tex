@@ -151,6 +151,16 @@
 % Зачем: для оформления введения и заключения, они должны быть выровнены по центру.
 % Почему: Пункты 1.1.15 и 1.1.11 Требований по оформлению пояснительной записки.
 \makeatletter
+\newcommand\sectionrighted{%
+  \clearpage\@startsection {section}{1}%
+    {\z@}%
+    {-1em \@plus -1ex \@minus -.2ex}%
+    {1em \@plus .2ex}%
+    {\raggedleft\hyphenpenalty=10000\normalfont\large\bfseries\MakeUppercase}%
+  }
+\makeatother
+
+\makeatletter
 \newcommand\sectioncentered{%
   \clearpage\@startsection {section}{1}%
     {\z@}%
@@ -348,6 +358,16 @@
 \usepackage{multirow}
 \usepackage{array}
 
+% 
+\usepackage{ifthen}
+
+\makeatletter
+\renewcommand\@cite[2]{%
+Ref.~#1\ifthenelse{\boolean{@tempswa}}
+{, \nolinebreak[3] #2}{}
+}
+\renewcommand\@biblabel[1]{#1.}
+\makeatother
 
 % Зачем: "Умная" запятая в математических формулах. В дробных числах не добавляет пробел
 % Почему: В требованиях не нашел, но в русском языке для дробных чисел используется {,} а не {.}
