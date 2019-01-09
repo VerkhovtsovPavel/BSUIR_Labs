@@ -5,41 +5,53 @@ import { map } from 'rxjs/operator/map';
 
 import { AuthenticationService } from './authentication.service';
 import { Sample } from '../models/sample';
+import { Features } from '../models/features';
+import { Result } from '../models/result';
 
 @Injectable()
-export class SampleService {
+export class ActionService {
     constructor(
         private http: Http,
         private authenticationService: AuthenticationService) {
     }
 
-    addSample(sample: Sample): Observable<Boolean> {
+    getFeatures(sample: Sample): Observable<Features> {
         // add authorization header with jwt token
         let headers = new Headers({ 'Token' : this.authenticationService.token, 'content-type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
         // get users from api
-        return this.http.post('http://localhost:5467/v1/samples/new', JSON.stringify({ id: Date.now().toString(), xs: sample.xs, ys: sample.ys, es: sample.es, times: sample.times }), options)
+        return this.http.get('http://localhost:5467/v1/samples/features'+sample.id, options)
             .map((response: Response) => response.json());
     }
 
-    getSample(id: String): Observable<Sample> {
-         // add authorization header with jwt token
+    getMed(sample: Sample): Observable<Result> {
+        // add authorization header with jwt token
         let headers = new Headers({ 'Token' : this.authenticationService.token, 'content-type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
         // get users from api
-        return this.http.get('http://localhost:5467/v1/samples/'+id, options)
+        return this.http.get('http://localhost:5467/v1/samples/med'+sample.id, options)
             .map((response: Response) => response.json());
     }
 
-    getAllSamples(): Observable<Array<Sample>> {
-         // add authorization header with jwt token
+    getPsyco(sample: Sample): Observable<Result> {
+        // add authorization header with jwt token
         let headers = new Headers({ 'Token' : this.authenticationService.token, 'content-type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
         // get users from api
-        return this.http.get('http://localhost:5467/v1/samples/all', options)
+        return this.http.get('http://localhost:5467/v1/samples/psyco'+sample.id, options)
+            .map((response: Response) => response.json());
+    }
+
+    getCybetsec(sample: Sample): Observable<Boolean> {
+        // add authorization header with jwt token
+        let headers = new Headers({ 'Token' : this.authenticationService.token, 'content-type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        // get users from api
+        return this.http.get('http://localhost:5467/v1/samples/cybetsec'+sample.id, options)
             .map((response: Response) => response.json());
     }
 }
