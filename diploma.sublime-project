@@ -39,7 +39,7 @@
         }
     ],
     "settings": {
-        "TEXroot": "diploma.tex",
+        "TEXroot": "dissertation.tex",
         "tex_file_exts": [".tex"],
     }
 }

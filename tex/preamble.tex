@@ -86,7 +86,6 @@
 % Почему: Пункт 2.9.2 Требований по оформлению пояснительной записки.
 \usepackage[bottom]{footmisc}
 
-
 % Зачем: Пункты (в терминологии требований) в терминологии TeX subsubsection должны нумероваться
 % Почему: Пункт 2.2.3 Требований по оформлению пояснительной записки.
 \setcounter{secnumdepth}{4}
@@ -175,7 +174,7 @@
 % Почему: Пункты 2.1.1, 2.2.5 и ПРИЛОЖЕНИЕ Л Требований по оформлению пояснительной записки.
 \makeatletter
 \titleformat{\subsection}
-  {\filright\hyphenpenalty=10000\normalfont\normalsize\bfseries}
+  {\filright\hyphenpenalty=10000\normalfont\large\bfseries}
   {\textbf{\thesubsection}}
   {1em \@plus 1ex \@minus .2ex}{}
 
@@ -204,7 +203,7 @@
   {\textbf{\theparagraph}}
   {1em \@plus 1ex \@minus .2ex}{}
 \titlespacing{\paragraph}
-  {\parindent}{1em \@plus 1ex \@minus .2ex}{\z@}
+  {\parindent}{1em \@plus 1ex \@minus .2ex}{1em \@plus .2ex}
 \makeatother
 
 

@@ -30,15 +30,15 @@
      \node[punktchain, join] (investeringer) {Нормализация признаков};
      \node[punktchain, join] (init) {Инициализация обучающего алгоритма};
      \begin{scope}[start branch=venstre,
-        every join/.style={->, thick, shorten <=1pt}, ]
-        \node[punktchain, on chain=going left, join=by {<-}]
+        every join/.style={-, thick, shorten <=1pt}, ]
+        \node[punktchain, on chain=going left, join=by {-}]
             (risiko) {Начальные параметры};
     \end{scope}
     \node[punktchain, join] (disk) {Обучение модели};
     \node[punktchain, join] (disk) {Оценка эффективности};
     \begin{scope}[start branch=venstre,
-       every join/.style={->, thick, shorten <=1pt}, ]
-       \node[punktchain, on chain=going left, join=by {<-}]
+       every join/.style={-, thick, shorten <=1pt}, ]
+       \node[punktchain, on chain=going left, join=by {-}]
             (risiko) {Критерии эффективности};
     \end{scope}
     \node[punktchain, join] (disk) {Регулировка модели};
