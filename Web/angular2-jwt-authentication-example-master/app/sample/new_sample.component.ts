@@ -59,7 +59,7 @@ export class CanvasComponent implements AfterViewInit {
      this.sampleService.addSample(this.sample)
             .subscribe(
                 (result) => {
-                    if (result === true) {
+                    if (result != undefined) {
                         this.router.navigate(['/home']);
                         this.alertService.success('Sample saved successfuly');
                     } else {

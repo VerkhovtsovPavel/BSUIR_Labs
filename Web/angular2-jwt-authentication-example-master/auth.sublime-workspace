@@ -3,6 +3,10 @@
 	{
 		"selected_items":
 		[
+			[
+				"nu",
+				"number\tkeyword"
+			]
 		]
 	},
 	"buffers":
@@ -17,85 +21,49 @@
 			}
 		},
 		{
-			"file": "app/services/sample.service.ts",
+			"file": "app/home/home.component.ts",
 			"settings":
 			{
-				"buffer_size": 1039,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/chart.js",
-			"settings":
-			{
-				"buffer_size": 2828,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/extensions.js",
-			"settings":
-			{
-				"buffer_size": 324,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/handlers.js",
-			"settings":
-			{
-				"buffer_size": 2101,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/init.js",
-			"settings":
-			{
-				"buffer_size": 67,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/models/sample.ts",
-			"settings":
-			{
-				"buffer_size": 240,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/app.module.ts",
-			"settings":
-			{
-				"buffer_size": 1533,
+				"buffer_size": 544,
 				"encoding": "UTF-8 with BOM",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/parameters.js",
+			"file": "app/models/features.ts",
 			"settings":
 			{
-				"buffer_size": 1771,
+				"buffer_size": 407,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "export class Result {"
+			}
+		},
+		{
+			"file": "app/services/sample.service.ts",
+			"settings":
+			{
+				"buffer_size": 1956,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/state.js",
+			"file": "app/services/action.service.ts",
 			"settings":
 			{
-				"buffer_size": 244,
-				"line_ending": "Unix"
+				"buffer_size": 2452,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "import { Injectable } from '@angular/core';"
 			}
 		},
 		{
-			"file": "/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/timeInterval.js",
+			"file": "app/home/home.component.html",
 			"settings":
 			{
-				"buffer_size": 272,
+				"buffer_size": 391,
+				"encoding": "UTF-8 with BOM",
 				"line_ending": "Unix"
 			}
 		}
@@ -147,6 +115,8 @@
 	[
 		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/angular2-jwt-authentication-example-master",
 		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/angular2-jwt-authentication-example-master/app",
+		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/angular2-jwt-authentication-example-master/app/guards",
+		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/angular2-jwt-authentication-example-master/app/home",
 		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/angular2-jwt-authentication-example-master/app/interceptors",
 		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/angular2-jwt-authentication-example-master/app/login",
 		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/angular2-jwt-authentication-example-master/app/models",
@@ -158,10 +128,13 @@
 		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/timeInterval.js",
 		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/state.js",
 		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/parameters.js",
-		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/handlers.js",
-		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/extensions.js",
 		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/chart.js",
+		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/extensions.js",
+		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/handlers.js",
 		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/init.js",
+		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/angular2-jwt-authentication-example-master/app/app.module.ts",
+		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/angular2-jwt-authentication-example-master/app/models/sample.ts",
+		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/angular2-jwt-authentication-example-master/app/models/result.ts",
 		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/angular2-jwt-authentication-example-master/app/interceptors/jwt.interceptor.ts",
 		"/Users/pavel_verkhovtsov/Documents/Personal/front/Web/angular2-jwt-authentication-example-master/app/sample/new_sample.component.html",
 		"/Users/pavel_verkhovtsov/Code/Master/front/Web/angular2-jwt-authentication-example-master/app/sample/browse_samples.ts",
@@ -189,6 +162,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"';\n",
 			"()\n",
 			"{},\n",
 			")\n",
@@ -211,7 +185,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -227,8 +201,8 @@
 						"selection":
 						[
 							[
-								1565,
-								1565
+								2160,
+								2160
 							]
 						],
 						"settings":
@@ -239,27 +213,27 @@
 							"use_tab_stops": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 847.0,
+						"translation.y": 669.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "app/services/sample.service.ts",
-					"semi_transient": false,
+					"file": "app/home/home.component.ts",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 1039,
+						"buffer_size": 544,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1031,
-								1031
+								0,
+								0
 							]
 						],
 						"settings":
@@ -273,151 +247,30 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/chart.js",
+					"file": "app/models/features.ts",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2828,
+						"buffer_size": 407,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								401,
+								401
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 10,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/extensions.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 324,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/handlers.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2101,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/init.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 67,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "app/models/sample.ts",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 240,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								63,
-								63
-							]
-						],
-						"settings":
-						{
+							"auto_name": "export class Result {",
 							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
-							"typescript_plugin_format_options":
-							{
-								"convertTabsToSpaces": false,
-								"indentSize": 4,
-								"tabSize": 4
-							},
 							"use_tab_stops": false
 						},
 						"translation.x": 0.0,
@@ -428,20 +281,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "app/app.module.ts",
+					"buffer": 3,
+					"file": "app/services/sample.service.ts",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1533,
+						"buffer_size": 1956,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1320,
-								1320
+								1545,
+								1545
 							]
 						],
 						"settings":
@@ -449,41 +302,67 @@
 							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true,
-							"typescript_plugin_format_options":
-							{
-								"convertTabsToSpaces": false,
-								"indentSize": 4,
-								"tabSize": 4
-							},
 							"use_tab_stops": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 242.0,
+						"translation.y": 74.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
-					"file": "/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/parameters.js",
+					"buffer": 4,
+					"file": "app/services/action.service.ts",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1771,
+						"buffer_size": 2452,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								2452,
+								2452
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"auto_name": "import { Injectable } from '@angular/core';",
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 239.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/home/home.component.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 391,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								244,
+								244
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
@@ -491,63 +370,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/state.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 244,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								11,
-								24
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "/Users/pavel_verkhovtsov/Documents/Personal/front/Web/src/timeInterval.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 272,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

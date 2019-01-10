@@ -1,7 +1,9 @@
 ﻿import { Component, OnInit } from '@angular/core';
 
 import { User } from '../models/user';
+import { Sample } from '../models/sample';
 import { UserService } from '../services/user.service';
+import { SampleService } from '../services/sample.service';
 
 @Component({
     moduleId: module.id,
@@ -10,8 +12,9 @@ import { UserService } from '../services/user.service';
 
 export class HomeComponent implements OnInit {
     user: User;
-
-    constructor(private userService: UserService) { }
+    samples: Sample[] = [];
+    
+    constructor(private userService: UserService, private sampleService: SampleService) { }
 
     ngOnInit() {
         // get users from secure api end point
@@ -19,5 +22,11 @@ export class HomeComponent implements OnInit {
             .subscribe((user: User)=> {
                 this.user = user;
             });
+
+        // get user samples
+        this.sampleService.getAllSamples()
+            .subscribe((sampleSeq: Sample[]) => {
+                  this.samples = sampleSeq;
+            });        
     }
 }

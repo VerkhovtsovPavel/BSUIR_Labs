@@ -13,13 +13,15 @@ export class SampleService {
         private authenticationService: AuthenticationService) {
     }
 
+    samples: Sample[] = [];
+
     addSample(sample: Sample): Observable<Boolean> {
         // add authorization header with jwt token
         let headers = new Headers({ 'Token' : this.authenticationService.token, 'content-type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
         // get users from api
-        return this.http.post('http://localhost:5467/v1/samples/new', JSON.stringify({ id: Date.now().toString(), xs: sample.xs, ys: sample.ys, es: sample.es, times: sample.times }), options)
+        return this.http.post('http://localhost:5467/v1/samples/new', JSON.stringify({ id: Date.now().toString(), user_id: this.authenticationService.token,  x: sample.xs, y: sample.ys, e: sample.es, times: sample.times }), options)
             .map((response: Response) => response.json());
     }
 
@@ -40,6 +42,10 @@ export class SampleService {
 
         // get users from api
         return this.http.get('http://localhost:5467/v1/samples/all', options)
-            .map((response: Response) => response.json());
+            .map((response: Response) => {
+                let samples = response.json();
+                this.samples = samples;
+                return samples;
+                });
     }
 }

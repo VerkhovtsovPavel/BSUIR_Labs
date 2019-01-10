@@ -20,6 +20,7 @@ import { SampleService } from './services/sample.service';
 import { ActionService } from './services/action.service';
 import { HomeComponent } from './home/home.component';
 import { CanvasComponent } from './sample/new_sample.component';
+import { ViewCanvasComponent } from './sample/view_sample.component';
 import { AlertComponent } from './alert/alert.component';
 
 
@@ -36,7 +37,8 @@ import { AlertComponent } from './alert/alert.component';
         LoginComponent,
         HomeComponent,
         RegisterComponent,
-        CanvasComponent
+        CanvasComponent,
+        ViewCanvasComponent
     ],
     providers: [
         AuthGuard,

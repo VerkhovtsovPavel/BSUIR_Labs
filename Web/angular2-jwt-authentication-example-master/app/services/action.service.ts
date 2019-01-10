@@ -31,7 +31,7 @@ export class ActionService {
         let options = new RequestOptions({ headers: headers });
 
         // get users from api
-        return this.http.get('http://localhost:5467/v1/samples/med'+sample.id, options)
+        return this.http.get('http://localhost:5467/v1/samples/'+sample.id+'/med', options)
             .map((response: Response) => response.json());
     }
 
@@ -41,7 +41,7 @@ export class ActionService {
         let options = new RequestOptions({ headers: headers });
 
         // get users from api
-        return this.http.get('http://localhost:5467/v1/samples/psyco'+sample.id, options)
+        return this.http.get('http://localhost:5467/v1/samples/'+sample.id+'/psyco', options)
             .map((response: Response) => response.json());
     }
 
@@ -51,7 +51,7 @@ export class ActionService {
         let options = new RequestOptions({ headers: headers });
 
         // get users from api
-        return this.http.get('http://localhost:5467/v1/samples/cybetsec'+sample.id, options)
+        return this.http.get('http://localhost:5467/v1/samples/'+sample.id+'/cybetsec', options)
             .map((response: Response) => response.json());
     }
 }

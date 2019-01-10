@@ -8,8 +8,8 @@ export class Sample {
 	}
 
     id: 	string;
-    xs: 	number[];
-    ys: 	number[];
-    es:		number[];
+    x: 	number[];
+    y: 	number[];
+    e:		number[];
     times: 	number[];
 }
