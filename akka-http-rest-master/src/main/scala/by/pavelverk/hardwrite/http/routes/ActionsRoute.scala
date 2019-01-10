@@ -2,13 +2,14 @@ package by.pavelverk.hardwrite.http.routes
 
 import akka.http.scaladsl.server.Directives.{complete, get, pathEndOrSingleSlash, pathPrefix, post}
 import by.pavelverk.hardwrite.core.feature.FeaturesService
-import akka.http.scaladsl.model.StatusCodes
+import akka.http.scaladsl.model.StatusCodes.{OK, BadRequest}
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import by.pavelverk.hardwrite.core.result.ResultService
 import de.heikoseeberger.akkahttpcirce.FailFastCirceSupport
 import io.circe.generic.auto._
 import io.circe.syntax._
+import scala.util.Success
 
 import scala.concurrent.ExecutionContext
 
@@ -16,7 +17,6 @@ class ActionsRoute (secretKey: String,
                     featureService: FeaturesService,
                     resultService: ResultService
                    )(implicit executionContext: ExecutionContext) extends FailFastCirceSupport {
-  import StatusCodes._
   import featureService._
   import resultService._
 
@@ -38,10 +38,7 @@ class ActionsRoute (secretKey: String,
       pathEndOrSingleSlash {
         get {
           complete(getNeuroAnalysis(id).map {
-            case Some(result) =>
-              OK -> result.asJson
-            case None =>
-              BadRequest -> None.asJson
+            OK -> _.asJson
           })
         }
       }
@@ -49,10 +46,7 @@ class ActionsRoute (secretKey: String,
       pathEndOrSingleSlash {
         get {
           complete(getCyberSecAnalysis(id).map {
-            case Some(result) =>
-              OK -> result.asJson
-            case None =>
-              BadRequest -> None.asJson
+              OK -> _.asJson
           })
         }
       }
@@ -60,10 +54,7 @@ class ActionsRoute (secretKey: String,
       pathEndOrSingleSlash {
         get {
           complete(getPsychoAnalysis(id).map {
-            case Some(result) =>
-              OK -> result.asJson
-            case None =>
-              BadRequest -> None.asJson
+              OK -> _.asJson
           })
         }
       }

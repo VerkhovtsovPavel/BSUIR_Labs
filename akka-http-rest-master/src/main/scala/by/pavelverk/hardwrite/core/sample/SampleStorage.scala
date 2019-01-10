@@ -23,14 +23,14 @@ class JdbcSampleStorage(val databaseConnector: DatabaseConnector)(implicit execu
   def saveSample(sample: Sample): Future[Sample] =
     db.run(samples.insertOrUpdate(sample)).map(_ => sample)
 
-  def getAllSamples(userId: UserId): Future[Seq[Sample]] = db.run(samples.filter(_.user_id == userId).result)
+  def getAllSamples(userId: UserId): Future[Seq[Sample]] = db.run(samples.filter(_.user_id === userId).result)
 }
 
-class InMemoryUserProfileStorage extends InMemoryStorage[String, Sample] with SampleStorage {
+class InMemorySampleStorage extends InMemoryStorage[String, Sample] with SampleStorage {
 
   override def getSample(id: String): Future[Option[Sample]] = get(id)
 
-  override def getAllSamples(userId: UserId): Future[Seq[Sample]] = ???
+  override def getAllSamples(userId: UserId): Future[Seq[Sample]] = getAll()
 
   override def saveSample(sample: Sample): Future[Sample] = save(sample)
 

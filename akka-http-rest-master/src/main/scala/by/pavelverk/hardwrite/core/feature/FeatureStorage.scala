@@ -26,7 +26,7 @@ class JdbcFeaturesStorage(val databaseConnector: DatabaseConnector)(implicit exe
 
 }
 
-class InMemoryUserProfileStorage extends InMemoryStorage[String, Features] with FeaturesStorage {
+class InMemoryFeatureStorage extends InMemoryStorage[String, Features] with FeaturesStorage {
 
   override def getFeatures(id: String): Future[Option[Features]] = get(id)
 

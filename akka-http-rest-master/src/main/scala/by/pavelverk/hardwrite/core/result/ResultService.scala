@@ -14,9 +14,9 @@ class ResultService(resultStorage: ResultStorage)(implicit executionContext: Exe
   def saveResult(result: Result): Future[Result] =
     resultStorage.saveResult(result)
 
-  def getNeuroAnalysis(sampleId: SampleId)  = calculateNeuroAnalysis(sampleId).map(saveResult)
+  def getNeuroAnalysis(sampleId: SampleId)  = calculateNeuroAnalysis(sampleId).flatMap(saveResult)
 
-  def getPsychoAnalysis(sampleId: SampleId)  = calculatePsycoAnalysis(sampleId).map(saveResult)
+  def getPsychoAnalysis(sampleId: SampleId)  = calculatePsycoAnalysis(sampleId).flatMap(saveResult)
 
   def getCyberSecAnalysis(sampleId: SampleId): Future[Boolean] = calculateCyberSecAnalysis(sampleId)
 

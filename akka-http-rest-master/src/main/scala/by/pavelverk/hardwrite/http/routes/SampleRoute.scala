@@ -41,10 +41,10 @@ class SampleRoute(
         pathEndOrSingleSlash {
           authenticate(secretKey) { userId =>
             get {
-              complete(getAllSamples(id).map {
-                case Some(sample) =>
-                  OK -> sample.asJson
-                case None =>
+              complete(getAllSamples(userId).map {
+                case Seq(tail @ _*) =>
+                  OK -> tail.asJson
+                case _ =>
                   BadRequest -> None.asJson
               })
             }
