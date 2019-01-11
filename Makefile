@@ -1,5 +1,5 @@
 LATEXMK=latexmk
-DIPLOMA_SRC=dissertation.tex
+DIPLOMA_SRC=autoref.tex
 
 all: dissertation
 
