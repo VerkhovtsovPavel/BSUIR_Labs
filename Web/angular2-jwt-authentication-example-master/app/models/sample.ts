@@ -1,15 +1,15 @@
 export class Sample {
 
 	constructor() {
-		this.xs = new Array()
-		this.ys = new Array()
-		this.es = new Array()
+		this.x = new Array()
+		this.y = new Array()
+		this.e = new Array()
 		this.times = new Array()
 	}
 
     id: 	string;
-    x: 	number[];
-    y: 	number[];
+    x: 		number[];
+    y: 		number[];
     e:		number[];
     times: 	number[];
 }

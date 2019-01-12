@@ -21,7 +21,7 @@ export class SampleService {
         let options = new RequestOptions({ headers: headers });
 
         // get users from api
-        return this.http.post('http://localhost:5467/v1/samples/new', JSON.stringify({ id: Date.now().toString(), user_id: this.authenticationService.token,  x: sample.xs, y: sample.ys, e: sample.es, times: sample.times }), options)
+        return this.http.post('http://localhost:5467/v1/samples/new', JSON.stringify({ id: Date.now().toString(), user_id: this.authenticationService.token,  x: sample.x, y: sample.y, e: sample.e, times: sample.times }), options)
             .map((response: Response) => response.json());
     }
 

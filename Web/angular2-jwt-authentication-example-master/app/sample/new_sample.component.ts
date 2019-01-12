@@ -96,14 +96,14 @@ export class CanvasComponent implements AfterViewInit {
             y: res[1].clientY - rect.top
           };
 
-          this.sample.xs.push(currentPos.x)
-          this.sample.ys.push(currentPos.y)
-          this.sample.es.push(0)
+          this.sample.x.push(currentPos.x)
+          this.sample.y.push(currentPos.y)
+          this.sample.e.push(0)
     
           this.drawOnCanvas(prevPos, currentPos);
       },
       (error) => {},
-      () => {this.sample.es.push(1)});
+      () => {this.sample.e.push(1)});
   }
 
   private drawOnCanvas(prevPos: { x: number, y: number }, currentPos: { x: number, y: number }) {

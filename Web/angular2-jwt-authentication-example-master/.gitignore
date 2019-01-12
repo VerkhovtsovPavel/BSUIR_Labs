@@ -43,3 +43,6 @@ app/**/*.js.map
 
 # File system
 .DS_Store
+
+# Sublime 
+*.sublime-workspace
