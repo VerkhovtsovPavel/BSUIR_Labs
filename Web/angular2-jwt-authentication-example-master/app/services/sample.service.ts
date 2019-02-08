@@ -46,6 +46,6 @@ export class SampleService {
                 let samples = response.json();
                 this.samples = samples;
                 return samples;
-                });
+            });
     }
 }
