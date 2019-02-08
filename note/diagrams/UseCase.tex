@@ -1,0 +1,53 @@
+\documentclass[a4paper,11pt,russian]{article}
+
+\usepackage{./tikz-uml}
+\usepackage{verbatim}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{listings}
+
+\textwidth 18.5cm
+\textheight 25.5cm
+\hoffset=-2.9cm
+\voffset=-2.9cm
+
+\tikzumlset{fill usecase=white}
+\tikzumlset{fill note=white}
+
+\lstdefinelanguage{tikzuml}{language=[LaTeX]TeX, classoffset=0, morekeywords={umlbasiccomponent, umlnote, umlusecase, umlactor, umlassoc,  umlinclude}, sensitive=true, morecomment=[l]{\%}}
+
+\begin{document}
+	\begin{tikzpicture}
+		\umlactor[y=-12]{user}
+		\umlnote[y=-14]{user}{Пользователь}
+
+		\umlusecase[x=5,y=-15,width=2cm]{Авторизация}
+		\umlusecase[x=-5,y=-15,width=2cm]{Регистрация}
+		\umlusecase[x=-5,width=2cm]{Добавление нового образца почерка}
+		\umlusecase[x=-5,y=-5,width=2cm]{Просмотр сохраненных образцов почерка}
+		\umlusecase[x=-5,y=-10,width=2cm]{Удаление сохраненных образцов почерка}
+		\umlusecase[x=3,width=2cm]{Выделение признаков почерка}
+		\umlusecase[x=-0.5, y=-5,width=2.3cm]{Определение психологических характеристик личности}
+		\umlusecase[x=8,y=-5,width=2.3cm]{Биометрическая аутентификации пользователя}
+		\umlusecase[x=4,y=-5,width=2cm]{Определение неврологических отклонений}
+
+		\umlassoc{user}{usecase-1}
+		\umlassoc{user}{usecase-2}
+		\umlassoc{user}{usecase-3}
+		\umlassoc{user}{usecase-4}
+		\umlassoc{user}{usecase-5}
+		\umlassoc{user}{usecase-6}
+		\umlassoc{user}{usecase-7}
+		\umlassoc{user}{usecase-8}
+		\umlassoc{user}{usecase-9}
+
+		\umlextend{usecase-4}{usecase-3}
+		\umlextend{usecase-5}{usecase-4}
+		\umlextend{usecase-1}{usecase-2}
+
+		\umlinclude{usecase-7}{usecase-6}
+		\umlinclude{usecase-8}{usecase-6}
+		\umlinclude{usecase-9}{usecase-6}
+	\end{tikzpicture}
+\end{document}
