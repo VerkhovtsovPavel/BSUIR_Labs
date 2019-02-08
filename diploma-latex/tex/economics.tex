@@ -1,0 +1,821 @@
+\def \byr{Br}
+
+\section{Технико-экономическое обоснование разработки и использования ПС определения психологические характеристик личности по анализу образцов почерка}
+
+% Категория сложности
+\def \complexityGroup{3}
+
+% Категория новизны
+\def \noveltyGroup{Б}
+
+% ---
+Разрабатываемое в дипломе ПС позволяет определять психологические характеристики личности по образцу почерка, а так же выделять признаки почерка из образцов.
+
+Программное средство относится к \complexityGroup-й группе сложности. Категория новизны – <<\noveltyGroup>>. 
+При оценке экономической эффективности ПС будет рассчитана смета затрат на разработку, цена и прибыль.
+
+Расчеты выполнены на основе методического пособий~\cite{palicyn_2006,gorovoi_2014}.
+
+\subsection{Расчёт сметы затрат и цены программного продукта}
+
+% Коэффициент сложности, ед.
+\def \additionalComplexityFactor{0.12}
+\FPeval{complexityFactor}{clip(1 + \additionalComplexityFactor)}
+
+% Степень использования при разработке стандартных модулей, ед.
+\def \stdModuleUsageFactor{0.5} 
+
+% Коэффициент новизны, Кн
+\def \noveltyFactor{0.9}
+
+% Годовой эффективный фонд времени, дн.
+\def \daysInYear{365}
+\def \holidaysInYear{9}
+\def \weekendDaysInYear{103}
+\def \vacationDaysInYear{24}
+\FPeval{workingDaysInYear}{,
+    clip(\daysInYear -
+         \holidaysInYear -
+         \weekendDaysInYear -
+         \vacationDaysInYear)
+}
+
+% Среднемесячная норма рабочего времени, Фр
+\def \workingHoursInMonth{160}
+
+% Продолжительность рабочего дня, ч.
+\def \workingHoursInDay{8}
+
+% Месячная тарифная ставка первого разряда, Br
+% \def \tariffRate{298000} % Гос. предприятия
+\def \tariffRate{31}
+
+% Коэффициент премирования, ед
+\def \bonusRate{1.5}
+
+% Норматив дополнительной заработной платы, Br
+\def \additionalSalaryRate{20}
+
+% Норматив отчислений в ФСЗН и обязательное страхование, %
+\def \socialProtectionRate{34.6}
+
+% Норматив прочих затрат, %
+\def \otherExpenseRate{20}
+
+% Норматив накладных расходов, %
+\def \overheadExpenseRate{100}
+
+% Прогнозируемый уровень рентабельности, %
+\def \profitability{35}
+
+% Норматив НДС, %
+\def \vatRate{20}
+
+% Норматив налога на прибыль, %
+\def \profitTaxRate{18}
+
+% Норматив расхода материалов, %
+\def \materialsRate{3}
+
+% Норматив расхода машинного времени, ч.
+\def \debugRate{15} % часов / 100 строк кода
+
+% Цена одного часа машинного времени, Br
+\def \machineHourCost{2.5}
+
+% Норматив расходов на сопровождение и адаптацию ПО, %
+\def \supportAndAdaptationRate{30}
+
+% ---
+На основании сметы затрат и анализа рынка ПО определяется плановая отпускаемая цена.
+Для составления сметы затрат на создание ПО необходима предварительная оценка трудоемкости ПО и его объёма.
+Расчет объёма программного продукта предполагает определение типа программного обеспечения, всестороннее техническое обоснование функций ПО и определение объёма каждой функций.
+Согласно классификации типов программного обеспечения~\cite[с.~59,~приложение 1]{palicyn_2006}, разрабатываемое ПО можно классифицировать как ПО методo"=ориентированных расчетов.
+
+Общий объём программного продукта определяется исходя из количества и объёма функций, реализованных в программе:
+\begin{equation}
+  \label{eq:economics:total_loc}
+  V_{o} = \sum_{i = 1}^{n} V_{i} \text{\,,}
+\end{equation}
+\begin{explanation}
+где & $ V_{i} $ & объём отдельной функции ПО, LoC; \\
+    & $ n $ & общее число функций.
+\end{explanation}
+
+Исходные данные разрабатываемого проекта указаны в таблице~\ref{table:economics:initial_data}.
+\clearpage
+\begin{longtable}[l]{| >{\raggedright}m{0.62\textwidth}
+                     | >{\centering}m{0.17\textwidth}
+                     | >{\centering\arraybackslash}m{0.13\textwidth}|}
+  \caption{Исходные данные}
+  \label{table:economics:initial_data} \\
+  \endfirsthead
+  \caption*{Продолжение таблицы \ref{table:economics:initial_data}}\\
+   \hline
+    {\begin{center} Наименование \end{center} } & Условное обозначение & Значение
+    \\ \hline
+  \endhead
+
+   \hline
+    {\begin{center} Наименование \end{center} } & Условное обозначение & Значение
+    \\ \hline
+
+    Категория сложности
+    & & \complexityGroup
+    \\ \hline
+
+    Коэффициент сложности, ед.
+    & $ \text{К}_\text{с} $ & \num{\complexityFactor}
+    \\ \hline
+
+    Степень использования при разработке стандартных модулей, ед.
+    & $ \text{К}_\text{т} $ & \num{\stdModuleUsageFactor}
+    \\ \hline
+
+    Коэффициент новизны, ед.
+    & $ \text{К}_\text{н} $ & \num{\noveltyFactor}
+    \\ \hline
+
+    Годовой эффективный фонд времени, дн.
+    & $ \text{Ф}_\text{эф} $ & \num{\workingDaysInYear}
+    \\ \hline
+
+    Продолжительность рабочего дня, ч.
+    & $ \text{Т}_\text{ч} $ & \num{\workingHoursInDay}
+    \\ \hline
+
+    Месячная тарифная ставка первого разряда, действующая на предприятии, \byr{}
+    & $ \text{Т}_{\text{м}_{1}}$ & \num{\tariffRate}
+    \\ \hline
+
+    Коэффициент премирования, ед.
+    & $ \text{К} $ & \num{\bonusRate}
+    \\ \hline
+
+    Норматив дополнительной заработной платы, ед.
+    & $ \text{Н}_\text{д} $ & \num{\additionalSalaryRate}
+    \\ \hline
+
+    Норматив отчислений в ФСЗН и обязательное страхование, $\%$
+    & $ \text{Н}_\text{сз} $ & \num{\socialProtectionRate}
+    \\ \hline
+
+    Норматив прочих затрат, $\%$
+    & $ \text{Н}_\text{пз} $ & \num{\otherExpenseRate}
+    \\ \hline
+
+    Норматив накладных расходов, $\%$
+    & $ \text{Н}_\text{рн} $ & \num{\overheadExpenseRate}
+    \\ \hline
+
+    Прогнозируемый уровень рентабельности,
+    $\%$ & $ \text{У}_\text{рп} $ & \num{\profitability}
+    \\ \hline
+
+    Ставка НДС, $\%$
+    & $ \text{Н}_\text{дс} $ & \num{\vatRate}
+    \\ \hline
+
+    Ставка налога на прибыль, $\%$
+    & $ \text{Н}_\text{п} $ & \num{\profitTaxRate}
+    \\ \hline
+
+    Норматив расхода материалов, $\%$
+    & $ \text{Н}_\text{мз} $ & \num{\materialsRate}
+    \\ \hline
+
+    Норматив расхода машинного времени, ч.
+    & $ \text{Н}_\text{мв} $ & \num{\debugRate}
+    \\ \hline
+
+    Цена одного часа машинного времени, \byr{}
+    & $ \text{Н}_\text{мв} $ & \num{\machineHourCost}
+    \\ \hline
+
+    Норматив расходов на сопровождение и адаптацию ПО, $\%$
+    & $ \text{Н}_\text{рса} $ & \num{\supportAndAdaptationRate}
+    \\ \hline
+\end{longtable}
+
+
+На стадии технико-экономического обоснования проекта рассчитать точный объём функций невозможно.
+Вместо вычисления точного объёма функций применяются приблизительные оценки на основе данных по аналогичным проектам или по нормативам~\cite[с.~61,~приложение 2]{palicyn_2006}, которые приняты в организации.
+
+\def \totalLOC{13940} % TODO
+\def \totalLOCCorrected{6300} % TODO
+
+\afterpage{
+\begin{longtable}{| >{\centering}m{0.12\textwidth}
+                  | >{\raggedright}m{0.40\textwidth}
+                  | >{\centering}m{0.18\textwidth}
+                  | >{\centering\arraybackslash}m{0.18\textwidth}|}
+  \caption{Перечень и объём функций программного модуля}
+  \label{table:econ:function_sizes}
+  \endfirsthead
+  \caption*{Продолжение таблицы \ref{table:econ:function_sizes}}\\
+  \endhead
+
+  \hline
+    \multirow{2}{0.12\textwidth}[-0.5 em]{\centering \No{} функции}
+    & \multirow{2}{0.40\textwidth}[-0.55 em]{\centering Наименование (содержание)}
+    & \multicolumn{2}{c|}{\centering Объём функции, LoC} \tabularnewline
+
+  \cline{3-4} &
+       & { по каталогу ($ V_{i} $) }
+       & { уточненный ($ V_{i}^{\text{у}} $) } \tabularnewline
+  \hline
+
+  101 & Организация ввода информации
+  & \num{100} & \num{100}
+  \\ \hline
+
+  102 & Контроль, предварительная обработка и ввод информации
+  & \num{520} & \num{370}
+  \\ \hline
+
+  111 & Управление вводом/выводом
+  & \num{2700} & \num{1900}
+  \\ \hline
+
+  301 & Формирование последовательного файла
+  & \num{340} & \num{170}
+  \\ \hline
+
+  305 & Обработка файлов
+  & \num{750} & \num{570}
+  \\ \hline
+
+  506 & Обработка ошибочных и сбойных ситуаций
+    & \num{430} & \num{400}
+  \\ \hline
+
+  507 & Обеспечение интерфейса между компонентами
+  & \num{730} & \num{680}
+  \\ \hline
+
+  701 & Математическая статистика и прогнозирование
+  & \num{8370} & \num{2210}
+  \\ \hline
+
+  Итог & &
+ {\num{\totalLOC}} & {\num{\totalLOCCorrected}}
+  \\ \hline
+
+\end{longtable}
+}
+
+Перечень и объём функций программного модуля перечислен в таблице~\ref{table:econ:function_sizes}.
+Общий уточненный объём ПО $ V_{\text{у}} = \SI{\totalLOCCorrected}{\text{LoC}} $.
+
+\subsection{Расчёт трудоемкости разработки программного средства}
+
+% Нормативная трудоёмкость, Тн
+\def \normativeWorkload{144}
+
+% Общая трудоёмкость, То
+\FPeval{totalWorkload}{
+    trunc(\normativeWorkload *
+          \complexityFactor *
+          \stdModuleUsageFactor *
+          \noveltyFactor + 0.5, 0)
+}
+
+% Срок разработки проекта, Тр
+\def \developmentMonths{3}
+\FPeval{developmentYears}{round(\developmentMonths / 12, 2)}
+
+% Численность исполнителей, Чр
+\FPeval{requiredProgrammers}{trunc(\totalWorkload / (\developmentYears * \workingDaysInYear) + 1, 0) }
+
+% Считаем, что работы каждому достаётся поровну.
+\FPeval{workloadSenior}{trunc( \totalWorkload / \requiredProgrammers, 0 )}
+\FPeval{workloadLead}{clip(\totalWorkload - \workloadSenior)}
+
+% ---
+
+На основании общего объема ПО, составляющего $ V_{\text{у}} = \SI{\totalLOCCorrected}{\text{LoC}} $, определяется нормативная трудоемкость (
+$ \text{Т}_\text{н}$
+) с учетом сложности ПО. Для ПО \complexityGroup-ой группы сложности, к которой относится разрабатываемый программный продукт, нормативная трудоемкость составит~
+$ \text{Т}_\text{н} = \SI{\normativeWorkload}{\text{чел.} / \text{дн.}} $
+
+Нормативная трудоемкость служит основой для оценки общей трудоемкости~
+$ \text{Т}_\text{о} $
+.
+Используем формулу (\ref{eq:economics:total_workload}) для оценки общей трудоемкости для небольших проектов:
+\begin{equation}
+  \label{eq:economics:total_workload}
+  \text{Т}_\text{о} = \text{Т}_\text{н} \cdot
+                      \text{К}_\text{с} \cdot
+                      \text{К}_\text{т} \cdot
+                      \text{К}_\text{н} \text{\,,}
+\end{equation}
+\begin{explanation}
+где & $ \text{К}_\text{с} $ & коэффициент, учитывающий сложность ПО; \\
+    & $ \text{К}_\text{т} $ & поправочный коэффициент, учитывающий степень использования при разработке стандартных модулей; \\
+    & $ \text{К}_\text{н} $ & коэффициент, учитывающий степень новизны ПО.
+\end{explanation}
+
+Дополнительные затраты труда на разработку ПО учитываются через коэффициент сложности, который вычисляется по формуле
+\begin{equation}
+\label{eq:economics:additional_complexity_factor}
+  \text{К}_{\text{с}} = 1 + \sum_{i = 1}^n \text{К}_{i} \text{\,,}
+\end{equation}
+\begin{explanation}
+где & $ \text{К}_{i} $ & коэффициент, соответствующий степени повышения сложности ПО за счет конкретной характеристики; \\
+    & $ n $ & количество учитываемых характеристик.
+\end{explanation}
+
+Наличие двух характеристик сложности позволяет~\cite[c.~66, приложение~4, таблица~П.4.2]{palicyn_2006} вычислить коэффициент сложности
+\begin{equation}
+\label{eq:economics:complexity_factor}
+  \text{К}_{\text{с}} = \num{1} + \num{\additionalComplexityFactor} = \num{\complexityFactor} \text{\,.}
+\end{equation}
+
+Разрабатываемое ПО использует стандартные компоненты. Согласно справочным данным~\cite[c.~68,~приложение~4, таблица~П.4.5]{palicyn_2006} коэффициент использования стандартных модулей
+$ \text{К}_\text{т} = \num{\stdModuleUsageFactor} $.
+
+Согласно справочным данным~\cite[c.~67, приложение~4, таблица~П.4.4]{palicyn_2006}, коэффициент новизны для разрабатываемого ПО
+$ \text{К}_\text{н} = \num{\noveltyFactor} $.
+
+Подставив приведенные выше коэффициенты для разрабатываемого ПО в формулу~(\ref{eq:economics:total_workload}) получим общую трудоемкость разработки
+\begin{equation}
+  \label{eq:economics:total_workload_calc}
+  \text{Т}_\text{о} = \num{\normativeWorkload}
+                      \cdot \num{\complexityFactor}
+                      \cdot \num{\stdModuleUsageFactor}
+                      \cdot \num{\noveltyFactor}
+                    \approx \SI{\totalWorkload}{\text{чел.}/\text{дн.}}
+\end{equation}
+
+На основе общей трудоемкости и требуемых сроков реализации проекта вычисляется плановое количество исполнителей.
+Численность исполнителей проекта рассчитывается по формуле:
+\begin{equation}
+  \label{eq:economics:num_of_programmers}
+  \text{Ч}_\text{р} = \frac{\text{Т}_\text{о}}
+                           {\text{Т}_\text{р}
+                      \cdot \text{Ф}_\text{эф}} \text{\,,}
+\end{equation}
+\begin{explanation}
+где & $ \text{Т}_\text{о} $ & общая трудоемкость разработки проекта, $ \text{чел.}/\text{дн.} $; \\
+    & $ \text{Ф}_\text{эф} $ & эффективный фонд времени работы одного работника в течение года, дн.; \\
+    & $ \text{Т}_\text{р} $ & срок разработки проекта, лет.
+\end{explanation}
+
+Учитывая срок разработки проекта
+$ \text{Т}_\text{р} = \SI{\developmentMonths}{\text{мес.}} = \SI{\developmentYears}{\text{года}} $
+, общую трудоемкость и фонд эффективного времени одного работника, вычисленные ранее, можем рассчитать численность исполнителей проекта
+\begin{equation}
+  \label{eq:econ:num_of_programmers_calc}
+  \text{Ч}_\text{р} = \frac{\num{\totalWorkload}}
+                           {\num{\developmentYears}
+                      \cdot \num{\workingDaysInYear}}
+                    \approx \SI{\requiredProgrammers}{\text{чел}}.
+\end{equation}
+
+Для выполнения запланированного проекта в указанные сроки необходимо привлечь \requiredProgrammers ~специалистов: инженер-программиста 1 категории и ведущего программист.
+
+\subsection{Расчёт расходов и прогнозируемой цены ПО}
+
+% Тариффные коэффициенты, Тк
+\def \tariffFactorSenior{3.25} % == 14 разряд
+\def \tariffFactorLead{3.48}   % == 15 разряд
+
+% Часовая тарифная ставка исполнителей, Тч
+\FPeval{hourlySalarySenior}{round(\tariffRate * \tariffFactorSenior / \workingHoursInMonth, 2)}
+\FPeval{hourlySalaryLead}{round(\tariffRate * \tariffFactorLead / \workingHoursInMonth, 2)}
+
+% Основная зарплата, Зо
+\FPeval{baseSalary}{round(\workingHoursInDay * \bonusRate * (\hourlySalarySenior * \workloadSenior + \hourlySalaryLead * \workloadLead), 2)}
+
+% Дополнительная зарплата, Зд
+\FPeval{additionalSalary}{round(\baseSalary * \additionalSalaryRate / 100, 2)}
+
+Информация о работниках перечислена в таблице~\ref{table:economics:programmers}.
+\begin{table}[ht]
+  \caption{Работники, занятые в проекте}
+  \label{table:economics:programmers}
+  \begin{tabular}{| >{\raggedright}m{0.4\textwidth}
+                  | >{\centering}m{0.15\textwidth}
+                  | >{\centering}m{0.18\textwidth}
+                  | >{\centering\arraybackslash}m{0.15\textwidth}|}
+   \hline
+   \centering{Исполнители} & Разряд & Тарифный коэффициент & \mbox{Чел./дн.} занятости
+   \\ \hline
+
+   Программист \Rmnum{1}-категории & $ \num{14} $ & $ \num{\tariffFactorSenior} $ & $ \num{\workloadSenior} $
+   \\ \hline
+   Ведущий программист & $ \num{15} $ & $ \num{\tariffFactorLead} $ & $ \num{\workloadLead} $
+   \\ \hline
+  \end{tabular}
+\end{table}
+
+Месячная тарифная ставка одного работника вычисляется по формуле
+\begin{equation}
+  \label{eq:economics:monthly_salary}
+  \text{Т}_\text{ч} =
+    \frac {\text{Т}_{\text{м}_{1}} \cdot \text{Т}_{\text{к}} }
+          {\text{Ф}_{\text{р}} }  \text{\,,}
+\end{equation}
+\begin{explanation}
+где & $ \text{Т}_{\text{м}_{1}} $ & месячная тарифная ставка 1-го разряда, \byr; \\
+    & $ \text{Т}_{\text{к}} $ & тарифный коэффициент, соответствующий установленному тарифному разряду; \\
+    & $ \text{Ф}_{\text{р}} $ & среднемесячная норма рабочего времени, час.
+\end{explanation}
+
+Подставив данные из таблиц~\ref{table:economics:initial_data} и ~\ref{table:economics:programmers} в формулу~(\ref{eq:economics:monthly_salary}), приняв среднемесячную норму рабочего времени
+$ \text{Ф}_{\text{р}} = \SI{\workingHoursInMonth}{\text{часов}} $
+получаем
+\begin{equation}
+  \label{eq:economics:monthly_salary_senior}
+  \text{Т}_{\text{ч}}^{\text{прогр. \Rmnum{1}-разр.}} =
+      \frac{ \num{\tariffRate} \cdot \num{\tariffFactorSenior} }
+           { \num{\workingHoursInMonth} }
+    = \SI{\hourlySalarySenior}{\text{\byr}/\text{час;}}
+\end{equation}
+\begin{equation}
+  \label{eq:economics:monthly_salary_lead}
+  \text{Т}_{\text{ч}}^{\text{вед. прогр.}} =
+      \frac{ \num{\tariffRate} \cdot \num{\tariffFactorLead} }
+           { \num{\workingHoursInMonth} }
+    = \SI{\hourlySalaryLead}{\text{\byr}/\text{час.}}
+\end{equation}
+
+Основная заработная плата исполнителей на конкретное ПО рассчитывается по формуле
+\begin{equation}
+  \label{eq:economics:base_salary}
+  \text{З}_{\text{о}} = \sum^{n}_{i = 1}
+                        \text{Т}_{\text{ч}}^{i} \cdot
+                        \text{Т}_{\text{ч}} \cdot
+                        \text{Ф}_{\text{п}} \cdot
+                        \text{К}
+                        \text{\,,}
+\end{equation}
+\begin{explanation}
+где & $ \text{Т}_{\text{ч}}^{i} $ & часовая тарифная ставка \mbox{$ i $-го} исполнителя, \byr$/$час; \\
+    & $ \text{Т}_{\text{ч}} $ & количество часов работы в день, час; \\
+    & $ \text{Ф}_{\text{п}} $ & плановый фонд рабочего времени \mbox{$ i $-го} исполнителя, дн.; \\
+    & $ \text{К} $ & коэффициент премирования.
+\end{explanation}
+
+Подставив ранее вычисленные значения и данные из таблицы~\ref{table:economics:programmers} в формулу~(\ref{eq:economics:base_salary}) и приняв коэффициент премирования
+$ \text{К} = \num{\bonusRate} $
+получим
+\begin{equation}
+  \label{eq:economics:base_salary_calc}
+  \text{З}_{\text{о}} = (\hourlySalarySenior \cdot \num{\workloadSenior} +
+                         \hourlySalaryLead \cdot \num{\workloadLead})
+                        \cdot \num{\workingHoursInDay}
+                        \cdot \num{\bonusRate}
+                      = \SI{\baseSalary}{\text{\byr}} \text{\,.}
+\end{equation}
+
+Дополнительная заработная плата включает выплаты предусмотренные законодательством о труде и определяется по нормативу в процентах от основной заработной платы
+\begin{equation}
+  \label{eq:economics:additional_salary}
+  \text{З}_{\text{д}} =
+    \frac {\text{З}_{\text{о}} \cdot \text{Н}_{\text{д}}}
+          {100\%} \text{\,,}
+\end{equation}
+\begin{explanation}
+  где & $ \text{Н}_{\text{д}} $ & норматив дополнительной заработной платы, $ \% $.
+\end{explanation}
+
+Дополнительная заработная плата разработчиков составит:
+\begin{equation}
+  \label{eq:econ:additional_salary_calc}
+  \text{З}_{\text{д}} =
+    \frac{\num{\baseSalary} \cdot 20\%}
+         {100\%} = \SI{\additionalSalary}{\text{\byr}} \text{\,.}
+\end{equation}
+
+\FPeval{totalSalary}{\baseSalary + \additionalSalary}
+
+% Отчисления в фонд социальной защиты
+\FPeval{socialProtectionMoney}{round(\totalSalary * \socialProtectionRate / 100, 2)}
+
+% Материалы и комплектующие
+\FPeval{materialsMoney}{round(\baseSalary * \materialsRate / 100, 2)}
+
+% Машинное время
+\FPeval{machineTimeMoney}{
+    round(\machineHourCost *
+          \totalLOCCorrected *
+          \debugRate / 100, 2)
+}
+
+% Прочие прямые расходы
+\FPeval{otherExpenseMoney}{ round( \baseSalary * \otherExpenseRate / 100, 2 )}
+
+% Накладные расходы
+\FPeval{overheadExpenseMoney}{ clip(round( \baseSalary * \overheadExpenseRate / 100, 2 ))}
+
+% Общая сумма
+\FPeval{\totalExpense}{
+    round( \totalSalary +
+           \additionalSalary +
+           \socialProtectionMoney +
+           \materialsMoney +
+           \machineTimeMoney +
+           \otherExpenseMoney +
+           \overheadExpenseMoney, 0 )
+}
+
+% Сопровождение и адаптация ПО
+\FPeval{supportAndAdaptationMoney} { round( \totalExpense * \supportAndAdaptationRate / 100, 2 )}
+
+% Полная себестоимость ПО
+\FPeval{totalSoftwareCost}{ clip(\totalExpense + \supportAndAdaptationMoney) }
+
+% Прогнозируемая прибыль
+\FPeval{profitMoney}{ round( \totalSoftwareCost * \profitability / 100, 2) }
+
+% Прогнозируемая цена без налогов
+\FPeval{estimatedPrice}{clip(\profitMoney + \totalSoftwareCost)}
+
+% Налог на добавленную стоимость
+\FPeval{vatMoney}{round(\estimatedPrice * \vatRate / 100, 2 ) }
+
+%Налог на прибыль
+\FPeval{profitTax}{round(\profitMoney * \profitTaxRate / 100, 2)}
+
+% Прогнозируемая отпускная цена
+\FPeval{sellingPrice}{ round( \estimatedPrice + \vatMoney, 2 ) }
+
+% ---
+
+Расчеты общей суммы расходов и прогнозируемой цены ПО, а также его себестоимости производятся в соответствии с установленными законодательством и регламентом предприятия нормативами. Результаты расчётов сведены в таблицу~\ref{table:economics:expenses_and_cost}.
+
+
+\begin{longtable}{| >{\raggedright}m{0.24\textwidth}
+                  | >{\centering}m{0.16\textwidth}
+                  | >{\centering}m{0.35\textwidth}
+                  | >{\centering\arraybackslash}m{0.15\textwidth}|}
+  \caption{Расчет себестоимости и отпускной цены ПО}
+  \label{table:economics:expenses_and_cost} \\
+  \endfirsthead
+  \caption*{Продолжение таблицы \ref{table:economics:expenses_and_cost}}\\
+  \hline
+  \centering{Наименование статей} & Норматив,\% & Методика расчета & Значение, руб. \\ 
+  \hline
+  \endhead
+  \hline
+  \centering{Наименование статей} & Норматив,\% & Методика расчета & Значение, руб. \\ 
+  \hline
+
+
+    Отчисления в фонд социальной защиты населения и обязательного страхования
+    & $ \text{Н}_{\text{сз}} = \num{\socialProtectionRate} $
+    & $ \text{З}_{\text{сз}} = (\text{З}_{\text{о}} + \text{З}_{\text{д}}) \cdot \text{Н}_{\text{сз}} / {\num{100}} $
+    & \num{\socialProtectionMoney}
+    \\ \hline
+
+    Материалы и комплектующие
+    & $ \text{Н}_{\text{мз}} = \num{\materialsRate} $
+    & $\text{М} = { \text{З}_{\text{о}} \cdot \text{Н}_{\text{мз}} } / { \num{100} } $
+    & \num{\materialsMoney}
+    \\ 
+
+    Машинное время
+    &
+    & $ \text{Р}_{\text{м}} = \text{Ц}_{\text{м}} \cdot \text{V}_{\text{о}} / \num{100} \cdot \text{Н}_{\text{мв}} $
+    $ \text{Н}_{\text{мв}} = \num{\debugRate}{\text{ машино-часов}} $
+    $ \text{Ц}_{\text{м}} = \SI{\machineHourCost}{\text{\byr}} $
+    $ V_{\text{у}} = \SI{\totalLOCCorrected}{\text{LoC}} $
+    & \num{\machineTimeMoney}
+    \\ \hline
+
+    Прочие прямые расходы
+    & $ \text{Н}_{\text{пз}} = \num{\otherExpenseRate} $
+    & $  \text{П}_{\text{з}} = { \text{З}_{\text{о}} \cdot \text{Н}_{\text{пз}} } / \num{100} $
+    & \num{\otherExpenseMoney}
+    \\ \hline
+
+    Накладные расходы
+    & $ \text{Н}_{\text{рн}} = \num{\overheadExpenseRate} $
+    & $  \text{Р}_{\text{н}} = { \text{З}_{\text{о}} \cdot \text{Н}_{\text{рн}} } / \num{100} $
+    & \num{\overheadExpenseMoney}
+    \\ \hline
+
+    Общая сумма расходов по смете
+    &
+    & $ \text{С}_{\text{р}} = \text{З}_{\text{о}} + \text{З}_{\text{д}} + \text{З}_{\text{сз}} + \text{М} + \text{Р}_{\text{м}} + \text{Р}_{\text{к}} + \text{П}_{\text{з}} + \text{Р}_{\text{н}} $
+    & \num{\totalSoftwareCost}\\
+    \hline
+
+    Сопровождение и адаптация ПО
+    & $ \text{Н}_{\text{рса}} = \num{\supportAndAdaptationRate} $
+    & $  \text{Р}_{\text{са}} = {\text{С}_{\text{р}} \cdot \text{Н}_{\text{рса}} } / { \num{100} } $
+    & \num{\supportAndAdaptationMoney}
+    \\ \hline
+
+    Полная себестоимость ПО
+    &
+    & $ \text{С}_{\text{п}} = \text{С}_{\text{р}} + \text{Р}_{\text{са}} $
+    & \num{\totalSoftwareCost}
+    \\ \hline
+
+    Прогнозируемая прибыль
+
+    & $ \text{У}_{\text{рп}} = \num{\profitability} $
+    & $  \text{П}_{\text{с}} = { \text{С}_{\text{п}} \cdot \text{У}_{\text{рп}} } / \num{100} $
+    & \num{\profitMoney}
+    \\ \hline
+
+    Прогнозируемая цена без налогов
+    &
+    & $ \text{Ц}_{\text{п}} = \text{С}_{\text{п}} + \text{П}_{\text{с}}$
+    & \num{\estimatedPrice}
+    \\ \hline
+
+    Налог на добавленную стоимость
+    & $ \text{Н}_{\text{дс}} = \num{\vatRate} $
+    & $ \text{НДС}_{\text{}} = { (\text{Ц}_{\text{п}} + \text{О}_{\text{мр}}) \cdot \text{Н}_{\text{дс}} } / \num{100} $
+    & \num{\vatMoney}
+    \\ \hline
+
+    Прогнозируемая отпускная цена
+    &
+    & $ \text{Ц}_{\text{о}} = \text{Ц}_{\text{п}} + \text{О}_{\text{мр}} + \text{НДС} $
+    & \num{\sellingPrice}
+    \\ \hline
+\end{longtable}
+
+По результатам расчетов получаем прогнозируемую отпускную цену программного средства $ \text{Ц}_{\text{о}} = \num{\sellingPrice}~\text{\byr}$ и прогнозируемую прибыль $ \text{П}_{\text{с}} = \num{\profitMoney}~\text{\byr}$.
+
+Программное средство разрабатывалось для одного заказчика в связи с этим экономическим эффектом разработчика будет являться чистая прибыль от реализации.
+
+Чистую прибыль от реализации проекта можно рассчитать по формуле
+\begin{equation}
+  \label{eq:economics:profit}
+  \text{П}_\text{ч} =
+    \text{П}_\text{c} \cdot
+    \left(1 - \frac{ \text{Н}_\text{п} }{ \num{100\%} } \right) \text{\,,}
+\end{equation}
+\begin{explanation}
+  где & $ \text{Н}_{\text{п}} $ & ставка налога на прибыль,~$\%$.
+\end{explanation}
+
+\FPeval{netProfit}{round(\profitMoney - \profitTax, 0)}
+
+Подставив данные в формулу~(\ref{eq:economics:profit}) получаем чистую прибыль
+\begin{equation}
+  \label{eq:economics:net_profit}
+  \text{П}_\text{ч} =
+    \num{\profitMoney} \cdot \left( 1 - \frac{\num{\profitTaxRate\%}}{100\%} \right) = \SI{\netProfit}{\text{\byr}} \text{\,.}
+\end{equation}
+
+На реализацию программного средства будет затрачено $ \totalSoftwareCost~\text{\byr}$ а экономический эффект от реализации, в виде чистой прибыли, равен $ \profitMoney~\text{\byr}$. 
+
+\def \tariffFactorJuniorGraphologyAnalytic{2.48}
+
+\subsection{Расчёт экономической эффективности у заказчика}
+Эффект от применения программного продукта заказчиком заключается в сокращении расходов на оплату труда экспертов"=графологов, так же с помощью разработанного программного средства можно сократить время на выполнение работ за счет уменьшение времени на выполнение рутинных процедур, например, предварительную обработку образцов почерка, что приведет к ускорению графологического анализа. Так как оценить экономический эффект от сокращения времени на проведения анализа технически сложно, далее будет рассматриваться и рассчитываться только эффект от сокращения расходов на оплату труда. В настоящий момент штат графологов компании составляет 6 человек. Их них 1 старший эксперт-графолог, 2 эксперта графолога и 3 младших эксперта-графолога. Подготовки и предварительного анализа образцов являются обязанностями младших экспертов-графологов.
+
+Согласно отзывам заказчика после внедрения программного средства время подготовки и предварительного анализа образцов почерка сократилось с 30 до 10 минут.
+
+Приняв количество обрабатываемых в месяц образцов за 1000 и время на обработку одного образца за 30 минут и подставив в формулу~(\ref{eq:economics:total_workload}) получим трудозатраты на подготовку и предварительный анализа образцов почерка до внедрения ПС.
+\begin{equation}
+  \label{eq:economics:total_workload_calc}
+  \text{Т}_\text{о} = \frac{1000}{0.5 \cdot 160} \approx 3 {\text{чел.}/\text{мес.}}
+\end{equation}
+Рассчитанные данные совпадают с количеством младших экспертов"=графологов в штате.
+
+Приняв количество обрабатываемых в месяц образцов за 1000 и время на обработку одного образца за 10 минут и подставив в формулу~(\ref{eq:economics:total_workload}) получим трудозатраты на подготовку и предварительный анализа образцов почерка после внедрения ПС.
+\begin{equation}
+  \label{eq:economics:total_workload_calc}
+  \text{Т}_\text{о} = \frac{1000}{0.33 \cdot 160} \approx 1 {\text{чел.}/\text{мес.}}
+\end{equation}
+
+Благодаря переноса функции подготовки образцов почерка и ускорению предварительного анализа образцов почерка после внедрения разработанного программного средства могут быть высвобождены ресурсы в виде 2-х младших экспертов"=графологов.
+
+% Часовая тарифная ставка исполнителей, Тч
+\FPeval{hourlySalaryAnalytic}{round(\tariffRate * \tariffFactorJuniorGraphologyAnalytic / \workingHoursInMonth, 2)}
+
+% Основная зарплата, Зо за год
+\FPeval{baseSalaryAnalytic}{round(\workingHoursInDay * \bonusRate * (\hourlySalaryAnalytic * \workingDaysInYear * 2), 2)}
+
+% Дополнительная зарплата, Зд
+\FPeval{additionalSalaryAnalytic}{round(\baseSalaryAnalytic * \additionalSalaryRate / 100, 2)}
+
+\begin{table}[ht]
+  \caption{Работники, занятые на стороне заказчика}
+  \label{table:economics:graph_analytic}
+  \begin{tabular}{| >{\raggedright}m{0.4\textwidth}
+                  | >{\centering}m{0.15\textwidth}
+                  | >{\centering}m{0.18\textwidth}
+                  | >{\centering\arraybackslash}m{0.15\textwidth}|}
+   \hline
+   \centering{Исполнители} & Разряд & Тарифный коэффициент & \mbox{Чел./дн.} занятости
+   \\ \hline
+
+   Младший эксперт"=графолог & $ \num{12} $ & $ \num{\tariffFactorJuniorGraphologyAnalytic} $ & $ \num{\workingDaysInYear} $
+   \\ \hline
+  \end{tabular}
+\end{table}
+
+Подставив данные из таблицы~\ref{table:economics:graph_analytic} в формулу~(\ref{eq:economics:monthly_salary}), приняв значение тарифной ставки 1-го разряда
+$ \text{Т}_{\text{м}_{1}} = \SI{\tariffRate}{\text{\byr}} $
+и среднемесячную норму рабочего времени
+$ \text{Ф}_{\text{р}} = \SI{\workingHoursInMonth}{\text{часов}} $
+получаем
+\begin{equation}
+  \label{eq:economics:monthly_salary_analytic}
+  \text{Т}_{\text{ч}}^{\text{мл. эксп.-граф.}} =
+      \frac{ \num{\tariffRate} \cdot \num{\tariffFactorJuniorGraphologyAnalytic} }
+           { \num{\workingHoursInMonth} }
+    = \SI{\hourlySalaryAnalytic}{\text{\byr}/\text{час;}}
+\end{equation}
+
+Подставив ранее вычисленные значения и данные из таблицы~\ref{table:economics:graph_analytic} в формулу~(\ref{eq:economics:base_salary}) и приняв коэффициент премирования
+$ \text{К} = \num{\bonusRate} $
+получим
+\begin{equation}
+  \label{eq:economics:base_analytic_salary_calc}
+  \text{З}_{\text{о}} = \hourlySalaryAnalytic \cdot \num{\workingDaysInYear} \cdot
+                        \num{\workingHoursInDay}
+                        \cdot \num{\bonusRate}
+                        \cdot 2
+                      = \SI{\baseSalaryAnalytic}{\text{\byr}} \text{\,.}
+\end{equation}
+
+Приняв норматив дополнительной заработной платы
+$ \text{Н}_{\text{д}} = \num{\additionalSalaryRate\%} $
+и подставив известные данные в формулу~(\ref{eq:economics:additional_salary}) получим
+\begin{equation}
+  \label{eq:econ:additional_salary_analytic_calc}
+  \text{З}_{\text{д}} =
+    \frac{\num{\baseSalaryAnalytic} \cdot 20\%}
+         {100\%} = \SI{\additionalSalaryAnalytic}{\text{\byr}} \text{\,.}
+\end{equation}
+
+\FPeval{totalSalaryAnalytic}{\baseSalaryAnalytic + \additionalSalary}
+
+% Отчисления в фонд социальной защиты
+\FPeval{socialProtectionMoneyAnalytic}{round(\totalSalaryAnalytic * \socialProtectionRate / 100, 2)}
+
+% Общая сумма
+\FPeval{totalDirtyAnalyticExpense}{round(\totalSalaryAnalytic + \socialProtectionMoneyAnalytic, 2)}
+
+\FPeval{totalAnalyticExpense}{round(\totalDirtyAnalyticExpense * (1 - 18/100), 2)}
+
+Учитывая отчисления в фонд социального страхования населения и обязательного страхования получаем итоговые расходы на оплату труда.
+\begin{equation}
+  \label{eq:econ:total_salary_analytic_calc}
+    \text{Р}_{\text{от}}=\num{\baseSalaryAnalytic} + \num{\additionalSalaryAnalytic} + \num{\socialProtectionMoneyAnalytic} = \num{\totalDirtyAnalyticExpense} {\text{\byr}} \text{\,.}
+\end{equation}
+
+Экономическия на оплату труда составит $ \text{Р}_{\text{от}}=\num{\totalDirtyAnalyticExpense} {\text{\byr}} $.
+
+Подставив данные в формулу~(\ref{eq:economics:profit}) получим чистую прибыль равную $ \totalAnalyticExpense~\text{\byr} $, что для пользователя будет выступать в качестве экономического эффекта.
+
+\def \depositRate{0.063}
+\FPeval{discontOnSecondYear}  {round(1 / pow(2, 1 + \depositRate), 3)}
+\FPeval{discontOnThirdYear}   {round(1 / pow(3, 1 + \depositRate), 3)}
+\FPeval{discontOnFourthYear}  {round(1 / pow(4, 1 + \depositRate), 3)}
+\FPeval{discontOnFivethYear}  {round(1 / pow(5, 1 + \depositRate), 3)}
+
+\FPeval{secondYearProfit}{round(\totalAnalyticExpense * \discontOnSecondYear, 2)}
+\FPeval{thirdYearProfit}{round(\totalAnalyticExpense * \discontOnThirdYear, 2)}
+\FPeval{fourthYearProfit}{round(\totalAnalyticExpense * \discontOnFourthYear, 2)}
+\FPeval{fivethYearProfit}{round(\totalAnalyticExpense * \discontOnFivethYear, 2)}
+
+\FPeval{firstYearProfit}{round(\totalAnalyticExpense - \sellingPrice, 2)}
+\FPeval{secondYearTotalProfit}{round(\firstYearProfit + \totalAnalyticExpense * \discontOnSecondYear, 2)}
+\FPeval{thirdYearTotalProfit}{round(\secondYearTotalProfit + \totalAnalyticExpense * \discontOnThirdYear, 2)}
+\FPeval{fourthYearTotalProfit}{round(\thirdYearTotalProfit + \totalAnalyticExpense * \discontOnFourthYear, 2)}
+\FPeval{fivethYearTotalProfit}{round(\fourthYearTotalProfit + \totalAnalyticExpense * \discontOnFivethYear, 2)}
+
+\begin{longtable}{| >{\raggedright}m{0.25\textwidth}
+                  | >{\centering}m{0.12\textwidth}
+                  | >{\centering}m{0.12\textwidth}
+                  | >{\centering}m{0.12\textwidth}
+                  | >{\centering}m{0.12\textwidth}
+                  | >{\centering\arraybackslash}m{0.12\textwidth}|}
+  \caption{Экономический эффект у покупателя}
+  \label{table:econ:customer_profit}
+  \endfirsthead
+  \caption*{Продолжение таблицы \ref{table:econ:customer_profit}}\\
+  \endhead
+
+  \hline
+    \multirow{2}{0.20\textwidth}{\centering{Показатель}}
+    & \multicolumn{5}{c|}{\centering Расчетный период} \tabularnewline
+
+  \cline{2-6}
+       & { 1 }
+       & { 2 }
+       & { 3 } 
+       & { 4 }
+       & { 5 }\tabularnewline
+  \hline
+  РЕЗУЛЬТАТ & & & & & \\ \hline
+  1. Экономический эффект & \num{\totalAnalyticExpense} & \num{\totalAnalyticExpense} & \num{\totalAnalyticExpense} & \num{\totalAnalyticExpense} & \num{\totalAnalyticExpense} \\ \hline
+  2. Дисконтированный результат & \num{\totalAnalyticExpense} & \num{\secondYearProfit} & \num{\thirdYearProfit} & \num{\fourthYearProfit} & \num{\fivethYearProfit} \\ \hline
+  ЗАТРАТЫ & & & & & \\ \hline
+  4. Дисконтированные инвестиции & \num{\sellingPrice} & & & & \\ \hline
+  5. Чистый дисконтированный доход & \num{\firstYearProfit} & \num{\secondYearProfit} & \num{\thirdYearProfit} & \num{\fourthYearProfit} & \num{\fivethYearProfit} \\ \hline
+  6. Чистый дисконтированный доход нарастающим итогом & \num{\firstYearProfit} & \num{\secondYearTotalProfit} & \num{\thirdYearTotalProfit} & \num{\fourthYearTotalProfit} & \num{\fivethYearTotalProfit} \\ \hline
+  Коэффициент дисконтирования & \num{1} & \num{\discontOnSecondYear} & \num{\discontOnThirdYear} & \num{\discontOnFourthYear} & \num{\discontOnFivethYear} \\ \hline
+\end{longtable}
+
+На четвертый года использования разработанное программное средство окупит себя и за 5 лет использования принесет прибыли в $ \fivethYearTotalProfit \text{ \byr} $.

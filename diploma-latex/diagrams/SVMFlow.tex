@@ -1,0 +1,58 @@
+\documentclass{minimal}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usetikzlibrary{calc,trees,positioning,arrows,chains,shapes.geometric,decorations.pathreplacing,decorations.pathmorphing,shapes,matrix,shapes.symbols}
+
+\tikzset{
+>=stealth',
+  punktchain/.style={
+    rectangle, 
+    draw=black, very thick,
+    text width=10em, 
+    minimum height=3em, 
+    text centered, 
+    on chain},
+  every join/.style={-, thick,shorten >=1pt},
+  decoration={brace},
+  tuborg/.style={decorate, thick},
+  tubnode/.style={midway, right=2pt},
+}
+
+\begin{document}
+\begin{tikzpicture}
+  [node distance=.8cm,
+  start chain=going below]
+     \node[punktchain, join] (intro) {Формирование обучающей выборки};
+     \node[punktchain, join] (probf) {Выделение признаков};
+     \node[punktchain, join] (investeringer) {Нормализация признаков};
+     \node[punktchain, join] (init) {Инициализация обучающего алгоритма};
+     \begin{scope}[start branch=venstre,
+        every join/.style={->, thick, shorten <=1pt}, ]
+        \node[punktchain, on chain=going left, join=by {<-}]
+            (risiko) {Начальные параметры};
+    \end{scope}
+    \node[punktchain, join] (disk) {Обучение модели};
+    \node[punktchain, join] (disk) {Оценка эффективности};
+    \begin{scope}[start branch=venstre,
+       every join/.style={->, thick, shorten <=1pt}, ]
+       \node[punktchain, on chain=going left, join=by {<-}]
+            (risiko) {Критерии эффективности};
+    \end{scope}
+    \node[punktchain, join] (disk) {Регулировка модели};
+    \node[punktchain, join] (makro) {Оптимизация модели};
+    \node[punktchain, join] (use) {Распознование новых образов};
+
+
+  \draw[tuborg] let \p1=(intro.north), \p2=(investeringer.south) in
+    ($(2, \y1)$) -- ($(2, \y2)$) node[tubnode] {Подготовка};
+    
+   \draw[tuborg] let \p1=(init.north), \p2=(makro.south) in
+    ($(2, \y1)$) -- ($(2, \y2)$) node[tubnode] {Обучение};
+    
+   \draw[tuborg] let \p1=(use.north), \p2=(use.south) in
+    ($(2, \y1)$) -- ($(2, \y2)$) node[tubnode] {Использование};
+  \end{tikzpicture}
+\end{document}

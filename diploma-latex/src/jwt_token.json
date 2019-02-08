@@ -1,0 +1,15 @@
+//header
+{
+  "alg": "RS256",
+  "typ": "JWT"
+}
+//payload
+{
+  "exp": 1300819380,
+  "uid": "1234567890",
+  "admin": true
+}
+//signature
+{
+  "Base64Sigh": "TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ"
+}

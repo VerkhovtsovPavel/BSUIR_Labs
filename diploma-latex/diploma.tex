@@ -1,0 +1,56 @@
+\input{tex/preamble}
+\begin{document}
+
+% Не пытаемся впихивать по максимуму - не получаем вылазящих за правый край слов
+\sloppy
+
+% Титульник
+\input{tex/titlepage} %
+
+% Лист задания
+\input{tex/taskpage} %
+
+% Реферат
+\input{tex/abstract} %
+
+% Содержание
+\clearpage \setcounter{page}{5}
+\input{tex/toc} %
+
+% Определения и сокращения
+\input{tex/terminology} %
+
+% Введение
+\input{tex/intro} %
+
+% Глава 1 Обзор предметной области
+\input{tex/domain} 
+
+% Глава 2 Функциональные требования
+\input{tex/functional_requirements}
+
+% Глава 3 Проектирование архитектуры программного средства
+\input{tex/architecture} %
+
+% Глава 4 Разработка программного средства
+\input{tex/development} %
+
+% Глава 5 Тестирование программного средства
+\input{tex/testing} %
+
+% Глава 6 Использование разработанного программного средства
+\input{tex/manpage} %
+
+% Глава 7 Технико-экономическое обоснование разработки ПС
+\input{tex/economics} %
+
+% Заключение
+\input{tex/outro} %
+
+% Список использованных источников
+\input{tex/references} %
+
+% Приложение А Исходный код программного средства
+\input{tex/sources} %
+
+\end{document}
