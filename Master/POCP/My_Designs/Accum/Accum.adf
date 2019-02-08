@@ -1,0 +1,145 @@
+[Project]
+Current Flow=Multivendor
+VCS=0
+version=4
+Current Config=compile
+
+[Configurations]
+compile=Accum
+
+[Library]
+Accum=.\Accum\Accum.lib
+
+[Settings]
+AccessRead=0
+AccessReadWrite=0
+AccessACCB=0
+AccessACCR=0
+AccessReadWriteSLP=0
+AccessReadTopLevel=1
+DisableC=1
+ENABLE_ADV_DATAFLOW=0
+FLOW_TYPE=HDL
+LANGUAGE=VHDL
+REFRESH_FLOW=1
+FLOWTOOLS=IMPL_WITH_SYNTH
+ON_SERVERFARM_SYNTH=0
+ON_SERVERFARM_IMPL=0
+ON_SERVERFARM_SIM=0
+DVM_DISPLAY=NO
+fileopenfolder=E:\Downloads\POCP\POCP.Accum\src\TestBench
+CSYNTH_STATUS=NONE
+IMPL_TOOL=
+SYNTH_TOOL=MV_QUARTUS_SYNTHESIS171
+CSYNTH_TOOL=
+PHYSSYNTH_TOOL=
+FAMILY=Quartus Cyclone10LP
+PHYSSYNTH_STATUS=NONE
+SYNTH_STATUS=none
+IMPL_STATUS=none
+RUN_MODE_SYNTH=1
+PCBINTERFACE_STATUS=NONE
+FUNCTIONAL_SIMULATION_STATUS=
+POSTSYNTHESIS_SIMULATION_STATUS=
+TIMING_SIMULATION_STATUS=
+VerilogDirsChanged=0
+
+[LocalVerilogSets]
+EnableSLP=1
+EnableDebug=0
+
+[LocalVhdlSets]
+CompileWithDebug=0
+
+[$LibMap$]
+Accum=.
+Active_lib=
+
+[PCB_INTERFACE]
+FAMILY=
+
+[SpecTracer]
+WindowVisible=0
+
+[HierarchyViewer]
+HierarchyInformation=dpath_tb|testbench_for_dpath|1 onehot_tb|testbench_for_onehot|1  
+ShowHide=ShowTopLevel
+Selected=
+
+[SYNTHESIS]
+TOPLEVEL=OneHot
+FAMILY=Quartus Cyclone10LP
+DEVICE=10CL006YU256I
+SPEED=7G
+LAST_RUN=1523299081
+JOB_DESCRIPTION=SynthesisTask
+JOB_SFM_RESOURCE=
+ENABLE_SIGNALTAP=0
+SERVERFARM_INCLUDE_INPUT_FILES=*.*
+SERVERFARM_EXCLUDE_INPUT_FILES=
+OVERWRITE_PROJECT=1
+AUTO_CLOSE=0
+QSF_FILE_SELECTION=synthesis/OneHot.qsf
+CHECK_PROJECT_OUTPUT_DIRECTORY=0
+CHECK_OPTIMIZE_HOLD_TIMING=1
+USE_SIGNALTAP_FILE=
+ENABLE_LOGIC_ANALYZER_INTERFACE=0
+USE_LOGIC_ANALYZER_INTERFACE_FILE=
+OLD_FAMILY=Quartus Cyclone10LP
+CHECK_IMPORT_PIN_ASSIGNMENTS=0
+IMPORT_PIN_ASSIGNMENTS=.\synthesis\OneHot.qsf
+CHECK_GENERATE_FPGA_EXCHANGE_FILE=0
+GENERATE_FPGA_EXCHANGE_FILE=.\symbols\fpgaxchange
+BTM_IO_STANDARD=1.2V
+DEFAULT_QUARTUS_SETTINGS_FILE=..\..\intelFPGA_lite\17.1\quartus\bin64\assignment_defaults.qdf
+OUTPUT_IO_TIMING_NEAR_END_VMEAS_RISE=Half Signal Swing
+OUTPUT_IO_TIMING_NEAR_END_VMEAS_FALL=Half Signal Swing
+OUTPUT_IO_TIMING_FAR_END_VMEAS_RISE=Half Signal Swing
+OUTPUT_IO_TIMING_FAR_END_VMEAS_FALL=Half Signal Swing
+
+[PHYS_SYNTHESIS]
+FAMILY=
+DEVICE=
+SPEED=
+SCRIPTS_COPIED=0
+
+[IMPLEMENTATION]
+FLOW_STEPS_RESET=1
+LAST_RUN=1523299081
+DEVICE_TECHNOLOGY_MIGRATION_LIST=
+
+[Groups]
+TestBench=1
+
+[Files]
+/Constants.vhd=-1
+/CTRL1.vhd=-1
+/DPATH.vhd=-1
+/MRAM.vhd=-1
+/MROM.vhd=-1
+/OneHot.vhd=-1
+TestBench/dpath_TB.vhd=-1
+TestBench/dpath_TB_runtest.do=-1
+TestBench/mram_TB.vhd=-1
+TestBench/mram_TB_runtest.do=-1
+TestBench/mrom_TB.vhd=-1
+TestBench/mrom_TB_runtest.do=-1
+TestBench/onehot_TB.vhd=-1
+TestBench/onehot_TB_runtest.do=-1
+
+[Files.Data]
+.\src\Constants.vhd=VHDL Source Code
+.\src\CTRL1.vhd=VHDL Source Code
+.\src\DPATH.vhd=VHDL Source Code
+.\src\MRAM.vhd=VHDL Source Code
+.\src\MROM.vhd=VHDL Source Code
+.\src\OneHot.vhd=VHDL Source Code
+.\src\TestBench\dpath_TB.vhd=VHDL Source Code
+.\src\TestBench\dpath_TB_runtest.do=Macro
+.\src\TestBench\mram_TB.vhd=VHDL Source Code
+.\src\TestBench\mram_TB_runtest.do=Macro
+.\src\TestBench\mrom_TB.vhd=VHDL Source Code
+.\src\TestBench\mrom_TB_runtest.do=Macro
+.\src\TestBench\onehot_TB.vhd=VHDL Source Code
+.\src\TestBench\onehot_TB_runtest.do=Macro
+

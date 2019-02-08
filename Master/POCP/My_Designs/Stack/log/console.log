@@ -1,0 +1,175 @@
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.1 [s].
+acom -O3 -e 100 -work Stack -2002  $dsn/src/OneHot.vhd $dsn/src/MROM.vhd $dsn/src/MRAM.vhd $dsn/src/LIFO.vhd $dsn/src/DPATH.vhd $dsn/src/CTRL1.vhd $dsn/src/Constants.vhd $dsn/src/TestBench/dpath_TB.vhd $dsn/src/TestBench/lifo_TB.vhd $dsn/src/TestBench/mram_TB.vhd $dsn/src/TestBench/mrom_TB.vhd $dsn/src/TestBench/onehot_TB.vhd $dsn/src/TestBench/ctrl1_TB.vhd
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: c:\My_Designs\Stack\src\OneHot.vhd
+# Compile Entity "OneHot"
+# Compile Architecture "Beh" of Entity "OneHot"
+# File: c:\My_Designs\Stack\src\MROM.vhd
+# Compile Entity "MROM"
+# Compile Architecture "Beh_Stack" of Entity "MROM"
+# File: c:\My_Designs\Stack\src\MRAM.vhd
+# Compile Entity "MRAM"
+# Compile Architecture "Beh" of Entity "MRAM"
+# File: c:\My_Designs\Stack\src\LIFO.vhd
+# Compile Entity "LIFO"
+# Compile Architecture "Beh" of Entity "LIFO"
+# File: c:\My_Designs\Stack\src\DPATH.vhd
+# Compile Entity "DPATH"
+# Compile Architecture "Beh_Stack" of Entity "DPATH"
+# File: c:\My_Designs\Stack\src\CTRL1.vhd
+# Compile Entity "CTRL1"
+# Compile Architecture "Beh_Stack" of Entity "CTRL1"
+# File: c:\My_Designs\Stack\src\Constants.vhd
+# Compile Package "OneHotStack"
+# File: c:\My_Designs\Stack\src\TestBench\dpath_TB.vhd
+# Compile Entity "dpath_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "dpath_tb"
+# Compile Configuration "TESTBENCH_FOR_dpath"
+# File: c:\My_Designs\Stack\src\TestBench\lifo_TB.vhd
+# Compile Entity "lifo_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "lifo_tb"
+# Compile Configuration "TESTBENCH_FOR_lifo"
+# File: c:\My_Designs\Stack\src\TestBench\mram_TB.vhd
+# Compile Entity "mram_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "mram_tb"
+# Compile Configuration "TESTBENCH_FOR_mram"
+# File: c:\My_Designs\Stack\src\TestBench\mrom_TB.vhd
+# Compile Entity "mrom_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "mrom_tb"
+# Compile Configuration "TESTBENCH_FOR_mrom"
+# File: c:\My_Designs\Stack\src\TestBench\onehot_TB.vhd
+# Compile Entity "onehot_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "onehot_tb"
+# Compile Configuration "TESTBENCH_FOR_onehot"
+# File: c:\My_Designs\Stack\src\TestBench\ctrl1_TB.vhd
+# Compile Entity "ctrl1_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "ctrl1_tb"
+# Compile Configuration "TESTBENCH_FOR_ctrl1"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.1 [s]
+SetActiveLib -work
+comp -include "$dsn\src\OneHot.vhd" 
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: c:\My_Designs\Stack\src\OneHot.vhd
+# Compile Entity "OneHot"
+# Compile Architecture "Beh" of Entity "OneHot"
+# Compile success 0 Errors 0 Warnings  Analysis time :  31.0 [ms]
+comp -include "$dsn\src\TestBench\onehot_TB.vhd" 
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: c:\My_Designs\Stack\src\TestBench\onehot_TB.vhd
+# Compile Entity "onehot_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "onehot_tb"
+# Compile Configuration "TESTBENCH_FOR_onehot"
+# Compile success 0 Errors 0 Warnings  Analysis time :  15.0 [ms]
+asim +access +r TESTBENCH_FOR_onehot 
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.0 [s].
+# VSIM: Stack memory: 32MB
+# VSIM: Retval memory: 32MB
+# 
+acom -O3 -e 100 -work Stack -2002  $dsn/src/MROM.vhd
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: c:\My_Designs\Stack\src\MROM.vhd
+# Compile Entity "MROM"
+# Compile Architecture "Beh_Stack" of Entity "MROM"
+# Compile success 0 Errors 0 Warnings  Analysis time :  16.0 [ms]
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.0 [s].
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Elaboration final pass...
+# ELAB2: Create instances ...
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Elaboration phase ...
+# SLP: Elaboration phase ... skipped, nothing to simulate in SLP mode : 0.0 [s]
+# SLP: Finished : 0.0 [s]
+# ELAB2: Elaboration final pass complete - time: 0.0 [s].
+# KERNEL: Warning: You are using the Active-HDL Student Edition. The performance of simulation is running at a reduced rate.
+# KERNEL: Warning: Contact Aldec for available upgrade options - sales@aldec.com.
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 7241 kB (elbread=1280 elab2=5822 kernel=138 sdf=0)
+# KERNEL: ASDB file was created in location c:\My_Designs\Stack\src\wave.asdb
+#  16:14, 10 апреля 2018 г.
+#  Simulation has been initialized
+wave 
+wave -noreg CLK
+wave -noreg RST
+wave -noreg Start
+wave -noreg Stop
+# # The following lines can be used for timing simulation
+# # acom <backannotated_vhdl_file_name>
+# # comp -include "$dsn\src\TestBench\onehot_TB_tim_cfg.vhd" 
+# # asim +access +r TIMING_FOR_onehot 
+# 4 signal(s) traced.
+# Waveform file 'untitled.awc' connected to 'c:/My_Designs/Stack/src/wave.asdb'.
+run 1000 ns
+# KERNEL: WARNING: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+# KERNEL: Time: 0 ps,  Iteration: 0,  Instance: /onehot_tb/UUT/UMRAM,  Process: line__59.
+# KERNEL: WARNING: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+# KERNEL: Time: 0 ps,  Iteration: 0,  Instance: /onehot_tb/UUT/UMROM,  Process: line__61.
+# KERNEL: WARNING: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+# KERNEL: Time: 0 ps,  Iteration: 0,  Instance: /onehot_tb/UUT/UDPATH,  Process: FLAGS.
+# KERNEL: stopped at time: 1 us
+run 1000 ns
+# KERNEL: stopped at time: 2 us
+run 1000 ns
+# KERNEL: stopped at time: 3 us
+run 1000 ns
+# KERNEL: stopped at time: 4 us
+run 1000 ns
+# KERNEL: stopped at time: 5 us
+run 1000 ns
+# KERNEL: stopped at time: 6 us
+run 1000 ns
+# KERNEL: stopped at time: 7 us
+run 1000 ns
+# KERNEL: stopped at time: 8 us
+acom -O3 -e 100 -work Stack -2002  $dsn/src/OneHot.vhd $dsn/src/MROM.vhd $dsn/src/MRAM.vhd $dsn/src/LIFO.vhd $dsn/src/DPATH.vhd $dsn/src/CTRL1.vhd $dsn/src/Constants.vhd $dsn/src/TestBench/dpath_TB.vhd $dsn/src/TestBench/lifo_TB.vhd $dsn/src/TestBench/mram_TB.vhd $dsn/src/TestBench/mrom_TB.vhd $dsn/src/TestBench/onehot_TB.vhd $dsn/src/TestBench/ctrl1_TB.vhd
+# Warning: DAGGEN_0523: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# File: c:\My_Designs\Stack\src\OneHot.vhd
+# Compile Entity "OneHot"
+# Compile Architecture "Beh" of Entity "OneHot"
+# File: c:\My_Designs\Stack\src\MROM.vhd
+# Compile Entity "MROM"
+# Compile Architecture "Beh_Stack" of Entity "MROM"
+# File: c:\My_Designs\Stack\src\MRAM.vhd
+# Compile Entity "MRAM"
+# Compile Architecture "Beh" of Entity "MRAM"
+# File: c:\My_Designs\Stack\src\LIFO.vhd
+# Compile Entity "LIFO"
+# Compile Architecture "Beh" of Entity "LIFO"
+# File: c:\My_Designs\Stack\src\DPATH.vhd
+# Compile Entity "DPATH"
+# Compile Architecture "Beh_Stack" of Entity "DPATH"
+# File: c:\My_Designs\Stack\src\CTRL1.vhd
+# Compile Entity "CTRL1"
+# Compile Architecture "Beh_Stack" of Entity "CTRL1"
+# File: c:\My_Designs\Stack\src\Constants.vhd
+# Compile Package "OneHotStack"
+# File: c:\My_Designs\Stack\src\TestBench\dpath_TB.vhd
+# Compile Entity "dpath_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "dpath_tb"
+# Compile Configuration "TESTBENCH_FOR_dpath"
+# File: c:\My_Designs\Stack\src\TestBench\lifo_TB.vhd
+# Compile Entity "lifo_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "lifo_tb"
+# Compile Configuration "TESTBENCH_FOR_lifo"
+# File: c:\My_Designs\Stack\src\TestBench\mram_TB.vhd
+# Compile Entity "mram_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "mram_tb"
+# Compile Configuration "TESTBENCH_FOR_mram"
+# File: c:\My_Designs\Stack\src\TestBench\mrom_TB.vhd
+# Compile Entity "mrom_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "mrom_tb"
+# Compile Configuration "TESTBENCH_FOR_mrom"
+# File: c:\My_Designs\Stack\src\TestBench\onehot_TB.vhd
+# Compile Entity "onehot_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "onehot_tb"
+# Compile Configuration "TESTBENCH_FOR_onehot"
+# File: c:\My_Designs\Stack\src\TestBench\ctrl1_TB.vhd
+# Compile Entity "ctrl1_tb"
+# Compile Architecture "TB_ARCHITECTURE" of Entity "ctrl1_tb"
+# Compile Configuration "TESTBENCH_FOR_ctrl1"
+# Compile success 0 Errors 0 Warnings  Analysis time :  0.6 [s]

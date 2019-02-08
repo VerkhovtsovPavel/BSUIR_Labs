@@ -1,0 +1,5 @@
+WARNING DAGGEN_0523: "The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available."
+MESSAGE "File: c:\My_Designs\GPR\src\DPATH.vhd" 
+MESSAGE "Compile Entity "DPATH"" 
+MESSAGE "Compile Architecture "Beh_GPR" of Entity "DPATH"" 
+SUCCESS "Compile success 0 Errors 0 Warnings  Analysis time :  46.0 [ms]" 

@@ -1,0 +1,43 @@
+Active-HDL 10.5.217.6767 2018-04-10 16:14:23
+
+Elaboration top modules:
+VHDL Configuration            testbench_for_onehot
+
+
+---------------------------------------------------------------------------------------------
+Entity    | Architecture    | Library | Info | Compiler Version        | Compilation Options
+---------------------------------------------------------------------------------------------
+onehot_tb | TB_ARCHITECTURE | stack   |      | 10.5.217.6767 (Windows) | -O3
+OneHot    | Beh             | stack   |      | 10.5.217.6767 (Windows) | -O3
+MRAM      | Beh             | stack   |      | 10.5.217.6767 (Windows) | -O3
+MROM      | Beh_Stack       | stack   |      | 10.5.217.6767 (Windows) | -O3
+DPATH     | Beh_Stack       | stack   |      | 10.5.217.6767 (Windows) | -O3
+CTRL1     | Beh_Stack       | stack   |      | 10.5.217.6767 (Windows) | -O3
+LIFO      | Beh             | stack   |      | 10.5.217.6767 (Windows) | -O3
+---------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------
+VHDL Configuration          | Library | Info | Compiler Version        | Compilation Options
+---------------------------------------------------------------------------------------------
+testbench_for_onehot        | stack   |      |                         | <unavailable>
+---------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------
+VHDL Package                | Library | Info | Compiler Version        | Compilation Options
+---------------------------------------------------------------------------------------------
+standard                    | std     |      |                         | <unavailable>
+TEXTIO                      | std     |      |                         | <unavailable>
+std_logic_1164              | ieee    |      |                         | <unavailable>
+std_logic_arith             | ieee    |      |                         | <unavailable>
+STD_LOGIC_UNSIGNED          | ieee    |      |                         | <unavailable>
+OneHotStack                 | stack   |      |                         | <unavailable>
+NUMERIC_STD                 | ieee    |      |                         | <unavailable>
+---------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------
+Library                     | Comment
+---------------------------------------------------------------------------------------------
+ieee                        | Standard IEEE packages library
+stack                       | None
+std                         | Standard VHDL library
+---------------------------------------------------------------------------------------------

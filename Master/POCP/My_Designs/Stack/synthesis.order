@@ -1,0 +1,13 @@
+i<>.\src\OneHot.vhd
+i<>.\src\MROM.vhd
+i<>.\src\MRAM.vhd
+i<>.\src\LIFO.vhd
+i<>.\src\DPATH.vhd
+i<>.\src\CTRL1.vhd
+i<>.\src\Constants.vhd
+i<>.\src\TestBench\dpath_TB.vhd
+i<>.\src\TestBench\lifo_TB.vhd
+i<>.\src\TestBench\mram_TB.vhd
+i<>.\src\TestBench\mrom_TB.vhd
+i<>.\src\TestBench\onehot_TB.vhd
+i<>.\src\TestBench\ctrl1_TB.vhd
