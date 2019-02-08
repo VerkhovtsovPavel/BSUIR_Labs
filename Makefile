@@ -1,5 +1,5 @@
 LATEXMK=latexmk
-DIPLOMA_SRC=defendingSpeech.tex
+DIPLOMA_SRC=dissertation.tex
 
 all: dissertation
 
