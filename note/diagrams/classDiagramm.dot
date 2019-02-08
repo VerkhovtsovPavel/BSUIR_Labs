@@ -1,0 +1,64 @@
+digraph diagram {
+
+node [shape = "record"]
+
+"Boot" -> "App";
+
+# Database
+"DatabaseConnector"
+"DatabaseMigrationManager"
+
+# Utility
+"Config"
+"MonadTransformers"
+"SecurityDirectives"
+
+# Route
+"HttpRoute"
+  "HttpRoute" -> "AuthRoute"[arrowhead=diamond];
+  "HttpRoute" -> "ProfileRoute"[arrowhead=diamond];
+  "HttpRoute" -> "SampleRoute"[arrowhead=diamond];
+  "HttpRoute" -> "ActionsRoute"[arrowhead=diamond];
+
+"AuthRoute" -> "FailFastCirceSupport";
+"ProfileRoute" -> "FailFastCirceSupport";
+"SampleRoute" -> "FailFastCirceSupport";
+"ActionsRoute" -> "FailFastCirceSupport";
+
+# Core
+"JdbcUserProfileStorage" -> "ProfileDataStorage"
+"JdbcUserProfileStorage" -> "ProfileDataTable"
+"ProfileService" -> "JdbcUserProfileStorage"
+
+"JdbcAuthStorage" ->"AuthDataStorage"
+"JdbcAuthStorage" -> "AuthDataTable"
+"AuthService" -> "JdbcAuthStorage"
+
+"JdbcSampleStorage" -> "SampleDataStorage"
+"JdbcSampleStorage" -> "SampleDataTable"
+"SampleService" -> "JdbcSampleStorage"
+
+"JdbcFeatureStorage" -> "FeatureDataStorage"
+"JdbcFeatureStorage" -> "FeatureDataTable"
+"FeatureService" -> "JdbcFeatureStorage"
+
+"JdbcResultStorage" -> "ResultDataStorage"
+"JdbcResultStorage" -> "ResultDataTable"
+"ResultService" -> "JdbcResultStorage"
+
+#Data
+"AuthTokenContent"
+"AuthData"
+"UserProfile"
+"UserProfileUpdate"
+"Sample"
+"Features"
+"Result"
+
+#Response
+"ItemNotFound" -> "Response"
+"Forbidden" -> "Response"
+"Unauthorized" -> "Response"
+}
+# https://dreampuf.github.io/GraphvizOnline/
+# circo -T png -o class.png classDiagramm.dot

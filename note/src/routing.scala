@@ -1,0 +1,6 @@
+        ...
+        authenticate(secretKey) { userId =>
+          post {
+            entity(as[Sample]) { sample =>
+              complete(createSample(sample).map {
+        ...      

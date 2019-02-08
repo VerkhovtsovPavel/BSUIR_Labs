@@ -1,0 +1,45 @@
+{
+    "folders":
+    [
+        {
+            "path": ".",
+            "folder_exclude_patterns": [".git", ".vagrant"],
+            "file_exclude_patterns": [
+                "*.aux",
+                "*.lof",
+                "*.log",
+                "*.lot",
+                "*.fls",
+                "*.out",
+                "*.toc",
+                "*.tdo",
+                "*.fmt",
+                "*.fot",
+                "*.cb",
+                "*.cb2",
+                "*.dvi",
+                "*-converted-to.*",
+                "*.ps",
+                "*.eps",
+                "*.pdf",
+                "*.fdb_latexmk",
+                "*.synctex",
+                "*.synctex.gz",
+                "*.synctex.gz(busy)",
+                "*.pdfsync",
+                "*.bbl",
+                "*.bcf",
+                "*.blg",
+                "*-blx.aux",
+                "*-blx.bib",
+                "*.brf",
+                "*.run.xml",
+                "*.ldb"
+            ]
+        }
+    ],
+    "settings": {
+        "TEXroot": "dissertation.tex",
+        "tex_file_exts": [".tex"],
+    }
+}
