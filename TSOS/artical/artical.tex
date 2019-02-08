@@ -1,0 +1,29 @@
+\input{tex/preamble}
+\begin{document}
+
+% Не пытаемся впихивать по максимуму - не получаем вылазящих за правый край слов
+\sloppy
+
+\input{tex/titlepage}
+
+% Содержание
+\clearpage \setcounter{page}{2}
+\input{tex/toc} %
+
+% Введение
+\input{tex/intro} %
+
+% Глава 1 Обзор предметной области
+\input{tex/single_core} 
+
+% Глава 2 Функциональные требования
+\input{tex/single_core_plus_micro}
+
+% Глава 3 Проектирование архитектуры программного средства
+\input{tex/multi_core}
+
+% Список использованных источников
+\input{tex/references} %
+
+
+\end{document}
