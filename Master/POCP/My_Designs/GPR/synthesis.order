@@ -1,0 +1,10 @@
+i<>.\src\TestBench\dpath_TB.vhd
+i<>.\src\TestBench\mram_TB.vhd
+i<>.\src\TestBench\mrom_TB.vhd
+i<>.\src\TestBench\onehot_TB.vhd
+i<>.\src\Constants.vhd
+i<>.\src\CTRL1.vhd
+i<>.\src\DPATH.vhd
+i<>.\src\MRAM.vhd
+i<>.\src\MROM.vhd
+i<>.\src\OneHot.vhd

@@ -1,0 +1,5 @@
+WARNING DAGGEN_0523: "The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available."
+MESSAGE "File: c:\My_Designs\Accum\src\MRAM.vhd" 
+MESSAGE "Compile Entity "MRAM"" 
+MESSAGE "Compile Architecture "Beh" of Entity "MRAM"" 
+SUCCESS "Compile success 0 Errors 0 Warnings  Analysis time :  15.0 [ms]" 

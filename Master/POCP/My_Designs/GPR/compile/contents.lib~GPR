@@ -1,0 +1,24 @@
+31
+~E 1 "./../src/CTRL1.vhd" 7 CTRL1
+~A 1 "./../src/CTRL1.vhd" 36 Beh_GPR
+~E 1 "./../src/DPATH.vhd" 8 DPATH
+~A 1 "./../src/DPATH.vhd" 24 Beh_GPR
+~E 1 "./../src/TestBench/dpath_TB.vhd" 10 dpath_tb
+~A 1 "./../src/TestBench/dpath_TB.vhd" 13 TB_ARCHITECTURE
+~E 1 "./../src/LIFO.vhd" 6 LIFO
+~E 1 "./../src/MRAM.vhd" 7 MRAM
+~A 1 "./../src/MRAM.vhd" 27 Beh_GPR
+~E 1 "./../src/TestBench/mram_TB.vhd" 9 mram_tb
+~A 1 "./../src/TestBench/mram_TB.vhd" 12 TB_ARCHITECTURE
+~E 1 "./../src/MROM.vhd" 7 MROM
+~A 1 "./../src/MROM.vhd" 15 Beh_GPR
+~E 1 "./../src/TestBench/mrom_TB.vhd" 9 mrom_tb
+~A 1 "./../src/TestBench/mrom_TB.vhd" 12 TB_ARCHITECTURE
+~E 1 "./../src/OneHot.vhd" 7 OneHot
+~A 1 "./../src/OneHot.vhd" 14 Beh_GPR
+~E 1 "./../src/TestBench/onehot_TB.vhd" 7 onehot_tb
+~A 1 "./../src/TestBench/onehot_TB.vhd" 10 TB_ARCHITECTURE
+~C 1 "./../src/TestBench/dpath_TB.vhd" 87 testbench_for_dpath
+~C 1 "./../src/TestBench/mram_TB.vhd" 89 testbench_for_mram
+~C 1 "./../src/TestBench/mrom_TB.vhd" 58 testbench_for_mrom
+~C 1 "./../src/TestBench/onehot_TB.vhd" 58 testbench_for_onehot

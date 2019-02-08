@@ -1,0 +1,41 @@
+Active-HDL 10.5.217.6767 2018-04-10 15:37:43
+
+Elaboration top modules:
+VHDL Configuration            testbench_for_onehot
+
+
+---------------------------------------------------------------------------------------------
+Entity    | Architecture    | Library | Info | Compiler Version        | Compilation Options
+---------------------------------------------------------------------------------------------
+onehot_tb | TB_ARCHITECTURE | accum   |      | 10.5.217.6767 (Windows) | -O3
+OneHot    | Beh             | accum   |      | 10.5.217.6767 (Windows) | -O3
+MRAM      | Beh             | accum   |      | 10.5.217.6767 (Windows) | -O3
+MROM      | Beh             | accum   |      | 10.5.217.6767 (Windows) | -O3
+DPATH     | Beh             | accum   |      | 10.5.217.6767 (Windows) | -O3
+CTRL1     | Beh             | accum   |      | 10.5.217.6767 (Windows) | -O3
+---------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------
+VHDL Configuration          | Library | Info | Compiler Version        | Compilation Options
+---------------------------------------------------------------------------------------------
+testbench_for_onehot        | accum   |      |                         | <unavailable>
+---------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------
+VHDL Package                | Library | Info | Compiler Version        | Compilation Options
+---------------------------------------------------------------------------------------------
+standard                    | std     |      |                         | <unavailable>
+TEXTIO                      | std     |      |                         | <unavailable>
+std_logic_1164              | ieee    |      |                         | <unavailable>
+std_logic_arith             | ieee    |      |                         | <unavailable>
+STD_LOGIC_UNSIGNED          | ieee    |      |                         | <unavailable>
+OneHotAccum                 | accum   |      |                         | <unavailable>
+---------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------
+Library                     | Comment
+---------------------------------------------------------------------------------------------
+accum                       | None
+ieee                        | Standard IEEE packages library
+std                         | Standard VHDL library
+---------------------------------------------------------------------------------------------

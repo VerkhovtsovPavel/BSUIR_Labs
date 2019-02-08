@@ -1,0 +1,14 @@
+[Version]
+Version=10.5
+[Designs]
+GPR=GPR.adf
+[Settings]
+Active=GPR
+[Expand]
+gpr=1
+[Browser]
+sort=order
+mode=none
+[Order]
+order=1
+macro=
