@@ -1,5 +1,0 @@
-pipelines:
-  default:
-    - step:
-        script:
-          - ./heroku-deploy.sh
